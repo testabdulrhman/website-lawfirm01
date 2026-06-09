@@ -81,7 +81,7 @@ export default function Home() {
           style={{ transform: `translateY(${parallaxOffset * 0.4}px)` }}
         >
           <img
-            src="/manus-storage/hero-law-firm-new_fff82498.webp"
+            src="/manus-storage/hero-law-firm_e023db3c.webp"
             alt={lang === "ar" ? "مكتب محاماة" : "Law Office"}
             className="w-full h-full object-cover"
             loading="eager"

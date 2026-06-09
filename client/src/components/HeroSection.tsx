@@ -25,7 +25,7 @@ export default function HeroSection() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img
-          src="https://d2xsxph8kpxj0f.cloudfront.net/310419663031020868/RdzCt9LFS29ZVcU4VNgpAF/hero-law-firm-8k4s6z4dCMHvFE8W2p7vZN.webp"
+          src="/manus-storage/hero-law-firm_e023db3c.webp"
           alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
           className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out"
           style={{ transform: loaded ? "scale(1)" : "scale(1.1)" }}

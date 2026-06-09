@@ -73,7 +73,7 @@ export default function HomePreview() {
           style={{ transform: `translateY(${parallaxOffset * 0.4}px)` }}
         >
           <img
-            src="/manus-storage/hero-law-firm_958d2f52.jpg"
+            src="/manus-storage/hero-law-firm_e023db3c.webp"
             alt="مكتب محاماة"
             className="w-full h-full object-cover"
             loading="eager"

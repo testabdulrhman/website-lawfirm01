@@ -115,7 +115,7 @@ export const schemas = {
     "alternateName": "Abdulrahman Redwan Al-Mushaiqi Law Firm",
     "url": "https://redwan.sa",
     "logo": `${BASE_URL}/manus-storage/logo-dark-colored_c318a07d.webp`,
-    "image": `${BASE_URL}/manus-storage/hero-law-firm_958d2f52.jpg`,
+    "image": `${BASE_URL}/manus-storage/hero-law-firm_e023db3c.webp`,
     "description": "شركة محاماة سعودية متخصصة في القضايا التجارية والجنائية والعقارية وإدارة إجراءات الإفلاس، مقرها بريدة بخبرة تتجاوز 20 عاماً.",
     "address": {
       "@type": "PostalAddress",
