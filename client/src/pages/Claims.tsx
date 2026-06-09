@@ -73,6 +73,14 @@ export default function Claims() {
   const [success, setSuccess] = useState(false);
   const [claimRef, setClaimRef] = useState('');
 
+  // OTP state
+  const [otpCode, setOtpCode] = useState('');
+  const [otpLoading, setOtpLoading] = useState(false);
+  const [otpSent, setOtpSent] = useState(false);
+  const [otpResendTimer, setOtpResendTimer] = useState(0);
+  const [otpError, setOtpError] = useState<string | null>(null);
+  const otpInputRef = useRef<HTMLInputElement>(null);
+
   // Form state
   const [creditorType, setCreditorType] = useState('فرد');
   const [creditorName, setCreditorName] = useState('');
@@ -88,7 +96,7 @@ export default function Claims() {
   const [postalCode, setPostalCode] = useState('');
   const [additionalNumber, setAdditionalNumber] = useState('');
 
-  // Step 2
+  // Step 2 - Claim details
   const [claimType, setClaimType] = useState('تجاري');
   const [claimAmount, setClaimAmount] = useState('');
   const [isSecured, setIsSecured] = useState('no');
@@ -99,7 +107,7 @@ export default function Claims() {
   const [dueDocument, setDueDocument] = useState('');
   const [claimReason, setClaimReason] = useState('');
 
-  // Step 3
+  // Step 3 - Documents & Signature
   const [files, setFiles] = useState<Record<string, { file: File; label: string }>>({});
   const [declaration, setDeclaration] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -198,9 +206,27 @@ export default function Claims() {
     setDeclaration(false);
     setSignatureEmpty(true);
     clearSignature();
+    setOtpCode('');
+    setOtpSent(false);
+    setOtpError(null);
+    setOtpResendTimer(0);
   }
 
   // Validation
+  // OTP resend timer
+  useEffect(() => {
+    if (otpResendTimer <= 0) return;
+    const t = setTimeout(() => setOtpResendTimer(otpResendTimer - 1), 1000);
+    return () => clearTimeout(t);
+  }, [otpResendTimer]);
+
+  // Focus OTP input when entering step 4
+  useEffect(() => {
+    if (currentStep === 4 && otpInputRef.current) {
+      otpInputRef.current.focus();
+    }
+  }, [currentStep]);
+
   function validateStep(step: number): boolean {
     if (step === 1) {
       if (!creditorName.trim()) { toast.error('يرجى إدخال اسم الدائن'); return false; }
@@ -212,16 +238,120 @@ export default function Claims() {
       if (!claimAmount || parseFloat(claimAmount) <= 0) { toast.error('يرجى إدخال مبلغ المطالبة'); return false; }
       if (!claimReason.trim()) { toast.error('يرجى إدخال سبب المطالبة'); return false; }
     }
+    if (step === 3) {
+      if (signatureEmpty) { toast.error('يرجى إضافة توقيعك'); return false; }
+      if (!declaration) { toast.error('يرجى الموافقة على الإقرار'); return false; }
+    }
     return true;
   }
 
   function nextStep() {
     if (!validateStep(currentStep)) return;
-    if (currentStep < 3) setCurrentStep(currentStep + 1);
+    if (currentStep === 3) {
+      // Moving to step 4 (OTP) - request OTP
+      handleRequestOtp();
+      return;
+    }
+    if (currentStep < 4) setCurrentStep(currentStep + 1);
   }
 
   function prevStep() {
     if (currentStep > 1) setCurrentStep(currentStep - 1);
+  }
+
+  // Request OTP
+  async function handleRequestOtp() {
+    setOtpError(null);
+    setOtpLoading(true);
+    try {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/request-otp`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id_number: idNumber.trim(), phone: phone.trim() }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setOtpError(data.message || 'حدث خطأ في إرسال رمز التحقق');
+        setOtpLoading(false);
+        return;
+      }
+      setOtpSent(true);
+      setOtpResendTimer(60);
+      setCurrentStep(4);
+    } catch {
+      setOtpError('فشل الاتصال. تأكد من اتصالك بالإنترنت.');
+    } finally {
+      setOtpLoading(false);
+    }
+  }
+
+  // Resend OTP
+  async function handleResendOtp() {
+    if (otpResendTimer > 0) return;
+    setOtpCode('');
+    setOtpError(null);
+    setOtpLoading(true);
+    try {
+      await fetch(`${SUPABASE_URL}/functions/v1/request-otp`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id_number: idNumber.trim(), phone: phone.trim() }),
+      });
+      setOtpResendTimer(60);
+    } catch {
+      setOtpError('فشل إعادة الإرسال');
+    } finally {
+      setOtpLoading(false);
+    }
+  }
+
+  // Verify OTP then submit
+  async function handleVerifyAndSubmit() {
+    if (otpCode.trim().length !== 6) {
+      setOtpError('رمز التحقق يجب أن يكون 6 أرقام');
+      return;
+    }
+    setOtpError(null);
+    setOtpLoading(true);
+    try {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/verify-otp`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id_number: idNumber.trim(),
+          phone: phone.trim(),
+          otp: otpCode.trim(),
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        let errMsg = data.message || 'رمز التحقق غير صحيح';
+        if (data.attempts_left !== undefined) {
+          errMsg = `${data.message} (${data.attempts_left} محاولات متبقية)`;
+        }
+        setOtpError(errMsg);
+        setOtpLoading(false);
+        return;
+      }
+      // OTP verified - proceed with submission
+      setOtpLoading(false);
+      handleSubmit();
+    } catch {
+      setOtpError('فشل الاتصال. تأكد من اتصالك بالإنترنت.');
+      setOtpLoading(false);
+    }
   }
 
   // Signature
@@ -314,8 +444,6 @@ export default function Claims() {
 
   // Submit
   async function handleSubmit() {
-    if (signatureEmpty) { toast.error('يرجى إضافة توقيعك'); return; }
-    if (!declaration) { toast.error('يرجى الموافقة على الإقرار'); return; }
     if (!selectedCase) return;
 
     setSubmitting(true);
@@ -751,16 +879,16 @@ export default function Claims() {
             </div>
 
             {/* Progress Steps */}
-            <div className="flex items-center justify-center gap-4 mb-8">
-              {[1, 2, 3].map(step => (
-                <div key={step} className="flex items-center gap-2">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all ${step < currentStep ? 'bg-green-500 text-white' : step === currentStep ? 'bg-[#c9a227] text-white' : 'bg-gray-200 text-gray-500'}`}>
+            <div className="flex items-center justify-center gap-2 sm:gap-4 mb-8">
+              {[1, 2, 3, 4].map(step => (
+                <div key={step} className="flex items-center gap-1 sm:gap-2">
+                  <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold transition-all ${step < currentStep ? 'bg-green-500 text-white' : step === currentStep ? 'bg-[#c9a227] text-white' : 'bg-gray-200 text-gray-500'}`}>
                     {step < currentStep ? '✓' : step}
                   </div>
-                  <span className={`text-sm hidden sm:inline ${step === currentStep ? 'text-[#1e3a5f] font-medium' : 'text-gray-400'}`}>
-                    {step === 1 ? 'بيانات الدائن' : step === 2 ? 'تفاصيل المطالبة' : 'المستندات'}
+                  <span className={`text-xs sm:text-sm hidden md:inline ${step === currentStep ? 'text-[#1e3a5f] font-medium' : 'text-gray-400'}`}>
+                    {step === 1 ? 'بيانات الدائن' : step === 2 ? 'تفاصيل المطالبة' : step === 3 ? 'المستندات والتوقيع' : 'التأكيد'}
                   </span>
-                  {step < 3 && <div className={`w-8 h-0.5 ${step < currentStep ? 'bg-green-500' : 'bg-gray-200'}`} />}
+                  {step < 4 && <div className={`w-4 sm:w-8 h-0.5 ${step < currentStep ? 'bg-green-500' : 'bg-gray-200'}`} />}
                 </div>
               ))}
             </div>
@@ -906,10 +1034,10 @@ export default function Claims() {
               </div>
             )}
 
-            {/* Step 3 */}
+            {/* Step 3 - Documents & Signature */}
             {currentStep === 3 && (
               <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-                <h2 className="text-xl font-bold text-[#1e3a5f] mb-6">المستندات والتأكيد</h2>
+                <h2 className="text-xl font-bold text-[#1e3a5f] mb-6">المستندات والتوقيع</h2>
 
                 <div className="space-y-4 mb-8">
                   {[
@@ -968,10 +1096,55 @@ export default function Claims() {
               </div>
             )}
 
+            {/* Step 4 - OTP Verification */}
+            {currentStep === 4 && (
+              <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+                <h2 className="text-xl font-bold text-[#1e3a5f] mb-2">تأكيد الهوية</h2>
+                <p className="text-sm text-gray-500 mb-6">تم إرسال رمز تحقق مكون من 6 أرقام إلى رقم الجوال المسجل ({phone})</p>
+
+                <div className="max-w-sm mx-auto">
+                  <label className="block text-sm font-semibold text-[#1e3a5f] mb-2">رمز التحقق *</label>
+                  <input
+                    ref={otpInputRef}
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={6}
+                    value={otpCode}
+                    onChange={e => { setOtpCode(e.target.value.replace(/[^0-9]/g, '')); setOtpError(null); }}
+                    placeholder="000000"
+                    className="w-full px-4 py-3 bg-[#faf8f5] border border-[#e8e0d4] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c9a227]/50 focus:border-[#c9a227] text-center text-2xl tracking-[0.5em] font-mono text-[#1e3a5f] placeholder-gray-300 transition-all" dir="ltr"
+                  />
+
+                  {otpError && (
+                    <p className="text-sm text-red-500 mt-3 text-center">{otpError}</p>
+                  )}
+
+                  <div className="mt-4 text-center">
+                    {otpResendTimer > 0 ? (
+                      <p className="text-sm text-gray-400">إعادة الإرسال خلال {otpResendTimer} ثانية</p>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={handleResendOtp}
+                        disabled={otpLoading}
+                        className="text-sm text-[#c9a227] hover:underline disabled:opacity-50"
+                      >
+                        إعادة إرسال الرمز
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Navigation Buttons */}
             <div className="flex items-center justify-between mt-5 md:mt-6 gap-3">
-              {currentStep > 1 ? (
+              {currentStep > 1 && currentStep < 4 ? (
                 <button onClick={prevStep} className="px-4 md:px-6 py-2.5 md:py-3 text-sm border border-[#1e3a5f] text-[#1e3a5f] rounded-lg hover:bg-[#1e3a5f] hover:text-white active:scale-[0.97] transition-all">
+                  السابق
+                </button>
+              ) : currentStep === 4 ? (
+                <button onClick={() => setCurrentStep(3)} className="px-4 md:px-6 py-2.5 md:py-3 text-sm border border-[#1e3a5f] text-[#1e3a5f] rounded-lg hover:bg-[#1e3a5f] hover:text-white active:scale-[0.97] transition-all">
                   السابق
                 </button>
               ) : (
@@ -981,10 +1154,14 @@ export default function Claims() {
                 <button onClick={nextStep} className="px-6 md:px-8 py-2.5 md:py-3 text-sm bg-[#c9a227] text-white rounded-lg hover:bg-[#b08d1f] active:scale-[0.97] transition-all font-medium">
                   التالي
                 </button>
+              ) : currentStep === 3 ? (
+                <button onClick={nextStep} disabled={otpLoading} className="px-6 md:px-8 py-2.5 md:py-3 text-sm bg-[#c9a227] text-white rounded-lg hover:bg-[#b08d1f] active:scale-[0.97] transition-all font-medium disabled:opacity-50">
+                  {otpLoading ? 'جاري إرسال رمز التحقق...' : 'التالي'}
+                </button>
               ) : (
-                <button onClick={handleSubmit} disabled={submitting} className="px-6 md:px-8 py-2.5 md:py-3 text-sm bg-[#c9a227] text-white rounded-lg hover:bg-[#b08d1f] active:scale-[0.97] transition-all font-medium disabled:opacity-50">
+                <button onClick={handleVerifyAndSubmit} disabled={submitting || otpLoading} className="px-6 md:px-8 py-2.5 md:py-3 text-sm bg-[#c9a227] text-white rounded-lg hover:bg-[#b08d1f] active:scale-[0.97] transition-all font-medium disabled:opacity-50">
                   <FileText className="w-4 h-4 inline ml-2" />
-                  إرسال المطالبة
+                  {otpLoading ? 'جاري التحقق...' : 'تأكيد وإرسال المطالبة'}
                 </button>
               )}
             </div>

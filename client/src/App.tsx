@@ -23,6 +23,7 @@ import HomePreview from "@/pages/HomePreview";
 import BankruptcyComplete from "@/pages/BankruptcyComplete";
 import BankruptcyCase from "@/pages/BankruptcyCase";
 import BankruptcyTrack from "@/pages/BankruptcyTrack";
+import Bankruptcy from "@/pages/Bankruptcy";
 import Sitemap from "@/pages/Sitemap";
 
 function Router() {
@@ -35,6 +36,7 @@ function Router() {
         <Route path={"/team"} component={Team} />
         <Route path={"/services"} component={Services} />
         <Route path={"/services/:slug"} component={ServiceDetail} />
+        <Route path={"/bankruptcy"} component={Bankruptcy} />
         <Route path={"/bankruptcy/claims"} component={Claims} />
         <Route path={"/bankruptcy/track"} component={BankruptcyTrack} />
         <Route path={"/bankruptcy/complete"} component={BankruptcyComplete} />
@@ -58,7 +60,7 @@ function App() {
     <ErrorBoundary>
       <HelmetProvider>
         <LanguageProvider>
-          <ThemeProvider defaultTheme="light">
+          <ThemeProvider defaultTheme="dark" switchable>
             <TooltipProvider>
               <Toaster />
               <Router />
