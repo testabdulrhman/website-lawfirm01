@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://redwan.sa/sitemap.xml

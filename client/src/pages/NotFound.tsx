@@ -1,0 +1,39 @@
+import { Link } from "wouter";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useTranslation } from "@/hooks/useTranslation";
+
+export default function NotFound() {
+  const { lang, isRTL } = useTranslation();
+
+  const content = lang === "ar" ? {
+    title: "الصفحة غير موجودة",
+    desc: "عذراً، الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
+    btn: "العودة للرئيسية",
+  } : {
+    title: "Page Not Found",
+    desc: "Sorry, the page you are looking for does not exist or has been moved.",
+    btn: "Back to Home",
+  };
+
+  return (
+    <section className="min-h-screen flex items-center justify-center bg-[var(--color-cream)] px-5">
+      <div className="text-center max-w-md">
+        <span className="font-display text-8xl md:text-9xl font-bold text-[var(--color-navy)]/10 block mb-2">404</span>
+        <h1 className="font-display text-2xl md:text-3xl font-bold text-[var(--color-navy)] mb-3">
+          {content.title}
+        </h1>
+        <p className="font-body text-sm md:text-base text-[var(--color-navy)]/60 mb-8 leading-relaxed">
+          {content.desc}
+        </p>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-navy)] text-[var(--color-cream)] font-heading font-semibold text-sm hover:bg-[var(--color-navy-light)] active:scale-[0.97] transition-all duration-200"
+        >
+          {isRTL && <ArrowLeft size={16} />}
+          <span>{content.btn}</span>
+          {!isRTL && <ArrowRight size={16} />}
+        </Link>
+      </div>
+    </section>
+  );
+}
