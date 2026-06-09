@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -307,6 +308,13 @@ export default function BankruptcyTrack() {
   // العرض حسب الخطوة
   // ============================================================
   return (
+    <>
+    <SEOHead
+      title="تتبع المطالبة"
+      description="تتبع حالة مطالبتك في إجراءات الإفلاس برقم المرجع أو رقم الهوية"
+      canonicalUrl="/bankruptcy/track"
+      keywords={['تتبع مطالبة', 'إفلاس', 'حالة المطالبة']}
+    />
     <section className="pt-28 md:pt-32 pb-16 md:pb-20 min-h-screen bg-[var(--color-cream)]" dir="rtl">
       <div className="container mx-auto px-5 md:px-4 lg:px-8">
         <div className="max-w-3xl mx-auto">
@@ -507,12 +515,12 @@ export default function BankruptcyTrack() {
               onLogout={handleLogout}
             />
           )}
-        </div>
+                </div>
       </div>
     </section>
+    </>
   );
 }
-
 // ============================================================
 // عرض المطالبات
 // ============================================================

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { supabase, SUPABASE_URL, SUPABASE_ANON_KEY } from '@/lib/supabase';
 import { Link } from 'wouter';
 import { toast } from 'sonner';
+import SEOHead from '@/components/SEOHead';
 import { FileText, Upload, ChevronLeft, Calendar, Building2, Lock, AlertTriangle, CheckCircle2, Phone, Mail, ArrowRight } from 'lucide-react';
 
 // Types
@@ -692,6 +693,13 @@ export default function Claims() {
   const labelClass = "block text-xs md:text-sm font-semibold text-[#1e3a5f] mb-1.5";
 
   return (
+    <>
+    <SEOHead
+      title="تقديم مطالبة دائن"
+      description="نموذج تقديم مطالبة دائن في إجراءات الإفلاس لدى شركة عبدالرحمن رضوان المشيقح للمحاماة"
+      canonicalUrl="/bankruptcy/claims"
+      keywords={['مطالبة دائن', 'إفلاس', 'تقديم مطالبة', 'دائنين']}
+    />
     <div className="min-h-screen bg-[#faf8f5]">
       {/* Hero */}
       <section className="bg-[#1e3a5f] pt-28 md:pt-32 pb-12 md:pb-16 relative overflow-hidden">
@@ -1169,5 +1177,6 @@ export default function Claims() {
         )}
       </div>
     </div>
+    </>
   );
 }

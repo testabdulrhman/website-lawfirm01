@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, Briefcase, Gavel, Users, Building, Scale, FileCh
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackPhoneClick, trackBookConsultation } from "@/lib/analytics";
+import SEOHead from "@/components/SEOHead";
 
 const servicesData: Record<string, {
   icon: any;
@@ -383,6 +384,12 @@ export default function ServiceDetail() {
 
   return (
     <>
+      <SEOHead
+        title={content.title}
+        description={content.description}
+        canonicalUrl={`/services/${params.slug}`}
+        keywords={[content.title, lang === 'ar' ? 'محاماة' : 'law', lang === 'ar' ? 'خدمات قانونية' : 'legal services']}
+      />
       {/* Page Hero */}
       <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 bg-[var(--color-navy)]">
         <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
