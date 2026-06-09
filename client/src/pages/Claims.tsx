@@ -355,13 +355,24 @@ export default function Claims() {
     };
 
     try {
-      // Step 1: Save claim
+      // Step 1: Save claim via Edge Function
       setSubmitProgress(10);
-      const { data, error } = await supabase.from('claims').insert([claimData]).select();
-      if (error) throw error;
+      const response = await fetch(`${SUPABASE_URL}/functions/v1/submit-claim`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+        },
+        body: JSON.stringify(claimData)
+      });
+      const result = await response.json();
+      if (!response.ok || result.error) {
+        throw new Error(result.error || 'فشل في إرسال المطالبة');
+      }
 
-      const savedClaimId = data?.[0]?.id;
-      const savedClaimRef = data?.[0]?.claim_ref || '';
+      const savedClaimId = result.id || result.claim_id || null;
+      const savedClaimRef = result.claim_ref || '';
       setClaimRef(savedClaimRef);
       setSubmitProgress(25);
       setSubmitLabel('تم حفظ البيانات...');
@@ -455,7 +466,7 @@ export default function Claims() {
 
     } catch (error: any) {
       console.error('Submit error:', error);
-      toast.error(`حدث خطأ: ${error?.message || 'يرجى المحاولة مرة أخرى'}`);
+      toast.error(error?.message || 'حدث خطأ، يرجى المحاولة مرة أخرى');
     } finally {
       setSubmitting(false);
     }
@@ -583,7 +594,7 @@ export default function Claims() {
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <CheckCircle2 className="w-10 h-10 text-green-600" />
             </div>
-            <h2 className="text-2xl font-bold text-[#1e3a5f] mb-3">تم إرسال المطالبة بنجاح</h2>
+            <h2 className="text-2xl font-bold text-[#1e3a5f] mb-3">تم استلام مطالبتك برقم: <span className="text-[#c9a227]">{claimRef}</span></h2>
             <p className="text-gray-600 mb-2">رقم المرجع: <span className="font-bold text-[#c9a227]">{claimRef}</span></p>
             <p className="text-gray-500 text-sm mb-8">سيتم دراسة المطالبة من قبل أمين الإفلاس وإبلاغكم بالنتيجة</p>
             <div className="bg-[#1e3a5f]/5 rounded-xl p-4 mb-6">
