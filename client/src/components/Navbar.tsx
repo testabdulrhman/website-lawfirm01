@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Phone, Globe, Moon, Sun } from "lucide-react";
-import { useTheme } from "@/contexts/ThemeContext";
+import { Menu, X, Phone, Globe } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackBookConsultation, trackLanguageSwitch, trackPhoneClick } from "@/lib/analytics";
 
@@ -13,7 +12,6 @@ export default function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [location] = useLocation();
   const { t, lang, toggleLang, isRTL } = useTranslation();
-  const { theme, toggleTheme } = useTheme();
 
   const navLinks = [
     { label: t.nav.home, href: "/" },
@@ -93,20 +91,8 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* CTA Button + Language Toggle + Theme Toggle - Desktop */}
+        {/* CTA Button + Language Toggle - Desktop */}
         <div className="hidden lg:flex items-center gap-3">
-          {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            className={`p-2 rounded transition-all duration-200 ${
-              showTransparent
-                ? "text-white/80 hover:text-white hover:bg-white/10"
-                : "text-[var(--color-navy)]/70 hover:text-[var(--color-navy)] hover:bg-[var(--color-navy)]/5"
-            }`}
-            aria-label="Toggle theme"
-          >
-            {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
-          </button>
           {/* Language Toggle */}
           <button
             onClick={toggleLang}
@@ -135,17 +121,8 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile: Theme + Language Toggle + Hamburger */}
+        {/* Mobile: Language Toggle + Hamburger */}
         <div className="flex lg:hidden items-center gap-2">
-          <button
-            onClick={toggleTheme}
-            className={`p-2 transition-colors ${
-              showTransparent ? 'text-white/80' : 'text-[var(--color-navy)]/70'
-            }`}
-            aria-label="Toggle theme"
-          >
-            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
           <button
             onClick={toggleLang}
             className={`p-2 text-xs font-heading font-medium transition-colors ${
