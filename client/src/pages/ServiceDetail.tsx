@@ -3,7 +3,8 @@ import { ArrowLeft, ArrowRight, Briefcase, Gavel, Users, Building, Scale, FileCh
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackPhoneClick, trackBookConsultation } from "@/lib/analytics";
-import SEOHead from "@/components/SEOHead";
+import { useSEO, schemas } from "@/hooks/useSEO";
+import { useMemo } from "react";
 
 const servicesData: Record<string, {
   icon: any;
@@ -25,8 +26,10 @@ const servicesData: Record<string, {
       ],
       faqs: [
         { q: "ما هي مدة القضية التجارية المتوسطة؟", a: "تختلف المدة حسب تعقيد القضية، لكن عادة تتراوح بين 3 إلى 12 شهراً." },
-        { q: "هل تتعاملون مع قضايا خارج منطقة القصيم؟", a: "نعم، نمثل عملاءنا أمام جميع المحاكم في المملكة." },
-        { q: "ما هي تكلفة الاستشارة الأولية؟", a: "تواصل معنا لتحديد موعد استشارة ومعرفة التفاصيل." },
+        { q: "هل تتعاملون مع قضايا خارج منطقة القصيم؟", a: "نعم، نحمل ترخيص محاماة رقم 26/129 من وزارة العدل يخوّلنا الترافع أمام جميع المحاكم والدوائر القضائية في المملكة العربية السعودية بمختلف درجاتها." },
+        { q: "ما هي تكلفة الاستشارة الأولية؟", a: "تختلف تكلفة الاستشارة حسب نوع القضية وتعقيدها. نقدم استشارة أولية لتقييم الحالة، ويتم الاتفاق على الأتعاب بشكل شفاف قبل البدء في أي إجراء قانوني." },
+        { q: "كيف أوكّل الشركة في قضيتي التجارية؟", a: "يتم التوكيل عبر منصة ناجز الإلكترونية لإصدار وكالة إلكترونية. سنرشدك خلال جميع الخطوات المطلوبة -إن احتجت لذلك-." },
+        { q: "كيف أتابع مستجدات قضيتي؟", a: "نوفر لعملائنا تحديثات دورية عبر الهاتف أو البريد الإلكتروني. كما يمكنك التواصل مع المحامي المسؤول عن قضيتك في أي وقت خلال ساعات العمل للاستفسار عن المستجدات." },
       ],
     },
     en: {
@@ -42,8 +45,10 @@ const servicesData: Record<string, {
       ],
       faqs: [
         { q: "What is the average duration of a commercial case?", a: "Duration varies by complexity, but typically ranges from 3 to 12 months." },
-        { q: "Do you handle cases outside the Qassim region?", a: "Yes, we represent our clients before all courts in the Kingdom." },
-        { q: "What is the cost of an initial consultation?", a: "Contact us to schedule a consultation and learn about the details." },
+        { q: "Do you handle cases outside the Qassim region?", a: "Yes, we hold legal practice license No. 26/129 from the Ministry of Justice, authorizing us to litigate before all courts and judicial circuits in the Kingdom of Saudi Arabia at all levels." },
+        { q: "What is the cost of an initial consultation?", a: "Consultation costs vary depending on the type and complexity of the case. We offer an initial consultation to assess your situation, and fees are agreed upon transparently before any legal action begins." },
+        { q: "How do I engage the firm for my commercial case?", a: "Engagement is done through the Najiz electronic platform for issuing an electronic power of attorney. We will guide you through all required steps if needed." },
+        { q: "How can I follow up on my case progress?", a: "We provide our clients with regular updates via phone or email. You can also contact the attorney responsible for your case at any time during business hours to inquire about developments." },
       ],
     },
   },
@@ -62,7 +67,10 @@ const servicesData: Record<string, {
       ],
       faqs: [
         { q: "هل يمكن رفع قضية عمالية بعد انتهاء العقد؟", a: "نعم، يحق للعامل المطالبة بحقوقه خلال المدة النظامية المحددة." },
-        { q: "ما هي حقوق العامل عند الفصل التعسفي؟", a: "يحق له التعويض وفق ما ينص عليه نظام العمل السعودي." },
+        { q: "ما هي حقوق العامل عند الفصل التعسفي؟", a: "يحق له التعويض وفق ما ينص عليه نظام العمل السعودي، ويشمل ذلك أجر المدة المتبقية من العقد أو تعويض لا يقل عن أجر شهرين." },
+        { q: "ما هي المدة المتوقعة للقضية العمالية؟", a: "تختلف مدة القضية حسب نوعها وتعقيدها. القضايا البسيطة قد تستغرق 2-4 أشهر، بينما القضايا المعقدة قد تمتد لسنة أو أكثر." },
+        { q: "هل يمكن التواصل عن بُعد؟", a: "نعم، نقدم خدمات الاستشارات عن بُعد عبر الاتصال المرئي أو الهاتفي. كما يمكن إتمام إجراءات التوكيل إلكترونياً عبر منصة ناجز." },
+        { q: "هل تترافعون أمام جميع المحاكم العمالية؟", a: "نعم، نحمل ترخيص محاماة رقم 26/129 من وزارة العدل يخوّلنا الترافع أمام جميع المحاكم والدوائر القضائية بمختلف درجاتها." },
       ],
     },
     en: {
@@ -78,7 +86,10 @@ const servicesData: Record<string, {
       ],
       faqs: [
         { q: "Can a labor case be filed after contract termination?", a: "Yes, the employee has the right to claim their rights within the statutory period." },
-        { q: "What are the employee's rights in case of unfair dismissal?", a: "They are entitled to compensation as stipulated by Saudi Labor Law." },
+        { q: "What are the employee's rights in case of unfair dismissal?", a: "They are entitled to compensation as stipulated by Saudi Labor Law, including the remaining contract period wages or a minimum of two months' compensation." },
+        { q: "What is the expected duration of a labor case?", a: "Case duration varies depending on type and complexity. Simple cases may take 2-4 months, while complex cases may extend to a year or more." },
+        { q: "Can I communicate remotely?", a: "Yes, we offer remote consultation services via video call or phone. Engagement procedures can also be completed electronically through the Najiz platform." },
+        { q: "Do you litigate before all labor courts?", a: "Yes, we hold legal practice license No. 26/129 from the Ministry of Justice, authorizing us to litigate before all courts and judicial circuits at all levels." },
       ],
     },
   },
@@ -98,6 +109,9 @@ const servicesData: Record<string, {
       faqs: [
         { q: "هل يمكن حضور المحامي مع المتهم أثناء التحقيق؟", a: "نعم، يحق للمتهم الاستعانة بمحامٍ في جميع مراحل التحقيق والمحاكمة." },
         { q: "ما الفرق بين الحق العام والحق الخاص؟", a: "الحق العام هو حق الدولة في معاقبة المجرم، والحق الخاص هو حق المجني عليه في التعويض." },
+        { q: "ما هي المدة المتوقعة للقضية الجنائية؟", a: "تختلف المدة حسب نوع القضية وتعقيدها والمحكمة المختصة. القضايا البسيطة قد تستغرق 2-4 أشهر، بينما القضايا المعقدة قد تمتد لسنة أو أكثر." },
+        { q: "هل تترافعون أمام جميع المحاكم الجزائية؟", a: "نعم، نحمل ترخيص محاماة رقم 26/129 من وزارة العدل يخوّلنا الترافع أمام جميع المحاكم والدوائر القضائية بمختلف درجاتها." },
+        { q: "كيف أحجز استشارة في قضية جنائية؟", a: "يمكنك حجز استشارة قانونية من خلال التواصل معنا عبر الهاتف (0505149800) أو عبر نموذج التواصل في الموقع، أو من خلال واتساب." },
       ],
     },
     en: {
@@ -114,6 +128,9 @@ const servicesData: Record<string, {
       faqs: [
         { q: "Can a lawyer attend with the accused during investigation?", a: "Yes, the accused has the right to have a lawyer present during all stages of investigation and trial." },
         { q: "What is the difference between public and private right?", a: "Public right is the state's right to punish the offender, while private right is the victim's right to compensation." },
+        { q: "What is the expected duration of a criminal case?", a: "Duration varies depending on the type and complexity of the case and the competent court. Simple cases may take 2-4 months, while complex cases may extend to a year or more." },
+        { q: "Do you litigate before all criminal courts?", a: "Yes, we hold legal practice license No. 26/129 from the Ministry of Justice, authorizing us to litigate before all courts and judicial circuits at all levels." },
+        { q: "How can I book a consultation for a criminal case?", a: "You can book a legal consultation by contacting us via phone (0505149800), through the contact form on our website, or via WhatsApp." },
       ],
     },
   },
@@ -133,6 +150,9 @@ const servicesData: Record<string, {
       faqs: [
         { q: "كيف يتم تحديد الحضانة؟", a: "يراعي القاضي مصلحة الطفل الفضلى وفق الأنظمة المعمول بها." },
         { q: "هل يمكن المطالبة بالنفقة بأثر رجعي؟", a: "نعم، يمكن المطالبة بالنفقة المتأخرة وفق الضوابط النظامية." },
+        { q: "ما هي المدة المتوقعة لقضية الأحوال الشخصية؟", a: "تختلف المدة حسب نوع القضية وتعقيدها. قضايا النفقة قد تستغرق 2-4 أشهر، بينما قضايا الحضانة المعقدة قد تمتد لفترة أطول." },
+        { q: "كيف أوكّل الشركة في قضية أحوال شخصية؟", a: "يتم التوكيل عبر منصة ناجز الإلكترونية لإصدار وكالة إلكترونية. سنرشدك خلال جميع الخطوات المطلوبة." },
+        { q: "هل يمكن التواصل عن بُعد في قضايا الأسرة؟", a: "نعم، نقدم خدمات الاستشارات عن بُعد عبر الاتصال المرئي أو الهاتفي مع مراعاة الخصوصية التامة." },
       ],
     },
     en: {
@@ -149,6 +169,9 @@ const servicesData: Record<string, {
       faqs: [
         { q: "How is custody determined?", a: "The judge considers the best interest of the child according to applicable regulations." },
         { q: "Can alimony be claimed retroactively?", a: "Yes, overdue alimony can be claimed according to regulatory guidelines." },
+        { q: "What is the expected duration of a personal status case?", a: "Duration varies by case type and complexity. Alimony cases may take 2-4 months, while complex custody cases may extend longer." },
+        { q: "How do I engage the firm for a family case?", a: "Engagement is done through the Najiz electronic platform for issuing an electronic power of attorney. We will guide you through all required steps." },
+        { q: "Can I communicate remotely for family cases?", a: "Yes, we offer remote consultation services via video call or phone with complete privacy." },
       ],
     },
   },
@@ -166,8 +189,11 @@ const servicesData: Record<string, {
         "فرز وتجزئة العقارات",
       ],
       faqs: [
-        { q: "ما هو التسجيل العيني للعقار؟", a: "هو نظام لتسجيل العقارات يعتمد على العقار ذاته وليس على المالك، ويوفر حماية قانونية أقوى." },
+        { q: "ما هو التسجيل العيني للعقار؟", a: "التسجيل العيني هو نظام لتسجيل الملكية العقارية يوفر حماية قانونية أقوى لملاك العقارات. نقدم هذه الخدمة بترخيص رقم 2223002594 من الهيئة العامة للعقار." },
         { q: "هل يمكن إلغاء عقد بيع عقاري؟", a: "يمكن ذلك في حالات محددة كالغش أو التدليس أو عدم الوفاء بالشروط." },
+        { q: "ما هي خدمات التوثيق العقاري المتاحة؟", a: "نقدم خدمات التوثيق الرسمي بترخيص رقم 45/57029 من وزارة العدل، وتشمل: توثيق عقود البيع والشراء، الإيجار، وجميع المستندات العقارية." },
+        { q: "هل تتعاملون مع نزاعات عقارية خارج منطقة القصيم؟", a: "نعم، نحمل ترخيص محاماة رقم 26/129 يخوّلنا الترافع أمام جميع المحاكم في المملكة." },
+        { q: "كيف أحجز استشارة عقارية؟", a: "يمكنك حجز استشارة من خلال التواصل معنا عبر الهاتف (0505149800) أو عبر نموذج التواصل في الموقع، أو من خلال واتساب." },
       ],
     },
     en: {
@@ -182,8 +208,11 @@ const servicesData: Record<string, {
         "Property subdivision and partitioning",
       ],
       faqs: [
-        { q: "What is real property registration?", a: "It is a property registration system based on the property itself rather than the owner, providing stronger legal protection." },
+        { q: "What is real property registration?", a: "Real estate registration is a system for registering property ownership that provides stronger legal protection for property owners. We offer this service under license No. 2223002594 from the General Authority for Real Estate." },
         { q: "Can a real estate sale contract be cancelled?", a: "This is possible in specific cases such as fraud, misrepresentation, or breach of conditions." },
+        { q: "What real estate notarization services are available?", a: "We provide official notarization services under license No. 45/57029 from the Ministry of Justice, including: sale and purchase contracts, leases, and all real estate documents." },
+        { q: "Do you handle real estate disputes outside the Qassim region?", a: "Yes, we hold legal practice license No. 26/129 authorizing us to litigate before all courts in the Kingdom." },
+        { q: "How can I book a real estate consultation?", a: "You can book a consultation by contacting us via phone (0505149800), through the contact form on our website, or via WhatsApp." },
       ],
     },
   },
@@ -201,8 +230,11 @@ const servicesData: Record<string, {
         "الإشراف على تنفيذ خطط إعادة التنظيم",
       ],
       faqs: [
-        { q: "ما الفرق بين التسوية الوقائية وإعادة التنظيم؟", a: "التسوية الوقائية تتم قبل التعثر، بينما إعادة التنظيم تتم بعد التعثر الفعلي." },
+        { q: "ما الفرق بين التسوية الوقائية وإعادة التنظيم؟", a: "التسوية الوقائية تتم قبل التعثر الفعلي وتهدف لمنعه، بينما إعادة التنظيم تتم بعد التعثر وتهدف لإعادة هيكلة الديون. كلا الإجراءين يهدفان لاستمرار النشاط التجاري مع حماية حقوق الدائنين." },
         { q: "هل يفقد المدين السيطرة على أعماله؟", a: "في التسوية الوقائية يبقى المدين مسيطراً، أما في التصفية فيتولى أمين الإفلاس الإدارة." },
+        { q: "ما هي خدمات أمين الإفلاس؟", a: "نقدم خدمات أمانة الإفلاس الشاملة بترخيص رقم 142147 من لجنة الإفلاس، وتشمل: التسوية الوقائية، إعادة التنظيم المالي، التصفية، وإدارة أصول المدين وفق نظام الإفلاس السعودي." },
+        { q: "متى يحق لي تقديم طلب إفلاس؟", a: "يحق لك تقديم طلب إفلاس عندما تكون غير قادر على سداد ديونك المستحقة أو عندما تتوقع عدم القدرة على السداد مستقبلاً. ننصح بالتواصل معنا مبكراً لدراسة الخيارات المتاحة قبل تفاقم الوضع." },
+        { q: "كيف يمكنني تقديم مطالبة كدائن؟", a: "إذا كنت دائناً لأحد المدينين الخاضعين لإجراءات الإفلاس، يمكنك تقديم مطالبتك إلكترونياً عبر نظام المطالبات الإلكتروني في موقعنا." },
       ],
     },
     en: {
@@ -217,8 +249,11 @@ const servicesData: Record<string, {
         "Supervising reorganization plan implementation",
       ],
       faqs: [
-        { q: "What is the difference between preventive settlement and reorganization?", a: "Preventive settlement occurs before default, while reorganization occurs after actual default." },
+        { q: "What is the difference between preventive settlement and reorganization?", a: "Preventive settlement occurs before actual default and aims to prevent it, while reorganization occurs after default and aims to restructure debts. Both procedures aim to continue business activity while protecting creditors' rights." },
         { q: "Does the debtor lose control of their business?", a: "In preventive settlement, the debtor remains in control. In liquidation, the bankruptcy trustee takes over management." },
+        { q: "What are bankruptcy trustee services?", a: "We provide comprehensive bankruptcy trustee services under license No. 142147 from the Bankruptcy Commission, including: preventive settlement, financial reorganization, liquidation, and debtor asset management under Saudi Bankruptcy Law." },
+        { q: "When am I eligible to file for bankruptcy?", a: "You may file for bankruptcy when you are unable to pay your due debts or when you anticipate inability to pay in the future. We recommend contacting us early to study available options before the situation worsens." },
+        { q: "How can I submit a creditor claim?", a: "If you are a creditor of a debtor undergoing bankruptcy proceedings, you can submit your claim electronically through our online claims system on our website." },
       ],
     },
   },
@@ -271,8 +306,11 @@ const servicesData: Record<string, {
         "دراسة الجدوى القانونية للمشاريع",
       ],
       faqs: [
-        { q: "هل يمكن الحصول على استشارة عن بُعد؟", a: "نعم، نقدم استشارات عبر الهاتف أو الاجتماعات المرئية." },
+        { q: "كيف أحجز استشارة قانونية؟", a: "يمكنك حجز استشارة قانونية من خلال التواصل معنا عبر الهاتف (0505149800) أو عبر نموذج التواصل في الموقع، أو من خلال واتساب. سيتم تحديد موعد مناسب لك خلال 24 ساعة عمل." },
+        { q: "ما هي تكلفة الاستشارة القانونية؟", a: "تختلف تكلفة الاستشارة حسب نوع القضية وتعقيدها. نقدم استشارة أولية لتقييم الحالة، ويتم الاتفاق على الأتعاب بشكل شفاف قبل البدء في أي إجراء قانوني." },
+        { q: "هل يمكن الحصول على استشارة عن بُعد؟", a: "نعم، نقدم خدمات الاستشارات عن بُعد عبر الاتصال المرئي أو الهاتفي. كما يمكن إتمام إجراءات التوكيل إلكترونياً عبر منصة ناجز." },
         { q: "كم تستغرق الاستشارة؟", a: "عادة تتراوح بين 30 إلى 60 دقيقة حسب تعقيد الموضوع." },
+        { q: "ما هي أنواع الاستشارات المتاحة؟", a: "نقدم استشارات في تأسيس الشركات، مراجعة العقود، الامتثال التنظيمي، الملكية الفكرية، الاستشارات الضريبية، ودراسة الجدوى القانونية للمشاريع." },
       ],
     },
     en: {
@@ -287,8 +325,11 @@ const servicesData: Record<string, {
         "Legal feasibility studies for projects",
       ],
       faqs: [
-        { q: "Can I get a remote consultation?", a: "Yes, we offer consultations via phone or video meetings." },
+        { q: "How can I book a legal consultation?", a: "You can book a legal consultation by contacting us via phone (0505149800), through the contact form on our website, or via WhatsApp. An appointment will be scheduled within 24 business hours." },
+        { q: "What is the cost of a legal consultation?", a: "Consultation costs vary depending on the type and complexity of the case. We offer an initial consultation to assess your situation, and fees are agreed upon transparently before any legal action begins." },
+        { q: "Can I get a remote consultation?", a: "Yes, we offer remote consultation services via video call or phone. Engagement procedures can also be completed electronically through the Najiz platform." },
         { q: "How long does a consultation take?", a: "Typically between 30 to 60 minutes depending on the complexity of the matter." },
+        { q: "What types of consultations are available?", a: "We offer consultations in company formation, contract review, regulatory compliance, intellectual property, tax consultations, and legal feasibility studies for projects." },
       ],
     },
   },
@@ -306,8 +347,11 @@ const servicesData: Record<string, {
         "التصديق على المستندات",
       ],
       faqs: [
+        { q: "ما هي خدمات التوثيق المتاحة؟", a: "نقدم خدمات التوثيق الرسمي بترخيص رقم 45/57029 من وزارة العدل، وتشمل: توثيق العقود، الإقرارات، التفويضات، عقود الشراكة، وجميع المستندات القانونية التي تتطلب توثيقاً رسمياً." },
         { q: "ما الفرق بين التوثيق والتصديق؟", a: "التوثيق هو إنشاء المستند رسمياً، والتصديق هو التأكد من صحة مستند موجود." },
         { q: "هل التوثيق إلزامي لجميع العقود؟", a: "ليس إلزامياً لجميع العقود، لكنه يوفر حماية قانونية أقوى ويسهل الإثبات." },
+        { q: "كيف يمكنني توثيق عقد؟", a: "تواصل معنا عبر الهاتف (0505149800) أو زيارة مكتبنا في طريق الملك عبدالله، حي الأفق، بريدة. سنرشدك للمستندات المطلوبة." },
+        { q: "ما هو التسجيل العيني للعقار؟", a: "التسجيل العيني هو نظام لتسجيل الملكية العقارية يوفر حماية قانونية أقوى لملاك العقارات. نقدم هذه الخدمة بترخيص رقم 2223002594 من الهيئة العامة للعقار." },
       ],
     },
     en: {
@@ -322,8 +366,11 @@ const servicesData: Record<string, {
         "Document authentication",
       ],
       faqs: [
+        { q: "What notarization services are available?", a: "We provide official notarization services under license No. 45/57029 from the Ministry of Justice, including: contract notarization, declarations, authorizations, partnership agreements, and all legal documents requiring official notarization." },
         { q: "What is the difference between notarization and authentication?", a: "Notarization is officially creating a document, while authentication is verifying an existing document's validity." },
         { q: "Is notarization mandatory for all contracts?", a: "Not mandatory for all contracts, but it provides stronger legal protection and facilitates proof." },
+        { q: "How can I get a document notarized?", a: "Contact us via phone (0505149800) or visit our office on King Abdullah Road, Al-Ufuq District, Buraydah. We will guide you on the required documents." },
+        { q: "What is real estate registration?", a: "Real estate registration is a system for registering property ownership that provides stronger legal protection for property owners. We offer this service under license No. 2223002594 from the General Authority for Real Estate." },
       ],
     },
   },
@@ -365,6 +412,29 @@ export default function ServiceDetail() {
     otherServices: "Other Services",
   };
 
+  // Build FAQ schema for structured data
+  const seoSchema = useMemo(() => {
+    if (!service) return undefined;
+    const content = service[lang];
+    const faqQuestions = content.faqs.map(f => ({ question: f.q, answer: f.a }));
+    return [
+      schemas.breadcrumb([
+        { name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' },
+        { name: lang === 'ar' ? 'خدماتنا' : 'Services', url: '/services' },
+        { name: content.title, url: `/services/${params.slug}` }
+      ]),
+      schemas.faqPage(faqQuestions)
+    ];
+  }, [service, lang, params.slug]);
+
+  useSEO({
+    title: service ? service[lang].title : (lang === 'ar' ? 'خدمة غير موجودة' : 'Service Not Found'),
+    description: service ? service[lang].description : '',
+    keywords: service ? `${service[lang].title}, ${lang === 'ar' ? 'محاماة، خدمات قانونية' : 'law, legal services'}` : '',
+    canonical: `/services/${params.slug}`,
+    schema: seoSchema,
+  });
+
   if (!service) {
     return (
       <section className="pt-28 md:pt-32 pb-16 md:pb-20 min-h-screen bg-[var(--color-cream)]">
@@ -384,12 +454,6 @@ export default function ServiceDetail() {
 
   return (
     <>
-      <SEOHead
-        title={content.title}
-        description={content.description}
-        canonicalUrl={`/services/${params.slug}`}
-        keywords={[content.title, lang === 'ar' ? 'محاماة' : 'law', lang === 'ar' ? 'خدمات قانونية' : 'legal services']}
-      />
       {/* Page Hero */}
       <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 bg-[var(--color-navy)]">
         <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
