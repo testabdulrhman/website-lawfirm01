@@ -171,3 +171,29 @@ html {
   background: oklch(0.65 0.1 70 / 0.2);
   color: oklch(0.2 0.04 250);
 }
+
+/* Offset anchor jumps so content isn't hidden under the fixed navbar */
+html {
+  scroll-padding-top: 96px;
+}
+
+/* Refined easing tokens for UI motion (snappy ease-out / morph ease-in-out) */
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* Links & interactive primitives get a consistent gentle transition */
+a, button {
+  transition-timing-function: var(--ease-out);
+}
+
+/* Subtle lift utility for cards on hover (used across service/blog cards) */
+@media (prefers-reduced-motion: no-preference) {
+  .lift-on-hover {
+    transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
+  }
+  .lift-on-hover:hover {
+    transform: translateY(-4px);
+  }
+}
