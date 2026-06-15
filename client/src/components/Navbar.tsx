@@ -4,8 +4,8 @@ import { Menu, X, Phone, Globe } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackBookConsultation, trackLanguageSwitch, trackPhoneClick } from "@/lib/analytics";
 
-const LOGO_LIGHT = "/manus-storage/logo-light-colored_6fe124cd.webp";
-const LOGO_DARK = "/manus-storage/logo-dark-colored_c318a07d.webp";
+const LOGO_LIGHT = "/manus-storage/logo-light-new_33dd99e3_47044b8b.webp";
+const LOGO_DARK = "/manus-storage/logo-dark-new_3800bcd5_08b1a48d.webp";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);

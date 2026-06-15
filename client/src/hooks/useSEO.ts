@@ -114,8 +114,8 @@ export const schemas = {
     "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
     "alternateName": "Abdulrahman Redwan Al-Mushaiqi Law Firm",
     "url": "https://redwan.sa",
-    "logo": `${BASE_URL}/manus-storage/logo-dark-colored_c318a07d.webp`,
-    "image": `${BASE_URL}/manus-storage/hero-law-firm_e023db3c.webp`,
+    "logo": `${BASE_URL}/manus-storage/logo-dark-new_3800bcd5_08b1a48d.webp`,
+    "image": `${BASE_URL}/manus-storage/hero-law-firm-new_fff82498_f3461932.webp`,
     "description": "شركة محاماة سعودية متخصصة في القضايا التجارية والجنائية والعقارية وإدارة إجراءات الإفلاس، مقرها بريدة بخبرة تتجاوز 20 عاماً.",
     "address": {
       "@type": "PostalAddress",
@@ -169,7 +169,7 @@ export const schemas = {
     "@type": "Organization",
     "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
     "url": "https://redwan.sa",
-    "logo": `${BASE_URL}/manus-storage/logo-dark-colored_c318a07d.webp`,
+    "logo": `${BASE_URL}/manus-storage/logo-dark-new_3800bcd5_08b1a48d.webp`,
     "foundingDate": "2020",
     "founder": {
       "@type": "Person",

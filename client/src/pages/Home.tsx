@@ -81,7 +81,7 @@ export default function Home() {
           style={{ transform: `translateY(${parallaxOffset * 0.4}px)` }}
         >
           <img
-            src="/manus-storage/hero-law-firm_e023db3c.webp"
+            src="/manus-storage/hero-law-firm-new_fff82498_f3461932.webp"
             alt={lang === "ar" ? "مكتب محاماة" : "Law Office"}
             className="w-full h-full object-cover"
             loading="eager"
@@ -369,7 +369,7 @@ export default function Home() {
               >
                 <div className="flex items-baseline gap-2 mb-3">
                   <span className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--color-gold)]">
-                    <CountUp end={452} suffix="+" />
+                    <CountUp end={500} suffix="+" />
                   </span>
                   <span className="font-heading text-base md:text-lg text-white/70">
                     {t.bankruptcyRecord.creditorsCount}
