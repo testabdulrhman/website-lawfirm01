@@ -500,6 +500,8 @@ export default function Claims() {
       if (!docsAttachOk) {
         toast.warning(`سُجّلت مطالبتك برقم ${savedClaimRef}، لكن تعذّر إرفاق بعض المستندات. سنتواصل معك لاستكمالها.`, { duration: 9000 });
       }
+      // إغلاق طبقة التحميل فوراً قبل إظهار شاشة النجاح حتى لا تحجب التفاعل
+      setSubmitting(false);
       setSuccess(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -656,7 +658,7 @@ export default function Claims() {
         )}
 
         {/* Progress Overlay */}
-        {submitting && (
+        {submitting && !success && (
           <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
             <div className="bg-white rounded-2xl p-8 max-w-md w-full text-center">
               <div className="w-16 h-16 border-4 border-[#c9a227] border-t-transparent rounded-full animate-spin mx-auto mb-6" />
