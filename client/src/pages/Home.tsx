@@ -50,8 +50,8 @@ export default function Home() {
       ? 'شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس - بريدة، القصيم. خبرة تتجاوز 20 عاماً في القضايا التجارية والجنائية والعقارية والإفلاس.'
       : 'Abdulrahman Redwan Al-Mushaiqi Law Firm - Buraydah, Qassim. Over 20 years of expertise in commercial, criminal, real estate litigation and bankruptcy management.',
     keywords: lang === 'ar'
-      ? 'محاماة بريدة، إدارة إفلاس، استشارات قانونية، قضايا تجارية، محامي القصيم'
-      : 'law firm Buraydah, bankruptcy management, legal consultation, commercial litigation, Qassim lawyer',
+      ? 'محاماة بريدة, إدارة إجراءات الإفلاس, استشارات قانونية, قضايا تجارية, نزاعات عقارية, تحكيم تجاري, محامي القصيم'
+      : 'law firm Buraydah, bankruptcy management, legal consultation, commercial litigation, real estate disputes, commercial arbitration, Qassim lawyer',
     canonical: '/',
     schema: seoSchema,
   });
