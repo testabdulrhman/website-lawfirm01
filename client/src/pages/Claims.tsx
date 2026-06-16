@@ -506,33 +506,37 @@ export default function Claims() {
       setSubmitProgress(25);
       setSubmitLabel('تم حفظ البيانات...');
 
-      // Step 2: Upload files
+      // تتبّع نجاح إرفاق المستندات (للتنبيه اللطيف عند الفشل)
+      let docsAttachOk = true;
+
+      // Step 2: Upload files — كل المسارات تعتمد على id الفريد
       const categories = Object.keys(files);
       const totalFiles = categories.length;
-      const uploadedDocsInfo: Array<{ category: string; label: string; file_name: string; url: string }> = [];
 
-      if (totalFiles > 0) {
+      // إيقاف الرفع تماماً إن لم يُرجع submit-claim قيمة id صالحة
+      if (totalFiles > 0 && !savedClaimId) {
+        console.error('submit-claim لم يُرجع id صالحاً — تم تخطّي رفع المستندات لتفادي مسار ناقص.');
+        docsAttachOk = false;
+      } else if (totalFiles > 0 && savedClaimId) {
+        const uploadedFiles: Array<{ path: string; category: string; file_name: string }> = [];
         let filesDone = 0;
+
         for (const category of categories) {
           const { file, label } = files[category];
           setSubmitLabel(`رفع المرفق ${filesDone + 1} من ${totalFiles}: ${label}`);
 
-          const claimRefSafe = savedClaimRef
-            .replace(/عمالي/g, 'amali').replace(/تجاري/g, 'tijari')
-            .replace(/بنوك/g, 'bunuk').replace(/حكومي/g, 'hukumi')
-            .replace(/[^a-zA-Z0-9_-]/g, '_');
-
           const ext = file.name.split('.').pop();
           const fileName = `${category}.${ext}`;
-          const filePath = `claims/${claimRefSafe}/${fileName}`;
+          const filePath = `claims/${savedClaimId}/${fileName}`;
 
           try {
             const { error: uploadError } = await supabase.storage
               .from('claim-documents').upload(filePath, file, { upsert: true });
 
             if (!uploadError) {
-              const { data: urlData } = supabase.storage.from('claim-documents').getPublicUrl(filePath);
-              uploadedDocsInfo.push({ category, label, file_name: file.name, url: urlData.publicUrl });
+              uploadedFiles.push({ path: filePath, category, file_name: fileName });
+            } else {
+              console.error('Upload error:', uploadError);
             }
           } catch (uploadEx) {
             console.error('Upload error:', uploadEx);
@@ -542,27 +546,48 @@ export default function Claims() {
           setSubmitProgress(25 + (filesDone / totalFiles) * 40);
         }
 
-        if (savedClaimId && uploadedDocsInfo.length > 0) {
-          await supabase.from('claims').update({ documents: uploadedDocsInfo }).eq('id', savedClaimId);
+        // استدعاء attach-claim-documents لتسجيل الروابط في حقل documents
+        if (uploadedFiles.length > 0) {
+          setSubmitLabel('إرفاق المستندات بالمطالبة...');
+          try {
+            const attachRes = await fetch(`${SUPABASE_URL}/functions/v1/attach-claim-documents`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+              },
+              body: JSON.stringify({ claim_id: savedClaimId, files: uploadedFiles })
+            });
+            const attachData = await attachRes.json();
+            if (!attachRes.ok || !attachData.success || !attachData.attached) {
+              console.error('attach-claim-documents failed:', attachData);
+              docsAttachOk = false;
+            }
+          } catch (attachEx) {
+            console.error('attach-claim-documents error:', attachEx);
+            docsAttachOk = false;
+          }
+        } else {
+          // رُفعت ملفات لكن لم ينجح أي رفع فعلي
+          docsAttachOk = false;
         }
       }
 
       setSubmitProgress(70);
       setSubmitLabel('إنشاء نموذج PDF...');
 
-      // Step 3: Generate PDF (using html2pdf)
-      try {
-        const pdfBlob = await generateClaimPDF(claimData, savedClaimRef);
-        if (pdfBlob) {
-          const claimRefSafe = savedClaimRef
-            .replace(/عمالي/g, 'amali').replace(/تجاري/g, 'tijari')
-            .replace(/بنوك/g, 'bunuk').replace(/حكومي/g, 'hukumi')
-            .replace(/[^a-zA-Z0-9_-]/g, '_');
-          const pdfPath = `claims/${claimRefSafe}/claim_form_${claimRefSafe}.pdf`;
-          await supabase.storage.from('claim-documents').upload(pdfPath, pdfBlob, { contentType: 'application/pdf', upsert: true });
+      // Step 3: Generate PDF (using html2pdf) — المسار موحّد على id
+      if (savedClaimId) {
+        try {
+          const pdfBlob = await generateClaimPDF(claimData, savedClaimRef);
+          if (pdfBlob) {
+            const pdfPath = `claims/${savedClaimId}/claim_form.pdf`;
+            await supabase.storage.from('claim-documents').upload(pdfPath, pdfBlob, { contentType: 'application/pdf', upsert: true });
+          }
+        } catch (pdfErr) {
+          console.warn('PDF generation failed (non-critical):', pdfErr);
         }
-      } catch (pdfErr) {
-        console.warn('PDF generation failed (non-critical):', pdfErr);
       }
 
       setSubmitProgress(85);
@@ -588,8 +613,12 @@ export default function Claims() {
       } catch { /* non-critical */ }
 
       setSubmitProgress(100);
-      setSubmitLabel('اكتمل الإرسال بنجاح!');
+      setSubmitLabel(docsAttachOk ? 'اكتمل الإرسال بنجاح!' : 'تم تسجيل المطالبة');
       await new Promise(r => setTimeout(r, 800));
+      // تنبيه لطيف: المطالبة سُجّلت لكن تعذّر إرفاق المستندات (لا تُلغى المطالبة)
+      if (!docsAttachOk) {
+        toast.warning(`سُجّلت مطالبتك برقم ${savedClaimRef}، لكن تعذّر إرفاق بعض المستندات. سنتواصل معك لاستكمالها.`, { duration: 9000 });
+      }
       setSuccess(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -1049,13 +1078,13 @@ export default function Claims() {
 
                 <div className="space-y-4 mb-8">
                   {[
-                    { key: 'id_copy', label: 'نسخة من هوية الدائن أو السجل التجاري' },
+                    { key: 'creditor_id', label: 'نسخة من هوية الدائن أو السجل التجاري' },
                     { key: 'applicant_id', label: 'نسخة من هوية مقدم الطلب' },
-                    { key: 'capacity_doc', label: 'نسخة من سند الصفة بتقديم المطالبة' },
+                    { key: 'capacity_document', label: 'نسخة من سند الصفة بتقديم المطالبة' },
                     { key: 'power_of_attorney', label: 'نسخة من الوكالة أو عقد التأسيس (إن وجدت)' },
-                    { key: 'opening_doc', label: 'نسخة من سند الافتتاح' },
-                    { key: 'due_doc', label: 'نسخة من سند الاستحقاق' },
-                    { key: 'security_doc', label: 'نسخة من سند الضمان (إن وجدت)' },
+                    { key: 'opening_document', label: 'نسخة من سند الافتتاح' },
+                    { key: 'due_document', label: 'نسخة من سند الاستحقاق' },
+                    { key: 'security_document', label: 'نسخة من سند الضمان (إن وجدت)' },
                   ].map(doc => (
                     <div key={doc.key} className="flex items-center gap-3 p-3 bg-[#faf8f5] rounded-lg border border-[#e8e0d4]">
                       <Upload className="w-5 h-5 text-[#c9a227] flex-shrink-0" />
