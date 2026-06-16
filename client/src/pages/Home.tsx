@@ -42,13 +42,16 @@ export default function Home() {
 
   const seoSchema = useMemo(() => [schemas.localBusiness, schemas.organization], []);
   useSEO({
-    title: lang === 'ar' ? 'الرئيسية - محاماة وإدارة إجراءات الإفلاس' : 'Home - Law & Bankruptcy Management',
+    fullTitle: true,
+    title: lang === 'ar'
+      ? 'عبدالرحمن بن رضوان المشيقح | محاماة وإدارة إفلاس في بريدة'
+      : 'Abdulrahman Al-Mushaiqih | Law & Bankruptcy in Buraydah',
     description: lang === 'ar'
       ? 'شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس - بريدة، القصيم. خبرة تتجاوز 20 عاماً في القضايا التجارية والجنائية والعقارية والإفلاس.'
       : 'Abdulrahman Redwan Al-Mushaiqi Law Firm - Buraydah, Qassim. Over 20 years of expertise in commercial, criminal, real estate litigation and bankruptcy management.',
     keywords: lang === 'ar'
-      ? 'محامي بريدة، شركة محاماة، إفلاس، قضايا تجارية، محامي القصيم، استشارات قانونية، توثيق، تسجيل عيني'
-      : 'lawyer Buraydah, law firm Saudi Arabia, bankruptcy, commercial litigation, Qassim lawyer, legal consultation',
+      ? 'محاماة بريدة، إدارة إفلاس، استشارات قانونية، قضايا تجارية، محامي القصيم'
+      : 'law firm Buraydah, bankruptcy management, legal consultation, commercial litigation, Qassim lawyer',
     canonical: '/',
     schema: seoSchema,
   });

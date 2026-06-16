@@ -9,6 +9,7 @@ interface SEOProps {
   canonical?: string;
   noindex?: boolean;
   schema?: object | object[];
+  fullTitle?: boolean;
 }
 
 const SITE_NAME = "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس";
@@ -23,10 +24,11 @@ export function useSEO({
   canonical,
   noindex = false,
   schema,
+  fullTitle = false,
 }: SEOProps) {
   useEffect(() => {
     // Title
-    document.title = `${title} | ${SITE_NAME}`;
+    document.title = fullTitle ? title : `${title} | ${SITE_NAME}`;
 
     // Meta description
     setMeta("description", description);
@@ -83,7 +85,7 @@ export function useSEO({
       // Cleanup schema scripts on unmount
       document.querySelectorAll('script[data-seo-schema]').forEach(el => el.remove());
     };
-  }, [title, description, keywords, ogImage, ogType, canonical, noindex, schema]);
+  }, [title, description, keywords, ogImage, ogType, canonical, noindex, schema, fullTitle]);
 }
 
 function setMeta(name: string, content: string, attr: "name" | "property" = "name") {

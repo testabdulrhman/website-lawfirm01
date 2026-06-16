@@ -138,11 +138,11 @@ async function prerender() {
       // Clean up: remove scripts that shouldn't be in pre-rendered version
       // but keep the main app script for hydration
       
-      // Remove duplicate title tags (keep the page-specific one from Helmet)
+      // Remove duplicate title tags (keep the page-specific one from React/useSEO)
       const titleMatches = html.match(/<title[^>]*>.*?<\/title>/g);
       if (titleMatches && titleMatches.length > 1) {
-        // Keep the first title (from Helmet/SEOHead) and remove the rest
-        for (let i = 1; i < titleMatches.length; i++) {
+        // Keep the LAST title (injected by React/useSEO) and remove the earlier static ones
+        for (let i = 0; i < titleMatches.length - 1; i++) {
           html = html.replace(titleMatches[i], '');
         }
       }
