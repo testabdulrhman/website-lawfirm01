@@ -455,22 +455,6 @@ export default function Claims() {
         }
       }
 
-      setSubmitProgress(70);
-      setSubmitLabel('إنشاء نموذج PDF...');
-
-      // Step 3: Generate PDF (using html2pdf) — المسار موحّد على id
-      if (savedClaimId) {
-        try {
-          const pdfBlob = await generateClaimPDF(claimData, savedClaimRef);
-          if (pdfBlob) {
-            const pdfPath = `claims/${savedClaimId}/claim_form.pdf`;
-            await supabase.storage.from('claim-documents').upload(pdfPath, pdfBlob, { contentType: 'application/pdf', upsert: true });
-          }
-        } catch (pdfErr) {
-          console.warn('PDF generation failed (non-critical):', pdfErr);
-        }
-      }
-
       setSubmitProgress(85);
       setSubmitLabel('إرسال التأكيد...');
 
@@ -510,62 +494,6 @@ export default function Claims() {
       toast.error(error?.message || 'حدث خطأ، يرجى المحاولة مرة أخرى');
     } finally {
       setSubmitting(false);
-    }
-  }
-
-  // PDF Generation
-  async function generateClaimPDF(data: any, claimRefStr: string): Promise<Blob | null> {
-    try {
-      const html2pdf = (await import('html2pdf.js')).default;
-      const amount = parseFloat(data.claim_amount || 0).toLocaleString();
-      const submitDate = data.submitted_at ? new Date(data.submitted_at).toLocaleDateString('ar-SA') : '-';
-      const procedureType = selectedCase?.procedure_type || 'التصفية';
-      const debtorName = selectedCase?.debtor_name || '';
-
-      const htmlContent = `
-        <div dir="rtl" style="font-family: Arial, Tahoma, sans-serif; background: white; color: #000; font-size: 9pt; line-height: 1.35; padding: 10px;">
-          <div style="text-align: center; margin-bottom: 12px;">
-            <div style="font-weight: bold; font-size: 10pt; margin-bottom: 4px;">(نموذج)</div>
-            <div style="font-size: 11pt; font-weight: bold; margin-bottom: 4px;">طلب إدراج مطالبة الدائن للمدين في قائمة المطالبات</div>
-            <div style="font-size: 9pt;">المعد بموجب المادة (الثالثة عشرة) من اللائحة التنفيذية لنظام الإفلاس</div>
-          </div>
-          <table style="width:100%;border-collapse:collapse;font-size:8pt;">
-            <tr><td colspan="4" style="border:1px solid #000;background:#e7e6e6;font-weight:bold;text-align:center;padding:4px;">بيانات الدائن</td></tr>
-            <tr><td style="border:1px solid #000;background:#e7e6e6;padding:3px;font-weight:bold;">نوع الدائن</td><td style="border:1px solid #000;padding:3px;">${escapeHtml(data.creditor_type)}</td><td style="border:1px solid #000;background:#e7e6e6;padding:3px;font-weight:bold;">الاسم</td><td style="border:1px solid #000;padding:3px;">${escapeHtml(data.creditor_name)}</td></tr>
-            <tr><td style="border:1px solid #000;background:#e7e6e6;padding:3px;font-weight:bold;">رقم الهوية</td><td style="border:1px solid #000;padding:3px;">${escapeHtml(data.id_number)}</td><td style="border:1px solid #000;background:#e7e6e6;padding:3px;font-weight:bold;">الجوال</td><td style="border:1px solid #000;padding:3px;" dir="ltr">${escapeHtml(data.phone)}</td></tr>
-            <tr><td style="border:1px solid #000;background:#e7e6e6;padding:3px;font-weight:bold;">البريد</td><td style="border:1px solid #000;padding:3px;" dir="ltr">${escapeHtml(data.email)}</td><td style="border:1px solid #000;background:#e7e6e6;padding:3px;font-weight:bold;">العنوان</td><td style="border:1px solid #000;padding:3px;">${escapeHtml(data.address)}</td></tr>
-            <tr><td colspan="4" style="border:1px solid #000;background:#e7e6e6;font-weight:bold;text-align:center;padding:4px;">بيانات المدين</td></tr>
-            <tr><td style="border:1px solid #000;background:#e7e6e6;padding:3px;font-weight:bold;">الاسم</td><td style="border:1px solid #000;padding:3px;">${escapeHtml(debtorName)}</td><td style="border:1px solid #000;background:#e7e6e6;padding:3px;font-weight:bold;">نوع الإجراء</td><td style="border:1px solid #000;padding:3px;">${escapeHtml(procedureType)}</td></tr>
-            <tr><td colspan="4" style="border:1px solid #000;background:#e7e6e6;font-weight:bold;text-align:center;padding:4px;">بيانات المطالبة</td></tr>
-            <tr><td style="border:1px solid #000;background:#e7e6e6;padding:3px;font-weight:bold;">نوع المطالبة</td><td style="border:1px solid #000;padding:3px;">${escapeHtml(data.claim_type)}</td><td style="border:1px solid #000;background:#e7e6e6;padding:3px;font-weight:bold;">المبلغ</td><td style="border:1px solid #000;padding:3px;font-weight:bold;">${amount} ريال</td></tr>
-            <tr><td style="border:1px solid #000;background:#e7e6e6;padding:3px;font-weight:bold;">السبب</td><td colspan="3" style="border:1px solid #000;padding:3px;">${escapeHtml(data.claim_reason)}</td></tr>
-            <tr><td style="border:1px solid #000;background:#e7e6e6;padding:3px;font-weight:bold;">التوقيع</td><td style="border:1px solid #000;padding:3px;height:40px;">${data.signature ? `<img src="${data.signature}" style="max-width:100px;max-height:35px;" />` : ''}</td><td style="border:1px solid #000;background:#e7e6e6;padding:3px;font-weight:bold;">التاريخ</td><td style="border:1px solid #000;padding:3px;">${submitDate}</td></tr>
-          </table>
-        </div>
-      `;
-
-      const container = document.createElement('div');
-      container.innerHTML = htmlContent;
-      container.style.position = 'absolute';
-      container.style.left = '-9999px';
-      container.style.width = '179mm';
-      document.body.appendChild(container);
-      await new Promise(r => setTimeout(r, 300));
-
-      const element = container.firstElementChild;
-      if (!element) { document.body.removeChild(container); return null; }
-      const pdfBlob = await html2pdf().set({
-        margin: [10, 15, 15, 15],
-        image: { type: 'jpeg', quality: 0.95 },
-        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      }).from(element as HTMLElement).output('blob');
-
-      document.body.removeChild(container);
-      return pdfBlob;
-    } catch (e) {
-      console.error('PDF error:', e);
-      return null;
     }
   }
 
