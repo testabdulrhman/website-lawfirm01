@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useScrollAnimation, getStaggerStyle } from "@/hooks/useScrollAnimation";
-import { Building2, FileText, Search, ArrowLeft, ArrowRight, Scale } from "lucide-react";
+import { Building2, FileText, Search, ArrowLeft, ArrowRight, Scale, MessageSquare } from "lucide-react";
 import { useSEO, schemas } from "@/hooks/useSEO";
 import { useMemo } from "react";
 
@@ -105,6 +105,25 @@ export default function Bankruptcy() {
                 </h3>
                 <p className="font-body text-sm text-[var(--color-navy)]/60">
                   {lang === "ar" ? "متابعة حالة مطالبة مقدمة" : "Follow up on a submitted claim"}
+                </p>
+              </div>
+                <ArrowIcon size={18} className="text-[var(--color-gold)] mr-auto group-hover:translate-x-1 transition-transform" />
+            </Link>
+
+            <Link
+              href="/bankruptcy/ticket"
+              className="group flex items-center gap-4 p-6 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)]/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 md:col-span-2"
+              style={{ opacity: actionsVisible ? 1 : 0, transform: actionsVisible ? "translateY(0)" : "translateY(20px)", transition: "all 0.6s ease-out 0.2s" }}
+            >
+              <div className="w-12 h-12 bg-[var(--color-navy)] flex items-center justify-center flex-shrink-0 group-hover:bg-[var(--color-gold)] transition-colors duration-300">
+                <MessageSquare size={22} className="text-[var(--color-gold)] group-hover:text-[var(--color-navy)] transition-colors" />
+              </div>
+              <div>
+                <h3 className="font-heading text-base font-semibold text-[var(--color-navy)] mb-1">
+                  {lang === "ar" ? "لديك استفسار؟" : "Have a Question?"}
+                </h3>
+                <p className="font-body text-sm text-[var(--color-navy)]/60">
+                  {lang === "ar" ? "أرسل استفسارك إلى أمين الإفلاس عبر بوابة الدائنين" : "Send your question to the bankruptcy trustee"}
                 </p>
               </div>
               <ArrowIcon size={18} className="text-[var(--color-gold)] mr-auto group-hover:translate-x-1 transition-transform" />

@@ -23,6 +23,7 @@ import HomePreview from "@/pages/HomePreview";
 import BankruptcyComplete from "@/pages/BankruptcyComplete";
 import BankruptcyCase from "@/pages/BankruptcyCase";
 import BankruptcyTrack from "@/pages/BankruptcyTrack";
+import BankruptcyTicket from "@/pages/BankruptcyTicket";
 import Bankruptcy from "@/pages/Bankruptcy";
 import Sitemap from "@/pages/Sitemap";
 
@@ -39,6 +40,7 @@ function Router() {
         <Route path={"/bankruptcy"} component={Bankruptcy} />
         <Route path={"/bankruptcy/claims"} component={Claims} />
         <Route path={"/bankruptcy/track"} component={BankruptcyTrack} />
+        <Route path={"/bankruptcy/ticket"} component={BankruptcyTicket} />
         <Route path={"/bankruptcy/complete"} component={BankruptcyComplete} />
         <Route path={"/bankruptcy/:slug"} component={BankruptcyCase} />
         <Route path={"/blog"} component={Blog} />
