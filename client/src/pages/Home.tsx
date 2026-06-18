@@ -44,8 +44,8 @@ export default function Home() {
   useSEO({
     fullTitle: true,
     title: lang === 'ar'
-      ? 'عبدالرحمن بن رضوان المشيقح | محاماة وإدارة إفلاس في بريدة'
-      : 'Abdulrahman Al-Mushaiqih | Law & Bankruptcy in Buraydah',
+      ? 'شركة عبدالرحمن رضوان المشيقح للمحاماة'
+      : 'Abdulrahman Redwan Al-Mushaiqi Law Firm',
     description: lang === 'ar'
       ? 'شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس - بريدة، القصيم. خبرة تتجاوز 20 عاماً في القضايا التجارية والجنائية والعقارية والإفلاس.'
       : 'Abdulrahman Redwan Al-Mushaiqi Law Firm - Buraydah, Qassim. Over 20 years of expertise in commercial, criminal, real estate litigation and bankruptcy management.',
