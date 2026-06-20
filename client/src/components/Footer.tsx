@@ -1,4 +1,4 @@
-import { MessageCircle, Linkedin } from "lucide-react";
+import { MessageCircle, Linkedin, MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackWhatsAppClick, trackPhoneClick, trackEmailClick } from "@/lib/analytics";
@@ -62,25 +62,37 @@ export default function Footer() {
             <div>
               <h4 className="font-heading text-sm font-semibold text-white mb-4">{t.footer.contactUs}</h4>
               <div className="space-y-3">
-                <p className="font-body text-sm text-white/50">
-                  {t.footer.address}
-                  <br />{t.footer.city}
-                </p>
-                <div className="flex items-center justify-end gap-2" dir="ltr">
-                  <a href="tel:+966505149800" onClick={() => trackPhoneClick('footer')} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">
-                    0505149800
-                  </a>
-                  <span className="text-white/30">|</span>
-                  <a href="tel:+966920032760" onClick={() => trackPhoneClick('footer')} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">
-                    920032760
+                <div className="flex items-start gap-2.5">
+                  <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-[var(--color-gold)]" />
+                  <p className="font-body text-sm text-white/50">
+                    {t.footer.address}
+                    <br />{t.footer.city}
+                  </p>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Phone className="w-4 h-4 shrink-0 text-[var(--color-gold)]" />
+                  <div className="flex items-center gap-2" dir="ltr">
+                    <a href="tel:+966505149800" onClick={() => trackPhoneClick('footer')} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">
+                      0505149800
+                    </a>
+                    <span className="text-white/30">|</span>
+                    <a href="tel:+966920032760" onClick={() => trackPhoneClick('footer')} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">
+                      920032760
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Mail className="w-4 h-4 shrink-0 text-[var(--color-gold)]" />
+                  <a href="mailto:info@redwan.sa" onClick={() => trackEmailClick('footer')} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors" dir="ltr">
+                    info@redwan.sa
                   </a>
                 </div>
-                <a href="mailto:info@redwan.sa" onClick={() => trackEmailClick('footer')} className="block font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">
-                  info@redwan.sa
-                </a>
-                <p className="font-body text-sm text-white/50">
-                  {t.footer.workHours}
-                </p>
+                <div className="flex items-center gap-2.5">
+                  <Clock className="w-4 h-4 shrink-0 text-[var(--color-gold)]" />
+                  <p className="font-body text-sm text-white/50">
+                    {t.footer.workHours}
+                  </p>
+                </div>
               </div>
 
               {/* Social Links */}
