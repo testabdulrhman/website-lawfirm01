@@ -50,6 +50,7 @@ export default function Navbar() {
     { label: t.nav.services, href: "/services", mega: true },
     { label: t.nav.trackClaim, href: "/bankruptcy/track" },
     { label: t.nav.blog, href: "/blog" },
+    { label: t.nav.careers, href: "/careers" },
     { label: t.nav.contact, href: "/contact" },
   ];
 

@@ -18,6 +18,7 @@ import Privacy from "@/pages/Privacy";
 import Terms from "@/pages/Terms";
 import Team from "@/pages/Team";
 import FAQ from "@/pages/FAQ";
+import Careers from "@/pages/Careers";
 import Layout from "@/components/Layout";
 import HomePreview from "@/pages/HomePreview";
 import BankruptcyComplete from "@/pages/BankruptcyComplete";
@@ -49,6 +50,7 @@ function Router() {
         <Route path={"/privacy"} component={Privacy} />
         <Route path={"/terms"} component={Terms} />
         <Route path={"/faq"} component={FAQ} />
+        <Route path={"/careers"} component={Careers} />
         <Route path={"/sitemap"} component={Sitemap} />
         <Route path={"*"} component={NotFound} />
         <Route component={NotFound} />

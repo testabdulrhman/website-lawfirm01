@@ -12,6 +12,7 @@ export const translations = {
       openMenu: "فتح القائمة",
       closeMenu: "إغلاق القائمة",
       trackClaim: "تتبّع مطالبتي",
+      careers: "انضم إلينا",
     },
     // Hero
     hero: {
@@ -157,6 +158,7 @@ export const translations = {
       openMenu: "Open menu",
       closeMenu: "Close Menu",
       trackClaim: "Track My Claim",
+      careers: "Join Us",
     },
     // Hero
     hero: {
