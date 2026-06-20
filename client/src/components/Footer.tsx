@@ -66,7 +66,7 @@ export default function Footer() {
                   {t.footer.address}
                   <br />{t.footer.city}
                 </p>
-                <div className="flex items-center gap-2" dir="ltr">
+                <div className="flex items-center justify-end gap-2" dir="ltr">
                   <a href="tel:+966505149800" onClick={() => trackPhoneClick('footer')} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">
                     0505149800
                   </a>
