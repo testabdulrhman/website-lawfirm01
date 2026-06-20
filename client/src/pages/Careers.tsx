@@ -396,7 +396,7 @@ export default function Careers() {
                     </div>
 
                     {/* honeypot — مخفي عن المستخدم بصرياً */}
-                    <div aria-hidden="true" className="absolute w-px h-px -left-[9999px] overflow-hidden" style={{ position: "absolute", left: "-9999px" }}>
+                    <div aria-hidden="true" className="hidden">
                       <label htmlFor="website">لا تملأ هذا الحقل</label>
                       <input
                         id="website"
