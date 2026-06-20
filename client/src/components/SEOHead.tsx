@@ -1,4 +1,10 @@
-import { Helmet } from "react-helmet-async";
+// ============================================================
+// SEOHead — يضبط وسوم الـ <head> ديناميكياً عبر useEffect
+// (بدل react-helmet) لضمان أن تكون الوسوم هي الأخيرة في الـ head
+// وقت التقاط prerender، فتظهر فريدة لكل صفحة بلا تكرار.
+// نفس آلية hook/useSEO، مع دعم خصائص المقالات والبيانات المنظّمة.
+// ============================================================
+import { useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface SEOHeadProps {
@@ -16,6 +22,32 @@ interface SEOHeadProps {
   structuredData?: object;
 }
 
+const BASE_URL = "https://redwan.sa";
+
+function setMeta(name: string, content: string, attr: "name" | "property" = "name") {
+  let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null;
+  if (!el) {
+    el = document.createElement("meta");
+    el.setAttribute(attr, name);
+    document.head.appendChild(el);
+  }
+  el.setAttribute("content", content);
+}
+
+function removeMeta(name: string, attr: "name" | "property" = "name") {
+  document.querySelectorAll(`meta[${attr}="${name}"]`).forEach((el) => el.remove());
+}
+
+function setCanonical(href: string) {
+  let el = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+  if (!el) {
+    el = document.createElement("link");
+    el.rel = "canonical";
+    document.head.appendChild(el);
+  }
+  el.href = href;
+}
+
 export default function SEOHead({
   title,
   description,
@@ -28,51 +60,84 @@ export default function SEOHead({
 }: SEOHeadProps) {
   const { lang } = useLanguage();
 
-  const siteName = lang === "ar"
-    ? "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
-    : "Abdulrahman Redwan Al-Mushaikih Law Firm & Bankruptcy Management";
-  const fullTitle = `${title} | ${siteName}`;
-  const baseUrl = "https://redwan.sa";
-  const locale = lang === "ar" ? "ar_SA" : "en_US";
+  useEffect(() => {
+    const siteName =
+      lang === "ar"
+        ? "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
+        : "Abdulrahman Redwan Al-Mushaikih Law Firm & Bankruptcy Management";
+    const fullTitle = `${title} | ${siteName}`;
+    const locale = lang === "ar" ? "ar_SA" : "en_US";
 
-  return (
-    <Helmet>
-      <title>{fullTitle}</title>
-      <meta name="description" content={description} />
-      {keywords.length > 0 && (
-        <meta name="keywords" content={keywords.join(", ")} />
-      )}
-      {canonicalUrl && <link rel="canonical" href={`${baseUrl}${canonicalUrl}`} />}
+    // Title
+    document.title = fullTitle;
 
-      {/* Open Graph */}
-      <meta property="og:type" content={ogType} />
-      <meta property="og:title" content={fullTitle} />
-      <meta property="og:description" content={description} />
-      <meta property="og:site_name" content={siteName} />
-      <meta property="og:locale" content={locale} />
-      {canonicalUrl && <meta property="og:url" content={`${baseUrl}${canonicalUrl}`} />}
-      {ogImage && <meta property="og:image" content={ogImage} />}
+    // Basic meta
+    setMeta("description", description);
+    if (keywords.length > 0) {
+      setMeta("keywords", keywords.join(", "));
+    }
+    if (canonicalUrl) {
+      setCanonical(`${BASE_URL}${canonicalUrl}`);
+    }
 
-      {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
+    // Open Graph
+    setMeta("og:type", ogType, "property");
+    setMeta("og:title", fullTitle, "property");
+    setMeta("og:description", description, "property");
+    setMeta("og:site_name", siteName, "property");
+    setMeta("og:locale", locale, "property");
+    if (canonicalUrl) {
+      setMeta("og:url", `${BASE_URL}${canonicalUrl}`, "property");
+    }
+    if (ogImage) {
+      setMeta("og:image", ogImage, "property");
+    }
 
-      {/* Article specific */}
-      {article && (
-        <>
-          <meta property="article:published_time" content={article.publishedTime} />
-          <meta property="article:author" content={article.author} />
-          <meta property="article:section" content={article.section} />
-        </>
-      )}
+    // Twitter
+    setMeta("twitter:card", "summary_large_image", "name");
+    setMeta("twitter:title", fullTitle, "name");
+    setMeta("twitter:description", description, "name");
+    if (ogImage) {
+      setMeta("twitter:image", ogImage, "name");
+    }
 
-      {/* Structured Data */}
-      {structuredData && (
-        <script type="application/ld+json">
-          {JSON.stringify(structuredData)}
-        </script>
-      )}
-    </Helmet>
-  );
+    // Article specific
+    if (article) {
+      setMeta("article:published_time", article.publishedTime, "property");
+      setMeta("article:author", article.author, "property");
+      setMeta("article:section", article.section, "property");
+    } else {
+      removeMeta("article:published_time", "property");
+      removeMeta("article:author", "property");
+      removeMeta("article:section", "property");
+    }
+
+    // Structured data
+    document.querySelectorAll('script[data-seohead-schema]').forEach((el) => el.remove());
+    if (structuredData) {
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.setAttribute("data-seohead-schema", "true");
+      script.textContent = JSON.stringify(structuredData);
+      document.head.appendChild(script);
+    }
+
+    return () => {
+      document.querySelectorAll('script[data-seohead-schema]').forEach((el) => el.remove());
+    };
+  }, [
+    title,
+    description,
+    keywords.join(","),
+    canonicalUrl,
+    ogType,
+    ogImage,
+    article?.publishedTime,
+    article?.author,
+    article?.section,
+    structuredData,
+    lang,
+  ]);
+
+  return null;
 }

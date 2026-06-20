@@ -41,7 +41,7 @@ const ROUTES = [
   '/blog',
   '/blog/تعليق-المطالبات-في-نظام-الإفلاس-السعودي',
   '/blog/التسوية-الوقائية-في-نظام-الإفلاس-السعودي',
-  '/blog/التحكيم-التجاري-في-المملكة-العربية-السعودية',
+  '/blog/الدليل-الإرشادي-لنظام-الإفلاس-ولائحته-التنفيذية',
   '/contact',
   '/careers',
   '/privacy',
@@ -116,25 +116,38 @@ async function prerender() {
   let errorCount = 0;
 
   for (const route of ROUTES) {
+    const url = `http://localhost:${PORT}${route}`;
+    let html = null;
+    let lastErr = null;
+    // Try up to 2 times to avoid transient timeouts
+    for (let attempt = 1; attempt <= 2 && html === null; attempt++) {
+      let page;
+      try {
+        page = await browser.newPage();
+        await page.setViewport({ width: 1280, height: 800 });
+        await page.goto(url, {
+          waitUntil: 'networkidle0',
+          timeout: 60000,
+        });
+        await page.waitForSelector('#root', { timeout: 15000 });
+        await new Promise(r => setTimeout(r, 1200));
+        html = await page.content();
+        await page.close();
+      } catch (e) {
+        lastErr = e;
+        if (page) { try { await page.close(); } catch {} }
+        if (attempt < 2) {
+          console.warn(`  ⚠️  ${route}: المحاولة ${attempt} فشلت (${e.message})، إعادة المحاولة...`);
+          await new Promise(r => setTimeout(r, 1000));
+        }
+      }
+    }
+    if (html === null) {
+      errorCount++;
+      console.error(`  ❌ ${route}: ${lastErr ? lastErr.message : 'فشل غير معروف'}`);
+      continue;
+    }
     try {
-      const page = await browser.newPage();
-      
-      // Set viewport
-      await page.setViewport({ width: 1280, height: 800 });
-      
-      // Navigate and wait for content to render
-      const url = `http://localhost:${PORT}${route}`;
-      await page.goto(url, { 
-        waitUntil: 'networkidle0',
-        timeout: 30000 
-      });
-
-      // Wait a bit more for React to fully render
-      await page.waitForSelector('#root', { timeout: 10000 });
-      await new Promise(r => setTimeout(r, 1000));
-
-      // Get the rendered HTML
-      let html = await page.content();
 
       // Clean up: remove scripts that shouldn't be in pre-rendered version
       // but keep the main app script for hydration
@@ -180,6 +193,22 @@ async function prerender() {
         }
       }
 
+      // Remove duplicate og:url (keep the LAST one injected by React/useSEO)
+      const ogUrlMatches = html.match(/<meta property="og:url"[^>]*>/g);
+      if (ogUrlMatches && ogUrlMatches.length > 1) {
+        for (let i = 0; i < ogUrlMatches.length - 1; i++) {
+          html = html.replace(ogUrlMatches[i], '');
+        }
+      }
+
+      // Remove duplicate canonical link (keep the LAST one injected by React/useSEO)
+      const canonicalMatches = html.match(/<link[^>]*rel="canonical"[^>]*>/g);
+      if (canonicalMatches && canonicalMatches.length > 1) {
+        for (let i = 0; i < canonicalMatches.length - 1; i++) {
+          html = html.replace(canonicalMatches[i], '');
+        }
+      }
+
       // Add prerender meta tag
       html = html.replace('<head>', '<head>\n    <meta name="prerender-status" content="200" />');
 
@@ -198,8 +227,6 @@ async function prerender() {
       writeFileSync(outputPath, html, 'utf-8');
       successCount++;
       console.log(`  ✅ ${route}`);
-
-      await page.close();
     } catch (error) {
       errorCount++;
       console.error(`  ❌ ${route}: ${error.message}`);

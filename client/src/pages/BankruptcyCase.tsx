@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, Building, FileText, Calendar, MapPin, Users, Pho
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackPhoneClick } from "@/lib/analytics";
-import { Helmet } from "react-helmet-async";
+import { useSEO } from "@/hooks/useSEO";
 
 interface BankruptcyCaseData {
   slug: string;
@@ -275,6 +275,19 @@ export default function BankruptcyCase() {
 
   const BackArrow = isRTL ? ArrowLeft : ArrowRight;
 
+  const seoContent = caseData ? (lang === "ar" ? caseData.ar : caseData.en) : null;
+  useSEO({
+    title: seoContent
+      ? `${seoContent.companyName} - ${seoContent.procedureType}`
+      : lang === "ar" ? "الإجراء غير موجود" : "Case Not Found",
+    description: seoContent ? seoContent.summary : "",
+    keywords: seoContent
+      ? `${seoContent.companyName}, ${seoContent.companyNameEn}, ${seoContent.procedureType}, إفلاس, تصفية, bankruptcy, liquidation`
+      : undefined,
+    canonical: caseData ? `/bankruptcy/${caseData.slug}` : undefined,
+    noindex: !caseData,
+  });
+
   if (!caseData) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[var(--color-cream)]">
@@ -294,12 +307,6 @@ export default function BankruptcyCase() {
 
   return (
     <>
-      <Helmet>
-        <title>{`${content.companyName} - ${content.procedureType} | ${lang === "ar" ? "شركة عبدالرحمن رضوان المشيقح للمحاماة" : "Redwan Law Firm"}`}</title>
-        <meta name="description" content={content.summary} />
-        <meta name="keywords" content={`${content.companyName}, ${content.companyNameEn}, ASHYAD STEEL, ${content.procedureType}, إفلاس, تصفية, bankruptcy, liquidation`} />
-      </Helmet>
-
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 bg-[var(--color-navy)] overflow-hidden">
         {/* Subtle pattern */}

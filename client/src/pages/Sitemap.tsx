@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
-import { Helmet } from "react-helmet-async";
+import { useSEO } from "@/hooks/useSEO";
 
 interface SitemapSection {
   title: string;
@@ -123,13 +123,17 @@ export default function Sitemap() {
     },
   ];
 
+  useSEO({
+    title: lang === "ar" ? "خريطة الموقع" : "Sitemap",
+    description:
+      lang === "ar"
+        ? "خريطة موقع شركة عبدالرحمن رضوان المشيقح للمحاماة - جميع الصفحات والخدمات"
+        : "Sitemap of Redwan Law Firm - All pages and services",
+    canonical: "/sitemap",
+  });
+
   return (
     <>
-      <Helmet>
-        <title>{lang === "ar" ? "خريطة الموقع | شركة عبدالرحمن رضوان المشيقح للمحاماة" : "Sitemap | Redwan Law Firm"}</title>
-        <meta name="description" content={lang === "ar" ? "خريطة موقع شركة عبدالرحمن رضوان المشيقح للمحاماة - جميع الصفحات والخدمات" : "Sitemap of Redwan Law Firm - All pages and services"} />
-      </Helmet>
-
       {/* Hero */}
       <section className="relative pt-32 pb-12 md:pt-40 md:pb-16 bg-[var(--color-navy)] overflow-hidden">
         <div className="absolute inset-0 opacity-5">

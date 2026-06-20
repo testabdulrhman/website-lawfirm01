@@ -7,7 +7,7 @@
 // ============================================================
 import { useRef, useState } from "react";
 import { Link } from "wouter";
-import SEOHead from "@/components/SEOHead";
+import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -66,6 +66,14 @@ const BENEFITS = [
 ];
 
 export default function Careers() {
+  useSEO({
+    title: "انضم إلينا",
+    description:
+      "انضم إلى فريق شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس في بريدة. تعرّف على بيئة العمل وقدّم طلب التوظيف وأرفق سيرتك الذاتية.",
+    keywords: "وظائف محاماة, توظيف محامين, انضم إلينا, وظائف بريدة, وظائف القصيم",
+    canonical: "/careers",
+  });
+
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -182,13 +190,6 @@ export default function Careers() {
 
   return (
     <>
-      <SEOHead
-        title="انضم إلينا"
-        description="انضم إلى فريق شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس في بريدة. تعرّف على بيئة العمل وقدّم طلب التوظيف وأرفق سيرتك الذاتية."
-        canonicalUrl="/careers"
-        keywords={["وظائف محاماة", "توظيف محامين", "انضم إلينا", "وظائف بريدة", "وظائف القصيم"]}
-      />
-
       {/* ===================== Hero ===================== */}
       <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 bg-[var(--color-navy)] overflow-hidden" dir="rtl">
         {/* لمسة ذهبية زخرفية */}
