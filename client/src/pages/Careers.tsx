@@ -29,7 +29,8 @@ import {
 const SUBMIT_ENDPOINT =
   "https://zwaahunavepleczuamuy.supabase.co/functions/v1/submit-application";
 
-const MAX_CV_SIZE = 5 * 1024 * 1024; // 5 ميجابايت
+const MAX_CV_SIZE = 8 * 1024 * 1024; // 8 ميجابايت
+const UPLOAD_TIMEOUT_MS = 90 * 1000; // 90 ثانية (رفع سيرة كبيرة على جوال بطيء + معالجة الخادم)
 const ALLOWED_CV_EXT = [".pdf", ".doc", ".docx"];
 
 // قراءة الملف كـ Base64 (data URL)
@@ -84,6 +85,7 @@ export default function Careers() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const [cvWarning, setCvWarning] = useState(false); // الطلب حُفظ لكن تعذّر إرفاق السيرة
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -103,7 +105,9 @@ export default function Careers() {
       return;
     }
     if (file.size > MAX_CV_SIZE) {
-      setError("حجم السيرة الذاتية يتجاوز 5 ميجابايت.");
+      setError(
+        "حجم السيرة الذاتية كبير (الحد الأقصى 8 ميجابايت). يرجى ضغط الملف وإعادة المحاولة."
+      );
       if (fileInputRef.current) fileInputRef.current.value = "";
       setCvFile(null);
       return;
@@ -124,6 +128,7 @@ export default function Careers() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
+    setCvWarning(false);
 
     const cleanName = fullName.trim();
     const cleanPhone = phone.trim();
@@ -141,7 +146,9 @@ export default function Careers() {
       return;
     }
     if (cvFile && cvFile.size > MAX_CV_SIZE) {
-      setError("حجم السيرة الذاتية يتجاوز 5 ميجابايت.");
+      setError(
+        "حجم السيرة الذاتية كبير (الحد الأقصى 8 ميجابايت). يرجى ضغط الملف وإعادة المحاولة."
+      );
       return;
     }
 
@@ -162,15 +169,27 @@ export default function Careers() {
         payload.cv_name = cvFile.name;
       }
 
-      const res = await fetch(SUBMIT_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      // مهلة قصوى للطلب عبر AbortController (تكفي لرفع 8MB على جوال بطيء)
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), UPLOAD_TIMEOUT_MS);
+
+      let res: Response;
+      try {
+        res = await fetch(SUBMIT_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+          signal: controller.signal,
+        });
+      } finally {
+        clearTimeout(timeoutId);
+      }
 
       const data = await res.json().catch(() => ({}));
 
       if (data && data.success === true) {
+        // نجاح-جزئي: الطلب حُفظ لكن تعذّر إرفاق السيرة
+        setCvWarning(data.cv_warning === true);
         setSuccess(true);
         resetForm();
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -182,7 +201,13 @@ export default function Careers() {
       }
     } catch (err) {
       console.error(err);
-      setError("فشل الاتصال. تأكد من اتصالك بالإنترنت وحاول مرة أخرى.");
+      if (err instanceof DOMException && err.name === "AbortError") {
+        setError(
+          "استغرق الإرسال وقتاً طويلاً. قد يكون الاتصال بطيئاً أو ملف السيرة كبيراً — جرّب ضغط الملف أو إعادة المحاولة على اتصال أفضل."
+        );
+      } else {
+        setError("فشل الاتصال. تأكد من اتصالك بالإنترنت وحاول مرة أخرى.");
+      }
     } finally {
       setLoading(false);
     }
@@ -251,17 +276,22 @@ export default function Careers() {
         <div className="container mx-auto px-5 md:px-4 lg:px-8">
           <div className="max-w-2xl mx-auto">
             {success ? (
-              <Card className="bg-white border-green-200 shadow-sm">
+              <Card className={`bg-white shadow-sm ${cvWarning ? "border-amber-200" : "border-green-200"}`}>
                 <CardContent className="py-12 text-center">
-                  <div className="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center mx-auto mb-5">
-                    <CheckCircle2 className="w-9 h-9 text-green-600" />
+                  <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5 ${cvWarning ? "bg-amber-50" : "bg-green-50"}`}>
+                    {cvWarning ? (
+                      <AlertCircle className="w-9 h-9 text-amber-600" />
+                    ) : (
+                      <CheckCircle2 className="w-9 h-9 text-green-600" />
+                    )}
                   </div>
                   <h2 className="font-heading text-2xl font-bold text-[var(--color-navy)] mb-3">
-                    تم استلام طلبك بنجاح
+                    {cvWarning ? "تم استلام طلبك" : "تم استلام طلبك بنجاح"}
                   </h2>
                   <p className="font-body text-[var(--color-navy)]/70 leading-relaxed mb-6">
-                    شكراً لاهتمامك بالانضمام إلى فريقنا. سنراجع طلبك ونتواصل معك
-                    قريباً عند توفّر فرصة مناسبة.
+                    {cvWarning
+                      ? "تم استلام طلبك بنجاح، لكن تعذّر إرفاق السيرة الذاتية. سنتواصل معك لاستلامها."
+                      : "شكراً لاهتمامك بالانضمام إلى فريقنا. سنراجع طلبك ونتواصل معك قريباً عند توفّر فرصة مناسبة."}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 justify-center">
                     <Button
@@ -372,7 +402,7 @@ export default function Careers() {
                     {/* السيرة الذاتية */}
                     <div className="space-y-2">
                       <Label htmlFor="cv" className="font-heading text-[var(--color-navy)]">
-                        السيرة الذاتية <span className="text-[var(--color-navy)]/40 text-sm font-body">(اختياري — PDF أو Word، بحد أقصى 5 ميجابايت)</span>
+                        السيرة الذاتية <span className="text-[var(--color-navy)]/40 text-sm font-body">(اختياري — PDF أو Word، بحد أقصى 8 ميجابايت)</span>
                       </Label>
                       <label
                         htmlFor="cv"
@@ -419,7 +449,7 @@ export default function Careers() {
                       {loading ? (
                         <>
                           <Loader2 className="w-5 h-5 ml-2 animate-spin" />
-                          جارٍ الإرسال...
+                          جارٍ إرسال طلبك... قد يستغرق دقيقة
                         </>
                       ) : (
                         <>
