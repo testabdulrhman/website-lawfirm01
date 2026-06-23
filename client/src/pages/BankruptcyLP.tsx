@@ -22,9 +22,15 @@ import {
   Clock,
   MapPin,
   MessageCircle,
+  User,
+  Send,
 } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
-import { trackPhoneClick, trackWhatsAppClick } from "@/lib/analytics";
+import {
+  trackPhoneClick,
+  trackWhatsAppClick,
+  trackContactFormSubmit,
+} from "@/lib/analytics";
 
 const PHONE_DISPLAY = "0505149800";
 const PHONE_TEL = "+966505149800";
@@ -104,6 +110,146 @@ function WhatsAppButton({
       <MessageCircle size={20} className="shrink-0" />
       <span>تواصل عبر واتساب</span>
     </a>
+  );
+}
+
+/** نموذج طلب معاودة اتصال — يرسل الطلب عبر واتساب */
+function CallbackForm() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [error, setError] = useState("");
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmedName = name.trim();
+    const digits = phone.replace(/\D/g, "");
+
+    if (trimmedName.length < 2) {
+      setError("يرجى إدخال الاسم.");
+      return;
+    }
+    // رقم جوال سعودي: 05XXXXXXXX (10) أو 9665XXXXXXXX (12) أو +9665...
+    const validSaudi =
+      /^05\d{8}$/.test(digits) ||
+      /^9665\d{8}$/.test(digits) ||
+      /^5\d{8}$/.test(digits);
+    if (!validSaudi) {
+      setError("يرجى إدخال رقم جوال سعودي صحيح (مثال: 05XXXXXXXX).");
+      return;
+    }
+
+    setError("");
+    trackContactFormSubmit();
+
+    // تطبيع الرقم لعرضه في الرسالة
+    let normalized = digits;
+    if (/^5\d{8}$/.test(digits)) normalized = "0" + digits;
+    else if (/^9665\d{8}$/.test(digits)) normalized = "0" + digits.slice(3);
+
+    const msg = encodeURIComponent(
+      `طلب معاودة اتصال:\nالاسم: ${trimmedName}\nرقم الجوال: ${normalized}\nأرغب في استشارة بخصوص تعثّري المالي وحماية نفسي عبر نظام الإفلاس.`
+    );
+    setSent(true);
+    window.open(`https://wa.me/966505149800?text=${msg}`, "_blank", "noopener,noreferrer");
+  };
+
+  if (sent) {
+    return (
+      <div className="text-center py-6">
+        <div className="w-14 h-14 rounded-full bg-[#25D366]/15 flex items-center justify-center mx-auto mb-4">
+          <CheckCircle2 size={30} className="text-[#25D366]" />
+        </div>
+        <h3 className="font-heading text-lg font-semibold text-white mb-2">
+          تم استلام طلبك
+        </h3>
+        <p className="font-body text-sm text-white/70 leading-relaxed mb-5">
+          إن لم تُفتح نافذة واتساب تلقائياً، يمكنك التواصل معنا مباشرة الآن.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <CallButton source="lp_form_thanks" />
+          <button
+            onClick={() => {
+              setSent(false);
+              setName("");
+              setPhone("");
+            }}
+            className="font-body text-sm text-white/60 hover:text-[var(--color-gold)] transition-colors underline"
+          >
+            إرسال طلب آخر
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+      <div>
+        <label
+          htmlFor="cb-name"
+          className="block font-heading text-sm text-white/85 mb-1.5"
+        >
+          الاسم
+        </label>
+        <div className="relative">
+          <User
+            size={18}
+            className="absolute top-1/2 -translate-y-1/2 right-3.5 text-white/40"
+          />
+          <input
+            id="cb-name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="اكتب اسمك"
+            className="w-full bg-white/8 border border-white/15 rounded-md py-3 pr-11 pl-4 text-white placeholder:text-white/35 font-body text-sm outline-none focus:border-[var(--color-gold)] focus:bg-white/12 transition-colors"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label
+          htmlFor="cb-phone"
+          className="block font-heading text-sm text-white/85 mb-1.5"
+        >
+          رقم الجوال
+        </label>
+        <div className="relative">
+          <Phone
+            size={17}
+            className="absolute top-1/2 -translate-y-1/2 right-3.5 text-white/40"
+          />
+          <input
+            id="cb-phone"
+            type="tel"
+            inputMode="tel"
+            dir="ltr"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="05XXXXXXXX"
+            className="w-full bg-white/8 border border-white/15 rounded-md py-3 pr-11 pl-4 text-white placeholder:text-white/35 font-body text-sm outline-none focus:border-[var(--color-gold)] focus:bg-white/12 transition-colors text-right"
+          />
+        </div>
+      </div>
+
+      {error && (
+        <p className="font-body text-sm text-red-300" role="alert">
+          {error}
+        </p>
+      )}
+
+      <button
+        type="submit"
+        className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-base rounded-md hover:bg-[var(--color-gold-light)] hover:shadow-[0_8px_30px_oklch(0.65_0.1_70/0.35)] transition-all duration-200 active:scale-[0.98]"
+      >
+        <Send size={17} />
+        <span>اطلب معاودة الاتصال</span>
+      </button>
+      <p className="font-body text-xs text-white/45 text-center leading-relaxed">
+        بياناتك سرّية ولن تُستخدم إلا للتواصل معك بخصوص استشارتك.
+      </p>
+    </form>
   );
 }
 
@@ -209,8 +355,9 @@ export default function BankruptcyLP() {
           <div className="absolute inset-0 bg-gradient-to-l from-[oklch(0.16_0.04_250/0.96)] via-[oklch(0.16_0.04_250/0.82)] to-[oklch(0.16_0.04_250/0.45)]" />
         </div>
 
-        <div className="container mx-auto px-5 md:px-8 relative z-10 py-16 md:py-24 lg:py-28">
-          <div className="max-w-2xl">
+        <div className="container mx-auto px-5 md:px-8 relative z-10 py-16 md:py-20 lg:py-24">
+          <div className="grid lg:grid-cols-5 gap-10 lg:gap-12 items-center">
+          <div className="max-w-2xl lg:col-span-3">
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-[var(--color-gold)]/40 bg-[var(--color-gold)]/10">
               <ShieldCheck size={16} className="text-[var(--color-gold)]" />
               <span className="font-heading text-xs md:text-sm text-[var(--color-gold)] tracking-wide">
@@ -250,6 +397,22 @@ export default function BankruptcyLP() {
                   <span className="font-body text-sm text-white/75">{item}</span>
                 </div>
               ))}
+            </div>
+          </div>
+
+            {/* بطاقة نموذج معاودة الاتصال */}
+            <div className="lg:col-span-2" id="callback">
+              <div className="bg-[var(--color-navy)]/85 backdrop-blur-md border border-[var(--color-gold)]/25 rounded-2xl p-6 md:p-7 shadow-[0_20px_60px_oklch(0.12_0.04_250/0.5)]">
+                <div className="mb-5">
+                  <h2 className="font-display text-xl md:text-2xl font-bold text-white leading-snug">
+                    اطلب معاودة اتصال
+                  </h2>
+                  <p className="font-body text-sm text-white/65 mt-2 leading-relaxed">
+                    اترك اسمك ورقمك وسنتواصل معك لتقييم وضعك بسرّية تامة.
+                  </p>
+                </div>
+                <CallbackForm />
+              </div>
             </div>
           </div>
         </div>
