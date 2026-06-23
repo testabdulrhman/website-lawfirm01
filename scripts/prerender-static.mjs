@@ -114,6 +114,20 @@ function applySEO(html, seo, route) {
     `<meta name="twitter:description" content="${esc(ogDesc)}" />`
   );
 
+  // og:image + twitter:image (only when a page-specific image is provided)
+  if (seo.ogImage) {
+    html = replaceTag(
+      html,
+      /<meta\s+property="og:image"\s+content="[^"]*"\s*\/?>/,
+      `<meta property="og:image" content="${esc(seo.ogImage)}" />`
+    );
+    html = replaceTag(
+      html,
+      /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/?>/,
+      `<meta name="twitter:image" content="${esc(seo.ogImage)}" />`
+    );
+  }
+
   // prerender marker
   if (!/name="prerender-status"/.test(html)) {
     html = html.replace('<head>', '<head>\n    <meta name="prerender-status" content="200" />');

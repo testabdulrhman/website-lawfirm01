@@ -26,13 +26,18 @@ import BankruptcyCase from "@/pages/BankruptcyCase";
 import BankruptcyTrack from "@/pages/BankruptcyTrack";
 import BankruptcyTicket from "@/pages/BankruptcyTicket";
 import Bankruptcy from "@/pages/Bankruptcy";
+import BankruptcyLP from "@/pages/BankruptcyLP";
 import Sitemap from "@/pages/Sitemap";
 
 function Router() {
   return (
-    <Layout>
-      <Switch>
-        <Route path={"/"} component={Home} />
+    <Switch>
+      {/* صفحة هبوط إعلانات جوجل - بلا Navbar/Footer العادي (مسار تحويل مستقل) */}
+      <Route path={"/bankruptcy-lp"} component={BankruptcyLP} />
+      <Route>
+        <Layout>
+          <Switch>
+            <Route path={"/"} component={Home} />
         <Route path={"/preview"} component={HomePreview} />
         <Route path={"/about"} component={About} />
         <Route path={"/team"} component={Team} />
@@ -52,10 +57,12 @@ function Router() {
         <Route path={"/faq"} component={FAQ} />
         <Route path={"/careers"} component={Careers} />
         <Route path={"/sitemap"} component={Sitemap} />
-        <Route path={"*"} component={NotFound} />
-        <Route component={NotFound} />
-      </Switch>
-    </Layout>
+            <Route path={"*"} component={NotFound} />
+            <Route component={NotFound} />
+          </Switch>
+        </Layout>
+      </Route>
+    </Switch>
   );
 }
 
