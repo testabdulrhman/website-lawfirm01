@@ -128,6 +128,23 @@ function applySEO(html, seo, route) {
     );
   }
 
+  // FAQPage JSON-LD (only when faq items are provided for this route)
+  if (Array.isArray(seo.faq) && seo.faq.length > 0) {
+    const faqLd = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: seo.faq.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: item.a },
+      })),
+    };
+    const faqScript = `<script type="application/ld+json">${JSON.stringify(faqLd)}</script>`;
+    if (!/"@type":\s*"FAQPage"/.test(html)) {
+      html = html.replace('</head>', `    ${faqScript}\n  </head>`);
+    }
+  }
+
   // prerender marker
   if (!/name="prerender-status"/.test(html)) {
     html = html.replace('<head>', '<head>\n    <meta name="prerender-status" content="200" />');

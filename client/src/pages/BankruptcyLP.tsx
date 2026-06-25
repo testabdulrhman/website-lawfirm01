@@ -24,6 +24,8 @@ import {
   MessageCircle,
   User,
   Send,
+  ChevronDown,
+  HelpCircle,
 } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import {
@@ -276,6 +278,127 @@ function CallbackForm() {
   );
 }
 
+/** الأسئلة الشائعة — مصدر واحد للنص المرئي وschema معاً */
+const FAQ_ITEMS: { q: string; a: string }[] = [
+  {
+    q: "هل يحميني نظام الإفلاس من ملاحقة الدائنين؟",
+    a: "نعم. بمجرد افتتاح إجراء التسوية الوقائية أو إعادة التنظيم المالي، يمنح النظام حماية نظامية تُوقف إجراءات التنفيذ والمطالبات الفردية ضدّك، وتمنحك مهلة لإعادة ترتيب وضعك المالي وفق خطة معتمدة من المحكمة.",
+  },
+  {
+    q: "هل سأخسر منزلي وأصولي إذا دخلت في إجراء الإفلاس؟",
+    a: "ليس بالضرورة. الهدف الأساسي من التسوية الوقائية وإعادة التنظيم هو الحفاظ على نشاطك وأصولك قدر الإمكان عبر جدولة الديون، لا تصفية ممتلكاتك. نوع الإجراء ومآل الأصول يعتمد على وضعك تحديداً، وندرسه معك قبل اتخاذ أي خطوة.",
+  },
+  {
+    q: "كم يستغرق إجراء الإفلاس عادةً؟",
+    a: "تختلف المدة حسب نوع الإجراء وحجم الديون وعدد الدائنين ومدى تعاونهم. التسوية الوقائية غالباً أسرع من إعادة التنظيم الكامل. بعد دراسة ملفك نعطيك تقديراً واقعياً للمدة والمراحل المتوقعة.",
+  },
+  {
+    q: "ما الفرق بين التسوية الوقائية وإعادة التنظيم المالي؟",
+    a: "التسوية الوقائية تتيح لك الاتفاق مع الدائنين على جدولة الديون مع بقائك مديراً لنشاطك، بينما إعادة التنظيم المالي إجراء أوسع لإعادة هيكلة الالتزامات تحت إشراف أمين. نحدّد لك المسار الأنسب بعد دراسة وضعك المالي.",
+  },
+  {
+    q: "هل تتوقف الفوائد والغرامات بعد افتتاح الإجراء؟",
+    a: "افتتاح الإجراء النظامي يضبط مطالبات الدائنين ضمن إطار المحكمة ويمنع التصرّفات الفردية ضدّك. تفاصيل احتساب الالتزامات تُعالَج ضمن خطة الإجراء، ونوضّح لك أثرها على وضعك خلال الاستشارة الأولى.",
+  },
+  {
+    q: "بياناتي ووضعي المالي… هل يبقى كل شيء سرّياً؟",
+    a: "نعم، نتعامل مع وضعك المالي بسرّية تامة ودون أي إحراج. استشارتك الأولى ومعلوماتك تبقى محفوظة، وهدفنا مساعدتك على إيجاد حلّ نظامي يحمي حقوقك.",
+  },
+  {
+    q: "كيف أبدأ الآن؟",
+    a: "تواصل معنا عبر الهاتف 0505149800 أو واتساب. نقيّم وضعك خلال مكالمة أولية، ثم نقترح عليك الإجراء النظامي المناسب لحماية حقوقك وإعادة تنظيم ديونك.",
+  },
+];
+
+/** عنصر سؤال واحد قابل للطيّ */
+function FaqItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boolean; onToggle: () => void }) {
+  return (
+    <div className="bg-white rounded-xl border border-[var(--color-navy)]/8 shadow-[0_2px_16px_oklch(0.2_0.04_250/0.04)] overflow-hidden">
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        className="w-full flex items-center justify-between gap-4 text-right px-5 md:px-6 py-5 group"
+      >
+        <span className="font-heading text-base md:text-lg font-semibold text-[var(--color-navy)] leading-snug">
+          {q}
+        </span>
+        <span
+          className="shrink-0 w-8 h-8 rounded-full bg-[var(--color-gold)]/12 flex items-center justify-center transition-transform duration-300"
+          style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+        >
+          <ChevronDown size={18} className="text-[var(--color-gold)]" />
+        </span>
+      </button>
+      <div
+        className="grid transition-all duration-300 ease-out"
+        style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+      >
+        <div className="overflow-hidden">
+          <p className="font-body text-sm md:text-[15px] text-[var(--color-navy)]/70 leading-relaxed px-5 md:px-6 pb-5">
+            {a}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** قسم الأسئلة الشائعة */
+function FaqSection() {
+  const [openIndex, setOpenIndex] = useState<number>(0);
+  const reveal = useReveal<HTMLDivElement>();
+  return (
+    <section className="py-16 md:py-20 bg-[var(--color-cream)]">
+      <div className="container mx-auto px-5 md:px-8">
+        <div
+          ref={reveal.ref}
+          className="max-w-3xl mx-auto transition-all duration-700"
+          style={{
+            opacity: reveal.visible ? 1 : 0,
+            transform: reveal.visible ? "translateY(0)" : "translateY(24px)",
+          }}
+        >
+          <div className="text-center mb-10">
+            <span className="inline-flex items-center gap-2 font-heading text-xs md:text-sm tracking-[0.15em] text-[var(--color-gold)] uppercase">
+              <HelpCircle size={16} />
+              أسئلة شائعة
+            </span>
+            <h2 className="font-display text-2xl md:text-4xl font-bold text-[var(--color-navy)] mt-3 leading-snug">
+              إجابات تطمئنك قبل أن تتصل
+            </h2>
+            <p className="font-body text-sm md:text-base text-[var(--color-navy)]/60 mt-3 leading-relaxed">
+              أكثر ما يشغل بال المتعثّر مالياً — أجبنا عنه بوضوح.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            {FAQ_ITEMS.map((item, i) => (
+              <FaqItem
+                key={item.q}
+                q={item.q}
+                a={item.a}
+                isOpen={openIndex === i}
+                onToggle={() => setOpenIndex(openIndex === i ? -1 : i)}
+              />
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <p className="font-body text-sm text-[var(--color-navy)]/60 mb-4">
+              لديك سؤال آخر؟ تحدّث معنا مباشرة الآن.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <CallButton source="lp_faq" />
+              <WhatsAppButton source="lp_faq" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function BankruptcyLP() {
   useSEO({
     title:
@@ -310,32 +433,14 @@ export default function BankruptcyLP() {
       {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "هل يحميني نظام الإفلاس من ملاحقة الدائنين؟",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "نعم، بمجرد افتتاح إجراء التسوية الوقائية أو إعادة التنظيم المالي يمنح النظام حماية تُوقف إجراءات التنفيذ والمطالبات الفردية، ويتيح لك إعادة ترتيب وضعك المالي وفق خطة معتمدة.",
-            },
+        mainEntity: FAQ_ITEMS.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.a,
           },
-          {
-            "@type": "Question",
-            name: "ما الفرق بين التسوية الوقائية وإعادة التنظيم المالي؟",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "التسوية الوقائية تتيح لك الاتفاق مع الدائنين على جدولة الديون مع بقائك مديراً لنشاطك، بينما إعادة التنظيم المالي إجراء أوسع لإعادة هيكلة الالتزامات تحت إشراف أمين. نحدّد لك المسار الأنسب بعد دراسة وضعك.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "كيف أبدأ؟",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "تواصل معنا عبر الهاتف 0505149800 أو واتساب، نقيّم وضعك خلال مكالمة أولية، ثم نقترح عليك الإجراء النظامي المناسب لحماية حقوقك.",
-            },
-          },
-        ],
+        })),
       },
     ],
   });
@@ -657,6 +762,9 @@ export default function BankruptcyLP() {
           </div>
         </div>
       </section>
+
+      {/* ============ الأسئلة الشائعة ============ */}
+      <FaqSection />
 
       {/* ============ CTA نهائي ============ */}
       <section className="relative py-16 md:py-24 bg-[var(--color-navy)] overflow-hidden">
