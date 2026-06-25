@@ -44,6 +44,33 @@ const TRUST_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310419663031020868/YnXXVn35ryxUKUfHFrqdpE/lp-bankruptcy-trust-BEbD24pP8msCebWnUZ6EUw.webp";
 const LOGO_LIGHT = "/manus-storage/logo-light-new_33dd99e3_47044b8b.webp";
 
+/**
+ * تتبّع تحويلات Google Ads — خاص بصفحة الهبوط فقط.
+ * العلامة الأساسية AW-10845900538 محمّلة على مستوى الموقع في index.html.
+ * label لكل إجراء تحويل يُنشأ من داخل Google Ads (Tools > Conversions)
+ * ويُوضع هنا بصيغة 'XXXXXXXX'. قبل توفيره نرسل حدث GA4 المخصّص generate_lead.
+ */
+const ADS_ID = "AW-10845900538";
+// ضع label إجراء التحويل المقابل من Google Ads لكل نوع:
+const ADS_LABELS: Record<string, string> = {
+  call: "",
+  whatsapp: "",
+  lead: "",
+};
+
+function trackAdsConversion(type: "call" | "whatsapp" | "lead") {
+  const g = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
+  if (typeof g !== "function") return;
+  const label = ADS_LABELS[type];
+  if (label) {
+    g("event", "conversion", { send_to: ADS_ID + "/" + label });
+  }
+  g("event", "generate_lead", {
+    lead_source: "bankruptcy_lp",
+    method: type,
+  });
+}
+
 /** خطّاف بسيط لكشف ظهور العنصر في إطار العرض لتفعيل حركة الدخول */
 function useReveal<T extends HTMLElement>() {
   const ref = useRef<T | null>(null);
@@ -79,7 +106,10 @@ function CallButton({
   return (
     <a
       href={`tel:${PHONE_TEL}`}
-      onClick={() => trackPhoneClick(source)}
+      onClick={() => {
+        trackPhoneClick(source);
+        trackAdsConversion("call");
+      }}
       className={`group inline-flex items-center justify-center gap-3 px-7 py-4 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-base rounded-md hover:bg-[var(--color-gold-light)] hover:shadow-[0_8px_30px_oklch(0.65_0.1_70/0.35)] transition-all duration-200 active:scale-[0.97] ${className}`}
     >
       <Phone size={18} className="shrink-0" />
@@ -104,7 +134,10 @@ function WhatsAppButton({
       href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => trackWhatsAppClick(source)}
+      onClick={() => {
+        trackWhatsAppClick(source);
+        trackAdsConversion("whatsapp");
+      }}
       className={`group inline-flex items-center justify-center gap-3 px-7 py-4 bg-[#25D366] text-white font-heading font-semibold text-base rounded-md hover:brightness-105 hover:shadow-[0_8px_30px_rgba(37,211,102,0.35)] transition-all duration-200 active:scale-[0.97] ${className}`}
     >
       <MessageCircle size={20} className="shrink-0" />
@@ -141,6 +174,7 @@ function CallbackForm() {
 
     setError("");
     trackContactFormSubmit();
+    trackAdsConversion("lead");
 
     // تطبيع الرقم لعرضه في الرسالة
     let normalized = digits;
