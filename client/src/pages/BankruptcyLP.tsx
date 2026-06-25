@@ -45,29 +45,18 @@ const TRUST_IMG =
 const LOGO_LIGHT = "/manus-storage/logo-light-new_33dd99e3_47044b8b.webp";
 
 /**
- * تتبّع تحويلات Google Ads — خاص بصفحة الهبوط فقط.
- * العلامة الأساسية AW-10845900538 محمّلة على مستوى الموقع في index.html.
- * label لكل إجراء تحويل يُنشأ من داخل Google Ads (Tools > Conversions)
- * ويُوضع هنا بصيغة 'XXXXXXXX'. قبل توفيره نرسل حدث GA4 المخصّص generate_lead.
+ * تتبّع تحويلات صفحة الهبوط عبر Google Tag Manager (GTM-5SW2MXVW).
+ * يدفع حدثاً موحّداً إلى dataLayer ليلتقطه مختص التسويق في GTM
+ * ويربطه بإجراءات تحويل Google Ads / GA4 دون تعديل الكود لاحقاً.
+ * اسم الحدث الموصى به في GTM: trigger على event = "lead_conversion".
  */
-const ADS_ID = "AW-10845900538";
-// ضع label إجراء التحويل المقابل من Google Ads لكل نوع:
-const ADS_LABELS: Record<string, string> = {
-  call: "",
-  whatsapp: "",
-  lead: "",
-};
-
 function trackAdsConversion(type: "call" | "whatsapp" | "lead") {
-  const g = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
-  if (typeof g !== "function") return;
-  const label = ADS_LABELS[type];
-  if (label) {
-    g("event", "conversion", { send_to: ADS_ID + "/" + label });
-  }
-  g("event", "generate_lead", {
+  const w = window as unknown as { dataLayer?: Record<string, unknown>[] };
+  w.dataLayer = w.dataLayer || [];
+  w.dataLayer.push({
+    event: "lead_conversion",
     lead_source: "bankruptcy_lp",
-    method: type,
+    lead_method: type,
   });
 }
 
