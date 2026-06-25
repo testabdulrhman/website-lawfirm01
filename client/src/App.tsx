@@ -2,6 +2,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
+import { lazy, Suspense } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
@@ -26,14 +27,25 @@ import BankruptcyCase from "@/pages/BankruptcyCase";
 import BankruptcyTrack from "@/pages/BankruptcyTrack";
 import BankruptcyTicket from "@/pages/BankruptcyTicket";
 import Bankruptcy from "@/pages/Bankruptcy";
-import BankruptcyLP from "@/pages/BankruptcyLP";
+// صفحة هبوط الإعلانات: تحميل متأخر لفصلها في حزمة مستقلة وتقليل JS الأولي
+const BankruptcyLP = lazy(() => import("@/pages/BankruptcyLP"));
 import Sitemap from "@/pages/Sitemap";
 
 function Router() {
   return (
     <Switch>
       {/* صفحة هبوط إعلانات جوجل - بلا Navbar/Footer العادي (مسار تحويل مستقل) */}
-      <Route path={"/bankruptcy-lp"} component={BankruptcyLP} />
+      <Route path={"/bankruptcy-lp"}>
+        <Suspense
+          fallback={
+            <div className="min-h-screen flex items-center justify-center bg-[oklch(0.2_0.04_250)]">
+              <div className="w-8 h-8 rounded-full border-2 border-[oklch(0.65_0.1_70)] border-t-transparent animate-spin" />
+            </div>
+          }
+        >
+          <BankruptcyLP />
+        </Suspense>
+      </Route>
       <Route>
         <Layout>
           <Switch>

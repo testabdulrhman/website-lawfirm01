@@ -321,7 +321,7 @@ export default function BankruptcyLP() {
   const protect = useReveal<HTMLDivElement>();
 
   return (
-    <div dir="rtl" className="bg-[var(--color-cream)] min-h-screen font-body">
+    <main dir="rtl" className="bg-[var(--color-cream)] min-h-screen font-body">
       {/* ============ شريط علوي بسيط: الشعار + اتصال ============ */}
       <header className="sticky top-0 z-40 bg-[var(--color-navy)]/95 backdrop-blur border-b border-white/10">
         <div className="container mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
@@ -334,7 +334,7 @@ export default function BankruptcyLP() {
           <a
             href={`tel:${PHONE_TEL}`}
             onClick={() => trackPhoneClick("lp_header")}
-            className="inline-flex items-center gap-2 text-[var(--color-gold)] font-heading font-semibold text-sm hover:text-[var(--color-gold-light)] transition-colors"
+            className="inline-flex items-center gap-2 text-[var(--color-gold-bright)] font-heading font-semibold text-sm hover:text-[var(--color-gold-light)] transition-colors"
           >
             <Phone size={16} />
             <span dir="ltr">{PHONE_DISPLAY}</span>
@@ -360,7 +360,7 @@ export default function BankruptcyLP() {
           <div className="max-w-2xl lg:col-span-3">
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-[var(--color-gold)]/40 bg-[var(--color-gold)]/10">
               <ShieldCheck size={16} className="text-[var(--color-gold)]" />
-              <span className="font-heading text-xs md:text-sm text-[var(--color-gold)] tracking-wide">
+              <span className="font-heading text-xs md:text-sm text-[var(--color-gold-bright)] tracking-wide">
                 وفق نظام الإفلاس السعودي
               </span>
             </div>
@@ -429,7 +429,7 @@ export default function BankruptcyLP() {
               { value: "100%", label: "سرّية في التعامل" },
             ].map((s) => (
               <div key={s.label}>
-                <div className="font-display text-3xl md:text-4xl font-bold text-[var(--color-gold)]">
+                <div className="font-display text-3xl md:text-4xl font-bold text-[var(--color-gold-bright)]">
                   {s.value}
                 </div>
                 <p className="font-body text-xs md:text-sm text-white/55 mt-1.5 leading-snug">
@@ -717,6 +717,6 @@ export default function BankruptcyLP() {
       </div>
       {/* مساحة سفلية للجوال حتى لا يغطّي الشريط اللاصق المحتوى */}
       <div className="h-16 md:hidden" aria-hidden="true" />
-    </div>
+    </main>
   );
 }
