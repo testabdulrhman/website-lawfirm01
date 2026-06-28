@@ -1,4 +1,53 @@
+# robots.txt — شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس
+# يسمح لزواحف محركات البحث وزواحف الذكاء الاصطناعي (AEO) بالوصول الكامل
+
 User-agent: *
+Allow: /
+
+# ── OpenAI (ChatGPT) ──
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# ── Anthropic (Claude) ──
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# ── Perplexity ──
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# ── Google AI (Gemini / AI Overviews) ──
+User-agent: Google-Extended
+Allow: /
+
+# ── Microsoft / Bing AI ──
+User-agent: Bingbot
+Allow: /
+
+# ── Apple ──
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# ── Common Crawl (مصدر بيانات لكثير من النماذج) ──
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://redwan.sa/sitemap.xml

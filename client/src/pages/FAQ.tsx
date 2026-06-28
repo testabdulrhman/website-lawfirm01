@@ -216,28 +216,47 @@ function AccordionItem({ question, answer, isOpen, onClick, index, isVisible }: 
   index: number;
   isVisible: boolean;
 }) {
+  const answerId = `faq-answer-${index}-${question.length}`;
   return (
     <div
       className="border-b border-gray-200 last:border-b-0"
       style={getStaggerStyle(isVisible, index, 60)}
+      itemScope
+      itemProp="mainEntity"
+      itemType="https://schema.org/Question"
     >
-      <button
-        onClick={onClick}
-        className="w-full flex items-center justify-between py-5 px-6 text-right hover:bg-[var(--color-cream)] transition-colors duration-200 group"
-      >
-        <span className="font-medium text-[var(--color-navy)] text-base md:text-lg leading-relaxed flex-1 text-start">
-          {question}
-        </span>
-        <ChevronDown
-          className={`w-5 h-5 text-[var(--color-gold)] shrink-0 ms-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-        />
-      </button>
+      <h3 className="m-0">
+        <button
+          onClick={onClick}
+          aria-expanded={isOpen}
+          aria-controls={answerId}
+          className="w-full flex items-center justify-between py-5 px-6 text-right hover:bg-[var(--color-cream)] transition-colors duration-200 group"
+        >
+          <span
+            itemProp="name"
+            className="faq-question font-medium text-[var(--color-navy)] text-base md:text-lg leading-relaxed flex-1 text-start"
+          >
+            {question}
+          </span>
+          <ChevronDown
+            className={`w-5 h-5 text-[var(--color-gold)] shrink-0 ms-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+          />
+        </button>
+      </h3>
       <div
+        id={answerId}
+        role="region"
         className="grid transition-all duration-300 ease-out"
         style={{ gridTemplateRows: isOpen ? "1fr" : "0fr", opacity: isOpen ? 1 : 0 }}
+        itemScope
+        itemProp="acceptedAnswer"
+        itemType="https://schema.org/Answer"
       >
         <div className="overflow-hidden">
-          <p className="px-6 pb-5 text-gray-600 leading-loose text-sm md:text-base whitespace-pre-line">
+          <p
+            itemProp="text"
+            className="faq-answer px-6 pb-5 text-gray-600 leading-loose text-sm md:text-base whitespace-pre-line"
+          >
             {renderAnswerWithLinks(answer)}
           </p>
         </div>
@@ -324,7 +343,11 @@ export default function FAQ() {
 
       {/* FAQ Content */}
       <section className="py-16 md:py-24 bg-white" ref={faqRef}>
-        <div className="container max-w-4xl">
+        <div
+          className="container max-w-4xl"
+          itemScope
+          itemType="https://schema.org/FAQPage"
+        >
           {data.categories.map((category, catIdx) => (
             <div key={catIdx} className="mb-12 last:mb-0" style={getStaggerStyle(faqVisible, catIdx, 150)}>
               {/* Category Title */}
@@ -375,6 +398,14 @@ export default function FAQ() {
               </p>
             </div>
 
+            {/* ملخص مباشر قابل للاقتباس (مفيد لمحركات الإجابة AEO) */}
+            <div className="mb-12 bg-white border-s-4 border-[var(--color-gold)] rounded-sm px-6 py-5 shadow-[0_2px_16px_oklch(0.2_0.04_250/0.04)]">
+              <p className="faq-answer text-[var(--color-navy)] text-sm md:text-base leading-loose m-0">
+                <span className="font-bold">باختصار: </span>
+                نظام الإفلاس السعودي يحدّد سبعة إجراءات رئيسة هي: التسوية الوقائية، وإعادة التنظيم المالي، والتصفية، وثلاثة إجراءات مماثلة لصغار المدينين (التسوية الوقائية وإعادة التنظيم المالي والتصفية)، إضافةً إلى التصفية الإدارية. والمحكمة المختصة بنظر طلبات الإفلاس هي المحكمة التجارية، ويُعدّ المدين «صغيراً» إذا لم يتجاوز إجمالي ديونه مليوني ريال سعودي، فيما يبلغ الحد الأدنى للدين الذي يخوّل الدائن طلب التصفية خمسين ألف ريال سعودي.
+              </p>
+            </div>
+
             {bankruptcyFaqCategories.map((category, catIdx) => (
               <div key={`bk-${catIdx}`} className="mb-12 last:mb-0">
                 {/* عنوان القسم */}
@@ -386,7 +417,11 @@ export default function FAQ() {
                 </div>
 
                 {/* الأسئلة */}
-                <div className="bg-white border border-gray-100 rounded-sm overflow-hidden shadow-[0_2px_16px_oklch(0.2_0.04_250/0.04)]">
+                <div
+                  className="bg-white border border-gray-100 rounded-sm overflow-hidden shadow-[0_2px_16px_oklch(0.2_0.04_250/0.04)]"
+                  itemScope
+                  itemType="https://schema.org/FAQPage"
+                >
                   {category.questions.map((item, qIdx) => {
                     const key = `bk-${catIdx}-${qIdx}`;
                     return (

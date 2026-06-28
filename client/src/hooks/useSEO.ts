@@ -199,12 +199,30 @@ export const schemas = {
   faqPage: (questions: { question: string; answer: string }[]) => ({
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "inLanguage": "ar",
+    "dateModified": new Date().toISOString().split("T")[0],
+    "url": `${BASE_URL}/faq`,
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": SITE_NAME,
+      "url": BASE_URL
+    },
+    "publisher": {
+      "@type": "LegalService",
+      "name": SITE_NAME,
+      "url": BASE_URL
+    },
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".faq-question", ".faq-answer"]
+    },
     "mainEntity": questions.map(q => ({
       "@type": "Question",
       "name": q.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": q.answer
+        "text": q.answer,
+        "inLanguage": "ar"
       }
     }))
   }),
