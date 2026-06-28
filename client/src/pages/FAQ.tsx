@@ -2,8 +2,9 @@ import { useScrollAnimation, getStaggerStyle, getFadeStyle } from "@/hooks/useSc
 import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useState, useMemo } from "react";
-import { ChevronDown, MessageCircleQuestion, Phone } from "lucide-react";
+import { ChevronDown, MessageCircleQuestion, Phone, Scale, ExternalLink } from "lucide-react";
 import { useSEO, schemas } from "@/hooks/useSEO";
+import { bankruptcyFaqCategories, bankruptcyFaqSourceUrl } from "@/data/bankruptcyFaq";
 
 const faqData = {
   ar: {
@@ -174,6 +175,39 @@ const faqData = {
   },
 };
 
+// تحويل عناوين URL والبريد الإلكتروني داخل نص الجواب إلى روابط قابلة للنقر
+function renderAnswerWithLinks(text: string) {
+  const pattern = /(https?:\/\/[^\s]+|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g;
+  const parts = text.split(pattern);
+  return parts.map((part, i) => {
+    if (/^https?:\/\//.test(part)) {
+      return (
+        <a
+          key={i}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[var(--color-gold)] underline decoration-[var(--color-gold)]/40 underline-offset-2 hover:decoration-[var(--color-gold)] break-all transition-colors"
+        >
+          {part}
+        </a>
+      );
+    }
+    if (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(part)) {
+      return (
+        <a
+          key={i}
+          href={`mailto:${part}`}
+          className="text-[var(--color-gold)] underline decoration-[var(--color-gold)]/40 underline-offset-2 hover:decoration-[var(--color-gold)] transition-colors"
+        >
+          {part}
+        </a>
+      );
+    }
+    return <span key={i}>{part}</span>;
+  });
+}
+
 function AccordionItem({ question, answer, isOpen, onClick, index, isVisible }: {
   question: string;
   answer: string;
@@ -199,11 +233,14 @@ function AccordionItem({ question, answer, isOpen, onClick, index, isVisible }: 
         />
       </button>
       <div
-        className={`overflow-hidden transition-all duration-300 ease-out ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
+        className="grid transition-all duration-300 ease-out"
+        style={{ gridTemplateRows: isOpen ? "1fr" : "0fr", opacity: isOpen ? 1 : 0 }}
       >
-        <p className="px-6 pb-5 text-gray-600 leading-relaxed text-sm md:text-base">
-          {answer}
-        </p>
+        <div className="overflow-hidden">
+          <p className="px-6 pb-5 text-gray-600 leading-loose text-sm md:text-base whitespace-pre-line">
+            {renderAnswerWithLinks(answer)}
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -213,7 +250,7 @@ export default function FAQ() {
   const { lang, isRTL } = useTranslation();
   const data = faqData[lang];
 
-  // Collect all FAQ questions for Schema
+  // Collect all FAQ questions for Schema (تشمل أسئلة نظام الإفلاس في النسخة العربية)
   const faqQuestions = useMemo(() => {
     const questions: { question: string; answer: string }[] = [];
     data.categories.forEach(cat => {
@@ -221,8 +258,15 @@ export default function FAQ() {
         questions.push({ question: q.q, answer: q.a });
       });
     });
+    if (lang === 'ar') {
+      bankruptcyFaqCategories.forEach(cat => {
+        cat.questions.forEach(q => {
+          questions.push({ question: q.q, answer: q.a });
+        });
+      });
+    }
     return questions;
-  }, [data]);
+  }, [data, lang]);
 
   const seoSchema = useMemo(() => [
     schemas.breadcrumb([{ name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' }, { name: lang === 'ar' ? 'الأسئلة الشائعة' : 'FAQ', url: '/faq' }]),
@@ -231,10 +275,10 @@ export default function FAQ() {
   useSEO({
     title: lang === 'ar' ? 'الأسئلة الشائعة' : 'Frequently Asked Questions',
     description: lang === 'ar'
-      ? 'إجابات على أكثر الأسئلة شيوعاً حول خدماتنا القانونية: الاستشارات، التوكيل، الإفلاس، التوثيق، والتسجيل العيني.'
+      ? 'إجابات على أكثر الأسئلة شيوعاً حول خدماتنا القانونية، إضافة إلى دليل أسئلة وأجوبة نظام الإفلاس السعودي: التسوية الوقائية، إعادة التنظيم المالي، التصفية، وصغار المدينين.'
       : 'Answers to the most frequently asked questions about our legal services: consultations, power of attorney, bankruptcy, notarization, and real estate registration.',
     keywords: lang === 'ar'
-      ? 'أسئلة شائعة، محامي، استشارة قانونية، توكيل محامي، إفلاس، توثيق'
+      ? 'أسئلة شائعة، محامي، استشارة قانونية، توكيل محامي، نظام الإفلاس، التسوية الوقائية، إعادة التنظيم المالي، التصفية، صغار المدينين، أمين الإفلاس'
       : 'FAQ, lawyer, legal consultation, power of attorney, bankruptcy, notarization',
     canonical: '/faq',
     schema: seoSchema,
@@ -312,6 +356,74 @@ export default function FAQ() {
           ))}
         </div>
       </section>
+
+      {/* قسم أسئلة نظام الإفلاس السعودي (العربية فقط) */}
+      {lang === 'ar' && (
+        <section className="py-16 md:py-24 bg-[var(--color-cream)]">
+          <div className="container max-w-4xl">
+            {/* ترويسة القسم */}
+            <div className="mb-12 text-center">
+              <span className="inline-flex items-center gap-2 font-heading text-xs md:text-sm tracking-[0.15em] text-[var(--color-gold)] uppercase mb-4">
+                <Scale className="w-4 h-4" />
+                دليل رسمي
+              </span>
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-[var(--color-navy)] mb-4">
+                أسئلة وأجوبة نظام الإفلاس السعودي
+              </h2>
+              <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+                إجابات موثّقة على أبرز الأسئلة المتعلقة بإجراءات الإفلاس السبعة، مصاغة وفق الدليل الرسمي للجنة الإفلاس.
+              </p>
+            </div>
+
+            {bankruptcyFaqCategories.map((category, catIdx) => (
+              <div key={`bk-${catIdx}`} className="mb-12 last:mb-0">
+                {/* عنوان القسم */}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-1 h-8 bg-[var(--color-gold)] rounded-full" />
+                  <h3 className="font-display text-xl md:text-2xl font-bold text-[var(--color-navy)]">
+                    {category.title}
+                  </h3>
+                </div>
+
+                {/* الأسئلة */}
+                <div className="bg-white border border-gray-100 rounded-sm overflow-hidden shadow-[0_2px_16px_oklch(0.2_0.04_250/0.04)]">
+                  {category.questions.map((item, qIdx) => {
+                    const key = `bk-${catIdx}-${qIdx}`;
+                    return (
+                      <AccordionItem
+                        key={key}
+                        question={item.q}
+                        answer={item.a}
+                        isOpen={!!openItems[key]}
+                        onClick={() => toggleItem(key)}
+                        index={qIdx}
+                        isVisible={true}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+
+            {/* إحالة المصدر الرسمي */}
+            <div className="mt-10 flex items-start gap-3 border-s-2 border-[var(--color-gold)] bg-white px-5 py-4 rounded-sm">
+              <ExternalLink className="w-4 h-4 text-[var(--color-gold)] shrink-0 mt-1" />
+              <p className="text-sm text-gray-600 leading-relaxed">
+                المصدر: دليل الأسئلة الشائعة الصادر عن لجنة الإفلاس.{" "}
+                <a
+                  href={bankruptcyFaqSourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--color-gold)] underline underline-offset-2 hover:text-[var(--color-gold-light)] transition-colors"
+                >
+                  bankruptcy.gov.sa
+                </a>
+                . المحتوى لأغراض التوعية العامة ولا يغني عن الاستشارة القانونية المتخصصة.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-[var(--color-navy)]" ref={ctaRef}>
