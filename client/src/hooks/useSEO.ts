@@ -147,7 +147,8 @@ export const schemas = {
     },
     "sameAs": [
       "https://x.com/redwan_law",
-      "https://www.linkedin.com/company/redwan-sa"
+      "https://www.linkedin.com/company/redwan-sa",
+      "https://snapchat.com/@redwan.sa"
     ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
