@@ -227,6 +227,54 @@ export const schemas = {
     }))
   }),
 
+  // مخطط FAQ مرن لأي صفحة (يستقبل الرابط الأساسي للصفحة) — مناسب لـ AEO
+  faqPageForUrl: (questions: { question: string; answer: string }[], pageUrl: string) => ({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "ar",
+    "dateModified": new Date().toISOString().split("T")[0],
+    "url": `${BASE_URL}${pageUrl}`,
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": SITE_NAME,
+      "url": BASE_URL
+    },
+    "publisher": {
+      "@type": "LegalService",
+      "name": SITE_NAME,
+      "url": BASE_URL
+    },
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".faq-question", ".faq-answer"]
+    },
+    "mainEntity": questions.map(q => ({
+      "@type": "Question",
+      "name": q.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": q.answer,
+        "inLanguage": "ar"
+      }
+    }))
+  }),
+
+  // مخطط HowTo لخطوات الإجراء — مرشّح قوي لظهور AI Overviews
+  howTo: (name: string, description: string, steps: { title: string; desc: string }[], pageUrl: string) => ({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "inLanguage": "ar",
+    "name": name,
+    "description": description,
+    "url": `${BASE_URL}${pageUrl}`,
+    "step": steps.map((s, i) => ({
+      "@type": "HowToStep",
+      "position": i + 1,
+      "name": s.title,
+      "text": s.desc
+    }))
+  }),
+
   attorney: (name: string, role: string, description?: string) => ({
     "@context": "https://schema.org",
     "@type": "Person",

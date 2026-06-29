@@ -27,6 +27,8 @@ import BankruptcyCase from "@/pages/BankruptcyCase";
 import BankruptcyTrack from "@/pages/BankruptcyTrack";
 import BankruptcyTicket from "@/pages/BankruptcyTicket";
 import Bankruptcy from "@/pages/Bankruptcy";
+import BankruptcyProcedures from "@/pages/BankruptcyProcedures";
+import BankruptcyProcedure from "@/pages/BankruptcyProcedure";
 // صفحة هبوط الإعلانات: تحميل متأخر لفصلها في حزمة مستقلة وتقليل JS الأولي
 const BankruptcyLP = lazy(() => import("@/pages/BankruptcyLP"));
 import Sitemap from "@/pages/Sitemap";
@@ -56,6 +58,8 @@ function Router() {
         <Route path={"/services"} component={Services} />
         <Route path={"/services/:slug"} component={ServiceDetail} />
         <Route path={"/bankruptcy"} component={Bankruptcy} />
+        <Route path={"/bankruptcy/procedures"} component={BankruptcyProcedures} />
+        <Route path={"/bankruptcy/procedures/:slug"} component={BankruptcyProcedure} />
         <Route path={"/bankruptcy/claims"} component={Claims} />
         <Route path={"/bankruptcy/track"} component={BankruptcyTrack} />
         <Route path={"/bankruptcy/ticket"} component={BankruptcyTicket} />

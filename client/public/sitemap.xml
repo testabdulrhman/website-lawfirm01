@@ -190,6 +190,56 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- فهرس إجراءات الإفلاس السبعة -->
+  <url>
+    <loc>https://redwan.sa/bankruptcy/procedures</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redwan.sa/bankruptcy/procedures/preventive-settlement</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redwan.sa/bankruptcy/procedures/preventive-settlement-small-debtors</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redwan.sa/bankruptcy/procedures/financial-reorganization</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redwan.sa/bankruptcy/procedures/financial-reorganization-small-debtors</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redwan.sa/bankruptcy/procedures/liquidation</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redwan.sa/bankruptcy/procedures/liquidation-small-debtors</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redwan.sa/bankruptcy/procedures/administrative-liquidation</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- إجراءات الإفلاس -->
   <url>
     <loc>https://redwan.sa/bankruptcy/ASHYAD-STEEL</loc>

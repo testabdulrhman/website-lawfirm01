@@ -65,6 +65,31 @@ export default function Bankruptcy() {
         </div>
       </section>
 
+      {/* رابط إجراءات الإفلاس السبعة */}
+      {lang === "ar" && (
+        <section className="py-10 md:py-12 bg-white border-b border-[var(--color-border)]">
+          <div className="container mx-auto px-5 md:px-4 lg:px-8">
+            <Link
+              href="/bankruptcy/procedures"
+              className="group flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 md:p-8 bg-[var(--color-navy)] hover:shadow-xl transition-all duration-300"
+            >
+              <div>
+                <h2 className="font-display text-xl md:text-2xl font-bold text-white mb-2">
+                  ما هي إجراءات الإفلاس السبعة في النظام السعودي؟
+                </h2>
+                <p className="font-body text-sm md:text-base text-white/60 max-w-2xl leading-relaxed">
+                  تعرّف على كل إجراء على حدة — التسوية الوقائية وإعادة التنظيم المالي والتصفية والتصفية الإدارية — بصفحات مفصّلة وأسئلة شائعة.
+                </p>
+              </div>
+              <span className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm flex-shrink-0">
+                <span>استكشف الإجراءات</span>
+                <ArrowIcon size={16} className="group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Link>
+          </div>
+        </section>
+      )}
+
       {/* Quick Actions */}
       <section className="py-12 md:py-16 bg-[var(--color-cream)]">
         <div className="container mx-auto px-5 md:px-4 lg:px-8">
