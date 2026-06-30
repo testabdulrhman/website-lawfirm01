@@ -535,10 +535,32 @@ export default function Claims() {
   return (
     <>
     <SEOHead
-      title="تقديم مطالبة دائن"
-      description="نموذج تقديم مطالبة دائن في إجراءات الإفلاس لدى شركة عبدالرحمن رضوان المشيقح للمحاماة"
+      title="تقديم مطالبة دائن إلكترونياً"
+      description="قدّم مطالبتك كدائن في قضايا الإفلاس والتصفية إلكترونياً عبر شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس. اختر القضية، أدخل بيانات الدين، وأرفق المستندات قبل انتهاء المهلة النظامية."
       canonicalUrl="/bankruptcy/claims"
-      keywords={['مطالبة دائن', 'إفلاس', 'تقديم مطالبة', 'دائنين']}
+      keywords={['تقديم مطالبة دائن', 'مطالبة دائن إلكترونية', 'مطالبات الإفلاس', 'تقديم مطالبة إفلاس', 'دائنين', 'أمين الإفلاس', 'تصفية', 'القصيم', 'بريدة']}
+      ogType="website"
+      structuredData={{
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "تقديم مطالبة دائن إلكترونياً",
+        "description": "صفحة تقديم مطالبات الدائنين إلكترونياً في قضايا الإفلاس والتصفية التي تديرها شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس.",
+        "url": "https://redwan.sa/bankruptcy/claims",
+        "inLanguage": "ar",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+          "url": "https://redwan.sa"
+        },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://redwan.sa" },
+            { "@type": "ListItem", "position": 2, "name": "الإفلاس والتصفية", "item": "https://redwan.sa/services/bankruptcy" },
+            { "@type": "ListItem", "position": 3, "name": "تقديم مطالبة دائن", "item": "https://redwan.sa/bankruptcy/claims" }
+          ]
+        }
+      }}
     />
     <div className="min-h-screen bg-[#faf8f5]">
       {/* Hero */}
