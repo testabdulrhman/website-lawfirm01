@@ -1,37 +1,48 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import { lazy, Suspense } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { HelmetProvider } from "react-helmet-async";
-import Home from "@/pages/Home";
-import About from "@/pages/About";
-import Services from "@/pages/Services";
-import ServiceDetail from "@/pages/ServiceDetail";
-import Blog from "@/pages/Blog";
-import BlogPost from "@/pages/BlogPost";
-import Contact from "@/pages/Contact";
-import Claims from "@/pages/Claims";
-import Privacy from "@/pages/Privacy";
-import Terms from "@/pages/Terms";
-import Team from "@/pages/Team";
-import FAQ from "@/pages/FAQ";
-import Careers from "@/pages/Careers";
 import Layout from "@/components/Layout";
-import HomePreview from "@/pages/HomePreview";
-import BankruptcyComplete from "@/pages/BankruptcyComplete";
-import BankruptcyCase from "@/pages/BankruptcyCase";
-import BankruptcyTrack from "@/pages/BankruptcyTrack";
-import BankruptcyTicket from "@/pages/BankruptcyTicket";
-import Bankruptcy from "@/pages/Bankruptcy";
-import BankruptcyProcedures from "@/pages/BankruptcyProcedures";
-import BankruptcyProcedure from "@/pages/BankruptcyProcedure";
-// صفحة هبوط الإعلانات: تحميل متأخر لفصلها في حزمة مستقلة وتقليل JS الأولي
+// الصفحة الرئيسية تُحمّل مباشرة (فوق الطية) لتفادي وميض التحميل الأولي
+import Home from "@/pages/Home";
+
+// تقسيم الحزمة: تحميل كسول لبقية الصفحات لتقليل حجم أول تحميل (code-splitting)
+const About = lazy(() => import("@/pages/About"));
+const Services = lazy(() => import("@/pages/Services"));
+const ServiceDetail = lazy(() => import("@/pages/ServiceDetail"));
+const Blog = lazy(() => import("@/pages/Blog"));
+const BlogPost = lazy(() => import("@/pages/BlogPost"));
+const Contact = lazy(() => import("@/pages/Contact"));
+const Claims = lazy(() => import("@/pages/Claims"));
+const Privacy = lazy(() => import("@/pages/Privacy"));
+const Terms = lazy(() => import("@/pages/Terms"));
+const Team = lazy(() => import("@/pages/Team"));
+const FAQ = lazy(() => import("@/pages/FAQ"));
+const Careers = lazy(() => import("@/pages/Careers"));
+const HomePreview = lazy(() => import("@/pages/HomePreview"));
+const BankruptcyComplete = lazy(() => import("@/pages/BankruptcyComplete"));
+const BankruptcyCase = lazy(() => import("@/pages/BankruptcyCase"));
+const BankruptcyTrack = lazy(() => import("@/pages/BankruptcyTrack"));
+const BankruptcyTicket = lazy(() => import("@/pages/BankruptcyTicket"));
+const Bankruptcy = lazy(() => import("@/pages/Bankruptcy"));
+const BankruptcyProcedures = lazy(() => import("@/pages/BankruptcyProcedures"));
+const BankruptcyProcedure = lazy(() => import("@/pages/BankruptcyProcedure"));
 const BankruptcyLP = lazy(() => import("@/pages/BankruptcyLP"));
-import Sitemap from "@/pages/Sitemap";
+const Sitemap = lazy(() => import("@/pages/Sitemap"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
+
+// مؤشر تحميل موحّد بألوان الهوية (كحلي/ذهبي)
+function PageLoader() {
+  return (
+    <div className="min-h-[60vh] flex items-center justify-center">
+      <div className="w-8 h-8 rounded-full border-2 border-[oklch(0.65_0.1_70)] border-t-transparent animate-spin" />
+    </div>
+  );
+}
 
 function Router() {
   return (
@@ -50,32 +61,34 @@ function Router() {
       </Route>
       <Route>
         <Layout>
-          <Switch>
-            <Route path={"/"} component={Home} />
-        <Route path={"/preview"} component={HomePreview} />
-        <Route path={"/about"} component={About} />
-        <Route path={"/team"} component={Team} />
-        <Route path={"/services"} component={Services} />
-        <Route path={"/services/:slug"} component={ServiceDetail} />
-        <Route path={"/bankruptcy"} component={Bankruptcy} />
-        <Route path={"/bankruptcy/procedures"} component={BankruptcyProcedures} />
-        <Route path={"/bankruptcy/procedures/:slug"} component={BankruptcyProcedure} />
-        <Route path={"/bankruptcy/claims"} component={Claims} />
-        <Route path={"/bankruptcy/track"} component={BankruptcyTrack} />
-        <Route path={"/bankruptcy/ticket"} component={BankruptcyTicket} />
-        <Route path={"/bankruptcy/complete"} component={BankruptcyComplete} />
-        <Route path={"/bankruptcy/:slug"} component={BankruptcyCase} />
-        <Route path={"/blog"} component={Blog} />
-        <Route path={"/blog/:slug"} component={BlogPost} />
-        <Route path={"/contact"} component={Contact} />
-        <Route path={"/privacy"} component={Privacy} />
-        <Route path={"/terms"} component={Terms} />
-        <Route path={"/faq"} component={FAQ} />
-        <Route path={"/careers"} component={Careers} />
-        <Route path={"/sitemap"} component={Sitemap} />
-            <Route path={"*"} component={NotFound} />
-            <Route component={NotFound} />
-          </Switch>
+          <Suspense fallback={<PageLoader />}>
+            <Switch>
+              <Route path={"/"} component={Home} />
+              <Route path={"/preview"} component={HomePreview} />
+              <Route path={"/about"} component={About} />
+              <Route path={"/team"} component={Team} />
+              <Route path={"/services"} component={Services} />
+              <Route path={"/services/:slug"} component={ServiceDetail} />
+              <Route path={"/bankruptcy"} component={Bankruptcy} />
+              <Route path={"/bankruptcy/procedures"} component={BankruptcyProcedures} />
+              <Route path={"/bankruptcy/procedures/:slug"} component={BankruptcyProcedure} />
+              <Route path={"/bankruptcy/claims"} component={Claims} />
+              <Route path={"/bankruptcy/track"} component={BankruptcyTrack} />
+              <Route path={"/bankruptcy/ticket"} component={BankruptcyTicket} />
+              <Route path={"/bankruptcy/complete"} component={BankruptcyComplete} />
+              <Route path={"/bankruptcy/:slug"} component={BankruptcyCase} />
+              <Route path={"/blog"} component={Blog} />
+              <Route path={"/blog/:slug"} component={BlogPost} />
+              <Route path={"/contact"} component={Contact} />
+              <Route path={"/privacy"} component={Privacy} />
+              <Route path={"/terms"} component={Terms} />
+              <Route path={"/faq"} component={FAQ} />
+              <Route path={"/careers"} component={Careers} />
+              <Route path={"/sitemap"} component={Sitemap} />
+              <Route path={"*"} component={NotFound} />
+              <Route component={NotFound} />
+            </Switch>
+          </Suspense>
         </Layout>
       </Route>
     </Switch>
