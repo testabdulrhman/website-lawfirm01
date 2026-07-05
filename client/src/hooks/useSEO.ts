@@ -56,6 +56,13 @@ export function useSEO({
     if (canonical) {
       setMeta("og:url", `${BASE_URL}${canonical}`, "property");
       setCanonical(`${BASE_URL}${canonical}`);
+    } else {
+      // Remove canonical link when not provided (e.g., 404 pages)
+      const existingCanonical = document.querySelector('link[rel="canonical"]');
+      if (existingCanonical) existingCanonical.remove();
+      // Remove og:url when no canonical
+      const ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) ogUrl.remove();
     }
 
     // Twitter Card

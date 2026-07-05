@@ -8,7 +8,7 @@
  * Run after `vite build`: node scripts/prerender-static.mjs
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -42,7 +42,8 @@ function applySEO(html, seo, route) {
   const keywords = seo.keywords || '';
   const ogTitle = seo.ogTitle || title;
   const ogDesc = seo.ogDesc || description;
-  const canonical = seo.canonical || (route === '/' ? `${SITE}/` : `${SITE}${route}`);
+  const isNoindex = seo.noindex === true;
+  const canonical = isNoindex ? '' : (seo.canonical || (route === '/' ? `${SITE}/` : `${SITE}${route}`));
   const ogUrl = seo.ogUrl || canonical;
   const ogType = seo.ogType || 'website';
 
@@ -65,12 +66,23 @@ function applySEO(html, seo, route) {
     );
   }
 
-  // canonical
-  html = replaceTag(
-    html,
-    /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/,
-    `<link rel="canonical" href="${esc(canonical)}" />`
-  );
+  // robots (noindex for 404 pages)
+  if (isNoindex) {
+    html = replaceTag(
+      html,
+      /<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/,
+      `<meta name="robots" content="noindex, nofollow" />`
+    );
+    // Remove canonical for noindex pages
+    html = html.replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/,'');
+  } else {
+    // canonical
+    html = replaceTag(
+      html,
+      /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/,
+      `<link rel="canonical" href="${esc(canonical)}" />`
+    );
+  }
 
   // og:type
   html = replaceTag(
@@ -180,6 +192,14 @@ function run() {
   }
 
   console.log(`\n📊 Done! ${count}/${routes.length} routes written with unique SEO tags.`);
+
+  // Copy 404/index.html to 404.html at root for hosting platforms that serve it as fallback
+  const notFoundSource = join(DIST_DIR, '404', 'index.html');
+  const notFoundDest = join(DIST_DIR, '404.html');
+  if (existsSync(notFoundSource)) {
+    copyFileSync(notFoundSource, notFoundDest);
+    console.log('  📄 404.html copied as fallback for unknown routes');
+  }
 }
 
 run();

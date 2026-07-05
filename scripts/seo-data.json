@@ -532,5 +532,10 @@
     "ogType": "website",
     "ogImage": null,
     "canonical": "https://redwan.sa/services/administrative"
+  },
+  "/404": {
+    "title": "الصفحة غير موجودة - 404 | شركة عبدالرحمن رضوان المشيقح للمحاماة",
+    "description": "الصفحة المطلوبة غير موجودة أو تم نقلها.",
+    "noindex": true
   }
 }

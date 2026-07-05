@@ -1,9 +1,20 @@
 import { Link } from "wouter";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useSEO } from "@/hooks/useSEO";
 
 export default function NotFound() {
   const { lang, isRTL } = useTranslation();
+
+  // Mark as noindex to prevent Google from indexing 404 pages (Soft 404 fix)
+  useSEO({
+    title: lang === "ar" ? "الصفحة غير موجودة - 404" : "Page Not Found - 404",
+    description: lang === "ar"
+      ? "الصفحة المطلوبة غير موجودة أو تم نقلها."
+      : "The requested page does not exist or has been moved.",
+    noindex: true,
+    // No canonical — this is a dead-end page that should not be indexed
+  });
 
   const content = lang === "ar" ? {
     title: "الصفحة غير موجودة",
