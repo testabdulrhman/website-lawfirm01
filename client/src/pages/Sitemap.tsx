@@ -64,9 +64,13 @@ export default function Sitemap() {
       title: "المدونة",
       links: [
         { label: "جميع المقالات", href: "/blog" },
-        { label: "إجراءات الإفلاس في النظام السعودي", href: "/blog/bankruptcy-procedures-saudi" },
-        { label: "حقوق الدائنين في إجراءات التصفية", href: "/blog/creditor-rights-liquidation" },
-        { label: "التسوية الوقائية: الحل قبل الإفلاس", href: "/blog/preventive-settlement" },
+        { label: "تعليق المطالبات في نظام الإفلاس السعودي", href: "/blog/تعليق-المطالبات-في-نظام-الإفلاس-السعودي" },
+        { label: "التسوية الوقائية في نظام الإفلاس السعودي", href: "/blog/التسوية-الوقائية-في-نظام-الإفلاس-السعودي" },
+        { label: "الدليل الإرشادي لنظام الإفلاس ولائحته التنفيذية", href: "/blog/الدليل-الإرشادي-لنظام-الإفلاس-ولائحته-التنفيذية" },
+        { label: "لماذا تحتاج محامي إفلاس متخصص", href: "/blog/لماذا-تحتاج-محامي-إفلاس-متخصص" },
+        { label: "إعادة التنظيم المالي في نظام الإفلاس السعودي", href: "/blog/إعادة-التنظيم-المالي-في-نظام-الإفلاس-السعودي" },
+        { label: "التصفية في نظام الإفلاس السعودي", href: "/blog/التصفية-في-نظام-الإفلاس-السعودي" },
+        { label: "حقوق الدائنين في إجراءات الإفلاس", href: "/blog/حقوق-الدائنين-في-إجراءات-الإفلاس" },
       ],
     },
     {
@@ -117,9 +121,13 @@ export default function Sitemap() {
       title: "Blog",
       links: [
         { label: "All Articles", href: "/blog" },
-        { label: "Bankruptcy Procedures in Saudi Law", href: "/blog/bankruptcy-procedures-saudi" },
-        { label: "Creditor Rights in Liquidation", href: "/blog/creditor-rights-liquidation" },
-        { label: "Preventive Settlement: The Solution Before Bankruptcy", href: "/blog/preventive-settlement" },
+        { label: "Suspension of Claims in Saudi Bankruptcy Law", href: "/blog/تعليق-المطالبات-في-نظام-الإفلاس-السعودي" },
+        { label: "Preventive Settlement in Saudi Bankruptcy Law", href: "/blog/التسوية-الوقائية-في-نظام-الإفلاس-السعودي" },
+        { label: "Bankruptcy Law Guide", href: "/blog/الدليل-الإرشادي-لنظام-الإفلاس-ولائحته-التنفيذية" },
+        { label: "Why You Need a Specialized Bankruptcy Lawyer", href: "/blog/لماذا-تحتاج-محامي-إفلاس-متخصص" },
+        { label: "Financial Reorganization in Saudi Bankruptcy Law", href: "/blog/إعادة-التنظيم-المالي-في-نظام-الإفلاس-السعودي" },
+        { label: "Liquidation in Saudi Bankruptcy Law", href: "/blog/التصفية-في-نظام-الإفلاس-السعودي" },
+        { label: "Creditor Rights in Bankruptcy Proceedings", href: "/blog/حقوق-الدائنين-في-إجراءات-الإفلاس" },
       ],
     },
     {
