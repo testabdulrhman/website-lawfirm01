@@ -1,4 +1,5 @@
-import { ArrowLeft, ArrowRight, Scale, FileCheck, Building, Landmark, Briefcase, Shield, Users, Gavel, BookOpen, Award } from "lucide-react";
+import { ArrowLeft, ArrowRight, Scale, FileCheck, Building, Landmark, Briefcase, Shield, Users, Gavel, BookOpen, Award, Calendar, Clock } from "lucide-react";
+import { blogArticles } from "@/data/blogArticles";
 import { Link } from "wouter";
 import { useScrollAnimation, useParallax, getStaggerStyle, getFadeStyle } from "@/hooks/useScrollAnimation";
 import { useEffect, useState, useRef, useMemo } from "react";
@@ -301,7 +302,7 @@ export default function Home() {
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group p-6 md:p-8 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)]/30 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98] transition-all duration-300"
+                className="group relative p-6 md:p-8 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)] hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] active:scale-[0.97] transition-all duration-300 overflow-hidden before:absolute before:inset-x-0 before:bottom-0 before:h-1 before:bg-[var(--color-gold)] before:scale-x-0 before:origin-right hover:before:scale-x-100 hover:before:origin-left before:transition-transform before:duration-500"
                 style={getStaggerStyle(servicesVisible, idx, 100)}
               >
                 <div className="w-12 h-12 md:w-14 md:h-14 bg-[var(--color-navy)] flex items-center justify-center mb-4 md:mb-6 group-hover:bg-[var(--color-gold)] transition-colors duration-300">
@@ -404,7 +405,7 @@ export default function Home() {
             {t.licenses.items.map((lic, idx) => (
               <div
                 key={lic.number}
-                className="flex items-center gap-3 md:gap-4 p-3 md:p-5 border border-[var(--color-border)]"
+                className="flex items-center gap-3 md:gap-4 p-3 md:p-5 border border-[var(--color-border)] hover:border-[var(--color-gold)]/40 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 cursor-default"
                 style={getStaggerStyle(licensesVisible, idx, 80)}
               >
                 {[Landmark, Building, FileCheck, Scale][idx] && (
@@ -418,6 +419,69 @@ export default function Home() {
                   <p className="font-body text-[10px] md:text-xs text-[var(--color-navy)]/50 truncate" dir="ltr">{lic.number}</p>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Section */}
+      <section className="py-16 md:py-24 bg-[var(--color-cream)]">
+        <div className="container mx-auto px-5 md:px-4 lg:px-8">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-[2px] w-12 bg-[var(--color-gold)]" />
+            <span className="font-heading text-sm tracking-[0.2em] text-[var(--color-gold)] uppercase">
+              {lang === "ar" ? "المدونة القانونية" : "Legal Blog"}
+            </span>
+          </div>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-6 mb-10 md:mb-14">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-[var(--color-navy)] leading-tight">
+              {lang === "ar" ? (
+                <>آخر <span className="text-[var(--color-gold)]">المقالات</span> القانونية</>
+              ) : (
+                <>Latest <span className="text-[var(--color-gold)]">Legal</span> Articles</>
+              )}
+            </h2>
+            <Link
+              href="/blog"
+              className="group flex items-center gap-2 font-heading text-sm font-semibold text-[var(--color-navy)] hover:text-[var(--color-gold)] transition-colors"
+            >
+              <span>{lang === "ar" ? "عرض جميع المقالات" : "View All Articles"}</span>
+              <ArrowIcon size={16} className={`${arrowHoverClass} transition-transform`} />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {blogArticles.slice(0, 3).map((article, idx) => (
+              <Link
+                key={article.id}
+                href={`/blog/${article.slug}`}
+                className="group relative bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)] hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden"
+              >
+                <div className="absolute inset-x-0 top-0 h-1 bg-[var(--color-gold)] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500" />
+                <div className="p-6 md:p-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="px-3 py-1 bg-[var(--color-navy)]/5 text-[var(--color-navy)] font-heading text-[11px] font-semibold tracking-wide">
+                      {article.category}
+                    </span>
+                  </div>
+                  <h3 className="font-heading text-base md:text-lg font-bold text-[var(--color-navy)] mb-3 line-clamp-2 group-hover:text-[var(--color-gold)] transition-colors duration-300">
+                    {article.title}
+                  </h3>
+                  <p className="font-body text-sm text-[var(--color-navy)]/60 mb-5 line-clamp-2">
+                    {article.excerpt}
+                  </p>
+                  <div className="flex items-center gap-4 text-[var(--color-navy)]/40 font-body text-xs">
+                    <span className="flex items-center gap-1.5">
+                      <Calendar size={13} />
+                      {article.date}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Clock size={13} />
+                      {article.readTime}
+                    </span>
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
