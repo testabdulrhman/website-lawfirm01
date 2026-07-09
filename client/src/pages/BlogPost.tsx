@@ -5,6 +5,7 @@ import SEOHead from "@/components/SEOHead";
 import { useEffect, type ReactNode } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackWhatsAppClick } from "@/lib/analytics";
+import { schemas } from "@/hooks/useSEO";
 
 export default function BlogPost() {
   const { t, lang, isRTL } = useTranslation();
@@ -227,6 +228,11 @@ export default function BlogPost() {
 
       {/* Breadcrumb structured data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }} />
+
+      {/* FAQ structured data */}
+      {article.faqItems && article.faqItems.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.faqPageForUrl(article.faqItems, `/blog/${article.slug}`)) }} />
+      )}
 
       {/* Hero Section */}
       <section className="relative pt-28 md:pt-32 pb-12 md:pb-16 bg-[var(--color-navy)]">
