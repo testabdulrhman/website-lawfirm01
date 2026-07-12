@@ -19,7 +19,7 @@ export default function Footer() {
             <div className="sm:col-span-2 lg:col-span-1">
               <Link href="/" className="inline-block mb-4">
                 <img
-                  src="/manus-storage/logo-light-new_33dd99e3_47044b8b.webp"
+                  src="/images/logo-light.webp"
                   alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
                   className="w-auto object-contain"
                   style={{ height: '50px', maxWidth: '200px' }}

@@ -16,8 +16,8 @@ import {
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackBookConsultation, trackLanguageSwitch, trackPhoneClick } from "@/lib/analytics";
 
-const LOGO_LIGHT = "/manus-storage/logo-light-new_33dd99e3_47044b8b.webp";
-const LOGO_DARK = "/manus-storage/logo-dark-new_3800bcd5_08b1a48d.webp";
+const LOGO_LIGHT = "/images/logo-light.webp";
+const LOGO_DARK = "/images/logo-dark.webp";
 
 // Icon per service slug (visual rhythm for the mega menu)
 const SERVICE_ICONS: Record<string, typeof Briefcase> = {

@@ -85,7 +85,7 @@ export default function Home() {
           style={{ transform: `translateY(${parallaxOffset * 0.4}px)` }}
         >
           <img
-            src="/manus-storage/hero-law-firm-new_fff82498_f3461932.webp"
+            src="/images/hero-law-firm.webp"
             alt={lang === "ar" ? "مكتب محاماة" : "Law Office"}
             className="w-full h-full object-cover"
             loading="eager"
@@ -244,7 +244,7 @@ export default function Home() {
             <div className={`relative ${isRTL ? 'order-2' : 'order-2 lg:order-2'}`} style={getFadeStyle(aboutVisible, isRTL ? "left" : "right", 200)}>
               <div className="relative">
                 <img
-                  src="/manus-storage/office-interior-new_ab211147.webp"
+                  src="/images/office-interior.webp"
                   alt={lang === "ar" ? "مكتب شركة رضوان للمحاماة" : "Redwan Law Firm Office"}
                   className="w-full h-[280px] md:h-[380px] object-cover"
                   loading="lazy"

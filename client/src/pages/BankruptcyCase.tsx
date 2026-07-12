@@ -37,7 +37,7 @@ interface BankruptcyCaseData {
 const casesData: Record<string, BankruptcyCaseData> = {
   "ASHYAD-STEEL": {
     slug: "ASHYAD-STEEL",
-    logo: "/manus-storage/asyad-steel-logo_cf776c27.png",
+    logo: "/images/asyad-steel-logo.png",
     ar: {
       companyName: "شركة أشياد ستيل",
       companyNameEn: "ASHYAD STEEL",

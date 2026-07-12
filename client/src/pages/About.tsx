@@ -50,7 +50,7 @@ export default function About() {
       <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 bg-[var(--color-navy)]">
         <div className="absolute inset-0 opacity-10">
           <img
-            src="/manus-storage/office-interior-new_ab211147.webp"
+            src="/images/office-interior.webp"
             alt=""
             className="w-full h-full object-cover"
             loading="lazy"
@@ -112,7 +112,7 @@ export default function About() {
             </div>
             <div className="relative">
               <img
-                src="/manus-storage/office-interior-new_ab211147.webp"
+                src="/images/office-interior.webp"
                 alt={lang === "ar" ? "مكتب شركة رضوان" : "Redwan Law Office"}
                 className="w-full h-[280px] md:h-[400px] object-cover"
                 loading="lazy"

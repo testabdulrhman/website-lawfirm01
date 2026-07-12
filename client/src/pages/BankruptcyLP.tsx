@@ -44,7 +44,7 @@ const HERO_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310419663031020868/YnXXVn35ryxUKUfHFrqdpE/lp-bankruptcy-hero-dqU6g5zLT9BYqByVzYJGDK.webp";
 const TRUST_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310419663031020868/YnXXVn35ryxUKUfHFrqdpE/lp-bankruptcy-trust-BEbD24pP8msCebWnUZ6EUw.webp";
-const LOGO_LIGHT = "/manus-storage/logo-light-new_33dd99e3_47044b8b.webp";
+const LOGO_LIGHT = "/images/logo-light.webp";
 
 /**
  * تتبّع تحويلات صفحة الهبوط عبر Google Tag Manager (GTM-5SW2MXVW).

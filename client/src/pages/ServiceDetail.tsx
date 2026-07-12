@@ -557,7 +557,7 @@ export default function ServiceDetail() {
                   </h3>
                   <div className="grid gap-4">
                     {[
-                      { slug: 'ASHYAD-STEEL', logo: '/manus-storage/asyad-steel-logo_cf776c27.png', ar: 'شركة أشياد ستيل', en: 'ASHYAD STEEL', enName: 'ASHYAD STEEL' },
+                      { slug: 'ASHYAD-STEEL', logo: '/images/asyad-steel-logo.png', ar: 'شركة أشياد ستيل', en: 'ASHYAD STEEL', enName: 'ASHYAD STEEL' },
                       { slug: 'tajalriayaa', logo: '', ar: 'شركة تاج الرعاية الطبي', en: 'Taj Al-Riaya Medical', enName: 'tajalriayaa' },
                       { slug: 'Planting-for-Contracting', logo: '', ar: 'شركة المزروعات للمقاولات', en: 'Planting for Contracting', enName: 'Planting for Contracting' },
                       { slug: 'Hassan-Misfer-Al-Zahrani', logo: '', ar: 'شركة حسن مسفر الزهراني وشركاه', en: 'Hassan Misfer Al-Zahrani & Partners', enName: 'Hassan Misfer Al-Zahrani & Partners Group' },
