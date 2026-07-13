@@ -56,12 +56,43 @@ export default function Privacy() {
         content: "بالإضافة إلى سياسة الخصوصية هذه، تلتزم الشركة بالسرية المهنية المنصوص عليها في نظام المحاماة السعودي. جميع المعلومات المتعلقة بقضايا العملاء تخضع لحماية السرية المهنية المطلقة، ولا يتم الإفصاح عنها إلا بموافقة العميل أو بأمر قضائي.",
       },
       {
+        title: "التحليلات وقياس الأداء (Google Analytics)",
+        content: "نستخدم خدمة Google Analytics لتحليل حركة الزوار على الموقع وفهم كيفية استخدامه. تجمع هذه الخدمة بيانات مجهولة الهوية تشمل:",
+        list: [
+          "الصفحات المزارة ومدة الزيارة.",
+          "نوع الجهاز والمتصفح ونظام التشغيل.",
+          "الموقع الجغرافي التقريبي (على مستوى المدينة).",
+          "مصدر الزيارة (محرك بحث، رابط مباشر، إعلان).",
+        ],
+        extra: "تُعالج هذه البيانات بواسطة Google وفقاً لسياسة الخصوصية الخاصة بها. يمكنك منع جمع هذه البيانات عبر تثبيت إضافة Google Analytics Opt-out Browser Add-on.",
+      },
+      {
+        title: "جمع البيانات المقدَّمة من المستخدم ومشاركتها مع Google",
+        content: "لتحسين قياس الإحالات الناجحة واستهداف الإعلانات، قد نشارك بيانات مجزّأة ومشفّرة مع Google. تشمل هذه البيانات:",
+        list: [
+          "عنوان البريد الإلكتروني (بصيغة مشفّرة/مجزّأة).",
+          "رقم الهاتف (بصيغة مشفّرة/مجزّأة).",
+        ],
+        extra: "تتم هذه المشاركة وفق معايير الخصوصية المعتمدة من Google، ولا يمكن استخدام هذه البيانات لتحديد هويتك بشكل مباشر. الغرض من ذلك هو تحسين دقة قياس أداء الحملات الإعلانية وتقديم محتوى أكثر صلة. يحق لك رفض هذه المشاركة عبر التواصل معنا.",
+      },
+      {
+        title: "ملفات تعريف الارتباط (Cookies)",
+        content: "يستخدم موقعنا ملفات تعريف الارتباط للأغراض التالية:",
+        list: [
+          "ملفات ضرورية: لضمان عمل الموقع بشكل صحيح.",
+          "ملفات تحليلية (Google Analytics): لفهم كيفية استخدام الزوار للموقع.",
+          "ملفات إعلانية (Google Ads): لقياس أداء الإعلانات وتحسين استهدافها.",
+        ],
+        extra: "يمكنك التحكم في ملفات تعريف الارتباط أو تعطيلها من إعدادات المتصفح الخاص بك. قد يؤثر تعطيل بعض الملفات على تجربة استخدامك للموقع.",
+      },
+      {
         title: "مشاركة المعلومات مع أطراف ثالثة",
         content: "لا نبيع أو نؤجر معلوماتك الشخصية لأي طرف ثالث. قد نشارك المعلومات فقط في الحالات التالية:",
         list: [
           "بموافقتك الصريحة.",
           "للامتثال لأمر قضائي أو متطلب قانوني.",
           "مع مقدمي خدمات موثوقين يساعدوننا في تشغيل موقعنا (مع التزامهم بالسرية).",
+          "مع Google لأغراض التحليل وقياس أداء الإعلانات (بيانات مجزّأة ومشفّرة فقط).",
         ],
       },
       {
@@ -81,7 +112,7 @@ export default function Privacy() {
         contact: true,
       },
     ],
-    lastUpdated: "آخر تحديث: يونيو 2026",
+    lastUpdated: "آخر تحديث: يوليو 2026",
     companyName: "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
     email: "البريد الإلكتروني:",
     phone: "الهاتف:",
@@ -135,12 +166,43 @@ export default function Privacy() {
         content: "In addition to this privacy policy, the Firm adheres to professional confidentiality as stipulated in the Saudi Advocacy Law. All information related to client cases is subject to absolute professional confidentiality protection and is not disclosed except with client consent or by court order.",
       },
       {
+        title: "Analytics & Performance Measurement (Google Analytics)",
+        content: "We use Google Analytics to analyze website traffic and understand how visitors use our site. This service collects anonymized data including:",
+        list: [
+          "Pages visited and visit duration.",
+          "Device type, browser, and operating system.",
+          "Approximate geographic location (city level).",
+          "Traffic source (search engine, direct link, advertisement).",
+        ],
+        extra: "This data is processed by Google in accordance with its privacy policy. You can prevent this data collection by installing the Google Analytics Opt-out Browser Add-on.",
+      },
+      {
+        title: "User-Provided Data Collection & Sharing with Google",
+        content: "To improve conversion measurement and ad targeting, we may share hashed and encrypted data with Google. This data includes:",
+        list: [
+          "Email address (in hashed/encrypted format).",
+          "Phone number (in hashed/encrypted format).",
+        ],
+        extra: "This sharing is conducted in accordance with Google's privacy standards and cannot be used to directly identify you. The purpose is to improve the accuracy of advertising campaign performance measurement and deliver more relevant content. You have the right to opt out of this sharing by contacting us.",
+      },
+      {
+        title: "Cookies",
+        content: "Our website uses cookies for the following purposes:",
+        list: [
+          "Essential cookies: To ensure the website functions properly.",
+          "Analytics cookies (Google Analytics): To understand how visitors use the site.",
+          "Advertising cookies (Google Ads): To measure ad performance and improve targeting.",
+        ],
+        extra: "You can control or disable cookies through your browser settings. Disabling some cookies may affect your experience using the website.",
+      },
+      {
         title: "Sharing Information with Third Parties",
         content: "We do not sell or rent your personal information to any third party. We may share information only in the following cases:",
         list: [
           "With your explicit consent.",
           "To comply with a court order or legal requirement.",
           "With trusted service providers who help us operate our website (with their commitment to confidentiality).",
+          "With Google for analytics and ad performance measurement purposes (hashed and encrypted data only).",
         ],
       },
       {
@@ -160,7 +222,7 @@ export default function Privacy() {
         contact: true,
       },
     ],
-    lastUpdated: "Last updated: June 2026",
+    lastUpdated: "Last updated: July 2026",
     companyName: "Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Administration",
     email: "Email:",
     phone: "Phone:",
