@@ -115,7 +115,7 @@ export default function Team() {
 
   const seoSchema = useMemo(() => [
     schemas.breadcrumb([{ name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' }, { name: lang === 'ar' ? 'فريقنا' : 'Our Team', url: '/team' }]),
-    ...teamData[lang].members.filter(m => m.bio).map(m => schemas.attorney(m.name, m.role, m.bio))
+    ...teamData[lang].members.filter(m => m.bio).map(m => schemas.personAttorney(m.name, m.role, m.bio))
   ], [lang]);
   useSEO({
     title: lang === 'ar' ? 'فريقنا - المحامون' : 'Our Team - Attorneys',

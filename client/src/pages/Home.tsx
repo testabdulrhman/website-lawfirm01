@@ -41,7 +41,7 @@ const serviceIcons = [Briefcase, Gavel, Building, Scale];
 export default function Home() {
   const { t, lang, isRTL } = useTranslation();
 
-  const seoSchema = useMemo(() => [schemas.localBusiness, schemas.organization], []);
+  const seoSchema = useMemo(() => [schemas.localBusiness, schemas.organization, schemas.attorney], []);
   useSEO({
     fullTitle: true,
     title: lang === 'ar'

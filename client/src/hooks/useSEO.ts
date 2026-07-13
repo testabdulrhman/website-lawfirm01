@@ -204,6 +204,81 @@ export const schemas = {
     }))
   }),
 
+  attorney: {
+    "@context": "https://schema.org",
+    "@type": "Attorney",
+    "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "alternateName": "Abdulrahman Redwan Al-Mushaiqi Law Firm & Bankruptcy Management",
+    "url": "https://redwan.sa",
+    "logo": `${BASE_URL}/images/logo-dark.webp`,
+    "image": `${BASE_URL}/images/hero-law-firm.webp`,
+    "description": "شركة محاماة سعودية مرخصة برقم 26/129 متخصصة في إدارة إجراءات الإفلاس والقضايا التجارية والجنائية والعقارية، مقرها بريدة وتخدم جميع مناطق المملكة.",
+    "legalName": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "knowsAbout": [
+      "إدارة إجراءات الإفلاس",
+      "التسوية الوقائية",
+      "إعادة التنظيم المالي",
+      "التصفية",
+      "القضايا التجارية",
+      "القضايا الجنائية",
+      "النزاعات العقارية",
+      "التحكيم التجاري",
+      "قضايا العمل والعمال",
+      "الاستشارات القانونية"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "طريق الملك عبدالله، حي الأفق، الدور الثاني، مكتب رقم 1",
+      "addressLocality": "بريدة",
+      "addressRegion": "القصيم",
+      "postalCode": "52387",
+      "addressCountry": "SA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 26.3260,
+      "longitude": 43.9750
+    },
+    "telephone": "+966505149800",
+    "email": "info@redwan.sa",
+    "founder": {
+      "@type": "Person",
+      "name": "عبدالرحمن بن رضوان المشيقح",
+      "jobTitle": "محامي وأمين إفلاس"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+      "opens": "08:00",
+      "closes": "16:00"
+    },
+    "priceRange": "$$",
+    "currenciesAccepted": "SAR",
+    "paymentAccepted": "Cash, Bank Transfer",
+    "areaServed": [
+      { "@type": "City", "name": "بريدة" },
+      { "@type": "City", "name": "الرياض" },
+      { "@type": "City", "name": "جدة" },
+      { "@type": "City", "name": "الدمام" },
+      { "@type": "City", "name": "حائل" }
+    ],
+    "sameAs": [
+      "https://x.com/redwan_law",
+      "https://www.linkedin.com/company/redwan-sa",
+      "https://snapchat.com/@redwan.sa"
+    ],
+    "hasCredential": {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "ترخيص محاماة",
+      "recognizedBy": {
+        "@type": "GovernmentOrganization",
+        "name": "وزارة العدل - المملكة العربية السعودية"
+      },
+      "identifier": "26/129"
+    },
+    "slogan": "معك خطوة بخطوة نحو الحل القانوني الأمثل"
+  },
+
   faqPage: (questions: { question: string; answer: string }[]) => ({
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -283,7 +358,7 @@ export const schemas = {
     }))
   }),
 
-  attorney: (name: string, role: string, description?: string) => ({
+  personAttorney: (name: string, role: string, description?: string) => ({
     "@context": "https://schema.org",
     "@type": "Person",
     "name": name,
