@@ -48,6 +48,11 @@ const ROUTES = [
   '/terms',
   '/faq',
   '/cases-guide',
+  '/locations/riyadh',
+  '/locations/jeddah',
+  '/locations/buraydah',
+  '/locations/dammam',
+  '/locations/hail',
   '/sitemap',
 ];
 

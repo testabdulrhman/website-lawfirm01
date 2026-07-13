@@ -75,6 +75,16 @@ export default function Sitemap() {
       ],
     },
     {
+      title: "مواقعنا",
+      links: [
+        { label: "محامي في الرياض", href: "/locations/riyadh" },
+        { label: "محامي في جدة", href: "/locations/jeddah" },
+        { label: "محامي في بريدة", href: "/locations/buraydah" },
+        { label: "محامي في الدمام", href: "/locations/dammam" },
+        { label: "محامي في حائل", href: "/locations/hail" },
+      ],
+    },
+    {
       title: "معلومات قانونية",
       links: [
         { label: "سياسة الخصوصية", href: "/privacy" },
@@ -129,6 +139,16 @@ export default function Sitemap() {
         { label: "Financial Reorganization in Saudi Bankruptcy Law", href: "/blog/إعادة-التنظيم-المالي-في-نظام-الإفلاس-السعودي" },
         { label: "Liquidation in Saudi Bankruptcy Law", href: "/blog/التصفية-في-نظام-الإفلاس-السعودي" },
         { label: "Creditor Rights in Bankruptcy Proceedings", href: "/blog/حقوق-الدائنين-في-إجراءات-الإفلاس" },
+      ],
+    },
+    {
+      title: "Our Locations",
+      links: [
+        { label: "Lawyer in Riyadh", href: "/locations/riyadh" },
+        { label: "Lawyer in Jeddah", href: "/locations/jeddah" },
+        { label: "Lawyer in Buraydah", href: "/locations/buraydah" },
+        { label: "Lawyer in Dammam", href: "/locations/dammam" },
+        { label: "Lawyer in Hail", href: "/locations/hail" },
       ],
     },
     {

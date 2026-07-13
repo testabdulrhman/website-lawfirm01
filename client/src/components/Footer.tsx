@@ -44,6 +44,11 @@ export default function Footer() {
                 <li><Link href="/contact" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.contact}</Link></li>
                 <li><Link href="/faq" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'الأسئلة الشائعة' : 'FAQ'}</Link></li>
                 <li><Link href="/cases-guide" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'دليل الدعاوى' : 'Cases Guide'}</Link></li>
+                <li><Link href="/locations/riyadh" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'محامي في الرياض' : 'Lawyer in Riyadh'}</Link></li>
+                <li><Link href="/locations/jeddah" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'محامي في جدة' : 'Lawyer in Jeddah'}</Link></li>
+                <li><Link href="/locations/buraydah" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'محامي في بريدة' : 'Lawyer in Buraydah'}</Link></li>
+                <li><Link href="/locations/dammam" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'محامي في الدمام' : 'Lawyer in Dammam'}</Link></li>
+                <li><Link href="/locations/hail" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'محامي في حائل' : 'Lawyer in Hail'}</Link></li>
               </ul>
             </div>
 
