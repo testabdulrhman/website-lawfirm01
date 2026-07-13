@@ -1,12 +1,13 @@
 /**
  * Pre-rendering script for SEO optimization
- * Generates static HTML for all routes using puppeteer-core + system Chromium
+ * Generates static HTML for all routes using puppeteer (with bundled Chromium)
+ * Works on Netlify and any CI environment without needing system Chromium.
  * Run after `pnpm build`: node scripts/prerender.mjs
  */
 
-import puppeteer from 'puppeteer-core';
+import puppeteer from 'puppeteer';
 import { createServer } from 'http';
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -54,6 +55,7 @@ const ROUTES = [
   '/locations/dammam',
   '/locations/hail',
   '/sitemap',
+  '/404',
 ];
 
 // Simple static file server for the built files
@@ -87,7 +89,6 @@ function createStaticServer() {
       res.writeHead(200, { 'Content-Type': contentType });
       res.end(content);
     } catch (e) {
-      // Fallback to index.html for SPA routing
       const content = readFileSync(join(DIST_DIR, 'index.html'));
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.end(content);
@@ -96,7 +97,7 @@ function createStaticServer() {
 }
 
 async function prerender() {
-  console.log('🚀 Starting pre-rendering...');
+  console.log('🚀 Starting pre-rendering with bundled Chromium...');
   console.log(`📁 Output directory: ${DIST_DIR}`);
   console.log(`📄 Routes to render: ${ROUTES.length}`);
 
@@ -105,9 +106,8 @@ async function prerender() {
   await new Promise((resolve) => server.listen(PORT, resolve));
   console.log(`🌐 Static server running on http://localhost:${PORT}`);
 
-  // Launch browser
+  // Launch browser using puppeteer's bundled Chromium
   const browser = await puppeteer.launch({
-    executablePath: '/usr/bin/chromium',
     headless: true,
     args: [
       '--no-sandbox',
@@ -115,6 +115,7 @@ async function prerender() {
       '--disable-dev-shm-usage',
       '--disable-gpu',
       '--disable-web-security',
+      '--single-process',
     ],
   });
 
@@ -125,7 +126,7 @@ async function prerender() {
     const url = `http://localhost:${PORT}${route}`;
     let html = null;
     let lastErr = null;
-    // Try up to 2 times to avoid transient timeouts
+
     for (let attempt = 1; attempt <= 2 && html === null; attempt++) {
       let page;
       try {
@@ -143,31 +144,28 @@ async function prerender() {
         lastErr = e;
         if (page) { try { await page.close(); } catch {} }
         if (attempt < 2) {
-          console.warn(`  ⚠️  ${route}: المحاولة ${attempt} فشلت (${e.message})، إعادة المحاولة...`);
+          console.warn(`  ⚠️  ${route}: attempt ${attempt} failed (${e.message}), retrying...`);
           await new Promise(r => setTimeout(r, 1000));
         }
       }
     }
+
     if (html === null) {
       errorCount++;
-      console.error(`  ❌ ${route}: ${lastErr ? lastErr.message : 'فشل غير معروف'}`);
+      console.error(`  ❌ ${route}: ${lastErr ? lastErr.message : 'unknown error'}`);
       continue;
     }
-    try {
 
-      // Clean up: remove scripts that shouldn't be in pre-rendered version
-      // but keep the main app script for hydration
-      
-      // Remove duplicate title tags (keep the page-specific one from React/useSEO)
+    try {
+      // Remove duplicate title tags (keep the last one from React/useSEO)
       const titleMatches = html.match(/<title[^>]*>.*?<\/title>/g);
       if (titleMatches && titleMatches.length > 1) {
-        // Keep the LAST title (injected by React/useSEO) and remove the earlier static ones
         for (let i = 0; i < titleMatches.length - 1; i++) {
           html = html.replace(titleMatches[i], '');
         }
       }
 
-      // Remove duplicate meta descriptions (keep the page-specific one)
+      // Remove duplicate meta descriptions (keep first)
       const descMatches = html.match(/<meta name="description"[^>]*>/g);
       if (descMatches && descMatches.length > 1) {
         for (let i = 1; i < descMatches.length; i++) {
@@ -199,7 +197,7 @@ async function prerender() {
         }
       }
 
-      // Remove duplicate og:url (keep the LAST one injected by React/useSEO)
+      // Remove duplicate og:url (keep the last one)
       const ogUrlMatches = html.match(/<meta property="og:url"[^>]*>/g);
       if (ogUrlMatches && ogUrlMatches.length > 1) {
         for (let i = 0; i < ogUrlMatches.length - 1; i++) {
@@ -207,7 +205,7 @@ async function prerender() {
         }
       }
 
-      // Remove duplicate canonical link (keep the LAST one injected by React/useSEO)
+      // Remove duplicate canonical link (keep the last one)
       const canonicalMatches = html.match(/<link[^>]*rel="canonical"[^>]*>/g);
       if (canonicalMatches && canonicalMatches.length > 1) {
         for (let i = 0; i < canonicalMatches.length - 1; i++) {
@@ -216,20 +214,20 @@ async function prerender() {
       }
 
       // Add prerender meta tag
-      html = html.replace('<head>', '<head>\n    <meta name="prerender-status" content="200" />');
+      if (!/name="prerender-status"/.test(html)) {
+        html = html.replace('<head>', '<head>\n    <meta name="prerender-status" content="200" />');
+      }
 
       // Determine output path
       const outputPath = route === '/' 
         ? join(DIST_DIR, 'index.html')
         : join(DIST_DIR, route, 'index.html');
 
-      // Create directory if needed
       const outputDir = dirname(outputPath);
       if (!existsSync(outputDir)) {
         mkdirSync(outputDir, { recursive: true });
       }
 
-      // Write the pre-rendered HTML
       writeFileSync(outputPath, html, 'utf-8');
       successCount++;
       console.log(`  ✅ ${route}`);
@@ -246,6 +244,14 @@ async function prerender() {
   console.log(`  ✅ Success: ${successCount}/${ROUTES.length}`);
   if (errorCount > 0) {
     console.log(`  ❌ Errors: ${errorCount}/${ROUTES.length}`);
+  }
+
+  // Copy 404/index.html to 404.html at root for Netlify
+  const notFoundSource = join(DIST_DIR, '404', 'index.html');
+  const notFoundDest = join(DIST_DIR, '404.html');
+  if (existsSync(notFoundSource)) {
+    copyFileSync(notFoundSource, notFoundDest);
+    console.log('  📄 404.html copied as fallback for unknown routes');
   }
 }
 

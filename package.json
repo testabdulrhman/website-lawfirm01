@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist && node scripts/prerender-static.mjs",
+    "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist && node scripts/prerender-static.mjs && node scripts/prerender.mjs",
     "prerender": "node scripts/prerender-static.mjs",
     "prerender:browser": "node scripts/prerender.mjs",
     "build:ssg": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist && node scripts/prerender-static.mjs",
@@ -85,7 +85,7 @@
     "pnpm": "^10.15.1",
     "postcss": "^8.4.47",
     "prettier": "^3.6.2",
-    "puppeteer-core": "^25.1.0",
+    "puppeteer": "^25.3.0",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.19.1",
     "tw-animate-css": "^1.4.0",
