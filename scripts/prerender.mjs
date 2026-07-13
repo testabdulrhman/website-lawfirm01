@@ -47,6 +47,7 @@ const ROUTES = [
   '/privacy',
   '/terms',
   '/faq',
+  '/cases-guide',
   '/sitemap',
 ];
 

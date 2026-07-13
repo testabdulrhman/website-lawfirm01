@@ -22,6 +22,7 @@ export default function Sitemap() {
         { label: "تواصل معنا", href: "/contact" },
         { label: "انضم إلينا", href: "/careers" },
         { label: "الأسئلة الشائعة", href: "/faq" },
+        { label: "دليل الدعاوى القضائية", href: "/cases-guide" },
       ],
     },
     {

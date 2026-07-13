@@ -41,6 +41,7 @@ export default function Footer() {
                 <li><Link href="/careers" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.careers}</Link></li>
                 <li><Link href="/contact" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.contact}</Link></li>
                 <li><Link href="/faq" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'الأسئلة الشائعة' : 'FAQ'}</Link></li>
+                <li><Link href="/cases-guide" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'دليل الدعاوى' : 'Cases Guide'}</Link></li>
               </ul>
             </div>
 
