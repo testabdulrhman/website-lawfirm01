@@ -89,6 +89,9 @@ export default function Home() {
             alt={lang === "ar" ? "مكتب محاماة" : "Law Office"}
             className="w-full h-full object-cover"
             loading="eager"
+            fetchPriority="high"
+            width={1200}
+            height={800}
           />
           <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-[oklch(0.1_0.04_250/0.85)] via-[oklch(0.1_0.04_250/0.65)] to-[oklch(0.1_0.04_250/0.35)] md:from-[oklch(0.1_0.04_250/0.75)] md:via-[oklch(0.1_0.04_250/0.55)] md:to-[oklch(0.1_0.04_250/0.3)]" />
         </div>
@@ -248,6 +251,8 @@ export default function Home() {
                   alt={lang === "ar" ? "مكتب شركة رضوان للمحاماة" : "Redwan Law Firm Office"}
                   className="w-full h-[280px] md:h-[380px] object-cover"
                   loading="lazy"
+                  width={800}
+                  height={380}
                 />
                 {/* Decorative accent */}
                 <div className={`absolute -bottom-3 md:-bottom-5 ${isRTL ? '-right-3 md:-right-5' : '-left-3 md:-left-5'} w-full h-full border-2 border-[var(--color-gold)]/20 -z-10`} />

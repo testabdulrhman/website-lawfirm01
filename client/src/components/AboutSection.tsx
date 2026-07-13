@@ -99,6 +99,9 @@ export default function AboutSection() {
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310419663031020868/RdzCt9LFS29ZVcU4VNgpAF/office-interior-N7k4rwH57VbAYQc4FQvJAz.webp"
                 alt="مكتب شركة رضوان للمحاماة"
                 className="w-full h-[300px] lg:h-[380px] object-cover"
+                loading="lazy"
+                width={800}
+                height={380}
               />
               <div className="absolute -bottom-4 -right-4 w-28 h-28 bg-[var(--color-gold)] flex items-center justify-center flex-col shadow-lg">
                 <span className="font-display text-xl font-bold text-[var(--color-navy)]">4</span>

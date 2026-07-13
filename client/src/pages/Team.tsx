@@ -144,6 +144,8 @@ export default function Team() {
             alt=""
             className="w-full h-full object-cover"
             loading="lazy"
+            width={800}
+            height={400}
           />
         </div>
         <div

@@ -23,6 +23,8 @@ export default function Footer() {
                   alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
                   className="w-auto object-contain"
                   style={{ height: '50px', maxWidth: '200px' }}
+                  width={200}
+                  height={50}
                 />
               </Link>
               <p className="font-body text-sm text-white/50 leading-relaxed max-w-[280px]">

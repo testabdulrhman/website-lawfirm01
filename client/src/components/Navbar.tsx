@@ -106,6 +106,8 @@ export default function Navbar() {
             alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
             className="w-auto object-contain transition-all duration-300"
             style={{ height: showTransparent ? "52px" : "46px", maxWidth: "220px" }}
+            width={220}
+            height={52}
           />
         </Link>
 
@@ -302,6 +304,8 @@ export default function Navbar() {
               alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
               className="w-auto object-contain"
               style={{ height: "46px", maxWidth: "220px" }}
+              width={220}
+              height={46}
             />
           </Link>
           <button

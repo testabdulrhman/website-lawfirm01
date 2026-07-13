@@ -77,6 +77,9 @@ export default function HomePreview() {
             alt="مكتب محاماة"
             className="w-full h-full object-cover"
             loading="eager"
+            fetchPriority="high"
+            width={1200}
+            height={800}
           />
           <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-[oklch(0.1_0.04_250/0.85)] via-[oklch(0.1_0.04_250/0.65)] to-[oklch(0.1_0.04_250/0.35)] md:from-[oklch(0.1_0.04_250/0.75)] md:via-[oklch(0.1_0.04_250/0.55)] md:to-[oklch(0.1_0.04_250/0.3)]" />
         </div>

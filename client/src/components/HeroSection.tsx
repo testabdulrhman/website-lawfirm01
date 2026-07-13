@@ -29,6 +29,9 @@ export default function HeroSection() {
           alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
           className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out"
           style={{ transform: loaded ? "scale(1)" : "scale(1.1)" }}
+          fetchPriority="high"
+          width={1200}
+          height={800}
         />
         <div className="absolute inset-0 bg-gradient-to-l from-[oklch(0.12_0.04_250/0.92)] via-[oklch(0.15_0.04_250/0.85)] to-[oklch(0.12_0.04_250/0.7)]" />
       </div>

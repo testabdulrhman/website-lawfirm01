@@ -54,6 +54,8 @@ export default function About() {
             alt=""
             className="w-full h-full object-cover"
             loading="lazy"
+            width={800}
+            height={400}
           />
         </div>
         <div
@@ -116,6 +118,8 @@ export default function About() {
                 alt={lang === "ar" ? "مكتب شركة رضوان" : "Redwan Law Office"}
                 className="w-full h-[280px] md:h-[400px] object-cover"
                 loading="lazy"
+                width={800}
+                height={400}
               />
               <div className={`absolute -bottom-4 ${isRTL ? '-right-4 md:-right-6' : '-left-4 md:-left-6'} -bottom-4 md:-bottom-6 w-24 h-24 md:w-32 md:h-32 bg-[var(--color-gold)] flex items-center justify-center`}>
                 <div className="text-center">
