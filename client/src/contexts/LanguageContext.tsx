@@ -27,7 +27,7 @@ function getLangFromPath(pathname: string): Language {
 
 export function LanguageProvider({ children }: LanguageProviderProps) {
   const [location, setLocation] = useLocation();
-  const [lang, setLangState] = useState<Language>(() => getLangFromPath(window.location.pathname));
+  const [lang, setLangState] = useState<Language>(() => getLangFromPath(location));
 
   // Sync lang when route changes
   useEffect(() => {
@@ -39,14 +39,16 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
 
   // Update document attributes when lang changes
   useEffect(() => {
-    document.documentElement.lang = lang;
-    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    }
   }, [lang]);
 
   const setLang = useCallback((newLang: Language) => {
     if (newLang === lang) return;
     // Navigate to the equivalent route in the other language
-    const currentPath = window.location.pathname;
+    const currentPath = location;
     if (newLang === "en") {
       // Switch from Arabic to English: prepend /en
       const arPath = currentPath === "/" ? "" : currentPath;

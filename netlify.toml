@@ -4,7 +4,6 @@
 
 [build.environment]
   NODE_VERSION = "22"
-  PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = "false"
 
 # Disable pretty URLs to prevent trailing slash additions
 [build.processing]
@@ -24,8 +23,7 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Content-Security-Policy = "frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://wa.me https://www.google.com"
 
-# ── Old WordPress pages: 301 redirect to closest match or 410 Gone ──
-# These were indexed from an old WordPress site and must be cleaned up
+# ── Old WordPress pages: 301 redirect to closest match ──
 [[redirects]]
   from = "/considering-divorce"
   to = "/services/personal-status"
@@ -74,40 +72,59 @@
   status = 301
   force = true
 
+# ── Old WordPress: 410 Gone for crawl-only paths ──
+[[redirects]]
+  from = "/icon-with-text/"
+  to = "/404.html"
+  status = 410
+  force = true
+
+[[redirects]]
+  from = "/icon-with-text"
+  to = "/404.html"
+  status = 410
+  force = true
+
+[[redirects]]
+  from = "/?cat=*"
+  to = "/404.html"
+  status = 410
+  force = true
+
 [[redirects]]
   from = "/wp-admin"
-  to = "/"
-  status = 301
+  to = "/404.html"
+  status = 410
   force = true
 
 [[redirects]]
   from = "/wp-admin/*"
-  to = "/"
-  status = 301
+  to = "/404.html"
+  status = 410
   force = true
 
 [[redirects]]
   from = "/wp-login.php"
-  to = "/"
-  status = 301
+  to = "/404.html"
+  status = 410
   force = true
 
 [[redirects]]
   from = "/wp-content/*"
-  to = "/"
-  status = 301
+  to = "/404.html"
+  status = 410
   force = true
 
 [[redirects]]
   from = "/elementor-*"
-  to = "/"
-  status = 301
+  to = "/404.html"
+  status = 410
   force = true
 
 [[redirects]]
   from = "/?p=*"
-  to = "/"
-  status = 301
+  to = "/404.html"
+  status = 410
   force = true
 
 [[redirects]]
@@ -213,28 +230,13 @@
   status = 301
   force = true
 
-# ── Pre-rendered pages: serve their own index.html (Netlify auto-resolves /path → /path/index.html) ──
-# No explicit rules needed — Netlify serves /bankruptcy/index.html for /bankruptcy automatically
-
-# ── English routes: serve index.html for SPA routing ──
-[[redirects]]
-  from = "/en"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/en/*"
-  to = "/index.html"
-  status = 200
-
-# ── SPA fallback for known Arabic routes (pre-rendered pages have their own index.html) ──
-# Netlify auto-serves /path/index.html for /path when the file exists.
-# For routes without pre-rendered files, fallback to index.html (200) for SPA hydration.
-# The NotFound component handles noindex client-side for unknown routes.
+# ── CRITICAL: Catch-all returns 404 for unknown routes ──
+# All valid pages are pre-rendered as /path/index.html — Netlify auto-serves them.
+# Any route that doesn't match a pre-rendered file gets a real 404 response.
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "/404.html"
+  status = 404
 
 # ── Noindex headers for utility pages ──
 [[headers]]
