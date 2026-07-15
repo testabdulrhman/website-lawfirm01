@@ -162,6 +162,16 @@ async function run() {
   console.log('✅ SSR bundle built');
   console.log('🎨 Step 2: Rendering pages...');
 
+  // Polyfill WebSocket for Node.js < 22 (required by Supabase Realtime)
+  if (!globalThis.WebSocket) {
+    try {
+      const { default: WebSocket } = await import('ws');
+      globalThis.WebSocket = WebSocket;
+    } catch (e) {
+      // ws not available, try to continue anyway
+    }
+  }
+
   // Import the SSR module
   const { render } = await import(join(SSR_OUT, 'entry-server.js'));
 
