@@ -4,6 +4,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackPhoneClick } from "@/lib/analytics";
 import { useSEO } from "@/hooks/useSEO";
+import { localePath } from "@/lib/localePath";
 
 interface BankruptcyCaseData {
   slug: string;
@@ -269,6 +270,7 @@ const casesData: Record<string, BankruptcyCaseData> = {
 
 export default function BankruptcyCase() {
   const { t, lang, isRTL } = useTranslation();
+  const lp = (p: string) => localePath(p, lang);
   const params = useParams<{ slug: string }>();
   const caseData = casesData[params.slug || ""];
   const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation({ threshold: 0.1 });
@@ -295,7 +297,7 @@ export default function BankruptcyCase() {
           <h1 className="font-display text-3xl font-bold text-[var(--color-navy)] mb-4">
             {lang === "ar" ? "الإجراء غير موجود" : "Case Not Found"}
           </h1>
-          <Link href="/services/bankruptcy" className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm hover:bg-[var(--color-gold-light)] transition-colors">
+          <Link href={lp("/services/bankruptcy")} className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm hover:bg-[var(--color-gold-light)] transition-colors">
             <span>{lang === "ar" ? "العودة لخدمات الإفلاس" : "Back to Bankruptcy Services"}</span>
           </Link>
         </div>
@@ -317,11 +319,11 @@ export default function BankruptcyCase() {
         <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 mb-8 font-body text-xs text-white/50">
-            <Link href="/" className="hover:text-[var(--color-gold)] transition-colors">
+            <Link href={lp("/")} className="hover:text-[var(--color-gold)] transition-colors">
               {lang === "ar" ? "الرئيسية" : "Home"}
             </Link>
             <span>/</span>
-            <Link href="/services/bankruptcy" className="hover:text-[var(--color-gold)] transition-colors">
+            <Link href={lp("/services/bankruptcy")} className="hover:text-[var(--color-gold)] transition-colors">
               {lang === "ar" ? "الإفلاس والتصفية" : "Bankruptcy & Liquidation"}
             </Link>
             <span>/</span>
@@ -418,7 +420,7 @@ export default function BankruptcyCase() {
                     : "If you have a financial claim against this company, you can submit your claim electronically through the dedicated form."}
                 </p>
                 <Link
-                  href="/bankruptcy/claims"
+                  href={lp("/bankruptcy/claims")}
                   className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm hover:bg-[var(--color-gold-light)] transition-colors"
                 >
                   <FileText size={14} />
@@ -458,7 +460,7 @@ export default function BankruptcyCase() {
                       : "Our bankruptcy team is ready to assist you"}
                   </p>
                   <Link
-                    href="/contact"
+                    href={lp("/contact")}
                     className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm hover:bg-[var(--color-gold-light)] transition-colors"
                   >
                     <span>{lang === "ar" ? "تواصل معنا" : "Contact Us"}</span>
@@ -474,7 +476,7 @@ export default function BankruptcyCase() {
 
                 {/* Back to Bankruptcy */}
                 <Link
-                  href="/services/bankruptcy"
+                  href={lp("/services/bankruptcy")}
                   className="flex items-center justify-center gap-2 p-4 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)] transition-colors"
                 >
                   {isRTL ? <ArrowRight size={14} className="text-[var(--color-gold)]" /> : <ArrowLeft size={14} className="text-[var(--color-gold)]" />}

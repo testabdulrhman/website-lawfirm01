@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackBookConsultation, trackLanguageSwitch, trackPhoneClick } from "@/lib/analytics";
+import { localePath } from "@/lib/localePath";
 
 const LOGO_LIGHT = "/images/logo-light.webp";
 const LOGO_DARK = "/images/logo-dark.webp";
@@ -43,14 +44,15 @@ export default function Navbar() {
 
   const services = t.services.items as readonly { title: string; slug: string; desc: string }[];
 
+  const lp = (p: string) => localePath(p, lang);
   const navLinks = [
-    { label: t.nav.home, href: "/" },
-    { label: t.nav.about, href: "/about" },
-    { label: t.nav.team, href: "/team" },
-    { label: t.nav.services, href: "/services", mega: true },
-    { label: t.nav.trackClaim, href: "/bankruptcy/track" },
-    { label: t.nav.blog, href: "/blog" },
-    { label: t.nav.contact, href: "/contact" },
+    { label: t.nav.home, href: lp("/") },
+    { label: t.nav.about, href: lp("/about") },
+    { label: t.nav.team, href: lp("/team") },
+    { label: t.nav.services, href: lp("/services"), mega: true },
+    { label: t.nav.trackClaim, href: lp("/bankruptcy/track") },
+    { label: t.nav.blog, href: lp("/blog") },
+    { label: t.nav.contact, href: lp("/contact") },
   ];
 
   useEffect(() => {
@@ -73,7 +75,7 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [isMobileOpen]);
 
-  const isHome = location === "/";
+  const isHome = location === "/" || location === "/en";
   const showTransparent = isHome && !isScrolled && !isMegaOpen;
 
   const openMega = () => {
@@ -85,7 +87,7 @@ export default function Navbar() {
     closeTimer.current = setTimeout(() => setIsMegaOpen(false), 120);
   };
 
-  const servicesActive = location.startsWith("/services");
+  const servicesActive = location.startsWith("/services") || location.startsWith("/en/services");
 
   return (
     <nav
@@ -100,7 +102,7 @@ export default function Navbar() {
         style={{ height: showTransparent ? "80px" : "72px", transition: "height 0.3s ease" }}
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center shrink-0">
+        <Link href={lp("/")} className="flex items-center shrink-0">
           <img
             src={showTransparent ? LOGO_LIGHT : LOGO_DARK}
             alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
@@ -169,7 +171,7 @@ export default function Navbar() {
           </button>
 
           <Link
-            href="/contact"
+            href={lp("/contact")}
             onClick={() => trackBookConsultation("navbar_desktop")}
             className={`flex items-center gap-2 px-5 py-2.5 font-heading text-sm font-medium transition-all duration-200 active:scale-[0.97] ${
               showTransparent ? "bg-[var(--color-gold)] text-[var(--color-navy)] hover:bg-[var(--color-gold-light)]" : "bg-[var(--color-navy)] text-[var(--color-cream)] hover:bg-[var(--color-navy-light)]"
@@ -231,7 +233,7 @@ export default function Navbar() {
                       return (
                         <Link
                           key={s.slug}
-                          href={`/services/${s.slug}`}
+                          href={lp(`/services/${s.slug}`)}
                           className="group flex items-start gap-3 p-3 rounded-md transition-colors duration-200 hover:bg-white/[0.06]"
                           style={{
                             opacity: isMegaOpen ? 1 : 0,
@@ -272,14 +274,14 @@ export default function Navbar() {
                     </p>
                   </div>
                   <Link
-                    href="/bankruptcy/track"
+                    href={lp("/bankruptcy/track")}
                     className="group inline-flex items-center justify-center gap-2 w-full px-4 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading text-sm font-semibold transition-all duration-200 hover:bg-[var(--color-gold-light)] active:scale-[0.97]"
                   >
                     <span>{t.nav.trackClaim}</span>
                     <ArrowUpRight size={15} className={isRTL ? "scale-x-[-1]" : ""} />
                   </Link>
                   <Link
-                    href="/services"
+                    href={lp("/services")}
                     className="mt-3 inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 border border-white/15 text-white/80 font-heading text-xs font-medium transition-colors duration-200 hover:border-[var(--color-gold)]/50 hover:text-[var(--color-gold)]"
                   >
                     {t.services.viewAll}
@@ -298,7 +300,7 @@ export default function Navbar() {
         }`}
       >
         <div className="flex items-center justify-between px-4 lg:px-8" style={{ height: "72px" }}>
-          <Link href="/" className="flex items-center shrink-0">
+          <Link href={lp("/")} className="flex items-center shrink-0">
             <img
               src={LOGO_DARK}
               alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
@@ -346,7 +348,7 @@ export default function Navbar() {
                           return (
                             <Link
                               key={s.slug}
-                              href={`/services/${s.slug}`}
+                              href={lp(`/services/${s.slug}`)}
                               className="flex items-center gap-3 py-3 font-body text-sm text-[var(--color-navy)]/80 active:text-[var(--color-gold)]"
                             >
                               <Icon size={16} className="text-[var(--color-gold)] shrink-0" />
@@ -355,7 +357,7 @@ export default function Navbar() {
                           );
                         })}
                         <Link
-                          href="/services"
+                          href={lp("/services")}
                           className="flex items-center gap-2 py-3 font-heading text-sm font-semibold text-[var(--color-gold)]"
                         >
                           {t.services.viewAll}
@@ -406,7 +408,7 @@ export default function Navbar() {
           {/* Mobile CTA - Fixed at bottom */}
           <div className="px-6 pb-8 pt-4 border-t border-[var(--color-border)]/50">
             <Link
-              href="/contact"
+              href={lp("/contact")}
               onClick={() => trackBookConsultation("navbar_mobile")}
               className="flex items-center justify-center gap-3 w-full px-6 py-4 bg-[var(--color-navy)] text-[var(--color-cream)] font-heading text-base font-semibold active:scale-[0.97] transition-transform"
             >

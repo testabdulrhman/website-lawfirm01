@@ -10,11 +10,13 @@ import { useScrollAnimation, getStaggerStyle } from "@/hooks/useScrollAnimation"
 import { useSEO, schemas } from "@/hooks/useSEO";
 import { Scale, ArrowLeft, ArrowRight } from "lucide-react";
 import { bankruptcyProcedures } from "@/data/bankruptcyProcedures";
+import { localePath } from "@/lib/localePath";
 
 const BASE_URL = "https://redwan.sa";
 
 export default function BankruptcyProcedures() {
-  const { t, isRTL } = useTranslation();
+  const { t, lang, isRTL } = useTranslation();
+  const lp = (p: string) => localePath(p, lang);
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
 
   const seoSchema = useMemo(
@@ -57,9 +59,9 @@ export default function BankruptcyProcedures() {
       <section className="relative pt-28 md:pt-32 pb-14 md:pb-20 bg-[var(--color-navy)]">
         <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
           <nav className="flex flex-wrap items-center gap-2 mb-6 font-body text-xs text-white/50">
-            <Link href="/" className="hover:text-[var(--color-gold)] transition-colors">{t.nav.home}</Link>
+            <Link href={lp("/")} className="hover:text-[var(--color-gold)] transition-colors">{t.nav.home}</Link>
             <span>/</span>
-            <Link href="/bankruptcy" className="hover:text-[var(--color-gold)] transition-colors">الإفلاس والتصفية</Link>
+            <Link href={lp("/bankruptcy")} className="hover:text-[var(--color-gold)] transition-colors">الإفلاس والتصفية</Link>
             <span>/</span>
             <span className="text-[var(--color-gold)]">إجراءات الإفلاس</span>
           </nav>
@@ -91,7 +93,7 @@ export default function BankruptcyProcedures() {
             {bankruptcyProcedures.map((p, idx) => (
               <Link
                 key={p.slug}
-                href={`/bankruptcy/procedures/${p.slug}`}
+                href={lp(`/bankruptcy/procedures/${p.slug}`)}
                 className="group flex flex-col p-6 md:p-7 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)]/40 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
                 style={getStaggerStyle(gridVisible, idx, 70)}
               >

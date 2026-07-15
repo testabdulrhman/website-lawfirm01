@@ -5,6 +5,7 @@ import { useState, useMemo } from "react";
 import { ChevronDown, MessageCircleQuestion, Phone, Scale, ExternalLink } from "lucide-react";
 import { useSEO, schemas } from "@/hooks/useSEO";
 import { bankruptcyFaqCategories, bankruptcyFaqSourceUrl } from "@/data/bankruptcyFaq";
+import { localePath } from "@/lib/localePath";
 
 const faqData = {
   ar: {
@@ -267,6 +268,7 @@ function AccordionItem({ question, answer, isOpen, onClick, index, isVisible }: 
 
 export default function FAQ() {
   const { lang, isRTL } = useTranslation();
+  const lp = (p: string) => localePath(p, lang);
   const data = faqData[lang];
 
   // Collect all FAQ questions for Schema (تشمل أسئلة نظام الإفلاس في النسخة العربية)
@@ -323,7 +325,7 @@ export default function FAQ() {
         <div className="container relative z-10" ref={heroRef}>
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8" style={getFadeStyle(heroVisible)}>
-            <Link href="/" className="hover:text-[var(--color-gold)] transition-colors">
+            <Link href={lp("/")} className="hover:text-[var(--color-gold)] transition-colors">
               {data.breadcrumb}
             </Link>
             <span>/</span>
@@ -472,7 +474,7 @@ export default function FAQ() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href="/contact"
+              href={lp("/contact")}
               className="inline-flex items-center gap-2 bg-[var(--color-gold)] hover:bg-[var(--color-gold-dark)] text-white font-semibold px-8 py-3.5 transition-all duration-200 active:scale-[0.97]"
             >
               {data.ctaButton}

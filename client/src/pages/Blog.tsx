@@ -4,9 +4,11 @@ import { useScrollAnimation, getStaggerStyle } from "@/hooks/useScrollAnimation"
 import { blogArticles } from "@/data/blogArticles";
 import SEOHead from "@/components/SEOHead";
 import { useTranslation } from "@/hooks/useTranslation";
+import { localePath } from "@/lib/localePath";
 
 export default function Blog() {
   const { t, lang, isRTL } = useTranslation();
+  const lp = (p: string) => localePath(p, lang);
   const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.05 });
 
   const blogStructuredData = {
@@ -53,7 +55,7 @@ export default function Blog() {
       <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 bg-[var(--color-navy)]">
         <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
           <nav aria-label="breadcrumb" className="flex items-center gap-3 mb-4">
-            <Link href="/" className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{t.nav.home}</Link>
+            <Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{t.nav.home}</Link>
             <span className="text-white/30">/</span>
             <span className="font-body text-sm text-[var(--color-gold)]">{t.blog.title}</span>
           </nav>
@@ -74,7 +76,7 @@ export default function Blog() {
                 className="group bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)]/30 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98] transition-all duration-300 flex flex-col"
                 style={getStaggerStyle(gridVisible, idx, 120)}
               >
-                <Link href={`/blog/${article.slug}`} className="flex flex-col flex-1">
+                <Link href={lp(`/blog/${article.slug}`)} className="flex flex-col flex-1">
                   {/* Category Badge */}
                   <div className="p-4 md:p-6 pb-0">
                     <span className="inline-block px-2.5 py-1 text-[10px] md:text-xs font-heading text-[var(--color-gold)] border border-[var(--color-gold)]/20 bg-[var(--color-gold)]/5 mb-3 md:mb-4">

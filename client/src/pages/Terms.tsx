@@ -2,10 +2,12 @@ import { Link } from "wouter";
 import { useScrollAnimation, getFadeStyle } from "@/hooks/useScrollAnimation";
 import SEOHead from "@/components/SEOHead";
 import { useTranslation } from "@/hooks/useTranslation";
+import { localePath } from "@/lib/localePath";
 
 export default function Terms() {
   const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation({ threshold: 0.05 });
   const { lang, isRTL } = useTranslation();
+  const lp = (p: string) => localePath(p, lang);
 
   const content = lang === "ar" ? {
     seoTitle: "الشروط والأحكام",
@@ -148,7 +150,7 @@ export default function Terms() {
       <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 bg-[var(--color-navy)]">
         <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
           <nav aria-label="breadcrumb" className="flex items-center gap-3 mb-4">
-            <Link href="/" className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{content.home}</Link>
+            <Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{content.home}</Link>
             <span className="text-white/30">/</span>
             <span className="font-body text-sm text-[var(--color-gold)]">{content.pageTitle}</span>
           </nav>

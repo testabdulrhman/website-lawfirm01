@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { localePath } from "@/lib/localePath";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Users,
   ArrowLeft,
@@ -67,6 +69,8 @@ const BENEFITS = [
 ];
 
 export default function Careers() {
+  const { lang } = useLanguage();
+  const lp = (p: string) => localePath(p, lang);
   useSEO({
     title: "انضم إلينا",
     description:
@@ -300,7 +304,7 @@ export default function Careers() {
                     >
                       تقديم طلب آخر
                     </Button>
-                    <Link href="/">
+                    <Link href={lp("/")}>
                       <Button
                         variant="outline"
                         className="border-[var(--color-navy)] text-[var(--color-navy)] hover:bg-[var(--color-navy)]/5 font-heading w-full"
@@ -470,7 +474,7 @@ export default function Careers() {
             {/* رابط العودة */}
             <div className="text-center mt-6">
               <Link
-                href="/about"
+                href={lp("/about")}
                 className="inline-flex items-center gap-2 font-body text-sm text-[var(--color-navy)]/70 hover:text-[var(--color-gold)] transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />

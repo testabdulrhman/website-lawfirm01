@@ -4,11 +4,13 @@ import { useScrollAnimation, getStaggerStyle, getFadeStyle } from "@/hooks/useSc
 import { useTranslation } from "@/hooks/useTranslation";
 import { useMemo } from "react";
 import { useSEO, schemas } from "@/hooks/useSEO";
+import { localePath } from "@/lib/localePath";
 
 const serviceIcons = [Briefcase, Users, Gavel, Shield, Building, Scale, Landmark, BookOpen, FileCheck];
 
 export default function Services() {
   const { t, lang, isRTL } = useTranslation();
+  const lp = (p: string) => localePath(p, lang);
 
   const seoSchema = useMemo(() => [schemas.breadcrumb([{ name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' }, { name: lang === 'ar' ? 'خدماتنا' : 'Services', url: '/services' }])], [lang]);
   useSEO({
@@ -34,7 +36,7 @@ export default function Services() {
       <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 bg-[var(--color-navy)]">
         <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
           <div className="flex items-center gap-3 mb-4">
-            <Link href="/" className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{t.nav.home}</Link>
+            <Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{t.nav.home}</Link>
             <span className="text-white/30">/</span>
             <span className="font-body text-sm text-[var(--color-gold)]">{t.nav.services}</span>
           </div>
@@ -73,7 +75,7 @@ export default function Services() {
               return (
                 <Link
                   key={service.slug}
-                  href={`/services/${service.slug}`}
+                  href={lp(`/services/${service.slug}`)}
                   className="group p-5 md:p-8 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)]/30 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98] transition-all duration-300"
                   style={getStaggerStyle(gridVisible, idx, 70)}
                 >

@@ -8,6 +8,7 @@ import { useMemo, useState } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useScrollAnimation, getStaggerStyle } from "@/hooks/useScrollAnimation";
 import { useSEO, schemas } from "@/hooks/useSEO";
+import { localePath } from "@/lib/localePath";
 import {
   Scale,
   Target,
@@ -68,6 +69,7 @@ function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
 
 export default function BankruptcyProcedure() {
   const { lang, isRTL } = useTranslation();
+  const lp = (p: string) => localePath(p, lang);
   const params = useParams<{ slug: string }>();
   const procedure = getProcedureBySlug(params.slug || "");
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
@@ -109,7 +111,7 @@ export default function BankruptcyProcedure() {
         <div className="text-center">
           <h1 className="font-display text-3xl font-bold text-[var(--color-navy)] mb-4">الإجراء غير موجود</h1>
           <Link
-            href="/bankruptcy/procedures"
+            href={lp("/bankruptcy/procedures")}
             className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm hover:bg-[var(--color-gold-light)] transition-colors"
           >
             <span>العودة لإجراءات الإفلاس</span>
@@ -136,11 +138,11 @@ export default function BankruptcyProcedure() {
         </div>
         <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
           <nav className="flex flex-wrap items-center gap-2 mb-7 font-body text-xs text-white/50">
-            <Link href="/" className="hover:text-[var(--color-gold)] transition-colors">الرئيسية</Link>
+            <Link href={lp("/")} className="hover:text-[var(--color-gold)] transition-colors">الرئيسية</Link>
             <span>/</span>
-            <Link href="/bankruptcy" className="hover:text-[var(--color-gold)] transition-colors">الإفلاس والتصفية</Link>
+            <Link href={lp("/bankruptcy")} className="hover:text-[var(--color-gold)] transition-colors">الإفلاس والتصفية</Link>
             <span>/</span>
-            <Link href="/bankruptcy/procedures" className="hover:text-[var(--color-gold)] transition-colors">إجراءات الإفلاس</Link>
+            <Link href={lp("/bankruptcy/procedures")} className="hover:text-[var(--color-gold)] transition-colors">إجراءات الإفلاس</Link>
             <span>/</span>
             <span className="text-[var(--color-gold)]">{procedure.name}</span>
           </nav>
@@ -277,14 +279,14 @@ export default function BankruptcyProcedure() {
                   فريقنا المتخصص في إدارة إجراءات الإفلاس جاهز لمساعدتك على اختيار المسار الأنسب لوضعك.
                 </p>
                 <Link
-                  href="/contact"
+                  href={lp("/contact")}
                   className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm hover:bg-[var(--color-gold-light)] transition-colors mb-3"
                 >
                   <Phone size={16} />
                   <span>احجز استشارة</span>
                 </Link>
                 <Link
-                  href="/bankruptcy/claims"
+                  href={lp("/bankruptcy/claims")}
                   className="flex items-center justify-center gap-2 w-full px-5 py-3 border border-white/20 text-white font-heading font-medium text-sm hover:border-[var(--color-gold)]/40 transition-colors"
                 >
                   <FileText size={16} />
@@ -299,7 +301,7 @@ export default function BankruptcyProcedure() {
                   {others.map((p) => (
                     <li key={p.slug}>
                       <Link
-                        href={`/bankruptcy/procedures/${p.slug}`}
+                        href={lp(`/bankruptcy/procedures/${p.slug}`)}
                         className="group flex items-center justify-between gap-2 py-2.5 border-b border-[var(--color-border)] last:border-0"
                       >
                         <span className="font-body text-sm text-[var(--color-navy)]/75 group-hover:text-[var(--color-gold)] transition-colors leading-relaxed">

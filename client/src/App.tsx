@@ -66,6 +66,7 @@ function Router() {
         <Layout>
           <Suspense fallback={<PageLoader />}>
             <Switch>
+              {/* Arabic routes (default) */}
               <Route path={"/"} component={Home} />
               <Route path={"/preview"} component={HomePreview} />
               <Route path={"/about"} component={About} />
@@ -91,6 +92,31 @@ function Router() {
               <Route path={"/legal-dictionary"} component={LegalDictionary} />
               <Route path={"/locations/:slug"} component={CityPage} />
               <Route path={"/sitemap"} component={Sitemap} />
+              {/* English routes (/en prefix) */}
+              <Route path={"/en"} component={Home} />
+              <Route path={"/en/about"} component={About} />
+              <Route path={"/en/team"} component={Team} />
+              <Route path={"/en/services"} component={Services} />
+              <Route path={"/en/services/:slug"} component={ServiceDetail} />
+              <Route path={"/en/bankruptcy"} component={Bankruptcy} />
+              <Route path={"/en/bankruptcy/procedures"} component={BankruptcyProcedures} />
+              <Route path={"/en/bankruptcy/procedures/:slug"} component={BankruptcyProcedure} />
+              <Route path={"/en/bankruptcy/claims"} component={Claims} />
+              <Route path={"/en/bankruptcy/track"} component={BankruptcyTrack} />
+              <Route path={"/en/bankruptcy/ticket"} component={BankruptcyTicket} />
+              <Route path={"/en/bankruptcy/complete"} component={BankruptcyComplete} />
+              <Route path={"/en/bankruptcy/:slug"} component={BankruptcyCase} />
+              <Route path={"/en/blog"} component={Blog} />
+              <Route path={"/en/blog/:slug"} component={BlogPost} />
+              <Route path={"/en/contact"} component={Contact} />
+              <Route path={"/en/privacy"} component={Privacy} />
+              <Route path={"/en/terms"} component={Terms} />
+              <Route path={"/en/faq"} component={FAQ} />
+              <Route path={"/en/careers"} component={Careers} />
+              <Route path={"/en/cases-guide"} component={CasesGuide} />
+              <Route path={"/en/legal-dictionary"} component={LegalDictionary} />
+              <Route path={"/en/locations/:slug"} component={CityPage} />
+              <Route path={"/en/sitemap"} component={Sitemap} />
               <Route path={"*"} component={NotFound} />
               <Route component={NotFound} />
             </Switch>

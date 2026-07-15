@@ -2,9 +2,11 @@ import { Link } from "wouter";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useSEO } from "@/hooks/useSEO";
+import { localePath } from "@/lib/localePath";
 
 export default function NotFound() {
   const { lang, isRTL } = useTranslation();
+  const lp = (p: string) => localePath(p, lang);
 
   // Mark as noindex to prevent Google from indexing 404 pages (Soft 404 fix)
   useSEO({
@@ -37,7 +39,7 @@ export default function NotFound() {
           {content.desc}
         </p>
         <Link
-          href="/"
+          href={lp("/")}
           className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-navy)] text-[var(--color-cream)] font-heading font-semibold text-sm hover:bg-[var(--color-navy-light)] active:scale-[0.97] transition-all duration-200"
         >
           {isRTL && <ArrowLeft size={16} />}

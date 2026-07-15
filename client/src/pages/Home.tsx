@@ -6,6 +6,7 @@ import { useEffect, useState, useRef, useMemo } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useSEO, schemas } from "@/hooks/useSEO";
 import { trackBookConsultation, trackPhoneClick } from "@/lib/analytics";
+import { localePath } from "@/lib/localePath";
 
 function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -40,6 +41,7 @@ const serviceIcons = [Briefcase, Gavel, Building, Scale];
 
 export default function Home() {
   const { t, lang, isRTL } = useTranslation();
+  const lp = (p: string) => localePath(p, lang);
 
   const seoSchema = useMemo(() => [schemas.localBusiness, schemas.organization, schemas.attorney], []);
   useSEO({
@@ -136,13 +138,13 @@ export default function Home() {
                 style={getFadeStyle(heroVisible, "up", 450)}
               >
                 <Link
-                  href="/services"
+                  href={lp("/services")}
                   className="flex items-center justify-center gap-3 px-6 md:px-8 py-3.5 md:py-4 bg-transparent border-2 border-white/20 text-white font-heading font-medium text-sm md:text-base hover:border-white/50 active:bg-white/10 transition-all duration-200"
                 >
                   <span>{t.hero.exploreServices}</span>
                 </Link>
                 <Link
-                  href="/contact"
+                  href={lp("/contact")}
                   className="group flex items-center justify-center gap-3 px-6 md:px-8 py-3.5 md:py-4 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm md:text-base hover:bg-[var(--color-gold-light)] transition-all duration-200 active:scale-[0.97]"
                 >
                   <span>{t.hero.getConsultation}</span>
@@ -234,7 +236,7 @@ export default function Home() {
 
               <div style={getFadeStyle(aboutVisible, "up", 400)}>
                 <Link
-                  href="/about"
+                  href={lp("/about")}
                   className="group inline-flex items-center gap-2 font-heading text-sm font-semibold text-[var(--color-navy)] hover:text-[var(--color-gold)] transition-colors"
                 >
                   <span>{t.aboutSection.learnMore}</span>
@@ -292,7 +294,7 @@ export default function Home() {
                   )}
                 </h2>
                 <Link
-                  href="/services"
+                  href={lp("/services")}
                   className="group flex items-center gap-2 font-heading text-sm font-semibold text-[var(--color-navy)] hover:text-[var(--color-gold)] transition-colors"
                 >
                   <span>{t.services.viewAll}</span>
@@ -306,7 +308,7 @@ export default function Home() {
             {featuredServices.map((service, idx) => (
               <Link
                 key={service.slug}
-                href={`/services/${service.slug}`}
+                href={lp(`/services/${service.slug}`)}
                 className="group relative p-6 md:p-8 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)] hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] active:scale-[0.97] transition-all duration-300 overflow-hidden before:absolute before:inset-x-0 before:bottom-0 before:h-1 before:bg-[var(--color-gold)] before:scale-x-0 before:origin-right hover:before:scale-x-100 hover:before:origin-left before:transition-transform before:duration-500"
                 style={getStaggerStyle(servicesVisible, idx, 100)}
               >
@@ -392,7 +394,7 @@ export default function Home() {
 
             <div style={getFadeStyle(bankruptcyVisible, "up", 500)}>
               <Link
-                href="/services/bankruptcy"
+                href={lp("/services/bankruptcy")}
                 className="group inline-flex items-center gap-3 font-heading text-sm font-semibold text-[var(--color-gold)] hover:text-[var(--color-gold-light)] transition-colors"
               >
                 <span>{t.bankruptcyRecord.cta}</span>
@@ -447,7 +449,7 @@ export default function Home() {
               )}
             </h2>
             <Link
-              href="/blog"
+              href={lp("/blog")}
               className="group flex items-center gap-2 font-heading text-sm font-semibold text-[var(--color-navy)] hover:text-[var(--color-gold)] transition-colors"
             >
               <span>{lang === "ar" ? "عرض جميع المقالات" : "View All Articles"}</span>
@@ -459,7 +461,7 @@ export default function Home() {
             {blogArticles.slice(0, 3).map((article, idx) => (
               <Link
                 key={article.id}
-                href={`/blog/${article.slug}`}
+                href={lp(`/blog/${article.slug}`)}
                 className="group relative bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)] hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden"
               >
                 <div className="absolute inset-x-0 top-0 h-1 bg-[var(--color-gold)] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500" />
@@ -529,7 +531,7 @@ export default function Home() {
             style={getFadeStyle(ctaVisible, "up", 300)}
           >
             <Link
-              href="/contact"
+              href={lp("/contact")}
               onClick={() => trackBookConsultation('hero_section')}
               className="group flex items-center gap-3 px-6 md:px-8 py-3.5 md:py-4 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm md:text-base hover:bg-[var(--color-gold-light)] hover:shadow-[0_8px_30px_oklch(0.65_0.1_70/0.3)] transition-all duration-200 active:scale-[0.97] w-full sm:w-auto justify-center"
             >

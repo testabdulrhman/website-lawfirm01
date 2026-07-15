@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useLocation } from "wouter";
 
 interface SEOProps {
   title: string;
@@ -26,6 +27,13 @@ export function useSEO({
   schema,
   fullTitle = false,
 }: SEOProps) {
+  const [location] = useLocation();
+  // Auto-detect language from current path for canonical
+  const isEnglishPage = location === "/en" || location.startsWith("/en/");
+  const effectiveCanonical = canonical
+    ? (isEnglishPage && !canonical.startsWith("/en") ? (canonical === "/" ? "/en" : `/en${canonical}`) : canonical)
+    : undefined;
+
   useEffect(() => {
     // Title
     document.title = fullTitle ? title : `${title} | ${SITE_NAME}`;
@@ -53,9 +61,9 @@ export function useSEO({
     if (ogImage) {
       setMeta("og:image", ogImage, "property");
     }
-    if (canonical) {
-      setMeta("og:url", `${BASE_URL}${canonical}`, "property");
-      setCanonical(`${BASE_URL}${canonical}`);
+    if (effectiveCanonical) {
+      setMeta("og:url", `${BASE_URL}${effectiveCanonical}`, "property");
+      setCanonical(`${BASE_URL}${effectiveCanonical}`);
     } else {
       // Remove canonical link when not provided (e.g., 404 pages)
       const existingCanonical = document.querySelector('link[rel="canonical"]');
@@ -72,6 +80,9 @@ export function useSEO({
     if (ogImage) {
       setMeta("twitter:image", ogImage, "name");
     }
+
+    // Hreflang alternate links
+    setHreflang(effectiveCanonical);
 
     // Schema markup
     if (schema) {
@@ -92,7 +103,7 @@ export function useSEO({
       // Cleanup schema scripts on unmount
       document.querySelectorAll('script[data-seo-schema]').forEach(el => el.remove());
     };
-  }, [title, description, keywords, ogImage, ogType, canonical, noindex, schema, fullTitle]);
+  }, [title, description, keywords, ogImage, ogType, effectiveCanonical, noindex, schema, fullTitle, location]);
 }
 
 function setMeta(name: string, content: string, attr: "name" | "property" = "name") {
@@ -113,6 +124,43 @@ function setCanonical(href: string) {
     document.head.appendChild(el);
   }
   el.href = href;
+}
+
+/**
+ * Injects hreflang <link> tags for Arabic/English alternate pages.
+ * Arabic path: /about → English: /en/about
+ */
+function setHreflang(canonical?: string) {
+  // Remove existing hreflang links
+  document.querySelectorAll('link[data-hreflang]').forEach(el => el.remove());
+  if (!canonical) return;
+
+  const BASE = "https://redwan.sa";
+  // Determine the Arabic and English paths
+  let arPath: string;
+  let enPath: string;
+  if (canonical.startsWith("/en")) {
+    enPath = canonical;
+    arPath = canonical === "/en" ? "/" : canonical.replace(/^\/en/, "");
+  } else {
+    arPath = canonical;
+    enPath = canonical === "/" ? "/en" : `/en${canonical}`;
+  }
+
+  const pairs: [string, string][] = [
+    ["ar", `${BASE}${arPath}`],
+    ["en", `${BASE}${enPath}`],
+    ["x-default", `${BASE}${arPath}`],
+  ];
+
+  pairs.forEach(([hreflang, href]) => {
+    const link = document.createElement("link");
+    link.rel = "alternate";
+    link.setAttribute("hreflang", hreflang);
+    link.href = href;
+    link.setAttribute("data-hreflang", "true");
+    document.head.appendChild(link);
+  });
 }
 
 // Pre-built schemas

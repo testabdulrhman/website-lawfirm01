@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
+import { useLocation } from "wouter";
 
 export type Language = "ar" | "en";
 
@@ -15,24 +16,52 @@ interface LanguageProviderProps {
   children: React.ReactNode;
 }
 
-export function LanguageProvider({ children }: LanguageProviderProps) {
-  const [lang, setLang] = useState<Language>(() => {
-    const stored = localStorage.getItem("lang");
-    if (stored === "en" || stored === "ar") return stored;
-    // Check URL path for /en prefix
-    if (window.location.pathname.startsWith("/en")) return "en";
-    return "ar";
-  });
+/**
+ * Determines language from URL path:
+ * - /en or /en/* → English
+ * - Everything else → Arabic
+ */
+function getLangFromPath(pathname: string): Language {
+  return pathname === "/en" || pathname.startsWith("/en/") ? "en" : "ar";
+}
 
+export function LanguageProvider({ children }: LanguageProviderProps) {
+  const [location, setLocation] = useLocation();
+  const [lang, setLangState] = useState<Language>(() => getLangFromPath(window.location.pathname));
+
+  // Sync lang when route changes
   useEffect(() => {
-    localStorage.setItem("lang", lang);
+    const detected = getLangFromPath(location);
+    if (detected !== lang) {
+      setLangState(detected);
+    }
+  }, [location]);
+
+  // Update document attributes when lang changes
+  useEffect(() => {
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
   }, [lang]);
 
-  const toggleLang = () => {
-    setLang((prev) => (prev === "ar" ? "en" : "ar"));
-  };
+  const setLang = useCallback((newLang: Language) => {
+    if (newLang === lang) return;
+    // Navigate to the equivalent route in the other language
+    const currentPath = window.location.pathname;
+    if (newLang === "en") {
+      // Switch from Arabic to English: prepend /en
+      const arPath = currentPath === "/" ? "" : currentPath;
+      setLocation(`/en${arPath}`);
+    } else {
+      // Switch from English to Arabic: remove /en prefix
+      const enPath = currentPath.replace(/^\/en/, "") || "/";
+      setLocation(enPath);
+    }
+    setLangState(newLang);
+  }, [lang, setLocation]);
+
+  const toggleLang = useCallback(() => {
+    setLang(lang === "ar" ? "en" : "ar");
+  }, [lang, setLang]);
 
   const isRTL = lang === "ar";
 

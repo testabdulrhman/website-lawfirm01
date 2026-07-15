@@ -5,10 +5,12 @@ import { useTranslation } from "@/hooks/useTranslation";
 import { useSEO, schemas } from "@/hooks/useSEO";
 import { getCityBySlug, citiesData } from "@/data/cities";
 import { useState, useMemo } from "react";
+import { localePath } from "@/lib/localePath";
 
 export default function CityPage() {
   const { slug } = useParams<{ slug: string }>();
   const { lang, isRTL } = useTranslation();
+  const lp = (p: string) => localePath(p, lang);
   const city = getCityBySlug(slug || "");
 
   const { ref: introRef, isVisible: introVisible } = useScrollAnimation({ threshold: 0.1 });
@@ -93,7 +95,7 @@ export default function CityPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent" />
         <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
           <nav aria-label="breadcrumb" className="flex items-center gap-3 mb-4">
-            <Link href="/" className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">
+            <Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">
               {lang === "ar" ? "الرئيسية" : "Home"}
             </Link>
             <span className="text-white/30">/</span>
@@ -285,7 +287,7 @@ export default function CityPage() {
 
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                href="/contact"
+                href={lp("/contact")}
                 className="inline-flex items-center gap-2 bg-[var(--color-gold)] text-[var(--color-navy)] px-8 py-3.5 font-heading text-sm font-semibold hover:bg-[var(--color-gold)]/90 transition-colors"
               >
                 {lang === "ar" ? "احجز استشارة" : "Book Consultation"}
@@ -315,7 +317,7 @@ export default function CityPage() {
               .map(c => (
                 <Link
                   key={c.slug}
-                  href={`/locations/${c.slug}`}
+                  href={lp(`/locations/${c.slug}`)}
                   className="inline-flex items-center gap-2 px-4 py-2 border border-[var(--color-border)] bg-white text-[var(--color-navy)]/70 font-body text-sm hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] transition-colors"
                 >
                   <MapPin className="w-3.5 h-3.5" />

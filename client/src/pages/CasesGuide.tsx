@@ -4,12 +4,16 @@ import { Search, ChevronDown, ChevronUp, Users, Briefcase, HardHat, Shield, Scal
 import { useScrollAnimation, getStaggerStyle } from "@/hooks/useScrollAnimation";
 import SEOHead from "@/components/SEOHead";
 import { casesGuide, getSubcategories, getTotalCasesCount, type CaseCategory, type CaseType } from "@/data/casesGuide";
+import { localePath } from "@/lib/localePath";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const iconMap: Record<string, React.ElementType> = {
   Users, Briefcase, HardHat, Shield, Scale, Gavel, FileCheck
 };
 
 export default function CasesGuide() {
+  const { lang } = useLanguage();
+  const lp = (p: string) => localePath(p, lang);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
@@ -176,7 +180,7 @@ export default function CasesGuide() {
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }} />
         <div ref={heroRef} className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
           <nav aria-label="breadcrumb" className="flex items-center gap-3 mb-4">
-            <Link href="/" className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">الرئيسية</Link>
+            <Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">الرئيسية</Link>
             <span className="text-white/30">/</span>
             <span className="font-body text-sm text-[var(--color-gold)]">دليل الدعاوى القضائية</span>
           </nav>
@@ -406,10 +410,10 @@ export default function CasesGuide() {
             فريقنا القانوني مستعد لمساعدتك في تحديد نوع دعواك وتمثيلك أمام المحاكم المختصة
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-gold)] text-white font-body text-sm font-medium hover:bg-[var(--color-gold-light)] transition-colors">
+            <Link href={lp("/contact")} className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-gold)] text-white font-body text-sm font-medium hover:bg-[var(--color-gold-light)] transition-colors">
               احجز استشارة مجانية
             </Link>
-            <Link href="/services" className="inline-flex items-center justify-center px-8 py-3 border border-white/20 text-white font-body text-sm hover:bg-white/5 transition-colors">
+            <Link href={lp("/services")} className="inline-flex items-center justify-center px-8 py-3 border border-white/20 text-white font-body text-sm hover:bg-white/5 transition-colors">
               تصفّح خدماتنا
             </Link>
           </div>

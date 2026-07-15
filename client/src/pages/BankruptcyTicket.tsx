@@ -19,6 +19,8 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/lib/supabase";
+import { localePath } from "@/lib/localePath";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // ============================================================
 // نموذج تقديم استفسار للدائنين — بوابة الإفلاس
@@ -29,6 +31,8 @@ import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/lib/supabase";
 type Step = "phone" | "otp" | "form" | "done";
 
 export default function BankruptcyTicket() {
+  const { lang } = useLanguage();
+  const lp = (p: string) => localePath(p, lang);
   const [step, setStep] = useState<Step>("phone");
 
   const [phone, setPhone] = useState("");
@@ -406,7 +410,7 @@ export default function BankruptcyTicket() {
 
                     <div className="pt-2 text-center">
                       <Link
-                        href="/bankruptcy"
+                        href={lp("/bankruptcy")}
                         className="font-body text-sm text-[var(--color-navy)]/60 hover:text-[var(--color-navy)] inline-flex items-center gap-1 transition-colors"
                       >
                         <ArrowLeft className="w-3 h-3" />
@@ -616,7 +620,7 @@ export default function BankruptcyTicket() {
                       تقديم استفسار آخر
                     </Button>
                     <Link
-                      href="/bankruptcy"
+                      href={lp("/bankruptcy")}
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-1 px-6 py-3 font-body text-sm text-[var(--color-navy)]/70 hover:text-[var(--color-navy)] border border-[var(--color-border)] hover:border-[var(--color-gold)]/30 transition-colors"
                     >
                       <ArrowLeft className="w-3 h-3" />

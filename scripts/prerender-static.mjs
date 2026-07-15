@@ -157,6 +157,25 @@ function applySEO(html, seo, route) {
     }
   }
 
+  // hreflang alternate links
+  const isEnglish = route.startsWith('/en');
+  const arPath = isEnglish ? (route === '/en' ? '/' : route.replace(/^\/en/, '')) : route;
+  const enPath = isEnglish ? route : (route === '/' ? '/en' : `/en${route}`);
+  const arUrl = arPath === '/' ? `${SITE}/` : `${SITE}${arPath}`;
+  const enUrl = `${SITE}${enPath}`;
+  const hreflangLinks = [
+    `<link rel="alternate" hreflang="ar" href="${esc(arUrl)}" />`,
+    `<link rel="alternate" hreflang="en" href="${esc(enUrl)}" />`,
+    `<link rel="alternate" hreflang="x-default" href="${esc(arUrl)}" />`,
+  ].join('\n    ');
+  html = html.replace('</head>', `    ${hreflangLinks}\n  </head>`);
+
+  // Set lang and dir for English pages
+  if (isEnglish) {
+    html = html.replace(/lang="ar"/, 'lang="en"');
+    html = html.replace(/dir="rtl"/, 'dir="ltr"');
+  }
+
   // prerender marker
   if (!/name="prerender-status"/.test(html)) {
     html = html.replace('<head>', '<head>\n    <meta name="prerender-status" content="200" />');

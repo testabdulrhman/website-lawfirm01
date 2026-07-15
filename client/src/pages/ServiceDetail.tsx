@@ -5,6 +5,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 import { trackPhoneClick, trackBookConsultation } from "@/lib/analytics";
 import { useSEO, schemas } from "@/hooks/useSEO";
 import { useMemo } from "react";
+import { localePath } from "@/lib/localePath";
 
 const servicesData: Record<string, {
   icon: any;
@@ -379,6 +380,7 @@ const servicesData: Record<string, {
 export default function ServiceDetail() {
   const params = useParams<{ slug: string }>();
   const { lang, isRTL } = useTranslation();
+  const lp = (p: string) => localePath(p, lang);
   const service = servicesData[params.slug || ""];
   const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation();
 
@@ -440,7 +442,7 @@ export default function ServiceDetail() {
       <section className="pt-28 md:pt-32 pb-16 md:pb-20 min-h-screen bg-[var(--color-cream)]">
         <div className="container mx-auto px-4 lg:px-8 text-center">
           <h1 className="font-display text-3xl font-bold text-[var(--color-navy)] mb-4">{labels.serviceNotFound}</h1>
-          <Link href="/services" className="font-heading text-[var(--color-gold)] hover:underline">
+          <Link href={lp("/services")} className="font-heading text-[var(--color-gold)] hover:underline">
             {labels.backToServices}
           </Link>
         </div>
@@ -458,9 +460,9 @@ export default function ServiceDetail() {
       <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 bg-[var(--color-navy)]">
         <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
           <div className="flex items-center gap-2 md:gap-3 mb-4 flex-wrap">
-            <Link href="/" className="font-body text-xs md:text-sm text-white/50 hover:text-white/80 transition-colors">{labels.home}</Link>
+            <Link href={lp("/")} className="font-body text-xs md:text-sm text-white/50 hover:text-white/80 transition-colors">{labels.home}</Link>
             <span className="text-white/30">/</span>
-            <Link href="/services" className="font-body text-xs md:text-sm text-white/50 hover:text-white/80 transition-colors">{labels.services}</Link>
+            <Link href={lp("/services")} className="font-body text-xs md:text-sm text-white/50 hover:text-white/80 transition-colors">{labels.services}</Link>
             <span className="text-white/30">/</span>
             <span className="font-body text-xs md:text-sm text-[var(--color-gold)]">{content.title}</span>
           </div>
@@ -542,7 +544,7 @@ export default function ServiceDetail() {
                 <div className={`mb-8 md:mb-12 p-4 md:p-6 bg-[var(--color-navy)]/5 ${isRTL ? 'border-r-4' : 'border-l-4'} border-[var(--color-gold)]`}>
                   <h3 className="font-heading text-base md:text-lg font-semibold text-[var(--color-navy)] mb-2">{labels.submitClaim}</h3>
                   <p className="font-body text-xs md:text-sm text-[var(--color-navy)]/60 mb-3 md:mb-4">{labels.claimDesc}</p>
-                  <Link href="/bankruptcy/claims" className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm hover:bg-[var(--color-gold-light)] transition-colors">
+                  <Link href={lp("/bankruptcy/claims")} className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm hover:bg-[var(--color-gold-light)] transition-colors">
                     <span>{labels.submitClaimBtn}</span>
                     <BackArrow size={14} />
                   </Link>
@@ -564,7 +566,7 @@ export default function ServiceDetail() {
                       { slug: 'Al-Anjaz-Hotel-Village', logo: '', ar: 'شركة قرية الأنجاز الفندقية', en: 'Al-Anjaz Hotel Village', enName: 'Al-Anjaz Hotel Village' },
                       { slug: 'Arcon-Gulf-Contracting', logo: '', ar: 'شركة أركن الخليج للمقاولات', en: 'Arcon Gulf Contracting Co', enName: 'Arcon Gulf Contracting Co' },
                     ].map((c) => (
-                      <Link key={c.slug} href={`/bankruptcy/${c.slug}`} className="group block p-4 md:p-5 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)] transition-colors">
+                      <Link key={c.slug} href={lp(`/bankruptcy/${c.slug}`)} className="group block p-4 md:p-5 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)] transition-colors">
                         <div className="flex items-center gap-4">
                           <div className="w-14 h-14 md:w-16 md:h-16 flex-shrink-0 bg-gray-50 p-2 flex items-center justify-center">
                             {c.logo ? (
@@ -619,7 +621,7 @@ export default function ServiceDetail() {
                     {labels.contactDesc}
                   </p>
                   <Link
-                    href="/contact"
+                    href={lp("/contact")}
                     className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm hover:bg-[var(--color-gold-light)] transition-colors"
                   >
                     <span>{labels.contactUs}</span>
@@ -643,7 +645,7 @@ export default function ServiceDetail() {
                       .map(([slug, s]) => (
                         <Link
                           key={slug}
-                          href={`/services/${slug}`}
+                          href={lp(`/services/${slug}`)}
                           className="block py-2 px-3 font-body text-sm text-[var(--color-navy)]/60 hover:text-[var(--color-gold)] hover:bg-[var(--color-cream)] transition-all"
                         >
                           {s[lang].title}

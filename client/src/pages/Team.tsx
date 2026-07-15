@@ -4,6 +4,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 import { Mail, Phone, Linkedin } from "lucide-react";
 import { useMemo } from "react";
 import { useSEO, schemas } from "@/hooks/useSEO";
+import { localePath } from "@/lib/localePath";
 
 const teamData = {
   ar: {
@@ -112,6 +113,7 @@ const teamData = {
 
 export default function Team() {
   const { t, lang, isRTL } = useTranslation();
+  const lp = (p: string) => localePath(p, lang);
 
   const seoSchema = useMemo(() => [
     schemas.breadcrumb([{ name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' }, { name: lang === 'ar' ? 'فريقنا' : 'Our Team', url: '/team' }]),
@@ -157,7 +159,7 @@ export default function Team() {
           }}
         >
           <div className="flex items-center gap-3 mb-4">
-            <Link href="/" className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{t.nav.home}</Link>
+            <Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{t.nav.home}</Link>
             <span className="text-white/30">/</span>
             <span className="font-body text-sm text-[var(--color-gold)]">{data.pageLabel}</span>
           </div>
@@ -259,7 +261,7 @@ export default function Team() {
               </div>
               <div className={`${isRTL ? 'md:text-left' : 'md:text-right'}`}>
                 <Link
-                  href="/contact"
+                  href={lp("/contact")}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-navy)] text-white font-heading text-sm font-medium hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)] transition-all duration-300"
                 >
                   {lang === "ar" ? "تواصل معنا" : "Contact Us"}

@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useMemo } from "react";
 import { useSEO, schemas } from "@/hooks/useSEO";
+import { localePath } from "@/lib/localePath";
 
 const valueIcons = [Shield, Users, Clock, Lock];
 
@@ -24,6 +25,7 @@ const licensesData = {
 
 export default function About() {
   const { t, lang, isRTL } = useTranslation();
+  const lp = (p: string) => localePath(p, lang);
 
   const seoSchema = useMemo(() => [schemas.localBusiness, schemas.breadcrumb([{ name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' }, { name: lang === 'ar' ? 'من نحن' : 'About', url: '/about' }])], [lang]);
   useSEO({
@@ -67,7 +69,7 @@ export default function About() {
           }}
         >
           <div className="flex items-center gap-3 mb-4">
-            <Link href="/" className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{t.nav.home}</Link>
+            <Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{t.nav.home}</Link>
             <span className="text-white/30">/</span>
             <span className="font-body text-sm text-[var(--color-gold)]">{t.nav.about}</span>
           </div>
@@ -191,7 +193,7 @@ export default function About() {
               </p>
             </div>
             <Link
-              href="/team"
+              href={lp("/team")}
               className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-navy)] text-white font-heading text-sm font-medium hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)] transition-all duration-300"
             >
               {lang === "ar" ? "تعرّف على فريقنا" : "Meet Our Team"}

@@ -6,9 +6,11 @@ import { useEffect, type ReactNode } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackWhatsAppClick } from "@/lib/analytics";
 import { schemas } from "@/hooks/useSEO";
+import { localePath } from "@/lib/localePath";
 
 export default function BlogPost() {
   const { t, lang, isRTL } = useTranslation();
+  const lp = (p: string) => localePath(p, lang);
   const params = useParams<{ slug: string }>();
   const article = getArticleBySlug(params.slug || "");
   const ChevronIcon = isRTL ? ChevronLeft : ChevronRight;
@@ -25,7 +27,7 @@ export default function BlogPost() {
           <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10 text-center">
             <h1 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">{lang === "ar" ? "المقال غير موجود" : "Article Not Found"}</h1>
             <p className="font-body text-base text-white/60 mb-6">{lang === "ar" ? "عذراً، لم يتم العثور على المقال المطلوب." : "Sorry, the requested article was not found."}</p>
-            <Link href="/blog" className="inline-flex items-center gap-2 font-heading text-sm text-[var(--color-gold)] hover:underline">
+            <Link href={lp("/blog")} className="inline-flex items-center gap-2 font-heading text-sm text-[var(--color-gold)] hover:underline">
               <BackArrow size={16} />
               {lang === "ar" ? "العودة إلى المدونة" : "Back to Blog"}
             </Link>
@@ -239,9 +241,9 @@ export default function BlogPost() {
         <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
           {/* Breadcrumbs */}
           <nav aria-label="breadcrumb" className="flex items-center gap-2 mb-5 flex-wrap">
-            <Link href="/" className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{t.nav.home}</Link>
+            <Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{t.nav.home}</Link>
             <ChevronIcon size={14} className="text-white/30" />
-            <Link href="/blog" className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{t.blog.title}</Link>
+            <Link href={lp("/blog")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{t.blog.title}</Link>
             <ChevronIcon size={14} className="text-white/30" />
             <span className="font-body text-sm text-[var(--color-gold)] line-clamp-1">{article.title}</span>
           </nav>
@@ -306,7 +308,7 @@ export default function BlogPost() {
                     {relatedArticles.map((related) => (
                       <Link
                         key={related.id}
-                        href={`/blog/${related.slug}`}
+                        href={lp(`/blog/${related.slug}`)}
                         className="block group"
                       >
                         <h4 className="font-heading text-sm font-medium text-[var(--color-navy)] group-hover:text-[var(--color-gold)] transition-colors leading-relaxed mb-1">
@@ -343,7 +345,7 @@ export default function BlogPost() {
       {/* Back to Blog */}
       <section className="py-8 bg-white border-t border-[var(--color-border)]">
         <div className="container mx-auto px-5 md:px-4 lg:px-8">
-          <Link href="/blog" className="inline-flex items-center gap-2 font-heading text-sm text-[var(--color-gold)] hover:text-[var(--color-navy)] transition-colors">
+          <Link href={lp("/blog")} className="inline-flex items-center gap-2 font-heading text-sm text-[var(--color-gold)] hover:text-[var(--color-navy)] transition-colors">
             <BackArrow size={16} />
             {lang === "ar" ? "العودة إلى المدونة القانونية" : "Back to Legal Blog"}
           </Link>

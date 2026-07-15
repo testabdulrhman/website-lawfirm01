@@ -4,6 +4,7 @@ import { useScrollAnimation, getStaggerStyle } from "@/hooks/useScrollAnimation"
 import { Building2, FileText, Search, ArrowLeft, ArrowRight, Scale, MessageSquare } from "lucide-react";
 import { useSEO, schemas } from "@/hooks/useSEO";
 import { useMemo } from "react";
+import { localePath } from "@/lib/localePath";
 
 const bankruptcyCases = [
   { slug: "ASHYAD-STEEL", nameAr: "شركة أشياد ستيل", nameEn: "ASHYAD STEEL Company", type: "تصفية", typeEn: "Liquidation" },
@@ -16,6 +17,7 @@ const bankruptcyCases = [
 
 export default function Bankruptcy() {
   const { t, lang, isRTL } = useTranslation();
+  const lp = (p: string) => localePath(p, lang);
 
   const seoSchema = useMemo(() => [schemas.breadcrumb([
     { name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' },
@@ -46,7 +48,7 @@ export default function Bankruptcy() {
       <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 bg-[var(--color-navy)]">
         <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
           <div className="flex items-center gap-3 mb-4">
-            <Link href="/" className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">
+            <Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">
               {t.nav.home}
             </Link>
             <span className="text-white/30">/</span>
@@ -70,7 +72,7 @@ export default function Bankruptcy() {
         <section className="py-10 md:py-12 bg-white border-b border-[var(--color-border)]">
           <div className="container mx-auto px-5 md:px-4 lg:px-8">
             <Link
-              href="/bankruptcy/procedures"
+              href={lp("/bankruptcy/procedures")}
               className="group flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 md:p-8 bg-[var(--color-navy)] hover:shadow-xl transition-all duration-300"
             >
               <div>
@@ -98,7 +100,7 @@ export default function Bankruptcy() {
             className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto"
           >
             <Link
-              href="/bankruptcy/claims"
+              href={lp("/bankruptcy/claims")}
               className="group flex items-center gap-4 p-6 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)]/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
               style={{ opacity: actionsVisible ? 1 : 0, transform: actionsVisible ? "translateY(0)" : "translateY(20px)", transition: "all 0.6s ease-out" }}
             >
@@ -117,7 +119,7 @@ export default function Bankruptcy() {
             </Link>
 
             <Link
-              href="/bankruptcy/track"
+              href={lp("/bankruptcy/track")}
               className="group flex items-center gap-4 p-6 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)]/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
               style={{ opacity: actionsVisible ? 1 : 0, transform: actionsVisible ? "translateY(0)" : "translateY(20px)", transition: "all 0.6s ease-out 0.1s" }}
             >
@@ -136,7 +138,7 @@ export default function Bankruptcy() {
             </Link>
 
             <Link
-              href="/bankruptcy/ticket"
+              href={lp("/bankruptcy/ticket")}
               className="group flex items-center gap-4 p-6 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)]/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 md:col-span-2"
               style={{ opacity: actionsVisible ? 1 : 0, transform: actionsVisible ? "translateY(0)" : "translateY(20px)", transition: "all 0.6s ease-out 0.2s" }}
             >
@@ -182,7 +184,7 @@ export default function Bankruptcy() {
             {bankruptcyCases.map((c, idx) => (
               <Link
                 key={c.slug}
-                href={`/bankruptcy/${c.slug}`}
+                href={lp(`/bankruptcy/${c.slug}`)}
                 className="group p-6 bg-[var(--color-cream)] border border-[var(--color-border)] hover:border-[var(--color-gold)]/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
                 style={getStaggerStyle(casesVisible, idx, 80)}
               >

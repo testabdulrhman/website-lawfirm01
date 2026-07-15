@@ -13,6 +13,17 @@
 [build.processing.html]
   pretty_urls = false
 
+# ── Security Headers (all pages) ──
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://wa.me https://www.google.com"
+
 # Force no trailing slash (301 redirect /path/ → /path)
 [[redirects]]
   from = "/about/"
@@ -85,6 +96,29 @@
   to = "/bankruptcy"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/legal-dictionary/"
+  to = "/legal-dictionary"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/"
+  to = "/en"
+  status = 301
+  force = true
+
+# ── English routes: serve index.html for SPA routing ──
+[[redirects]]
+  from = "/en"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/*"
+  to = "/index.html"
+  status = 200
 
 # SPA fallback: serve pre-rendered HTML or index.html for client routing
 [[redirects]]

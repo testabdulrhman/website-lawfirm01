@@ -4,6 +4,8 @@ import { Link } from 'wouter';
 import { toast } from 'sonner';
 import SEOHead from '@/components/SEOHead';
 import { FileText, Upload, ChevronLeft, Calendar, Building2, Lock, AlertTriangle, CheckCircle2, Phone, Mail, ArrowRight } from 'lucide-react';
+import { localePath } from "@/lib/localePath";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Types
 interface CaseData {
@@ -64,6 +66,8 @@ function escapeHtml(str: string | null | undefined): string {
 }
 
 export default function Claims() {
+  const { lang } = useLanguage();
+  const lp = (p: string) => localePath(p, lang);
   const [cases, setCases] = useState<CaseData[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCase, setSelectedCase] = useState<CaseData | null>(null);
@@ -570,9 +574,9 @@ export default function Claims() {
         </div>
         <div className="container relative z-10">
           <nav className="flex items-center gap-2 text-xs md:text-sm text-white/60 mb-4 md:mb-6 flex-wrap">
-            <Link href="/" className="hover:text-[#c9a227] transition-colors">الرئيسية</Link>
+            <Link href={lp("/")} className="hover:text-[#c9a227] transition-colors">الرئيسية</Link>
             <ChevronLeft className="w-4 h-4" />
-            <Link href="/services/bankruptcy" className="hover:text-[#c9a227] transition-colors">الإفلاس والتصفية</Link>
+            <Link href={lp("/services/bankruptcy")} className="hover:text-[#c9a227] transition-colors">الإفلاس والتصفية</Link>
             <ChevronLeft className="w-4 h-4" />
             <span className="text-[#c9a227]">تقديم مطالبة</span>
           </nav>

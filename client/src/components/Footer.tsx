@@ -2,9 +2,11 @@ import { MessageCircle, Linkedin, MapPin, Phone, Mail, Clock } from "lucide-reac
 import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackWhatsAppClick, trackPhoneClick, trackEmailClick } from "@/lib/analytics";
+import { localePath } from "@/lib/localePath";
 
 export default function Footer() {
   const { t, lang, isRTL } = useTranslation();
+  const lp = (p: string) => localePath(p, lang);
 
   const serviceLinks = t.services.items.slice(0, 6);
 
@@ -17,7 +19,7 @@ export default function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-10 md:mb-12">
             {/* Brand */}
             <div className="sm:col-span-2 lg:col-span-1">
-              <Link href="/" className="inline-block mb-4">
+              <Link href={lp("/")} className="inline-block mb-4">
                 <img
                   src="/images/logo-light.webp"
                   alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
@@ -36,19 +38,19 @@ export default function Footer() {
             <div>
               <h4 className="font-heading text-sm font-semibold text-white mb-4">{t.footer.quickLinks}</h4>
               <ul className="space-y-3">
-                <li><Link href="/" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.home}</Link></li>
-                <li><Link href="/about" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.about}</Link></li>
-                <li><Link href="/services" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.services}</Link></li>
-                <li><Link href="/blog" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.blog}</Link></li>
-                <li><Link href="/careers" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.careers}</Link></li>
-                <li><Link href="/contact" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.contact}</Link></li>
-                <li><Link href="/faq" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'الأسئلة الشائعة' : 'FAQ'}</Link></li>
-                <li><Link href="/cases-guide" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'دليل الدعاوى' : 'Cases Guide'}</Link></li>
-                <li><Link href="/locations/riyadh" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'محامي في الرياض' : 'Lawyer in Riyadh'}</Link></li>
-                <li><Link href="/locations/jeddah" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'محامي في جدة' : 'Lawyer in Jeddah'}</Link></li>
-                <li><Link href="/locations/buraydah" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'محامي في بريدة' : 'Lawyer in Buraydah'}</Link></li>
-                <li><Link href="/locations/dammam" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'محامي في الدمام' : 'Lawyer in Dammam'}</Link></li>
-                <li><Link href="/locations/hail" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'محامي في حائل' : 'Lawyer in Hail'}</Link></li>
+                <li><Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.home}</Link></li>
+                <li><Link href={lp("/about")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.about}</Link></li>
+                <li><Link href={lp("/services")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.services}</Link></li>
+                <li><Link href={lp("/blog")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.blog}</Link></li>
+                <li><Link href={lp("/careers")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.careers}</Link></li>
+                <li><Link href={lp("/contact")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.contact}</Link></li>
+                <li><Link href={lp("/faq")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'الأسئلة الشائعة' : 'FAQ'}</Link></li>
+                <li><Link href={lp("/cases-guide")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'دليل الدعاوى' : 'Cases Guide'}</Link></li>
+                <li><Link href={lp("/locations/riyadh")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'محامي في الرياض' : 'Lawyer in Riyadh'}</Link></li>
+                <li><Link href={lp("/locations/jeddah")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'محامي في جدة' : 'Lawyer in Jeddah'}</Link></li>
+                <li><Link href={lp("/locations/buraydah")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'محامي في بريدة' : 'Lawyer in Buraydah'}</Link></li>
+                <li><Link href={lp("/locations/dammam")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'محامي في الدمام' : 'Lawyer in Dammam'}</Link></li>
+                <li><Link href={lp("/locations/hail")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'محامي في حائل' : 'Lawyer in Hail'}</Link></li>
               </ul>
             </div>
 
@@ -58,7 +60,7 @@ export default function Footer() {
               <ul className="space-y-3">
                 {serviceLinks.map((link) => (
                   <li key={link.slug}>
-                    <Link href={`/services/${link.slug}`} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">
+                    <Link href={lp(`/services/${link.slug}`)} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">
                       {link.title}
                     </Link>
                   </li>
@@ -142,10 +144,10 @@ export default function Footer() {
               © {new Date().getFullYear()} {t.footer.copyright}
             </p>
             <div className="flex items-center gap-4 md:gap-6 flex-wrap justify-center">
-              <Link href="/privacy" className="font-body text-xs text-white/30 hover:text-[var(--color-gold)] transition-colors">
+              <Link href={lp("/privacy")} className="font-body text-xs text-white/30 hover:text-[var(--color-gold)] transition-colors">
                 {t.footer.privacy}
               </Link>
-              <Link href="/terms" className="font-body text-xs text-white/30 hover:text-[var(--color-gold)] transition-colors">
+              <Link href={lp("/terms")} className="font-body text-xs text-white/30 hover:text-[var(--color-gold)] transition-colors">
                 {t.footer.terms}
               </Link>
               <span className="font-body text-xs text-white/30">

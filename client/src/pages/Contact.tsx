@@ -1,15 +1,17 @@
 import { useState, useMemo, useRef } from "react";
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from "lucide-react";
-import { MapView } from "@/components/Map";
+
 import { toast } from "sonner";
 import { Link } from "wouter";
 import { useScrollAnimation, getFadeStyle, getStaggerStyle } from "@/hooks/useScrollAnimation";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useSEO, schemas } from "@/hooks/useSEO";
 import { trackContactFormSubmit, trackPhoneClick, trackWhatsAppClick, trackEmailClick } from "@/lib/analytics";
+import { localePath } from "@/lib/localePath";
 
 export default function Contact() {
   const { t, lang, isRTL } = useTranslation();
+  const lp = (p: string) => localePath(p, lang);
 
   const seoSchema = useMemo(() => [schemas.breadcrumb([{ name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' }, { name: lang === 'ar' ? 'تواصل معنا' : 'Contact', url: '/contact' }])], [lang]);
   useSEO({
@@ -95,7 +97,7 @@ export default function Contact() {
       <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 bg-[var(--color-navy)]">
         <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
           <div className="flex items-center gap-3 mb-4">
-            <Link href="/" className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{t.nav.home}</Link>
+            <Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{t.nav.home}</Link>
             <span className="text-white/30">/</span>
             <span className="font-body text-sm text-[var(--color-gold)]">{t.nav.contact}</span>
           </div>
@@ -114,7 +116,7 @@ export default function Contact() {
             <div className="lg:col-span-2 order-2 lg:order-1 space-y-6 md:space-y-8">
               <div className="relative overflow-hidden">
                 <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310419663031020868/RdzCt9LFS29ZVcU4VNgpAF/consultation-room-ix3xFaGymHggxZG5BkAghM.webp"
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310419663031020868/YnXXVn35ryxUKUfHFrqdpE/consultation-room-redwan-eGoY26nuX2d58DHtEFP9ti.webp"
                   alt={lang === "ar" ? "غرفة الاستشارات" : "Consultation Room"}
                   className="w-full h-[180px] md:h-[220px] object-cover"
                 />
@@ -316,17 +318,14 @@ export default function Contact() {
             </h3>
           </div>
           <div className="border border-[var(--color-border)] overflow-hidden">
-            <MapView
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500!2d43.975!3d26.326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDE5JzMzLjYiTiA0M8KwNTgnMzAuMCJF!5e0!3m2!1sar!2ssa!4v1700000000000!5m2!1sar!2ssa"
               className="w-full h-[350px] md:h-[450px]"
-              initialCenter={{ lat: 26.3260, lng: 43.9750 }}
-              initialZoom={15}
-              onMapReady={(map) => {
-                new google.maps.marker.AdvancedMarkerElement({
-                  map,
-                  position: { lat: 26.3260, lng: 43.9750 },
-                  title: lang === "ar" ? "شركة عبدالرحمن رضوان المشيقح للمحاماة" : "Abdulrahman Redwan Al-Mushaiqi Law Firm",
-                });
-              }}
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title={lang === "ar" ? "موقع شركة رضوان للمحاماة على الخريطة" : "Redwan Law Firm Location"}
             />
           </div>
           <p className="font-body text-xs text-[var(--color-navy)]/50 mt-3">

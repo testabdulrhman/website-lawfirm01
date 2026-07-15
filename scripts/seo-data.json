@@ -768,5 +768,171 @@
       "مصطلحات عدلية",
       "قاموس قانوني سعودي"
     ]
+  },
+  "/en": {
+    "title": "Abdulrahman Redwan Al-Mushaiqi Law Firm | Bankruptcy & Legal Services",
+    "description": "A leading Saudi law firm specializing in commercial, criminal, real estate litigation and bankruptcy management. Over 20 years of family legal expertise in Buraydah, Qassim.",
+    "keywords": "law firm Buraydah, bankruptcy management Saudi Arabia, legal consultation, commercial litigation, real estate disputes, Qassim lawyer",
+    "ogImage": "https://redwan.sa/images/hero-law-firm.webp",
+    "ogUrl": "https://redwan.sa/en",
+    "canonical": "/en"
+  },
+  "/en/about": {
+    "title": "About Us | Redwan Law Firm",
+    "description": "Learn about Abdulrahman Redwan Al-Mushaiqi Law Firm - A family legacy of over 20 years in law. Our vision, values, and official licenses.",
+    "keywords": "about us, law firm Buraydah, legal licenses, legal expertise, Qassim",
+    "ogUrl": "https://redwan.sa/en/about",
+    "canonical": "/en/about"
+  },
+  "/en/team": {
+    "title": "Our Team | Redwan Law Firm",
+    "description": "Meet our team of experienced lawyers and legal professionals at Abdulrahman Redwan Al-Mushaiqi Law Firm.",
+    "keywords": "legal team, lawyers, Buraydah attorneys, legal professionals",
+    "ogUrl": "https://redwan.sa/en/team",
+    "canonical": "/en/team"
+  },
+  "/en/services": {
+    "title": "Legal Services | Redwan Law Firm",
+    "description": "Comprehensive legal services including commercial litigation, criminal defense, real estate disputes, bankruptcy management, arbitration, and legal consultation.",
+    "keywords": "legal services, commercial litigation, criminal defense, real estate law, bankruptcy, arbitration, legal consultation Saudi Arabia",
+    "ogUrl": "https://redwan.sa/en/services",
+    "canonical": "/en/services"
+  },
+  "/en/services/civil-commercial": {
+    "title": "Civil & Commercial Litigation | Redwan Law Firm",
+    "description": "Expert representation in civil and commercial disputes, contract enforcement, debt recovery, and corporate litigation in Saudi Arabia.",
+    "keywords": "commercial litigation, civil disputes, contract enforcement, debt recovery, corporate law Saudi Arabia",
+    "ogUrl": "https://redwan.sa/en/services/civil-commercial",
+    "canonical": "/en/services/civil-commercial"
+  },
+  "/en/services/labor": {
+    "title": "Labor & Employment Law | Redwan Law Firm",
+    "description": "Specialized labor law services including employment disputes, wrongful termination, workers' compensation, and labor compliance in Saudi Arabia.",
+    "keywords": "labor law, employment disputes, wrongful termination, workers compensation, Saudi labor law",
+    "ogUrl": "https://redwan.sa/en/services/labor",
+    "canonical": "/en/services/labor"
+  },
+  "/en/services/criminal": {
+    "title": "Criminal Defense | Redwan Law Firm",
+    "description": "Experienced criminal defense attorneys providing representation in all types of criminal cases in Saudi Arabia.",
+    "keywords": "criminal defense, criminal law, defense attorney, Saudi criminal cases",
+    "ogUrl": "https://redwan.sa/en/services/criminal",
+    "canonical": "/en/services/criminal"
+  },
+  "/en/services/real-estate": {
+    "title": "Real Estate Law | Redwan Law Firm",
+    "description": "Comprehensive real estate legal services including property disputes, ownership verification, compensation claims, and real estate transactions.",
+    "keywords": "real estate law, property disputes, ownership verification, real estate transactions Saudi Arabia",
+    "ogUrl": "https://redwan.sa/en/services/real-estate",
+    "canonical": "/en/services/real-estate"
+  },
+  "/en/services/bankruptcy": {
+    "title": "Bankruptcy & Insolvency Management | Redwan Law Firm",
+    "description": "Licensed bankruptcy trustee services including preventive settlement, financial reorganization, liquidation, and creditor claims management under Saudi Bankruptcy Law.",
+    "keywords": "bankruptcy management, insolvency, bankruptcy trustee, preventive settlement, financial reorganization, liquidation Saudi Arabia",
+    "ogUrl": "https://redwan.sa/en/services/bankruptcy",
+    "canonical": "/en/services/bankruptcy"
+  },
+  "/en/services/consultation": {
+    "title": "Legal Consultation | Redwan Law Firm",
+    "description": "Professional legal consultation services for individuals and businesses. Get expert legal advice on all matters.",
+    "keywords": "legal consultation, legal advice, business consultation, Saudi legal services",
+    "ogUrl": "https://redwan.sa/en/services/consultation",
+    "canonical": "/en/services/consultation"
+  },
+  "/en/services/arbitration": {
+    "title": "Commercial Arbitration | Redwan Law Firm",
+    "description": "Expert arbitration services for resolving commercial disputes efficiently outside the traditional court system.",
+    "keywords": "commercial arbitration, dispute resolution, arbitration Saudi Arabia",
+    "ogUrl": "https://redwan.sa/en/services/arbitration",
+    "canonical": "/en/services/arbitration"
+  },
+  "/en/services/administrative": {
+    "title": "Administrative Law | Redwan Law Firm",
+    "description": "Administrative law services including government disputes, regulatory compliance, and administrative appeals.",
+    "keywords": "administrative law, government disputes, regulatory compliance, administrative appeals Saudi Arabia",
+    "ogUrl": "https://redwan.sa/en/services/administrative",
+    "canonical": "/en/services/administrative"
+  },
+  "/en/services/personal-status": {
+    "title": "Personal Status Law | Redwan Law Firm",
+    "description": "Family and personal status law services including divorce, custody, inheritance, and marriage contracts.",
+    "keywords": "personal status law, family law, divorce, custody, inheritance Saudi Arabia",
+    "ogUrl": "https://redwan.sa/en/services/personal-status",
+    "canonical": "/en/services/personal-status"
+  },
+  "/en/blog": {
+    "title": "Legal Blog & Articles | Redwan Law Firm",
+    "description": "Expert legal articles and insights on Saudi bankruptcy law, commercial litigation, and legal developments.",
+    "keywords": "legal blog, legal articles, Saudi bankruptcy law, legal insights",
+    "ogUrl": "https://redwan.sa/en/blog",
+    "canonical": "/en/blog"
+  },
+  "/en/contact": {
+    "title": "Contact Us | Redwan Law Firm",
+    "description": "Get in touch with Abdulrahman Redwan Al-Mushaiqi Law Firm. Book a legal consultation today.",
+    "keywords": "contact lawyer, legal consultation, book appointment, Buraydah lawyer",
+    "ogUrl": "https://redwan.sa/en/contact",
+    "canonical": "/en/contact"
+  },
+  "/en/faq": {
+    "title": "Frequently Asked Questions | Redwan Law Firm",
+    "description": "Answers to common legal questions about our services, bankruptcy procedures, and how to work with us.",
+    "keywords": "legal FAQ, bankruptcy questions, legal services FAQ",
+    "ogUrl": "https://redwan.sa/en/faq",
+    "canonical": "/en/faq"
+  },
+  "/en/careers": {
+    "title": "Careers | Redwan Law Firm",
+    "description": "Join our team of legal professionals. Explore career opportunities at Abdulrahman Redwan Al-Mushaiqi Law Firm.",
+    "keywords": "legal careers, law firm jobs, attorney positions, Buraydah jobs",
+    "ogUrl": "https://redwan.sa/en/careers",
+    "canonical": "/en/careers"
+  },
+  "/en/privacy": {
+    "title": "Privacy Policy | Redwan Law Firm",
+    "description": "Our privacy policy explains how we collect, use, and protect your personal information.",
+    "ogUrl": "https://redwan.sa/en/privacy",
+    "canonical": "/en/privacy"
+  },
+  "/en/terms": {
+    "title": "Terms & Conditions | Redwan Law Firm",
+    "description": "Terms and conditions governing the use of our website and services.",
+    "ogUrl": "https://redwan.sa/en/terms",
+    "canonical": "/en/terms"
+  },
+  "/en/cases-guide": {
+    "title": "Litigation Cases Guide | Redwan Law Firm",
+    "description": "Comprehensive guide to different types of legal cases and litigation procedures in Saudi Arabia.",
+    "keywords": "litigation guide, legal cases, Saudi court procedures, case types",
+    "ogUrl": "https://redwan.sa/en/cases-guide",
+    "canonical": "/en/cases-guide"
+  },
+  "/en/legal-dictionary": {
+    "title": "Legal Dictionary | Redwan Law Firm",
+    "description": "Arabic-English legal dictionary with definitions of key legal terms used in Saudi law.",
+    "keywords": "legal dictionary, legal terms, Saudi law terminology, Arabic legal terms",
+    "ogUrl": "https://redwan.sa/en/legal-dictionary",
+    "canonical": "/en/legal-dictionary"
+  },
+  "/en/bankruptcy": {
+    "title": "Bankruptcy Cases | Redwan Law Firm",
+    "description": "View our active bankruptcy cases and submit creditor claims through our secure online system.",
+    "keywords": "bankruptcy cases, creditor claims, bankruptcy trustee, Saudi bankruptcy",
+    "ogUrl": "https://redwan.sa/en/bankruptcy",
+    "canonical": "/en/bankruptcy"
+  },
+  "/en/bankruptcy/procedures": {
+    "title": "Bankruptcy Procedures | Redwan Law Firm",
+    "description": "Complete guide to the seven bankruptcy procedures under Saudi Bankruptcy Law including preventive settlement, financial reorganization, and liquidation.",
+    "keywords": "bankruptcy procedures, Saudi bankruptcy law, preventive settlement, financial reorganization, liquidation",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/procedures",
+    "canonical": "/en/bankruptcy/procedures"
+  },
+  "/en/sitemap": {
+    "title": "Sitemap | Redwan Law Firm",
+    "description": "Complete sitemap of Abdulrahman Redwan Al-Mushaiqi Law Firm website.",
+    "ogUrl": "https://redwan.sa/en/sitemap",
+    "canonical": "/en/sitemap"
   }
 }
