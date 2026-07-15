@@ -22,16 +22,16 @@ export default function Bankruptcy() {
   const seoSchema = useMemo(() => [schemas.breadcrumb([
     { name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' },
     { name: lang === 'ar' ? 'الإفلاس' : 'Bankruptcy', url: '/bankruptcy' }
-  ])], [lang]);
+  ]), schemas.bankruptcyService], [lang]);
 
   useSEO({
-    title: lang === 'ar' ? 'قسم الإفلاس والتصفية' : 'Bankruptcy & Liquidation',
+    title: lang === 'ar' ? 'إدارة إجراءات الإفلاس | أمين إفلاس معتمد - ترخيص 142147' : 'Bankruptcy Management | Licensed Trustee #142147',
     description: lang === 'ar'
-      ? 'إدارة إجراءات الإفلاس والتصفية وإعادة التنظيم. تقديم مطالبات الدائنين وتتبع حالة المطالبات.'
-      : 'Managing bankruptcy, liquidation, and reorganization proceedings. Submit creditor claims and track claim status.',
+      ? 'بوابة إجراءات الإفلاس - تقديم مطالبات الدائنين، تتبع حالة المطالبات، والاطلاع على إجراءات التسوية الوقائية وإعادة التنظيم المالي والتصفية. أمين إفلاس معتمد من لجنة الإفلاس.'
+      : 'Bankruptcy portal - submit creditor claims, track claim status, and access preventive settlement, financial reorganization, and liquidation procedures. Licensed Bankruptcy Trustee.',
     keywords: lang === 'ar'
-      ? 'إفلاس، تصفية، مطالبات دائنين، إعادة تنظيم، محامي إفلاس'
-      : 'bankruptcy, liquidation, creditor claims, reorganization, bankruptcy lawyer',
+      ? 'إجراءات إفلاس, مطالبات دائنين, أمين إفلاس, تسوية وقائية, إعادة تنظيم مالي, تصفية, لجنة الإفلاس'
+      : 'bankruptcy proceedings, creditor claims, bankruptcy trustee, preventive settlement, financial reorganization, liquidation, bankruptcy commission',
     canonical: '/bankruptcy',
     schema: seoSchema,
   });

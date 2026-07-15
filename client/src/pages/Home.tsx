@@ -47,14 +47,14 @@ export default function Home() {
   useSEO({
     fullTitle: true,
     title: lang === 'ar'
-      ? 'شركة عبدالرحمن رضوان المشيقح للمحاماة'
-      : 'Abdulrahman Redwan Al-Mushaiqi Law Firm',
+      ? 'محامي إفلاس وأمين إفلاس معتمد | بريدة والقصيم - المشيقح للمحاماة'
+      : 'Bankruptcy Lawyer & Licensed Trustee | Buraydah, Qassim - Al-Mushaiqi Law Firm',
     description: lang === 'ar'
-      ? 'شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس - بريدة، القصيم. خبرة تتجاوز 20 عاماً في القضايا التجارية والجنائية والعقارية والإفلاس.'
-      : 'Abdulrahman Redwan Al-Mushaiqi Law Firm - Buraydah, Qassim. Over 20 years of expertise in commercial, criminal, real estate litigation and bankruptcy management.',
+      ? 'شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس. أمين إفلاس معتمد بترخيص 142147 من لجنة الإفلاس. خبرة +20 عاماً في القضايا التجارية والإفلاس - بريدة، القصيم.'
+      : 'Abdulrahman Redwan Al-Mushaiqi Law Firm & Bankruptcy Management. Licensed Bankruptcy Trustee (License #142147). 20+ years in commercial litigation and bankruptcy - Buraydah, Qassim.',
     keywords: lang === 'ar'
-      ? 'محاماة بريدة, إدارة إجراءات الإفلاس, استشارات قانونية, قضايا تجارية, نزاعات عقارية, تحكيم تجاري, محامي القصيم'
-      : 'law firm Buraydah, bankruptcy management, legal consultation, commercial litigation, real estate disputes, commercial arbitration, Qassim lawyer',
+      ? 'محامي إفلاس, أمين إفلاس معتمد, محامي بريدة, إدارة إجراءات الإفلاس, محامي القصيم, تسوية وقائية, إعادة تنظيم مالي, تصفية شركات'
+      : 'bankruptcy lawyer, licensed bankruptcy trustee, Buraydah lawyer, bankruptcy management, Qassim lawyer, preventive settlement, financial reorganization, company liquidation',
     canonical: '/',
     schema: seoSchema,
   });

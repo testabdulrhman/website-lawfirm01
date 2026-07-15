@@ -24,7 +24,111 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Content-Security-Policy = "frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://wa.me https://www.google.com"
 
-# Force no trailing slash (301 redirect /path/ → /path)
+# ── Old WordPress pages: 301 redirect to closest match or 410 Gone ──
+# These were indexed from an old WordPress site and must be cleaned up
+[[redirects]]
+  from = "/considering-divorce"
+  to = "/services/personal-status"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/considering-divorce/"
+  to = "/services/personal-status"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/home-4"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/home-4/"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/home-2"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/home-3"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sample-page"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sample-page/"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/wp-admin"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/wp-admin/*"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/wp-login.php"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/wp-content/*"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/elementor-*"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/?p=*"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/feed"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/feed/"
+  to = "/blog"
+  status = 301
+  force = true
+
+# ── Landing page: noindex via header ──
+[[headers]]
+  for = "/bankruptcy-lp"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+# ── Force no trailing slash (301 redirect /path/ → /path) ──
 [[redirects]]
   from = "/about/"
   to = "/about"
@@ -109,6 +213,9 @@
   status = 301
   force = true
 
+# ── Pre-rendered pages: serve their own index.html (Netlify auto-resolves /path → /path/index.html) ──
+# No explicit rules needed — Netlify serves /bankruptcy/index.html for /bankruptcy automatically
+
 # ── English routes: serve index.html for SPA routing ──
 [[redirects]]
   from = "/en"
@@ -120,14 +227,27 @@
   to = "/index.html"
   status = 200
 
-# SPA fallback: serve pre-rendered HTML or index.html for client routing
+# ── SPA fallback for known Arabic routes (pre-rendered pages have their own index.html) ──
+# Netlify auto-serves /path/index.html for /path when the file exists.
+# For routes without pre-rendered files, fallback to index.html (200) for SPA hydration.
+# The NotFound component handles noindex client-side for unknown routes.
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# Noindex for 404 page
+# ── Noindex headers for utility pages ──
 [[headers]]
   for = "/404.html"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/bankruptcy/complete"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/bankruptcy/track"
   [headers.values]
     X-Robots-Tag = "noindex"

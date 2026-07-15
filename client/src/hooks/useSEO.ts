@@ -416,5 +416,36 @@ export const schemas = {
       "@type": "LegalService",
       "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
     }
-  })
+  }),
+
+  bankruptcyService: {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "إدارة إجراءات الإفلاس",
+    "alternateName": "Bankruptcy Management Services",
+    "description": "خدمات إدارة إجراءات الإفلاس المتكاملة: التسوية الوقائية، إعادة التنظيم المالي، التصفية، وتمثيل الدائنين والمدينين. أمين إفلاس معتمد بترخيص 142147 من لجنة الإفلاس.",
+    "provider": {
+      "@type": "LegalService",
+      "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+      "url": "https://redwan.sa"
+    },
+    "serviceType": "إدارة إجراءات الإفلاس",
+    "areaServed": {
+      "@type": "Country",
+      "name": "المملكة العربية السعودية"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "خدمات الإفلاس",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "التسوية الوقائية" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "إعادة التنظيم المالي" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "التصفية" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "التصفية الإدارية" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تمثيل الدائنين" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تمثيل المدينين" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "إعداد خطط السداد" } }
+      ]
+    }
+  }
 };

@@ -419,7 +419,7 @@ export default function ServiceDetail() {
     if (!service) return undefined;
     const content = service[lang];
     const faqQuestions = content.faqs.map(f => ({ question: f.q, answer: f.a }));
-    return [
+    const schemaList: any[] = [
       schemas.breadcrumb([
         { name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' },
         { name: lang === 'ar' ? 'خدماتنا' : 'Services', url: '/services' },
@@ -427,6 +427,10 @@ export default function ServiceDetail() {
       ]),
       schemas.faqPage(faqQuestions)
     ];
+    if (params.slug === 'bankruptcy') {
+      schemaList.push(schemas.bankruptcyService);
+    }
+    return schemaList;
   }, [service, lang, params.slug]);
 
   useSEO({
