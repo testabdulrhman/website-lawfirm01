@@ -23,6 +23,7 @@ export default function Sitemap() {
         { label: "انضم إلينا", href: "/careers" },
         { label: "الأسئلة الشائعة", href: "/faq" },
         { label: "دليل الدعاوى القضائية", href: "/cases-guide" },
+        { label: "المعجم القانوني", href: "/legal-dictionary" },
       ],
     },
     {
@@ -103,6 +104,8 @@ export default function Sitemap() {
         { label: "Contact Us", href: "/contact" },
         { label: "Join Us", href: "/careers" },
         { label: "FAQ", href: "/faq" },
+        { label: "Cases Guide", href: "/cases-guide" },
+        { label: "Legal Dictionary", href: "/legal-dictionary" },
       ],
     },
     {

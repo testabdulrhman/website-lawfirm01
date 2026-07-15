@@ -33,6 +33,7 @@ const BankruptcyProcedures = lazy(() => import("@/pages/BankruptcyProcedures"));
 const BankruptcyProcedure = lazy(() => import("@/pages/BankruptcyProcedure"));
 const BankruptcyLP = lazy(() => import("@/pages/BankruptcyLP"));
 const CasesGuide = lazy(() => import("@/pages/CasesGuide"));
+const LegalDictionary = lazy(() => import("@/pages/LegalDictionary"));
 const CityPage = lazy(() => import("@/pages/CityPage"));
 const Sitemap = lazy(() => import("@/pages/Sitemap"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
@@ -87,6 +88,7 @@ function Router() {
               <Route path={"/faq"} component={FAQ} />
               <Route path={"/careers"} component={Careers} />
               <Route path={"/cases-guide"} component={CasesGuide} />
+              <Route path={"/legal-dictionary"} component={LegalDictionary} />
               <Route path={"/locations/:slug"} component={CityPage} />
               <Route path={"/sitemap"} component={Sitemap} />
               <Route path={"*"} component={NotFound} />

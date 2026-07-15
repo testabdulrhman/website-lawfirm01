@@ -49,6 +49,7 @@ const ROUTES = [
   '/terms',
   '/faq',
   '/cases-guide',
+  '/legal-dictionary',
   '/locations/riyadh',
   '/locations/jeddah',
   '/locations/buraydah',
