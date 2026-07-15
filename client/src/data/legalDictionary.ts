@@ -6,687 +6,4179 @@ export interface LegalTerm {
 }
 
 export const legalTerms: LegalTerm[] = [
-  { id: 1, ar: "األتعاب", en: "Fees", letter: "أ" },
-  { id: 2, ar: "االتفاقية", en: "Agreement", letter: "ت" },
-  { id: 3, ar: "االتفاقية الدولية", en: "International convention", letter: "ت" },
-  { id: 4, ar: "االتهام", en: "Accusation", letter: "ت" },
-  { id: 5, ar: "اإلثبات", en: "Proof", letter: "ث" },
-  { id: 6, ar: "إثبات الزواج", en: "Recording marriage", letter: "أ" },
-  { id: 7, ar: "إثبات الوفاة", en: "Establishment of death", letter: "أ" },
-  { id: 8, ar: "اإلثباتات اإلنهائية", en: "Ex parte cases", letter: "ث" },
-  { id: 9, ar: "األثر الرجعي", en: "Retrospective", letter: "أ" },
-  { id: 10, ar: "اإلجازة", en: "Authorization", letter: "ج" },
-  { id: 11, ar: "اإلجراء", en: "Procedure", letter: "ج" },
-  { id: 12, ar: "إجراء اإلثبات", en: "Evidentiary procedure", letter: "أ" },
-  { id: 13, ar: "اإلجراء الباطل", en: "Invalid proceeding", letter: "ج" },
-  { id: 14, ar: "اإلجراء التنفيذي", en: "Enforcement proceeding", letter: "ج" },
-  { id: 15, ar: "األجرة", en: "Payment", letter: "أ" },
-  { id: 16, ar: "أجرة الخادم", en: "Wages of servant", letter: "أ" },
-  { id: 17, ar: "األجل", en: "Deadline", letter: "أ" },
-  { id: 18, ar: "اإلجماع", en: "Unanimously", letter: "ج" },
-  { id: 19, ar: "أحكام الشريعة اإلسالمية", en: "Provisions of sharia", letter: "أ" },
-  { id: 20, ar: "األحوال الشخصية", en: "Family matters", letter: "أ" },
-  { id: 21, ar: "اإلخبار", en: "Reporting", letter: "خ" },
-  { id: 22, ar: "االختصاص القضائي الدولي", en: "International judicial jurisdiction", letter: "خ" },
-  { id: 23, ar: "اختصاص المحكمة", en: "Court s jurisdiction", letter: "أ" },
-  { id: 24, ar: "االختصاص المكاني", en: "Territorial jurisdiction", letter: "خ" },
-  { id: 25, ar: "االختصاص النوعي", en: "Subject jurisdiction", letter: "خ" },
-  { id: 26, ar: "األخرس", en: "Deaf", letter: "أ" },
-  { id: 27, ar: "اإلخطار", en: "Notification", letter: "خ" },
-  { id: 28, ar: "اإلخالء", en: "Eviction", letter: "خ" },
-  { id: 29, ar: "إخالء السبيل", en: "Release", letter: "أ" },
-  { id: 30, ar: "إخالء العقار", en: "Eviction from real property", letter: "أ" },
-  { id: 31, ar: "إدارة األراضي والمساحة", en: "Department of land and survey", letter: "أ" },
-  { id: 32, ar: "إدارة التسجيل العقاري", en: "Department of real estate registration", letter: "أ" },
-  { id: 33, ar: "إدارة الجلسة وضبطها", en: "Management and order of the session", letter: "أ" },
-  { id: 34, ar: "إدارة المحكمة", en: "Court administration", letter: "أ" },
-  { id: 36, ar: "اإلداري", en: "Administrator", letter: "د" },
-  { id: 37, ar: "اإلدانة", en: "Conviction", letter: "د" },
-  { id: 38, ar: "اإلذن", en: "Permission", letter: "ذ" },
-  { id: 39, ar: "اإلذن الكتابي", en: "Written permission", letter: "ذ" },
-  { id: 40, ar: "اإلرث", en: "Inheritance", letter: "ر" },
-  { id: 41, ar: "األرض", en: "Land", letter: "أ" },
-  { id: 42, ar: "إساءة استعمال السلطة", en: "Abuse of power", letter: "أ" },
-  { id: 43, ar: "االستبدال", en: "Exchange", letter: "س" },
-  { id: 44, ar: "االستبعاد", en: "Exclude", letter: "س" },
-  { id: 45, ar: "االستثمار", en: "Investment", letter: "س" },
-  { id: 46, ar: "االستجواب", en: "Examine", letter: "س" },
-  { id: 47, ar: "استجواب الخصم", en: "Questioning the litigant", letter: "أ" },
-  { id: 48, ar: "االستحكام", en: "Establishment of title", letter: "س" },
-  { id: 49, ar: "االستخالف", en: "Assign", letter: "س" },
-  { id: 50, ar: "استقالل القضاء", en: "Independence of the judiciary", letter: "أ" },
-  { id: 51, ar: "االستمهال", en: "Dilatory", letter: "س" },
-  { id: 52, ar: "االستئناف", en: "Appeal", letter: "س" },
-  { id: 53, ar: "االستئناف األصلي", en: "Original appeal", letter: "س" },
-  { id: 54, ar: "االستئناف الفرعي", en: "Secondary appeal", letter: "س" },
-  { id: 55, ar: "االشتراك", en: "Participation", letter: "ش" },
-  { id: 56, ar: "اإلشراف اإلداري", en: "Administrative supervision", letter: "ش" },
-  { id: 57, ar: "اإلشراف المالي", en: "Financial supervision", letter: "ش" },
-  { id: 58, ar: "اإلشعار", en: "Notice", letter: "ش" },
-  { id: 59, ar: "إصابة العمل", en: "Work injury", letter: "أ" },
-  { id: 60, ar: "إصدار الحكم", en: "Render judgment", letter: "أ" },
-  { id: 61, ar: "األصل", en: "Asset", letter: "أ" },
-  { id: 62, ar: "إعادة النظر", en: "Reconsideration", letter: "أ" },
-  { id: 63, ar: "اإلعارة", en: "Secondment", letter: "ع" },
-  { id: 64, ar: "االعتراض", en: "Objection", letter: "ع" },
-  { id: 65, ar: "اعتزال الوكيل", en: "Resignation of an agent", letter: "أ" },
-  { id: 66, ar: "االعتماد", en: "Appropriation", letter: "ع" },
-  { id: 67, ar: "إعداد المذكرة", en: "Preparing submission", letter: "أ" },
-  { id: 68, ar: "اإلعسار", en: "Insolvency", letter: "ع" },
-  { id: 69, ar: "اإلعفاء", en: "Exemption", letter: "ع" },
-  { id: 70, ar: "اإلعالن", en: "Announcement", letter: "ع" },
-  { id: 71, ar: "أعمال السيادة", en: "Sovereign acts", letter: "أ" },
-  { id: 72, ar: "أغلبية اآلراء", en: "Majority opinion", letter: "أ" },
-  { id: 73, ar: "اإلفراج", en: "Release", letter: "ف" },
-  { id: 74, ar: "اإلفصاح", en: "Declare", letter: "ف" },
-  { id: 75, ar: "اإلفالس", en: "Bankruptcy", letter: "ف" },
-  { id: 76, ar: "االقتراح", en: "Recommendation", letter: "ق" },
-  { id: 77, ar: "االقتراض", en: "Borrowing", letter: "ق" },
-  { id: 78, ar: "اإلقرار", en: "Admission", letter: "ق" },
-  { id: 79, ar: "اإلقرار القضائي", en: "Judicial admission", letter: "ق" },
-  { id: 80, ar: "إقفال المرافعة", en: "Closing of argument", letter: "أ" },
-  { id: 81, ar: "األقلية", en: "Minority", letter: "أ" },
-  { id: 82, ar: "اكتساب الحكم القطعية", en: "Ruling becomes final", letter: "أ" },
-  { id: 83, ar: "االلتزام", en: "Obligation", letter: "ل" },
-  { id: 84, ar: "األمانة العامة", en: "General secretariat", letter: "أ" },
-  { id: 85, ar: "االمتناع من القضاء في قضية", en: "Refrain from considering a case", letter: "م" },
-  { id: 86, ar: "األمر", en: "Order", letter: "أ" },
-  { id: 87, ar: "ً األمر المحظور", en: "", letter: "أ" },
-  { id: 88, ar: "ً األمر المحظور", en: "", letter: "أ" },
-  { id: 89, ar: "األمر الملكي", en: "Royal order", letter: "أ" },
-  { id: 90, ar: "األمن الوطني", en: "National security", letter: "أ" },
-  { id: 91, ar: "األمين", en: "Trustee", letter: "أ" },
-  { id: 92, ar: "أمين السر", en: "Secretary", letter: "أ" },
-  { id: 93, ar: "األمين العام", en: "Secretary general", letter: "أ" },
-  { id: 94, ar: "انتفاء الوالية", en: "Lack of jurisdiction", letter: "أ" },
-  { id: 95, ar: "انتهاء الدعوى", en: "Case has been concluded", letter: "أ" },
-  { id: 96, ar: "اإلنجاز", en: "Achievement", letter: "ن" },
-  { id: 97, ar: "اإلنذار", en: "Warning", letter: "ن" },
-  { id: 98, ar: "اإلنشاء", en: "Construction", letter: "ن" },
-  { id: 99, ar: "انقضاء التوكيل", en: "Expiration of a power of attorney", letter: "أ" },
-  { id: 100, ar: "انقطاع الخصومة", en: "Discontinuance of litigation", letter: "أ" },
-  { id: 101, ar: "اإلنهاء", en: "Declaration", letter: "ن" },
-  { id: 102, ar: "إنهاء الخدمة", en: "Termination of service", letter: "أ" },
-  { id: 103, ar: "األهلية", en: "Capacity", letter: "أ" },
-  { id: 104, ar: "اإليداع", en: "Deposit", letter: "ي" },
-  { id: 105, ar: "اإليذاء الجسدي", en: "Bodily harm", letter: "ي" },
-  { id: 106, ar: "اإليذاء المعنوي", en: "Moral harm", letter: "ي" },
-  { id: 107, ar: "الباحث", en: "Researcher", letter: "ب" },
-  { id: 108, ar: "الباطل", en: "Invalid", letter: "ب" },
-  { id: 109, ar: "البدل", en: "Allowance", letter: "ب" },
-  { id: 110, ar: "البصمة", en: "Fingerprint", letter: "ب" },
-  { id: 111, ar: "البيع", en: "Sale", letter: "ب" },
-  { id: 112, ar: "البينة", en: "Proof", letter: "ب" },
-  { id: 113, ar: "التاجر", en: "Merchant", letter: "ت" },
-  { id: 114, ar: "التأجير", en: "Lease", letter: "ت" },
-  { id: 115, ar: "تأجيل النطق بالحكم", en: "Deferment of the pronouncement of the judgment", letter: "ت" },
-  { id: 116, ar: "تأجيل النظر في الدعوى", en: "Postponement of consideration of the case", letter: "ت" },
-  { id: 117, ar: "التأديب", en: "Discipline", letter: "ت" },
-  { id: 118, ar: "تأديب القاضي", en: "Disciplining judge", letter: "ت" },
-  { id: 119, ar: "التأشير", en: "Notation", letter: "ت" },
-  { id: 120, ar: "التبعية", en: "Corollary", letter: "ت" },
-  { id: 121, ar: "التبليغ", en: "Notification", letter: "ت" },
-  { id: 122, ar: "التتابع", en: "Succession", letter: "ت" },
-  { id: 123, ar: "التتبع", en: "Trace", letter: "ت" },
-  { id: 124, ar: "التجزئة", en: "Parceling", letter: "ت" },
-  { id: 125, ar: "التحسين", en: "Improvement", letter: "ت" },
-  { id: 126, ar: "التحشية", en: "Insertion", letter: "ت" },
-  { id: 127, ar: "تحضير الدعوى", en: "Case preparation", letter: "ت" },
-  { id: 128, ar: "التحفظ", en: "Under custody", letter: "ت" },
-  { id: 129, ar: "التحقيق", en: "Investigation", letter: "ت" },
-  { id: 130, ar: "التحقيق التكميلي", en: "Further investigation", letter: "ت" },
-  { id: 131, ar: "التحقيق الجزائي", en: "Criminal investigation", letter: "ت" },
-  { id: 132, ar: "تخصيص القاضي", en: "Appointing judge", letter: "ت" },
-  { id: 133, ar: "التدبير التحفظي", en: "Precautionary measure", letter: "ت" },
-  { id: 134, ar: "التدبير الوقتي", en: "Provisional measure", letter: "ت" },
-  { id: 135, ar: "التدريب", en: "Training", letter: "ت" },
-  { id: 136, ar: "التدقيق", en: "Revision", letter: "ت" },
-  { id: 137, ar: "التدليس", en: "Deceit", letter: "ت" },
-  { id: 138, ar: "الترافع", en: "Pleading", letter: "ت" },
-  { id: 139, ar: "الترخيص", en: "License", letter: "ت" },
-  { id: 140, ar: "الترقية", en: "Promotion", letter: "ت" },
-  { id: 141, ar: "ترك الخصومة", en: "Abandonment of the litigation", letter: "ت" },
-  { id: 142, ar: "التزكية", en: "Attestation", letter: "ت" },
-  { id: 143, ar: "التزوير", en: "Forgery", letter: "ت" },
-  { id: 144, ar: "التسجيل العقاري والتوثيق", en: "Real estate registration and documentation", letter: "ت" },
-  { id: 145, ar: "تصحيح الحكم", en: "Correction of judgment", letter: "ت" },
-  { id: 146, ar: "التصرف", en: "Action", letter: "ت" },
-  { id: 147, ar: "التصنيف", en: "Classify", letter: "ت" },
-  { id: 148, ar: "التظلم", en: "Appeal", letter: "ت" },
-  { id: 149, ar: "التعامل التجاري", en: "Commercial transaction", letter: "ت" },
-  { id: 150, ar: "التعامل العقاري", en: "Real estate transaction", letter: "ت" },
-  { id: 152, ar: "التعذيب", en: "Torture", letter: "ت" },
-  { id: 153, ar: "تعطيل التنفيذ", en: "Hinder execution", letter: "ت" },
-  { id: 154, ar: "التعمير", en: "Construction", letter: "ت" },
-  { id: 155, ar: "التعويض", en: "Compensation", letter: "ت" },
-  { id: 156, ar: "التفتيش", en: "Inspection", letter: "ت" },
-  { id: 157, ar: "التفتيش القضائي", en: "Judicial inspection", letter: "ت" },
-  { id: 158, ar: "التفريط", en: "Negligence", letter: "ت" },
-  { id: 159, ar: "تفسير الحكم", en: "Interpretation of judgment", letter: "ت" },
-  { id: 160, ar: "التفويض", en: "Delegate", letter: "ت" },
-  { id: 161, ar: "التقرير", en: "Report", letter: "ت" },
-  { id: 162, ar: "التكلفة اإلجمالية", en: "Total cost", letter: "ت" },
-  { id: 163, ar: "تكييف الواقعة", en: "Characterizing the incident", letter: "ت" },
-  { id: 164, ar: "تلف الصك", en: "Damaged deed", letter: "ت" },
-  { id: 165, ar: "التماس إعادة النظر", en: "Petition for reconsideration", letter: "ت" },
-  { id: 166, ar: "التملك", en: "Ownership", letter: "ت" },
-  { id: 167, ar: "تنازع االختصاص", en: "Conflict of jurisdiction", letter: "ت" },
-  { id: 168, ar: "التنازل", en: "Waiver", letter: "ت" },
-  { id: 169, ar: "التنحي", en: "Recuse", letter: "ت" },
-  { id: 170, ar: "تنحي القاضي", en: "Recusal of judge", letter: "ت" },
-  { id: 171, ar: "تنفيذ األحكام األجنبية", en: "Execution of foreign judgments", letter: "ت" },
-  { id: 172, ar: "التنفيذ الجبري", en: "Compulsory enforcement", letter: "ت" },
-  { id: 173, ar: "تنفيذ الحكم", en: "Execution of judgment", letter: "ت" },
-  { id: 174, ar: "التنفيذ المباشر", en: "Direct execution", letter: "ت" },
-  { id: 175, ar: "التنفيذ المعجل", en: "Expeditious execution", letter: "ت" },
-  { id: 176, ar: "التواطؤ", en: "Collusion", letter: "ت" },
-  { id: 177, ar: "التوبة", en: "Repentance", letter: "ت" },
-  { id: 178, ar: "التوثيق", en: "Notarize", letter: "ت" },
-  { id: 179, ar: "توثيق الشهادة", en: "Notarizing testimony", letter: "ت" },
-  { id: 180, ar: "توثيق العقود", en: "Authentication of contracts", letter: "ت" },
-  { id: 181, ar: "توجيه اليمين", en: "Directing an oath", letter: "ت" },
-  { id: 182, ar: "التوقيع", en: "Signature", letter: "ت" },
-  { id: 183, ar: "التوقيف", en: "Detention", letter: "ت" },
-  { id: 184, ar: "الثمن", en: "Price", letter: "ث" },
-  { id: 185, ar: "الجريمة المتلبس بها", en: "Flagrante delicto", letter: "ج" },
-  { id: 186, ar: "الجريمة المخلة بالشرف", en: "Crime that impugns integrity", letter: "ج" },
-  { id: 187, ar: "الجزاء التأديبي", en: "Disciplinary measure", letter: "ج" },
-  { id: 188, ar: "الجلسة", en: "Hearing", letter: "ج" },
-  { id: 189, ar: "الجلسة العلنية", en: "Open hearing", letter: "ج" },
-  { id: 190, ar: "جمعية النفع العام", en: "Public benefit association", letter: "ج" },
-  { id: 191, ar: "الجهة اإلدارية", en: "Administrative agency", letter: "ج" },
-  { id: 192, ar: "الجهة الحكومية", en: "Government agency", letter: "ج" },
-  { id: 193, ar: "الجهة الخيرية", en: "Charity", letter: "ج" },
-  { id: 194, ar: "الحارس القضائي", en: "Judicial receiver", letter: "ح" },
-  { id: 195, ar: "الحبس", en: "Imprisonment", letter: "ح" },
-  { id: 196, ar: "الحجر على المفلسين", en: "Interdiction on bankrupt persons", letter: "ح" },
-  { id: 197, ar: "الحجز التحفظي", en: "Provisional seizure", letter: "ح" },
-  { id: 198, ar: "الحجز التنفيذي", en: "Attachment", letter: "ح" },
-  { id: 199, ar: "الحد األقصى", en: "Maximum limit", letter: "ح" },
-  { id: 200, ar: "الحدث", en: "Juvenile", letter: "ح" },
-  { id: 201, ar: "الحراسة القضائية", en: "Receivership", letter: "ح" },
-  { id: 203, ar: "الحصة المشاعة", en: "Commonly owned share", letter: "ح" },
-  { id: 204, ar: "حصر الورثة", en: "Determination of heirs", letter: "ح" },
-  { id: 205, ar: "الحضانة", en: "Child custody", letter: "ح" },
-  { id: 206, ar: "حق االرتفاق", en: "Right to easement", letter: "ح" },
-  { id: 207, ar: "حق االنتفاع", en: "Right to benefit", letter: "ح" },
-  { id: 208, ar: "الحق الثابت باإلرث", en: "Right derived from inheritance", letter: "ح" },
-  { id: 209, ar: "الحق الخاص", en: "Private right", letter: "ح" },
-  { id: 210, ar: "الحق العام", en: "Public right", letter: "ح" },
-  { id: 211, ar: "الحق العقاري", en: "Real estate right", letter: "ح" },
-  { id: 212, ar: "الحق العيني", en: "Right in rem", letter: "ح" },
-  { id: 213, ar: "الحق العيني األصلي", en: "Original right in Rem", letter: "ح" },
-  { id: 214, ar: "الحق العيني التبعي", en: "Subordinate right in rem", letter: "ح" },
-  { id: 215, ar: "حق المتهم", en: "Right of the accused", letter: "ح" },
-  { id: 216, ar: "الحكم", en: "Judgment", letter: "ح" },
-  { id: 217, ar: "الحكم الجزائي", en: "Criminal judgment", letter: "ح" },
-  { id: 218, ar: "الحكم الغيابي", en: "Judgement in absentia", letter: "ح" },
-  { id: 219, ar: "الحكم القضائي", en: "Judgment", letter: "ح" },
-  { id: 220, ar: "حكم المحكم", en: "Arbitral award", letter: "ح" },
-  { id: 221, ar: "الحكم المعترض عليه", en: "Challenged judgment", letter: "ح" },
-  { id: 222, ar: "َّ الحكم", en: "", letter: "أ" },
-  { id: 223, ar: "الحكم النهائي", en: "Final judgment", letter: "ح" },
-  { id: 224, ar: "الحكم الوقتي", en: "Provisional ruling", letter: "ح" },
-  { id: 225, ar: "الحكم بعدم اإلدانة", en: "Acquittal judgment", letter: "ح" },
-  { id: 226, ar: "الحكم غير القابل للتمييز", en: "Non-appealable ruling", letter: "ح" },
-  { id: 227, ar: "الحكم غير القابل للطعن", en: "Judgment shall not be subject to appeal", letter: "ح" },
-  { id: 228, ar: "الحكم المؤيد", en: "Affirmed judgment", letter: "ح" },
-  { id: 229, ar: "الحوالة", en: "Remittance", letter: "ح" },
-  { id: 230, ar: "حوالة الحق", en: "Assignment of right", letter: "ح" },
-  { id: 231, ar: "خاتم التنفيذ", en: "Seal of enforcement", letter: "خ" },
-  { id: 232, ar: "الخادم", en: "Servant", letter: "خ" },
-  { id: 233, ar: "خارطة المنطقة العقارية", en: "Map of real estate area", letter: "خ" },
-  { id: 234, ar: "خارطة الوحدة العقارية", en: "Map of real estate unit", letter: "خ" },
-  { id: 235, ar: "الخازن القضائي", en: "Judicial custodian", letter: "خ" },
-  { id: 236, ar: "الخبير", en: "Expert", letter: "خ" },
-  { id: 237, ar: "الختم", en: "Seal", letter: "خ" },
-  { id: 238, ar: "الختم الرسمي", en: "Official seal", letter: "خ" },
-  { id: 239, ar: "خارطة األساس الطبوغرافية", en: "Topographic base map", letter: "خ" },
-  { id: 240, ar: "الخصم", en: "Litigant", letter: "خ" },
-  { id: 241, ar: "الخصم المظنونة وراثته", en: "Potential heir of a litigant", letter: "خ" },
-  { id: 242, ar: "الخط", en: "Handwriting", letter: "خ" },
-  { id: 243, ar: "الخطأ المادي", en: "Material error", letter: "خ" },
-  { id: 244, ar: "الخلع", en: "Khul divorce at the insistence of the wife)", letter: "خ" },
-  { id: 245, ar: "الخلف", en: "Successor", letter: "خ" },
-  { id: 246, ar: "الدائرة االبتدائية", en: "Circuit of first instance", letter: "د" },
-  { id: 247, ar: "الدائرة االستئنافية", en: "Appellate circuit", letter: "د" },
-  { id: 248, ar: "دائرة التأديب", en: "Disciplinary panel", letter: "د" },
-  { id: 249, ar: "الدائرة التجارية", en: "Commercial circuit", letter: "د" },
-  { id: 250, ar: "دائرة التنفيذ", en: "Enforcement circuit", letter: "د" },
-  { id: 251, ar: "الدائرة الحقوقية", en: "Jural circuit", letter: "د" },
-  { id: 252, ar: "دائرة القضايا التعزيرية", en: "Circuit for ta zir (discretionary punishment) cases", letter: "د" },
-  { id: 253, ar: "دائرة المحكمة", en: "Court circuit", letter: "د" },
-  { id: 254, ar: "دائرة المحكمة الجزائية", en: "Penal court circuit", letter: "د" },
-  { id: 255, ar: "دائرة المحكمة العامة", en: "General court circuit", letter: "د" },
-  { id: 256, ar: "دائرة قضايا األحداث", en: "Circuit for juvenile cases", letter: "د" },
-  { id: 257, ar: "دائرة قضايا القصاص والحدود", en: "", letter: "د" },
-  { id: 258, ar: "دائرة محكمة االستئناف", en: "Court of appeals circuit", letter: "د" },
-  { id: 259, ar: "الدائن", en: "Creditor", letter: "د" },
-  { id: 260, ar: "درجات السلك القضائي", en: "Ranks of the judiciary", letter: "د" },
-  { id: 261, ar: "دعوى استرداد الحيازة", en: "Case of recovery of possession", letter: "د" },
-  { id: 262, ar: "الدعوى اإلدارية", en: "Administrative case", letter: "د" },
-  { id: 263, ar: "الدعوى التأديبية", en: "Disciplinary action", letter: "د" },
-  { id: 264, ar: "دعوى التعويض", en: "Claim for compensation", letter: "د" },
-  { id: 265, ar: "الدعوى الجزائية العامة", en: "Public criminal action", letter: "د" },
-  { id: 266, ar: "الدعوى الجماعية", en: "Class action", letter: "د" },
-  { id: 267, ar: "دعوى الحسبة", en: "Public interest lawsuit", letter: "د" },
-  { id: 268, ar: "دعوى الحق الخاص", en: "Private right action", letter: "د" },
-  { id: 269, ar: "دعوى الحيازة", en: "Possessory action", letter: "د" },
-  { id: 270, ar: "الدعوى الصورية", en: "Frivolous lawsuit", letter: "د" },
-  { id: 271, ar: "دعوى الضرر", en: "Lawsuit relating to harm inflicted", letter: "د" },
-  { id: 272, ar: "الدعوى العينية", en: "Case in rem", letter: "د" },
-  { id: 274, ar: "الدعوى الكيدية", en: "Malicious lawsuit", letter: "د" },
-  { id: 275, ar: "الدعوى المستعجلة", en: "Summary case", letter: "د" },
-  { id: 276, ar: "دعوى المعاينة إلثبات الحالة", en: "Case of inspection to establish a condition", letter: "د" },
-  { id: 277, ar: "الدعوى اليسيرة", en: "Small claim", letter: "د" },
-  { id: 278, ar: "دعوى طلب الحراسة", en: "Receivership suit", letter: "د" },
-  { id: 279, ar: "دعوى أقيام المنافع", en: "Lawsuit relating to values of utilities", letter: "د" },
-  { id: 280, ar: "دعوى منع التعرض للحيازة", en: "Case of banning interference with possession", letter: "د" },
-  { id: 281, ar: "دعوى المنع من السفر", en: "Case of an injunction banning travel", letter: "د" },
-  { id: 282, ar: "دعوى وقف األعمال الجديدة", en: "Case of suspension of new actions", letter: "د" },
-  { id: 283, ar: "دفتر الحساب", en: "Orderly book", letter: "د" },
-  { id: 284, ar: "الدفع", en: "Defense", letter: "د" },
-  { id: 285, ar: "الدفع الجوهري", en: "Primary defense", letter: "د" },
-  { id: 286, ar: "الدفع بشرط التحكيم", en: "Invocation of arbitration clause", letter: "د" },
-  { id: 287, ar: "الدليل", en: "Evidence", letter: "د" },
-  { id: 288, ar: "الدليل اإللكتروني", en: "Electronic evidence", letter: "د" },
-  { id: 289, ar: "الدمج", en: "Merger", letter: "د" },
-  { id: 291, ar: "الدين", en: "Debt", letter: "د" },
-  { id: 292, ar: "الدين االحتمالي", en: "Probable debt", letter: "د" },
-  { id: 293, ar: "الدين المستقبلي", en: "Future debt", letter: "د" },
-  { id: 294, ar: "الدين المضمون", en: "Secured debt", letter: "د" },
-  { id: 295, ar: "الدين المعلق على شرط", en: "Conditional debt", letter: "د" },
-  { id: 296, ar: "ديوان المظالم", en: "Board of grievances", letter: "د" },
-  { id: 297, ar: "ذو القربى", en: "Next-of-kin", letter: "ذ" },
-  { id: 298, ar: "ذو المصلحة", en: "Concerned party", letter: "ذ" },
-  { id: 299, ar: "الراتب", en: "Salary", letter: "ر" },
-  { id: 300, ar: "الراهن", en: "Mortgagor", letter: "ر" },
-  { id: 301, ar: "الربح", en: "Profit", letter: "ر" },
-  { id: 302, ar: "الرجعة", en: "Revocation of divorce", letter: "ر" },
-  { id: 303, ar: "رجل السلطة العامة", en: "Law enforcement officer", letter: "ر" },
-  { id: 304, ar: "رجل الضبط الجنائي", en: "Criminal investigation officer", letter: "ر" },
-  { id: 305, ar: "رخصة البناء والهدم", en: "Construction and demolition permit", letter: "ر" },
-  { id: 306, ar: "رد القاضي", en: "Dismissal of the judge", letter: "ر" },
-  { id: 307, ar: "رد اليمين", en: "Reject an oath", letter: "ر" },
-  { id: 308, ar: "رفض التظلم", en: "Grievance rejection", letter: "ر" },
-  { id: 309, ar: "الرهن", en: "Mortgage", letter: "ر" },
-  { id: 310, ar: "الرهن الشائع", en: "Common mortgage", letter: "ر" },
-  { id: 311, ar: "الرهن العقاري المسجل", en: "Registered real estate mortgage", letter: "ر" },
-  { id: 312, ar: "الرئيس", en: "President", letter: "ر" },
-  { id: 313, ar: "رئيس المجلس األعلى للقضاء", en: "Chairman of the supreme judicial council", letter: "ر" },
-  { id: 314, ar: "رئيس المحكمة العليا", en: "President of the supreme court", letter: "ر" },
-  { id: 315, ar: "رئيس محكمة االستئناف", en: "President of the court of appeals", letter: "ر" },
-  { id: 316, ar: "الزيارة", en: "Visitation", letter: "ز" },
-  { id: 317, ar: "السب", en: "Offensive language", letter: "س" },
-  { id: 318, ar: "سبب الحكم", en: "Ground of the judgment", letter: "س" },
-  { id: 319, ar: "السجل التجاري", en: "Commercial register", letter: "س" },
-  { id: 320, ar: "السجل العقاري", en: "Real estate register", letter: "س" },
-  { id: 321, ar: "السجن", en: "Imprisonment", letter: "س" },
-  { id: 322, ar: "السجين", en: "Prisoner", letter: "س" },
-  { id: 323, ar: "سداد الدين", en: "Pay off the debt", letter: "س" },
-  { id: 324, ar: "السفينة التجارية", en: "Commercial vessel", letter: "س" },
-  { id: 325, ar: "السفيه", en: "Spendthrift", letter: "س" },
-  { id: 326, ar: "سقوط الحق", en: "Forfeit the right", letter: "س" },
-  { id: 327, ar: "السكن", en: "Accommodation", letter: "س" },
-  { id: 328, ar: "السالح", en: "Weapon", letter: "س" },
-  { id: 329, ar: "السلطة اإلشرافية", en: "Supervisory authority", letter: "س" },
-  { id: 330, ar: "سلطة التحقيق", en: "Investigation authority", letter: "س" },
-  { id: 331, ar: "السلف", en: "Predecessor", letter: "س" },
-  { id: 332, ar: "السلفة", en: "Advance payment", letter: "س" },
-  { id: 333, ar: "سماع الشهادة", en: "Hearing testimony", letter: "س" },
-  { id: 334, ar: "السند التنفيذي", en: "Enforcement document", letter: "س" },
-  { id: 335, ar: "سند التوكيل", en: "Deed of power of attorney", letter: "س" },
-  { id: 336, ar: "سند الدين", en: "Deed of debt", letter: "س" },
-  { id: 337, ar: "سيئ النية", en: "Bad faith", letter: "س" },
-  { id: 338, ar: "الشاهد", en: "Witness", letter: "ش" },
-  { id: 340, ar: "الشخص ذو الصفة االعتبارية", en: "Corporate personality", letter: "ش" },
-  { id: 341, ar: "الشخص ذو الصفة الطبيعية", en: "Natural personality", letter: "ش" },
-  { id: 342, ar: "الشخص المعنوي الخاص", en: "Private corporate person", letter: "ش" },
-  { id: 343, ar: "الشرطة", en: "Police", letter: "ش" },
-  { id: 344, ar: "الشركة المهنية", en: "Professional company", letter: "ش" },
-  { id: 345, ar: "شروط مزاولة مهنة المحاماة", en: "Practicing law requirements", letter: "ش" },
-  { id: 346, ar: "الشريك في الجريمة", en: "Accomplice", letter: "ش" },
-  { id: 347, ar: "شطب الدعوى", en: "Dismiss the case", letter: "ش" },
-  { id: 348, ar: "الشكوى", en: "Complaint", letter: "ش" },
-  { id: 349, ar: "الشهادة", en: "Attesting", letter: "ش" },
-  { id: 350, ar: "شهادة الزور", en: "Perjury", letter: "ش" },
-  { id: 351, ar: "شهادة الشاهد", en: "Testimony of witness", letter: "ش" },
-  { id: 352, ar: "الشهادة الطبية", en: "Medical report", letter: "ش" },
-  { id: 353, ar: "الشيك", en: "Check", letter: "ش" },
-  { id: 354, ar: "صاحب الحق التبعي", en: "Owner of the subordinate right", letter: "ص" },
-  { id: 355, ar: "صحيفة االعتراض", en: "Challenge petition", letter: "ص" },
-  { id: 356, ar: "صحيفة الدعوى", en: "Statement of claim", letter: "ص" },
-  { id: 357, ar: "الصحيفة العامة", en: "Public cadaster", letter: "ص" },
-  { id: 358, ar: "صحيفة الوحدة العقارية", en: "Real estate unit cadaster", letter: "ص" },
-  { id: 359, ar: "صرف النظر عن الدعوى", en: "Dismiss the case", letter: "ص" },
-  { id: 360, ar: "صفة غير مشروعة", en: "Unlawfully", letter: "ص" },
-  { id: 361, ar: "صك الحكم", en: "Judgment decree", letter: "ص" },
-  { id: 362, ar: "صك الملكية", en: "Title deed", letter: "ص" },
-  { id: 363, ar: "صك ملكية العقار", en: "Property title deed", letter: "ص" },
-  { id: 364, ar: "الصلح", en: "Settlement", letter: "ص" },
-  { id: 365, ar: "صورة التبليغ", en: "Copy of the notice", letter: "ص" },
-  { id: 366, ar: "الصيغة التنفيذية", en: "Enforcement statement", letter: "ص" },
-  { id: 367, ar: "الضرر المحدق", en: "Imminent damage", letter: "ض" },
-  { id: 368, ar: "ضمان التقاضي", en: "Due process", letter: "ض" },
-  { id: 369, ar: "طالب القيد", en: "Applicant", letter: "ط" },
-  { id: 370, ar: "الطرف", en: "Party", letter: "ط" },
-  { id: 371, ar: "طرف الدعوى", en: "Litigant", letter: "ط" },
-  { id: 372, ar: "الطعن", en: "Contestation", letter: "ط" },
-  { id: 373, ar: "الطالق", en: "Divorce", letter: "ط" },
-  { id: 374, ar: "الطلب", en: "Claim", letter: "ط" },
-  { id: 375, ar: "الطلب االحتياطي", en: "Provisional claim", letter: "ط" },
-  { id: 376, ar: "الطلب األصلي", en: "Original petition", letter: "ط" },
-  { id: 377, ar: "الطلب الختامي", en: "Closing claim", letter: "ط" },
-  { id: 378, ar: "طلب اإلدخال", en: "Petition for joinder", letter: "ط" },
-  { id: 379, ar: "الطلب العارض", en: "Incidental petition", letter: "ط" },
-  { id: 380, ar: "طلب القسمة", en: "Demand division", letter: "ط" },
-  { id: 381, ar: "الطلب المستعجل", en: "Summary petition", letter: "ط" },
-  { id: 382, ar: "الطلب الموضوعي", en: "Motion related to subject matter", letter: "ط" },
-  { id: 383, ar: "الظرف", en: "Circumstance", letter: "ظ" },
-  { id: 384, ar: "الظرف المشدد أو المخفف", en: "Aggravating or extenuating circumstance", letter: "ظ" },
-  { id: 385, ar: "العاقل", en: "Legally competent", letter: "ع" },
-  { id: 386, ar: "العامل", en: "Employee", letter: "ع" },
-  { id: 387, ar: "عبء اإلثبات", en: "Burden of proof", letter: "ع" },
-  { id: 388, ar: "العبارة الجارحة", en: "Profanity", letter: "ع" },
-  { id: 389, ar: "العداوة", en: "Enmity", letter: "ع" },
-  { id: 390, ar: "عدد ضبط الدعوى", en: "Number of the case record", letter: "ع" },
-  { id: 391, ar: "عدم استيفاء المطلوب", en: "Failure to fulfill requirement", letter: "ع" },
-  { id: 392, ar: "عدم االختصاص النوعي", en: "Lack of subject-matter jurisdiction", letter: "ع" },
-  { id: 393, ar: "العدول عن", en: "Depart from", letter: "ع" },
-  { id: 394, ar: "العذر المقبول", en: "Acceptable excuse", letter: "ع" },
-  { id: 395, ar: "العرف التجاري", en: "Commercial custom", letter: "ع" },
-  { id: 396, ar: "العريضة", en: "Petition", letter: "ع" },
-  { id: 397, ar: "العزل", en: "Removal", letter: "ع" },
-  { id: 398, ar: "عزل المحامي", en: "Dismissal of lawyer", letter: "ع" },
-  { id: 399, ar: "عزل الوكيل", en: "Dismissal of an agent", letter: "ع" },
-  { id: 400, ar: "العضل", en: "Deprivation of marriage", letter: "ع" },
-  { id: 401, ar: "العضو", en: "Member", letter: "ع" },
-  { id: 402, ar: "العطلة الرسمية", en: "Official holiday", letter: "ع" },
-  { id: 403, ar: "العقار", en: "Real estate", letter: "ع" },
-  { id: 404, ar: "عقار التركة", en: "Inherited real estate", letter: "ع" },
-  { id: 405, ar: "العقار المرهون", en: "Mortgaged property", letter: "ع" },
-  { id: 406, ar: "العقد", en: "Contract", letter: "ع" },
-  { id: 407, ar: "العقد التجاري", en: "Commercial contract", letter: "ع" },
-  { id: 408, ar: "عقد العمل", en: "Work contract", letter: "ع" },
-  { id: 409, ar: "العقد الموثق", en: "Attested contract", letter: "ع" },
-  { id: 410, ar: "العقوبة", en: "Penalty", letter: "ع" },
-  { id: 411, ar: "العمل التجاري األصلي", en: "Main business activity", letter: "ع" },
-  { id: 412, ar: "العيب", en: "Defect", letter: "ع" },
-  { id: 413, ar: "العيب في السبب", en: "Defect in cause", letter: "ع" },
-  { id: 414, ar: "العيب في الشكل", en: "Defect in form", letter: "ع" },
-  { id: 415, ar: "العين المؤجرة", en: "Leased asset", letter: "ع" },
-  { id: 416, ar: "الغرامة", en: "Fine", letter: "غ" },
-  { id: 417, ar: "الغرس", en: "Plant", letter: "غ" },
-  { id: 418, ar: "الغريم", en: "Creditor", letter: "غ" },
-  { id: 419, ar: "الغش", en: "Fraud", letter: "غ" },
-  { id: 420, ar: "غلة العقار", en: "Proceeds of property", letter: "غ" },
-  { id: 421, ar: "الغموض", en: "Vague", letter: "غ" },
-  { id: 422, ar: "الفاعل", en: "Perpetrator", letter: "ف" },
-  { id: 423, ar: "فاقد األهلية", en: "Legally incompetent person", letter: "ف" },
-  { id: 424, ar: "فسخ النكاح", en: "Dissolution of marriage", letter: "ف" },
-  { id: 425, ar: "الفصل من العمل", en: "Termination of employment", letter: "ف" },
-  { id: 426, ar: "الفني", en: "Specialist", letter: "ف" },
-  { id: 427, ar: "الفهرس الشخصي", en: "Personal index", letter: "ف" },
-  { id: 428, ar: "القاصر", en: "Minor", letter: "ق" },
-  { id: 429, ar: "القاضي", en: "Judge", letter: "ق" },
-  { id: 430, ar: "قاضي االستئناف", en: "Appeal judge", letter: "ق" },
-  { id: 431, ar: "قاضي التنفيذ", en: "Enforcement judge", letter: "ق" },
-  { id: 432, ar: "القاعدة", en: "Rule", letter: "ق" },
-  { id: 433, ar: "قاعدة اإلفالس", en: "Bankruptcy rule", letter: "ق" },
-  { id: 434, ar: "قائمة الدعاوى", en: "List of cases", letter: "ق" },
-  { id: 435, ar: "القبض", en: "Arrest", letter: "ق" },
-  { id: 436, ar: "قبول اليمين", en: "Accept the oath", letter: "ق" },
-  { id: 437, ar: "القتل", en: "Death", letter: "ق" },
-  { id: 438, ar: "القذف", en: "Defamation", letter: "ق" },
-  { id: 439, ar: "القرار", en: "Decision", letter: "ق" },
-  { id: 440, ar: "القرار التأديبي", en: "Disciplinary decision", letter: "ق" },
-  { id: 441, ar: "قرار التكليف", en: "Assignment decision", letter: "ق" },
-  { id: 442, ar: "القرار المسبب", en: "Reasoned decision", letter: "ق" },
-  { id: 443, ar: "القرار النهائي", en: "Final decision", letter: "ق" },
-  { id: 444, ar: "القريب حتى الدرجة الرابعة", en: "Relatives up to the fourth degree", letter: "ق" },
-  { id: 445, ar: "القرينة", en: "Presumption", letter: "ق" },
-  { id: 446, ar: "ّ القسط", en: "", letter: "أ" },
-  { id: 447, ar: "قسمة التركة", en: "Distribution of inheritance", letter: "ق" },
-  { id: 448, ar: "القسمة العقارية", en: "Real estate division", letter: "ق" },
-  { id: 449, ar: "قسمة المال المشترك", en: "Division of common property", letter: "ق" },
-  { id: 450, ar: "القصاص", en: "Qisas (lex talionis retribution)", letter: "ق" },
-  { id: 451, ar: "القضاء", en: "Judiciary", letter: "ق" },
-  { id: 452, ar: "القضاء المستعجل", en: "Summary proceeding", letter: "ق" },
-  { id: 453, ar: "القضية", en: "Case", letter: "ق" },
-  { id: 454, ar: "القضية اإلدارية", en: "Administrative suit", letter: "ق" },
-  { id: 455, ar: "قضية التزوير", en: "Case of forgery", letter: "ق" },
-  { id: 456, ar: "القضية الجنائية", en: "Criminal suit", letter: "ق" },
-  { id: 457, ar: "القطع", en: "Amputation", letter: "ق" },
-  { id: 458, ar: "القوامة", en: "Guardianship", letter: "ق" },
-  { id: 459, ar: "القيد األول", en: "First entry", letter: "ق" },
-  { id: 460, ar: "القيد التالي", en: "Subsequent entry", letter: "ق" },
-  { id: 461, ar: "قيد الدعوى", en: "Registry of a case", letter: "ق" },
-  { id: 462, ar: "كاتب السجل", en: "Recorder", letter: "ك" },
-  { id: 463, ar: "كاتب الضبط", en: "Clerk", letter: "ك" },
-  { id: 464, ar: "كاتب العدل", en: "Notary public", letter: "ك" },
-  { id: 465, ar: "كتابة العدل", en: "Notary public", letter: "ك" },
-  { id: 466, ar: "الكشط", en: "Alteration", letter: "ك" },
-  { id: 467, ar: "الكفالة", en: "Bail", letter: "ك" },
-  { id: 468, ar: "الكفالة المصرفية", en: "Bank guarantee", letter: "ك" },
-  { id: 469, ar: "الكفيل", en: "Guarantor", letter: "ك" },
-  { id: 470, ar: "الكفيل العيني", en: "Real guarantor", letter: "ك" },
-  { id: 471, ar: "الكفيل الغارم المليء", en: "Solvent guarantor", letter: "ك" },
-  { id: 472, ar: "الكمبيالة", en: "Bill of exchange", letter: "ك" },
-  { id: 473, ar: "الالئحة", en: "Regulation", letter: "أ" },
-  { id: 474, ar: "الالئحة التنفيذية", en: "Implementing regulation", letter: "أ" },
-  { id: 475, ar: "الئحة التفتيش القضائي", en: "Judicial inspection regulation", letter: "ئ" },
-  { id: 476, ar: "اللَ بس", en: "Confusing", letter: "ل" },
-  { id: 477, ar: "اللجنة", en: "Committee", letter: "ل" },
-  { id: 478, ar: "لجنة التأديب", en: "Disciplinary committee", letter: "ل" },
-  { id: 479, ar: "اللجنة شبه القضائية", en: "Quasi-judicial committee", letter: "ل" },
-  { id: 480, ar: "لجنة قيد وقبول المحامين", en: "Lawyers registration and admission committee", letter: "ل" },
-  { id: 481, ar: "اللغة الرسمية", en: "Official language", letter: "ل" },
-  { id: 482, ar: "مالك العقار", en: "Owner of property", letter: "م" },
-  { id: 483, ar: "مالك الوحدة العقارية", en: "Owner of real estate unit", letter: "م" },
-  { id: 484, ar: "مأمور التنفيذ", en: "Enforcement officer", letter: "م" },
-  { id: 485, ar: "مأمور بيت المال", en: "Administrator of the public treasury", letter: "م" },
-  { id: 486, ar: "المبدأ القضائي", en: "Precedent", letter: "م" },
-  { id: 487, ar: "المبنى", en: "Building", letter: "م" },
-  { id: 488, ar: "المترجم", en: "Interpreter", letter: "م" },
-  { id: 489, ar: "المتضرر", en: "Aggrieved person", letter: "م" },
-  { id: 490, ar: "المتهم", en: "Accused", letter: "م" },
-  { id: 491, ar: "المجلس", en: "Council", letter: "م" },
-  { id: 492, ar: "المجلس األعلى للقضاء", en: "Supreme judicial council", letter: "م" },
-  { id: 493, ar: "المجلس التأديبي", en: "Disciplinary board", letter: "م" },
-  { id: 494, ar: "مجلس القضاء اإلداري", en: "Administrative judicial council", letter: "م" },
-  { id: 495, ar: "مجلس الوزراء", en: "Council of ministers", letter: "م" },
-  { id: 496, ar: "المجني عليه", en: "Victim", letter: "م" },
-  { id: 497, ar: "المحاباة", en: "Favor", letter: "م" },
-  { id: 498, ar: "المحاكمة", en: "Trial", letter: "م" },
-  { id: 499, ar: "المحاكمة التأديبية", en: "Disciplinary trial", letter: "م" },
-  { id: 500, ar: "المحامي", en: "Attorney", letter: "م" },
-  { id: 501, ar: "المحامي الممارس", en: "Practicing lawyer", letter: "م" },
-  { id: 502, ar: "المحامي غير الممارس", en: "Non- practicing lawyer", letter: "م" },
-  { id: 503, ar: "المحجر", en: "Quarry", letter: "م" },
-  { id: 504, ar: "المحجور عليه", en: "Interdicted person", letter: "م" },
-  { id: 505, ar: "المحرر األجنبي", en: "Foreign document", letter: "م" },
-  { id: 506, ar: "المحرر اإللكتروني", en: "Electronic document", letter: "م" },
-  { id: 507, ar: "المحرر المكتوب", en: "Written document", letter: "م" },
-  { id: 508, ar: "المحرر الموثق", en: "Attested document", letter: "م" },
-  { id: 510, ar: "محضر التفتيش", en: "Search report", letter: "م" },
-  { id: 511, ar: "محضر الحجز", en: "Attachment minutes", letter: "م" },
-  { id: 512, ar: "محضر الدعوى", en: "Case record", letter: "م" },
-  { id: 513, ar: "محضر الصلح", en: "Settlement document", letter: "م" },
-  { id: 514, ar: "المحقق", en: "Investigator", letter: "م" },
-  { id: 515, ar: "المحكِّ م", en: "Arbitrator", letter: "م" },
-  { id: 516, ar: "المحكمة", en: "Court", letter: "م" },
-  { id: 517, ar: "المحكمة األجنبية", en: "Foreign court", letter: "م" },
-  { id: 518, ar: "محكمة األحوال الشخصية", en: "Family court", letter: "م" },
-  { id: 519, ar: "المحكمة اإلدارية", en: "Administrative court", letter: "م" },
-  { id: 520, ar: "المحكمة اإلدارية العليا", en: "High administrative court", letter: "م" },
-  { id: 521, ar: "محكمة االستئناف", en: "Court of appeal", letter: "م" },
-  { id: 522, ar: "محكمة االستئناف اإلدارية", en: "Administrative court of appeal", letter: "م" },
-  { id: 523, ar: "المحكمة التجارية", en: "Commercial court", letter: "م" },
-  { id: 524, ar: "محكمة التنفيذ", en: "Enforcement court", letter: "م" },
-  { id: 525, ar: "المحكمة الجزائية", en: "Criminal court", letter: "م" },
-  { id: 526, ar: "محكمة الدرجة األولى", en: "Court of first instance", letter: "م" },
-  { id: 527, ar: "المحكمة العامة", en: "General court", letter: "م" },
-  { id: 528, ar: "المحكمة العليا", en: "Supreme court", letter: "م" },
-  { id: 529, ar: "المحكمة العمالية", en: "Labor court", letter: "م" },
-  { id: 530, ar: "المحكمة المتخصصة", en: "Specialized court", letter: "م" },
-  { id: 531, ar: "المحكمة المختصة", en: "Competent court", letter: "م" },
-  { id: 532, ar: "محل الدعوى", en: "Subject of the case", letter: "م" },
-  { id: 533, ar: "محل الشك", en: "Questionable", letter: "م" },
-  { id: 534, ar: "المحو", en: "Deletion", letter: "م" },
-  { id: 535, ar: "محو التأشير", en: "Removal of the notation", letter: "م" },
-  { id: 536, ar: "المخالصة", en: "Settlement", letter: "م" },
-  { id: 537, ar: "المخالفة", en: "Violation", letter: "م" },
-  { id: 539, ar: "المداولة", en: "Deliberation", letter: "م" },
-  { id: 540, ar: "المدة والموعد", en: "Period and date", letter: "م" },
-  { id: 541, ar: "المدعى عليه", en: "Defendant", letter: "م" },
-  { id: 542, ar: "المدعي", en: "Plaintiff", letter: "م" },
-  { id: 543, ar: "المدعي العام", en: "Public prosecutor", letter: "م" },
-  { id: 544, ar: "مدير الشرطة", en: "Director of police station", letter: "م" },
-  { id: 545, ar: "المدين", en: "Debtor", letter: "م" },
-  { id: 546, ar: "مذكرة البيانات والملحوظات", en: "Data memorandum and remarks", letter: "م" },
-  { id: 547, ar: "المذكرة التكميلية", en: "Complementary memoranda", letter: "م" },
-  { id: 548, ar: "مذكرة الدفاع", en: "Statement of defense", letter: "م" },
-  { id: 549, ar: "مذكرة المعارضة", en: "Memorandum of appeal", letter: "م" },
-  { id: 550, ar: "المرتهن", en: "Mortgagee", letter: "م" },
-  { id: 551, ar: "المزاد العلني", en: "Public auction", letter: "م" },
-  { id: 552, ar: "مزاولة المهنة", en: "Practice the profession", letter: "م" },
-  { id: 553, ar: "المزية", en: "Privilege", letter: "م" },
-  { id: 554, ar: "المساح", en: "Surveyor", letter: "م" },
-  { id: 555, ar: "المسألة األولية", en: "Preliminary petition", letter: "م" },
-  { id: 557, ar: "المستثمر", en: "Investor", letter: "م" },
-  { id: 558, ar: "المستشار", en: "Consultant", letter: "م" },
-  { id: 559, ar: "المستقل", en: "Independent", letter: "م" },
-  { id: 560, ar: "المستند التكميلي", en: "Supplemental document", letter: "م" },
-  { id: 561, ar: "المسجون في القضايا الجزائية", en: "Criminal prisoner", letter: "م" },
-  { id: 562, ar: "المسودة", en: "Draft", letter: "م" },
-  { id: 563, ar: "المسوغ", en: "Justification", letter: "م" },
-  { id: 564, ar: "المسؤولية الشخصية", en: "Personal liability", letter: "م" },
-  { id: 565, ar: "المشروع", en: "Project", letter: "م" },
-  { id: 566, ar: "المشروع االقتصادي", en: "Economic project", letter: "م" },
-  { id: 567, ar: "المصادرة", en: "Confiscation", letter: "م" },
-  { id: 568, ar: "المصالحة", en: "Reconciliation", letter: "م" },
-  { id: 569, ar: "المصروف", en: "Expense", letter: "م" },
-  { id: 570, ar: "المصفي", en: "Liquidator", letter: "م" },
-  { id: 571, ar: "المصلحة العامة", en: "Public interest", letter: "م" },
-  { id: 572, ar: "المصلحة المشروعة", en: "Legitimate interest", letter: "م" },
-  { id: 573, ar: "المضاربة", en: "Trading", letter: "م" },
-  { id: 574, ar: "المعارضة على الحكم", en: "Challenge the judgment", letter: "م" },
-  { id: 575, ar: "المعاملة بالمثل", en: "Reciprocity", letter: "م" },
-  { id: 576, ar: "المعاملة بما يحفظ الكرامة", en: "Treated with dignity", letter: "م" },
-  { id: 577, ar: "المعاهدة", en: "Treaty", letter: "م" },
-  { id: 578, ar: "المعاوضة", en: "Compensation", letter: "م" },
-  { id: 579, ar: "معاون القضاء", en: "Judicial clerk", letter: "م" },
-  { id: 580, ar: "المعاينة", en: "Inspection", letter: "م" },
-  { id: 581, ar: "المعهد العالي للقضاء", en: "High judicial institute", letter: "م" },
-  { id: 582, ar: "المعوق", en: "Impediment", letter: "م" },
-  { id: 584, ar: "المقاصة القضائية", en: "Judicial offset", letter: "م" },
-  { id: 585, ar: "مقدم خدمة التنفيذ", en: "Enforcement service provider", letter: "م" },
-  { id: 586, ar: "المقر الرسمي", en: "Official headquarter", letter: "م" },
-  { id: 588, ar: "المكافأة", en: "Reward", letter: "م" },
-  { id: 589, ar: "مكان اإلقامة", en: "Place of residence", letter: "م" },
-  { id: 590, ar: "المالزم القضائي", en: "Trainee judge", letter: "م" },
-  { id: 592, ar: "الملحق", en: "Appurtenance", letter: "م" },
-  { id: 593, ar: "الملخص", en: "Summary", letter: "م" },
-  { id: 594, ar: "ملف القضية", en: "Case file", letter: "م" },
-  { id: 595, ar: "الملك العام أو الخاص", en: "Public or private property", letter: "م" },
-  { id: 596, ar: "الملكية الفكرية", en: "Intellectual property", letter: "م" },
-  { id: 597, ar: "ممارسة القضاء", en: "Experience as judge", letter: "م" },
-  { id: 598, ar: "المماطلة", en: "Procrastination", letter: "م" },
-  { id: 599, ar: "الممثل األجنبي", en: "Foreign representative", letter: "م" },
-  { id: 600, ar: "ممثل األجهزة الحكومية", en: "Representatives of government agencies", letter: "م" },
-  { id: 601, ar: "الممثل النظامي", en: "Legal representative", letter: "م" },
-  { id: 602, ar: "مملوك على الشيوع", en: "Jointly owned", letter: "م" },
-  { id: 603, ar: "المنازعة", en: "Dispute", letter: "م" },
-  { id: 604, ar: "المنازعة التجارية", en: "Commercial dispute", letter: "م" },
-  { id: 605, ar: "منازعة التنفيذ", en: "Enforcement dispute", letter: "م" },
-  { id: 606, ar: "المنازعة في الملكية", en: "Dispute over ownership", letter: "م" },
-  { id: 607, ar: "المنجم", en: "Mine", letter: "م" },
-  { id: 608, ar: "المنشأة العسكرية", en: "Military installation", letter: "م" },
-  { id: 609, ar: "المنطقة العقارية", en: "Real estate area", letter: "م" },
-  { id: 610, ar: "المنظمة الدولية", en: "International organization", letter: "م" },
-  { id: 611, ar: "المنع من السفر", en: "Travel ban", letter: "م" },
-  { id: 612, ar: "منفعة العقار", en: "Usufruct of the property", letter: "م" },
-  { id: 613, ar: "المنقول", en: "Movable property", letter: "م" },
-  { id: 614, ar: "المهنة", en: "Profession", letter: "م" },
-  { id: 615, ar: "المهندس", en: "Engineer", letter: "م" },
-  { id: 616, ar: "الموجود", en: "Existing", letter: "م" },
-  { id: 618, ar: "الموظف العام", en: "Public servant", letter: "م" },
-  { id: 619, ar: "الموعد الحتمي", en: "Time limitation", letter: "م" },
-  { id: 620, ar: "الموقوف", en: "Detainee", letter: "م" },
-  { id: 621, ar: "الموكل", en: "Client", letter: "م" },
-  { id: 622, ar: "الميزانية", en: "Budget", letter: "م" },
-  { id: 623, ar: "ناظر الوقف", en: "Administrator of endowment", letter: "ن" },
-  { id: 624, ar: "نائب الرئيس", en: "Vice president", letter: "ن" },
-  { id: 625, ar: "النزاع", en: "Contest", letter: "ن" },
-  { id: 626, ar: "النزع الجبري", en: "Foreclosure", letter: "ن" },
-  { id: 627, ar: "نزع الملكية للمنفعة العامة", en: "Property expropriated for public interest", letter: "ن" },
-  { id: 628, ar: "نسب الصغير", en: "Paternity of a child", letter: "ن" },
-  { id: 629, ar: "النسخة", en: "Copy", letter: "ن" },
-  { id: 630, ar: "النشاط االقتصادي", en: "Economic activity", letter: "ن" },
-  { id: 631, ar: "النشاط الحرفي", en: "Vocational activity", letter: "ن" },
-  { id: 632, ar: "النشاط المهني", en: "Professional activity", letter: "ن" },
-  { id: 633, ar: "النشر في الصحيفة", en: "Publication in the newspaper", letter: "ن" },
-  { id: 634, ar: "النشر في الجريدة الرسمية", en: "Publication in the official gazette", letter: "ن" },
-  { id: 635, ar: "النطاق المكاني", en: "Territorial jurisdiction", letter: "ن" },
-  { id: 636, ar: "النطق بالحكم", en: "Pronouncement of judgment", letter: "ن" },
-  { id: 637, ar: "النظام", en: "Law", letter: "ن" },
-  { id: 638, ar: "نظام اإلفالس", en: "Bankruptcy law", letter: "ن" },
-  { id: 639, ar: "النظام التجاري", en: "Commercial law", letter: "ن" },
-  { id: 640, ar: "نظام التحكيم", en: "Law of arbitration", letter: "ن" },
-  { id: 641, ar: "نظام التقاعد", en: "Retirement law", letter: "ن" },
-  { id: 642, ar: "نظام الخدمة المدنية", en: "Civil service law", letter: "ن" },
-  { id: 643, ar: "نظام الشركات", en: "Companies law", letter: "ن" },
-  { id: 644, ar: "النظام العام", en: "Public order", letter: "ن" },
-  { id: 645, ar: "نظام المرافعات الشرعية", en: "Law of civil procedure", letter: "ن" },
-  { id: 646, ar: "النظام المرعي", en: "Applicable law", letter: "ن" },
-  { id: 647, ar: "نظام المرور", en: "Traffic law", letter: "ن" },
-  { id: 648, ar: "نظام الملكية الفكرية", en: "Intellectual property law", letter: "ن" },
-  { id: 649, ar: "نظام ديوان المظالم", en: "Law of the board of grievances", letter: "ن" },
-  { id: 650, ar: "النفقة", en: "Alimony", letter: "ن" },
-  { id: 651, ar: "نقض الحكم", en: "Revoke the judgment", letter: "ن" },
-  { id: 652, ar: "النقل", en: "Transfer", letter: "ن" },
-  { id: 653, ar: "النكول", en: "Refusal", letter: "ن" },
-  { id: 654, ar: "نوع العقوبة", en: "Type of punishment", letter: "ن" },
-  { id: 655, ar: "الهالك", en: "Loss", letter: "ه" },
-  { id: 656, ar: "الهيئة اإلقليمية", en: "Regional agency", letter: "ه" },
-  { id: 657, ar: "هيئة السوق المالية", en: "Capital market authority", letter: "ه" },
-  { id: 658, ar: "الهيئة العامة", en: "General panel", letter: "ه" },
-  { id: 659, ar: "أموال القاصرين ومن في", en: "", letter: "أ" },
-  { id: 660, ar: "هيئة القضاء اإلداري", en: "Administrative judicial body", letter: "ه" },
-  { id: 661, ar: "الهيئة الدولية", en: "International agency", letter: "ه" },
-  { id: 662, ar: "الواجب", en: "Duty", letter: "و" },
-  { id: 663, ar: "الوارث", en: "Heir", letter: "و" },
-  { id: 664, ar: "الواقعة", en: "Fact", letter: "و" },
-  { id: 665, ar: "الواقعة الجائز قبولها", en: "Admissible fact", letter: "و" },
-  { id: 666, ar: "الواقعة المتعلقة بالدعوى", en: "Fact relevant to the case", letter: "و" },
-  { id: 667, ar: "الواقعة المنتجة في الدعوى", en: "Fact material to the case", letter: "و" },
-  { id: 668, ar: "وثيقة الرهن", en: "Mortgage document", letter: "و" },
-  { id: 669, ar: "وثيقة ملكية الحائز", en: "Title deed of the possessor", letter: "و" },
-  { id: 670, ar: "الوحدة العقارية", en: "Real estate unit", letter: "و" },
-  { id: 671, ar: "الورقة التجارية", en: "Negotiable instrument", letter: "و" },
-  { id: 672, ar: "الورقة الرسمية", en: "Official paper", letter: "و" },
-  { id: 673, ar: "الورقة العادية", en: "Ordinary paper", letter: "و" },
-  { id: 674, ar: "الورقة المالية", en: "Security", letter: "و" },
-  { id: 675, ar: "الوزارة", en: "Ministry", letter: "و" },
-  { id: 676, ar: "وزارة الداخلية", en: "Ministry of interior", letter: "و" },
-  { id: 677, ar: "وزارة العدل", en: "Ministry of justice", letter: "و" },
-  { id: 678, ar: "وزارة المالية", en: "Ministry of finance", letter: "و" },
-  { id: 679, ar: "الوزير", en: "Minister", letter: "و" },
-  { id: 680, ar: "وزير الشؤون البلدية والقروية", en: "Minister of municipal and rural affairs", letter: "و" },
-  { id: 681, ar: "وزير العدل", en: "Minister of justice", letter: "و" },
-  { id: 683, ar: "الوساطة", en: "Mediation", letter: "و" },
-  { id: 684, ar: "الوسائط اإللكترونية", en: "Electronic media", letter: "و" },
-  { id: 685, ar: "الوصي", en: "Trustee", letter: "و" },
-  { id: 686, ar: "الوصية", en: "Will", letter: "و" },
-  { id: 687, ar: "الوقف", en: "Endowment", letter: "و" },
-  { id: 688, ar: "وقف التنفيذ", en: "Stay execution", letter: "و" },
-  { id: 689, ar: "وقف الدعوى", en: "Suspension of the case", letter: "و" },
-  { id: 690, ar: "الوكيل", en: "Agent", letter: "و" },
-  { id: 691, ar: "وكيل البيع القضائي", en: "Judicial sale agent", letter: "و" },
-  { id: 692, ar: "والية القاضي", en: "Judge s jurisdiction", letter: "و" },
-  { id: 693, ar: "الوالية على المال", en: "Custody over property", letter: "و" },
-  { id: 694, ar: "الوالية على النفس", en: "Custody over a person", letter: "و" },
-  { id: 695, ar: "الولي", en: "Guardian", letter: "و" },
+  {
+    "id": 1,
+    "ar": "األتعاب",
+    "en": "Fees",
+    "letter": "أ"
+  },
+  {
+    "id": 2,
+    "ar": "االتفاقية",
+    "en": "Agreement",
+    "letter": "أ"
+  },
+  {
+    "id": 3,
+    "ar": "االتفاقية الدولية",
+    "en": "International convention",
+    "letter": "أ"
+  },
+  {
+    "id": 4,
+    "ar": "االتهام",
+    "en": "Accusation",
+    "letter": "أ"
+  },
+  {
+    "id": 5,
+    "ar": "اإلثبات",
+    "en": "Proof",
+    "letter": "أ"
+  },
+  {
+    "id": 6,
+    "ar": "إثبات الزواج",
+    "en": "Recording marriage",
+    "letter": "أ"
+  },
+  {
+    "id": 7,
+    "ar": "إثبات الوفاة",
+    "en": "Establishment of death",
+    "letter": "أ"
+  },
+  {
+    "id": 8,
+    "ar": "اإلثباتات اإلنهائية",
+    "en": "Ex parte cases",
+    "letter": "أ"
+  },
+  {
+    "id": 9,
+    "ar": "األثر الرجعي",
+    "en": "Retrospective",
+    "letter": "أ"
+  },
+  {
+    "id": 10,
+    "ar": "اإلجازة",
+    "en": "Authorization",
+    "letter": "أ"
+  },
+  {
+    "id": 11,
+    "ar": "اإلجراء",
+    "en": "Procedure",
+    "letter": "أ"
+  },
+  {
+    "id": 12,
+    "ar": "إجراء اإلثبات",
+    "en": "Evidentiary procedure",
+    "letter": "أ"
+  },
+  {
+    "id": 13,
+    "ar": "اإلجراء الباطل",
+    "en": "Invalid proceeding",
+    "letter": "أ"
+  },
+  {
+    "id": 14,
+    "ar": "اإلجراء التنفيذي",
+    "en": "Enforcement proceeding",
+    "letter": "أ"
+  },
+  {
+    "id": 15,
+    "ar": "األجرة",
+    "en": "Payment",
+    "letter": "أ"
+  },
+  {
+    "id": 16,
+    "ar": "أجرة الخادم",
+    "en": "Wages of servant",
+    "letter": "أ"
+  },
+  {
+    "id": 17,
+    "ar": "األجل",
+    "en": "Deadline",
+    "letter": "أ"
+  },
+  {
+    "id": 18,
+    "ar": "اإلجماع",
+    "en": "Unanimously",
+    "letter": "أ"
+  },
+  {
+    "id": 19,
+    "ar": "أحكام الشريعة اإلسالمية",
+    "en": "Provisions of sharia",
+    "letter": "أ"
+  },
+  {
+    "id": 20,
+    "ar": "األحوال الشخصية",
+    "en": "Family matters",
+    "letter": "أ"
+  },
+  {
+    "id": 21,
+    "ar": "اإلخبار",
+    "en": "Reporting",
+    "letter": "أ"
+  },
+  {
+    "id": 22,
+    "ar": "االختصاص القضائي الدولي",
+    "en": "International judicial jurisdiction",
+    "letter": "أ"
+  },
+  {
+    "id": 23,
+    "ar": "اختصاص المحكمة",
+    "en": "Court s jurisdiction",
+    "letter": "أ"
+  },
+  {
+    "id": 24,
+    "ar": "االختصاص المكاني",
+    "en": "Territorial jurisdiction",
+    "letter": "أ"
+  },
+  {
+    "id": 25,
+    "ar": "االختصاص النوعي",
+    "en": "Subject jurisdiction",
+    "letter": "أ"
+  },
+  {
+    "id": 26,
+    "ar": "األخرس",
+    "en": "Deaf",
+    "letter": "أ"
+  },
+  {
+    "id": 27,
+    "ar": "اإلخطار",
+    "en": "Notification",
+    "letter": "أ"
+  },
+  {
+    "id": 28,
+    "ar": "اإلخالء",
+    "en": "Eviction",
+    "letter": "أ"
+  },
+  {
+    "id": 29,
+    "ar": "إخالء السبيل",
+    "en": "Release",
+    "letter": "أ"
+  },
+  {
+    "id": 30,
+    "ar": "إخالء العقار",
+    "en": "Eviction from real property",
+    "letter": "أ"
+  },
+  {
+    "id": 31,
+    "ar": "إدارة األراضي والمساحة",
+    "en": "Department of land and survey",
+    "letter": "أ"
+  },
+  {
+    "id": 32,
+    "ar": "إدارة التسجيل العقاري",
+    "en": "Department of real estate registration",
+    "letter": "أ"
+  },
+  {
+    "id": 33,
+    "ar": "إدارة الجلسة وضبطها",
+    "en": "Management and order of the session",
+    "letter": "أ"
+  },
+  {
+    "id": 34,
+    "ar": "إدارة المحكمة",
+    "en": "Court administration",
+    "letter": "أ"
+  },
+  {
+    "id": 35,
+    "ar": "الإدارة المختصة بالتسجيل العقاري والتوثيق",
+    "en": "Department of real estate registration and authentication",
+    "letter": "أ"
+  },
+  {
+    "id": 36,
+    "ar": "اإلداري",
+    "en": "Administrator",
+    "letter": "أ"
+  },
+  {
+    "id": 37,
+    "ar": "اإلدانة",
+    "en": "Conviction",
+    "letter": "أ"
+  },
+  {
+    "id": 38,
+    "ar": "اإلذن",
+    "en": "Permission",
+    "letter": "أ"
+  },
+  {
+    "id": 39,
+    "ar": "اإلذن الكتابي",
+    "en": "Written permission",
+    "letter": "أ"
+  },
+  {
+    "id": 40,
+    "ar": "اإلرث",
+    "en": "Inheritance",
+    "letter": "أ"
+  },
+  {
+    "id": 41,
+    "ar": "األرض",
+    "en": "Land",
+    "letter": "أ"
+  },
+  {
+    "id": 42,
+    "ar": "إساءة استعمال السلطة",
+    "en": "Abuse of power",
+    "letter": "أ"
+  },
+  {
+    "id": 43,
+    "ar": "االستبدال",
+    "en": "Exchange",
+    "letter": "أ"
+  },
+  {
+    "id": 44,
+    "ar": "االستبعاد",
+    "en": "Exclude",
+    "letter": "أ"
+  },
+  {
+    "id": 45,
+    "ar": "االستثمار",
+    "en": "Investment",
+    "letter": "أ"
+  },
+  {
+    "id": 46,
+    "ar": "االستجواب",
+    "en": "Examine",
+    "letter": "أ"
+  },
+  {
+    "id": 47,
+    "ar": "استجواب الخصم",
+    "en": "Questioning the litigant",
+    "letter": "أ"
+  },
+  {
+    "id": 48,
+    "ar": "االستحكام",
+    "en": "Establishment of title",
+    "letter": "أ"
+  },
+  {
+    "id": 49,
+    "ar": "االستخالف",
+    "en": "Assign",
+    "letter": "أ"
+  },
+  {
+    "id": 50,
+    "ar": "استقالل القضاء",
+    "en": "Independence of the judiciary",
+    "letter": "أ"
+  },
+  {
+    "id": 51,
+    "ar": "االستمهال",
+    "en": "Dilatory",
+    "letter": "أ"
+  },
+  {
+    "id": 52,
+    "ar": "االستئناف",
+    "en": "Appeal",
+    "letter": "أ"
+  },
+  {
+    "id": 53,
+    "ar": "االستئناف األصلي",
+    "en": "Original appeal",
+    "letter": "أ"
+  },
+  {
+    "id": 54,
+    "ar": "االستئناف الفرعي",
+    "en": "Secondary appeal",
+    "letter": "أ"
+  },
+  {
+    "id": 55,
+    "ar": "االشتراك",
+    "en": "Participation",
+    "letter": "أ"
+  },
+  {
+    "id": 56,
+    "ar": "اإلشراف اإلداري",
+    "en": "Administrative supervision",
+    "letter": "أ"
+  },
+  {
+    "id": 57,
+    "ar": "اإلشراف المالي",
+    "en": "Financial supervision",
+    "letter": "أ"
+  },
+  {
+    "id": 58,
+    "ar": "اإلشعار",
+    "en": "Notice",
+    "letter": "أ"
+  },
+  {
+    "id": 59,
+    "ar": "إصابة العمل",
+    "en": "Work injury",
+    "letter": "أ"
+  },
+  {
+    "id": 60,
+    "ar": "إصدار الحكم",
+    "en": "Render judgment",
+    "letter": "أ"
+  },
+  {
+    "id": 61,
+    "ar": "األصل",
+    "en": "Asset",
+    "letter": "أ"
+  },
+  {
+    "id": 62,
+    "ar": "إعادة النظر",
+    "en": "Reconsideration",
+    "letter": "أ"
+  },
+  {
+    "id": 63,
+    "ar": "اإلعارة",
+    "en": "Secondment",
+    "letter": "أ"
+  },
+  {
+    "id": 64,
+    "ar": "االعتراض",
+    "en": "Objection",
+    "letter": "أ"
+  },
+  {
+    "id": 65,
+    "ar": "اعتزال الوكيل",
+    "en": "Resignation of an agent",
+    "letter": "أ"
+  },
+  {
+    "id": 66,
+    "ar": "االعتماد",
+    "en": "Appropriation",
+    "letter": "أ"
+  },
+  {
+    "id": 67,
+    "ar": "إعداد المذكرة",
+    "en": "Preparing submission",
+    "letter": "أ"
+  },
+  {
+    "id": 68,
+    "ar": "اإلعسار",
+    "en": "Insolvency",
+    "letter": "أ"
+  },
+  {
+    "id": 69,
+    "ar": "اإلعفاء",
+    "en": "Exemption",
+    "letter": "أ"
+  },
+  {
+    "id": 70,
+    "ar": "اإلعالن",
+    "en": "Announcement",
+    "letter": "أ"
+  },
+  {
+    "id": 71,
+    "ar": "أعمال السيادة",
+    "en": "Sovereign acts",
+    "letter": "أ"
+  },
+  {
+    "id": 72,
+    "ar": "أغلبية اآلراء",
+    "en": "Majority opinion",
+    "letter": "أ"
+  },
+  {
+    "id": 73,
+    "ar": "اإلفراج",
+    "en": "Release",
+    "letter": "أ"
+  },
+  {
+    "id": 74,
+    "ar": "اإلفصاح",
+    "en": "Declare",
+    "letter": "أ"
+  },
+  {
+    "id": 75,
+    "ar": "اإلفالس",
+    "en": "Bankruptcy",
+    "letter": "أ"
+  },
+  {
+    "id": 76,
+    "ar": "االقتراح",
+    "en": "Recommendation",
+    "letter": "أ"
+  },
+  {
+    "id": 77,
+    "ar": "االقتراض",
+    "en": "Borrowing",
+    "letter": "أ"
+  },
+  {
+    "id": 78,
+    "ar": "اإلقرار",
+    "en": "Admission",
+    "letter": "أ"
+  },
+  {
+    "id": 79,
+    "ar": "اإلقرار القضائي",
+    "en": "Judicial admission",
+    "letter": "أ"
+  },
+  {
+    "id": 80,
+    "ar": "إقفال المرافعة",
+    "en": "Closing of argument",
+    "letter": "أ"
+  },
+  {
+    "id": 81,
+    "ar": "األقلية",
+    "en": "Minority",
+    "letter": "أ"
+  },
+  {
+    "id": 82,
+    "ar": "اكتساب الحكم القطعية",
+    "en": "Ruling becomes final",
+    "letter": "أ"
+  },
+  {
+    "id": 83,
+    "ar": "االلتزام",
+    "en": "Obligation",
+    "letter": "أ"
+  },
+  {
+    "id": 84,
+    "ar": "األمانة العامة",
+    "en": "General secretariat",
+    "letter": "أ"
+  },
+  {
+    "id": 85,
+    "ar": "االمتناع من القضاء في قضية",
+    "en": "Refrain from considering a case",
+    "letter": "أ"
+  },
+  {
+    "id": 86,
+    "ar": "األمر",
+    "en": "Order",
+    "letter": "أ"
+  },
+  {
+    "id": 87,
+    "ar": "ً األمر المحظور",
+    "en": "",
+    "letter": "أ"
+  },
+  {
+    "id": 88,
+    "ar": "ً األمر المحظور",
+    "en": "",
+    "letter": "أ"
+  },
+  {
+    "id": 89,
+    "ar": "األمر الملكي",
+    "en": "Royal order",
+    "letter": "أ"
+  },
+  {
+    "id": 90,
+    "ar": "األمن الوطني",
+    "en": "National security",
+    "letter": "أ"
+  },
+  {
+    "id": 91,
+    "ar": "األمين",
+    "en": "Trustee",
+    "letter": "أ"
+  },
+  {
+    "id": 92,
+    "ar": "أمين السر",
+    "en": "Secretary",
+    "letter": "أ"
+  },
+  {
+    "id": 93,
+    "ar": "األمين العام",
+    "en": "Secretary general",
+    "letter": "أ"
+  },
+  {
+    "id": 94,
+    "ar": "انتفاء الوالية",
+    "en": "Lack of jurisdiction",
+    "letter": "أ"
+  },
+  {
+    "id": 95,
+    "ar": "انتهاء الدعوى",
+    "en": "Case has been concluded",
+    "letter": "أ"
+  },
+  {
+    "id": 96,
+    "ar": "اإلنجاز",
+    "en": "Achievement",
+    "letter": "أ"
+  },
+  {
+    "id": 97,
+    "ar": "اإلنذار",
+    "en": "Warning",
+    "letter": "أ"
+  },
+  {
+    "id": 98,
+    "ar": "اإلنشاء",
+    "en": "Construction",
+    "letter": "أ"
+  },
+  {
+    "id": 99,
+    "ar": "انقضاء التوكيل",
+    "en": "Expiration of a power of attorney",
+    "letter": "أ"
+  },
+  {
+    "id": 100,
+    "ar": "انقطاع الخصومة",
+    "en": "Discontinuance of litigation",
+    "letter": "أ"
+  },
+  {
+    "id": 101,
+    "ar": "اإلنهاء",
+    "en": "Declaration",
+    "letter": "أ"
+  },
+  {
+    "id": 102,
+    "ar": "إنهاء الخدمة",
+    "en": "Termination of service",
+    "letter": "أ"
+  },
+  {
+    "id": 103,
+    "ar": "األهلية",
+    "en": "Capacity",
+    "letter": "أ"
+  },
+  {
+    "id": 104,
+    "ar": "اإليداع",
+    "en": "Deposit",
+    "letter": "أ"
+  },
+  {
+    "id": 105,
+    "ar": "اإليذاء الجسدي",
+    "en": "Bodily harm",
+    "letter": "أ"
+  },
+  {
+    "id": 106,
+    "ar": "اإليذاء المعنوي",
+    "en": "Moral harm",
+    "letter": "أ"
+  },
+  {
+    "id": 107,
+    "ar": "الباحث",
+    "en": "Researcher",
+    "letter": "ب"
+  },
+  {
+    "id": 108,
+    "ar": "الباطل",
+    "en": "Invalid",
+    "letter": "ب"
+  },
+  {
+    "id": 109,
+    "ar": "البدل",
+    "en": "Allowance",
+    "letter": "ب"
+  },
+  {
+    "id": 110,
+    "ar": "البصمة",
+    "en": "Fingerprint",
+    "letter": "ب"
+  },
+  {
+    "id": 111,
+    "ar": "البيع",
+    "en": "Sale",
+    "letter": "ب"
+  },
+  {
+    "id": 112,
+    "ar": "البينة",
+    "en": "Proof",
+    "letter": "ب"
+  },
+  {
+    "id": 113,
+    "ar": "التاجر",
+    "en": "Merchant",
+    "letter": "ت"
+  },
+  {
+    "id": 114,
+    "ar": "التأجير",
+    "en": "Lease",
+    "letter": "ت"
+  },
+  {
+    "id": 115,
+    "ar": "تأجيل النطق بالحكم",
+    "en": "Deferment of the pronouncement of the judgment",
+    "letter": "ت"
+  },
+  {
+    "id": 116,
+    "ar": "تأجيل النظر في الدعوى",
+    "en": "Postponement of consideration of the case",
+    "letter": "ت"
+  },
+  {
+    "id": 117,
+    "ar": "التأديب",
+    "en": "Discipline",
+    "letter": "ت"
+  },
+  {
+    "id": 118,
+    "ar": "تأديب القاضي",
+    "en": "Disciplining judge",
+    "letter": "ت"
+  },
+  {
+    "id": 119,
+    "ar": "التأشير",
+    "en": "Notation",
+    "letter": "ت"
+  },
+  {
+    "id": 120,
+    "ar": "التبعية",
+    "en": "Corollary",
+    "letter": "ت"
+  },
+  {
+    "id": 121,
+    "ar": "التبليغ",
+    "en": "Notification",
+    "letter": "ت"
+  },
+  {
+    "id": 122,
+    "ar": "التتابع",
+    "en": "Succession",
+    "letter": "ت"
+  },
+  {
+    "id": 123,
+    "ar": "التتبع",
+    "en": "Trace",
+    "letter": "ت"
+  },
+  {
+    "id": 124,
+    "ar": "التجزئة",
+    "en": "Parceling",
+    "letter": "ت"
+  },
+  {
+    "id": 125,
+    "ar": "التحسين",
+    "en": "Improvement",
+    "letter": "ت"
+  },
+  {
+    "id": 126,
+    "ar": "التحشية",
+    "en": "Insertion",
+    "letter": "ت"
+  },
+  {
+    "id": 127,
+    "ar": "تحضير الدعوى",
+    "en": "Case preparation",
+    "letter": "ت"
+  },
+  {
+    "id": 128,
+    "ar": "التحفظ",
+    "en": "Under custody",
+    "letter": "ت"
+  },
+  {
+    "id": 129,
+    "ar": "التحقيق",
+    "en": "Investigation",
+    "letter": "ت"
+  },
+  {
+    "id": 130,
+    "ar": "التحقيق التكميلي",
+    "en": "Further investigation",
+    "letter": "ت"
+  },
+  {
+    "id": 131,
+    "ar": "التحقيق الجزائي",
+    "en": "Criminal investigation",
+    "letter": "ت"
+  },
+  {
+    "id": 132,
+    "ar": "تخصيص القاضي",
+    "en": "Appointing judge",
+    "letter": "ت"
+  },
+  {
+    "id": 133,
+    "ar": "التدبير التحفظي",
+    "en": "Precautionary measure",
+    "letter": "ت"
+  },
+  {
+    "id": 134,
+    "ar": "التدبير الوقتي",
+    "en": "Provisional measure",
+    "letter": "ت"
+  },
+  {
+    "id": 135,
+    "ar": "التدريب",
+    "en": "Training",
+    "letter": "ت"
+  },
+  {
+    "id": 136,
+    "ar": "التدقيق",
+    "en": "Revision",
+    "letter": "ت"
+  },
+  {
+    "id": 137,
+    "ar": "التدليس",
+    "en": "Deceit",
+    "letter": "ت"
+  },
+  {
+    "id": 138,
+    "ar": "الترافع",
+    "en": "Pleading",
+    "letter": "ت"
+  },
+  {
+    "id": 139,
+    "ar": "الترخيص",
+    "en": "License",
+    "letter": "ت"
+  },
+  {
+    "id": 140,
+    "ar": "الترقية",
+    "en": "Promotion",
+    "letter": "ت"
+  },
+  {
+    "id": 141,
+    "ar": "ترك الخصومة",
+    "en": "Abandonment of the litigation",
+    "letter": "ت"
+  },
+  {
+    "id": 142,
+    "ar": "التزكية",
+    "en": "Attestation",
+    "letter": "ت"
+  },
+  {
+    "id": 143,
+    "ar": "التزوير",
+    "en": "Forgery",
+    "letter": "ت"
+  },
+  {
+    "id": 144,
+    "ar": "التسجيل العقاري والتوثيق",
+    "en": "Real estate registration and documentation",
+    "letter": "ت"
+  },
+  {
+    "id": 145,
+    "ar": "تصحيح الحكم",
+    "en": "Correction of judgment",
+    "letter": "ت"
+  },
+  {
+    "id": 146,
+    "ar": "التصرف",
+    "en": "Action",
+    "letter": "ت"
+  },
+  {
+    "id": 147,
+    "ar": "التصنيف",
+    "en": "Classify",
+    "letter": "ت"
+  },
+  {
+    "id": 148,
+    "ar": "التظلم",
+    "en": "Appeal",
+    "letter": "ت"
+  },
+  {
+    "id": 149,
+    "ar": "التعامل التجاري",
+    "en": "Commercial transaction",
+    "letter": "ت"
+  },
+  {
+    "id": 150,
+    "ar": "التعامل العقاري",
+    "en": "Real estate transaction",
+    "letter": "ت"
+  },
+  {
+    "id": 151,
+    "ar": "التعدي",
+    "en": "Trespassing",
+    "letter": "ت"
+  },
+  {
+    "id": 152,
+    "ar": "التعذيب",
+    "en": "Torture",
+    "letter": "ت"
+  },
+  {
+    "id": 153,
+    "ar": "تعطيل التنفيذ",
+    "en": "Hinder execution",
+    "letter": "ت"
+  },
+  {
+    "id": 154,
+    "ar": "التعمير",
+    "en": "Construction",
+    "letter": "ت"
+  },
+  {
+    "id": 155,
+    "ar": "التعويض",
+    "en": "Compensation",
+    "letter": "ت"
+  },
+  {
+    "id": 156,
+    "ar": "التفتيش",
+    "en": "Inspection",
+    "letter": "ت"
+  },
+  {
+    "id": 157,
+    "ar": "التفتيش القضائي",
+    "en": "Judicial inspection",
+    "letter": "ت"
+  },
+  {
+    "id": 158,
+    "ar": "التفريط",
+    "en": "Negligence",
+    "letter": "ت"
+  },
+  {
+    "id": 159,
+    "ar": "تفسير الحكم",
+    "en": "Interpretation of judgment",
+    "letter": "ت"
+  },
+  {
+    "id": 160,
+    "ar": "التفويض",
+    "en": "Delegate",
+    "letter": "ت"
+  },
+  {
+    "id": 161,
+    "ar": "التقرير",
+    "en": "Report",
+    "letter": "ت"
+  },
+  {
+    "id": 162,
+    "ar": "التكلفة اإلجمالية",
+    "en": "Total cost",
+    "letter": "ت"
+  },
+  {
+    "id": 163,
+    "ar": "تكييف الواقعة",
+    "en": "Characterizing the incident",
+    "letter": "ت"
+  },
+  {
+    "id": 164,
+    "ar": "تلف الصك",
+    "en": "Damaged deed",
+    "letter": "ت"
+  },
+  {
+    "id": 165,
+    "ar": "التماس إعادة النظر",
+    "en": "Petition for reconsideration",
+    "letter": "ت"
+  },
+  {
+    "id": 166,
+    "ar": "التملك",
+    "en": "Ownership",
+    "letter": "ت"
+  },
+  {
+    "id": 167,
+    "ar": "تنازع االختصاص",
+    "en": "Conflict of jurisdiction",
+    "letter": "ت"
+  },
+  {
+    "id": 168,
+    "ar": "التنازل",
+    "en": "Waiver",
+    "letter": "ت"
+  },
+  {
+    "id": 169,
+    "ar": "التنحي",
+    "en": "Recuse",
+    "letter": "ت"
+  },
+  {
+    "id": 170,
+    "ar": "تنحي القاضي",
+    "en": "Recusal of judge",
+    "letter": "ت"
+  },
+  {
+    "id": 171,
+    "ar": "تنفيذ األحكام األجنبية",
+    "en": "Execution of foreign judgments",
+    "letter": "ت"
+  },
+  {
+    "id": 172,
+    "ar": "التنفيذ الجبري",
+    "en": "Compulsory enforcement",
+    "letter": "ت"
+  },
+  {
+    "id": 173,
+    "ar": "تنفيذ الحكم",
+    "en": "Execution of judgment",
+    "letter": "ت"
+  },
+  {
+    "id": 174,
+    "ar": "التنفيذ المباشر",
+    "en": "Direct execution",
+    "letter": "ت"
+  },
+  {
+    "id": 175,
+    "ar": "التنفيذ المعجل",
+    "en": "Expeditious execution",
+    "letter": "ت"
+  },
+  {
+    "id": 176,
+    "ar": "التواطؤ",
+    "en": "Collusion",
+    "letter": "ت"
+  },
+  {
+    "id": 177,
+    "ar": "التوبة",
+    "en": "Repentance",
+    "letter": "ت"
+  },
+  {
+    "id": 178,
+    "ar": "التوثيق",
+    "en": "Notarize",
+    "letter": "ت"
+  },
+  {
+    "id": 179,
+    "ar": "توثيق الشهادة",
+    "en": "Notarizing testimony",
+    "letter": "ت"
+  },
+  {
+    "id": 180,
+    "ar": "توثيق العقود",
+    "en": "Authentication of contracts",
+    "letter": "ت"
+  },
+  {
+    "id": 181,
+    "ar": "توجيه اليمين",
+    "en": "Directing an oath",
+    "letter": "ت"
+  },
+  {
+    "id": 182,
+    "ar": "التوقيع",
+    "en": "Signature",
+    "letter": "ت"
+  },
+  {
+    "id": 183,
+    "ar": "التوقيف",
+    "en": "Detention",
+    "letter": "ت"
+  },
+  {
+    "id": 184,
+    "ar": "الثمن",
+    "en": "Price",
+    "letter": "ث"
+  },
+  {
+    "id": 185,
+    "ar": "الجريمة المتلبس بها",
+    "en": "Flagrante delicto",
+    "letter": "ج"
+  },
+  {
+    "id": 186,
+    "ar": "الجريمة المخلة بالشرف",
+    "en": "Crime that impugns integrity",
+    "letter": "ج"
+  },
+  {
+    "id": 187,
+    "ar": "الجزاء التأديبي",
+    "en": "Disciplinary measure",
+    "letter": "ج"
+  },
+  {
+    "id": 188,
+    "ar": "الجلسة",
+    "en": "Hearing",
+    "letter": "ج"
+  },
+  {
+    "id": 189,
+    "ar": "الجلسة العلنية",
+    "en": "Open hearing",
+    "letter": "ج"
+  },
+  {
+    "id": 190,
+    "ar": "جمعية النفع العام",
+    "en": "Public benefit association",
+    "letter": "ج"
+  },
+  {
+    "id": 191,
+    "ar": "الجهة اإلدارية",
+    "en": "Administrative agency",
+    "letter": "ج"
+  },
+  {
+    "id": 192,
+    "ar": "الجهة الحكومية",
+    "en": "Government agency",
+    "letter": "ج"
+  },
+  {
+    "id": 193,
+    "ar": "الجهة الخيرية",
+    "en": "Charity",
+    "letter": "ج"
+  },
+  {
+    "id": 194,
+    "ar": "الحارس القضائي",
+    "en": "Judicial receiver",
+    "letter": "ح"
+  },
+  {
+    "id": 195,
+    "ar": "الحبس",
+    "en": "Imprisonment",
+    "letter": "ح"
+  },
+  {
+    "id": 196,
+    "ar": "الحجر على المفلسين",
+    "en": "Interdiction on bankrupt persons",
+    "letter": "ح"
+  },
+  {
+    "id": 197,
+    "ar": "الحجز التحفظي",
+    "en": "Provisional seizure",
+    "letter": "ح"
+  },
+  {
+    "id": 198,
+    "ar": "الحجز التنفيذي",
+    "en": "Attachment",
+    "letter": "ح"
+  },
+  {
+    "id": 199,
+    "ar": "الحد األقصى",
+    "en": "Maximum limit",
+    "letter": "ح"
+  },
+  {
+    "id": 200,
+    "ar": "الحدث",
+    "en": "Juvenile",
+    "letter": "ح"
+  },
+  {
+    "id": 201,
+    "ar": "الحراسة القضائية",
+    "en": "Receivership",
+    "letter": "ح"
+  },
+  {
+    "id": 202,
+    "ar": "حسن النية",
+    "en": "Bona fide",
+    "letter": "ح"
+  },
+  {
+    "id": 203,
+    "ar": "الحصة المشاعة",
+    "en": "Commonly owned share",
+    "letter": "ح"
+  },
+  {
+    "id": 204,
+    "ar": "حصر الورثة",
+    "en": "Determination of heirs",
+    "letter": "ح"
+  },
+  {
+    "id": 205,
+    "ar": "الحضانة",
+    "en": "Child custody",
+    "letter": "ح"
+  },
+  {
+    "id": 206,
+    "ar": "حق االرتفاق",
+    "en": "Right to easement",
+    "letter": "ح"
+  },
+  {
+    "id": 207,
+    "ar": "حق االنتفاع",
+    "en": "Right to benefit",
+    "letter": "ح"
+  },
+  {
+    "id": 208,
+    "ar": "الحق الثابت باإلرث",
+    "en": "Right derived from inheritance",
+    "letter": "ح"
+  },
+  {
+    "id": 209,
+    "ar": "الحق الخاص",
+    "en": "Private right",
+    "letter": "ح"
+  },
+  {
+    "id": 210,
+    "ar": "الحق العام",
+    "en": "Public right",
+    "letter": "ح"
+  },
+  {
+    "id": 211,
+    "ar": "الحق العقاري",
+    "en": "Real estate right",
+    "letter": "ح"
+  },
+  {
+    "id": 212,
+    "ar": "الحق العيني",
+    "en": "Right in rem",
+    "letter": "ح"
+  },
+  {
+    "id": 213,
+    "ar": "الحق العيني األصلي",
+    "en": "Original right in Rem",
+    "letter": "ح"
+  },
+  {
+    "id": 214,
+    "ar": "الحق العيني التبعي",
+    "en": "Subordinate right in rem",
+    "letter": "ح"
+  },
+  {
+    "id": 215,
+    "ar": "حق المتهم",
+    "en": "Right of the accused",
+    "letter": "ح"
+  },
+  {
+    "id": 216,
+    "ar": "الحكم",
+    "en": "Judgment",
+    "letter": "ح"
+  },
+  {
+    "id": 217,
+    "ar": "الحكم الجزائي",
+    "en": "Criminal judgment",
+    "letter": "ح"
+  },
+  {
+    "id": 218,
+    "ar": "الحكم الغيابي",
+    "en": "Judgement in absentia",
+    "letter": "ح"
+  },
+  {
+    "id": 219,
+    "ar": "الحكم القضائي",
+    "en": "Judgment",
+    "letter": "ح"
+  },
+  {
+    "id": 220,
+    "ar": "حكم المحكم",
+    "en": "Arbitral award",
+    "letter": "ح"
+  },
+  {
+    "id": 221,
+    "ar": "الحكم المعترض عليه",
+    "en": "Challenged judgment",
+    "letter": "ح"
+  },
+  {
+    "id": 222,
+    "ar": "َّ الحكم",
+    "en": "",
+    "letter": "ح"
+  },
+  {
+    "id": 223,
+    "ar": "الحكم النهائي",
+    "en": "Final judgment",
+    "letter": "ح"
+  },
+  {
+    "id": 224,
+    "ar": "الحكم الوقتي",
+    "en": "Provisional ruling",
+    "letter": "ح"
+  },
+  {
+    "id": 225,
+    "ar": "الحكم بعدم اإلدانة",
+    "en": "Acquittal judgment",
+    "letter": "ح"
+  },
+  {
+    "id": 226,
+    "ar": "الحكم غير القابل للتمييز",
+    "en": "Non-appealable ruling",
+    "letter": "ح"
+  },
+  {
+    "id": 227,
+    "ar": "الحكم غير القابل للطعن",
+    "en": "Judgment shall not be subject to appeal",
+    "letter": "ح"
+  },
+  {
+    "id": 228,
+    "ar": "الحكم المؤيد",
+    "en": "Affirmed judgment",
+    "letter": "ح"
+  },
+  {
+    "id": 229,
+    "ar": "الحوالة",
+    "en": "Remittance",
+    "letter": "ح"
+  },
+  {
+    "id": 230,
+    "ar": "حوالة الحق",
+    "en": "Assignment of right",
+    "letter": "ح"
+  },
+  {
+    "id": 231,
+    "ar": "خاتم التنفيذ",
+    "en": "Seal of enforcement",
+    "letter": "خ"
+  },
+  {
+    "id": 232,
+    "ar": "الخادم",
+    "en": "Servant",
+    "letter": "خ"
+  },
+  {
+    "id": 233,
+    "ar": "خارطة المنطقة العقارية",
+    "en": "Map of real estate area",
+    "letter": "خ"
+  },
+  {
+    "id": 234,
+    "ar": "خارطة الوحدة العقارية",
+    "en": "Map of real estate unit",
+    "letter": "خ"
+  },
+  {
+    "id": 235,
+    "ar": "الخازن القضائي",
+    "en": "Judicial custodian",
+    "letter": "خ"
+  },
+  {
+    "id": 236,
+    "ar": "الخبير",
+    "en": "Expert",
+    "letter": "خ"
+  },
+  {
+    "id": 237,
+    "ar": "الختم",
+    "en": "Seal",
+    "letter": "خ"
+  },
+  {
+    "id": 238,
+    "ar": "الختم الرسمي",
+    "en": "Official seal",
+    "letter": "خ"
+  },
+  {
+    "id": 239,
+    "ar": "خارطة األساس الطبوغرافية",
+    "en": "Topographic base map",
+    "letter": "خ"
+  },
+  {
+    "id": 240,
+    "ar": "الخصم",
+    "en": "Litigant",
+    "letter": "خ"
+  },
+  {
+    "id": 241,
+    "ar": "الخصم المظنونة وراثته",
+    "en": "Potential heir of a litigant",
+    "letter": "خ"
+  },
+  {
+    "id": 242,
+    "ar": "الخط",
+    "en": "Handwriting",
+    "letter": "خ"
+  },
+  {
+    "id": 243,
+    "ar": "الخطأ المادي",
+    "en": "Material error",
+    "letter": "خ"
+  },
+  {
+    "id": 244,
+    "ar": "الخلع",
+    "en": "Khul divorce at the insistence of the wife)",
+    "letter": "خ"
+  },
+  {
+    "id": 245,
+    "ar": "الخلف",
+    "en": "Successor",
+    "letter": "خ"
+  },
+  {
+    "id": 246,
+    "ar": "الدائرة االبتدائية",
+    "en": "Circuit of first instance",
+    "letter": "د"
+  },
+  {
+    "id": 247,
+    "ar": "الدائرة االستئنافية",
+    "en": "Appellate circuit",
+    "letter": "د"
+  },
+  {
+    "id": 248,
+    "ar": "دائرة التأديب",
+    "en": "Disciplinary panel",
+    "letter": "د"
+  },
+  {
+    "id": 249,
+    "ar": "الدائرة التجارية",
+    "en": "Commercial circuit",
+    "letter": "د"
+  },
+  {
+    "id": 250,
+    "ar": "دائرة التنفيذ",
+    "en": "Enforcement circuit",
+    "letter": "د"
+  },
+  {
+    "id": 251,
+    "ar": "الدائرة الحقوقية",
+    "en": "Jural circuit",
+    "letter": "د"
+  },
+  {
+    "id": 252,
+    "ar": "دائرة القضايا التعزيرية",
+    "en": "Circuit for ta zir (discretionary punishment) cases",
+    "letter": "د"
+  },
+  {
+    "id": 253,
+    "ar": "دائرة المحكمة",
+    "en": "Court circuit",
+    "letter": "د"
+  },
+  {
+    "id": 254,
+    "ar": "دائرة المحكمة الجزائية",
+    "en": "Penal court circuit",
+    "letter": "د"
+  },
+  {
+    "id": 255,
+    "ar": "دائرة المحكمة العامة",
+    "en": "General court circuit",
+    "letter": "د"
+  },
+  {
+    "id": 256,
+    "ar": "دائرة قضايا األحداث",
+    "en": "Circuit for juvenile cases",
+    "letter": "د"
+  },
+  {
+    "id": 257,
+    "ar": "دائرة قضايا القصاص والحدود",
+    "en": "",
+    "letter": "د"
+  },
+  {
+    "id": 258,
+    "ar": "دائرة محكمة االستئناف",
+    "en": "Court of appeals circuit",
+    "letter": "د"
+  },
+  {
+    "id": 259,
+    "ar": "الدائن",
+    "en": "Creditor",
+    "letter": "د"
+  },
+  {
+    "id": 260,
+    "ar": "درجات السلك القضائي",
+    "en": "Ranks of the judiciary",
+    "letter": "د"
+  },
+  {
+    "id": 261,
+    "ar": "دعوى استرداد الحيازة",
+    "en": "Case of recovery of possession",
+    "letter": "د"
+  },
+  {
+    "id": 262,
+    "ar": "الدعوى اإلدارية",
+    "en": "Administrative case",
+    "letter": "د"
+  },
+  {
+    "id": 263,
+    "ar": "الدعوى التأديبية",
+    "en": "Disciplinary action",
+    "letter": "د"
+  },
+  {
+    "id": 264,
+    "ar": "دعوى التعويض",
+    "en": "Claim for compensation",
+    "letter": "د"
+  },
+  {
+    "id": 265,
+    "ar": "الدعوى الجزائية العامة",
+    "en": "Public criminal action",
+    "letter": "د"
+  },
+  {
+    "id": 266,
+    "ar": "الدعوى الجماعية",
+    "en": "Class action",
+    "letter": "د"
+  },
+  {
+    "id": 267,
+    "ar": "دعوى الحسبة",
+    "en": "Public interest lawsuit",
+    "letter": "د"
+  },
+  {
+    "id": 268,
+    "ar": "دعوى الحق الخاص",
+    "en": "Private right action",
+    "letter": "د"
+  },
+  {
+    "id": 269,
+    "ar": "دعوى الحيازة",
+    "en": "Possessory action",
+    "letter": "د"
+  },
+  {
+    "id": 270,
+    "ar": "الدعوى الصورية",
+    "en": "Frivolous lawsuit",
+    "letter": "د"
+  },
+  {
+    "id": 271,
+    "ar": "دعوى الضرر",
+    "en": "Lawsuit relating to harm inflicted",
+    "letter": "د"
+  },
+  {
+    "id": 272,
+    "ar": "الدعوى العينية",
+    "en": "Case in rem",
+    "letter": "د"
+  },
+  {
+    "id": 273,
+    "ar": "دعوى إلغاء القرار الإداري النهائي",
+    "en": "Case for revocation of final administrative decision",
+    "letter": "د"
+  },
+  {
+    "id": 274,
+    "ar": "الدعوى الكيدية",
+    "en": "Malicious lawsuit",
+    "letter": "د"
+  },
+  {
+    "id": 275,
+    "ar": "الدعوى المستعجلة",
+    "en": "Summary case",
+    "letter": "د"
+  },
+  {
+    "id": 276,
+    "ar": "دعوى المعاينة إلثبات الحالة",
+    "en": "Case of inspection to establish a condition",
+    "letter": "د"
+  },
+  {
+    "id": 277,
+    "ar": "الدعوى اليسيرة",
+    "en": "Small claim",
+    "letter": "د"
+  },
+  {
+    "id": 278,
+    "ar": "دعوى طلب الحراسة",
+    "en": "Receivership suit",
+    "letter": "د"
+  },
+  {
+    "id": 279,
+    "ar": "دعوى أقيام المنافع",
+    "en": "Lawsuit relating to values of utilities",
+    "letter": "د"
+  },
+  {
+    "id": 280,
+    "ar": "دعوى منع التعرض للحيازة",
+    "en": "Case of banning interference with possession",
+    "letter": "د"
+  },
+  {
+    "id": 281,
+    "ar": "دعوى المنع من السفر",
+    "en": "Case of an injunction banning travel",
+    "letter": "د"
+  },
+  {
+    "id": 282,
+    "ar": "دعوى وقف األعمال الجديدة",
+    "en": "Case of suspension of new actions",
+    "letter": "د"
+  },
+  {
+    "id": 283,
+    "ar": "دفتر الحساب",
+    "en": "Orderly book",
+    "letter": "د"
+  },
+  {
+    "id": 284,
+    "ar": "الدفع",
+    "en": "Defense",
+    "letter": "د"
+  },
+  {
+    "id": 285,
+    "ar": "الدفع الجوهري",
+    "en": "Primary defense",
+    "letter": "د"
+  },
+  {
+    "id": 286,
+    "ar": "الدفع بشرط التحكيم",
+    "en": "Invocation of arbitration clause",
+    "letter": "د"
+  },
+  {
+    "id": 287,
+    "ar": "الدليل",
+    "en": "Evidence",
+    "letter": "د"
+  },
+  {
+    "id": 288,
+    "ar": "الدليل اإللكتروني",
+    "en": "Electronic evidence",
+    "letter": "د"
+  },
+  {
+    "id": 289,
+    "ar": "الدمج",
+    "en": "Merger",
+    "letter": "د"
+  },
+  {
+    "id": 290,
+    "ar": "دول مجلس التعاون لدول الخليج العربية",
+    "en": "GCC countries",
+    "letter": "د"
+  },
+  {
+    "id": 291,
+    "ar": "الدين",
+    "en": "Debt",
+    "letter": "د"
+  },
+  {
+    "id": 292,
+    "ar": "الدين االحتمالي",
+    "en": "Probable debt",
+    "letter": "د"
+  },
+  {
+    "id": 293,
+    "ar": "الدين المستقبلي",
+    "en": "Future debt",
+    "letter": "د"
+  },
+  {
+    "id": 294,
+    "ar": "الدين المضمون",
+    "en": "Secured debt",
+    "letter": "د"
+  },
+  {
+    "id": 295,
+    "ar": "الدين المعلق على شرط",
+    "en": "Conditional debt",
+    "letter": "د"
+  },
+  {
+    "id": 296,
+    "ar": "ديوان المظالم",
+    "en": "Board of grievances",
+    "letter": "د"
+  },
+  {
+    "id": 297,
+    "ar": "ذو القربى",
+    "en": "Next-of-kin",
+    "letter": "ذ"
+  },
+  {
+    "id": 298,
+    "ar": "ذو المصلحة",
+    "en": "Concerned party",
+    "letter": "ذ"
+  },
+  {
+    "id": 299,
+    "ar": "الراتب",
+    "en": "Salary",
+    "letter": "ر"
+  },
+  {
+    "id": 300,
+    "ar": "الراهن",
+    "en": "Mortgagor",
+    "letter": "ر"
+  },
+  {
+    "id": 301,
+    "ar": "الربح",
+    "en": "Profit",
+    "letter": "ر"
+  },
+  {
+    "id": 302,
+    "ar": "الرجعة",
+    "en": "Revocation of divorce",
+    "letter": "ر"
+  },
+  {
+    "id": 303,
+    "ar": "رجل السلطة العامة",
+    "en": "Law enforcement officer",
+    "letter": "ر"
+  },
+  {
+    "id": 304,
+    "ar": "رجل الضبط الجنائي",
+    "en": "Criminal investigation officer",
+    "letter": "ر"
+  },
+  {
+    "id": 305,
+    "ar": "رخصة البناء والهدم",
+    "en": "Construction and demolition permit",
+    "letter": "ر"
+  },
+  {
+    "id": 306,
+    "ar": "رد القاضي",
+    "en": "Dismissal of the judge",
+    "letter": "ر"
+  },
+  {
+    "id": 307,
+    "ar": "رد اليمين",
+    "en": "Reject an oath",
+    "letter": "ر"
+  },
+  {
+    "id": 308,
+    "ar": "رفض التظلم",
+    "en": "Grievance rejection",
+    "letter": "ر"
+  },
+  {
+    "id": 309,
+    "ar": "الرهن",
+    "en": "Mortgage",
+    "letter": "ر"
+  },
+  {
+    "id": 310,
+    "ar": "الرهن الشائع",
+    "en": "Common mortgage",
+    "letter": "ر"
+  },
+  {
+    "id": 311,
+    "ar": "الرهن العقاري المسجل",
+    "en": "Registered real estate mortgage",
+    "letter": "ر"
+  },
+  {
+    "id": 312,
+    "ar": "الرئيس",
+    "en": "President",
+    "letter": "ر"
+  },
+  {
+    "id": 313,
+    "ar": "رئيس المجلس األعلى للقضاء",
+    "en": "Chairman of the supreme judicial council",
+    "letter": "ر"
+  },
+  {
+    "id": 314,
+    "ar": "رئيس المحكمة العليا",
+    "en": "President of the supreme court",
+    "letter": "ر"
+  },
+  {
+    "id": 315,
+    "ar": "رئيس محكمة االستئناف",
+    "en": "President of the court of appeals",
+    "letter": "ر"
+  },
+  {
+    "id": 316,
+    "ar": "الزيارة",
+    "en": "Visitation",
+    "letter": "ز"
+  },
+  {
+    "id": 317,
+    "ar": "السب",
+    "en": "Offensive language",
+    "letter": "س"
+  },
+  {
+    "id": 318,
+    "ar": "سبب الحكم",
+    "en": "Ground of the judgment",
+    "letter": "س"
+  },
+  {
+    "id": 319,
+    "ar": "السجل التجاري",
+    "en": "Commercial register",
+    "letter": "س"
+  },
+  {
+    "id": 320,
+    "ar": "السجل العقاري",
+    "en": "Real estate register",
+    "letter": "س"
+  },
+  {
+    "id": 321,
+    "ar": "السجن",
+    "en": "Imprisonment",
+    "letter": "س"
+  },
+  {
+    "id": 322,
+    "ar": "السجين",
+    "en": "Prisoner",
+    "letter": "س"
+  },
+  {
+    "id": 323,
+    "ar": "سداد الدين",
+    "en": "Pay off the debt",
+    "letter": "س"
+  },
+  {
+    "id": 324,
+    "ar": "السفينة التجارية",
+    "en": "Commercial vessel",
+    "letter": "س"
+  },
+  {
+    "id": 325,
+    "ar": "السفيه",
+    "en": "Spendthrift",
+    "letter": "س"
+  },
+  {
+    "id": 326,
+    "ar": "سقوط الحق",
+    "en": "Forfeit the right",
+    "letter": "س"
+  },
+  {
+    "id": 327,
+    "ar": "السكن",
+    "en": "Accommodation",
+    "letter": "س"
+  },
+  {
+    "id": 328,
+    "ar": "السالح",
+    "en": "Weapon",
+    "letter": "س"
+  },
+  {
+    "id": 329,
+    "ar": "السلطة اإلشرافية",
+    "en": "Supervisory authority",
+    "letter": "س"
+  },
+  {
+    "id": 330,
+    "ar": "سلطة التحقيق",
+    "en": "Investigation authority",
+    "letter": "س"
+  },
+  {
+    "id": 331,
+    "ar": "السلف",
+    "en": "Predecessor",
+    "letter": "س"
+  },
+  {
+    "id": 332,
+    "ar": "السلفة",
+    "en": "Advance payment",
+    "letter": "س"
+  },
+  {
+    "id": 333,
+    "ar": "سماع الشهادة",
+    "en": "Hearing testimony",
+    "letter": "س"
+  },
+  {
+    "id": 334,
+    "ar": "السند التنفيذي",
+    "en": "Enforcement document",
+    "letter": "س"
+  },
+  {
+    "id": 335,
+    "ar": "سند التوكيل",
+    "en": "Deed of power of attorney",
+    "letter": "س"
+  },
+  {
+    "id": 336,
+    "ar": "سند الدين",
+    "en": "Deed of debt",
+    "letter": "س"
+  },
+  {
+    "id": 337,
+    "ar": "سيئ النية",
+    "en": "Bad faith",
+    "letter": "س"
+  },
+  {
+    "id": 338,
+    "ar": "الشاهد",
+    "en": "Witness",
+    "letter": "ش"
+  },
+  {
+    "id": 339,
+    "ar": "الشخص ذو الشخصية المعنوية العامة",
+    "en": "Public corporate person",
+    "letter": "ش"
+  },
+  {
+    "id": 340,
+    "ar": "الشخص ذو الصفة االعتبارية",
+    "en": "Corporate personality",
+    "letter": "ش"
+  },
+  {
+    "id": 341,
+    "ar": "الشخص ذو الصفة الطبيعية",
+    "en": "Natural personality",
+    "letter": "ش"
+  },
+  {
+    "id": 342,
+    "ar": "الشخص المعنوي الخاص",
+    "en": "Private corporate person",
+    "letter": "ش"
+  },
+  {
+    "id": 343,
+    "ar": "الشرطة",
+    "en": "Police",
+    "letter": "ش"
+  },
+  {
+    "id": 344,
+    "ar": "الشركة المهنية",
+    "en": "Professional company",
+    "letter": "ش"
+  },
+  {
+    "id": 345,
+    "ar": "شروط مزاولة مهنة المحاماة",
+    "en": "Practicing law requirements",
+    "letter": "ش"
+  },
+  {
+    "id": 346,
+    "ar": "الشريك في الجريمة",
+    "en": "Accomplice",
+    "letter": "ش"
+  },
+  {
+    "id": 347,
+    "ar": "شطب الدعوى",
+    "en": "Dismiss the case",
+    "letter": "ش"
+  },
+  {
+    "id": 348,
+    "ar": "الشكوى",
+    "en": "Complaint",
+    "letter": "ش"
+  },
+  {
+    "id": 349,
+    "ar": "الشهادة",
+    "en": "Attesting",
+    "letter": "ش"
+  },
+  {
+    "id": 350,
+    "ar": "شهادة الزور",
+    "en": "Perjury",
+    "letter": "ش"
+  },
+  {
+    "id": 351,
+    "ar": "شهادة الشاهد",
+    "en": "Testimony of witness",
+    "letter": "ش"
+  },
+  {
+    "id": 352,
+    "ar": "الشهادة الطبية",
+    "en": "Medical report",
+    "letter": "ش"
+  },
+  {
+    "id": 353,
+    "ar": "الشيك",
+    "en": "Check",
+    "letter": "ش"
+  },
+  {
+    "id": 354,
+    "ar": "صاحب الحق التبعي",
+    "en": "Owner of the subordinate right",
+    "letter": "ص"
+  },
+  {
+    "id": 355,
+    "ar": "صحيفة االعتراض",
+    "en": "Challenge petition",
+    "letter": "ص"
+  },
+  {
+    "id": 356,
+    "ar": "صحيفة الدعوى",
+    "en": "Statement of claim",
+    "letter": "ص"
+  },
+  {
+    "id": 357,
+    "ar": "الصحيفة العامة",
+    "en": "Public cadaster",
+    "letter": "ص"
+  },
+  {
+    "id": 358,
+    "ar": "صحيفة الوحدة العقارية",
+    "en": "Real estate unit cadaster",
+    "letter": "ص"
+  },
+  {
+    "id": 359,
+    "ar": "صرف النظر عن الدعوى",
+    "en": "Dismiss the case",
+    "letter": "ص"
+  },
+  {
+    "id": 360,
+    "ar": "صفة غير مشروعة",
+    "en": "Unlawfully",
+    "letter": "ص"
+  },
+  {
+    "id": 361,
+    "ar": "صك الحكم",
+    "en": "Judgment decree",
+    "letter": "ص"
+  },
+  {
+    "id": 362,
+    "ar": "صك الملكية",
+    "en": "Title deed",
+    "letter": "ص"
+  },
+  {
+    "id": 363,
+    "ar": "صك ملكية العقار",
+    "en": "Property title deed",
+    "letter": "ص"
+  },
+  {
+    "id": 364,
+    "ar": "الصلح",
+    "en": "Settlement",
+    "letter": "ص"
+  },
+  {
+    "id": 365,
+    "ar": "صورة التبليغ",
+    "en": "Copy of the notice",
+    "letter": "ص"
+  },
+  {
+    "id": 366,
+    "ar": "الصيغة التنفيذية",
+    "en": "Enforcement statement",
+    "letter": "ص"
+  },
+  {
+    "id": 367,
+    "ar": "الضرر المحدق",
+    "en": "Imminent damage",
+    "letter": "ض"
+  },
+  {
+    "id": 368,
+    "ar": "ضمان التقاضي",
+    "en": "Due process",
+    "letter": "ض"
+  },
+  {
+    "id": 369,
+    "ar": "طالب القيد",
+    "en": "Applicant",
+    "letter": "ط"
+  },
+  {
+    "id": 370,
+    "ar": "الطرف",
+    "en": "Party",
+    "letter": "ط"
+  },
+  {
+    "id": 371,
+    "ar": "طرف الدعوى",
+    "en": "Litigant",
+    "letter": "ط"
+  },
+  {
+    "id": 372,
+    "ar": "الطعن",
+    "en": "Contestation",
+    "letter": "ط"
+  },
+  {
+    "id": 373,
+    "ar": "الطالق",
+    "en": "Divorce",
+    "letter": "ط"
+  },
+  {
+    "id": 374,
+    "ar": "الطلب",
+    "en": "Claim",
+    "letter": "ط"
+  },
+  {
+    "id": 375,
+    "ar": "الطلب االحتياطي",
+    "en": "Provisional claim",
+    "letter": "ط"
+  },
+  {
+    "id": 376,
+    "ar": "الطلب األصلي",
+    "en": "Original petition",
+    "letter": "ط"
+  },
+  {
+    "id": 377,
+    "ar": "الطلب الختامي",
+    "en": "Closing claim",
+    "letter": "ط"
+  },
+  {
+    "id": 378,
+    "ar": "طلب اإلدخال",
+    "en": "Petition for joinder",
+    "letter": "ط"
+  },
+  {
+    "id": 379,
+    "ar": "الطلب العارض",
+    "en": "Incidental petition",
+    "letter": "ط"
+  },
+  {
+    "id": 380,
+    "ar": "طلب القسمة",
+    "en": "Demand division",
+    "letter": "ط"
+  },
+  {
+    "id": 381,
+    "ar": "الطلب المستعجل",
+    "en": "Summary petition",
+    "letter": "ط"
+  },
+  {
+    "id": 382,
+    "ar": "الطلب الموضوعي",
+    "en": "Motion related to subject matter",
+    "letter": "ط"
+  },
+  {
+    "id": 383,
+    "ar": "الظرف",
+    "en": "Circumstance",
+    "letter": "ظ"
+  },
+  {
+    "id": 384,
+    "ar": "الظرف المشدد أو المخفف",
+    "en": "Aggravating or extenuating circumstance",
+    "letter": "ظ"
+  },
+  {
+    "id": 385,
+    "ar": "العاقل",
+    "en": "Legally competent",
+    "letter": "ع"
+  },
+  {
+    "id": 386,
+    "ar": "العامل",
+    "en": "Employee",
+    "letter": "ع"
+  },
+  {
+    "id": 387,
+    "ar": "عبء اإلثبات",
+    "en": "Burden of proof",
+    "letter": "ع"
+  },
+  {
+    "id": 388,
+    "ar": "العبارة الجارحة",
+    "en": "Profanity",
+    "letter": "ع"
+  },
+  {
+    "id": 389,
+    "ar": "العداوة",
+    "en": "Enmity",
+    "letter": "ع"
+  },
+  {
+    "id": 390,
+    "ar": "عدد ضبط الدعوى",
+    "en": "Number of the case record",
+    "letter": "ع"
+  },
+  {
+    "id": 391,
+    "ar": "عدم استيفاء المطلوب",
+    "en": "Failure to fulfill requirement",
+    "letter": "ع"
+  },
+  {
+    "id": 392,
+    "ar": "عدم االختصاص النوعي",
+    "en": "Lack of subject-matter jurisdiction",
+    "letter": "ع"
+  },
+  {
+    "id": 393,
+    "ar": "العدول عن",
+    "en": "Depart from",
+    "letter": "ع"
+  },
+  {
+    "id": 394,
+    "ar": "العذر المقبول",
+    "en": "Acceptable excuse",
+    "letter": "ع"
+  },
+  {
+    "id": 395,
+    "ar": "العرف التجاري",
+    "en": "Commercial custom",
+    "letter": "ع"
+  },
+  {
+    "id": 396,
+    "ar": "العريضة",
+    "en": "Petition",
+    "letter": "ع"
+  },
+  {
+    "id": 397,
+    "ar": "العزل",
+    "en": "Removal",
+    "letter": "ع"
+  },
+  {
+    "id": 398,
+    "ar": "عزل المحامي",
+    "en": "Dismissal of lawyer",
+    "letter": "ع"
+  },
+  {
+    "id": 399,
+    "ar": "عزل الوكيل",
+    "en": "Dismissal of an agent",
+    "letter": "ع"
+  },
+  {
+    "id": 400,
+    "ar": "العضل",
+    "en": "Deprivation of marriage",
+    "letter": "ع"
+  },
+  {
+    "id": 401,
+    "ar": "العضو",
+    "en": "Member",
+    "letter": "ع"
+  },
+  {
+    "id": 402,
+    "ar": "العطلة الرسمية",
+    "en": "Official holiday",
+    "letter": "ع"
+  },
+  {
+    "id": 403,
+    "ar": "العقار",
+    "en": "Real estate",
+    "letter": "ع"
+  },
+  {
+    "id": 404,
+    "ar": "عقار التركة",
+    "en": "Inherited real estate",
+    "letter": "ع"
+  },
+  {
+    "id": 405,
+    "ar": "العقار المرهون",
+    "en": "Mortgaged property",
+    "letter": "ع"
+  },
+  {
+    "id": 406,
+    "ar": "العقد",
+    "en": "Contract",
+    "letter": "ع"
+  },
+  {
+    "id": 407,
+    "ar": "العقد التجاري",
+    "en": "Commercial contract",
+    "letter": "ع"
+  },
+  {
+    "id": 408,
+    "ar": "عقد العمل",
+    "en": "Work contract",
+    "letter": "ع"
+  },
+  {
+    "id": 409,
+    "ar": "العقد الموثق",
+    "en": "Attested contract",
+    "letter": "ع"
+  },
+  {
+    "id": 410,
+    "ar": "العقوبة",
+    "en": "Penalty",
+    "letter": "ع"
+  },
+  {
+    "id": 411,
+    "ar": "العمل التجاري األصلي",
+    "en": "Main business activity",
+    "letter": "ع"
+  },
+  {
+    "id": 412,
+    "ar": "العيب",
+    "en": "Defect",
+    "letter": "ع"
+  },
+  {
+    "id": 413,
+    "ar": "العيب في السبب",
+    "en": "Defect in cause",
+    "letter": "ع"
+  },
+  {
+    "id": 414,
+    "ar": "العيب في الشكل",
+    "en": "Defect in form",
+    "letter": "ع"
+  },
+  {
+    "id": 415,
+    "ar": "العين المؤجرة",
+    "en": "Leased asset",
+    "letter": "ع"
+  },
+  {
+    "id": 416,
+    "ar": "الغرامة",
+    "en": "Fine",
+    "letter": "غ"
+  },
+  {
+    "id": 417,
+    "ar": "الغرس",
+    "en": "Plant",
+    "letter": "غ"
+  },
+  {
+    "id": 418,
+    "ar": "الغريم",
+    "en": "Creditor",
+    "letter": "غ"
+  },
+  {
+    "id": 419,
+    "ar": "الغش",
+    "en": "Fraud",
+    "letter": "غ"
+  },
+  {
+    "id": 420,
+    "ar": "غلة العقار",
+    "en": "Proceeds of property",
+    "letter": "غ"
+  },
+  {
+    "id": 421,
+    "ar": "الغموض",
+    "en": "Vague",
+    "letter": "غ"
+  },
+  {
+    "id": 422,
+    "ar": "الفاعل",
+    "en": "Perpetrator",
+    "letter": "ف"
+  },
+  {
+    "id": 423,
+    "ar": "فاقد األهلية",
+    "en": "Legally incompetent person",
+    "letter": "ف"
+  },
+  {
+    "id": 424,
+    "ar": "فسخ النكاح",
+    "en": "Dissolution of marriage",
+    "letter": "ف"
+  },
+  {
+    "id": 425,
+    "ar": "الفصل من العمل",
+    "en": "Termination of employment",
+    "letter": "ف"
+  },
+  {
+    "id": 426,
+    "ar": "الفني",
+    "en": "Specialist",
+    "letter": "ف"
+  },
+  {
+    "id": 427,
+    "ar": "الفهرس الشخصي",
+    "en": "Personal index",
+    "letter": "ف"
+  },
+  {
+    "id": 428,
+    "ar": "القاصر",
+    "en": "Minor",
+    "letter": "ق"
+  },
+  {
+    "id": 429,
+    "ar": "القاضي",
+    "en": "Judge",
+    "letter": "ق"
+  },
+  {
+    "id": 430,
+    "ar": "قاضي االستئناف",
+    "en": "Appeal judge",
+    "letter": "ق"
+  },
+  {
+    "id": 431,
+    "ar": "قاضي التنفيذ",
+    "en": "Enforcement judge",
+    "letter": "ق"
+  },
+  {
+    "id": 432,
+    "ar": "القاعدة",
+    "en": "Rule",
+    "letter": "ق"
+  },
+  {
+    "id": 433,
+    "ar": "قاعدة اإلفالس",
+    "en": "Bankruptcy rule",
+    "letter": "ق"
+  },
+  {
+    "id": 434,
+    "ar": "قائمة الدعاوى",
+    "en": "List of cases",
+    "letter": "ق"
+  },
+  {
+    "id": 435,
+    "ar": "القبض",
+    "en": "Arrest",
+    "letter": "ق"
+  },
+  {
+    "id": 436,
+    "ar": "قبول اليمين",
+    "en": "Accept the oath",
+    "letter": "ق"
+  },
+  {
+    "id": 437,
+    "ar": "القتل",
+    "en": "Death",
+    "letter": "ق"
+  },
+  {
+    "id": 438,
+    "ar": "القذف",
+    "en": "Defamation",
+    "letter": "ق"
+  },
+  {
+    "id": 439,
+    "ar": "القرار",
+    "en": "Decision",
+    "letter": "ق"
+  },
+  {
+    "id": 440,
+    "ar": "القرار التأديبي",
+    "en": "Disciplinary decision",
+    "letter": "ق"
+  },
+  {
+    "id": 441,
+    "ar": "قرار التكليف",
+    "en": "Assignment decision",
+    "letter": "ق"
+  },
+  {
+    "id": 442,
+    "ar": "القرار المسبب",
+    "en": "Reasoned decision",
+    "letter": "ق"
+  },
+  {
+    "id": 443,
+    "ar": "القرار النهائي",
+    "en": "Final decision",
+    "letter": "ق"
+  },
+  {
+    "id": 444,
+    "ar": "القريب حتى الدرجة الرابعة",
+    "en": "Relatives up to the fourth degree",
+    "letter": "ق"
+  },
+  {
+    "id": 445,
+    "ar": "القرينة",
+    "en": "Presumption",
+    "letter": "ق"
+  },
+  {
+    "id": 446,
+    "ar": "ّ القسط",
+    "en": "",
+    "letter": "ق"
+  },
+  {
+    "id": 447,
+    "ar": "قسمة التركة",
+    "en": "Distribution of inheritance",
+    "letter": "ق"
+  },
+  {
+    "id": 448,
+    "ar": "القسمة العقارية",
+    "en": "Real estate division",
+    "letter": "ق"
+  },
+  {
+    "id": 449,
+    "ar": "قسمة المال المشترك",
+    "en": "Division of common property",
+    "letter": "ق"
+  },
+  {
+    "id": 450,
+    "ar": "القصاص",
+    "en": "Qisas (lex talionis retribution)",
+    "letter": "ق"
+  },
+  {
+    "id": 451,
+    "ar": "القضاء",
+    "en": "Judiciary",
+    "letter": "ق"
+  },
+  {
+    "id": 452,
+    "ar": "القضاء المستعجل",
+    "en": "Summary proceeding",
+    "letter": "ق"
+  },
+  {
+    "id": 453,
+    "ar": "القضية",
+    "en": "Case",
+    "letter": "ق"
+  },
+  {
+    "id": 454,
+    "ar": "القضية اإلدارية",
+    "en": "Administrative suit",
+    "letter": "ق"
+  },
+  {
+    "id": 455,
+    "ar": "قضية التزوير",
+    "en": "Case of forgery",
+    "letter": "ق"
+  },
+  {
+    "id": 456,
+    "ar": "القضية الجنائية",
+    "en": "Criminal suit",
+    "letter": "ق"
+  },
+  {
+    "id": 457,
+    "ar": "القطع",
+    "en": "Amputation",
+    "letter": "ق"
+  },
+  {
+    "id": 458,
+    "ar": "القوامة",
+    "en": "Guardianship",
+    "letter": "ق"
+  },
+  {
+    "id": 459,
+    "ar": "القيد األول",
+    "en": "First entry",
+    "letter": "ق"
+  },
+  {
+    "id": 460,
+    "ar": "القيد التالي",
+    "en": "Subsequent entry",
+    "letter": "ق"
+  },
+  {
+    "id": 461,
+    "ar": "قيد الدعوى",
+    "en": "Registry of a case",
+    "letter": "ق"
+  },
+  {
+    "id": 462,
+    "ar": "كاتب السجل",
+    "en": "Recorder",
+    "letter": "ك"
+  },
+  {
+    "id": 463,
+    "ar": "كاتب الضبط",
+    "en": "Clerk",
+    "letter": "ك"
+  },
+  {
+    "id": 464,
+    "ar": "كاتب العدل",
+    "en": "Notary public",
+    "letter": "ك"
+  },
+  {
+    "id": 465,
+    "ar": "كتابة العدل",
+    "en": "Notary public",
+    "letter": "ك"
+  },
+  {
+    "id": 466,
+    "ar": "الكشط",
+    "en": "Alteration",
+    "letter": "ك"
+  },
+  {
+    "id": 467,
+    "ar": "الكفالة",
+    "en": "Bail",
+    "letter": "ك"
+  },
+  {
+    "id": 468,
+    "ar": "الكفالة المصرفية",
+    "en": "Bank guarantee",
+    "letter": "ك"
+  },
+  {
+    "id": 469,
+    "ar": "الكفيل",
+    "en": "Guarantor",
+    "letter": "ك"
+  },
+  {
+    "id": 470,
+    "ar": "الكفيل العيني",
+    "en": "Real guarantor",
+    "letter": "ك"
+  },
+  {
+    "id": 471,
+    "ar": "الكفيل الغارم المليء",
+    "en": "Solvent guarantor",
+    "letter": "ك"
+  },
+  {
+    "id": 472,
+    "ar": "الكمبيالة",
+    "en": "Bill of exchange",
+    "letter": "ك"
+  },
+  {
+    "id": 473,
+    "ar": "الالئحة",
+    "en": "Regulation",
+    "letter": "أ"
+  },
+  {
+    "id": 474,
+    "ar": "الالئحة التنفيذية",
+    "en": "Implementing regulation",
+    "letter": "أ"
+  },
+  {
+    "id": 475,
+    "ar": "الئحة التفتيش القضائي",
+    "en": "Judicial inspection regulation",
+    "letter": "ل"
+  },
+  {
+    "id": 476,
+    "ar": "اللَ بس",
+    "en": "Confusing",
+    "letter": "ل"
+  },
+  {
+    "id": 477,
+    "ar": "اللجنة",
+    "en": "Committee",
+    "letter": "ل"
+  },
+  {
+    "id": 478,
+    "ar": "لجنة التأديب",
+    "en": "Disciplinary committee",
+    "letter": "ل"
+  },
+  {
+    "id": 479,
+    "ar": "اللجنة شبه القضائية",
+    "en": "Quasi-judicial committee",
+    "letter": "ل"
+  },
+  {
+    "id": 480,
+    "ar": "لجنة قيد وقبول المحامين",
+    "en": "Lawyers registration and admission committee",
+    "letter": "ل"
+  },
+  {
+    "id": 481,
+    "ar": "اللغة الرسمية",
+    "en": "Official language",
+    "letter": "ل"
+  },
+  {
+    "id": 482,
+    "ar": "مالك العقار",
+    "en": "Owner of property",
+    "letter": "م"
+  },
+  {
+    "id": 483,
+    "ar": "مالك الوحدة العقارية",
+    "en": "Owner of real estate unit",
+    "letter": "م"
+  },
+  {
+    "id": 484,
+    "ar": "مأمور التنفيذ",
+    "en": "Enforcement officer",
+    "letter": "م"
+  },
+  {
+    "id": 485,
+    "ar": "مأمور بيت المال",
+    "en": "Administrator of the public treasury",
+    "letter": "م"
+  },
+  {
+    "id": 486,
+    "ar": "المبدأ القضائي",
+    "en": "Precedent",
+    "letter": "م"
+  },
+  {
+    "id": 487,
+    "ar": "المبنى",
+    "en": "Building",
+    "letter": "م"
+  },
+  {
+    "id": 488,
+    "ar": "المترجم",
+    "en": "Interpreter",
+    "letter": "م"
+  },
+  {
+    "id": 489,
+    "ar": "المتضرر",
+    "en": "Aggrieved person",
+    "letter": "م"
+  },
+  {
+    "id": 490,
+    "ar": "المتهم",
+    "en": "Accused",
+    "letter": "م"
+  },
+  {
+    "id": 491,
+    "ar": "المجلس",
+    "en": "Council",
+    "letter": "م"
+  },
+  {
+    "id": 492,
+    "ar": "المجلس األعلى للقضاء",
+    "en": "Supreme judicial council",
+    "letter": "م"
+  },
+  {
+    "id": 493,
+    "ar": "المجلس التأديبي",
+    "en": "Disciplinary board",
+    "letter": "م"
+  },
+  {
+    "id": 494,
+    "ar": "مجلس القضاء اإلداري",
+    "en": "Administrative judicial council",
+    "letter": "م"
+  },
+  {
+    "id": 495,
+    "ar": "مجلس الوزراء",
+    "en": "Council of ministers",
+    "letter": "م"
+  },
+  {
+    "id": 496,
+    "ar": "المجني عليه",
+    "en": "Victim",
+    "letter": "م"
+  },
+  {
+    "id": 497,
+    "ar": "المحاباة",
+    "en": "Favor",
+    "letter": "م"
+  },
+  {
+    "id": 498,
+    "ar": "المحاكمة",
+    "en": "Trial",
+    "letter": "م"
+  },
+  {
+    "id": 499,
+    "ar": "المحاكمة التأديبية",
+    "en": "Disciplinary trial",
+    "letter": "م"
+  },
+  {
+    "id": 500,
+    "ar": "المحامي",
+    "en": "Attorney",
+    "letter": "م"
+  },
+  {
+    "id": 501,
+    "ar": "المحامي الممارس",
+    "en": "Practicing lawyer",
+    "letter": "م"
+  },
+  {
+    "id": 502,
+    "ar": "المحامي غير الممارس",
+    "en": "Non- practicing lawyer",
+    "letter": "م"
+  },
+  {
+    "id": 503,
+    "ar": "المحجر",
+    "en": "Quarry",
+    "letter": "م"
+  },
+  {
+    "id": 504,
+    "ar": "المحجور عليه",
+    "en": "Interdicted person",
+    "letter": "م"
+  },
+  {
+    "id": 505,
+    "ar": "المحرر األجنبي",
+    "en": "Foreign document",
+    "letter": "م"
+  },
+  {
+    "id": 506,
+    "ar": "المحرر اإللكتروني",
+    "en": "Electronic document",
+    "letter": "م"
+  },
+  {
+    "id": 507,
+    "ar": "المحرر المكتوب",
+    "en": "Written document",
+    "letter": "م"
+  },
+  {
+    "id": 508,
+    "ar": "المحرر الموثق",
+    "en": "Attested document",
+    "letter": "م"
+  },
+  {
+    "id": 509,
+    "ar": "المُحضر",
+    "en": "Process server",
+    "letter": "م"
+  },
+  {
+    "id": 510,
+    "ar": "محضر التفتيش",
+    "en": "Search report",
+    "letter": "م"
+  },
+  {
+    "id": 511,
+    "ar": "محضر الحجز",
+    "en": "Attachment minutes",
+    "letter": "م"
+  },
+  {
+    "id": 512,
+    "ar": "محضر الدعوى",
+    "en": "Case record",
+    "letter": "م"
+  },
+  {
+    "id": 513,
+    "ar": "محضر الصلح",
+    "en": "Settlement document",
+    "letter": "م"
+  },
+  {
+    "id": 514,
+    "ar": "المحقق",
+    "en": "Investigator",
+    "letter": "م"
+  },
+  {
+    "id": 515,
+    "ar": "المحكِّ م",
+    "en": "Arbitrator",
+    "letter": "م"
+  },
+  {
+    "id": 516,
+    "ar": "المحكمة",
+    "en": "Court",
+    "letter": "م"
+  },
+  {
+    "id": 517,
+    "ar": "المحكمة األجنبية",
+    "en": "Foreign court",
+    "letter": "م"
+  },
+  {
+    "id": 518,
+    "ar": "محكمة األحوال الشخصية",
+    "en": "Family court",
+    "letter": "م"
+  },
+  {
+    "id": 519,
+    "ar": "المحكمة اإلدارية",
+    "en": "Administrative court",
+    "letter": "م"
+  },
+  {
+    "id": 520,
+    "ar": "المحكمة اإلدارية العليا",
+    "en": "High administrative court",
+    "letter": "م"
+  },
+  {
+    "id": 521,
+    "ar": "محكمة االستئناف",
+    "en": "Court of appeal",
+    "letter": "م"
+  },
+  {
+    "id": 522,
+    "ar": "محكمة االستئناف اإلدارية",
+    "en": "Administrative court of appeal",
+    "letter": "م"
+  },
+  {
+    "id": 523,
+    "ar": "المحكمة التجارية",
+    "en": "Commercial court",
+    "letter": "م"
+  },
+  {
+    "id": 524,
+    "ar": "محكمة التنفيذ",
+    "en": "Enforcement court",
+    "letter": "م"
+  },
+  {
+    "id": 525,
+    "ar": "المحكمة الجزائية",
+    "en": "Criminal court",
+    "letter": "م"
+  },
+  {
+    "id": 526,
+    "ar": "محكمة الدرجة األولى",
+    "en": "Court of first instance",
+    "letter": "م"
+  },
+  {
+    "id": 527,
+    "ar": "المحكمة العامة",
+    "en": "General court",
+    "letter": "م"
+  },
+  {
+    "id": 528,
+    "ar": "المحكمة العليا",
+    "en": "Supreme court",
+    "letter": "م"
+  },
+  {
+    "id": 529,
+    "ar": "المحكمة العمالية",
+    "en": "Labor court",
+    "letter": "م"
+  },
+  {
+    "id": 530,
+    "ar": "المحكمة المتخصصة",
+    "en": "Specialized court",
+    "letter": "م"
+  },
+  {
+    "id": 531,
+    "ar": "المحكمة المختصة",
+    "en": "Competent court",
+    "letter": "م"
+  },
+  {
+    "id": 532,
+    "ar": "محل الدعوى",
+    "en": "Subject of the case",
+    "letter": "م"
+  },
+  {
+    "id": 533,
+    "ar": "محل الشك",
+    "en": "Questionable",
+    "letter": "م"
+  },
+  {
+    "id": 534,
+    "ar": "المحو",
+    "en": "Deletion",
+    "letter": "م"
+  },
+  {
+    "id": 535,
+    "ar": "محو التأشير",
+    "en": "Removal of the notation",
+    "letter": "م"
+  },
+  {
+    "id": 536,
+    "ar": "المخالصة",
+    "en": "Settlement",
+    "letter": "م"
+  },
+  {
+    "id": 537,
+    "ar": "المخالفة",
+    "en": "Violation",
+    "letter": "م"
+  },
+  {
+    "id": 538,
+    "ar": "المخالفة للآداب أو النظام العام",
+    "en": "Violation of public order",
+    "letter": "م"
+  },
+  {
+    "id": 539,
+    "ar": "المداولة",
+    "en": "Deliberation",
+    "letter": "م"
+  },
+  {
+    "id": 540,
+    "ar": "المدة والموعد",
+    "en": "Period and date",
+    "letter": "م"
+  },
+  {
+    "id": 541,
+    "ar": "المدعى عليه",
+    "en": "Defendant",
+    "letter": "م"
+  },
+  {
+    "id": 542,
+    "ar": "المدعي",
+    "en": "Plaintiff",
+    "letter": "م"
+  },
+  {
+    "id": 543,
+    "ar": "المدعي العام",
+    "en": "Public prosecutor",
+    "letter": "م"
+  },
+  {
+    "id": 544,
+    "ar": "مدير الشرطة",
+    "en": "Director of police station",
+    "letter": "م"
+  },
+  {
+    "id": 545,
+    "ar": "المدين",
+    "en": "Debtor",
+    "letter": "م"
+  },
+  {
+    "id": 546,
+    "ar": "مذكرة البيانات والملحوظات",
+    "en": "Data memorandum and remarks",
+    "letter": "م"
+  },
+  {
+    "id": 547,
+    "ar": "المذكرة التكميلية",
+    "en": "Complementary memoranda",
+    "letter": "م"
+  },
+  {
+    "id": 548,
+    "ar": "مذكرة الدفاع",
+    "en": "Statement of defense",
+    "letter": "م"
+  },
+  {
+    "id": 549,
+    "ar": "مذكرة المعارضة",
+    "en": "Memorandum of appeal",
+    "letter": "م"
+  },
+  {
+    "id": 550,
+    "ar": "المرتهن",
+    "en": "Mortgagee",
+    "letter": "م"
+  },
+  {
+    "id": 551,
+    "ar": "المزاد العلني",
+    "en": "Public auction",
+    "letter": "م"
+  },
+  {
+    "id": 552,
+    "ar": "مزاولة المهنة",
+    "en": "Practice the profession",
+    "letter": "م"
+  },
+  {
+    "id": 553,
+    "ar": "المزية",
+    "en": "Privilege",
+    "letter": "م"
+  },
+  {
+    "id": 554,
+    "ar": "المساح",
+    "en": "Surveyor",
+    "letter": "م"
+  },
+  {
+    "id": 555,
+    "ar": "المسألة األولية",
+    "en": "Preliminary petition",
+    "letter": "م"
+  },
+  {
+    "id": 556,
+    "ar": "المستأنِف",
+    "en": "Appellant",
+    "letter": "م"
+  },
+  {
+    "id": 557,
+    "ar": "المستثمر",
+    "en": "Investor",
+    "letter": "م"
+  },
+  {
+    "id": 558,
+    "ar": "المستشار",
+    "en": "Consultant",
+    "letter": "م"
+  },
+  {
+    "id": 559,
+    "ar": "المستقل",
+    "en": "Independent",
+    "letter": "م"
+  },
+  {
+    "id": 560,
+    "ar": "المستند التكميلي",
+    "en": "Supplemental document",
+    "letter": "م"
+  },
+  {
+    "id": 561,
+    "ar": "المسجون في القضايا الجزائية",
+    "en": "Criminal prisoner",
+    "letter": "م"
+  },
+  {
+    "id": 562,
+    "ar": "المسودة",
+    "en": "Draft",
+    "letter": "م"
+  },
+  {
+    "id": 563,
+    "ar": "المسوغ",
+    "en": "Justification",
+    "letter": "م"
+  },
+  {
+    "id": 564,
+    "ar": "المسؤولية الشخصية",
+    "en": "Personal liability",
+    "letter": "م"
+  },
+  {
+    "id": 565,
+    "ar": "المشروع",
+    "en": "Project",
+    "letter": "م"
+  },
+  {
+    "id": 566,
+    "ar": "المشروع االقتصادي",
+    "en": "Economic project",
+    "letter": "م"
+  },
+  {
+    "id": 567,
+    "ar": "المصادرة",
+    "en": "Confiscation",
+    "letter": "م"
+  },
+  {
+    "id": 568,
+    "ar": "المصالحة",
+    "en": "Reconciliation",
+    "letter": "م"
+  },
+  {
+    "id": 569,
+    "ar": "المصروف",
+    "en": "Expense",
+    "letter": "م"
+  },
+  {
+    "id": 570,
+    "ar": "المصفي",
+    "en": "Liquidator",
+    "letter": "م"
+  },
+  {
+    "id": 571,
+    "ar": "المصلحة العامة",
+    "en": "Public interest",
+    "letter": "م"
+  },
+  {
+    "id": 572,
+    "ar": "المصلحة المشروعة",
+    "en": "Legitimate interest",
+    "letter": "م"
+  },
+  {
+    "id": 573,
+    "ar": "المضاربة",
+    "en": "Trading",
+    "letter": "م"
+  },
+  {
+    "id": 574,
+    "ar": "المعارضة على الحكم",
+    "en": "Challenge the judgment",
+    "letter": "م"
+  },
+  {
+    "id": 575,
+    "ar": "المعاملة بالمثل",
+    "en": "Reciprocity",
+    "letter": "م"
+  },
+  {
+    "id": 576,
+    "ar": "المعاملة بما يحفظ الكرامة",
+    "en": "Treated with dignity",
+    "letter": "م"
+  },
+  {
+    "id": 577,
+    "ar": "المعاهدة",
+    "en": "Treaty",
+    "letter": "م"
+  },
+  {
+    "id": 578,
+    "ar": "المعاوضة",
+    "en": "Compensation",
+    "letter": "م"
+  },
+  {
+    "id": 579,
+    "ar": "معاون القضاء",
+    "en": "Judicial clerk",
+    "letter": "م"
+  },
+  {
+    "id": 580,
+    "ar": "المعاينة",
+    "en": "Inspection",
+    "letter": "م"
+  },
+  {
+    "id": 581,
+    "ar": "المعهد العالي للقضاء",
+    "en": "High judicial institute",
+    "letter": "م"
+  },
+  {
+    "id": 582,
+    "ar": "المعوق",
+    "en": "Impediment",
+    "letter": "م"
+  },
+  {
+    "id": 583,
+    "ar": "المُعيَّن",
+    "en": "Defined",
+    "letter": "م"
+  },
+  {
+    "id": 584,
+    "ar": "المقاصة القضائية",
+    "en": "Judicial offset",
+    "letter": "م"
+  },
+  {
+    "id": 585,
+    "ar": "مقدم خدمة التنفيذ",
+    "en": "Enforcement service provider",
+    "letter": "م"
+  },
+  {
+    "id": 586,
+    "ar": "المقر الرسمي",
+    "en": "Official headquarter",
+    "letter": "م"
+  },
+  {
+    "id": 587,
+    "ar": "المقوِّم المعتمد",
+    "en": "Accredited valuer",
+    "letter": "م"
+  },
+  {
+    "id": 588,
+    "ar": "المكافأة",
+    "en": "Reward",
+    "letter": "م"
+  },
+  {
+    "id": 589,
+    "ar": "مكان اإلقامة",
+    "en": "Place of residence",
+    "letter": "م"
+  },
+  {
+    "id": 590,
+    "ar": "المالزم القضائي",
+    "en": "Trainee judge",
+    "letter": "م"
+  },
+  {
+    "id": 591,
+    "ar": "المُلتمِس",
+    "en": "Petitioner",
+    "letter": "م"
+  },
+  {
+    "id": 592,
+    "ar": "الملحق",
+    "en": "Appurtenance",
+    "letter": "م"
+  },
+  {
+    "id": 593,
+    "ar": "الملخص",
+    "en": "Summary",
+    "letter": "م"
+  },
+  {
+    "id": 594,
+    "ar": "ملف القضية",
+    "en": "Case file",
+    "letter": "م"
+  },
+  {
+    "id": 595,
+    "ar": "الملك العام أو الخاص",
+    "en": "Public or private property",
+    "letter": "م"
+  },
+  {
+    "id": 596,
+    "ar": "الملكية الفكرية",
+    "en": "Intellectual property",
+    "letter": "م"
+  },
+  {
+    "id": 597,
+    "ar": "ممارسة القضاء",
+    "en": "Experience as judge",
+    "letter": "م"
+  },
+  {
+    "id": 598,
+    "ar": "المماطلة",
+    "en": "Procrastination",
+    "letter": "م"
+  },
+  {
+    "id": 599,
+    "ar": "الممثل األجنبي",
+    "en": "Foreign representative",
+    "letter": "م"
+  },
+  {
+    "id": 600,
+    "ar": "ممثل األجهزة الحكومية",
+    "en": "Representatives of government agencies",
+    "letter": "م"
+  },
+  {
+    "id": 601,
+    "ar": "الممثل النظامي",
+    "en": "Legal representative",
+    "letter": "م"
+  },
+  {
+    "id": 602,
+    "ar": "مملوك على الشيوع",
+    "en": "Jointly owned",
+    "letter": "م"
+  },
+  {
+    "id": 603,
+    "ar": "المنازعة",
+    "en": "Dispute",
+    "letter": "م"
+  },
+  {
+    "id": 604,
+    "ar": "المنازعة التجارية",
+    "en": "Commercial dispute",
+    "letter": "م"
+  },
+  {
+    "id": 605,
+    "ar": "منازعة التنفيذ",
+    "en": "Enforcement dispute",
+    "letter": "م"
+  },
+  {
+    "id": 606,
+    "ar": "المنازعة في الملكية",
+    "en": "Dispute over ownership",
+    "letter": "م"
+  },
+  {
+    "id": 607,
+    "ar": "المنجم",
+    "en": "Mine",
+    "letter": "م"
+  },
+  {
+    "id": 608,
+    "ar": "المنشأة العسكرية",
+    "en": "Military installation",
+    "letter": "م"
+  },
+  {
+    "id": 609,
+    "ar": "المنطقة العقارية",
+    "en": "Real estate area",
+    "letter": "م"
+  },
+  {
+    "id": 610,
+    "ar": "المنظمة الدولية",
+    "en": "International organization",
+    "letter": "م"
+  },
+  {
+    "id": 611,
+    "ar": "المنع من السفر",
+    "en": "Travel ban",
+    "letter": "م"
+  },
+  {
+    "id": 612,
+    "ar": "منفعة العقار",
+    "en": "Usufruct of the property",
+    "letter": "م"
+  },
+  {
+    "id": 613,
+    "ar": "المنقول",
+    "en": "Movable property",
+    "letter": "م"
+  },
+  {
+    "id": 614,
+    "ar": "المهنة",
+    "en": "Profession",
+    "letter": "م"
+  },
+  {
+    "id": 615,
+    "ar": "المهندس",
+    "en": "Engineer",
+    "letter": "م"
+  },
+  {
+    "id": 616,
+    "ar": "الموجود",
+    "en": "Existing",
+    "letter": "م"
+  },
+  {
+    "id": 617,
+    "ar": "المورِّث",
+    "en": "Deceased",
+    "letter": "م"
+  },
+  {
+    "id": 618,
+    "ar": "الموظف العام",
+    "en": "Public servant",
+    "letter": "م"
+  },
+  {
+    "id": 619,
+    "ar": "الموعد الحتمي",
+    "en": "Time limitation",
+    "letter": "م"
+  },
+  {
+    "id": 620,
+    "ar": "الموقوف",
+    "en": "Detainee",
+    "letter": "م"
+  },
+  {
+    "id": 621,
+    "ar": "الموكل",
+    "en": "Client",
+    "letter": "م"
+  },
+  {
+    "id": 622,
+    "ar": "الميزانية",
+    "en": "Budget",
+    "letter": "م"
+  },
+  {
+    "id": 623,
+    "ar": "ناظر الوقف",
+    "en": "Administrator of endowment",
+    "letter": "ن"
+  },
+  {
+    "id": 624,
+    "ar": "نائب الرئيس",
+    "en": "Vice president",
+    "letter": "ن"
+  },
+  {
+    "id": 625,
+    "ar": "النزاع",
+    "en": "Contest",
+    "letter": "ن"
+  },
+  {
+    "id": 626,
+    "ar": "النزع الجبري",
+    "en": "Foreclosure",
+    "letter": "ن"
+  },
+  {
+    "id": 627,
+    "ar": "نزع الملكية للمنفعة العامة",
+    "en": "Property expropriated for public interest",
+    "letter": "ن"
+  },
+  {
+    "id": 628,
+    "ar": "نسب الصغير",
+    "en": "Paternity of a child",
+    "letter": "ن"
+  },
+  {
+    "id": 629,
+    "ar": "النسخة",
+    "en": "Copy",
+    "letter": "ن"
+  },
+  {
+    "id": 630,
+    "ar": "النشاط االقتصادي",
+    "en": "Economic activity",
+    "letter": "ن"
+  },
+  {
+    "id": 631,
+    "ar": "النشاط الحرفي",
+    "en": "Vocational activity",
+    "letter": "ن"
+  },
+  {
+    "id": 632,
+    "ar": "النشاط المهني",
+    "en": "Professional activity",
+    "letter": "ن"
+  },
+  {
+    "id": 633,
+    "ar": "النشر في الصحيفة",
+    "en": "Publication in the newspaper",
+    "letter": "ن"
+  },
+  {
+    "id": 634,
+    "ar": "النشر في الجريدة الرسمية",
+    "en": "Publication in the official gazette",
+    "letter": "ن"
+  },
+  {
+    "id": 635,
+    "ar": "النطاق المكاني",
+    "en": "Territorial jurisdiction",
+    "letter": "ن"
+  },
+  {
+    "id": 636,
+    "ar": "النطق بالحكم",
+    "en": "Pronouncement of judgment",
+    "letter": "ن"
+  },
+  {
+    "id": 637,
+    "ar": "النظام",
+    "en": "Law",
+    "letter": "ن"
+  },
+  {
+    "id": 638,
+    "ar": "نظام اإلفالس",
+    "en": "Bankruptcy law",
+    "letter": "ن"
+  },
+  {
+    "id": 639,
+    "ar": "النظام التجاري",
+    "en": "Commercial law",
+    "letter": "ن"
+  },
+  {
+    "id": 640,
+    "ar": "نظام التحكيم",
+    "en": "Law of arbitration",
+    "letter": "ن"
+  },
+  {
+    "id": 641,
+    "ar": "نظام التقاعد",
+    "en": "Retirement law",
+    "letter": "ن"
+  },
+  {
+    "id": 642,
+    "ar": "نظام الخدمة المدنية",
+    "en": "Civil service law",
+    "letter": "ن"
+  },
+  {
+    "id": 643,
+    "ar": "نظام الشركات",
+    "en": "Companies law",
+    "letter": "ن"
+  },
+  {
+    "id": 644,
+    "ar": "النظام العام",
+    "en": "Public order",
+    "letter": "ن"
+  },
+  {
+    "id": 645,
+    "ar": "نظام المرافعات الشرعية",
+    "en": "Law of civil procedure",
+    "letter": "ن"
+  },
+  {
+    "id": 646,
+    "ar": "النظام المرعي",
+    "en": "Applicable law",
+    "letter": "ن"
+  },
+  {
+    "id": 647,
+    "ar": "نظام المرور",
+    "en": "Traffic law",
+    "letter": "ن"
+  },
+  {
+    "id": 648,
+    "ar": "نظام الملكية الفكرية",
+    "en": "Intellectual property law",
+    "letter": "ن"
+  },
+  {
+    "id": 649,
+    "ar": "نظام ديوان المظالم",
+    "en": "Law of the board of grievances",
+    "letter": "ن"
+  },
+  {
+    "id": 650,
+    "ar": "النفقة",
+    "en": "Alimony",
+    "letter": "ن"
+  },
+  {
+    "id": 651,
+    "ar": "نقض الحكم",
+    "en": "Revoke the judgment",
+    "letter": "ن"
+  },
+  {
+    "id": 652,
+    "ar": "النقل",
+    "en": "Transfer",
+    "letter": "ن"
+  },
+  {
+    "id": 653,
+    "ar": "النكول",
+    "en": "Refusal",
+    "letter": "ن"
+  },
+  {
+    "id": 654,
+    "ar": "نوع العقوبة",
+    "en": "Type of punishment",
+    "letter": "ن"
+  },
+  {
+    "id": 655,
+    "ar": "الهالك",
+    "en": "Loss",
+    "letter": "ه"
+  },
+  {
+    "id": 656,
+    "ar": "الهيئة اإلقليمية",
+    "en": "Regional agency",
+    "letter": "ه"
+  },
+  {
+    "id": 657,
+    "ar": "هيئة السوق المالية",
+    "en": "Capital market authority",
+    "letter": "ه"
+  },
+  {
+    "id": 658,
+    "ar": "الهيئة العامة",
+    "en": "General panel",
+    "letter": "ه"
+  },
+  {
+    "id": 659,
+    "ar": "أموال القاصرين ومن في",
+    "en": "",
+    "letter": "أ"
+  },
+  {
+    "id": 660,
+    "ar": "هيئة القضاء اإلداري",
+    "en": "Administrative judicial body",
+    "letter": "ه"
+  },
+  {
+    "id": 661,
+    "ar": "الهيئة الدولية",
+    "en": "International agency",
+    "letter": "ه"
+  },
+  {
+    "id": 662,
+    "ar": "الواجب",
+    "en": "Duty",
+    "letter": "و"
+  },
+  {
+    "id": 663,
+    "ar": "الوارث",
+    "en": "Heir",
+    "letter": "و"
+  },
+  {
+    "id": 664,
+    "ar": "الواقعة",
+    "en": "Fact",
+    "letter": "و"
+  },
+  {
+    "id": 665,
+    "ar": "الواقعة الجائز قبولها",
+    "en": "Admissible fact",
+    "letter": "و"
+  },
+  {
+    "id": 666,
+    "ar": "الواقعة المتعلقة بالدعوى",
+    "en": "Fact relevant to the case",
+    "letter": "و"
+  },
+  {
+    "id": 667,
+    "ar": "الواقعة المنتجة في الدعوى",
+    "en": "Fact material to the case",
+    "letter": "و"
+  },
+  {
+    "id": 668,
+    "ar": "وثيقة الرهن",
+    "en": "Mortgage document",
+    "letter": "و"
+  },
+  {
+    "id": 669,
+    "ar": "وثيقة ملكية الحائز",
+    "en": "Title deed of the possessor",
+    "letter": "و"
+  },
+  {
+    "id": 670,
+    "ar": "الوحدة العقارية",
+    "en": "Real estate unit",
+    "letter": "و"
+  },
+  {
+    "id": 671,
+    "ar": "الورقة التجارية",
+    "en": "Negotiable instrument",
+    "letter": "و"
+  },
+  {
+    "id": 672,
+    "ar": "الورقة الرسمية",
+    "en": "Official paper",
+    "letter": "و"
+  },
+  {
+    "id": 673,
+    "ar": "الورقة العادية",
+    "en": "Ordinary paper",
+    "letter": "و"
+  },
+  {
+    "id": 674,
+    "ar": "الورقة المالية",
+    "en": "Security",
+    "letter": "و"
+  },
+  {
+    "id": 675,
+    "ar": "الوزارة",
+    "en": "Ministry",
+    "letter": "و"
+  },
+  {
+    "id": 676,
+    "ar": "وزارة الداخلية",
+    "en": "Ministry of interior",
+    "letter": "و"
+  },
+  {
+    "id": 677,
+    "ar": "وزارة العدل",
+    "en": "Ministry of justice",
+    "letter": "و"
+  },
+  {
+    "id": 678,
+    "ar": "وزارة المالية",
+    "en": "Ministry of finance",
+    "letter": "و"
+  },
+  {
+    "id": 679,
+    "ar": "الوزير",
+    "en": "Minister",
+    "letter": "و"
+  },
+  {
+    "id": 680,
+    "ar": "وزير الشؤون البلدية والقروية",
+    "en": "Minister of municipal and rural affairs",
+    "letter": "و"
+  },
+  {
+    "id": 681,
+    "ar": "وزير العدل",
+    "en": "Minister of justice",
+    "letter": "و"
+  },
+  {
+    "id": 682,
+    "ar": "وزير الموارد البشرية والتنمية الاجتماعية",
+    "en": "Minister of human resources and social development",
+    "letter": "و"
+  },
+  {
+    "id": 683,
+    "ar": "الوساطة",
+    "en": "Mediation",
+    "letter": "و"
+  },
+  {
+    "id": 684,
+    "ar": "الوسائط اإللكترونية",
+    "en": "Electronic media",
+    "letter": "و"
+  },
+  {
+    "id": 685,
+    "ar": "الوصي",
+    "en": "Trustee",
+    "letter": "و"
+  },
+  {
+    "id": 686,
+    "ar": "الوصية",
+    "en": "Will",
+    "letter": "و"
+  },
+  {
+    "id": 687,
+    "ar": "الوقف",
+    "en": "Endowment",
+    "letter": "و"
+  },
+  {
+    "id": 688,
+    "ar": "وقف التنفيذ",
+    "en": "Stay execution",
+    "letter": "و"
+  },
+  {
+    "id": 689,
+    "ar": "وقف الدعوى",
+    "en": "Suspension of the case",
+    "letter": "و"
+  },
+  {
+    "id": 690,
+    "ar": "الوكيل",
+    "en": "Agent",
+    "letter": "و"
+  },
+  {
+    "id": 691,
+    "ar": "وكيل البيع القضائي",
+    "en": "Judicial sale agent",
+    "letter": "و"
+  },
+  {
+    "id": 692,
+    "ar": "والية القاضي",
+    "en": "Judge s jurisdiction",
+    "letter": "و"
+  },
+  {
+    "id": 693,
+    "ar": "الوالية على المال",
+    "en": "Custody over property",
+    "letter": "و"
+  },
+  {
+    "id": 694,
+    "ar": "الوالية على النفس",
+    "en": "Custody over a person",
+    "letter": "و"
+  },
+  {
+    "id": 695,
+    "ar": "الولي",
+    "en": "Guardian",
+    "letter": "و"
+  }
 ];
 
-export const arabicLetters = ["أ", "ب", "ت", "ث", "ج", "ح", "خ", "د", "ذ", "ر", "ز", "س", "ش", "ص", "ض", "ط", "ظ", "ع", "غ", "ف", "ق", "ك", "ل", "م", "ن", "ه", "و", "ي"];
+export const arabicLetters = [
+  "أ", "ب", "ت", "ث", "ج", "ح", "خ", "د", "ذ", "ر", "ز", "س", "ش",
+  "ص", "ض", "ط", "ظ", "ع", "غ", "ف", "ق", "ك", "ل", "م", "ن", "ه", "و", "ي"
+];
