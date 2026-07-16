@@ -2,6 +2,7 @@ import { useParams, Link } from "wouter";
 import { ArrowLeft, ArrowRight, Briefcase, Gavel, Users, Building, Scale, FileCheck, BookOpen, Shield, Landmark, CheckCircle, Phone } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useTranslation } from "@/hooks/useTranslation";
+import { langKey } from "@/lib/langKey";
 import { trackPhoneClick, trackBookConsultation } from "@/lib/analytics";
 import { useSEO, schemas } from "@/hooks/useSEO";
 import { useMemo } from "react";
@@ -417,7 +418,7 @@ export default function ServiceDetail() {
   // Build FAQ schema for structured data
   const seoSchema = useMemo(() => {
     if (!service) return undefined;
-    const content = service[lang];
+    const content = service[langKey(lang)];
     const faqQuestions = content.faqs.map(f => ({ question: f.q, answer: f.a }));
     const schemaList: any[] = [
       schemas.breadcrumb([
@@ -434,9 +435,9 @@ export default function ServiceDetail() {
   }, [service, lang, params.slug]);
 
   useSEO({
-    title: service ? service[lang].title : (lang === 'ar' ? 'خدمة غير موجودة' : 'Service Not Found'),
-    description: service ? service[lang].description : '',
-    keywords: service ? `${service[lang].title}, ${lang === 'ar' ? 'محاماة، خدمات قانونية' : 'law, legal services'}` : '',
+    title: service ? service[langKey(lang)].title : (lang === 'ar' ? 'خدمة غير موجودة' : 'Service Not Found'),
+    description: service ? service[langKey(lang)].description : '',
+    keywords: service ? `${service[langKey(lang)].title}, ${lang === 'ar' ? 'محاماة، خدمات قانونية' : 'law, legal services'}` : '',
     canonical: `/services/${params.slug}`,
     schema: seoSchema,
   });
@@ -455,7 +456,7 @@ export default function ServiceDetail() {
   }
 
   const Icon = service.icon;
-  const content = service[lang];
+  const content = service[langKey(lang)];
   const BackArrow = isRTL ? ArrowLeft : ArrowRight;
 
   return (
@@ -652,7 +653,7 @@ export default function ServiceDetail() {
                           href={lp(`/services/${slug}`)}
                           className="block py-2 px-3 font-body text-sm text-[var(--color-navy)]/60 hover:text-[var(--color-gold)] hover:bg-[var(--color-cream)] transition-all"
                         >
-                          {s[lang].title}
+                          {s[langKey(lang)].title}
                         </Link>
                       ))}
                   </div>

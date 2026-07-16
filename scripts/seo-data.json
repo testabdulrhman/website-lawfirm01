@@ -936,5 +936,26 @@
     "description": "Complete sitemap of Abdulrahman Redwan Al-Mushaiqi Law Firm website.",
     "ogUrl": "https://redwan.sa/en/sitemap",
     "canonical": "/en/sitemap"
+  },
+  "/premium-residency": {
+    "title": "الإقامة المميزة السعودية | محامي إقامة مميزة - شركة المشيقح للمحاماة",
+    "description": "خدمات قانونية متكاملة للحصول على الإقامة المميزة في السعودية. نساعدك في اختيار المسار الأنسب وتجهيز الملف وتقديم الطلب. 7 مسارات متاحة.",
+    "keywords": "إقامة مميزة, إقامة مميزة السعودية, محامي إقامة مميزة, مسارات الإقامة المميزة, إقامة دائمة السعودية",
+    "ogUrl": "https://redwan.sa/premium-residency",
+    "canonical": "/premium-residency"
+  },
+  "/en/premium-residency": {
+    "title": "Saudi Premium Residency | Premium Residency Lawyer - Almushiqeh Law Firm",
+    "description": "Comprehensive legal services for obtaining Saudi Premium Residency. We help you choose the right track, prepare documents, and submit your application. 7 tracks available.",
+    "keywords": "premium residency saudi arabia, premium residency lawyer, saudi green card, permanent residency saudi, premium residency tracks",
+    "ogUrl": "https://redwan.sa/en/premium-residency",
+    "canonical": "/en/premium-residency"
+  },
+  "/ur/premium-residency": {
+    "title": "سعودی پریمیم ریزیڈنسی | پریمیم ریزیڈنسی وکیل - المشیقح لا فرم",
+    "description": "سعودی عرب کی پریمیم ریزیڈنسی حاصل کرنے کے لیے مکمل قانونی خدمات۔ ہم آپ کو صحیح ٹریک منتخب کرنے، دستاویزات تیار کرنے اور درخواست جمع کرانے میں مدد کرتے ہیں۔",
+    "keywords": "پریمیم ریزیڈنسی سعودی عرب, پریمیم ریزیڈنسی وکیل, سعودی گرین کارڈ, مستقل اقامت سعودی",
+    "ogUrl": "https://redwan.sa/ur/premium-residency",
+    "canonical": "/ur/premium-residency"
   }
 }

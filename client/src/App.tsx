@@ -36,6 +36,7 @@ const CasesGuide = lazy(() => import("@/pages/CasesGuide"));
 const LegalDictionary = lazy(() => import("@/pages/LegalDictionary"));
 const CityPage = lazy(() => import("@/pages/CityPage"));
 const Sitemap = lazy(() => import("@/pages/Sitemap"));
+const PremiumResidency = lazy(() => import("@/pages/PremiumResidency"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 // مؤشر تحميل موحّد بألوان الهوية (كحلي/ذهبي)
@@ -90,6 +91,7 @@ function Router() {
               <Route path={"/careers"} component={Careers} />
               <Route path={"/cases-guide"} component={CasesGuide} />
               <Route path={"/legal-dictionary"} component={LegalDictionary} />
+              <Route path={"/premium-residency"} component={PremiumResidency} />
               <Route path={"/locations/:slug"} component={CityPage} />
               <Route path={"/sitemap"} component={Sitemap} />
               {/* English routes (/en prefix) */}
@@ -115,8 +117,11 @@ function Router() {
               <Route path={"/en/careers"} component={Careers} />
               <Route path={"/en/cases-guide"} component={CasesGuide} />
               <Route path={"/en/legal-dictionary"} component={LegalDictionary} />
+              <Route path={"/en/premium-residency"} component={PremiumResidency} />
               <Route path={"/en/locations/:slug"} component={CityPage} />
               <Route path={"/en/sitemap"} component={Sitemap} />
+              {/* Urdu routes (/ur prefix) - Premium Residency only */}
+              <Route path={"/ur/premium-residency"} component={PremiumResidency} />
               <Route path={"*"} component={NotFound} />
               <Route component={NotFound} />
             </Switch>

@@ -257,6 +257,30 @@ export default function Navbar() {
                         </Link>
                       );
                     })}
+                    {/* Premium Residency - standalone service */}
+                    <Link
+                      href={lp("/premium-residency")}
+                      className="group flex items-start gap-3 p-3 rounded-md transition-colors duration-200 hover:bg-white/[0.06]"
+                      style={{
+                        opacity: isMegaOpen ? 1 : 0,
+                        transform: isMegaOpen ? "translateY(0)" : "translateY(6px)",
+                        transition: "opacity 280ms cubic-bezier(0.23,1,0.32,1), transform 280ms cubic-bezier(0.23,1,0.32,1)",
+                        transitionDelay: isMegaOpen ? `${services.length * 35}ms` : "0ms",
+                      }}
+                    >
+                      <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center bg-white/[0.05] text-[var(--color-gold)] transition-colors duration-200 group-hover:bg-[var(--color-gold)] group-hover:text-[var(--color-navy)]">
+                        <Globe size={17} />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="flex items-center gap-1 font-heading text-sm font-semibold text-white group-hover:text-[var(--color-gold)] transition-colors">
+                          {lang === "ar" ? "الإقامة المميزة" : "Premium Residency"}
+                          <ArrowUpRight size={13} className={`opacity-0 -translate-y-0.5 group-hover:opacity-100 transition-all duration-200 ${isRTL ? "scale-x-[-1]" : ""}`} />
+                        </span>
+                        <span className="block font-body text-xs leading-relaxed text-white/45 mt-0.5 line-clamp-2">
+                          {lang === "ar" ? "خدمات الحصول على الإقامة المميزة السعودية" : "Saudi Premium Residency services"}
+                        </span>
+                      </span>
+                    </Link>
                   </div>
                 </div>
 
@@ -340,7 +364,7 @@ export default function Navbar() {
                     </button>
                     <div
                       className="overflow-hidden transition-all duration-300 ease-out"
-                      style={{ maxHeight: isMobileServicesOpen ? `${services.length * 52 + 56}px` : "0px" }}
+                      style={{ maxHeight: isMobileServicesOpen ? `${(services.length + 1) * 52 + 56}px` : "0px" }}
                     >
                       <div className={`flex flex-col pb-3 ${isRTL ? "pr-3 border-r-2" : "pl-3 border-l-2"} border-[var(--color-gold)]/30 ${isRTL ? "mr-1" : "ml-1"}`}>
                         {services.map((s) => {
@@ -356,6 +380,13 @@ export default function Navbar() {
                             </Link>
                           );
                         })}
+                        <Link
+                          href={lp("/premium-residency")}
+                          className="flex items-center gap-3 py-3 font-body text-sm text-[var(--color-navy)]/80 active:text-[var(--color-gold)]"
+                        >
+                          <Globe size={16} className="text-[var(--color-gold)] shrink-0" />
+                          <span>{lang === "ar" ? "الإقامة المميزة" : "Premium Residency"}</span>
+                        </Link>
                         <Link
                           href={lp("/services")}
                           className="flex items-center gap-2 py-3 font-heading text-sm font-semibold text-[var(--color-gold)]"

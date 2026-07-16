@@ -1,6 +1,7 @@
 import { useScrollAnimation, getStaggerStyle, getFadeStyle } from "@/hooks/useScrollAnimation";
 import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
+import { langKey } from "@/lib/langKey";
 import { useState, useMemo } from "react";
 import { ChevronDown, MessageCircleQuestion, Phone, Scale, ExternalLink } from "lucide-react";
 import { useSEO, schemas } from "@/hooks/useSEO";
@@ -269,7 +270,7 @@ function AccordionItem({ question, answer, isOpen, onClick, index, isVisible }: 
 export default function FAQ() {
   const { lang, isRTL } = useTranslation();
   const lp = (p: string) => localePath(p, lang);
-  const data = faqData[lang];
+  const data = faqData[langKey(lang)];
 
   // Collect all FAQ questions for Schema (تشمل أسئلة نظام الإفلاس في النسخة العربية)
   const faqQuestions = useMemo(() => {

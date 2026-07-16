@@ -2,6 +2,7 @@ import { Shield, Target, Eye, Landmark, Building, FileCheck, Scale, Award, Clock
 import { useScrollAnimation, getStaggerStyle, getFadeStyle } from "@/hooks/useScrollAnimation";
 import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
+import { langKey } from "@/lib/langKey";
 import { useMemo } from "react";
 import { useSEO, schemas } from "@/hooks/useSEO";
 import { localePath } from "@/lib/localePath";
@@ -44,7 +45,7 @@ export default function About() {
   const { ref: valuesRef, isVisible: valuesVisible } = useScrollAnimation();
   const { ref: licensesRef, isVisible: licensesVisible } = useScrollAnimation({ threshold: 0.1 });
 
-  const licenses = licensesData[lang];
+  const licenses = licensesData[langKey(lang)];
 
   return (
     <>

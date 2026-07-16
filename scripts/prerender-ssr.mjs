@@ -106,21 +106,32 @@ function applySEO(html, seo, route) {
 
   // hreflang
   const isEnglish = route.startsWith('/en');
-  const arPath = isEnglish ? (route === '/en' ? '/' : route.replace(/^\/en/, '')) : route;
-  const enPath = isEnglish ? route : (route === '/' ? '/en' : `/en${route}`);
+  const isUrdu = route.startsWith('/ur');
+  const basePath = isEnglish ? (route === '/en' ? '/' : route.replace(/^\/en/, '')) : isUrdu ? (route === '/ur' ? '/' : route.replace(/^\/ur/, '')) : route;
+  const arPath = basePath;
+  const enPath = basePath === '/' ? '/en' : `/en${basePath}`;
   const arUrl = arPath === '/' ? `${SITE}/` : `${SITE}${arPath}`;
   const enUrl = `${SITE}${enPath}`;
   const hreflangLinks = [
     `<link rel="alternate" hreflang="ar" href="${esc(arUrl)}" />`,
     `<link rel="alternate" hreflang="en" href="${esc(enUrl)}" />`,
     `<link rel="alternate" hreflang="x-default" href="${esc(arUrl)}" />`,
-  ].join('\n    ');
-  html = html.replace('</head>', `    ${hreflangLinks}\n  </head>`);
+  ];
+  // Add Urdu hreflang if this is a page with Urdu version
+  if (isUrdu || basePath === '/premium-residency') {
+    const urUrl = `${SITE}/ur${basePath === '/' ? '' : basePath}`;
+    hreflangLinks.push(`<link rel="alternate" hreflang="ur" href="${esc(urUrl)}" />`);
+  }
+  html = html.replace('</head>', `    ${hreflangLinks.join('\n    ')}\n  </head>`);
 
   // lang/dir for English pages
   if (isEnglish) {
     html = html.replace(/lang="ar"/, 'lang="en"');
     html = html.replace(/dir="rtl"/, 'dir="ltr"');
+  }
+  // lang for Urdu pages (keep dir=rtl)
+  if (isUrdu) {
+    html = html.replace(/lang="ar"/, 'lang="ur"');
   }
 
   // prerender marker

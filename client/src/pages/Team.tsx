@@ -1,6 +1,7 @@
 import { useScrollAnimation, getStaggerStyle, getFadeStyle } from "@/hooks/useScrollAnimation";
 import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
+import { langKey } from "@/lib/langKey";
 import { Mail, Phone, Linkedin } from "lucide-react";
 import { useMemo } from "react";
 import { useSEO, schemas } from "@/hooks/useSEO";
@@ -117,7 +118,7 @@ export default function Team() {
 
   const seoSchema = useMemo(() => [
     schemas.breadcrumb([{ name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' }, { name: lang === 'ar' ? 'فريقنا' : 'Our Team', url: '/team' }]),
-    ...teamData[lang].members.filter(m => m.bio).map(m => schemas.personAttorney(m.name, m.role, m.bio))
+    ...teamData[langKey(lang)].members.filter(m => m.bio).map(m => schemas.personAttorney(m.name, m.role, m.bio))
   ], [lang]);
   useSEO({
     title: lang === 'ar' ? 'فريقنا - المحامون' : 'Our Team - Attorneys',
@@ -134,7 +135,7 @@ export default function Team() {
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
   const { ref: teamRef, isVisible: teamVisible } = useScrollAnimation({ threshold: 0.05 });
 
-  const data = teamData[lang];
+  const data = teamData[langKey(lang)];
 
   return (
     <>

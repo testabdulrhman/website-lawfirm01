@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { useLocation } from "wouter";
 
-export type Language = "ar" | "en";
+export type Language = "ar" | "en" | "ur";
 
 interface LanguageContextType {
   lang: Language;
@@ -19,10 +19,13 @@ interface LanguageProviderProps {
 /**
  * Determines language from URL path:
  * - /en or /en/* → English
+ * - /ur or /ur/* → Urdu
  * - Everything else → Arabic
  */
 function getLangFromPath(pathname: string): Language {
-  return pathname === "/en" || pathname.startsWith("/en/") ? "en" : "ar";
+  if (pathname === "/en" || pathname.startsWith("/en/")) return "en";
+  if (pathname === "/ur" || pathname.startsWith("/ur/")) return "ur";
+  return "ar";
 }
 
 export function LanguageProvider({ children }: LanguageProviderProps) {
@@ -41,31 +44,35 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   useEffect(() => {
     if (typeof document !== 'undefined') {
       document.documentElement.lang = lang;
-      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      document.documentElement.dir = (lang === "ar" || lang === "ur") ? "rtl" : "ltr";
     }
   }, [lang]);
 
   const setLang = useCallback((newLang: Language) => {
     if (newLang === lang) return;
-    // Navigate to the equivalent route in the other language
-    const currentPath = location;
-    if (newLang === "en") {
-      // Switch from Arabic to English: prepend /en
-      const arPath = currentPath === "/" ? "" : currentPath;
-      setLocation(`/en${arPath}`);
+    // Get the base path (strip current prefix)
+    let basePath = location;
+    if (basePath.startsWith("/en/")) basePath = basePath.slice(3);
+    else if (basePath === "/en") basePath = "/";
+    else if (basePath.startsWith("/ur/")) basePath = basePath.slice(3);
+    else if (basePath === "/ur") basePath = "/";
+
+    // Build new path with target prefix
+    if (newLang === "ar") {
+      setLocation(basePath || "/");
     } else {
-      // Switch from English to Arabic: remove /en prefix
-      const enPath = currentPath.replace(/^\/en/, "") || "/";
-      setLocation(enPath);
+      const suffix = basePath === "/" ? "" : basePath;
+      setLocation(`/${newLang}${suffix}`);
     }
     setLangState(newLang);
-  }, [lang, setLocation]);
+  }, [lang, location, setLocation]);
 
   const toggleLang = useCallback(() => {
+    // Cycle: ar → en → ar (toggle between main two)
     setLang(lang === "ar" ? "en" : "ar");
   }, [lang, setLang]);
 
-  const isRTL = lang === "ar";
+  const isRTL = lang === "ar" || lang === "ur";
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, toggleLang, isRTL }}>

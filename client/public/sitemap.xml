@@ -937,4 +937,34 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/sitemap" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/sitemap" />
   </url>
+  <url>
+    <loc>https://redwan.sa/premium-residency</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/premium-residency" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/premium-residency" />
+    <xhtml:link rel="alternate" hreflang="ur" href="https://redwan.sa/ur/premium-residency" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/premium-residency" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/en/premium-residency</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/premium-residency" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/premium-residency" />
+    <xhtml:link rel="alternate" hreflang="ur" href="https://redwan.sa/ur/premium-residency" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/premium-residency" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/ur/premium-residency</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/premium-residency" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/premium-residency" />
+    <xhtml:link rel="alternate" hreflang="ur" href="https://redwan.sa/ur/premium-residency" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/premium-residency" />
+  </url>
 </urlset>
