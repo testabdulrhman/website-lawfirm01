@@ -2,12 +2,12 @@ import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useScrollAnimation, getStaggerStyle } from "@/hooks/useScrollAnimation";
 import { useSEO, schemas } from "@/hooks/useSEO";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { localePath } from "@/lib/localePath";
 import {
   Globe, Home as HomeIcon, Briefcase, GraduationCap, Trophy, Building2,
   Users, Plane, ShieldCheck, Car, Heart, CheckCircle2, ArrowLeft, ArrowRight,
-  FileText, HelpCircle, Phone
+  FileText, HelpCircle, Phone, Send, Loader2
 } from "lucide-react";
 
 /* ─── Content Data ─── */
@@ -132,6 +132,19 @@ const content = {
         { q: "ما الفرق بين الإقامة المميزة والإقامة العادية؟", a: "الإقامة المميزة لا تحتاج كفيل، وتمنح حق تملك العقار والاستثمار والتنقل بحرية، بينما الإقامة العادية مرتبطة بصاحب عمل محدد." },
         { q: "هل يمكن للمحامي تقديم الطلب نيابة عني؟", a: "نعم، يمكننا تقديم الطلب ومتابعته نيابة عنك بموجب توكيل رسمي." },
       ],
+    },
+    contactForm: {
+      title: "استشارة مجانية",
+      subtitle: "أرسل بياناتك وسنتواصل معك خلال 24 ساعة",
+      name: "الاسم الكامل",
+      phone: "رقم الجوال",
+      nationality: "الجنسية",
+      track: "المسار المطلوب",
+      trackOptions: ["إقامة سنوية", "إقامة دائمة", "مالك عقار", "مستثمر أعمال", "رائد أعمال", "كفاءة استثنائية", "موهبة رياضية/ثقافية", "غير متأكد"],
+      message: "ملاحظات إضافية (اختياري)",
+      submit: "أرسل الطلب",
+      success: "تم إرسال طلبك بنجاح! سنتواصل معك قريباً.",
+      selectPlaceholder: "اختر المسار",
     },
     ctaSection: {
       title: "هل تحتاج مساعدة في الحصول على الإقامة المميزة؟",
@@ -260,6 +273,19 @@ const content = {
         { q: "Can a lawyer submit the application on my behalf?", a: "Yes, we can submit and follow up on your application on your behalf with an official power of attorney." },
       ],
     },
+    contactForm: {
+      title: "Free Consultation",
+      subtitle: "Send your details and we'll contact you within 24 hours",
+      name: "Full Name",
+      phone: "Phone Number",
+      nationality: "Nationality",
+      track: "Desired Track",
+      trackOptions: ["Annual Residency", "Permanent Residency", "Property Owner", "Business Investor", "Entrepreneur", "Exceptional Talent", "Gifted (Sports/Cultural)", "Not Sure"],
+      message: "Additional Notes (optional)",
+      submit: "Submit Request",
+      success: "Your request has been submitted successfully! We'll contact you soon.",
+      selectPlaceholder: "Select a track",
+    },
     ctaSection: {
       title: "Need Help Obtaining Premium Residency?",
       desc: "Contact us for a free consultation to determine the best track for your situation.",
@@ -345,6 +371,19 @@ const content = {
         { q: "کیا وکیل میری طرف سے درخواست جمع کرا سکتا ہے؟", a: "جی ہاں، ہم سرکاری وکالت نامے کے ساتھ آپ کی طرف سے درخواست جمع کرا سکتے ہیں اور فالو اپ کر سکتے ہیں۔" },
       ],
     },
+    contactForm: {
+      title: "مفت مشاورت",
+      subtitle: "اپنی تفصیلات بھیجیں اور ہم 24 گھنٹے کے اندر آپ سے رابطہ کریں گے",
+      name: "پورا نام",
+      phone: "فون نمبر",
+      nationality: "قومیت",
+      track: "مطلوبہ ٹریک",
+      trackOptions: ["سالانہ اقامت", "مستقل اقامت", "جائیداد مالک", "کاروباری سرمایہ کار", "کاروباری", "غیر معمولی صلاحیت", "ہنر مند (کھیل/ثقافت)", "یقین نہیں"],
+      message: "اضافی نوٹس (اختیاری)",
+      submit: "درخواست جمع کرائیں",
+      success: "آپ کی درخواست کامیابی سے جمع ہو گئی! ہم جلد آپ سے رابطہ کریں گے۔",
+      selectPlaceholder: "ٹریک منتخب کریں",
+    },
     ctaSection: {
       title: "پریمیم ریزیڈنسی حاصل کرنے میں مدد چاہیے؟",
       desc: "اپنی صورتحال کے لیے بہترین ٹریک کا تعین کرنے کے لیے ہم سے مفت مشاورت کے لیے رابطہ کریں۔",
@@ -363,6 +402,24 @@ export default function PremiumResidency() {
   const lp = (p: string) => localePath(p, lang);
   const c = lang === "ar" ? content.ar : lang === "ur" ? content.ur : content.en;
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
+
+  // Contact form state
+  const [formData, setFormData] = useState({ name: "", phone: "", nationality: "", track: "", message: "" });
+  const [formLoading, setFormLoading] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormLoading(true);
+    // Build WhatsApp message with form data
+    const trackLabel = formData.track;
+    const msg = `*طلب استشارة - الإقامة المميزة*%0A%0Aالاسم: ${formData.name}%0Aالجوال: ${formData.phone}%0Aالجنسية: ${formData.nationality}%0Aالمسار: ${trackLabel}${formData.message ? `%0Aملاحظات: ${formData.message}` : ""}`;
+    window.open(`https://wa.me/966500004054?text=${msg}`, "_blank");
+    setTimeout(() => {
+      setFormLoading(false);
+      setFormSubmitted(true);
+    }, 1000);
+  };
 
   const seoSchema = useMemo(() => [
     schemas.breadcrumb([
@@ -630,6 +687,107 @@ export default function PremiumResidency() {
                 </p>
               </details>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form */}
+      <section className="py-16 md:py-24 bg-[var(--color-cream)]">
+        <div className="container mx-auto px-5 md:px-4 lg:px-8">
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-10">
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-[var(--color-navy)] mb-3">
+                {c.contactForm.title}
+              </h2>
+              <p className="font-body text-[var(--color-navy)]/60">
+                {c.contactForm.subtitle}
+              </p>
+            </div>
+            {formSubmitted ? (
+              <div className="p-8 bg-white border border-[var(--color-gold)]/30 text-center">
+                <CheckCircle2 size={48} className="text-green-600 mx-auto mb-4" />
+                <p className="font-heading text-lg font-semibold text-[var(--color-navy)]">
+                  {c.contactForm.success}
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleFormSubmit} className="p-6 md:p-8 bg-white border border-[var(--color-border)] space-y-5">
+                <div>
+                  <label className="block font-heading text-sm font-medium text-[var(--color-navy)] mb-2">
+                    {c.contactForm.name} *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                    className="w-full px-4 py-3 border border-[var(--color-border)] bg-[var(--color-cream)] font-body text-sm text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-gold)] transition-colors"
+                  />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block font-heading text-sm font-medium text-[var(--color-navy)] mb-2">
+                      {c.contactForm.phone} *
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      value={formData.phone}
+                      onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+                      className="w-full px-4 py-3 border border-[var(--color-border)] bg-[var(--color-cream)] font-body text-sm text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-gold)] transition-colors"
+                      dir="ltr"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-heading text-sm font-medium text-[var(--color-navy)] mb-2">
+                      {c.contactForm.nationality} *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.nationality}
+                      onChange={(e) => setFormData(prev => ({ ...prev, nationality: e.target.value }))}
+                      className="w-full px-4 py-3 border border-[var(--color-border)] bg-[var(--color-cream)] font-body text-sm text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-gold)] transition-colors"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block font-heading text-sm font-medium text-[var(--color-navy)] mb-2">
+                    {c.contactForm.track} *
+                  </label>
+                  <select
+                    required
+                    value={formData.track}
+                    onChange={(e) => setFormData(prev => ({ ...prev, track: e.target.value }))}
+                    className="w-full px-4 py-3 border border-[var(--color-border)] bg-[var(--color-cream)] font-body text-sm text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-gold)] transition-colors appearance-none"
+                  >
+                    <option value="">{c.contactForm.selectPlaceholder}</option>
+                    {c.contactForm.trackOptions.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block font-heading text-sm font-medium text-[var(--color-navy)] mb-2">
+                    {c.contactForm.message}
+                  </label>
+                  <textarea
+                    rows={3}
+                    value={formData.message}
+                    onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                    className="w-full px-4 py-3 border border-[var(--color-border)] bg-[var(--color-cream)] font-body text-sm text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-gold)] transition-colors resize-none"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={formLoading}
+                  className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm hover:bg-[var(--color-navy)] hover:text-white transition-colors duration-300 disabled:opacity-60"
+                >
+                  {formLoading ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
+                  {c.contactForm.submit}
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </section>
