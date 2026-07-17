@@ -9,7 +9,7 @@ import { trackBookConsultation, trackPhoneClick } from "@/lib/analytics";
 import { localePath } from "@/lib/localePath";
 
 function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
+  const [displayCount, setDisplayCount] = useState(end);
   const ref = useRef<HTMLSpanElement>(null);
   const [started, setStarted] = useState(false);
 
@@ -24,17 +24,20 @@ function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
 
   useEffect(() => {
     if (!started) return;
+    // Animate from 0 to end for visual effect
+    setDisplayCount(0);
     let current = 0;
     const step = Math.ceil(end / 40);
     const timer = setInterval(() => {
       current += step;
-      if (current >= end) { setCount(end); clearInterval(timer); }
-      else setCount(current);
+      if (current >= end) { setDisplayCount(end); clearInterval(timer); }
+      else setDisplayCount(current);
     }, 30);
     return () => clearInterval(timer);
   }, [started, end]);
 
-  return <span ref={ref}>{count}{suffix}</span>;
+  // Render final value in HTML for crawlers (noscript/SSR), animate visually
+  return <span ref={ref}>{displayCount}{suffix}</span>;
 }
 
 const serviceIcons = [Briefcase, Gavel, Building, Scale];

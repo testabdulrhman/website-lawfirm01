@@ -5,7 +5,8 @@ import { useEffect, useState, useRef } from "react";
 import { blogArticles } from "@/data/blogArticles";
 
 function CountUp({ end, suffix = "", startFrom = 0 }: { end: number; suffix?: string; startFrom?: number }) {
-  const [count, setCount] = useState(startFrom);
+  // Initialize with final value so crawlers/SSR see the real number
+  const [count, setCount] = useState(end);
   const ref = useRef<HTMLSpanElement>(null);
   const [started, setStarted] = useState(false);
 
@@ -20,6 +21,8 @@ function CountUp({ end, suffix = "", startFrom = 0 }: { end: number; suffix?: st
 
   useEffect(() => {
     if (!started) return;
+    // Animate from startFrom to end for visual effect
+    setCount(startFrom);
     const range = end - startFrom;
     const totalFrames = 40;
     const step = Math.max(1, Math.ceil(range / totalFrames));

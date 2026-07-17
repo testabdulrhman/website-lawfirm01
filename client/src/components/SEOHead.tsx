@@ -73,9 +73,9 @@ export default function SEOHead({
 
     // Basic meta
     setMeta("description", description);
-    if (keywords.length > 0) {
-      setMeta("keywords", keywords.join(", "));
-    }
+    // Meta keywords removed - not used by modern search engines
+    const existingKeywords = document.querySelector('meta[name="keywords"]');
+    if (existingKeywords) existingKeywords.remove();
     if (canonicalUrl) {
       setCanonical(`${BASE_URL}${canonicalUrl}`);
     }

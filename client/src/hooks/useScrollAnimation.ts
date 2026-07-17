@@ -37,13 +37,16 @@ export function useScrollAnimation(options: UseScrollAnimationOptions = {}) {
 }
 
 export function useCountUp(target: number, duration: number = 2000, isVisible: boolean) {
-  const [count, setCount] = useState(0);
+  // Initialize with target value so crawlers/SSR see the real number
+  const [count, setCount] = useState(target);
   const hasAnimated = useRef(false);
 
   useEffect(() => {
     if (!isVisible || hasAnimated.current) return;
     hasAnimated.current = true;
 
+    // Start animation from 0 for visual effect
+    setCount(0);
     const startTime = performance.now();
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;

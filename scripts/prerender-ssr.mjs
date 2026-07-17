@@ -61,10 +61,8 @@ function applySEO(html, seo, route) {
   // meta description
   html = replaceTag(html, /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/, `<meta name="description" content="${esc(description)}" />`);
 
-  // meta keywords
-  if (keywords) {
-    html = replaceTag(html, /<meta\s+name="keywords"\s+content="[^"]*"\s*\/?>/, `<meta name="keywords" content="${esc(keywords)}" />`);
-  }
+  // meta keywords removed - not used by modern search engines
+  html = html.replace(/<meta\s+name="keywords"\s+content="[^"]*"\s*\/?>/g, '');
 
   // robots
   if (isNoindex) {
@@ -77,7 +75,7 @@ function applySEO(html, seo, route) {
   // Open Graph
   html = replaceTag(html, /<meta\s+property="og:type"\s+content="[^"]*"\s*\/?>/, `<meta property="og:type" content="${esc(ogType)}" />`);
   html = replaceTag(html, /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/, `<meta property="og:url" content="${esc(ogUrl)}" />`);
-  html = replaceTag(html, /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/, `<meta property="og:title" content="${esc(ogTitle)}" />`);
+  html = replaceTag(html, /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/, `<meta property="og:title" content="${esc(title)}" />`);
   html = replaceTag(html, /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/, `<meta property="og:description" content="${esc(ogDesc)}" />`);
   html = replaceTag(html, /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>/, `<meta name="twitter:title" content="${esc(ogTitle)}" />`);
   html = replaceTag(html, /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/, `<meta name="twitter:description" content="${esc(ogDesc)}" />`);

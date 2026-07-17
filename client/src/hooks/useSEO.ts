@@ -41,10 +41,10 @@ export function useSEO({
     // Meta description
     setMeta("description", description);
 
-    // Meta keywords
-    if (keywords) {
-      setMeta("keywords", keywords);
-    }
+    // Meta keywords removed - not used by modern search engines
+    // Clean up any existing keywords meta tag
+    const existingKeywords = document.querySelector('meta[name="keywords"]');
+    if (existingKeywords) existingKeywords.remove();
 
     // Robots
     if (noindex) {
@@ -54,7 +54,7 @@ export function useSEO({
     }
 
     // Open Graph
-    setMeta("og:title", title, "property");
+    setMeta("og:title", fullTitle ? title : `${title} | ${SITE_NAME}`, "property");
     setMeta("og:description", description, "property");
     setMeta("og:type", ogType, "property");
     setMeta("og:site_name", SITE_NAME, "property");
