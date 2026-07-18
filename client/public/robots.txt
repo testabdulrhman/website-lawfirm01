@@ -5,6 +5,7 @@ User-agent: *
 Allow: /
 # صفحة تأكيد إتمام المطالبة — لا حاجة لفهرستها
 Disallow: /bankruptcy/complete
+Disallow: /brand
 
 # ── OpenAI (ChatGPT) ──
 User-agent: GPTBot
