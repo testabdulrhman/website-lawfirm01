@@ -37,6 +37,7 @@ const LegalDictionary = lazy(() => import("@/pages/LegalDictionary"));
 const CityPage = lazy(() => import("@/pages/CityPage"));
 const Sitemap = lazy(() => import("@/pages/Sitemap"));
 const PremiumResidency = lazy(() => import("@/pages/PremiumResidency"));
+const Brand = lazy(() => import("@/pages/Brand"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 // مؤشر تحميل موحّد بألوان الهوية (كحلي/ذهبي)
@@ -122,6 +123,7 @@ function Router() {
               <Route path={"/en/sitemap"} component={Sitemap} />
               {/* Urdu routes (/ur prefix) - Premium Residency only */}
               <Route path={"/ur/premium-residency"} component={PremiumResidency} />
+              <Route path="/brand" component={Brand} />
               <Route path={"*"} component={NotFound} />
               <Route component={NotFound} />
             </Switch>
