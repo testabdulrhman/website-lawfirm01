@@ -319,7 +319,7 @@ export default function Contact() {
           </div>
           <div className="border border-[var(--color-border)] overflow-hidden">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500!2d43.975!3d26.326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDE5JzMzLjYiTiA0M8KwNTgnMzAuMCJF!5e0!3m2!1sar!2ssa!4v1700000000000!5m2!1sar!2ssa"
+              src="https://maps.google.com/maps?q=%D8%B4%D8%B1%D9%83%D8%A9%20%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D8%B1%D8%AD%D9%85%D9%86%20%D8%B1%D8%B6%D9%88%D8%A7%D9%86%20%D8%A7%D9%84%D9%85%D8%B4%D9%8A%D9%82%D8%AD%20%D9%84%D9%84%D9%85%D8%AD%D8%A7%D9%85%D8%A7%D8%A9%20%D8%A8%D8%B1%D9%8A%D8%AF%D8%A9&z=16&hl=ar&output=embed"
               className="w-full h-[350px] md:h-[450px]"
               style={{ border: 0 }}
               allowFullScreen
