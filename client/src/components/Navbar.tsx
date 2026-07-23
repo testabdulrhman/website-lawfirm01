@@ -289,21 +289,21 @@ export default function Navbar() {
                   <div>
                     <Scale size={28} className="text-[var(--color-gold)] mb-4" />
                     <h4 className="font-display text-lg font-bold text-white leading-snug mb-2">
-                      {lang === "ar" ? "تتبّع مطالبتك في الإفلاس" : "Track Your Bankruptcy Claim"}
+                      {lang === "ar" ? "بوابة الدائن" : "Creditor Portal"}
                     </h4>
                     <p className="font-body text-xs text-white/50 leading-relaxed mb-5">
                       {lang === "ar"
-                        ? "تابع حالة مطالبتك إلكترونياً عبر نظام إدارة المطالبات الخاص بنا، بكل سهولة وأمان."
-                        : "Follow your claim status online through our secure claims management system."}
+                        ? "مطالباتك وتذاكرك وبياناتك في مكان واحد — دخول آمن برمز تحقق يصل لجوالك."
+                        : "Your claims, tickets and details in one place — secure OTP login."}
                     </p>
                   </div>
-                  <Link
-                    href={lp("/bankruptcy/track")}
+                  <a
+                    href="https://iflas.redwan.sa/p/creditor"
                     className="group inline-flex items-center justify-center gap-2 w-full px-4 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading text-sm font-semibold transition-all duration-200 hover:bg-[var(--color-gold-light)] active:scale-[0.97]"
                   >
-                    <span>{t.nav.trackClaim}</span>
+                    <span>{lang === "ar" ? "الدخول للبوابة" : "Enter the Portal"}</span>
                     <ArrowUpRight size={15} className={isRTL ? "scale-x-[-1]" : ""} />
-                  </Link>
+                  </a>
                   <Link
                     href={lp("/services")}
                     className="mt-3 inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 border border-white/15 text-white/80 font-heading text-xs font-medium transition-colors duration-200 hover:border-[var(--color-gold)]/50 hover:text-[var(--color-gold)]"

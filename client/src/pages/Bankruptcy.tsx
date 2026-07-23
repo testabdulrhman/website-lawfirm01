@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useScrollAnimation, getStaggerStyle } from "@/hooks/useScrollAnimation";
-import { Building2, FileText, Search, ArrowLeft, ArrowRight, Scale, MessageSquare } from "lucide-react";
+import { Building2, FileText, Search, ArrowLeft, ArrowRight, Scale, MessageSquare, LayoutDashboard } from "lucide-react";
 import { useSEO, schemas } from "@/hooks/useSEO";
 import { useMemo } from "react";
 import { localePath } from "@/lib/localePath";
@@ -99,6 +99,30 @@ export default function Bankruptcy() {
             ref={actionsRef}
             className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto"
           >
+            <a
+              href="https://iflas.redwan.sa/p/creditor"
+              className="group flex items-center gap-4 p-6 bg-[var(--color-navy)] border border-[var(--color-navy)] hover:border-[var(--color-gold)] hover:-translate-y-1 hover:shadow-lg transition-all duration-300 md:col-span-2"
+              style={{ opacity: actionsVisible ? 1 : 0, transform: actionsVisible ? "translateY(0)" : "translateY(20px)", transition: "all 0.6s ease-out" }}
+            >
+              <div className="w-12 h-12 bg-[var(--color-gold)] flex items-center justify-center flex-shrink-0">
+                <LayoutDashboard size={22} className="text-[var(--color-navy)]" />
+              </div>
+              <div>
+                <h3 className="font-heading text-base font-semibold text-white mb-1 flex items-center gap-2">
+                  {lang === "ar" ? "بوابة الدائن" : "Creditor Portal"}
+                  <span className="bg-[var(--color-gold)] text-[var(--color-navy)] text-[10px] font-bold px-1.5 py-0.5">
+                    {lang === "ar" ? "جديد" : "NEW"}
+                  </span>
+                </h3>
+                <p className="font-body text-sm text-white/60">
+                  {lang === "ar"
+                    ? "مطالباتك وتذاكرك وبياناتك في مكان واحد — دخول آمن برمز تحقق يصل لجوالك"
+                    : "Your claims, tickets and details in one place — secure OTP login"}
+                </p>
+              </div>
+              <ArrowIcon size={18} className="text-[var(--color-gold)] mr-auto group-hover:translate-x-1 transition-transform" />
+            </a>
+
             <Link
               href={lp("/bankruptcy/claims")}
               className="group flex items-center gap-4 p-6 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)]/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"

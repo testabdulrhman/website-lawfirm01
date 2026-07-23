@@ -331,6 +331,30 @@ export default function BankruptcyTrack() {
             </p>
           </div>
 
+          {/* بوابة الدائن الكاملة */}
+          <a
+            href="https://iflas.redwan.sa/p/creditor"
+            className="group flex flex-wrap items-center justify-between gap-3 border border-[var(--color-gold)]/40 bg-white p-4 md:p-5 mb-6 hover:border-[var(--color-gold)] transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center bg-[var(--color-navy)] flex-shrink-0">
+                <ShieldCheck className="w-5 h-5 text-[var(--color-gold)]" />
+              </span>
+              <div>
+                <p className="font-heading text-sm font-bold text-[var(--color-navy)]">
+                  جديد: بوابة الدائن الكاملة
+                </p>
+                <p className="font-body text-xs text-[var(--color-navy)]/60">
+                  مطالباتك وتذاكرك وردود أمين الإجراء وبياناتك — في مكان واحد
+                </p>
+              </div>
+            </div>
+            <span className="inline-flex items-center gap-2 bg-[var(--color-gold)] px-4 py-2 font-heading text-xs font-semibold text-[var(--color-navy)] group-hover:bg-[var(--color-gold-light)] transition-colors">
+              الدخول للبوابة
+              <ArrowLeft size={14} />
+            </span>
+          </a>
+
           {/* Error Display */}
           {error && (
             <Card className="mb-4 border-red-200 bg-red-50 shadow-sm">
