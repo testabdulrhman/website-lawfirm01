@@ -3,7 +3,7 @@
 // الهوية: كحلي var(--color-navy) / ذهبي var(--color-gold) / خلفية كريمية var(--color-cream)
 // الخط: IBM Plex Sans Arabic (font-body/font-heading/font-display)، RTL كامل، متجاوب جوال أولاً
 // نموذج التقديم مرتبط بـ Edge Function: submit-application (نظام المكتب)
-// ملاحظة: لا مفاتيح سرية في الصفحة — الـ endpoint عام
+// ملاحظة: لا مفاتيح سرية في الصفحة — anon key علني بطبيعته (بوابة Supabase تتطلبه)
 // ============================================================
 import { useRef, useState } from "react";
 import { Link } from "wouter";
@@ -30,6 +30,9 @@ import {
 
 const SUBMIT_ENDPOINT =
   "https://zwaahunavepleczuamuy.supabase.co/functions/v1/submit-application";
+// المفتاح العام (anon) — علني بطبيعته؛ مطلوب لبوابة Supabase منذ تفعيل التحقق على الدالة
+const SUPABASE_ANON_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3YWFodW5hdmVwbGVjenVhbXV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyOTY1ODUsImV4cCI6MjA4OTg3MjU4NX0.kXByPtJOV-TN7G2f8jcr0DwAX4ldtSu576Rpitwls7M";
 
 const MAX_CV_SIZE = 8 * 1024 * 1024; // 8 ميجابايت
 const UPLOAD_TIMEOUT_MS = 90 * 1000; // 90 ثانية (رفع سيرة كبيرة على جوال بطيء + معالجة الخادم)
@@ -181,7 +184,11 @@ export default function Careers() {
       try {
         res = await fetch(SUBMIT_ENDPOINT, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            apikey: SUPABASE_ANON_KEY,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          },
           body: JSON.stringify(payload),
           signal: controller.signal,
         });
