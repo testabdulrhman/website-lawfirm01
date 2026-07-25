@@ -23,6 +23,17 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Content-Security-Policy = "frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://wa.me https://www.google.com"
 
+# ── Caching: hashed build assets are immutable; static images cached a week ──
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
 # ── بوابة الدائن: رابط مختصر يحوّل إلى البوابة الكاملة ──
 [[redirects]]
   from = "/creditor"
