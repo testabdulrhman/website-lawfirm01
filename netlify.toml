@@ -169,90 +169,11 @@
   [headers.values]
     X-Robots-Tag = "noindex"
 
-# ── Force no trailing slash (301 redirect /path/ → /path) ──
-[[redirects]]
-  from = "/about/"
-  to = "/about"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/team/"
-  to = "/team"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/services/"
-  to = "/services"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/"
-  to = "/blog"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/contact/"
-  to = "/contact"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/faq/"
-  to = "/faq"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/careers/"
-  to = "/careers"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/privacy/"
-  to = "/privacy"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/terms/"
-  to = "/terms"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/cases-guide/"
-  to = "/cases-guide"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/sitemap/"
-  to = "/sitemap"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/bankruptcy/"
-  to = "/bankruptcy"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/legal-dictionary/"
-  to = "/legal-dictionary"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/en/"
-  to = "/en"
-  status = 301
-  force = true
+# ── ملاحظة: أُزيلت قواعد «فرض عدم الشرطة المائلة» (/about/ → /about وأخواتها).
+# Netlify يطابق «/about/» و«/about» كمسار واحد، فقاعدة force من المسار إلى نفسه
+# تنتج حلقة تحويل لا نهائية (ERR_TOO_MANY_REDIRECTS). كانت هذه القواعد مستترة
+# خلف client/public/_redirects ولم تُنفَّذ قط حتى حُذف. الضبط pretty_urls = false
+# أعلاه يمنع إضافة الشرطة المائلة أصلاً، فلا حاجة إليها.
 
 # ── CRITICAL: Catch-all returns 404 for unknown routes ──
 # All valid pages are pre-rendered as /path/index.html — Netlify auto-serves them.
