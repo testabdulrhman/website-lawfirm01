@@ -54,3 +54,4 @@ User-agent: CCBot
 Allow: /
 
 Sitemap: https://redwan.sa/sitemap.xml
+Sitemap: https://redwan.sa/announcements/sitemap.xml
