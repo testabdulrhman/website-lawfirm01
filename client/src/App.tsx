@@ -24,7 +24,6 @@ const Team = lazy(() => import("@/pages/Team"));
 const FAQ = lazy(() => import("@/pages/FAQ"));
 const Careers = lazy(() => import("@/pages/Careers"));
 const CareersComplete = lazy(() => import("@/pages/CareersComplete"));
-const HomePreview = lazy(() => import("@/pages/HomePreview"));
 const BankruptcyComplete = lazy(() => import("@/pages/BankruptcyComplete"));
 const BankruptcyCase = lazy(() => import("@/pages/BankruptcyCase"));
 const BankruptcyTrack = lazy(() => import("@/pages/BankruptcyTrack"));
@@ -71,7 +70,6 @@ function Router() {
             <Switch>
               {/* Arabic routes (default) */}
               <Route path={"/"} component={Home} />
-              <Route path={"/preview"} component={HomePreview} />
               <Route path={"/about"} component={About} />
               <Route path={"/team"} component={Team} />
               <Route path={"/services"} component={Services} />

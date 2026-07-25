@@ -203,3 +203,31 @@
   for = "/bankruptcy/track"
   [headers.values]
     X-Robots-Tag = "noindex"
+
+# ── صفحات تُخدَم بـ200 لكن خارج الفهرسة ──
+# (داخلية أو تُفتح برابط خاص ذي رمز — يجب ألا تعيد 404 لمن يصله الرابط)
+[[headers]]
+  for = "/brand"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/en/careers/complete"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+# أدوات الدائنين الإنجليزية: واجهتها عربية حتى تُترجم
+[[headers]]
+  for = "/en/bankruptcy/claims"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/en/bankruptcy/track"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/en/bankruptcy/ticket"
+  [headers.values]
+    X-Robots-Tag = "noindex"

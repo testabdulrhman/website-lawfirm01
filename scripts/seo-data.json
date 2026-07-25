@@ -1089,5 +1089,77 @@
     "ogType": "website",
     "ogImage": null,
     "canonical": "https://redwan.sa/en/services/documentation"
+  },
+  "/brand": {
+    "title": "الهوية البصرية | شركة عبدالرحمن بن رضوان المشيقح للمحاماة",
+    "description": "دليل الهوية البصرية للشركة: نسخ الشعار المعتمدة بصيغها وألوانها المختلفة للاستخدام الإعلامي والرسمي.",
+    "keywords": "الهوية البصرية, شعار الشركة, دليل العلامة",
+    "ogTitle": "الهوية البصرية",
+    "ogDesc": "دليل الهوية البصرية للشركة: نسخ الشعار المعتمدة بصيغها وألوانها المختلفة للاستخدام الإعلامي والرسمي.",
+    "ogUrl": "https://redwan.sa/brand",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/brand",
+    "noindex": true
+  },
+  "/bankruptcy/complete": {
+    "title": "استكمال بيانات المطالبة | إجراءات الإفلاس",
+    "description": "صفحة استكمال مستندات مطالبة الدائن — تُفتح عبر الرابط الخاص المرسل إليك.",
+    "keywords": "استكمال مطالبة, مستندات الدائن",
+    "ogTitle": "استكمال بيانات المطالبة",
+    "ogDesc": "صفحة استكمال مستندات مطالبة الدائن — تُفتح عبر الرابط الخاص المرسل إليك.",
+    "ogUrl": "https://redwan.sa/bankruptcy/complete",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/bankruptcy/complete",
+    "noindex": true
+  },
+  "/en/careers/complete": {
+    "title": "Complete Your Application | Al-Mushaiqeh Law Firm",
+    "description": "Complete your job application documents — accessible via the private link sent to you.",
+    "keywords": "complete application, careers documents",
+    "ogTitle": "Complete Your Application",
+    "ogDesc": "Complete your job application documents — accessible via the private link sent to you.",
+    "ogUrl": "https://redwan.sa/en/careers/complete",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/careers/complete",
+    "noindex": true
+  },
+  "/en/bankruptcy/claims": {
+    "title": "Submit a Creditor Claim | Al-Mushaiqeh Law Firm",
+    "description": "Submit your creditor claim in bankruptcy proceedings under the Saudi Bankruptcy Law.",
+    "keywords": "creditor claim, bankruptcy claim Saudi",
+    "ogTitle": "Submit a Creditor Claim",
+    "ogDesc": "Submit your creditor claim in bankruptcy proceedings under the Saudi Bankruptcy Law.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/claims",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/bankruptcy/claims",
+    "noindex": true
+  },
+  "/en/bankruptcy/track": {
+    "title": "Track Your Claim | Al-Mushaiqeh Law Firm",
+    "description": "Track the status of your claim in bankruptcy proceedings.",
+    "keywords": "track claim, bankruptcy claim status",
+    "ogTitle": "Track Your Claim",
+    "ogDesc": "Track the status of your claim in bankruptcy proceedings.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/track",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/bankruptcy/track",
+    "noindex": true
+  },
+  "/en/bankruptcy/ticket": {
+    "title": "Submit an Enquiry | Al-Mushaiqeh Law Firm",
+    "description": "Submit an enquiry regarding bankruptcy proceedings.",
+    "keywords": "bankruptcy enquiry, creditor enquiry",
+    "ogTitle": "Submit an Enquiry",
+    "ogDesc": "Submit an enquiry regarding bankruptcy proceedings.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/ticket",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/bankruptcy/ticket",
+    "noindex": true
   }
 }
