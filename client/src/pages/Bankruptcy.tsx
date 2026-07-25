@@ -99,8 +99,8 @@ export default function Bankruptcy() {
             ref={actionsRef}
             className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto"
           >
-            <a
-              href="https://iflas.redwan.sa/p/creditor"
+            <Link
+              href={lp("/creditor")}
               className="group flex items-center gap-4 p-6 bg-[var(--color-navy)] border border-[var(--color-navy)] hover:border-[var(--color-gold)] hover:-translate-y-1 hover:shadow-lg transition-all duration-300 md:col-span-2"
               style={{ opacity: actionsVisible ? 1 : 0, transform: actionsVisible ? "translateY(0)" : "translateY(20px)", transition: "all 0.6s ease-out" }}
             >
@@ -121,7 +121,7 @@ export default function Bankruptcy() {
                 </p>
               </div>
               <ArrowIcon size={18} className="text-[var(--color-gold)] mr-auto group-hover:translate-x-1 transition-transform" />
-            </a>
+            </Link>
 
             <Link
               href={lp("/bankruptcy/claims")}
@@ -142,27 +142,10 @@ export default function Bankruptcy() {
               <ArrowIcon size={18} className="text-[var(--color-gold)] mr-auto group-hover:translate-x-1 transition-transform" />
             </Link>
 
-            <Link
-              href={lp("/bankruptcy/track")}
-              className="group flex items-center gap-4 p-6 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)]/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
-              style={{ opacity: actionsVisible ? 1 : 0, transform: actionsVisible ? "translateY(0)" : "translateY(20px)", transition: "all 0.6s ease-out 0.1s" }}
-            >
-              <div className="w-12 h-12 bg-[var(--color-navy)] flex items-center justify-center flex-shrink-0 group-hover:bg-[var(--color-gold)] transition-colors duration-300">
-                <Search size={22} className="text-[var(--color-gold)] group-hover:text-[var(--color-navy)] transition-colors" />
-              </div>
-              <div>
-                <h3 className="font-heading text-base font-semibold text-[var(--color-navy)] mb-1">
-                  {lang === "ar" ? "تتبع مطالبتي" : "Track My Claim"}
-                </h3>
-                <p className="font-body text-sm text-[var(--color-navy)]/60">
-                  {lang === "ar" ? "متابعة حالة مطالبة مقدمة" : "Follow up on a submitted claim"}
-                </p>
-              </div>
-                <ArrowIcon size={18} className="text-[var(--color-gold)] mr-auto group-hover:translate-x-1 transition-transform" />
-            </Link>
+            {/* أُزيلت بطاقة «تتبع مطالبتي»: بطاقة بوابة الدائن أعلاه تغطّيها — التتبّع صار تبويباً داخلها. */}
 
             <Link
-              href={lp("/bankruptcy/ticket")}
+              href={lp("/creditor")}
               className="group flex items-center gap-4 p-6 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)]/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 md:col-span-2"
               style={{ opacity: actionsVisible ? 1 : 0, transform: actionsVisible ? "translateY(0)" : "translateY(20px)", transition: "all 0.6s ease-out 0.2s" }}
             >

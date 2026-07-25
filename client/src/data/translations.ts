@@ -11,7 +11,7 @@ export const translations = {
       bookConsultation: "احجز استشارة",
       openMenu: "فتح القائمة",
       closeMenu: "إغلاق القائمة",
-      trackClaim: "تتبّع مطالبتي",
+      trackClaim: "بوابة الدائن",
       careers: "انضم إلينا",
     },
     // Hero
@@ -157,7 +157,7 @@ export const translations = {
       bookConsultation: "Book Consultation",
       openMenu: "Open menu",
       closeMenu: "Close Menu",
-      trackClaim: "Track My Claim",
+      trackClaim: "Creditor Portal",
       careers: "Join Us",
     },
     // Hero

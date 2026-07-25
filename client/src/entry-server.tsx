@@ -30,6 +30,7 @@ import Careers from "@/pages/Careers";
 import BankruptcyComplete from "@/pages/BankruptcyComplete";
 import BankruptcyCase from "@/pages/BankruptcyCase";
 import BankruptcyTrack from "@/pages/BankruptcyTrack";
+import CreditorPortal from "@/pages/CreditorPortal";
 import BankruptcyTicket from "@/pages/BankruptcyTicket";
 import Bankruptcy from "@/pages/Bankruptcy";
 import BankruptcyProcedures from "@/pages/BankruptcyProcedures";
@@ -99,6 +100,11 @@ function SSRRouter({ url }: { url: string }) {
       <Route path="/en/legal-dictionary">{() => <Layout><LegalDictionary /></Layout>}</Route>
       <Route path="/en/sitemap">{() => <Layout><Sitemap /></Layout>}</Route>
       <Route path="/en/locations/:city">{() => <Layout><CityPage /></Layout>}</Route>
+
+      {/* بوابة الدائن الموحّدة — ثلاث لغات */}
+      <Route path="/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
+      <Route path="/en/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
+      <Route path="/ur/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
 
       {/* 404 */}
       <Route>{() => <Layout><NotFound /></Layout>}</Route>

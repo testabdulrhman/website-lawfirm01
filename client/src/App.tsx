@@ -27,6 +27,7 @@ const CareersComplete = lazy(() => import("@/pages/CareersComplete"));
 const BankruptcyComplete = lazy(() => import("@/pages/BankruptcyComplete"));
 const BankruptcyCase = lazy(() => import("@/pages/BankruptcyCase"));
 const BankruptcyTrack = lazy(() => import("@/pages/BankruptcyTrack"));
+const CreditorPortal = lazy(() => import("@/pages/CreditorPortal"));
 const BankruptcyTicket = lazy(() => import("@/pages/BankruptcyTicket"));
 const Bankruptcy = lazy(() => import("@/pages/Bankruptcy"));
 const BankruptcyProcedures = lazy(() => import("@/pages/BankruptcyProcedures"));
@@ -122,7 +123,11 @@ function Router() {
               <Route path={"/en/premium-residency"} component={PremiumResidency} />
               <Route path={"/en/locations/:slug"} component={CityPage} />
               <Route path={"/en/sitemap"} component={Sitemap} />
-              {/* Urdu routes (/ur prefix) - Premium Residency only */}
+              {/* بوابة الدائن الموحّدة — ثلاث لغات */}
+              <Route path={"/creditor"} component={CreditorPortal} />
+              <Route path={"/en/creditor"} component={CreditorPortal} />
+              <Route path={"/ur/creditor"} component={CreditorPortal} />
+              {/* Urdu routes (/ur prefix) */}
               <Route path={"/ur/premium-residency"} component={PremiumResidency} />
               <Route path="/brand" component={Brand} />
               <Route path={"*"} component={NotFound} />

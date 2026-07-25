@@ -34,17 +34,30 @@
   [headers.values]
     Cache-Control = "public, max-age=604800"
 
-# ── بوابة الدائن: رابط مختصر يحوّل إلى البوابة الكاملة ──
+# ── بوابة الدائن: صارت داخل الموقع على /creditor (كانت تحوّل إلى iflas.redwan.sa) ──
+# الأداتان القديمتان (تتبّع المطالبة وتذكرة الاستفسار) اندمجتا في البوابة الموحّدة.
 [[redirects]]
-  from = "/creditor"
-  to = "https://iflas.redwan.sa/p/creditor"
-  status = 302
+  from = "/bankruptcy/track"
+  to = "/creditor"
+  status = 301
   force = true
 
 [[redirects]]
-  from = "/creditor/"
-  to = "https://iflas.redwan.sa/p/creditor"
-  status = 302
+  from = "/en/bankruptcy/track"
+  to = "/en/creditor"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/bankruptcy/ticket"
+  to = "/creditor"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/bankruptcy/ticket"
+  to = "/en/creditor"
+  status = 301
   force = true
 
 # ── Old WordPress pages: 301 redirect to closest match ──
@@ -199,8 +212,19 @@
   [headers.values]
     X-Robots-Tag = "noindex"
 
+# بوابة الدائن: خلف تحقق OTP — تُخدَم بـ200 وتبقى خارج الفهرسة
 [[headers]]
-  for = "/bankruptcy/track"
+  for = "/creditor"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/en/creditor"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/ur/creditor"
   [headers.values]
     X-Robots-Tag = "noindex"
 
@@ -222,12 +246,3 @@
   [headers.values]
     X-Robots-Tag = "noindex"
 
-[[headers]]
-  for = "/en/bankruptcy/track"
-  [headers.values]
-    X-Robots-Tag = "noindex"
-
-[[headers]]
-  for = "/en/bankruptcy/ticket"
-  [headers.values]
-    X-Robots-Tag = "noindex"

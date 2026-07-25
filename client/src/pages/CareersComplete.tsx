@@ -338,7 +338,7 @@ export default function CareersComplete() {
                             </Button>
                           )}
                           <input
-                            ref={(el) => (inputRefs.current[d.key] = el)}
+                            ref={(el) => { inputRefs.current[d.key] = el; }}
                             type="file"
                             accept={ALLOWED_EXT.join(",")}
                             className="hidden"

@@ -50,7 +50,7 @@ export default function Navbar() {
     { label: t.nav.about, href: lp("/about") },
     { label: t.nav.team, href: lp("/team") },
     { label: t.nav.services, href: lp("/services"), mega: true },
-    { label: t.nav.trackClaim, href: lp("/bankruptcy/track") },
+    { label: t.nav.trackClaim, href: lp("/creditor") },
     { label: t.nav.blog, href: lp("/blog") },
     { label: t.nav.contact, href: lp("/contact") },
   ];
@@ -297,13 +297,13 @@ export default function Navbar() {
                         : "Your claims, tickets and details in one place — secure OTP login."}
                     </p>
                   </div>
-                  <a
-                    href="https://iflas.redwan.sa/p/creditor"
+                  <Link
+                    href={lp("/creditor")}
                     className="group inline-flex items-center justify-center gap-2 w-full px-4 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading text-sm font-semibold transition-all duration-200 hover:bg-[var(--color-gold-light)] active:scale-[0.97]"
                   >
                     <span>{lang === "ar" ? "الدخول للبوابة" : "Enter the Portal"}</span>
                     <ArrowUpRight size={15} className={isRTL ? "scale-x-[-1]" : ""} />
-                  </a>
+                  </Link>
                   <Link
                     href={lp("/services")}
                     className="mt-3 inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 border border-white/15 text-white/80 font-heading text-xs font-medium transition-colors duration-200 hover:border-[var(--color-gold)]/50 hover:text-[var(--color-gold)]"
