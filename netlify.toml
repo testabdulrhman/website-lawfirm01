@@ -190,6 +190,11 @@
     X-Robots-Tag = "noindex"
 
 [[headers]]
+  for = "/careers/complete"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
   for = "/bankruptcy/complete"
   [headers.values]
     X-Robots-Tag = "noindex"

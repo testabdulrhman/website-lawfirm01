@@ -23,6 +23,7 @@ const Terms = lazy(() => import("@/pages/Terms"));
 const Team = lazy(() => import("@/pages/Team"));
 const FAQ = lazy(() => import("@/pages/FAQ"));
 const Careers = lazy(() => import("@/pages/Careers"));
+const CareersComplete = lazy(() => import("@/pages/CareersComplete"));
 const HomePreview = lazy(() => import("@/pages/HomePreview"));
 const BankruptcyComplete = lazy(() => import("@/pages/BankruptcyComplete"));
 const BankruptcyCase = lazy(() => import("@/pages/BankruptcyCase"));
@@ -89,6 +90,7 @@ function Router() {
               <Route path={"/privacy"} component={Privacy} />
               <Route path={"/terms"} component={Terms} />
               <Route path={"/faq"} component={FAQ} />
+              <Route path={"/careers/complete"} component={CareersComplete} />
               <Route path={"/careers"} component={Careers} />
               <Route path={"/cases-guide"} component={CasesGuide} />
               <Route path={"/legal-dictionary"} component={LegalDictionary} />
@@ -115,6 +117,7 @@ function Router() {
               <Route path={"/en/privacy"} component={Privacy} />
               <Route path={"/en/terms"} component={Terms} />
               <Route path={"/en/faq"} component={FAQ} />
+              <Route path={"/en/careers/complete"} component={CareersComplete} />
               <Route path={"/en/careers"} component={Careers} />
               <Route path={"/en/cases-guide"} component={CasesGuide} />
               <Route path={"/en/legal-dictionary"} component={LegalDictionary} />
