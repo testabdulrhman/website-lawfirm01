@@ -110,17 +110,22 @@ function applySEO(html, seo, route) {
   const enPath = basePath === '/' ? '/en' : `/en${basePath}`;
   const arUrl = arPath === '/' ? `${SITE}/` : `${SITE}${arPath}`;
   const enUrl = `${SITE}${enPath}`;
-  const hreflangLinks = [
-    `<link rel="alternate" hreflang="ar" href="${esc(arUrl)}" />`,
-    `<link rel="alternate" hreflang="en" href="${esc(enUrl)}" />`,
-    `<link rel="alternate" hreflang="x-default" href="${esc(arUrl)}" />`,
-  ];
+  // Only declare an alternate for a language that is actually prerendered —
+  // pointing hreflang at a 404 is worse than omitting it.
+  const hasAr = arPath === '/' ? SEO_DATA['/'] !== undefined : SEO_DATA[arPath] !== undefined;
+  const hasEn = SEO_DATA[enPath] !== undefined;
+  const hreflangLinks = [];
+  if (hasAr) hreflangLinks.push(`<link rel="alternate" hreflang="ar" href="${esc(arUrl)}" />`);
+  if (hasEn) hreflangLinks.push(`<link rel="alternate" hreflang="en" href="${esc(enUrl)}" />`);
+  if (hasAr) hreflangLinks.push(`<link rel="alternate" hreflang="x-default" href="${esc(arUrl)}" />`);
   // Add Urdu hreflang if this is a page with Urdu version
   if (isUrdu || basePath === '/premium-residency') {
     const urUrl = `${SITE}/ur${basePath === '/' ? '' : basePath}`;
     hreflangLinks.push(`<link rel="alternate" hreflang="ur" href="${esc(urUrl)}" />`);
   }
-  html = html.replace('</head>', `    ${hreflangLinks.join('\n    ')}\n  </head>`);
+  if (hreflangLinks.length > 0) {
+    html = html.replace('</head>', `    ${hreflangLinks.join('\n    ')}\n  </head>`);
+  }
 
   // lang/dir for English pages
   if (isEnglish) {

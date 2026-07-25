@@ -295,16 +295,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/preventive-settlement" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/preventive-settlement" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/procedures/preventive-settlement" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/bankruptcy/procedures/preventive-settlement</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/preventive-settlement" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/preventive-settlement" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/procedures/preventive-settlement" />
   </url>
   <url>
@@ -313,16 +303,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/preventive-settlement-small-debtors" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/preventive-settlement-small-debtors" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/procedures/preventive-settlement-small-debtors" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/bankruptcy/procedures/preventive-settlement-small-debtors</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/preventive-settlement-small-debtors" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/preventive-settlement-small-debtors" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/procedures/preventive-settlement-small-debtors" />
   </url>
   <url>
@@ -331,16 +311,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/financial-reorganization" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/financial-reorganization" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/procedures/financial-reorganization" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/bankruptcy/procedures/financial-reorganization</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/financial-reorganization" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/financial-reorganization" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/procedures/financial-reorganization" />
   </url>
   <url>
@@ -349,16 +319,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/financial-reorganization-small-debtors" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/financial-reorganization-small-debtors" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/procedures/financial-reorganization-small-debtors" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/bankruptcy/procedures/financial-reorganization-small-debtors</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/financial-reorganization-small-debtors" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/financial-reorganization-small-debtors" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/procedures/financial-reorganization-small-debtors" />
   </url>
   <url>
@@ -367,16 +327,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/liquidation" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/liquidation" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/procedures/liquidation" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/bankruptcy/procedures/liquidation</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/liquidation" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/liquidation" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/procedures/liquidation" />
   </url>
   <url>
@@ -385,16 +335,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/liquidation-small-debtors" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/liquidation-small-debtors" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/procedures/liquidation-small-debtors" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/bankruptcy/procedures/liquidation-small-debtors</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/liquidation-small-debtors" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/liquidation-small-debtors" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/procedures/liquidation-small-debtors" />
   </url>
   <url>
@@ -403,16 +343,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/administrative-liquidation" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/administrative-liquidation" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/procedures/administrative-liquidation" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/bankruptcy/procedures/administrative-liquidation</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/administrative-liquidation" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/administrative-liquidation" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/procedures/administrative-liquidation" />
   </url>
   <url>
@@ -421,16 +351,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/claims" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/claims" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/claims" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/bankruptcy/claims</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/claims" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/claims" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/claims" />
   </url>
   <url>
@@ -439,16 +359,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/track" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/track" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/track" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/bankruptcy/track</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/track" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/track" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/track" />
   </url>
   <url>
@@ -457,16 +367,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/ASHYAD-STEEL" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/ASHYAD-STEEL" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/ASHYAD-STEEL" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/bankruptcy/ASHYAD-STEEL</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/ASHYAD-STEEL" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/ASHYAD-STEEL" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/ASHYAD-STEEL" />
   </url>
   <url>
@@ -475,16 +375,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/tajalriayaa" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/tajalriayaa" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/tajalriayaa" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/bankruptcy/tajalriayaa</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/tajalriayaa" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/tajalriayaa" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/tajalriayaa" />
   </url>
   <url>
@@ -493,16 +383,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/Planting-for-Contracting" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/Planting-for-Contracting" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/Planting-for-Contracting" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/bankruptcy/Planting-for-Contracting</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/Planting-for-Contracting" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/Planting-for-Contracting" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/Planting-for-Contracting" />
   </url>
   <url>
@@ -511,16 +391,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/Hassan-Misfer-Al-Zahrani" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/bankruptcy/Hassan-Misfer-Al-Zahrani</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/Hassan-Misfer-Al-Zahrani" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani" />
   </url>
   <url>
@@ -529,16 +399,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/Al-Anjaz-Hotel-Village" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/Al-Anjaz-Hotel-Village" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/Al-Anjaz-Hotel-Village" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/bankruptcy/Al-Anjaz-Hotel-Village</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/Al-Anjaz-Hotel-Village" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/Al-Anjaz-Hotel-Village" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/Al-Anjaz-Hotel-Village" />
   </url>
   <url>
@@ -547,16 +407,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/Arcon-Gulf-Contracting" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/Arcon-Gulf-Contracting" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/Arcon-Gulf-Contracting" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/bankruptcy/Arcon-Gulf-Contracting</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/Arcon-Gulf-Contracting" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/Arcon-Gulf-Contracting" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/Arcon-Gulf-Contracting" />
   </url>
   <url>
@@ -583,16 +433,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/blog/تعليق-المطالبات-في-نظام-الإفلاس-السعودي" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/blog/تعليق-المطالبات-في-نظام-الإفلاس-السعودي" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/blog/تعليق-المطالبات-في-نظام-الإفلاس-السعودي" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/blog/تعليق-المطالبات-في-نظام-الإفلاس-السعودي</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/blog/تعليق-المطالبات-في-نظام-الإفلاس-السعودي" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/blog/تعليق-المطالبات-في-نظام-الإفلاس-السعودي" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/blog/تعليق-المطالبات-في-نظام-الإفلاس-السعودي" />
   </url>
   <url>
@@ -601,16 +441,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/blog/التسوية-الوقائية-في-نظام-الإفلاس-السعودي" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/blog/التسوية-الوقائية-في-نظام-الإفلاس-السعودي" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/blog/التسوية-الوقائية-في-نظام-الإفلاس-السعودي" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/blog/التسوية-الوقائية-في-نظام-الإفلاس-السعودي</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/blog/التسوية-الوقائية-في-نظام-الإفلاس-السعودي" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/blog/التسوية-الوقائية-في-نظام-الإفلاس-السعودي" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/blog/التسوية-الوقائية-في-نظام-الإفلاس-السعودي" />
   </url>
   <url>
@@ -619,16 +449,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/blog/الدليل-الإرشادي-لنظام-الإفلاس-ولائحته-التنفيذية" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/blog/الدليل-الإرشادي-لنظام-الإفلاس-ولائحته-التنفيذية" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/blog/الدليل-الإرشادي-لنظام-الإفلاس-ولائحته-التنفيذية" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/blog/الدليل-الإرشادي-لنظام-الإفلاس-ولائحته-التنفيذية</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/blog/الدليل-الإرشادي-لنظام-الإفلاس-ولائحته-التنفيذية" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/blog/الدليل-الإرشادي-لنظام-الإفلاس-ولائحته-التنفيذية" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/blog/الدليل-الإرشادي-لنظام-الإفلاس-ولائحته-التنفيذية" />
   </url>
   <url>
@@ -637,16 +457,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/blog/لماذا-تحتاج-محامي-إفلاس-متخصص" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/blog/لماذا-تحتاج-محامي-إفلاس-متخصص" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/blog/لماذا-تحتاج-محامي-إفلاس-متخصص" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/blog/لماذا-تحتاج-محامي-إفلاس-متخصص</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/blog/لماذا-تحتاج-محامي-إفلاس-متخصص" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/blog/لماذا-تحتاج-محامي-إفلاس-متخصص" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/blog/لماذا-تحتاج-محامي-إفلاس-متخصص" />
   </url>
   <url>
@@ -655,16 +465,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/blog/إعادة-التنظيم-المالي-في-نظام-الإفلاس-السعودي" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/blog/إعادة-التنظيم-المالي-في-نظام-الإفلاس-السعودي" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/blog/إعادة-التنظيم-المالي-في-نظام-الإفلاس-السعودي" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/blog/إعادة-التنظيم-المالي-في-نظام-الإفلاس-السعودي</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/blog/إعادة-التنظيم-المالي-في-نظام-الإفلاس-السعودي" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/blog/إعادة-التنظيم-المالي-في-نظام-الإفلاس-السعودي" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/blog/إعادة-التنظيم-المالي-في-نظام-الإفلاس-السعودي" />
   </url>
   <url>
@@ -673,16 +473,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/blog/التصفية-في-نظام-الإفلاس-السعودي" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/blog/التصفية-في-نظام-الإفلاس-السعودي" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/blog/التصفية-في-نظام-الإفلاس-السعودي" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/blog/التصفية-في-نظام-الإفلاس-السعودي</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/blog/التصفية-في-نظام-الإفلاس-السعودي" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/blog/التصفية-في-نظام-الإفلاس-السعودي" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/blog/التصفية-في-نظام-الإفلاس-السعودي" />
   </url>
   <url>
@@ -691,16 +481,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/blog/حقوق-الدائنين-في-إجراءات-الإفلاس" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/blog/حقوق-الدائنين-في-إجراءات-الإفلاس" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/blog/حقوق-الدائنين-في-إجراءات-الإفلاس" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/blog/حقوق-الدائنين-في-إجراءات-الإفلاس</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/blog/حقوق-الدائنين-في-إجراءات-الإفلاس" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/blog/حقوق-الدائنين-في-إجراءات-الإفلاس" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/blog/حقوق-الدائنين-في-إجراءات-الإفلاس" />
   </url>
   <url>

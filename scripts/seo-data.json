@@ -968,5 +968,126 @@
     "keywords": "پریمیم ریزیڈنسی سعودی عرب, پریمیم ریزیڈنسی وکیل, سعودی گرین کارڈ, مستقل اقامت سعودی",
     "ogUrl": "https://redwan.sa/ur/premium-residency",
     "canonical": "/ur/premium-residency"
+  },
+  "/locations/riyadh": {
+    "title": "محامي في الرياض | شركة المشيقح للمحاماة - استشارات قانونية متخصصة",
+    "description": "محامي متخصص في الرياض. خدمات قانونية شاملة تشمل القضايا التجارية، الإفلاس، النزاعات العقارية، والتحكيم. ترخيص وزارة العدل رقم 26/129. احجز استشارتك الآن.",
+    "keywords": "محامي الرياض, محامي في الرياض, استشارات قانونية الرياض, مكتب محاماة منطقة الرياض",
+    "ogTitle": "محامي في الرياض",
+    "ogDesc": "محامي متخصص في الرياض. خدمات قانونية شاملة تشمل القضايا التجارية، الإفلاس، النزاعات العقارية، والتحكيم. ترخيص وزارة العدل رقم 26/129. احجز استشارتك الآن.",
+    "ogUrl": "https://redwan.sa/locations/riyadh",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/locations/riyadh"
+  },
+  "/en/locations/riyadh": {
+    "title": "Lawyer in Riyadh | Al-Mushaiqeh Law Firm - Specialized Legal Services",
+    "description": "Specialized lawyer in Riyadh. Comprehensive legal services including commercial cases, bankruptcy, real estate disputes, and arbitration. Ministry of Justice License No. 26/129.",
+    "keywords": "lawyer Riyadh, law firm Riyadh, legal services Riyadh, Saudi lawyer",
+    "ogTitle": "Lawyer in Riyadh",
+    "ogDesc": "Specialized lawyer in Riyadh. Comprehensive legal services including commercial cases, bankruptcy, real estate disputes, and arbitration. Ministry of Justice License No. 26/129.",
+    "ogUrl": "https://redwan.sa/en/locations/riyadh",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/locations/riyadh"
+  },
+  "/locations/jeddah": {
+    "title": "محامي في جدة | شركة المشيقح للمحاماة - خدمات قانونية تجارية وبحرية",
+    "description": "محامي متخصص في جدة. خبرة في القضايا التجارية والبحرية والإفلاس والنزاعات العقارية. ترخيص وزارة العدل رقم 26/129. استشارة قانونية احترافية.",
+    "keywords": "محامي جدة, محامي في جدة, استشارات قانونية جدة, مكتب محاماة منطقة مكة المكرمة",
+    "ogTitle": "محامي في جدة",
+    "ogDesc": "محامي متخصص في جدة. خبرة في القضايا التجارية والبحرية والإفلاس والنزاعات العقارية. ترخيص وزارة العدل رقم 26/129. استشارة قانونية احترافية.",
+    "ogUrl": "https://redwan.sa/locations/jeddah",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/locations/jeddah"
+  },
+  "/en/locations/jeddah": {
+    "title": "Lawyer in Jeddah | Al-Mushaiqeh Law Firm - Commercial & Maritime Legal Services",
+    "description": "Specialized lawyer in Jeddah. Expertise in commercial, maritime, bankruptcy cases and real estate disputes. Ministry of Justice License No. 26/129.",
+    "keywords": "lawyer Jeddah, law firm Jeddah, legal services Jeddah, Saudi lawyer",
+    "ogTitle": "Lawyer in Jeddah",
+    "ogDesc": "Specialized lawyer in Jeddah. Expertise in commercial, maritime, bankruptcy cases and real estate disputes. Ministry of Justice License No. 26/129.",
+    "ogUrl": "https://redwan.sa/en/locations/jeddah",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/locations/jeddah"
+  },
+  "/locations/buraydah": {
+    "title": "محامي في بريدة | شركة المشيقح للمحاماة - المقر الرئيسي",
+    "description": "محامي في بريدة - المقر الرئيسي لشركة المشيقح للمحاماة. خبرة 20+ سنة في القضايا التجارية والإفلاس والجنائية. طريق الملك عبدالله، حي الأفق.",
+    "keywords": "محامي بريدة, محامي في بريدة, استشارات قانونية بريدة, مكتب محاماة منطقة القصيم",
+    "ogTitle": "محامي في بريدة",
+    "ogDesc": "محامي في بريدة - المقر الرئيسي لشركة المشيقح للمحاماة. خبرة 20+ سنة في القضايا التجارية والإفلاس والجنائية. طريق الملك عبدالله، حي الأفق.",
+    "ogUrl": "https://redwan.sa/locations/buraydah",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/locations/buraydah"
+  },
+  "/en/locations/buraydah": {
+    "title": "Lawyer in Buraydah | Al-Mushaiqeh Law Firm - Headquarters",
+    "description": "Lawyer in Buraydah - Headquarters of Al-Mushaiqeh Law Firm. 20+ years experience in commercial, bankruptcy, and criminal cases. King Abdullah Road, Al-Ufuq District.",
+    "keywords": "lawyer Buraydah, law firm Buraydah, legal services Buraydah, Saudi lawyer",
+    "ogTitle": "Lawyer in Buraydah",
+    "ogDesc": "Lawyer in Buraydah - Headquarters of Al-Mushaiqeh Law Firm. 20+ years experience in commercial, bankruptcy, and criminal cases. King Abdullah Road, Al-Ufuq District.",
+    "ogUrl": "https://redwan.sa/en/locations/buraydah",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/locations/buraydah"
+  },
+  "/locations/dammam": {
+    "title": "محامي في الدمام | شركة المشيقح للمحاماة - قضايا تجارية ونفطية",
+    "description": "محامي متخصص في الدمام والمنطقة الشرقية. خبرة في القضايا التجارية والنفطية والإفلاس والعقود الصناعية. ترخيص وزارة العدل رقم 26/129.",
+    "keywords": "محامي الدمام, محامي في الدمام, استشارات قانونية الدمام, مكتب محاماة المنطقة الشرقية",
+    "ogTitle": "محامي في الدمام",
+    "ogDesc": "محامي متخصص في الدمام والمنطقة الشرقية. خبرة في القضايا التجارية والنفطية والإفلاس والعقود الصناعية. ترخيص وزارة العدل رقم 26/129.",
+    "ogUrl": "https://redwan.sa/locations/dammam",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/locations/dammam"
+  },
+  "/en/locations/dammam": {
+    "title": "Lawyer in Dammam | Al-Mushaiqeh Law Firm - Commercial & Industrial Cases",
+    "description": "Specialized lawyer in Dammam and Eastern Province. Expertise in commercial, oil & gas, bankruptcy cases and industrial contracts. Ministry of Justice License No. 26/129.",
+    "keywords": "lawyer Dammam, law firm Dammam, legal services Dammam, Saudi lawyer",
+    "ogTitle": "Lawyer in Dammam",
+    "ogDesc": "Specialized lawyer in Dammam and Eastern Province. Expertise in commercial, oil & gas, bankruptcy cases and industrial contracts. Ministry of Justice License No. 26/129.",
+    "ogUrl": "https://redwan.sa/en/locations/dammam",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/locations/dammam"
+  },
+  "/locations/hail": {
+    "title": "محامي في حائل | شركة المشيقح للمحاماة - خدمات قانونية شاملة",
+    "description": "محامي متخصص في حائل. خدمات قانونية تشمل القضايا التجارية والجنائية والعقارية والإفلاس. ترخيص وزارة العدل رقم 26/129. قريبون منك في منطقة حائل.",
+    "keywords": "محامي حائل, محامي في حائل, استشارات قانونية حائل, مكتب محاماة منطقة حائل",
+    "ogTitle": "محامي في حائل",
+    "ogDesc": "محامي متخصص في حائل. خدمات قانونية تشمل القضايا التجارية والجنائية والعقارية والإفلاس. ترخيص وزارة العدل رقم 26/129. قريبون منك في منطقة حائل.",
+    "ogUrl": "https://redwan.sa/locations/hail",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/locations/hail"
+  },
+  "/en/locations/hail": {
+    "title": "Lawyer in Hail | Al-Mushaiqeh Law Firm - Comprehensive Legal Services",
+    "description": "Specialized lawyer in Hail. Legal services including commercial, criminal, real estate cases and bankruptcy. Ministry of Justice License No. 26/129. Close to you in Hail region.",
+    "keywords": "lawyer Hail, law firm Hail, legal services Hail, Saudi lawyer",
+    "ogTitle": "Lawyer in Hail",
+    "ogDesc": "Specialized lawyer in Hail. Legal services including commercial, criminal, real estate cases and bankruptcy. Ministry of Justice License No. 26/129. Close to you in Hail region.",
+    "ogUrl": "https://redwan.sa/en/locations/hail",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/locations/hail"
+  },
+  "/en/services/documentation": {
+    "title": "Documentation & Notarization | Al-Mushaiqeh Law Firm",
+    "description": "Official notarization and contract documentation services under Ministry of Justice license No. 45/57029. Drafting, reviewing and authenticating contracts and legal documents in Saudi Arabia.",
+    "keywords": "notarization Saudi Arabia, contract documentation, legal drafting, notary lawyer, authenticate contracts",
+    "ogTitle": "Documentation & Notarization",
+    "ogDesc": "Official notarization and contract documentation services under Ministry of Justice license No. 45/57029.",
+    "ogUrl": "https://redwan.sa/en/services/documentation",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/services/documentation"
   }
 }
