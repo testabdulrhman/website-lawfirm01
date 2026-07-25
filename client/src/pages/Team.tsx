@@ -6,7 +6,7 @@ import { useScrollAnimation, getStaggerStyle } from "@/hooks/useScrollAnimation"
 import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { langKey } from "@/lib/langKey";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useSEO, schemas } from "@/hooks/useSEO";
 import { localePath } from "@/lib/localePath";
 import { Twitter, Linkedin } from "lucide-react";
@@ -22,6 +22,39 @@ interface TeamMember {
   linkedin?: string;
 }
 
+/**
+ * صورة عضو الفريق مع بديل احتياطي.
+ * إن تعذّر تحميل الصورة (أو لم تُرفع بعد) يُعرض الحرف الأول على خلفية كحلية
+ * بدل مربّع الصورة المكسور. يُزال البديل تلقائياً حالما تتوفر صورة صالحة.
+ */
+function TeamPhoto({ src, name, initials }: { src?: string; name: string; initials: string }) {
+  const [failed, setFailed] = useState(!src);
+
+  if (failed) {
+    return (
+      <div
+        className="w-full h-full flex items-center justify-center bg-[var(--color-navy)]"
+        role="img"
+        aria-label={name}
+      >
+        <span className="font-display text-5xl md:text-6xl font-bold text-[var(--color-gold)] select-none">
+          {initials}
+        </span>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={name}
+      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+      loading="lazy"
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
 const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubtitle: string; members: TeamMember[] }> = {
   ar: {
     pageLabel: "فريقنا",
@@ -34,7 +67,7 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "المؤسس والمدير التنفيذي",
         initials: "ع",
         bio: "محامٍ، وأمين إفلاس، وموثّق، بخبرة تتجاوز عشر سنوات في الأعمال القانونية. محاضر متعاون بجامعة المستقبل، حاصل على درجة الماجستير في الأنظمة بمرتبة الشرف الأولى. يمتلك خبرة سابقة في الدوائر والمحاكم التجارية بالرياض.",
-        image: "/manus-storage/Lnl9U2kYqWFi_12d87743.jpg",
+        image: "",
       },
       {
         name: "يسرى بنت رضوان المشيقح",
@@ -42,7 +75,7 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "محامية",
         initials: "ي",
         bio: "محامية مرخصة تعمل في مجال القضايا التجارية والنزاعات العقارية، وتساهم في إعداد المذكرات القانونية والترافع أمام الجهات القضائية.",
-        image: "/manus-storage/uRknnnwo55js_6ed43413.webp",
+        image: "",
       },
       {
         name: "محمد بن عمر الجندي",
@@ -50,7 +83,7 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "محامي متدرب",
         initials: "م",
         bio: "محامي متدرب يعمل على تطوير مهاراته القانونية في مجالات التقاضي التجاري وإدارة إجراءات الإفلاس تحت إشراف المحامين المرخصين.",
-        image: "/manus-storage/ldEqFM2EhJ32_bbd15377.jpg",
+        image: "",
       },
       {
         name: "رنا بنت نائف الحربي",
@@ -58,7 +91,7 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "محامية متدربة",
         initials: "ر",
         bio: "حاصلة على درجة البكالوريوس في تخصّص القانون بمرتبة الشّرف الأولى من جامعة القصيم، تتركّز ممارستها في القضايا التجاريّة، والتّرافع في الدّعاوى وكتابة المُذكّرات، وإدارة ملفّات الإفلاس.",
-        image: "/manus-storage/dvThbD55utsz_f350d18f.jpg",
+        image: "",
       },
       {
         name: "رضوان بن عبدالله المشيقح",
@@ -66,7 +99,7 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "مدير إداري",
         initials: "ر",
         bio: "يتولى إدارة الشؤون الإدارية والتنسيق بين أقسام الشركة لضمان سير العمل بكفاءة وانتظام.",
-        image: "/manus-storage/dP0YNewN8QFM_70e123f7.jpg",
+        image: "",
       },
     ],
   },
@@ -81,7 +114,7 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "Founder & Managing Director",
         initials: "A",
         bio: "Attorney, Bankruptcy Trustee, and Notary, with over ten years of experience in legal practice. Adjunct Lecturer at Al-Mustaqbal University, holding a Master's degree in Law with First Class Honors. Possesses prior experience in commercial courts and circuits in Riyadh.",
-        image: "/manus-storage/Lnl9U2kYqWFi_12d87743.jpg",
+        image: "",
       },
       {
         name: "Yusra Redwan Al-Mushaiqeh",
@@ -89,7 +122,7 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "Attorney",
         initials: "Y",
         bio: "A licensed attorney specializing in commercial cases and real estate disputes, contributing to legal memoranda preparation and court representation.",
-        image: "/manus-storage/uRknnnwo55js_6ed43413.webp",
+        image: "",
       },
       {
         name: "Mohammed Omar Al-Jundi",
@@ -97,7 +130,7 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "Trainee Attorney",
         initials: "M",
         bio: "A trainee attorney developing his legal skills in commercial litigation and bankruptcy proceedings management under the supervision of licensed attorneys.",
-        image: "/manus-storage/ldEqFM2EhJ32_bbd15377.jpg",
+        image: "",
       },
       {
         name: "Rana Nayef Al-Harbi",
@@ -105,7 +138,7 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "Trainee Attorney",
         initials: "R",
         bio: "Holds a Bachelor's degree in Law with First Class Honors from Qassim University. Her practice focuses on commercial cases, litigation and legal memoranda drafting, and bankruptcy file management.",
-        image: "/manus-storage/dvThbD55utsz_f350d18f.jpg",
+        image: "",
       },
       {
         name: "Redwan Abdullah Al-Mushaiqeh",
@@ -113,7 +146,7 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "Administrative Manager",
         initials: "R",
         bio: "Manages administrative affairs and coordinates between company departments to ensure efficient and organized workflow.",
-        image: "/manus-storage/dP0YNewN8QFM_70e123f7.jpg",
+        image: "",
       },
     ],
   },
@@ -202,11 +235,10 @@ export default function Team() {
                 <div className="relative mb-6 overflow-hidden">
                   {/* Grayscale photo */}
                   <div className="aspect-[3/4] overflow-hidden">
-                    <img
+                    <TeamPhoto
                       src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                      loading="lazy"
+                      name={member.name}
+                      initials={member.initials}
                     />
                   </div>
 
