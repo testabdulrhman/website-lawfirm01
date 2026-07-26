@@ -257,7 +257,7 @@ export default function HassanMisferAlZahrani() {
             <div className="grid grid-cols-2 gap-6">
               <div className="text-right" dir="rtl">
                 <a
-                  href="/manus-storage/proposal_145e2cdf.pdf"
+                  href="/proposal.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 px-6 bg-[var(--color-navy)] hover:bg-[var(--color-navy)]/90 text-white rounded-lg font-bold text-base flex items-center justify-center gap-2 transition-colors"
@@ -269,7 +269,7 @@ export default function HassanMisferAlZahrani() {
               </div>
               <div className="text-left" dir="ltr">
                 <a
-                  href="/manus-storage/proposal_145e2cdf.pdf"
+                  href="/proposal.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 px-6 bg-[var(--color-navy)] hover:bg-[var(--color-navy)]/90 text-white rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition-colors"
