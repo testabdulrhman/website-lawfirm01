@@ -147,6 +147,13 @@ export interface Strings {
   loginIntro: string;
   idLabel: string;
   phoneLabel: string;
+  emailLabel: string;
+  methodPhone: string;
+  methodEmail: string;
+  methodHint: string;
+  selectTitle: string;
+  selectIntro: string;
+  selectClaims: (n: number) => string;
   sendCode: string;
   secureNote: string;
   otpTitle: string;
@@ -159,6 +166,8 @@ export interface Strings {
   // errors
   errId: string;
   errPhone: string;
+  errEmail: string;
+  errSelect: string;
   errSendCode: string;
   errOtpFormat: string;
   errVerify: string;
@@ -251,9 +260,16 @@ const AR: Strings = {
   eServices: 'الخدمات الإلكترونية للدائنين',
   bankruptcyProc: 'إجراءات الإفلاس',
   loginTitle: 'الدخول إلى بوابة الدائن',
-  loginIntro: 'تابع مطالباتك وتذاكرك وبياناتك في إجراءات الإفلاس. أدخل بياناتك المسجّلة لدى أمين الإجراء وسيصلك رمز تحقق على جوالك.',
+  loginIntro: 'تابع مطالباتك وتذاكرك وبياناتك في إجراءات الإفلاس. أدخل رقم الجوال أو البريد المسجّل في مطالبتك وسيصلك رمز تحقق.',
   idLabel: 'رقم الهوية / السجل',
   phoneLabel: 'رقم الجوال المسجّل في المطالبة',
+  emailLabel: 'البريد الإلكتروني المسجّل في المطالبة',
+  methodPhone: 'رقم الجوال',
+  methodEmail: 'البريد الإلكتروني',
+  methodHint: 'يصلك رمز التحقق على الوسيلة التي تختارها.',
+  selectTitle: 'اختر الدائن',
+  selectIntro: 'هذه الوسيلة مرتبطة بأكثر من دائن. اختر من تريد متابعة مطالباته.',
+  selectClaims: (n: number) => `${n} مطالبة`,
   sendCode: 'إرسال رمز التحقق',
   secureNote: 'تسجيل الدخول آمن عبر رمز يُرسل لجوالك المسجّل فقط.',
   otpTitle: 'التحقق من الرمز',
@@ -265,6 +281,8 @@ const AR: Strings = {
   resendIn: (s) => `إعادة الإرسال بعد ${s} ث`,
   errId: 'أدخل رقم الهوية / السجل.',
   errPhone: 'أدخل رقم الجوال المسجّل في المطالبة.',
+  errEmail: 'أدخل بريداً إلكترونياً صحيحاً.',
+  errSelect: 'تعذّر اختيار الدائن. حاول مرة أخرى.',
   errSendCode: 'تعذّر إرسال رمز التحقق.',
   errOtpFormat: 'رمز التحقق يجب أن يكون 6 أرقام.',
   errVerify: 'تعذّر التحقق.',
@@ -351,9 +369,16 @@ const EN: Strings = {
   eServices: 'Creditor e-Services',
   bankruptcyProc: 'Bankruptcy proceedings',
   loginTitle: 'Sign in to the Creditor Portal',
-  loginIntro: 'Track your claims, tickets and details in the bankruptcy proceedings. Enter the details registered with the trustee and a verification code will be sent to your phone.',
+  loginIntro: 'Track your claims, tickets and details in the bankruptcy proceedings. Enter the mobile number or email registered with your claim and a verification code will be sent to you.',
   idLabel: 'ID / Commercial registration number',
   phoneLabel: 'Mobile number registered with the claim',
+  emailLabel: 'Email registered with the claim',
+  methodPhone: 'Mobile number',
+  methodEmail: 'Email',
+  methodHint: 'The verification code is sent to the method you choose.',
+  selectTitle: 'Select creditor',
+  selectIntro: 'This contact is linked to more than one creditor. Choose whose claims to view.',
+  selectClaims: (n: number) => `${n} claim${n === 1 ? '' : 's'}`,
   sendCode: 'Send verification code',
   secureNote: 'Secure sign-in via a code sent to your registered mobile only.',
   otpTitle: 'Verify the code',
@@ -365,6 +390,8 @@ const EN: Strings = {
   resendIn: (s) => `Resend in ${s}s`,
   errId: 'Enter your ID / registration number.',
   errPhone: 'Enter the mobile number registered with the claim.',
+  errEmail: 'Enter a valid email address.',
+  errSelect: 'Could not select the creditor. Please try again.',
   errSendCode: 'Could not send the verification code.',
   errOtpFormat: 'The verification code must be 6 digits.',
   errVerify: 'Verification failed.',
@@ -451,9 +478,16 @@ const UR: Strings = {
   eServices: 'قرض خواہان کے لیے الیکٹرانک خدمات',
   bankruptcyProc: 'دیوالیہ کارروائیاں',
   loginTitle: 'قرض خواہ پورٹل میں داخل ہوں',
-  loginIntro: 'دیوالیہ کارروائیوں میں اپنے دعوے، ٹکٹس اور تفصیلات دیکھیں۔ ٹرسٹی کے پاس درج اپنی تفصیلات درج کریں، تصدیقی کوڈ آپ کے موبائل پر بھیجا جائے گا۔',
+  loginIntro: 'دیوالیہ کارروائیوں میں اپنے دعوے، ٹکٹس اور تفصیلات دیکھیں۔ اپنے دعوے میں درج موبائل نمبر یا ای میل درج کریں، تصدیقی کوڈ آپ کو بھیجا جائے گا۔',
   idLabel: 'شناختی نمبر / تجارتی رجسٹریشن',
   phoneLabel: 'دعوے میں درج موبائل نمبر',
+  emailLabel: 'دعوے میں درج ای میل',
+  methodPhone: 'موبائل نمبر',
+  methodEmail: 'ای میل',
+  methodHint: 'تصدیقی کوڈ آپ کے منتخب کردہ ذریعے پر بھیجا جائے گا۔',
+  selectTitle: 'قرض خواہ منتخب کریں',
+  selectIntro: 'یہ رابطہ ایک سے زیادہ قرض خواہ سے منسلک ہے۔ منتخب کریں کہ کس کے دعوے دیکھنے ہیں۔',
+  selectClaims: (n: number) => `${n} دعوے`,
   sendCode: 'تصدیقی کوڈ بھیجیں',
   secureNote: 'محفوظ لاگ اِن صرف آپ کے درج موبائل پر بھیجے گئے کوڈ کے ذریعے۔',
   otpTitle: 'کوڈ کی تصدیق',
@@ -465,6 +499,8 @@ const UR: Strings = {
   resendIn: (s) => `${s} سیکنڈ بعد دوبارہ بھیجیں`,
   errId: 'اپنا شناختی / رجسٹریشن نمبر درج کریں۔',
   errPhone: 'دعوے میں درج موبائل نمبر درج کریں۔',
+  errEmail: 'درست ای میل درج کریں۔',
+  errSelect: 'قرض خواہ منتخب نہیں ہو سکا۔ دوبارہ کوشش کریں۔',
   errSendCode: 'تصدیقی کوڈ بھیجنے میں ناکامی۔',
   errOtpFormat: 'تصدیقی کوڈ 6 ہندسوں کا ہونا چاہیے۔',
   errVerify: 'تصدیق ناکام۔',

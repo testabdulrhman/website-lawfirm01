@@ -36,6 +36,7 @@ import {
   ShieldCheck,
   Smartphone,
   User,
+  Users,
   Video,
 } from "lucide-react";
 
@@ -156,7 +157,9 @@ interface PortalData {
   hearings: Hearing[];
 }
 
-type Stage = "id" | "otp" | "portal";
+type Stage = "id" | "otp" | "select" | "portal";
+type Method = "phone" | "email";
+type CreditorOption = { id_number: string; creditor_name: string; claims: number };
 type Tab = "claims" | "tickets" | "profile";
 
 // ─── مساعدات العرض ───
@@ -193,8 +196,10 @@ export default function CreditorPortal() {
 
   const [stage, setStage] = useState<Stage>("id");
   const [tab, setTab] = useState<Tab>("claims");
-  const [idNumber, setIdNumber] = useState("");
+  const [method, setMethod] = useState<Method>("phone");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [creditorOptions, setCreditorOptions] = useState<CreditorOption[]>([]);
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -244,8 +249,11 @@ export default function CreditorPortal() {
 
   // ── 1) طلب رمز التحقق ──
   async function requestOtp(isResend = false) {
-    if (!idNumber.trim()) { setError(t.errId); return; }
-    if (!phone.trim()) { setError(t.errPhone); return; }
+    if (method === "phone" && !phone.trim()) { setError(t.errPhone); return; }
+    if (method === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setError(t.errEmail);
+      return;
+    }
     setLoading(true);
     setError(null);
     setInfo(null);
@@ -253,7 +261,9 @@ export default function CreditorPortal() {
       const res = await fetch(`${FN}/request-otp`, {
         method: "POST",
         headers: HEADERS,
-        body: JSON.stringify({ id_number: idNumber.trim(), phone: phone.trim() }),
+        body: JSON.stringify(
+          method === "email" ? { email: email.trim() } : { phone: phone.trim() },
+        ),
       });
       const json = await res.json();
       if (!res.ok) {
@@ -282,7 +292,11 @@ export default function CreditorPortal() {
       const res = await fetch(`${FN}/verify-otp`, {
         method: "POST",
         headers: HEADERS,
-        body: JSON.stringify({ id_number: idNumber.trim(), phone: phone.trim(), otp: value }),
+        body: JSON.stringify(
+          method === "email"
+            ? { email: email.trim(), otp: value }
+            : { phone: phone.trim(), otp: value },
+        ),
       });
       const json = await res.json();
       if (!res.ok || !json.success) {
@@ -304,7 +318,37 @@ export default function CreditorPortal() {
         );
       } catch { /* ignore */ }
       setSessionToken(json.session_token);
+      if (json.needs_selection) {
+        setCreditorOptions(json.creditors ?? []);
+        setStage("select");
+        setLoading(false);
+        return;
+      }
       await loadPortal(json.session_token);
+    } catch {
+      setError(t.errConn);
+    }
+    setLoading(false);
+  }
+
+  // ── 2.5) تثبيت الدائن حين يرتبط التواصل بأكثر من واحد ──
+  async function chooseCreditor(idNum: string) {
+    if (!sessionToken) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(`${FN}/select-creditor`, {
+        method: "POST",
+        headers: HEADERS,
+        body: JSON.stringify({ session_token: sessionToken, id_number: idNum }),
+      });
+      const json = await res.json();
+      if (!res.ok || !json.success) {
+        setError(json.message ?? t.errSelect);
+        setLoading(false);
+        return;
+      }
+      await loadPortal(sessionToken);
     } catch {
       setError(t.errConn);
     }
@@ -424,37 +468,64 @@ export default function CreditorPortal() {
                 {error && <ErrorNote msg={error} />}
 
                 <div className="space-y-4">
-                  <div>
-                    <Label htmlFor="cp-id" className="font-body text-sm text-[var(--color-navy)]/70">
-                      {t.idLabel}
-                    </Label>
-                    <Input
-                      id="cp-id"
-                      name="id_number"
-                      value={idNumber}
-                      onChange={(e) => setIdNumber(e.target.value.replace(/\D/g, "").slice(0, 15))}
-                      placeholder={t.idLabel}
-                      inputMode="numeric"
-                      dir="ltr"
-                      className="mt-1.5"
-                    />
+                  {/* الجوال هو الأصل، والبريد بديل لمن لا جوال له في المطالبة */}
+                  <div className="grid grid-cols-2 gap-0 border border-[var(--color-border)]">
+                    {(["phone", "email"] as Method[]).map((m) => (
+                      <button
+                        key={m}
+                        type="button"
+                        onClick={() => { setMethod(m); setError(null); }}
+                        aria-pressed={method === m}
+                        className={
+                          "font-body text-sm py-2.5 transition-colors " +
+                          (method === m
+                            ? "bg-[var(--color-navy)] text-[var(--color-cream)]"
+                            : "bg-white text-[var(--color-navy)]/60 hover:bg-[var(--color-cream)]")
+                        }
+                      >
+                        {m === "phone" ? t.methodPhone : t.methodEmail}
+                      </button>
+                    ))}
                   </div>
-                  <div>
-                    <Label htmlFor="cp-phone" className="font-body text-sm text-[var(--color-navy)]/70">
-                      {t.phoneLabel}
-                    </Label>
-                    <Input
-                      id="cp-phone"
-                      name="phone"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
-                      placeholder={t.phoneLabel}
-                      inputMode="tel"
-                      autoComplete="tel"
-                      dir="ltr"
-                      className="mt-1.5"
-                    />
-                  </div>
+
+                  {method === "phone" ? (
+                    <div>
+                      <Label htmlFor="cp-phone" className="font-body text-sm text-[var(--color-navy)]/70">
+                        {t.phoneLabel}
+                      </Label>
+                      <Input
+                        id="cp-phone"
+                        name="phone"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
+                        placeholder={t.phoneLabel}
+                        inputMode="tel"
+                        autoComplete="tel"
+                        dir="ltr"
+                        className="mt-1.5"
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      <Label htmlFor="cp-email" className="font-body text-sm text-[var(--color-navy)]/70">
+                        {t.emailLabel}
+                      </Label>
+                      <Input
+                        id="cp-email"
+                        name="email"
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value.trim())}
+                        placeholder={t.emailLabel}
+                        inputMode="email"
+                        autoComplete="email"
+                        dir="ltr"
+                        className="mt-1.5"
+                      />
+                    </div>
+                  )}
+
+                  <p className="font-body text-xs text-[var(--color-navy)]/45">{t.methodHint}</p>
 
                   <Button
                     onClick={() => void requestOtp()}
@@ -469,6 +540,55 @@ export default function CreditorPortal() {
                 <p className="font-body text-xs text-[var(--color-navy)]/40 mt-5 text-center leading-relaxed">
                   {t.sessionNote}
                 </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
+
+  // ════════════════ شاشة اختيار الدائن ════════════════
+  // تظهر فقط حين يرتبط الجوال أو البريد بأكثر من دائن (وكيل أو ممثّل مثلاً)
+  if (stage === "select") {
+    return (
+      <>
+        {seo}
+        <section className="pt-28 md:pt-32 pb-16 md:pb-20 min-h-screen bg-[var(--color-cream)]">
+          <div className="container mx-auto px-5 md:px-4 lg:px-8">
+            <div className="mx-auto max-w-md">
+              <div className="text-center mb-8">
+                <div className="w-14 h-14 mx-auto mb-4 bg-[var(--color-navy)] flex items-center justify-center">
+                  <Users className="w-7 h-7 text-[var(--color-gold)]" />
+                </div>
+                <h1 className="font-display text-2xl md:text-3xl font-bold text-[var(--color-navy)]">
+                  {t.selectTitle}
+                </h1>
+                <p className="font-body text-sm text-[var(--color-navy)]/60 mt-2">{t.selectIntro}</p>
+              </div>
+
+              <div className="bg-white border border-[var(--color-border)] p-4 md:p-6">
+                {error && <ErrorNote msg={error} />}
+                <div className="space-y-2">
+                  {creditorOptions.map((c) => (
+                    <button
+                      key={c.id_number}
+                      type="button"
+                      disabled={loading}
+                      onClick={() => void chooseCreditor(c.id_number)}
+                      className="w-full text-start border border-[var(--color-border)] px-4 py-3 transition-colors hover:border-[var(--color-gold)] hover:bg-[var(--color-cream)] disabled:opacity-50"
+                    >
+                      <div className="font-heading text-sm font-bold text-[var(--color-navy)]">
+                        {c.creditor_name}
+                      </div>
+                      <div className="font-body text-xs text-[var(--color-navy)]/50 mt-0.5 flex items-center gap-2">
+                        <span dir="ltr">{c.id_number}</span>
+                        <span>·</span>
+                        <span>{t.selectClaims(c.claims)}</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
