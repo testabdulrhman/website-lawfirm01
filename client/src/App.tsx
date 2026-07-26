@@ -40,6 +40,7 @@ const Sitemap = lazy(() => import("@/pages/Sitemap"));
 const PremiumResidency = lazy(() => import("@/pages/PremiumResidency"));
 const Brand = lazy(() => import("@/pages/Brand"));
 const Licenses = lazy(() => import("@/pages/Licenses"));
+const HassanMisferAlZahrani = lazy(() => import("@/pages/HassanMisferAlZahrani"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 // مؤشر تحميل موحّد بألوان الهوية (كحلي/ذهبي)
@@ -80,6 +81,7 @@ function Router() {
               <Route path={"/bankruptcy/procedures"} component={BankruptcyProcedures} />
               <Route path={"/bankruptcy/procedures/:slug"} component={BankruptcyProcedure} />
               <Route path={"/bankruptcy/claims"} component={Claims} />
+              <Route path={"/bankruptcy/Hassan-Misfer-Al-Zahrani"} component={HassanMisferAlZahrani} />
               <Route path={"/bankruptcy/track"} component={BankruptcyTrack} />
               <Route path={"/bankruptcy/ticket"} component={BankruptcyTicket} />
               <Route path={"/bankruptcy/complete"} component={BankruptcyComplete} />
