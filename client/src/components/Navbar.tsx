@@ -38,6 +38,9 @@ export default function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isMegaOpen, setIsMegaOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
+  const aboutTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [location] = useLocation();
   const { t, lang, toggleLang, isRTL } = useTranslation();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -45,16 +48,29 @@ export default function Navbar() {
   const services = t.services.items as readonly { title: string; slug: string; desc: string }[];
 
   const lp = (p: string) => localePath(p, lang);
-  const navLinks = [
-    { label: t.nav.home, href: lp("/") },
+  const aboutSubLinks = [
     { label: t.nav.about, href: lp("/about") },
     { label: t.nav.team, href: lp("/team") },
     { label: lang === 'ar' ? 'التراخيص' : 'Licenses', href: lp("/licenses") },
+  ];
+  const navLinks = [
+    { label: t.nav.home, href: lp("/") },
+    { label: t.nav.about, href: lp("/about"), dropdown: true },
     { label: t.nav.services, href: lp("/services"), mega: true },
     { label: t.nav.trackClaim, href: lp("/creditor") },
     { label: t.nav.blog, href: lp("/blog") },
     { label: t.nav.contact, href: lp("/contact") },
   ];
+
+  const openAbout = () => {
+    if (aboutTimer.current) clearTimeout(aboutTimer.current);
+    setIsAboutOpen(true);
+  };
+  const scheduleCloseAbout = () => {
+    if (aboutTimer.current) clearTimeout(aboutTimer.current);
+    aboutTimer.current = setTimeout(() => setIsAboutOpen(false), 120);
+  };
+  const aboutActive = location.startsWith("/about") || location.startsWith("/team") || location.startsWith("/licenses") || location.startsWith("/en/about") || location.startsWith("/en/team") || location.startsWith("/en/licenses");
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -67,6 +83,8 @@ export default function Navbar() {
     setIsMobileOpen(false);
     setIsMegaOpen(false);
     setIsMobileServicesOpen(false);
+    setIsAboutOpen(false);
+    setIsMobileAboutOpen(false);
     window.scrollTo(0, 0);
   }, [location]);
 
@@ -141,6 +159,58 @@ export default function Navbar() {
                     style={{ transform: isMegaOpen ? "rotate(180deg)" : "rotate(0deg)" }}
                   />
                 </Link>
+              </div>
+            ) : link.dropdown ? (
+              <div
+                key={link.href}
+                className="relative"
+                onMouseEnter={openAbout}
+                onMouseLeave={scheduleCloseAbout}
+              >
+                <button
+                  onFocus={openAbout}
+                  aria-expanded={isAboutOpen}
+                  className={`flex items-center gap-1 text-sm font-heading font-medium transition-colors duration-200 relative after:content-[''] after:absolute after:bottom-[-4px] ${isRTL ? "after:right-0" : "after:left-0"} after:h-[2px] after:bg-[var(--color-gold)] after:transition-all after:duration-300 ${
+                    aboutActive || isAboutOpen ? "after:w-full" : "after:w-0 hover:after:w-full"
+                  } ${
+                    showTransparent ? "text-white/90 hover:text-[var(--color-gold)]" : "text-[var(--color-navy)] hover:text-[var(--color-gold)]"
+                  } ${aboutActive ? "text-[var(--color-gold)]" : ""}`}
+                >
+                  <span>{link.label}</span>
+                  <ChevronDown
+                    size={14}
+                    className="transition-transform duration-300"
+                    style={{ transform: isAboutOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+                  />
+                </button>
+                {/* About Dropdown */}
+                <div
+                  className="absolute top-full pt-2"
+                  style={{ [isRTL ? 'right' : 'left']: 0, pointerEvents: isAboutOpen ? 'auto' : 'none' }}
+                >
+                  <div
+                    className="min-w-[180px] bg-white shadow-xl ring-1 ring-black/5 py-2 origin-top transition-all duration-200"
+                    style={{
+                      opacity: isAboutOpen ? 1 : 0,
+                      transform: isAboutOpen ? 'translateY(0) scale(1)' : 'translateY(-6px) scale(0.97)',
+                      transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)',
+                    }}
+                  >
+                    {aboutSubLinks.map((sub) => (
+                      <Link
+                        key={sub.href}
+                        href={sub.href}
+                        className={`block px-5 py-2.5 text-sm font-heading font-medium transition-colors duration-150 ${
+                          location === sub.href
+                            ? 'text-[var(--color-gold)] bg-[var(--color-gold)]/5'
+                            : 'text-[var(--color-navy)] hover:text-[var(--color-gold)] hover:bg-[var(--color-navy)]/[0.03]'
+                        }`}
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </div>
             ) : (
               <Link
@@ -395,6 +465,41 @@ export default function Navbar() {
                           {t.services.viewAll}
                           <ArrowUpRight size={14} className={isRTL ? "scale-x-[-1]" : ""} />
                         </Link>
+                      </div>
+                    </div>
+                  </div>
+                ) : link.dropdown ? (
+                  <div key={link.href} className="border-b border-[var(--color-border)]/50">
+                    <button
+                      onClick={() => setIsMobileAboutOpen((v) => !v)}
+                      className={`w-full flex items-center justify-between text-lg font-heading font-medium py-4 ${isRTL ? "text-right" : "text-left"} ${
+                        aboutActive ? "text-[var(--color-gold)]" : "text-[var(--color-navy)]"
+                      }`}
+                      aria-expanded={isMobileAboutOpen}
+                    >
+                      <span>{link.label}</span>
+                      <ChevronDown
+                        size={18}
+                        className="transition-transform duration-300"
+                        style={{ transform: isMobileAboutOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+                      />
+                    </button>
+                    <div
+                      className="overflow-hidden transition-all duration-300 ease-out"
+                      style={{ maxHeight: isMobileAboutOpen ? `${aboutSubLinks.length * 52}px` : "0px" }}
+                    >
+                      <div className={`flex flex-col pb-3 ${isRTL ? "pr-3 border-r-2" : "pl-3 border-l-2"} border-[var(--color-gold)]/30 ${isRTL ? "mr-1" : "ml-1"}`}>
+                        {aboutSubLinks.map((sub) => (
+                          <Link
+                            key={sub.href}
+                            href={sub.href}
+                            className={`py-3 font-body text-sm ${
+                              location === sub.href ? "text-[var(--color-gold)]" : "text-[var(--color-navy)]/80 active:text-[var(--color-gold)]"
+                            }`}
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
                       </div>
                     </div>
                   </div>
