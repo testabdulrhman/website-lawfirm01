@@ -38,85 +38,54 @@
     <meta name="twitter:description" content="منشأة قانونية تقدم خدمات التمثيل القانوني والاستشارات للعملاء في جميع المجالات القانونية بتراخيص نظامية معتمدة" />
     <meta name="twitter:image" content="https://redwan.sa/images/hero-law-firm.webp" />
 
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
+    <!-- Structured Data: Site-wide @graph (single source of truth) -->
+    <script type="application/ld+json" data-site-schema="true">
     {
       "@context": "https://schema.org",
-      "@type": "LegalService",
-      "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-      "alternateName": "Abdulrahman Redwan Al-Mushaiqi Law Firm",
-      "url": "https://redwan.sa",
-      "logo": "https://redwan.sa/images/logo-dark.webp",
-      "image": "https://redwan.sa/images/hero-law-firm.webp",
-      "description": "شركة محاماة سعودية متخصصة في القضايا التجارية والجنائية والعقارية وإدارة إجراءات الإفلاس، مقرها بريدة بخبرة تتجاوز 20 عاماً.",
-      "telephone": "+966505149800",
-      "email": "info@redwan.sa",
-      "foundingDate": "2020",
-      "founder": {
-        "@type": "Person",
-        "name": "عبدالرحمن بن رضوان المشيقح",
-        "jobTitle": "محامٍ وأمين إفلاس وموثّق"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "طريق الملك عبدالله، حي الأفق، الدور الثاني، مكتب رقم 1",
-        "addressLocality": "بريدة",
-        "addressRegion": "القصيم",
-        "postalCode": "52387",
-        "addressCountry": "SA"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "26.3292",
-        "longitude": "43.9750"
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
-        "opens": "08:00",
-        "closes": "16:00"
-      },
-      "priceRange": "$$",
-      "areaServed": {
-        "@type": "Country",
-        "name": "Saudi Arabia"
-      },
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "الخدمات القانونية",
-        "itemListElement": [
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "القضايا المدنية والتجارية"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "القضايا الجنائية"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "النزاعات العقارية"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "الإفلاس والتصفية"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "الاستشارات القانونية"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "التحكيم التجاري"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "التوثيق والعقود"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "قضايا العمل والعمال"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "القضايا الإدارية"}}
-        ]
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/redwan-sa",
-        "https://x.com/redwan_law"
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+966505149800",
-        "contactType": "customer service",
-        "availableLanguage": ["Arabic", "English"]
-      },
-      "knowsLanguage": ["ar", "en"]
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-      "alternateName": "Redwan Law Firm",
-      "url": "https://redwan.sa",
-      "inLanguage": ["ar", "en"]
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://redwan.sa/#organization",
+          "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+          "alternateName": "Abdulrahman Redwan Al-Mushaiqi Law Firm",
+          "url": "https://redwan.sa",
+          "logo": {"@type": "ImageObject", "url": "https://redwan.sa/images/logo-dark.webp"},
+          "image": "https://redwan.sa/images/hero-law-firm.webp",
+          "foundingDate": "2020",
+          "founder": {"@type": "Person", "name": "عبدالرحمن بن رضوان المشيقح", "jobTitle": "محامٍ وأمين إفلاس وموثّق"},
+          "address": {"@type": "PostalAddress", "streetAddress": "طريق الملك عبدالله، حي الأفق، الدور الثاني، مكتب رقم 1", "addressLocality": "بريدة", "addressRegion": "القصيم", "postalCode": "52387", "addressCountry": "SA"},
+          "contactPoint": {"@type": "ContactPoint", "telephone": "+966505149800", "contactType": "customer service", "availableLanguage": ["Arabic", "English"]},
+          "sameAs": ["https://www.linkedin.com/company/redwan-sa", "https://x.com/redwan_law", "https://snapchat.com/@redwan.sa"]
+        },
+        {
+          "@type": "LegalService",
+          "@id": "https://redwan.sa/#legalservice",
+          "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+          "alternateName": "Abdulrahman Redwan Al-Mushaiqi Law Firm",
+          "url": "https://redwan.sa",
+          "logo": "https://redwan.sa/images/logo-dark.webp",
+          "image": "https://redwan.sa/images/hero-law-firm.webp",
+          "description": "شركة محاماة سعودية متخصصة في القضايا التجارية والجنائية والعقارية وإدارة إجراءات الإفلاس، مقرها بريدة بخبرة تتجاوز 20 عاماً.",
+          "telephone": "+966505149800",
+          "email": "info@redwan.sa",
+          "address": {"@type": "PostalAddress", "streetAddress": "طريق الملك عبدالله، حي الأفق، الدور الثاني، مكتب رقم 1", "addressLocality": "بريدة", "addressRegion": "القصيم", "postalCode": "52387", "addressCountry": "SA"},
+          "geo": {"@type": "GeoCoordinates", "latitude": 26.3260, "longitude": 43.9750},
+          "openingHoursSpecification": {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "08:00", "closes": "16:00"},
+          "priceRange": "$$",
+          "areaServed": {"@type": "Country", "name": "Saudi Arabia"},
+          "hasOfferCatalog": {"@type": "OfferCatalog", "name": "الخدمات القانونية", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "القضايا المدنية والتجارية"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "القضايا الجنائية"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "النزاعات العقارية"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "الإفلاس والتصفية"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "الاستشارات القانونية"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "التحكيم التجاري"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "التوثيق والعقود"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "قضايا العمل والعمال"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "القضايا الإدارية"}}]},
+          "knowsLanguage": ["ar", "en"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://redwan.sa/#website",
+          "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+          "alternateName": "Redwan Law Firm",
+          "url": "https://redwan.sa",
+          "inLanguage": ["ar", "en"],
+          "publisher": {"@id": "https://redwan.sa/#organization"}
+        }
+      ]
     }
     </script>
 

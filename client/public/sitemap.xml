@@ -353,14 +353,7 @@
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/claims" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/claims" />
   </url>
-  <url>
-    <loc>https://redwan.sa/bankruptcy/track</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/track" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/bankruptcy/track" />
-  </url>
+
   <url>
     <loc>https://redwan.sa/bankruptcy/ASHYAD-STEEL</loc>
     <lastmod>2026-07-15</lastmod>

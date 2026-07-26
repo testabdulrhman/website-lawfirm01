@@ -229,11 +229,11 @@ export default function BlogPost() {
       />
 
       {/* Breadcrumb structured data */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }} />
+      <script type="application/ld+json" data-page-schema="breadcrumb" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }} />
 
       {/* FAQ structured data */}
       {article.faqItems && article.faqItems.length > 0 && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.faqPageForUrl(article.faqItems, `/blog/${article.slug}`)) }} />
+        <script type="application/ld+json" data-page-schema="faq" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.faqPageForUrl(article.faqItems, `/blog/${article.slug}`)) }} />
       )}
 
       {/* Hero Section */}

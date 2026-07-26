@@ -28,7 +28,8 @@ export default function About() {
   const { t, lang, isRTL } = useTranslation();
   const lp = (p: string) => localePath(p, lang);
 
-  const seoSchema = useMemo(() => [schemas.localBusiness, schemas.breadcrumb([{ name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' }, { name: lang === 'ar' ? 'من نحن' : 'About', url: '/about' }])], [lang]);
+  // Only page-level schema (breadcrumb). Site-level schemas are in index.html @graph.
+  const seoSchema = useMemo(() => [schemas.breadcrumb([{ name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' }, { name: lang === 'ar' ? 'من نحن' : 'About', url: '/about' }])], [lang]);
   useSEO({
     title: lang === 'ar' ? 'من نحن - نبذة عن الشركة' : 'About Us - Our Story',
     description: lang === 'ar'

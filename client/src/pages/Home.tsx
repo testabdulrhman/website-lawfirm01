@@ -2,9 +2,9 @@ import { ArrowLeft, ArrowRight, Scale, FileCheck, Building, Landmark, Briefcase,
 import { blogArticles } from "@/data/blogArticles";
 import { Link } from "wouter";
 import { useScrollAnimation, useParallax, getStaggerStyle, getFadeStyle } from "@/hooks/useScrollAnimation";
-import { useEffect, useState, useRef, useMemo } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
-import { useSEO, schemas } from "@/hooks/useSEO";
+import { useSEO } from "@/hooks/useSEO";
 import { trackBookConsultation, trackPhoneClick } from "@/lib/analytics";
 import { localePath } from "@/lib/localePath";
 import GoogleReviews from "@/components/GoogleReviews";
@@ -47,7 +47,8 @@ export default function Home() {
   const { t, lang, isRTL } = useTranslation();
   const lp = (p: string) => localePath(p, lang);
 
-  const seoSchema = useMemo(() => [schemas.localBusiness, schemas.organization, schemas.attorney], []);
+  // Site-level schemas (LegalService, Organization, WebSite) are in index.html @graph.
+  // Home page only needs page-specific schema (none needed for homepage).
   useSEO({
     fullTitle: true,
     title: lang === 'ar'
@@ -60,7 +61,6 @@ export default function Home() {
       ? 'محامي إفلاس, أمين إفلاس معتمد, محامي بريدة, إدارة إجراءات الإفلاس, محامي القصيم, تسوية وقائية, إعادة تنظيم مالي, تصفية شركات'
       : 'bankruptcy lawyer, licensed bankruptcy trustee, Buraydah lawyer, bankruptcy management, Qassim lawyer, preventive settlement, financial reorganization, company liquidation',
     canonical: '/',
-    schema: seoSchema,
   });
 
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation({ threshold: 0.1 });

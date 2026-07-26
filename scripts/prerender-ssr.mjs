@@ -96,7 +96,7 @@ function applySEO(html, seo, route) {
         acceptedAnswer: { '@type': 'Answer', text: item.a },
       })),
     };
-    const faqScript = `<script type="application/ld+json">${JSON.stringify(faqLd)}</script>`;
+    const faqScript = `<script type="application/ld+json" data-page-schema="true">${JSON.stringify(faqLd)}</script>`;
     if (!/"@type":\s*"FAQPage"/.test(html)) {
       html = html.replace('</head>', `    ${faqScript}\n  </head>`);
     }
@@ -142,7 +142,7 @@ function applySEO(html, seo, route) {
     if (!articleLd.datePublished) delete articleLd.datePublished;
     if (!articleLd.dateModified) delete articleLd.dateModified;
     if (!articleLd.articleSection) delete articleLd.articleSection;
-    const articleScript = `<script type="application/ld+json">${JSON.stringify(articleLd)}</script>`;
+    const articleScript = `<script type="application/ld+json" data-page-schema="true">${JSON.stringify(articleLd)}</script>`;
     html = html.replace('</head>', `    ${articleScript}\n  </head>`);
   }
 

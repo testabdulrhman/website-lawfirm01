@@ -112,18 +112,18 @@ export default function SEOHead({
       removeMeta("article:section", "property");
     }
 
-    // Structured data
-    document.querySelectorAll('script[data-seohead-schema]').forEach((el) => el.remove());
+    // Structured data — preserve site-wide @graph, replace page-specific only
+    document.querySelectorAll('script[type="application/ld+json"]:not([data-site-schema])').forEach((el) => el.remove());
     if (structuredData) {
       const script = document.createElement("script");
       script.type = "application/ld+json";
-      script.setAttribute("data-seohead-schema", "true");
+      script.setAttribute("data-page-schema", "true");
       script.textContent = JSON.stringify(structuredData);
       document.head.appendChild(script);
     }
 
     return () => {
-      document.querySelectorAll('script[data-seohead-schema]').forEach((el) => el.remove());
+      document.querySelectorAll('script[data-page-schema]').forEach((el) => el.remove());
     };
   }, [
     title,

@@ -84,24 +84,24 @@ export function useSEO({
     // Hreflang alternate links
     setHreflang(effectiveCanonical);
 
-    // Schema markup
+    // Schema markup — preserve site-wide @graph (data-site-schema), replace page-specific only
     if (schema) {
       const schemas = Array.isArray(schema) ? schema : [schema];
-      // Remove existing schema scripts
-      document.querySelectorAll('script[data-seo-schema]').forEach(el => el.remove());
+      // Remove all page-level schema scripts (keep data-site-schema intact)
+      document.querySelectorAll('script[type="application/ld+json"]:not([data-site-schema])').forEach(el => el.remove());
       
       schemas.forEach((s, i) => {
         const script = document.createElement("script");
         script.type = "application/ld+json";
-        script.setAttribute("data-seo-schema", `schema-${i}`);
+        script.setAttribute("data-page-schema", `schema-${i}`);
         script.textContent = JSON.stringify(s);
         document.head.appendChild(script);
       });
     }
 
     return () => {
-      // Cleanup schema scripts on unmount
-      document.querySelectorAll('script[data-seo-schema]').forEach(el => el.remove());
+      // Cleanup page schema scripts on unmount (keep site-wide)
+      document.querySelectorAll('script[data-page-schema]').forEach(el => el.remove());
     };
   }, [title, description, keywords, ogImage, ogType, effectiveCanonical, noindex, schema, fullTitle, location]);
 }
@@ -131,8 +131,8 @@ function setCanonical(href: string) {
  * Arabic path: /about → English: /en/about
  */
 function setHreflang(canonical?: string) {
-  // Remove existing hreflang links
-  document.querySelectorAll('link[data-hreflang]').forEach(el => el.remove());
+  // Remove ALL existing hreflang links (both prerender-injected and client-injected)
+  document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el => el.remove());
   if (!canonical) return;
 
   const BASE = "https://redwan.sa";
