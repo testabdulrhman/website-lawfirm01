@@ -10,7 +10,13 @@ export default function HassanMisferAlZahrani() {
     <main className="min-h-screen bg-white" dir="rtl">
       <div className="max-w-[950px] mx-auto bg-white shadow-lg my-8 print:my-0 print:shadow-none">
         <div className="px-10 py-8">
-
+          {/* Date */}
+          <div className="flex justify-between items-center border-b border-gray-200 pb-4 mb-8">
+            <div className="text-sm text-gray-600">
+              <p>12/02/1448هـ</p>
+              <p>26/07/2026م</p>
+            </div>
+          </div>
 
           {/* Row-by-row bilingual content */}
           <div className="space-y-0">
