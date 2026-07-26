@@ -3,7 +3,7 @@ import { supabase, SUPABASE_URL, SUPABASE_ANON_KEY } from '@/lib/supabase';
 import { Link } from 'wouter';
 import { toast } from 'sonner';
 import SEOHead from '@/components/SEOHead';
-import { FileText, Upload, ChevronLeft, Calendar, Building2, AlertTriangle, CheckCircle2, Phone, Mail, ArrowRight } from 'lucide-react';
+import { FileText, Upload, Calendar, Building2, AlertTriangle, CheckCircle2, Phone, Mail, ArrowRight } from 'lucide-react';
 import { localePath } from "@/lib/localePath";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -469,8 +469,8 @@ export default function Claims() {
   // ==================== RENDER ====================
   const activeCases = cases;
 
-  const inputClass = "w-full px-3 md:px-4 py-2.5 md:py-3 bg-[#faf8f5] border border-[#e8e0d4] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c9a227]/50 focus:border-[#c9a227] text-sm text-[#1e3a5f] placeholder-gray-400 transition-all";
-  const labelClass = "block text-xs md:text-sm font-semibold text-[#1e3a5f] mb-1.5";
+  const inputClass = "w-full px-3 md:px-4 py-2.5 md:py-3 bg-[var(--color-cream)] border border-[var(--color-border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-gold)]/50 focus:border-[var(--color-gold)] text-sm text-[var(--color-navy)] placeholder-gray-400 transition-all font-body";
+  const labelClass = "block text-xs md:text-sm font-semibold text-[var(--color-navy)] mb-1.5 font-body";
 
   return (
     <>
@@ -502,46 +502,43 @@ export default function Claims() {
         }
       }}
     />
-    <div className="min-h-screen bg-[#faf8f5]">
+    <div className="min-h-screen bg-[var(--color-cream)]">
       {/* Hero */}
-      <section className="bg-[#1e3a5f] pt-28 md:pt-32 pb-12 md:pb-16 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-[#c9a227] rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-        </div>
-        <div className="container relative z-10">
-          <nav className="flex items-center gap-2 text-xs md:text-sm text-white/60 mb-4 md:mb-6 flex-wrap">
-            <Link href={lp("/")} className="hover:text-[#c9a227] transition-colors">الرئيسية</Link>
-            <ChevronLeft className="w-4 h-4" />
-            <Link href={lp("/services/bankruptcy")} className="hover:text-[#c9a227] transition-colors">الإفلاس والتصفية</Link>
-            <ChevronLeft className="w-4 h-4" />
-            <span className="text-[#c9a227]">تقديم مطالبة</span>
-          </nav>
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white font-['Playfair_Display',serif] mb-3 md:mb-4">
+      <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 bg-[var(--color-navy)]">
+        <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
+          <div className="flex items-center gap-3 mb-4">
+            <Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">الرئيسية</Link>
+            <span className="text-white/30">/</span>
+            <Link href={lp("/services/bankruptcy")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">الإفلاس والتصفية</Link>
+            <span className="text-white/30">/</span>
+            <span className="font-body text-sm text-[var(--color-gold)]">تقديم مطالبة</span>
+          </div>
+          <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             تقديم مطالبة دائن
           </h1>
-          <p className="text-white/70 text-sm md:text-lg max-w-2xl">
+          <p className="font-body text-base md:text-lg text-white/60 max-w-2xl">
             وفقاً لأحكام نظام الإفلاس ولائحته التنفيذية — المادة (56)
           </p>
         </div>
       </section>
 
-      <div className="container py-8 md:py-12 px-5 md:px-4">
+      <div className="container mx-auto px-5 md:px-4 lg:px-8 py-8 md:py-12">
         {/* Success */}
         {success && (
           <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8 text-center">
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <CheckCircle2 className="w-10 h-10 text-green-600" />
             </div>
-            <h2 className="text-2xl font-bold text-[#1e3a5f] mb-3">تم استلام مطالبتك — رقم مطالبتك: <span className="text-[#c9a227]">{caseSeq ?? '—'}</span></h2>
+            <h2 className="text-2xl font-bold font-display text-[var(--color-navy)] mb-3">تم استلام مطالبتك — رقم مطالبتك: <span className="text-[var(--color-gold)]">{caseSeq ?? '—'}</span></h2>
             {claimRef && <p className="text-gray-400 text-sm mb-2">رقم المرجع: <span className="font-medium text-gray-500">{claimRef}</span></p>}
             <p className="text-gray-500 text-sm mb-8">سيتم دراسة المطالبة من قبل أمين الإفلاس وإبلاغكم بالنتيجة</p>
-            <div className="bg-[#1e3a5f]/5 rounded-xl p-4 mb-6">
-              <p className="text-sm text-[#1e3a5f]">
+            <div className="bg-[var(--color-navy)]/5 rounded-xl p-4 mb-6">
+              <p className="text-sm text-[var(--color-navy)]">
                 <Phone className="w-4 h-4 inline ml-1" /> 920032760 &nbsp;&nbsp;
                 <Mail className="w-4 h-4 inline ml-1" /> bankruptcy@redwan.sa
               </p>
             </div>
-            <button onClick={backToSelection} className="px-6 py-3 bg-[#1e3a5f] text-white rounded-lg hover:bg-[#2a4f7a] transition-colors">
+            <button onClick={backToSelection} className="px-6 py-3 bg-[var(--color-navy)] text-white rounded-lg hover:bg-[var(--color-navy-light)] transition-colors">
               العودة لقائمة القضايا
             </button>
           </div>
@@ -551,10 +548,10 @@ export default function Claims() {
         {submitting && !success && (
           <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
             <div className="bg-white rounded-2xl p-8 max-w-md w-full text-center">
-              <div className="w-16 h-16 border-4 border-[#c9a227] border-t-transparent rounded-full animate-spin mx-auto mb-6" />
-              <h3 className="text-lg font-bold text-[#1e3a5f] mb-2">{submitLabel}</h3>
+              <div className="w-16 h-16 border-4 border-[var(--color-gold)] border-t-transparent rounded-full animate-spin mx-auto mb-6" />
+              <h3 className="text-lg font-bold text-[var(--color-navy)] mb-2">{submitLabel}</h3>
               <div className="w-full bg-gray-200 rounded-full h-3 mb-2">
-                <div className="bg-[#c9a227] h-3 rounded-full transition-all duration-300" style={{ width: `${submitProgress}%` }} />
+                <div className="bg-[var(--color-gold)] h-3 rounded-full transition-all duration-300" style={{ width: `${submitProgress}%` }} />
               </div>
               <p className="text-sm text-gray-500">{Math.round(submitProgress)}%</p>
             </div>
@@ -564,11 +561,11 @@ export default function Claims() {
         {/* Case Selection */}
         {!selectedCase && !success && (
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-xl font-bold text-[#1e3a5f] mb-6">اختر القضية التي ترغب بتقديم مطالبة فيها</h2>
+            <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-6">اختر القضية التي ترغب بتقديم مطالبة فيها</h2>
 
             {loading ? (
               <div className="text-center py-12">
-                <div className="w-12 h-12 border-4 border-[#c9a227] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+                <div className="w-12 h-12 border-4 border-[var(--color-gold)] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
                 <p className="text-gray-500">جاري تحميل القضايا...</p>
               </div>
             ) : (
@@ -578,7 +575,7 @@ export default function Claims() {
                   <div className="mb-8">
                     <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
                       <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse" />
-                      <h3 className="font-bold text-[#1e3a5f]">القضايا المفتوحة</h3>
+                      <h3 className="font-bold text-[var(--color-navy)]">القضايا المفتوحة</h3>
                       <span className="px-2 py-0.5 bg-green-50 text-green-700 rounded text-xs font-medium">{activeCases.length}</span>
                     </div>
                     <div className="space-y-4">
@@ -590,26 +587,26 @@ export default function Claims() {
                         const warning = remaining !== null && remaining <= 14;
                         return (
                           <div key={c.id} onClick={() => handleSelectCase(c)}
-                            className="bg-white border border-gray-200 hover:border-[#c9a227] hover:shadow-lg rounded-xl cursor-pointer transition-all p-5 group">
+                            className="bg-white border border-gray-200 hover:border-[var(--color-gold)] hover:shadow-lg rounded-xl cursor-pointer transition-all p-5 group">
                             <div className="flex items-start gap-4">
-                              <div className="flex-shrink-0 w-16 h-16 bg-[#1e3a5f]/10 rounded-lg flex items-center justify-center overflow-hidden">
+                              <div className="flex-shrink-0 w-16 h-16 bg-[var(--color-navy)]/10 rounded-lg flex items-center justify-center overflow-hidden">
                                 {(c.debtor_logo || c.debtor_logo_url) ? (
                                   <img src={c.debtor_logo || c.debtor_logo_url} alt={c.debtor_name} className="w-full h-full object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
                                 ) : (
-                                  <Building2 className="w-8 h-8 text-[#1e3a5f]" />
+                                  <Building2 className="w-8 h-8 text-[var(--color-navy)]" />
                                 )}
                               </div>
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-start justify-between gap-2 mb-1">
                                   <div>
-                                    <h4 className="font-bold text-[#1e3a5f] text-base">{c.debtor_name}</h4>
+                                    <h4 className="font-bold text-[var(--color-navy)] text-base">{c.debtor_name}</h4>
                                     {c.debtor_name_en && <p className="text-xs text-gray-500 italic" dir="ltr">{c.debtor_name_en}</p>}
                                   </div>
                                   <span className={`px-2.5 py-1 rounded text-xs font-medium whitespace-nowrap border ${urgent ? 'bg-red-50 text-red-700 border-red-200' : warning ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-green-50 text-green-700 border-green-200'}`}>
                                     {remaining !== null ? (urgent ? `⚠ ${remaining} يوم متبقي` : `${remaining} يوم متبقي`) : 'متاح'}
                                   </span>
                                 </div>
-                                <span className="inline-block mt-1 px-2 py-0.5 bg-[#1e3a5f]/10 text-[#1e3a5f] rounded text-xs">{c.procedure_type}</span>
+                                <span className="inline-block mt-1 px-2 py-0.5 bg-[var(--color-navy)]/10 text-[var(--color-navy)] rounded text-xs">{c.procedure_type}</span>
                                 <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-500 mt-2">
                                   {c.commercial_reg && <span>السجل: {c.commercial_reg}</span>}
                                   {c.case_number && <span>قضية: {c.case_number}</span>}
@@ -623,7 +620,7 @@ export default function Claims() {
                                   <Calendar className="w-3.5 h-3.5" /> آخر موعد: {formatDate(c.claims_deadline)}
                                 </span>
                               )}
-                              <span className="flex items-center gap-1 text-[#c9a227] font-medium text-sm">
+                              <span className="flex items-center gap-1 text-[var(--color-gold)] font-medium text-sm">
                                 تقديم مطالبة <ArrowRight className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                               </span>
                             </div>
@@ -659,24 +656,24 @@ export default function Claims() {
           <div className="max-w-3xl mx-auto">
             {/* Case Info Card */}
             <div className="bg-white rounded-xl border border-gray-200 p-3 md:p-4 mb-5 md:mb-6 flex items-center gap-3 md:gap-4">
-              <div className="w-12 h-12 bg-[#1e3a5f]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Building2 className="w-6 h-6 text-[#1e3a5f]" />
+              <div className="w-12 h-12 bg-[var(--color-navy)]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Building2 className="w-6 h-6 text-[var(--color-navy)]" />
               </div>
               <div className="flex-1">
-                <h3 className="font-bold text-[#1e3a5f]">{selectedCase.debtor_name}</h3>
+                <h3 className="font-bold text-[var(--color-navy)]">{selectedCase.debtor_name}</h3>
                 <p className="text-xs text-gray-500">{selectedCase.procedure_type} · قضية: {selectedCase.case_number || '-'}</p>
               </div>
-              <button onClick={backToSelection} className="text-sm text-[#c9a227] hover:underline">تغيير</button>
+              <button onClick={backToSelection} className="text-sm text-[var(--color-gold)] hover:underline">تغيير</button>
             </div>
 
             {/* Progress Steps */}
             <div className="flex items-center justify-center gap-2 sm:gap-4 mb-8">
               {[1, 2, 3].map(step => (
                 <div key={step} className="flex items-center gap-1 sm:gap-2">
-                  <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold transition-all ${step < currentStep ? 'bg-green-500 text-white' : step === currentStep ? 'bg-[#c9a227] text-white' : 'bg-gray-200 text-gray-500'}`}>
+                  <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold transition-all ${step < currentStep ? 'bg-green-500 text-white' : step === currentStep ? 'bg-[var(--color-gold)] text-white' : 'bg-gray-200 text-gray-500'}`}>
                     {step < currentStep ? '✓' : step}
                   </div>
-                  <span className={`text-xs sm:text-sm hidden md:inline ${step === currentStep ? 'text-[#1e3a5f] font-medium' : 'text-gray-400'}`}>
+                  <span className={`text-xs sm:text-sm hidden md:inline ${step === currentStep ? 'text-[var(--color-navy)] font-medium' : 'text-gray-400'}`}>
                     {step === 1 ? 'بيانات الدائن' : step === 2 ? 'تفاصيل المطالبة' : 'المستندات والتوقيع'}
                   </span>
                   {step < 3 && <div className={`w-4 sm:w-8 h-0.5 ${step < currentStep ? 'bg-green-500' : 'bg-gray-200'}`} />}
@@ -687,15 +684,15 @@ export default function Claims() {
             {/* Step 1 */}
             {currentStep === 1 && (
               <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-                <h2 className="text-xl font-bold text-[#1e3a5f] mb-6">بيانات الدائن</h2>
+                <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-6">بيانات الدائن</h2>
 
                 <div className="mb-5">
                   <label className={labelClass}>نوع الدائن</label>
                   <div className="flex gap-4 flex-wrap">
                     {['فرد', 'شركة-مؤسسة', 'جهة حكومية'].map(type => (
                       <label key={type} className="flex items-center gap-2 cursor-pointer">
-                        <input type="radio" name="creditorType" value={type} checked={creditorType === type} onChange={(e) => setCreditorType(e.target.value)} className="accent-[#c9a227]" />
-                        <span className="text-sm text-[#1e3a5f]">{type}</span>
+                        <input type="radio" name="creditorType" value={type} checked={creditorType === type} onChange={(e) => setCreditorType(e.target.value)} className="accent-[var(--color-gold)]" />
+                        <span className="text-sm text-[var(--color-navy)]">{type}</span>
                       </label>
                     ))}
                   </div>
@@ -752,7 +749,7 @@ export default function Claims() {
             {/* Step 2 */}
             {currentStep === 2 && (
               <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-                <h2 className="text-xl font-bold text-[#1e3a5f] mb-6">تفاصيل المطالبة</h2>
+                <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-6">تفاصيل المطالبة</h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
@@ -774,18 +771,18 @@ export default function Claims() {
                   <label className={labelClass}>هل المطالبة مضمونة؟</label>
                   <div className="flex gap-6">
                     <label className="flex items-center gap-2 cursor-pointer">
-                      <input type="radio" value="yes" checked={isSecured === 'yes'} onChange={() => setIsSecured('yes')} className="accent-[#c9a227]" />
+                      <input type="radio" value="yes" checked={isSecured === 'yes'} onChange={() => setIsSecured('yes')} className="accent-[var(--color-gold)]" />
                       <span className="text-sm">نعم</span>
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer">
-                      <input type="radio" value="no" checked={isSecured === 'no'} onChange={() => setIsSecured('no')} className="accent-[#c9a227]" />
+                      <input type="radio" value="no" checked={isSecured === 'no'} onChange={() => setIsSecured('no')} className="accent-[var(--color-gold)]" />
                       <span className="text-sm">لا</span>
                     </label>
                   </div>
                 </div>
 
                 {isSecured === 'yes' && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5 p-4 bg-[#faf8f5] rounded-lg border border-[#e8e0d4]">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5 p-4 bg-[var(--color-cream)] rounded-lg border border-[var(--color-border)]">
                     <div>
                       <label className={labelClass}>نوع الضمان</label>
                       <select value={securityType} onChange={e => setSecurityType(e.target.value)} className={inputClass}>
@@ -828,7 +825,7 @@ export default function Claims() {
             {/* Step 3 - Documents & Signature */}
             {currentStep === 3 && (
               <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-                <h2 className="text-xl font-bold text-[#1e3a5f] mb-6">المستندات والتوقيع</h2>
+                <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-6">المستندات والتوقيع</h2>
 
                 <div className="space-y-4 mb-8">
                   {[
@@ -840,17 +837,17 @@ export default function Claims() {
                     { key: 'due_document', label: 'نسخة من سند الاستحقاق' },
                     { key: 'security_document', label: 'نسخة من سند الضمان (إن وجدت)' },
                   ].map(doc => (
-                    <div key={doc.key} className="flex items-center gap-3 p-3 bg-[#faf8f5] rounded-lg border border-[#e8e0d4]">
-                      <Upload className="w-5 h-5 text-[#c9a227] flex-shrink-0" />
+                    <div key={doc.key} className="flex items-center gap-3 p-3 bg-[var(--color-cream)] rounded-lg border border-[var(--color-border)]">
+                      <Upload className="w-5 h-5 text-[var(--color-gold)] flex-shrink-0" />
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm text-[#1e3a5f] font-medium">{doc.label}</p>
+                        <p className="text-sm text-[var(--color-navy)] font-medium">{doc.label}</p>
                         {files[doc.key] && (
                           <p className="text-xs text-green-600 mt-0.5 flex items-center gap-1">
                             <CheckCircle2 className="w-3 h-3" /> {files[doc.key].file.name}
                           </p>
                         )}
                       </div>
-                      <label className="px-3 py-1.5 bg-white border border-[#c9a227] text-[#c9a227] rounded text-xs font-medium cursor-pointer hover:bg-[#c9a227] hover:text-white transition-colors">
+                      <label className="px-3 py-1.5 bg-white border border-[var(--color-gold)] text-[var(--color-gold)] rounded text-xs font-medium cursor-pointer hover:bg-[var(--color-gold)] hover:text-white transition-colors">
                         اختيار ملف
                         <input type="file" className="hidden" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onChange={(e) => handleFileChange(doc.key, doc.label, e)} />
                       </label>
@@ -861,7 +858,7 @@ export default function Claims() {
                 {/* Signature */}
                 <div className="mb-6">
                   <label className={labelClass}>التوقيع *</label>
-                  <div className="border-2 border-dashed border-[#e8e0d4] rounded-lg p-1 bg-white">
+                  <div className="border-2 border-dashed border-[var(--color-border)] rounded-lg p-1 bg-white">
                     <canvas
                       ref={canvasRef}
                       className="w-full h-40 cursor-crosshair touch-none"
@@ -878,9 +875,9 @@ export default function Claims() {
                 </div>
 
                 {/* Declaration */}
-                <label className="flex items-start gap-3 p-4 bg-[#1e3a5f]/5 rounded-lg cursor-pointer">
-                  <input type="checkbox" checked={declaration} onChange={e => setDeclaration(e.target.checked)} className="mt-1 accent-[#c9a227] w-4 h-4" />
-                  <span className="text-sm text-[#1e3a5f]">
+                <label className="flex items-start gap-3 p-4 bg-[var(--color-navy)]/5 rounded-lg cursor-pointer">
+                  <input type="checkbox" checked={declaration} onChange={e => setDeclaration(e.target.checked)} className="mt-1 accent-[var(--color-gold)] w-4 h-4" />
+                  <span className="text-sm text-[var(--color-navy)]">
                     أقر بأن جميع البيانات المدخلة صحيحة ودقيقة، وأتحمل المسؤولية الكاملة عن صحتها وفقاً لأحكام نظام الإفلاس ولائحته التنفيذية.
                   </span>
                 </label>
@@ -890,18 +887,18 @@ export default function Claims() {
             {/* Navigation Buttons */}
             <div className="flex items-center justify-between mt-5 md:mt-6 gap-3">
               {currentStep > 1 ? (
-                <button onClick={prevStep} className="px-4 md:px-6 py-2.5 md:py-3 text-sm border border-[#1e3a5f] text-[#1e3a5f] rounded-lg hover:bg-[#1e3a5f] hover:text-white active:scale-[0.97] transition-all">
+                <button onClick={prevStep} className="px-4 md:px-6 py-2.5 md:py-3 text-sm border border-[var(--color-navy)] text-[var(--color-navy)] rounded-lg hover:bg-[var(--color-navy)] hover:text-white active:scale-[0.97] transition-all">
                   السابق
                 </button>
               ) : (
                 <div />
               )}
               {currentStep < 3 ? (
-                <button onClick={nextStep} className="px-6 md:px-8 py-2.5 md:py-3 text-sm bg-[#c9a227] text-white rounded-lg hover:bg-[#b08d1f] active:scale-[0.97] transition-all font-medium">
+                <button onClick={nextStep} className="px-6 md:px-8 py-2.5 md:py-3 text-sm bg-[var(--color-gold)] text-white rounded-lg hover:bg-[#b08d1f] active:scale-[0.97] transition-all font-medium">
                   التالي
                 </button>
               ) : (
-                <button onClick={nextStep} disabled={submitting} className="px-6 md:px-8 py-2.5 md:py-3 text-sm bg-[#c9a227] text-white rounded-lg hover:bg-[#b08d1f] active:scale-[0.97] transition-all font-medium disabled:opacity-50">
+                <button onClick={nextStep} disabled={submitting} className="px-6 md:px-8 py-2.5 md:py-3 text-sm bg-[var(--color-gold)] text-white rounded-lg hover:bg-[#b08d1f] active:scale-[0.97] transition-all font-medium disabled:opacity-50">
                   <FileText className="w-4 h-4 inline ml-2" />
                   {submitting ? 'جاري إرسال المطالبة...' : 'تأكيد وإرسال المطالبة'}
                 </button>
