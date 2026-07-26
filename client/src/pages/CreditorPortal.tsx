@@ -9,6 +9,7 @@ import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/lib/supabase";
 import {
   STRINGS,
   fmtDate,
+  fmtDateTime,
   fmtCurrency,
   fmtNumber,
   trStatus,
@@ -37,6 +38,7 @@ import {
   Smartphone,
   User,
   Users,
+  Vote,
   Video,
 } from "lucide-react";
 
@@ -149,18 +151,36 @@ interface Hearing {
   attendance_method?: string | null;
 }
 
+interface VoteItem {
+  id: number;
+  case_id: number;
+  debtor_name: string | null;
+  title: string;
+  description: string | null;
+  opens_at: string;
+  closes_at: string;
+  status: string;
+  result: string | null;
+  eligible: boolean;
+  open: boolean;
+  server_time: string;
+  my_vote: { choice: string; voted_at: string } | null;
+  proposal_url: string | null;
+}
+
 interface PortalData {
   creditor: CreditorInfo | null;
   claims: Claim[];
   tickets: Ticket[];
   completion_requests: CompletionRequest[];
   hearings: Hearing[];
+  votes: VoteItem[];
 }
 
 type Stage = "id" | "otp" | "select" | "portal";
 type Method = "phone" | "email";
 type CreditorOption = { id_number: string; creditor_name: string; claims: number };
-type Tab = "claims" | "tickets" | "profile";
+type Tab = "claims" | "tickets" | "vote" | "profile";
 
 // ─── مساعدات العرض ───
 
@@ -355,6 +375,30 @@ export default function CreditorPortal() {
     setLoading(false);
   }
 
+  // ── إدلاء الصوت ──
+  async function castVote(voteId: number, choice: string) {
+    if (!sessionToken) return;
+    if (!window.confirm(t.voteConfirm(choice))) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(`${FN}/submit-vote`, {
+        method: "POST",
+        headers: HEADERS,
+        body: JSON.stringify({ session_token: sessionToken, vote_id: voteId, choice }),
+      });
+      const json = await res.json();
+      if (!res.ok || !json.success) {
+        setError(json.message ?? t.errConn);
+      } else {
+        await loadPortal(sessionToken);
+      }
+    } catch {
+      setError(t.errConn);
+    }
+    setLoading(false);
+  }
+
   // ── 3) جلب بيانات البوابة ──
   async function loadPortal(token: string) {
     setLoading(true);
@@ -382,6 +426,7 @@ export default function CreditorPortal() {
         tickets: json.tickets ?? [],
         completion_requests: json.completion_requests ?? [],
         hearings: json.hearings ?? [],
+        votes: json.votes ?? [],
       });
       setStage("portal");
     } catch {
@@ -439,6 +484,7 @@ export default function CreditorPortal() {
   const creditor = data?.creditor ?? null;
   const completions = data?.completion_requests ?? [];
   const hearings = data?.hearings ?? [];
+  const votes = data?.votes ?? [];
   const totalAmount = claims.reduce((s, c) => s + (c.claim_amount ?? 0), 0);
 
   const seo = (
@@ -675,6 +721,9 @@ export default function CreditorPortal() {
   const NAV: { key: Tab; label: string; icon: typeof FileText; count?: number }[] = [
     { key: "claims", label: t.navClaims, icon: FileText, count: claims.length },
     { key: "tickets", label: t.navTickets, icon: MessageSquarePlus, count: tickets.length },
+    ...(votes.length > 0
+      ? [{ key: "vote" as Tab, label: t.navVote, icon: Vote, count: votes.length }]
+      : []),
     { key: "profile", label: t.navProfile, icon: User },
   ];
 
@@ -957,6 +1006,104 @@ export default function CreditorPortal() {
                   </div>
                 ))
               )}
+            </div>
+          )}
+
+          {/* ─── تبويب التصويت ─── */}
+          {tab === "vote" && !loading && (
+            <div className="space-y-4">
+              {votes.map((v) => (
+                <div key={v.id} className="bg-white border border-[var(--color-border)] p-5 md:p-6">
+                  <h2 className="font-heading text-base font-bold text-[var(--color-navy)]">{v.title}</h2>
+                  {v.debtor_name && (
+                    <p className="font-body text-xs text-[var(--color-navy)]/50 mt-0.5">{v.debtor_name}</p>
+                  )}
+                  {v.description && (
+                    <p className="font-body text-sm text-[var(--color-navy)]/70 mt-3 leading-relaxed whitespace-pre-line">
+                      {v.description}
+                    </p>
+                  )}
+
+                  <div className="mt-4 border-t border-[var(--color-border)] pt-3 font-body text-xs text-[var(--color-navy)]/60">
+                    <span className="font-semibold">{t.voteWindow}:</span>{" "}
+                    <span dir="ltr">{fmtDateTime(v.opens_at, l)}</span>
+                    {" — "}
+                    <span dir="ltr">{fmtDateTime(v.closes_at, l)}</span>
+                  </div>
+
+                  {!v.eligible ? (
+                    <div className="mt-4 border border-[var(--color-gold)]/40 bg-[var(--color-gold)]/5 px-4 py-3 font-body text-sm text-[var(--color-navy)]/75">
+                      {t.voteNotEligible}
+                    </div>
+                  ) : (
+                    <>
+                      {v.proposal_url && (
+                        <div className="mt-4">
+                          <a
+                            href={v.proposal_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 border border-[var(--color-navy)] px-4 py-2 font-body text-sm text-[var(--color-navy)] transition-colors hover:bg-[var(--color-navy)] hover:text-[var(--color-cream)]"
+                          >
+                            <Eye className="w-4 h-4" />
+                            {t.voteViewProposal}
+                          </a>
+                          <p className="font-body text-xs text-[var(--color-navy)]/45 mt-2 leading-relaxed">
+                            {t.voteConfidential}
+                          </p>
+                        </div>
+                      )}
+
+                      {v.my_vote ? (
+                        <div className="mt-4 border border-emerald-300 bg-emerald-50 px-4 py-3">
+                          <p className="font-body text-sm font-semibold text-emerald-800 flex items-center gap-2">
+                            <CheckCircle2 className="w-4 h-4" />
+                            {t.voteDone(v.my_vote.choice)}
+                          </p>
+                          <p className="font-body text-xs text-emerald-700/70 mt-1" dir="ltr">
+                            {fmtDateTime(v.my_vote.voted_at, l)}
+                          </p>
+                        </div>
+                      ) : v.open ? (
+                        <div className="mt-4">
+                          <div className="grid grid-cols-2 gap-3">
+                            <Button
+                              onClick={() => void castVote(v.id, "موافقة")}
+                              disabled={loading}
+                              className="bg-emerald-700 hover:bg-emerald-800 text-white font-heading"
+                            >
+                              {t.voteApprove}
+                            </Button>
+                            <Button
+                              onClick={() => void castVote(v.id, "عدم الموافقة")}
+                              disabled={loading}
+                              className="bg-[var(--color-navy)] hover:bg-[var(--color-navy-light)] text-[var(--color-cream)] font-heading"
+                            >
+                              {t.voteReject}
+                            </Button>
+                          </div>
+                          <p className="font-body text-xs text-[var(--color-navy)]/45 mt-2 text-center">
+                            {t.voteFinal}
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="mt-4 border border-[var(--color-border)] bg-[var(--color-cream)] px-4 py-3 font-body text-sm text-[var(--color-navy)]/60">
+                          {new Date(v.server_time) < new Date(v.opens_at) ? t.voteOpensIn : t.voteClosed}
+                        </div>
+                      )}
+                    </>
+                  )}
+
+                  {v.result && (
+                    <div className="mt-4 border-t border-[var(--color-border)] pt-3">
+                      <span className="font-heading text-sm font-semibold text-[var(--color-navy)]">
+                        {t.voteResult}:
+                      </span>{" "}
+                      <span className="font-body text-sm text-[var(--color-navy)]/75">{v.result}</span>
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           )}
 

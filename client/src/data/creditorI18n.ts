@@ -34,6 +34,20 @@ export function saveLang(lang: Lang) {
 
 /* ── تنسيق التاريخ والعملة حسب اللغة ── */
 
+/** تاريخ ووقت — التصويت محكوم بالساعة لا باليوم، فالوقت جزء من المعلومة */
+export function fmtDateTime(value: string | Date | null | undefined, lang: Lang): string {
+  if (!value) return '—';
+  const d = typeof value === 'string' ? new Date(value) : value;
+  if (!d || isNaN(d.getTime())) return '—';
+  const locale = lang === 'en' ? 'en-GB' : lang === 'ur' ? 'ur-PK' : 'ar-SA';
+  return d.toLocaleString(locale, {
+    timeZone: 'Asia/Riyadh',
+    year: 'numeric', month: 'short', day: 'numeric',
+    hour: '2-digit', minute: '2-digit',
+    calendar: 'gregory', numberingSystem: 'latn',
+  });
+}
+
 export function fmtDate(value: string | Date | null | undefined, lang: Lang): string {
   if (!value) return '—';
   const d = typeof value === 'string' ? new Date(value) : value;
@@ -154,6 +168,20 @@ export interface Strings {
   selectTitle: string;
   selectIntro: string;
   selectClaims: (n: number) => string;
+  // تصويت
+  navVote: string;
+  voteWindow: string;
+  voteOpensIn: string;
+  voteClosed: string;
+  voteNotEligible: string;
+  voteViewProposal: string;
+  voteConfidential: string;
+  voteApprove: string;
+  voteReject: string;
+  voteDone: (choice: string) => string;
+  voteFinal: string;
+  voteResult: string;
+  voteConfirm: (choice: string) => string;
   sendCode: string;
   secureNote: string;
   otpTitle: string;
@@ -270,6 +298,19 @@ const AR: Strings = {
   selectTitle: 'اختر الدائن',
   selectIntro: 'هذه الوسيلة مرتبطة بأكثر من دائن. اختر من تريد متابعة مطالباته.',
   selectClaims: (n: number) => `${n} مطالبة`,
+  navVote: 'التصويت',
+  voteWindow: 'فترة التصويت',
+  voteOpensIn: 'لم يُفتح باب التصويت بعد',
+  voteClosed: 'أُغلق باب التصويت',
+  voteNotEligible: 'مشاركتك في التصويت غير معتمدة. راجع أمين الإجراء لاستكمال مستندات الصفة.',
+  voteViewProposal: 'الاطّلاع على المقترح',
+  voteConfidential: 'المقترح سرّي: يقتصر الاطّلاع عليه على المخوّلين، ويحظر تداوله أو نسخه أو نشره.',
+  voteApprove: 'موافقة',
+  voteReject: 'عدم الموافقة',
+  voteDone: (c: string) => `تم تسجيل صوتك: ${c}`,
+  voteFinal: 'الصوت نهائي ولا يمكن تعديله بعد الإدلاء به.',
+  voteResult: 'نتيجة التصويت',
+  voteConfirm: (c: string) => `تأكيد التصويت بـ«${c}»؟ لا يمكن التراجع بعد التأكيد.`,
   sendCode: 'إرسال رمز التحقق',
   secureNote: 'تسجيل الدخول آمن عبر رمز يُرسل لجوالك المسجّل فقط.',
   otpTitle: 'التحقق من الرمز',
@@ -379,6 +420,19 @@ const EN: Strings = {
   selectTitle: 'Select creditor',
   selectIntro: 'This contact is linked to more than one creditor. Choose whose claims to view.',
   selectClaims: (n: number) => `${n} claim${n === 1 ? '' : 's'}`,
+  navVote: 'Vote',
+  voteWindow: 'Voting period',
+  voteOpensIn: 'Voting has not opened yet',
+  voteClosed: 'Voting is closed',
+  voteNotEligible: 'Your participation is not approved. Contact the trustee to complete your authorisation documents.',
+  voteViewProposal: 'View the proposal',
+  voteConfidential: 'The proposal is confidential: access is limited to authorised persons; copying or sharing is prohibited.',
+  voteApprove: 'Approve',
+  voteReject: 'Reject',
+  voteDone: (c: string) => `Your vote was recorded: ${c}`,
+  voteFinal: 'The vote is final and cannot be changed once cast.',
+  voteResult: 'Voting result',
+  voteConfirm: (c: string) => `Confirm voting \u201c${c}\u201d? This cannot be undone.`,
   sendCode: 'Send verification code',
   secureNote: 'Secure sign-in via a code sent to your registered mobile only.',
   otpTitle: 'Verify the code',
@@ -488,6 +542,19 @@ const UR: Strings = {
   selectTitle: 'قرض خواہ منتخب کریں',
   selectIntro: 'یہ رابطہ ایک سے زیادہ قرض خواہ سے منسلک ہے۔ منتخب کریں کہ کس کے دعوے دیکھنے ہیں۔',
   selectClaims: (n: number) => `${n} دعوے`,
+  navVote: 'ووٹنگ',
+  voteWindow: 'ووٹنگ کا وقت',
+  voteOpensIn: 'ووٹنگ ابھی شروع نہیں ہوئی',
+  voteClosed: 'ووٹنگ بند ہو چکی ہے',
+  voteNotEligible: 'آپ کی شرکت منظور نہیں ہے۔ دستاویزات مکمل کرنے کے لیے ٹرسٹی سے رابطہ کریں۔',
+  voteViewProposal: 'تجویز دیکھیں',
+  voteConfidential: 'تجویز خفیہ ہے: صرف مجاز افراد دیکھ سکتے ہیں، نقل یا اشاعت ممنوع ہے۔',
+  voteApprove: 'منظور',
+  voteReject: 'نامنظور',
+  voteDone: (c: string) => `آپ کا ووٹ درج ہو گیا: ${c}`,
+  voteFinal: 'ووٹ حتمی ہے اور دینے کے بعد تبدیل نہیں ہو سکتا۔',
+  voteResult: 'ووٹنگ کا نتیجہ',
+  voteConfirm: (c: string) => `«${c}» ووٹ کی تصدیق کریں؟ اس کے بعد واپسی ممکن نہیں۔`,
   sendCode: 'تصدیقی کوڈ بھیجیں',
   secureNote: 'محفوظ لاگ اِن صرف آپ کے درج موبائل پر بھیجے گئے کوڈ کے ذریعے۔',
   otpTitle: 'کوڈ کی تصدیق',
