@@ -64,8 +64,8 @@
     "canonical": "https://redwan.sa/"
   },
   "/about": {
-    "title": "من نحن - نبذة عن الشركة | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "تعرف على شركة عبدالرحمن رضوان المشيقح للمحاماة - خبرة عائلية راسخة تتجاوز 20 عاماً في القانون. رؤيتنا، قيمنا، وتراخيصنا النظامية.",
+    "title": "من نحن | شركة المشيقح للمحاماة وأمانة الإفلاس - بريدة",
+    "description": "شركة محاماة سعودية في بريدة. 4 تراخيص مهنية: محاماة، أمانة إفلاس، توثيق، تسجيل عيني. خبرة عائلية 20+ سنة في القانون التجاري والإفلاس.",
     "keywords": "من نحن، شركة محاماة بريدة، تراخيص محاماة، خبرة قانونية، القصيم",
     "ogTitle": "من نحن - نبذة عن الشركة",
     "ogDesc": "تعرف على شركة عبدالرحمن رضوان المشيقح للمحاماة - خبرة عائلية راسخة تتجاوز 20 عاماً في القانون. رؤيتنا، قيمنا، وتراخيصنا النظامية.",
@@ -86,8 +86,8 @@
     "canonical": "https://redwan.sa/team"
   },
   "/services": {
-    "title": "خدماتنا القانونية | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "خدمات قانونية متكاملة: قضايا تجارية، جنائية، عقارية، إفلاس، توثيق، تحكيم، واستشارات قانونية. شركة عبدالرحمن رضوان المشيقح للمحاماة.",
+    "title": "12 خدمة قانونية متخصصة | المشيقح للمحاماة - بريدة",
+    "description": "خدمات قانونية شاملة في بريدة والقصيم: تجاري، جنائي، عقاري، إفلاس، عمالي، توثيق، تحكيم، واستشارات. 4 تراخيص مهنية وخبرة 20+ سنة.",
     "keywords": "خدمات قانونية، قضايا تجارية، قضايا جنائية، إفلاس، توثيق، تحكيم تجاري، محامي بريدة",
     "ogTitle": "خدماتنا القانونية",
     "ogDesc": "خدمات قانونية متكاملة: قضايا تجارية، جنائية، عقارية، إفلاس، توثيق، تحكيم، واستشارات قانونية. شركة عبدالرحمن رضوان المشيقح للمحاماة.",
@@ -97,8 +97,8 @@
     "canonical": "https://redwan.sa/services"
   },
   "/services/civil-commercial": {
-    "title": "القضايا المدنية والتجارية | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "نقدم تمثيلاً قانونياً شاملاً في النزاعات المدنية والتجارية أمام جميع المحاكم والجهات القضائية في المملكة العربية السعودية. نتعامل مع القضايا التجارية المعقدة بخبرة واحترافية عالية.",
+    "title": "محامي قضايا تجارية في بريدة | نزاعات الشركات والعقود",
+    "description": "محامي تجاري متخصص في بريدة والقصيم. ترافع في نزاعات الشراكات، تحصيل الديون، العقود التجارية، والشيكات. خبرة 20+ سنة أمام المحاكم التجارية.",
     "keywords": "القضايا المدنية والتجارية, محاماة، خدمات قانونية",
     "ogTitle": "القضايا المدنية والتجارية",
     "ogDesc": "نقدم تمثيلاً قانونياً شاملاً في النزاعات المدنية والتجارية أمام جميع المحاكم والجهات القضائية في المملكة العربية السعودية. نتعامل مع القضايا التجارية المعقدة بخبرة واحترافية عالية.",
@@ -108,8 +108,8 @@
     "canonical": "https://redwan.sa/services/civil-commercial"
   },
   "/services/labor": {
-    "title": "قضايا العمل والعمال | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "نوفر حماية قانونية شاملة لحقوق أصحاب العمل والعمال وفق نظام العمل السعودي، مع خبرة واسعة في التعامل مع المحاكم العمالية.",
+    "title": "محامي قضايا عمالية في بريدة والقصيم | المشيقح للمحاماة",
+    "description": "محامي عمالي متخصص في بريدة. ترافع أمام المحاكم العمالية في فصل تعسفي، مستحقات نهاية خدمة، إصابات عمل، ونقل كفالة. استشارة أولية مجانية. اتصل 0505149800.",
     "keywords": "قضايا العمل والعمال, محاماة، خدمات قانونية",
     "ogTitle": "قضايا العمل والعمال",
     "ogDesc": "نوفر حماية قانونية شاملة لحقوق أصحاب العمل والعمال وفق نظام العمل السعودي، مع خبرة واسعة في التعامل مع المحاكم العمالية.",
@@ -119,8 +119,8 @@
     "canonical": "https://redwan.sa/services/labor"
   },
   "/services/criminal": {
-    "title": "القضايا الجنائية | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "نقدم الدفاع والتمثيل القانوني في القضايا الجنائية بجميع أنواعها، مع الحرص على حماية حقوق المتهم وضمان محاكمة عادلة.",
+    "title": "محامي جنائي في بريدة والقصيم | دفاع وترافع",
+    "description": "محامي جنائي متخصص في بريدة. دفاع في قضايا الاحتيال، التزوير، خيانة الأمانة، والقضايا المالية. حماية حقوق المتهم وضمان محاكمة عادلة. ترخيص 26/129.",
     "keywords": "القضايا الجنائية, محاماة، خدمات قانونية",
     "ogTitle": "القضايا الجنائية",
     "ogDesc": "نقدم الدفاع والتمثيل القانوني في القضايا الجنائية بجميع أنواعها، مع الحرص على حماية حقوق المتهم وضمان محاكمة عادلة.",
@@ -130,8 +130,8 @@
     "canonical": "https://redwan.sa/services/criminal"
   },
   "/services/real-estate": {
-    "title": "النزاعات العقارية | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "نقدم خدمات قانونية متكاملة في مجال العقارات، من التسجيل العيني إلى حل النزاعات العقارية المعقدة.",
+    "title": "محامي عقاري في بريدة | نزاعات وتسجيل عيني",
+    "description": "محامي عقارات متخصص في بريدة والقصيم. نزاعات ملكية، إخلاء، عقود بيع وإيجار، تسجيل عيني، وفرز وتجزئة. موثق معتمد من وزارة العدل.",
     "keywords": "النزاعات العقارية, محاماة، خدمات قانونية",
     "ogTitle": "النزاعات العقارية",
     "ogDesc": "نقدم خدمات قانونية متكاملة في مجال العقارات، من التسجيل العيني إلى حل النزاعات العقارية المعقدة.",
@@ -141,8 +141,8 @@
     "canonical": "https://redwan.sa/services/real-estate"
   },
   "/services/bankruptcy": {
-    "title": "محامي إفلاس متخصص | التسوية الوقائية وإعادة التنظيم المالي",
-    "description": "خدمات الإفلاس المتخصصة: التسوية الوقائية، إعادة التنظيم المالي، التصفية، وتمثيل الدائنين والمدينين. أمين إفلاس معتمد بترخيص رسمي من لجنة الإفلاس - بريدة، القصيم.",
+    "title": "محامي إفلاس وأمين إفلاس معتمد | تسوية وإعادة تنظيم",
+    "description": "أمين إفلاس معتمد بترخيص 142147. تسوية وقائية، إعادة تنظيم مالي، تصفية، وتمثيل دائنين ومدينين. خبرة في 6+ إجراءات إفلاس منجزة.",
     "keywords": "محامي إفلاس, تسوية وقائية, إعادة تنظيم مالي, تصفية, أمين إفلاس معتمد, حقوق الدائنين, حماية المدين",
     "ogTitle": "الإفلاس والتصفية",
     "ogDesc": "نقدم خدمات متخصصة في إجراءات الإفلاس وإعادة التنظيم المالي والتصفية وفق نظام الإفلاس السعودي، بترخيص رسمي من لجنة الإفلاس.",
@@ -152,8 +152,8 @@
     "canonical": "https://redwan.sa/services/bankruptcy"
   },
   "/services/consultation": {
-    "title": "الاستشارات القانونية | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "نقدم استشارات قانونية متخصصة تساعدك في اتخاذ القرارات الصحيحة وتجنب المخاطر القانونية المحتملة.",
+    "title": "استشارات قانونية في بريدة | رأي قانوني متخصص",
+    "description": "استشارة قانونية من محامي متخصص في بريدة. رأي قانوني في العقود، النزاعات، الإفلاس، والقضايا التجارية. حضوري أو عن بعد. اتصل 0505149800.",
     "keywords": "الاستشارات القانونية, محاماة، خدمات قانونية",
     "ogTitle": "الاستشارات القانونية",
     "ogDesc": "نقدم استشارات قانونية متخصصة تساعدك في اتخاذ القرارات الصحيحة وتجنب المخاطر القانونية المحتملة.",
@@ -163,8 +163,8 @@
     "canonical": "https://redwan.sa/services/consultation"
   },
   "/services/arbitration": {
-    "title": "التحكيم | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "نمثل الأطراف في إجراءات التحكيم المحلي والدولي كوسيلة بديلة لحل النزاعات بشكل أسرع وأكثر مرونة.",
+    "title": "محامي تحكيم تجاري في بريدة | فض نزاعات",
+    "description": "محامي تحكيم متخصص في بريدة والقصيم. تمثيل في هيئات التحكيم، صياغة شروط تحكيم، وتنفيذ أحكام المحكمين. بديل سريع للتقاضي.",
     "keywords": "التحكيم, محاماة، خدمات قانونية",
     "ogTitle": "التحكيم",
     "ogDesc": "نمثل الأطراف في إجراءات التحكيم المحلي والدولي كوسيلة بديلة لحل النزاعات بشكل أسرع وأكثر مرونة.",
@@ -174,8 +174,8 @@
     "canonical": "https://redwan.sa/services/arbitration"
   },
   "/services/documentation": {
-    "title": "التوثيق | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "نقدم خدمات التوثيق الرسمي للعقود والمستندات القانونية بترخيص من وزارة العدل، مما يضفي الحجية القانونية على معاملاتك.",
+    "title": "موثق معتمد في بريدة | توثيق عقود وإقرارات",
+    "description": "موثق معتمد من وزارة العدل في بريدة. توثيق عقود، وكالات، إقرارات، وفسوخ. خدمة سريعة بترخيص رسمي. اتصل 0505149800.",
     "keywords": "التوثيق, محاماة، خدمات قانونية",
     "ogTitle": "التوثيق",
     "ogDesc": "نقدم خدمات التوثيق الرسمي للعقود والمستندات القانونية بترخيص من وزارة العدل، مما يضفي الحجية القانونية على معاملاتك.",
@@ -185,8 +185,8 @@
     "canonical": "https://redwan.sa/services/documentation"
   },
   "/services/personal-status": {
-    "title": "الأحوال الشخصية | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "نتعامل مع قضايا الأسرة بحساسية واحترافية، ونسعى لحل النزاعات الأسرية بما يحقق مصلحة جميع الأطراف.",
+    "title": "محامي أحوال شخصية في بريدة | طلاق وحضانة ونفقة",
+    "description": "محامي أحوال شخصية متخصص في بريدة. قضايا طلاق، حضانة، نفقة، زيارة، وإثبات نسب. ترافع أمام محاكم الأحوال الشخصية في القصيم.",
     "keywords": "الأحوال الشخصية, محاماة، خدمات قانونية",
     "ogTitle": "الأحوال الشخصية",
     "ogDesc": "نتعامل مع قضايا الأسرة بحساسية واحترافية، ونسعى لحل النزاعات الأسرية بما يحقق مصلحة جميع الأطراف.",
@@ -216,18 +216,6 @@
     "ogType": "website",
     "ogImage": null,
     "canonical": "https://redwan.sa/bankruptcy/claims"
-  },
-  "/bankruptcy/track": {
-    "title": "تتبع المطالبة | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "تتبع حالة مطالبتك في إجراءات الإفلاس برقم المرجع أو رقم الهوية",
-    "keywords": "تتبع مطالبة, إفلاس, حالة المطالبة",
-    "ogTitle": "تتبع المطالبة | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "ogDesc": "تتبع حالة مطالبتك في إجراءات الإفلاس برقم المرجع أو رقم الهوية",
-    "ogUrl": "https://redwan.sa/bankruptcy/track",
-    "ogType": "website",
-    "ogImage": null,
-    "canonical": "https://redwan.sa/bankruptcy/track",
-    "noindex": true
   },
   "/bankruptcy/ASHYAD-STEEL": {
     "title": "شركة أشياد ستيل - تصفية | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
@@ -559,8 +547,8 @@
     "articleSection": "الإفلاس"
   },
   "/contact": {
-    "title": "تواصل معنا - احجز استشارة | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "تواصل مع شركة عبدالرحمن رضوان المشيقح للمحاماة. احجز استشارة قانونية الآن. هاتف: 0505149800 | بريدة، القصيم.",
+    "title": "احجز استشارة قانونية | المشيقح للمحاماة - بريدة 0505149800",
+    "description": "احجز استشارة قانونية مع محامي متخصص في بريدة. اتصل 0505149800 أو زرنا: طريق الملك عبدالعزيز، بريدة. نخدم القصيم وحائل والرياض.",
     "keywords": "تواصل معنا، استشارة قانونية، محامي بريدة، حجز موعد، رقم محامي",
     "ogTitle": "تواصل معنا - احجز استشارة",
     "ogDesc": "تواصل مع شركة عبدالرحمن رضوان المشيقح للمحاماة. احجز استشارة قانونية الآن. هاتف: 0505149800 | بريدة، القصيم.",
@@ -938,13 +926,6 @@
     "ogUrl": "https://redwan.sa/en/faq",
     "canonical": "/en/faq"
   },
-  "/en/careers": {
-    "title": "Careers | Redwan Law Firm",
-    "description": "Join our team of legal professionals. Explore career opportunities at Abdulrahman Redwan Al-Mushaiqi Law Firm.",
-    "keywords": "legal careers, law firm jobs, attorney positions, Buraydah jobs",
-    "ogUrl": "https://redwan.sa/en/careers",
-    "canonical": "/en/careers"
-  },
   "/en/privacy": {
     "title": "Privacy Policy | Redwan Law Firm",
     "description": "Our privacy policy explains how we collect, use, and protect your personal information.",
@@ -956,20 +937,6 @@
     "description": "Terms and conditions governing the use of our website and services.",
     "ogUrl": "https://redwan.sa/en/terms",
     "canonical": "/en/terms"
-  },
-  "/en/cases-guide": {
-    "title": "Litigation Cases Guide | Redwan Law Firm",
-    "description": "Comprehensive guide to different types of legal cases and litigation procedures in Saudi Arabia.",
-    "keywords": "litigation guide, legal cases, Saudi court procedures, case types",
-    "ogUrl": "https://redwan.sa/en/cases-guide",
-    "canonical": "/en/cases-guide"
-  },
-  "/en/legal-dictionary": {
-    "title": "Legal Dictionary | Redwan Law Firm",
-    "description": "Arabic-English legal dictionary with definitions of key legal terms used in Saudi law.",
-    "keywords": "legal dictionary, legal terms, Saudi law terminology, Arabic legal terms",
-    "ogUrl": "https://redwan.sa/en/legal-dictionary",
-    "canonical": "/en/legal-dictionary"
   },
   "/en/bankruptcy": {
     "title": "Bankruptcy Cases | Redwan Law Firm",
@@ -1157,18 +1124,6 @@
     "canonical": "https://redwan.sa/bankruptcy/complete",
     "noindex": true
   },
-  "/en/careers/complete": {
-    "title": "Complete Your Application | Al-Mushaiqeh Law Firm",
-    "description": "Complete your job application documents — accessible via the private link sent to you.",
-    "keywords": "complete application, careers documents",
-    "ogTitle": "Complete Your Application",
-    "ogDesc": "Complete your job application documents — accessible via the private link sent to you.",
-    "ogUrl": "https://redwan.sa/en/careers/complete",
-    "ogType": "website",
-    "ogImage": null,
-    "canonical": "https://redwan.sa/en/careers/complete",
-    "noindex": true
-  },
   "/en/bankruptcy/claims": {
     "title": "Submit a Creditor Claim | Al-Mushaiqeh Law Firm",
     "description": "Submit your creditor claim in bankruptcy proceedings under the Saudi Bankruptcy Law.",
@@ -1179,30 +1134,6 @@
     "ogType": "website",
     "ogImage": null,
     "canonical": "https://redwan.sa/en/bankruptcy/claims",
-    "noindex": true
-  },
-  "/en/bankruptcy/track": {
-    "title": "Track Your Claim | Al-Mushaiqeh Law Firm",
-    "description": "Track the status of your claim in bankruptcy proceedings.",
-    "keywords": "track claim, bankruptcy claim status",
-    "ogTitle": "Track Your Claim",
-    "ogDesc": "Track the status of your claim in bankruptcy proceedings.",
-    "ogUrl": "https://redwan.sa/en/bankruptcy/track",
-    "ogType": "website",
-    "ogImage": null,
-    "canonical": "https://redwan.sa/en/bankruptcy/track",
-    "noindex": true
-  },
-  "/en/bankruptcy/ticket": {
-    "title": "Submit an Enquiry | Al-Mushaiqeh Law Firm",
-    "description": "Submit an enquiry regarding bankruptcy proceedings.",
-    "keywords": "bankruptcy enquiry, creditor enquiry",
-    "ogTitle": "Submit an Enquiry",
-    "ogDesc": "Submit an enquiry regarding bankruptcy proceedings.",
-    "ogUrl": "https://redwan.sa/en/bankruptcy/ticket",
-    "ogType": "website",
-    "ogImage": null,
-    "canonical": "https://redwan.sa/en/bankruptcy/ticket",
     "noindex": true
   },
   "/creditor": {

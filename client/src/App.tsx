@@ -108,8 +108,7 @@ function Router() {
               <Route path={"/en/bankruptcy/procedures"} component={BankruptcyProcedures} />
               <Route path={"/en/bankruptcy/procedures/:slug"} component={BankruptcyProcedure} />
               <Route path={"/en/bankruptcy/claims"} component={Claims} />
-              <Route path={"/en/bankruptcy/track"} component={BankruptcyTrack} />
-              <Route path={"/en/bankruptcy/ticket"} component={BankruptcyTicket} />
+
               <Route path={"/en/bankruptcy/complete"} component={BankruptcyComplete} />
               <Route path={"/en/bankruptcy/:slug"} component={BankruptcyCase} />
               <Route path={"/en/blog"} component={Blog} />
@@ -118,10 +117,7 @@ function Router() {
               <Route path={"/en/privacy"} component={Privacy} />
               <Route path={"/en/terms"} component={Terms} />
               <Route path={"/en/faq"} component={FAQ} />
-              <Route path={"/en/careers/complete"} component={CareersComplete} />
-              <Route path={"/en/careers"} component={Careers} />
-              <Route path={"/en/cases-guide"} component={CasesGuide} />
-              <Route path={"/en/legal-dictionary"} component={LegalDictionary} />
+
               <Route path={"/en/premium-residency"} component={PremiumResidency} />
               <Route path={"/en/locations/:slug"} component={CityPage} />
               <Route path={"/en/licenses"} component={Licenses} />

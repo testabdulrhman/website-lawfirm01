@@ -518,16 +518,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/careers" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/careers" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/careers" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/careers</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/careers" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/careers" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/careers" />
   </url>
   <url>
@@ -536,16 +526,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/cases-guide" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/cases-guide" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/cases-guide" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/cases-guide</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/cases-guide" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/cases-guide" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/cases-guide" />
   </url>
   <url>
@@ -554,16 +534,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/legal-dictionary" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/legal-dictionary" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/legal-dictionary" />
-  </url>
-  <url>
-    <loc>https://redwan.sa/en/legal-dictionary</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/legal-dictionary" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/legal-dictionary" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/legal-dictionary" />
   </url>
   <url>
