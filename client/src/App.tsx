@@ -85,6 +85,12 @@ function Router() {
               <Route path={"/bankruptcy/track"} component={BankruptcyTrack} />
               <Route path={"/bankruptcy/ticket"} component={BankruptcyTicket} />
               <Route path={"/bankruptcy/complete"} component={BankruptcyComplete} />
+              {/* بوابة الدائن الموحّدة — ثلاث لغات.
+                  يجب أن تسبق /bankruptcy/:slug و /en/bankruptcy/:slug،
+                  وإلا التقطتها قاعدة الـslug وعرضت «الإجراء غير موجود». */}
+              <Route path={"/bankruptcy/creditor"} component={CreditorPortal} />
+              <Route path={"/en/bankruptcy/creditor"} component={CreditorPortal} />
+              <Route path={"/ur/bankruptcy/creditor"} component={CreditorPortal} />
               <Route path={"/bankruptcy/:slug"} component={BankruptcyCase} />
               <Route path={"/blog"} component={Blog} />
               <Route path={"/blog/:slug"} component={BlogPost} />
@@ -124,10 +130,6 @@ function Router() {
               <Route path={"/en/locations/:slug"} component={CityPage} />
               <Route path={"/en/licenses"} component={Licenses} />
               <Route path={"/en/sitemap"} component={Sitemap} />
-              {/* بوابة الدائن الموحّدة — ثلاث لغات */}
-              <Route path={"/bankruptcy/creditor"} component={CreditorPortal} />
-              <Route path={"/en/bankruptcy/creditor"} component={CreditorPortal} />
-              <Route path={"/ur/bankruptcy/creditor"} component={CreditorPortal} />
               {/* Urdu routes (/ur prefix) */}
               <Route path={"/ur/premium-residency"} component={PremiumResidency} />
               <Route path="/brand" component={Brand} />

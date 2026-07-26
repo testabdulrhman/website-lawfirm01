@@ -64,11 +64,15 @@ function SSRRouter({ url }: { url: string }) {
       <Route path="/faq">{() => <Layout><FAQ /></Layout>}</Route>
       <Route path="/careers">{() => <Layout><Careers /></Layout>}</Route>
       <Route path="/bankruptcy">{() => <Layout><Bankruptcy /></Layout>}</Route>
-      <Route path="/bankruptcy/claims">{() => <Layout><BankruptcyComplete /></Layout>}</Route>
+      <Route path="/bankruptcy/claims">{() => <Layout><Claims /></Layout>}</Route>
       <Route path="/bankruptcy/track">{() => <Layout><BankruptcyTrack /></Layout>}</Route>
       <Route path="/bankruptcy/ticket">{() => <Layout><BankruptcyTicket /></Layout>}</Route>
       <Route path="/bankruptcy/procedures">{() => <Layout><BankruptcyProcedures /></Layout>}</Route>
       <Route path="/bankruptcy/procedures/:id">{() => <Layout><BankruptcyProcedure /></Layout>}</Route>
+      {/* بوابة الدائن — يجب أن تسبق قواعد :slug وإلا التقطتها وعرضت «الإجراء غير موجود» */}
+      <Route path="/bankruptcy/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
+      <Route path="/en/bankruptcy/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
+      <Route path="/ur/bankruptcy/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
       <Route path="/bankruptcy/:slug">{() => <Layout><BankruptcyCase /></Layout>}</Route>
       <Route path="/cases-guide">{() => <Layout><CasesGuide /></Layout>}</Route>
       <Route path="/legal-dictionary">{() => <Layout><LegalDictionary /></Layout>}</Route>
@@ -90,7 +94,7 @@ function SSRRouter({ url }: { url: string }) {
       <Route path="/en/faq">{() => <Layout><FAQ /></Layout>}</Route>
       <Route path="/en/careers">{() => <Layout><Careers /></Layout>}</Route>
       <Route path="/en/bankruptcy">{() => <Layout><Bankruptcy /></Layout>}</Route>
-      <Route path="/en/bankruptcy/claims">{() => <Layout><BankruptcyComplete /></Layout>}</Route>
+      <Route path="/en/bankruptcy/claims">{() => <Layout><Claims /></Layout>}</Route>
       <Route path="/en/bankruptcy/track">{() => <Layout><BankruptcyTrack /></Layout>}</Route>
       <Route path="/en/bankruptcy/ticket">{() => <Layout><BankruptcyTicket /></Layout>}</Route>
       <Route path="/en/bankruptcy/procedures">{() => <Layout><BankruptcyProcedures /></Layout>}</Route>
@@ -102,9 +106,6 @@ function SSRRouter({ url }: { url: string }) {
       <Route path="/en/locations/:city">{() => <Layout><CityPage /></Layout>}</Route>
 
       {/* بوابة الدائن الموحّدة — ثلاث لغات */}
-      <Route path="/bankruptcy/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
-      <Route path="/en/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
-      <Route path="/ur/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
 
       {/* 404 */}
       <Route>{() => <Layout><NotFound /></Layout>}</Route>
