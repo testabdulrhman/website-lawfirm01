@@ -260,6 +260,15 @@ export default function About() {
               </div>
             ))}
           </div>
+          <div className="mt-8 text-center">
+            <Link
+              href={localePath('/licenses', lang)}
+              className="inline-flex items-center gap-2 px-6 py-3 font-heading text-sm font-semibold text-[var(--color-gold)] border border-[var(--color-gold)]/30 hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)] transition-all duration-300"
+            >
+              {lang === 'ar' ? 'عرض التفاصيل الكاملة للتراخيص' : 'View Full License Details'}
+              <span className={lang === 'ar' ? 'rotate-180' : ''}>→</span>
+            </Link>
+          </div>
         </div>
       </section>
     </>

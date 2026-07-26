@@ -49,6 +49,7 @@ export default function Navbar() {
     { label: t.nav.home, href: lp("/") },
     { label: t.nav.about, href: lp("/about") },
     { label: t.nav.team, href: lp("/team") },
+    { label: lang === 'ar' ? 'التراخيص' : 'Licenses', href: lp("/licenses") },
     { label: t.nav.services, href: lp("/services"), mega: true },
     { label: t.nav.trackClaim, href: lp("/creditor") },
     { label: t.nav.blog, href: lp("/blog") },
