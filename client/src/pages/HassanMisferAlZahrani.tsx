@@ -67,10 +67,29 @@ export default function HassanMisferAlZahrani() {
               ar="يتم التصويت إلكترونياً من خلال الرابط المخصص للتصويت، وذلك باختيار الموافقة أو عدم الموافقة على مقترح إعادة التنظيم المالي."
               en="Voting shall be conducted electronically through the designated voting link by selecting either approval or rejection of the Financial Reorganization Proposal."
             />
-            <Row
-              ar="رابط التصويت: ..............................."
-              en="Voting Link: ..............................."
-            />
+            {/* Voting Button - Disabled until voting date */}
+            <div className="grid grid-cols-2 gap-6 py-4 border-b border-gray-100">
+              <div className="text-right" dir="rtl">
+                <button
+                  disabled
+                  className="w-full py-3 px-6 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-bold text-base flex items-center justify-center gap-2"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                  رابط التصويت
+                </button>
+                <p className="text-xs text-gray-500 mt-2 text-center">سيتوفر الرابط يوم الأحد 03/03/1448هـ (16/08/2026م) الساعة 1:00 مساءً</p>
+              </div>
+              <div className="text-left" dir="ltr">
+                <button
+                  disabled
+                  className="w-full py-3 px-6 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-bold text-sm flex items-center justify-center gap-2"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                  Voting Link
+                </button>
+                <p className="text-xs text-gray-400 mt-2 text-center">Available on Sunday 03/03/1448 AH (16/08/2026) at 1:00 PM</p>
+              </div>
+            </div>
             <Row
               ar="ويعقد أمين إجراء إعادة التنظيم المالي، بالتزامن مع فترة التصويت، اجتماعاً إلكترونياً للدائنين."
               en="Concurrently with the voting period, the Financial Reorganization Procedure Trustee will hold an electronic meeting for the creditors."
