@@ -1,6 +1,6 @@
 /**
  * Team Page - صفحة فريق العمل
- * Design: Libero layout style (white bg, navy name bar, biography below) with site colors
+ * Original hero header + Libero card style (photo, navy name bar, biography below) with site colors
  */
 import { useScrollAnimation, getStaggerStyle } from "@/hooks/useScrollAnimation";
 import { Link } from "wouter";
@@ -17,15 +17,13 @@ interface TeamMember {
   title: string;
   initials: string;
   bio?: string;
-  image: string;
+  image?: string;
   twitter?: string;
   linkedin?: string;
 }
 
 /**
  * صورة عضو الفريق مع بديل احتياطي.
- * إن تعذّر تحميل الصورة (أو لم تُرفع بعد) يُعرض الحرف الأول على خلفية كحلية
- * بدل مربّع الصورة المكسور. يُزال البديل تلقائياً حالما تتوفر صورة صالحة.
  */
 function TeamPhoto({ src, name, initials }: { src?: string; name: string; initials: string }) {
   const [failed, setFailed] = useState(!src);
@@ -58,8 +56,8 @@ function TeamPhoto({ src, name, initials }: { src?: string; name: string; initia
 const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubtitle: string; members: TeamMember[] }> = {
   ar: {
     pageLabel: "فريقنا",
-    pageTitle: "فريق العمل",
-    pageSubtitle: "عرض الفريق",
+    pageTitle: "المحامون",
+    pageSubtitle: "يضم فريقنا محامين ومستشارين قانونيين مؤهلين لتقديم أفضل الخدمات القانونية بخبرة متراكمة وتخصصات متنوعة.",
     members: [
       {
         name: "عبدالرحمن بن رضوان المشيقح",
@@ -67,7 +65,6 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "المؤسس والمدير التنفيذي",
         initials: "ع",
         bio: "محامٍ، وأمين إفلاس، وموثّق، بخبرة تتجاوز عشر سنوات في الأعمال القانونية. محاضر متعاون بجامعة المستقبل، حاصل على درجة الماجستير في الأنظمة بمرتبة الشرف الأولى. يمتلك خبرة سابقة في الدوائر والمحاكم التجارية بالرياض.",
-        image: "",
       },
       {
         name: "يسرى بنت رضوان المشيقح",
@@ -75,7 +72,6 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "محامية",
         initials: "ي",
         bio: "محامية مرخصة تعمل في مجال القضايا التجارية والنزاعات العقارية، وتساهم في إعداد المذكرات القانونية والترافع أمام الجهات القضائية.",
-        image: "",
       },
       {
         name: "محمد بن عمر الجندي",
@@ -83,7 +79,6 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "محامي متدرب",
         initials: "م",
         bio: "محامي متدرب يعمل على تطوير مهاراته القانونية في مجالات التقاضي التجاري وإدارة إجراءات الإفلاس تحت إشراف المحامين المرخصين.",
-        image: "",
       },
       {
         name: "رنا بنت نائف الحربي",
@@ -91,7 +86,6 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "محامية متدربة",
         initials: "ر",
         bio: "حاصلة على درجة البكالوريوس في تخصّص القانون بمرتبة الشّرف الأولى من جامعة القصيم، تتركّز ممارستها في القضايا التجاريّة، والتّرافع في الدّعاوى وكتابة المُذكّرات، وإدارة ملفّات الإفلاس.",
-        image: "",
       },
       {
         name: "رضوان بن عبدالله المشيقح",
@@ -99,14 +93,13 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "مدير إداري",
         initials: "ر",
         bio: "يتولى إدارة الشؤون الإدارية والتنسيق بين أقسام الشركة لضمان سير العمل بكفاءة وانتظام.",
-        image: "",
       },
     ],
   },
   en: {
     pageLabel: "Our Team",
-    pageTitle: "Our Team",
-    pageSubtitle: "Team Presentation",
+    pageTitle: "Our People",
+    pageSubtitle: "Our team includes qualified lawyers and legal consultants dedicated to delivering the best legal services with accumulated experience and diverse specializations.",
     members: [
       {
         name: "Abdulrahman Redwan Al-Mushaiqeh",
@@ -114,7 +107,6 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "Founder & Managing Director",
         initials: "A",
         bio: "Attorney, Bankruptcy Trustee, and Notary, with over ten years of experience in legal practice. Adjunct Lecturer at Al-Mustaqbal University, holding a Master's degree in Law with First Class Honors. Possesses prior experience in commercial courts and circuits in Riyadh.",
-        image: "",
       },
       {
         name: "Yusra Redwan Al-Mushaiqeh",
@@ -122,7 +114,6 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "Attorney",
         initials: "Y",
         bio: "A licensed attorney specializing in commercial cases and real estate disputes, contributing to legal memoranda preparation and court representation.",
-        image: "",
       },
       {
         name: "Mohammed Omar Al-Jundi",
@@ -130,7 +121,6 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "Trainee Attorney",
         initials: "M",
         bio: "A trainee attorney developing his legal skills in commercial litigation and bankruptcy proceedings management under the supervision of licensed attorneys.",
-        image: "",
       },
       {
         name: "Rana Nayef Al-Harbi",
@@ -138,7 +128,6 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "Trainee Attorney",
         initials: "R",
         bio: "Holds a Bachelor's degree in Law with First Class Honors from Qassim University. Her practice focuses on commercial cases, litigation and legal memoranda drafting, and bankruptcy file management.",
-        image: "",
       },
       {
         name: "Redwan Abdullah Al-Mushaiqeh",
@@ -146,7 +135,6 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         title: "Administrative Manager",
         initials: "R",
         bio: "Manages administrative affairs and coordinates between company departments to ensure efficient and organized workflow.",
-        image: "",
       },
     ],
   },
@@ -176,8 +164,8 @@ export default function Team() {
 
   return (
     <>
-      {/* Page Hero - Dark navy header like Libero */}
-      <section className="relative pt-28 md:pt-32 pb-12 md:pb-16 bg-[var(--color-navy)]">
+      {/* Page Hero - Original dark navy header with breadcrumb */}
+      <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 bg-[var(--color-navy)]">
         <div className="absolute inset-0 opacity-10">
           <img
             src="/images/office-interior.webp"
@@ -190,40 +178,55 @@ export default function Team() {
         </div>
         <div
           ref={heroRef}
-          className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10 text-center transition-all duration-700 ease-out"
+          className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10 transition-all duration-700 ease-out"
           style={{
             opacity: heroVisible ? 1 : 0,
             transform: heroVisible ? "translateY(0)" : "translateY(20px)",
           }}
         >
-          {/* Small icon */}
-          <div className="mb-4 flex justify-center">
-            <svg className="w-8 h-8 text-[var(--color-gold)]" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-            </svg>
+          <div className="flex items-center gap-3 mb-4">
+            <Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{t.nav.home}</Link>
+            <span className="text-white/30">/</span>
+            <span className="font-body text-sm text-[var(--color-gold)]">{data.pageLabel}</span>
           </div>
-          <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
-            {data.pageTitle}
-          </h1>
-          <p className="font-body text-sm text-white/50">
+          <h1 className="font-display text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-4">{data.pageTitle}</h1>
+          <p className="font-body text-base md:text-lg text-white/60 max-w-2xl">
             {data.pageSubtitle}
           </p>
         </div>
-        {/* Bottom wave/divider */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 40" fill="none" className="w-full h-6 md:h-10">
-            <path d="M0 40L1440 40L1440 0C1440 0 1080 40 720 40C360 40 0 0 0 0L0 40Z" fill="white"/>
-          </svg>
-        </div>
       </section>
 
-      {/* Team Grid - White background, Libero card style */}
-      <section className="py-16 md:py-24 bg-white">
-        <div
-          ref={teamRef}
-          className="container mx-auto px-5 md:px-4 lg:px-8"
-        >
-          {/* Team Cards Grid - 4 columns like Libero */}
+      {/* Team Grid - White background */}
+      <section className="py-16 md:py-24 lg:py-32 bg-white">
+        <div className="container mx-auto px-5 md:px-4 lg:px-8">
+          {/* Section intro */}
+          <div
+            ref={teamRef}
+            className="mb-12 md:mb-16 transition-all duration-700 ease-out"
+            style={{
+              opacity: teamVisible ? 1 : 0,
+              transform: teamVisible ? "translateY(0)" : "translateY(20px)",
+            }}
+          >
+            <div className="flex items-center gap-4 mb-6">
+              <div
+                className="h-[2px] bg-[var(--color-gold)] transition-all duration-700"
+                style={{ width: teamVisible ? "48px" : "0px", transitionDelay: "200ms" }}
+              />
+              <span className="font-heading text-sm tracking-[0.2em] text-[var(--color-gold)]">
+                {lang === "ar" ? "أعضاء الفريق" : "Team Members"}
+              </span>
+            </div>
+            <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--color-navy)]">
+              {lang === "ar" ? (
+                <>تعرّف على <span className="text-[var(--color-gold)]">فريقنا</span></>
+              ) : (
+                <>Meet Our <span className="text-[var(--color-gold)]">Team</span></>
+              )}
+            </h2>
+          </div>
+
+          {/* Team Cards Grid - Libero style: 4 columns */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
             {data.members.map((member, idx) => (
               <div
@@ -232,9 +235,9 @@ export default function Team() {
                 style={getStaggerStyle(teamVisible, idx, 100)}
               >
                 {/* Photo with navy name bar at bottom */}
-                <div className="relative mb-6 overflow-hidden">
-                  {/* Grayscale photo */}
-                  <div className="aspect-[3/4] overflow-hidden">
+                <div className="relative mb-5 overflow-hidden border border-[var(--color-border)]">
+                  {/* Photo area */}
+                  <div className="aspect-[3/4] overflow-hidden bg-[var(--color-navy)]/5">
                     <TeamPhoto
                       src={member.image}
                       name={member.name}
@@ -242,77 +245,77 @@ export default function Team() {
                     />
                   </div>
 
-                  {/* Navy name bar at bottom of photo */}
-                  <div className="absolute bottom-0 inset-x-0 bg-[var(--color-navy)]/90 backdrop-blur-sm py-3 px-4">
-                    <h3 className="font-heading text-xs md:text-sm font-bold text-white uppercase tracking-wide">
+                  {/* Navy name bar at bottom of photo - Libero style */}
+                  <div className="absolute bottom-0 inset-x-0 bg-[var(--color-navy)]/90 backdrop-blur-sm py-3 px-3">
+                    <h3 className="font-heading text-[11px] md:text-xs font-bold text-white uppercase tracking-wide leading-tight">
                       {member.name}
                     </h3>
-                    <p className="font-body text-[11px] md:text-xs text-[var(--color-gold)] italic mt-0.5">
+                    <p className="font-body text-[10px] md:text-[11px] text-[var(--color-gold)] italic mt-0.5">
                       {member.title}
                     </p>
                   </div>
                 </div>
 
-                {/* Biography section below photo */}
+                {/* Biography section below card */}
                 {member.bio && (
-                  <div className="px-2">
-                    <h4 className="font-heading text-xs uppercase tracking-[0.15em] text-[var(--color-navy)] font-bold mb-3">
+                  <div className="px-1">
+                    <h4 className="font-heading text-[11px] uppercase tracking-[0.15em] text-[var(--color-navy)] font-bold mb-2">
                       {lang === "ar" ? "نبذة" : "Biography"}
                     </h4>
-                    <p className="font-body text-xs md:text-[13px] text-gray-600 leading-relaxed mb-4">
+                    <p className="font-body text-[12px] md:text-[13px] text-gray-600 leading-relaxed mb-3">
                       {member.bio}
                     </p>
-
-                    {/* Social links */}
-                    <div className="flex items-center justify-center gap-4">
-                      <a href="#" className="text-gray-400 hover:text-[var(--color-navy)] transition-colors" aria-label="Twitter">
-                        <Twitter className="w-4 h-4" />
-                      </a>
-                      <a href="#" className="text-gray-400 hover:text-[var(--color-navy)] transition-colors" aria-label="LinkedIn">
-                        <Linkedin className="w-4 h-4" />
-                      </a>
-                    </div>
                   </div>
                 )}
 
-                {/* If no bio, just show social links */}
-                {!member.bio && (
-                  <div className="flex items-center justify-center gap-4">
-                    <a href="#" className="text-gray-400 hover:text-[var(--color-navy)] transition-colors" aria-label="Twitter">
+                {/* Social links */}
+                <div className="flex items-center justify-center gap-4 mt-2">
+                  {member.twitter && (
+                    <a href={member.twitter} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--color-navy)] transition-colors" aria-label="Twitter">
                       <Twitter className="w-4 h-4" />
                     </a>
-                    <a href="#" className="text-gray-400 hover:text-[var(--color-navy)] transition-colors" aria-label="LinkedIn">
+                  )}
+                  {member.linkedin && (
+                    <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--color-navy)] transition-colors" aria-label="LinkedIn">
                       <Linkedin className="w-4 h-4" />
                     </a>
-                  </div>
-                )}
+                  )}
+                  {!member.twitter && !member.linkedin && (
+                    <>
+                      <span className="text-gray-300">
+                        <Twitter className="w-4 h-4" />
+                      </span>
+                      <span className="text-gray-300">
+                        <Linkedin className="w-4 h-4" />
+                      </span>
+                    </>
+                  )}
+                </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Bottom CTA - Join our team */}
-      <section className="bg-[var(--color-navy)] py-16 md:py-20">
-        <div className="container mx-auto px-5 md:px-4 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="font-display text-xl md:text-2xl font-bold text-white mb-3">
-                {lang === "ar" ? "انضم إلى فريقنا" : "Join Our Team"}
-              </h3>
-              <p className="font-body text-sm text-white/50">
-                {lang === "ar"
-                  ? "نبحث دائماً عن محامين ومتخصصين قانونيين متميزين للانضمام إلى فريقنا."
-                  : "We are always looking for talented lawyers and legal professionals to join our team."}
-              </p>
-            </div>
-            <div className={`${isRTL ? 'md:text-left' : 'md:text-right'}`}>
-              <Link
-                href={lp("/contact")}
-                className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-[var(--color-gold)] text-[var(--color-gold)] font-heading text-sm font-medium uppercase tracking-wider hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)] transition-all duration-300"
-              >
-                {lang === "ar" ? "تواصل معنا" : "Contact Us"}
-              </Link>
+          {/* Bottom CTA */}
+          <div className="mt-12 md:mt-16 pt-10 md:pt-12 border-t border-[var(--color-border)]">
+            <div className="grid md:grid-cols-2 gap-6 items-center">
+              <div>
+                <h3 className="font-display text-xl md:text-2xl font-bold text-[var(--color-navy)] mb-2">
+                  {lang === "ar" ? "انضم إلى فريقنا" : "Join Our Team"}
+                </h3>
+                <p className="font-body text-sm text-[var(--color-navy)]/60">
+                  {lang === "ar"
+                    ? "نبحث دائماً عن محامين ومتخصصين قانونيين متميزين للانضمام إلى فريقنا."
+                    : "We are always looking for talented lawyers and legal professionals to join our team."}
+                </p>
+              </div>
+              <div className={`${isRTL ? 'md:text-left' : 'md:text-right'}`}>
+                <Link
+                  href={lp("/careers")}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-navy)] text-white font-heading text-sm font-medium hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)] transition-all duration-300"
+                >
+                  {lang === "ar" ? "تقدّم الآن" : "Apply Now"}
+                </Link>
+              </div>
             </div>
           </div>
         </div>
