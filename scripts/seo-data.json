@@ -803,6 +803,28 @@
       "قاموس قانوني سعودي"
     ]
   },
+  "/licenses": {
+    "title": "التراخيص والاعتمادات المهنية | شركة المشيقح للمحاماة",
+    "description": "شركة عبدالرحمن رضوان المشيقح للمحاماة حاصلة على أربعة تراخيص نظامية: المحاماة، أمانة الإفلاس، التوثيق، والتسجيل العقاري. جميعها صادرة من جهات حكومية رسمية.",
+    "keywords": "تراخيص محاماة, ترخيص أمين إفلاس, موثق معتمد, تسجيل عقاري, شركة محاماة مرخصة",
+    "ogTitle": "التراخيص والاعتمادات المهنية | شركة المشيقح للمحاماة",
+    "ogDesc": "أربعة تراخيص نظامية تؤهل الشركة لتقديم خدمات المحاماة وأمانة الإفلاس والتوثيق والتسجيل العقاري.",
+    "ogUrl": "https://redwan.sa/licenses",
+    "ogType": "website",
+    "ogImage": "",
+    "canonical": "https://redwan.sa/licenses"
+  },
+  "/en/licenses": {
+    "title": "Professional Licenses & Accreditations | Redwan Law Firm",
+    "description": "Abdulrahman Redwan Al-Mushaiqi Law Firm holds four official licenses: Legal Practice, Bankruptcy Trustee, Notarization, and Real Estate Registration.",
+    "keywords": "law firm licenses, bankruptcy trustee license, notary public, real estate registration, licensed law firm Saudi Arabia",
+    "ogTitle": "Professional Licenses & Accreditations | Redwan Law Firm",
+    "ogDesc": "Four official licenses qualifying the firm to provide legal practice, bankruptcy trustee, notarization, and real estate registration services.",
+    "ogUrl": "https://redwan.sa/en/licenses",
+    "ogType": "website",
+    "ogImage": "",
+    "canonical": "https://redwan.sa/en/licenses"
+  },
   "/en": {
     "title": "Abdulrahman Redwan Al-Mushaiqi Law Firm | Bankruptcy & Legal Services",
     "description": "A leading Saudi law firm specializing in commercial, criminal, real estate litigation and bankruptcy management. Over 20 years of family legal expertise in Buraydah, Qassim.",

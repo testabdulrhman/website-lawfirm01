@@ -567,6 +567,24 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/legal-dictionary" />
   </url>
   <url>
+    <loc>https://redwan.sa/licenses</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/licenses" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/licenses" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/licenses" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/en/licenses</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/licenses" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/licenses" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://redwan.sa/licenses" />
+  </url>
+  <url>
     <loc>https://redwan.sa/locations/riyadh</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
