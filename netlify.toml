@@ -34,29 +34,47 @@
   [headers.values]
     Cache-Control = "public, max-age=604800"
 
-# ── بوابة الدائن: صارت داخل الموقع على /creditor (كانت تحوّل إلى iflas.redwan.sa) ──
+# ── بوابة الدائن: كل خدمات الدائن من /bankruptcy/creditor ──
 # الأداتان القديمتان (تتبّع المطالبة وتذكرة الاستفسار) اندمجتا في البوابة الموحّدة.
 [[redirects]]
+  from = "/creditor"
+  to = "/bankruptcy/creditor"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/creditor/"
+  to = "/bankruptcy/creditor"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ur/creditor"
+  to = "/ur/bankruptcy/creditor"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/bankruptcy/track"
-  to = "/creditor"
+  to = "/bankruptcy/creditor"
   status = 301
   force = true
 
 [[redirects]]
   from = "/en/bankruptcy/track"
-  to = "/en/creditor"
+  to = "/en/bankruptcy/creditor"
   status = 301
   force = true
 
 [[redirects]]
   from = "/bankruptcy/ticket"
-  to = "/creditor"
+  to = "/bankruptcy/creditor"
   status = 301
   force = true
 
 [[redirects]]
   from = "/en/bankruptcy/ticket"
-  to = "/en/creditor"
+  to = "/en/bankruptcy/creditor"
   status = 301
   force = true
 
@@ -214,17 +232,17 @@
 
 # بوابة الدائن: خلف تحقق OTP — تُخدَم بـ200 وتبقى خارج الفهرسة
 [[headers]]
-  for = "/creditor"
+  for = "/bankruptcy/creditor"
   [headers.values]
     X-Robots-Tag = "noindex"
 
 [[headers]]
-  for = "/en/creditor"
+  for = "/en/bankruptcy/creditor"
   [headers.values]
     X-Robots-Tag = "noindex"
 
 [[headers]]
-  for = "/ur/creditor"
+  for = "/ur/bankruptcy/creditor"
   [headers.values]
     X-Robots-Tag = "noindex"
 

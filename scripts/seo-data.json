@@ -1136,18 +1136,6 @@
     "canonical": "https://redwan.sa/en/bankruptcy/claims",
     "noindex": true
   },
-  "/ur/creditor": {
-    "title": "قرض خواہ پورٹل | المشیقح لا فرم",
-    "description": "قرض خواہ پورٹل: دیوالیہ کارروائی میں اپنے دعووں کی پیروی کریں، استفسارات بھیجیں، اور اپنی تفصیلات دیکھیں۔",
-    "keywords": "قرض خواہ پورٹل, دعویٰ ٹریکنگ, دیوالیہ",
-    "ogTitle": "قرض خواہ پورٹل",
-    "ogDesc": "قرض خواہ پورٹل: دیوالیہ کارروائی میں اپنے دعووں کی پیروی کریں، استفسارات بھیجیں، اور اپنی تفصیلات دیکھیں۔",
-    "ogUrl": "https://redwan.sa/ur/creditor",
-    "ogType": "website",
-    "ogImage": null,
-    "canonical": "https://redwan.sa/ur/creditor",
-    "noindex": true
-  },
   "/bankruptcy/creditor": {
     "title": "بوابة الدائن | شركة عبدالرحمن بن رضوان المشيقح للمحاماة",
     "description": "بوابة الدائن: تابع مطالباتك في إجراءات الإفلاس، وأرسل استفساراتك، واطّلع على بياناتك — بتحقق برقم الجوال.",
@@ -1170,6 +1158,18 @@
     "ogType": "website",
     "ogImage": null,
     "canonical": "https://redwan.sa/en/bankruptcy/creditor",
+    "noindex": true
+  },
+  "/ur/bankruptcy/creditor": {
+    "title": "قرض خواہ پورٹل | المشیقح لاء فرم",
+    "description": "قرض خواہ پورٹل: دیوالیہ کارروائیوں میں اپنے دعوے دیکھیں، استفسارات بھیجیں اور اپنی تفصیلات ملاحظہ کریں — موبائل تصدیق کے ذریعے۔",
+    "keywords": "قرض خواہ پورٹل, دعوے کی پیروی, دیوالیہ کارروائی",
+    "ogTitle": "قرض خواہ پورٹل",
+    "ogDesc": "قرض خواہ پورٹل: دیوالیہ کارروائیوں میں اپنے دعوے دیکھیں، استفسارات بھیجیں اور اپنی تفصیلات ملاحظہ کریں۔",
+    "ogUrl": "https://redwan.sa/ur/bankruptcy/creditor",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/ur/bankruptcy/creditor",
     "noindex": true
   }
 }
