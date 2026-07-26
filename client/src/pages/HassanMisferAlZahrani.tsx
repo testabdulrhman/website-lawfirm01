@@ -266,16 +266,6 @@ export default function HassanMisferAlZahrani() {
                   <td className="py-2 text-center">bankruptcy@redwan.sa</td>
                   <td className="py-2 font-semibold text-left w-1/3" dir="ltr">Email</td>
                 </tr>
-                <tr className="border-b border-gray-200">
-                  <td className="py-2 font-semibold text-right">رابط اجتماع التصويت</td>
-                  <td className="py-2 text-center text-gray-400">...............................</td>
-                  <td className="py-2 font-semibold text-left" dir="ltr">Voting Meeting Link</td>
-                </tr>
-                <tr>
-                  <td className="py-2 font-semibold text-right">رابط التصويت الإلكتروني</td>
-                  <td className="py-2 text-center text-gray-400">...............................</td>
-                  <td className="py-2 font-semibold text-left" dir="ltr">Voting Link</td>
-                </tr>
               </tbody>
             </table>
 
