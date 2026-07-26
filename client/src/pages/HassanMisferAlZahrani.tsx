@@ -10,21 +10,7 @@ export default function HassanMisferAlZahrani() {
     <main className="min-h-screen bg-white" dir="rtl">
       <div className="max-w-[950px] mx-auto bg-white shadow-lg my-8 print:my-0 print:shadow-none">
         <div className="px-10 py-8">
-          {/* Header */}
-          <header className="flex items-start justify-between border-b-2 border-[var(--color-navy)] pb-6 mb-8">
-            <div className="text-sm text-gray-600">
-              <p>12/02/1448هـ</p>
-              <p>26/07/2026م</p>
-            </div>
-            <div className="text-center">
-              <div className="flex flex-col items-center gap-1">
-                <img src="/images/brand/logo-dark.webp" alt="شعار الشركة" className="w-16 h-16 object-contain" />
-                <p className="font-display font-bold text-lg text-[var(--color-navy)]">شركة</p>
-                <p className="font-display font-bold text-lg text-[var(--color-navy)]">عبدالرحمن بن رضوان المشيقح</p>
-                <p className="font-display text-sm text-[var(--color-navy)]">للمحاماة وإدارة إجراءات الإفلاس</p>
-              </div>
-            </div>
-          </header>
+
 
           {/* Row-by-row bilingual content */}
           <div className="space-y-0">
