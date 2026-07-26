@@ -50,10 +50,6 @@ function formatDate(dateStr?: string): string {
   } catch { return dateStr; }
 }
 
-function escapeHtml(str: string | null | undefined): string {
-  if (str == null) return '';
-  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-}
 
 export default function Claims() {
   const { lang } = useLanguage();
@@ -446,27 +442,8 @@ export default function Claims() {
         }
       }
 
-      setSubmitProgress(85);
-      setSubmitLabel('إرسال التأكيد...');
-
-      // Step 4: Send SMS & Email
-      try {
-        const confirmMsg = `شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس\n\nتم استلام مطالبتكم رقم ${savedClaimRef} بنجاح.\nسيتم دراستها وإبلاغكم بالنتيجة.\n\nللاستفسار: 920032760`;
-        await fetch(`${SUPABASE_URL}/functions/v1/send-sms`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
-          body: JSON.stringify({ numbers: phone, msg: confirmMsg, claim_id: savedClaimId, case_id: selectedCase.id, type: 'claim_received' })
-        });
-      } catch { /* non-critical */ }
-
-      try {
-        const emailHtml = buildConfirmationEmail(savedClaimRef, creditorName, claimData.claim_amount, claimType, selectedCase.debtor_name);
-        await fetch(`${SUPABASE_URL}/functions/v1/send-email`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
-          body: JSON.stringify({ to: email, subject: `تأكيد استلام المطالبة رقم ${savedClaimRef}`, html: emailHtml, claim_id: savedClaimId, case_id: selectedCase.id, type: 'claim_received' })
-        });
-      } catch { /* non-critical */ }
+      // إشعار الاستلام (SMS + بريد) يُرسله الخادم داخل submit-claim،
+      // فلا يعتمد على بقاء المتصفح مفتوحاً، ولا يحتاج نقاط إرسال مفتوحة للعموم.
 
       setSubmitProgress(100);
       setSubmitLabel(docsAttachOk ? 'اكتمل الإرسال بنجاح!' : 'تم تسجيل المطالبة');
@@ -488,33 +465,6 @@ export default function Claims() {
     }
   }
 
-  function buildConfirmationEmail(ref: string, name: string, amount: number, type: string, debtor: string): string {
-    return `<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"></head>
-    <body style="margin:0;padding:0;font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f5f5f5;direction:rtl;">
-      <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f5f5f5;padding:30px 0;">
-        <tr><td align="center">
-          <table cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;background:#ffffff;border-radius:8px;overflow:hidden;">
-            <tr><td style="background:#1e3a5f;padding:24px 30px;text-align:center;">
-              <h1 style="color:#ffffff;margin:0;font-size:20px;">شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس</h1>
-              <p style="color:#c9a227;margin:4px 0 0 0;font-size:13px;">وإدارة إجراءات الإفلاس</p>
-            </td></tr>
-            <tr><td style="padding:30px;color:#333;font-size:14px;line-height:1.8;">
-              <p>الأستاذ/ة ${escapeHtml(name)}،</p>
-              <p>تم استلام مطالبتكم رقم <strong>${escapeHtml(ref)}</strong> في قضية <strong>${escapeHtml(debtor)}</strong> بنجاح.</p>
-              <div style="background:#f9fafb;border-right:3px solid #c9a227;padding:14px 18px;margin:16px 0;border-radius:4px;">
-                <p style="margin:0 0 6px 0;"><strong>رقم المرجع:</strong> ${escapeHtml(ref)}</p>
-                <p style="margin:0 0 6px 0;"><strong>المبلغ:</strong> ${amount.toLocaleString()} ريال</p>
-                <p style="margin:0;"><strong>نوع المطالبة:</strong> ${escapeHtml(type)}</p>
-              </div>
-              <p>سيتم دراسة المطالبة وإبلاغكم بالنتيجة.</p>
-              <p>للاستفسار: 920032760 · bankruptcy@redwan.sa</p>
-            </td></tr>
-            <tr><td style="background:#f9fafb;padding:18px;border-top:1px solid #e5e7eb;text-align:center;font-size:12px;color:#6b7280;">redwan.sa</td></tr>
-          </table>
-        </td></tr>
-      </table>
-    </body></html>`;
-  }
 
   // ==================== RENDER ====================
   const activeCases = cases;
