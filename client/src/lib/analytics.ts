@@ -92,3 +92,11 @@ export function trackLanguageSwitch(newLang: string) {
     event_label: newLang,
   });
 }
+
+/** تتبع تحميل/فتح مقترح إعادة التنظيم المالي */
+export function trackProposalDownload(caseName: string) {
+  trackEvent("proposal_download", {
+    event_category: "engagement",
+    event_label: caseName,
+  });
+}

@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { trackEmailClick, trackProposalDownload } from "@/lib/analytics";
 
 // Voting date: Sunday 16/08/2026 at 1:00 PM (Saudi time UTC+3)
 const VOTING_START = new Date('2026-08-16T10:00:00Z'); // 1:00 PM Saudi
@@ -12,15 +13,71 @@ export default function HassanMisferAlZahrani() {
   useEffect(() => {
     document.title = "التصويت على مقترح إعادة التنظيم المالي | شركة حسن مسفر الزهراني وشركاه";
     window.scrollTo(0, 0);
-    const timer = setInterval(() => setNow(new Date()), 60000);
+    const timer = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
+
+  // Countdown logic
+  const getCountdown = useCallback(() => {
+    const diff = VOTING_START.getTime() - now.getTime();
+    if (diff <= 0) return null;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    return { days, hours, minutes, seconds };
+  }, [now]);
+
+  const countdown = getCountdown();
+
+  const handleProposalClick = () => {
+    trackProposalDownload('Hassan-Misfer-Al-Zahrani');
+  };
 
   const isVotingOpen = now >= VOTING_START && now <= VOTING_END;
   const isVotingEnded = now > VOTING_END;
 
   return (
     <main className="min-h-screen bg-white" dir="rtl">
+      {/* Countdown Banner */}
+      {!isVotingEnded && (
+        <div className="sticky top-0 z-50 bg-gradient-to-l from-[var(--color-navy)] to-[#1a365d] text-white py-4 px-4 shadow-lg">
+          <div className="max-w-[950px] mx-auto">
+            {countdown ? (
+              <div className="flex flex-col items-center gap-2">
+                <p className="text-sm font-medium opacity-90">الوقت المتبقي لبدء التصويت / Time remaining until voting starts</p>
+                <div className="flex items-center gap-3 sm:gap-5" dir="ltr">
+                  <div className="flex flex-col items-center">
+                    <span className="text-2xl sm:text-3xl font-bold tabular-nums">{String(countdown.days).padStart(2, '0')}</span>
+                    <span className="text-[10px] opacity-75">يوم</span>
+                  </div>
+                  <span className="text-xl font-bold opacity-50">:</span>
+                  <div className="flex flex-col items-center">
+                    <span className="text-2xl sm:text-3xl font-bold tabular-nums">{String(countdown.hours).padStart(2, '0')}</span>
+                    <span className="text-[10px] opacity-75">ساعة</span>
+                  </div>
+                  <span className="text-xl font-bold opacity-50">:</span>
+                  <div className="flex flex-col items-center">
+                    <span className="text-2xl sm:text-3xl font-bold tabular-nums">{String(countdown.minutes).padStart(2, '0')}</span>
+                    <span className="text-[10px] opacity-75">دقيقة</span>
+                  </div>
+                  <span className="text-xl font-bold opacity-50">:</span>
+                  <div className="flex flex-col items-center">
+                    <span className="text-2xl sm:text-3xl font-bold tabular-nums">{String(countdown.seconds).padStart(2, '0')}</span>
+                    <span className="text-[10px] opacity-75">ثانية</span>
+                  </div>
+                </div>
+              </div>
+            ) : isVotingOpen ? (
+              <div className="flex items-center justify-center gap-2">
+                <span className="relative flex h-3 w-3"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span></span>
+                <p className="text-base font-bold">التصويت مفتوح الآن / Voting is open now</p>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      )}
+
       <div className="max-w-[950px] mx-auto bg-white shadow-lg my-8 print:my-0 print:shadow-none">
         <div className="px-10 py-8">
           {/* Date */}
@@ -260,6 +317,7 @@ export default function HassanMisferAlZahrani() {
                   href="/proposal.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={handleProposalClick}
                   className="w-full py-3 px-6 bg-[var(--color-navy)] hover:bg-[var(--color-navy)]/90 text-white rounded-lg font-bold text-base flex items-center justify-center gap-2 transition-colors"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
@@ -272,6 +330,7 @@ export default function HassanMisferAlZahrani() {
                   href="/proposal.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={handleProposalClick}
                   className="w-full py-3 px-6 bg-[var(--color-navy)] hover:bg-[var(--color-navy)]/90 text-white rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition-colors"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
@@ -293,7 +352,7 @@ export default function HassanMisferAlZahrani() {
               <tbody>
                 <tr className="border-b border-gray-200">
                   <td className="py-2 font-semibold text-right w-1/3">بريد إلكتروني</td>
-                  <td className="py-2 text-center">bankruptcy@redwan.sa</td>
+                  <td className="py-2 text-center"><a href="mailto:bankruptcy@redwan.sa" onClick={() => trackEmailClick('bankruptcy_notice')} className="text-blue-700 hover:text-blue-900 underline">bankruptcy@redwan.sa</a></td>
                   <td className="py-2 font-semibold text-left w-1/3" dir="ltr">Email</td>
                 </tr>
               </tbody>
