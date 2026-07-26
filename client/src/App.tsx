@@ -123,9 +123,9 @@ function Router() {
               <Route path={"/en/licenses"} component={Licenses} />
               <Route path={"/en/sitemap"} component={Sitemap} />
               {/* بوابة الدائن الموحّدة — ثلاث لغات */}
-              <Route path={"/creditor"} component={CreditorPortal} />
-              <Route path={"/en/creditor"} component={CreditorPortal} />
-              <Route path={"/ur/creditor"} component={CreditorPortal} />
+              <Route path={"/bankruptcy/creditor"} component={CreditorPortal} />
+              <Route path={"/en/bankruptcy/creditor"} component={CreditorPortal} />
+              <Route path={"/ur/bankruptcy/creditor"} component={CreditorPortal} />
               {/* Urdu routes (/ur prefix) */}
               <Route path={"/ur/premium-residency"} component={PremiumResidency} />
               <Route path="/brand" component={Brand} />

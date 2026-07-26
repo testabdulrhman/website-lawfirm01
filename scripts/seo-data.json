@@ -1136,30 +1136,6 @@
     "canonical": "https://redwan.sa/en/bankruptcy/claims",
     "noindex": true
   },
-  "/creditor": {
-    "title": "بوابة الدائن | شركة عبدالرحمن بن رضوان المشيقح للمحاماة",
-    "description": "بوابة الدائن: تابع مطالباتك في إجراءات الإفلاس، وأرسل استفساراتك، واطّلع على بياناتك — بتحقق برقم الجوال.",
-    "keywords": "بوابة الدائن, تتبع المطالبة, استفسار دائن, إجراءات الإفلاس",
-    "ogTitle": "بوابة الدائن",
-    "ogDesc": "بوابة الدائن: تابع مطالباتك في إجراءات الإفلاس، وأرسل استفساراتك، واطّلع على بياناتك — بتحقق برقم الجوال.",
-    "ogUrl": "https://redwan.sa/creditor",
-    "ogType": "website",
-    "ogImage": null,
-    "canonical": "https://redwan.sa/creditor",
-    "noindex": true
-  },
-  "/en/creditor": {
-    "title": "Creditor Portal | Al-Mushaiqeh Law Firm",
-    "description": "Creditor portal: track your claims in bankruptcy proceedings, submit enquiries, and view your details — secured by mobile verification.",
-    "keywords": "creditor portal, track claim, bankruptcy proceedings Saudi",
-    "ogTitle": "Creditor Portal",
-    "ogDesc": "Creditor portal: track your claims in bankruptcy proceedings, submit enquiries, and view your details — secured by mobile verification.",
-    "ogUrl": "https://redwan.sa/en/creditor",
-    "ogType": "website",
-    "ogImage": null,
-    "canonical": "https://redwan.sa/en/creditor",
-    "noindex": true
-  },
   "/ur/creditor": {
     "title": "قرض خواہ پورٹل | المشیقح لا فرم",
     "description": "قرض خواہ پورٹل: دیوالیہ کارروائی میں اپنے دعووں کی پیروی کریں، استفسارات بھیجیں، اور اپنی تفصیلات دیکھیں۔",
@@ -1170,6 +1146,30 @@
     "ogType": "website",
     "ogImage": null,
     "canonical": "https://redwan.sa/ur/creditor",
+    "noindex": true
+  },
+  "/bankruptcy/creditor": {
+    "title": "بوابة الدائن | شركة عبدالرحمن بن رضوان المشيقح للمحاماة",
+    "description": "بوابة الدائن: تابع مطالباتك في إجراءات الإفلاس، وأرسل استفساراتك، واطّلع على بياناتك — بتحقق برقم الجوال.",
+    "keywords": "بوابة الدائن, تتبع المطالبة, استفسار دائن, إجراءات الإفلاس",
+    "ogTitle": "بوابة الدائن",
+    "ogDesc": "بوابة الدائن: تابع مطالباتك في إجراءات الإفلاس، وأرسل استفساراتك، واطّلع على بياناتك — بتحقق برقم الجوال.",
+    "ogUrl": "https://redwan.sa/bankruptcy/creditor",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/bankruptcy/creditor",
+    "noindex": true
+  },
+  "/en/bankruptcy/creditor": {
+    "title": "Creditor Portal | Al-Mushaiqeh Law Firm",
+    "description": "Creditor portal: track your claims in bankruptcy proceedings, submit enquiries, and view your details — secured by mobile verification.",
+    "keywords": "creditor portal, track claim, bankruptcy proceedings Saudi",
+    "ogTitle": "Creditor Portal",
+    "ogDesc": "Creditor portal: track your claims in bankruptcy proceedings, submit enquiries, and view your details — secured by mobile verification.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/creditor",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/bankruptcy/creditor",
     "noindex": true
   }
 }

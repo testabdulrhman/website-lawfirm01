@@ -100,7 +100,7 @@ export default function Bankruptcy() {
             className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto"
           >
             <Link
-              href={lp("/creditor")}
+              href={lp("/bankruptcy/creditor")}
               className="group flex items-center gap-4 p-6 bg-[var(--color-navy)] border border-[var(--color-navy)] hover:border-[var(--color-gold)] hover:-translate-y-1 hover:shadow-lg transition-all duration-300 md:col-span-2"
               style={{ opacity: actionsVisible ? 1 : 0, transform: actionsVisible ? "translateY(0)" : "translateY(20px)", transition: "all 0.6s ease-out" }}
             >
@@ -145,7 +145,7 @@ export default function Bankruptcy() {
             {/* أُزيلت بطاقة «تتبع مطالبتي»: بطاقة بوابة الدائن أعلاه تغطّيها — التتبّع صار تبويباً داخلها. */}
 
             <Link
-              href={lp("/creditor")}
+              href={lp("/bankruptcy/creditor")}
               className="group flex items-center gap-4 p-6 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)]/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 md:col-span-2"
               style={{ opacity: actionsVisible ? 1 : 0, transform: actionsVisible ? "translateY(0)" : "translateY(20px)", transition: "all 0.6s ease-out 0.2s" }}
             >

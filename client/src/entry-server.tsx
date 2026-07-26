@@ -102,7 +102,7 @@ function SSRRouter({ url }: { url: string }) {
       <Route path="/en/locations/:city">{() => <Layout><CityPage /></Layout>}</Route>
 
       {/* بوابة الدائن الموحّدة — ثلاث لغات */}
-      <Route path="/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
+      <Route path="/bankruptcy/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
       <Route path="/en/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
       <Route path="/ur/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
 

@@ -399,7 +399,7 @@ export default function CreditorPortal() {
 
   const seo = (
     // noindex يأتي من seo-data.json (وسم robots) ومن ترويسة X-Robots-Tag في netlify.toml
-    <SEOHead title={t.loginTitle} description={t.loginIntro} canonicalUrl="/creditor" />
+    <SEOHead title={t.loginTitle} description={t.loginIntro} canonicalUrl="/bankruptcy/creditor" />
   );
 
   // ════════════════ شاشة الدخول ════════════════
