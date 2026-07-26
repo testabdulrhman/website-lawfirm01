@@ -39,6 +39,8 @@ const CityPage = lazy(() => import("@/pages/CityPage"));
 const Sitemap = lazy(() => import("@/pages/Sitemap"));
 const PremiumResidency = lazy(() => import("@/pages/PremiumResidency"));
 const Brand = lazy(() => import("@/pages/Brand"));
+const Licenses = lazy(() => import("@/pages/Licenses"));
+const LicenseDetail = lazy(() => import("@/pages/LicenseDetail"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 // مؤشر تحميل موحّد بألوان الهوية (كحلي/ذهبي)
@@ -95,6 +97,8 @@ function Router() {
               <Route path={"/legal-dictionary"} component={LegalDictionary} />
               <Route path={"/premium-residency"} component={PremiumResidency} />
               <Route path={"/locations/:slug"} component={CityPage} />
+              <Route path={"/licenses"} component={Licenses} />
+              <Route path={"/licenses/:slug"} component={LicenseDetail} />
               <Route path={"/sitemap"} component={Sitemap} />
               {/* English routes (/en prefix) */}
               <Route path={"/en"} component={Home} />
@@ -122,6 +126,8 @@ function Router() {
               <Route path={"/en/legal-dictionary"} component={LegalDictionary} />
               <Route path={"/en/premium-residency"} component={PremiumResidency} />
               <Route path={"/en/locations/:slug"} component={CityPage} />
+              <Route path={"/en/licenses"} component={Licenses} />
+              <Route path={"/en/licenses/:slug"} component={LicenseDetail} />
               <Route path={"/en/sitemap"} component={Sitemap} />
               {/* بوابة الدائن الموحّدة — ثلاث لغات */}
               <Route path={"/creditor"} component={CreditorPortal} />
