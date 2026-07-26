@@ -102,6 +102,50 @@ function applySEO(html, seo, route) {
     }
   }
 
+  // Article/BlogPosting JSON-LD for blog posts
+  if (route.startsWith('/blog/') && route !== '/blog') {
+    const articleLd = {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      'headline': title,
+      'description': description,
+      'datePublished': seo.datePublished || '',
+      'dateModified': seo.dateModified || seo.datePublished || '',
+      'author': {
+        '@type': 'Organization',
+        'name': 'شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس',
+        'url': SITE
+      },
+      'publisher': {
+        '@type': 'Organization',
+        'name': 'شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس',
+        'url': SITE,
+        'logo': {
+          '@type': 'ImageObject',
+          'url': `${SITE}/images/logo-light.webp`
+        }
+      },
+      'mainEntityOfPage': {
+        '@type': 'WebPage',
+        '@id': `${SITE}${route}`
+      },
+      'image': seo.ogImage || `${SITE}/images/hero-law-firm.webp`,
+      'articleSection': seo.articleSection || '',
+      'inLanguage': 'ar',
+      'isPartOf': {
+        '@type': 'Blog',
+        'name': 'المدونة القانونية',
+        'url': `${SITE}/blog`
+      }
+    };
+    // Remove empty fields
+    if (!articleLd.datePublished) delete articleLd.datePublished;
+    if (!articleLd.dateModified) delete articleLd.dateModified;
+    if (!articleLd.articleSection) delete articleLd.articleSection;
+    const articleScript = `<script type="application/ld+json">${JSON.stringify(articleLd)}</script>`;
+    html = html.replace('</head>', `    ${articleScript}\n  </head>`);
+  }
+
   // hreflang
   const isEnglish = route.startsWith('/en');
   const isUrdu = route.startsWith('/ur');
