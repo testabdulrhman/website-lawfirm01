@@ -1,10 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+// Voting date: Sunday 16/08/2026 at 1:00 PM (Saudi time UTC+3)
+const VOTING_START = new Date('2026-08-16T10:00:00Z'); // 1:00 PM Saudi
+const VOTING_END = new Date('2026-08-16T12:00:00Z'); // 3:00 PM Saudi
+const VOTING_LINK = ''; // TODO: Add actual voting link
+const MEETING_LINK = ''; // TODO: Add actual meeting link
 
 export default function HassanMisferAlZahrani() {
+  const [now, setNow] = useState(new Date());
+
   useEffect(() => {
     document.title = "التصويت على مقترح إعادة التنظيم المالي | شركة حسن مسفر الزهراني وشركاه";
     window.scrollTo(0, 0);
+    const timer = setInterval(() => setNow(new Date()), 60000);
+    return () => clearInterval(timer);
   }, []);
+
+  const isVotingOpen = now >= VOTING_START && now <= VOTING_END;
+  const isVotingEnded = now > VOTING_END;
 
   return (
     <main className="min-h-screen bg-white" dir="rtl">
@@ -67,37 +80,80 @@ export default function HassanMisferAlZahrani() {
               ar="يتم التصويت إلكترونياً من خلال الرابط المخصص للتصويت، وذلك باختيار الموافقة أو عدم الموافقة على مقترح إعادة التنظيم المالي."
               en="Voting shall be conducted electronically through the designated voting link by selecting either approval or rejection of the Financial Reorganization Proposal."
             />
-            {/* Voting Button - Disabled until voting date */}
+            {/* Voting Button - Auto-activates on voting date */}
             <div className="grid grid-cols-2 gap-6 py-4 border-b border-gray-100">
               <div className="text-right" dir="rtl">
-                <button
-                  disabled
-                  className="w-full py-3 px-6 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-bold text-base flex items-center justify-center gap-2"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-                  رابط التصويت
-                </button>
-                <p className="text-xs text-gray-500 mt-2 text-center">سيتوفر الرابط يوم الأحد 03/03/1448هـ (16/08/2026م) الساعة 1:00 مساءً</p>
+                {isVotingOpen && VOTING_LINK ? (
+                  <a href={VOTING_LINK} target="_blank" rel="noopener noreferrer" className="w-full py-3 px-6 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold text-base flex items-center justify-center gap-2 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    التصويت الآن
+                  </a>
+                ) : (
+                  <button disabled className="w-full py-3 px-6 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-bold text-base flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                    رابط التصويت
+                  </button>
+                )}
+                <p className="text-xs text-gray-500 mt-2 text-center">
+                  {isVotingEnded ? 'انتهت فترة التصويت' : isVotingOpen ? 'التصويت مفتوح الآن' : 'سيتوفر الرابط يوم الأحد 03/03/1448هـ (16/08/2026م) الساعة 1:00 مساءً'}
+                </p>
               </div>
               <div className="text-left" dir="ltr">
-                <button
-                  disabled
-                  className="w-full py-3 px-6 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-bold text-sm flex items-center justify-center gap-2"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-                  Voting Link
-                </button>
-                <p className="text-xs text-gray-400 mt-2 text-center">Available on Sunday 03/03/1448 AH (16/08/2026) at 1:00 PM</p>
+                {isVotingOpen && VOTING_LINK ? (
+                  <a href={VOTING_LINK} target="_blank" rel="noopener noreferrer" className="w-full py-3 px-6 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    Vote Now
+                  </a>
+                ) : (
+                  <button disabled className="w-full py-3 px-6 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-bold text-sm flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                    Voting Link
+                  </button>
+                )}
+                <p className="text-xs text-gray-400 mt-2 text-center">
+                  {isVotingEnded ? 'Voting period has ended' : isVotingOpen ? 'Voting is now open' : 'Available on Sunday 03/03/1448 AH (16/08/2026) at 1:00 PM'}
+                </p>
               </div>
             </div>
             <Row
               ar="ويعقد أمين إجراء إعادة التنظيم المالي، بالتزامن مع فترة التصويت، اجتماعاً إلكترونياً للدائنين."
               en="Concurrently with the voting period, the Financial Reorganization Procedure Trustee will hold an electronic meeting for the creditors."
             />
-            <Row
-              ar="رابط الاجتماع: ..............................."
-              en="Meeting Link: ..............................."
-            />
+            {/* Meeting Button - Auto-activates on voting date */}
+            <div className="grid grid-cols-2 gap-6 py-4 border-b border-gray-100">
+              <div className="text-right" dir="rtl">
+                {isVotingOpen && MEETING_LINK ? (
+                  <a href={MEETING_LINK} target="_blank" rel="noopener noreferrer" className="w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold text-base flex items-center justify-center gap-2 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                    دخول الاجتماع
+                  </a>
+                ) : (
+                  <button disabled className="w-full py-3 px-6 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-bold text-base flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                    رابط الاجتماع
+                  </button>
+                )}
+                <p className="text-xs text-gray-500 mt-2 text-center">
+                  {isVotingEnded ? 'انتهى الاجتماع' : isVotingOpen ? 'الاجتماع منعقد الآن' : 'سيتوفر الرابط يوم الأحد 03/03/1448هـ (16/08/2026م) الساعة 12:30 ظهراً'}
+                </p>
+              </div>
+              <div className="text-left" dir="ltr">
+                {isVotingOpen && MEETING_LINK ? (
+                  <a href={MEETING_LINK} target="_blank" rel="noopener noreferrer" className="w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                    Join Meeting
+                  </a>
+                ) : (
+                  <button disabled className="w-full py-3 px-6 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-bold text-sm flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                    Meeting Link
+                  </button>
+                )}
+                <p className="text-xs text-gray-400 mt-2 text-center">
+                  {isVotingEnded ? 'Meeting has ended' : isVotingOpen ? 'Meeting is in progress' : 'Available on Sunday 03/03/1448 AH (16/08/2026) at 12:30 PM'}
+                </p>
+              </div>
+            </div>
 
             {/* Agenda */}
             <Row
