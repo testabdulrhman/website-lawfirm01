@@ -1,6 +1,4 @@
 import { useEffect } from "react";
-import { Link } from "wouter";
-import { ArrowLeft, Calendar, Clock, Mail, Phone, FileText, Users, Vote, AlertTriangle } from "lucide-react";
 
 export default function HassanMisferAlZahrani() {
   useEffect(() => {
@@ -9,220 +7,257 @@ export default function HassanMisferAlZahrani() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-background text-foreground font-body" dir="rtl">
-      {/* Hero Section */}
-      <section className="relative bg-[var(--color-navy)] text-white py-16 md:py-24">
-        <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-5"></div>
-        <div className="container relative z-10">
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-white/60 mb-8">
-            <Link href="/" className="hover:text-[var(--color-gold)] transition-colors">الرئيسية</Link>
-            <span>/</span>
-            <Link href="/services/bankruptcy" className="hover:text-[var(--color-gold)] transition-colors">الإفلاس</Link>
-            <span>/</span>
-            <span className="text-[var(--color-gold)]">شركة حسن مسفر الزهراني وشركاه</span>
-          </nav>
-
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 bg-[var(--color-gold)]/10 border border-[var(--color-gold)]/30 rounded-full px-4 py-2 mb-6">
-              <Vote className="w-4 h-4 text-[var(--color-gold)]" />
-              <span className="text-sm text-[var(--color-gold)] font-heading">إعلان تصويت</span>
+    <main className="min-h-screen bg-white" dir="rtl">
+      {/* Document Container */}
+      <div className="max-w-[900px] mx-auto bg-white shadow-lg my-8 print:my-0 print:shadow-none">
+        
+        {/* Page 1 */}
+        <div className="px-12 py-8">
+          {/* Header */}
+          <header className="flex items-start justify-between border-b-2 border-[var(--color-navy)] pb-6 mb-8">
+            <div className="text-sm text-gray-600">
+              <p>12/02/1448هـ</p>
+              <p>26/07/2026م</p>
             </div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold leading-tight mb-4">
-              التصويت على مقترح إعادة التنظيم المالي
-            </h1>
-            <p className="text-xl md:text-2xl text-white/80 font-heading">
-              شركة حسن مسفر الزهراني وشركاه
+            <div className="text-center">
+              {/* Logo placeholder - using text */}
+              <div className="flex flex-col items-center gap-1">
+                <img src="/images/brand/logo-dark.webp" alt="شعار الشركة" className="w-16 h-16 object-contain" />
+                <p className="font-display font-bold text-lg text-[var(--color-navy)]">شركة</p>
+                <p className="font-display font-bold text-lg text-[var(--color-navy)]">عبدالرحمن بن رضوان المشيقح</p>
+                <p className="font-display text-sm text-[var(--color-navy)]">للمحاماة وإدارة إجراءات الإفلاس</p>
+              </div>
+            </div>
+          </header>
+
+          {/* Two Column Layout */}
+          <div className="grid grid-cols-2 gap-8">
+            {/* Arabic Column (Right) */}
+            <div className="text-right leading-relaxed text-[15px] text-gray-800 space-y-4">
+              <p className="font-bold text-base">إعلان التصويت على مقترح إعادة التنظيم المالي</p>
+              <p>شركة حسن مسفر الزهراني وشركاه (سجل تجاري رقم 2050001522).</p>
+              <p>إلى: دائـــنـــي شـــركـــة حـــســـن مـــسفـــر الزهـــرانـــي وشـــركـــاه المحترمين</p>
+              <p>السلام عليكم ورحمة الله وبركاته، وبعد:</p>
+              <p>يسر أمين إجراء إعادة التنظيم المالي لشركة حسن مسفر الزهراني وشركاه دعوتكم إلى التصويت على مقترح إعادة التنظيم المالي، وذلك وفق المواعيد والإجراءات الآتية:</p>
+
+              <p className="font-bold mt-6">أولاً: موعد التصويت واجتماع الدائنين</p>
+              
+              <table className="w-full text-sm border-collapse mt-2">
+                <tbody>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-2 font-semibold w-1/3">اليوم:</td>
+                    <td className="py-2">الأحد</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-2 font-semibold">التاريخ الهجري:</td>
+                    <td className="py-2">03/03/1448هـ</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-2 font-semibold">التاريخ الميلادي:</td>
+                    <td className="py-2">16/08/2026م</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2 font-semibold">فترة التصويت:</td>
+                    <td className="py-2">من الساعة 1:00 مساءً حتى الساعة 3:00 مساءً</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p className="mt-4">يتم التصويت إلكترونياً من خلال الرابط المخصص للتصويت، وذلك باختيار الموافقة أو عدم الموافقة على مقترح إعادة التنظيم المالي.</p>
+              
+              <table className="w-full text-sm border-collapse mt-2">
+                <tbody>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-2 font-semibold w-1/3">رابط التصويت:</td>
+                    <td className="py-2 text-gray-400">...............................</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p className="mt-4">ويعقد أمين إجراء إعادة التنظيم المالي، بالتزامن مع فترة التصويت، اجتماعاً إلكترونياً للدائنين.</p>
+
+              <table className="w-full text-sm border-collapse mt-2">
+                <tbody>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-2 font-semibold w-1/3">رابط الاجتماع:</td>
+                    <td className="py-2 text-gray-400">...............................</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p className="font-bold mt-6">أجندة الاجتماع</p>
+              <ul className="space-y-2 text-sm mt-2">
+                <li>• الترحيب بالحضور، من الساعة 12:30 حتى الساعة 1:00م</li>
+                <li>• كلمة افتتاحية من الأطراف ذات الصلة بالإجراء، من الساعة 1:00 حتى الساعة 1:15م</li>
+                <li>• عرض عن سير إجراء إعادة التنظيم المالي، من الساعة 1:15 حتى الساعة 1:30م</li>
+                <li>• استعراض مقترح إعادة التنظيم المالي، من الساعة 1:30 حتى الساعة 1:45م</li>
+                <li>• الإجابة عن استفسارات الدائنين المتعلقة بالمقترح، من الساعة 1:45 حتى الساعة 2:15م</li>
+                <li>• استمرار استقبال أصوات الدائنين عبر الرابط المخصص للتصويت حتى الساعة 3:00م</li>
+                <li>• إغلاق باب التصويت وفرز الأصوات وإعلان النتيجة، من الساعة 3:00 حتى الساعة 4:30م، وقد يستغرق ذلك وقتاً أطول.</li>
+              </ul>
+
+              <p className="font-bold mt-6">ثانياً: مقترح إعادة التنظيم المالي</p>
+              <p>يرفق مقترح إعادة التنظيم المالي بهذا الإعلان، لتمكين الدائنين من الاطلاع عليه قبل موعد التصويت، كما يتضمن الإعلان تفاصيل التصويت وروابط الدخول.</p>
+
+              <p className="font-bold mt-6">ثالثاً: إعلان نتيجة التصويت</p>
+              <p>سيتم إعلان نتيجة التصويت بعد انتهاء فترة التصويت واستكمال الإجراءات النظامية، وسيُشعر الدائنون بها عبر وسائل التواصل المعتمدة.</p>
+
+              <p className="font-bold mt-6">تعليمات مهمة</p>
+              <ul className="space-y-3 text-sm mt-2">
+                <li>• يجب تقديم المستندات المؤيدة للصفة، بما في ذلك الهوية، والوكالة أو التفويض الساري المفعول، بحسب الأحوال، إلى أمين الإجراء قبل موعد التصويت بيومين على الأقل، للتحقق منها واعتماد مشاركة المصوت.</li>
+                <li>• يقتصر الاطلاع على المقترح والتصويت على الأشخاص المخولين بذلك، ويحظر تداول المقترح أو نسخه أو نشره بأي وسيلة، إلا وفقاً للأنظمة والتعليمات ذات العلاقة.</li>
+                <li>• يتعين الدخول إلى رابط التصويت باستخدام البيانات والتعليمات الواردة في هذا الإعلان، واستكمال المتطلبات اللازمة قبل إبداء التصويت.</li>
+                <li>• في حال مواجهة أي مشكلة تقنية، يمكن التواصل مع فريق الدعم الفني عبر البريد الإلكتروني والواتساب.</li>
+              </ul>
+
+              <div className="mt-6 p-4 border-2 border-gray-800 rounded">
+                <p className="font-bold mb-2">تنبيه</p>
+                <ul className="space-y-2 text-sm">
+                  <li>• يتم التصويت حصرياً من خلال الرابط الإلكتروني المخصص للتصويت، ولا يتم التصويت من خلال الاجتماع الإلكتروني.</li>
+                  <li>• يقتصر التصويت على الفترة المحددة أعلاه، ولن يُقبل أي تصويت يرد بعد إغلاق الرابط عند الساعة 3:00 مساءً.</li>
+                  <li>• يوصى بمراجعة المقترح المرفق، والتحقق من صلاحية رابط التصويت، واستكمال الوكالات أو التفويضات والمتطلبات اللازمة قبل الموعد المحدد بوقت كافٍ.</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* English Column (Left) */}
+            <div className="text-left leading-relaxed text-[13px] text-gray-600 space-y-4" dir="ltr">
+              <p className="font-bold text-sm">Notice of Voting on the Financial Reorganization Proposal</p>
+              <p>Hassan Misfer Al-Zahrani & Partners Company Commercial Registration No. (2050001522).</p>
+              <p>To: The Creditors of Hassan Misfer Al-Zahrani & Partners Company</p>
+              <p className="mt-4">The Financial Reorganization Procedure Trustee of Hassan Misfer Al-Zahrani & Partners Company is pleased to invite you to vote on the Financial Reorganization Proposal, in accordance with the following dates and procedures:</p>
+
+              <p className="font-bold mt-4 text-sm">First: Voting Schedule and Creditors' Meeting</p>
+              <table className="w-full text-xs border-collapse mt-2">
+                <tbody>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-1 font-semibold">Day:</td>
+                    <td className="py-1">Sunday</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-1 font-semibold">Hijri Date:</td>
+                    <td className="py-1">03/03/1448 AH</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-1 font-semibold">Gregorian Date:</td>
+                    <td className="py-1">16/08/2026</td>
+                  </tr>
+                  <tr>
+                    <td className="py-1 font-semibold">Voting Period:</td>
+                    <td className="py-1">From 1:00 PM to 3:00 PM.</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p className="mt-3">Voting shall be conducted electronically through the designated voting link by selecting either approval or rejection of the Financial Reorganization Proposal.</p>
+
+              <table className="w-full text-xs border-collapse mt-2">
+                <tbody>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-1 font-semibold">Voting Link:</td>
+                    <td className="py-1 text-gray-400">...............................</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p className="mt-3">Concurrently with the voting period, the Financial Reorganization Procedure Trustee will hold an electronic meeting for the creditors.</p>
+
+              <table className="w-full text-xs border-collapse mt-2">
+                <tbody>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-1 font-semibold">Meeting Link:</td>
+                    <td className="py-1 text-gray-400">...............................</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p className="font-bold mt-4 text-sm">Meeting Agenda</p>
+              <ul className="space-y-1 text-xs mt-2">
+                <li>• Welcoming the attendees, from 12:30 PM until 1:00 PM.</li>
+                <li>• Opening remarks by parties related to the procedure, from 1:00 until 1:15 PM.</li>
+                <li>• An overview of the progress of the Financial Reorganization Procedure, from 1:15 PM until 1:30 PM.</li>
+                <li>• Presentation of the Financial Reorganization Proposal, from 1:30 PM until 1:45 PM.</li>
+                <li>• Responding to creditors' inquiries relating to the Proposal, from 1:45 PM until 2:15 PM.</li>
+                <li>• Continued receipt of creditors' votes through the designated voting link until 3:00 PM.</li>
+                <li>• Closing the voting period, counting the votes, and announcing the voting result, from 3:00 PM until 4:30 PM. This process may take longer.</li>
+              </ul>
+
+              <p className="font-bold mt-4 text-sm">Second: Financial Reorganization Proposal</p>
+              <p>The Financial Reorganization Proposal is attached for creditors' review, together with the voting details and access links.</p>
+
+              <p className="font-bold mt-4 text-sm">Third: Announcement of the Voting Result</p>
+              <p>The voting result will be announced after the voting period has ended and the statutory procedures have been completed. Creditors will be notified of the result through the approved communication channels.</p>
+
+              <p className="font-bold mt-4 text-sm">Important Instructions</p>
+              <ul className="space-y-2 text-xs mt-2">
+                <li>• Documents evidencing the voter's capacity and authority, including an identification document and, where applicable, a valid power of attorney or authorization, must be submitted to the Procedure Trustee at <strong>least two days before the voting date</strong> for verification and approval of the voter's participation.</li>
+                <li>• Access to the Proposal and voting shall be restricted to persons duly authorized by law. The Proposal may not be circulated, copied, or published by any means except in accordance with the applicable laws and relevant instructions.</li>
+                <li>• Voters must access the voting link using the information and instructions set out in this announcement and complete all necessary requirements before casting their votes.</li>
+                <li>• In the event of any technical issue, the technical support team may be contacted via WhatsApp.</li>
+              </ul>
+
+              <div className="mt-4 p-3 border-2 border-gray-600 rounded">
+                <p className="font-bold mb-2 text-sm">Notice</p>
+                <ul className="space-y-1 text-xs">
+                  <li>• Voting shall be conducted exclusively through the designated electronic voting link and shall not take place through the electronic meeting.</li>
+                  <li>• Voting shall be limited to the period specified above, and <strong>no vote submitted after the voting link closes at 3:00 PM will be accepted.</strong></li>
+                  <li>• Creditors are advised to review the attached Proposal, verify the validity of the voting link, and complete all required powers of attorney, authorizations, and other requirements sufficiently in advance of the specified date and time.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Signature & Contact */}
+          <div className="mt-12 pt-8 border-t-2 border-[var(--color-navy)]">
+            <div className="text-center mb-6">
+              <p className="text-gray-700">شاكرين ومقدرين تعاونكم.</p>
+              <p className="text-gray-500 text-sm mt-1">Thank you for your cooperation</p>
+            </div>
+
+            <table className="w-full text-sm border-collapse mb-8">
+              <tbody>
+                <tr className="border-b border-gray-200">
+                  <td className="py-2 font-semibold text-right w-1/3">بريد إلكتروني</td>
+                  <td className="py-2 text-center">bankruptcy@redwan.sa</td>
+                  <td className="py-2 font-semibold text-left w-1/3" dir="ltr">Email</td>
+                </tr>
+                <tr className="border-b border-gray-200">
+                  <td className="py-2 font-semibold text-right">رابط اجتماع التصويت</td>
+                  <td className="py-2 text-center text-gray-400">...............................</td>
+                  <td className="py-2 font-semibold text-left" dir="ltr">Voting Meeting Link</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-semibold text-right">رابط التصويت الإلكتروني</td>
+                  <td className="py-2 text-center text-gray-400">...............................</td>
+                  <td className="py-2 font-semibold text-left" dir="ltr">Voting Link</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p className="text-center font-display font-bold text-lg text-[var(--color-navy)]">
+              أمين إجراء إعادة التنظيم المالي / عبدالرحمن بن رضوان المشيقح
             </p>
-            <p className="text-white/60 mt-2">سجل تجاري رقم: 2050001522</p>
           </div>
+
+          {/* Footer */}
+          <footer className="mt-12 pt-6 border-t-2 border-[var(--color-navy)]">
+            <div className="flex items-center justify-between text-xs text-gray-600">
+              <div className="flex items-center gap-4">
+                <span>📍 الرياض - الحائري الشمالي - مجمع روبين بلازا</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <span>📍 القصيم - بريدة - طريق الملك عبدالله</span>
+              </div>
+            </div>
+            <div className="flex items-center justify-center gap-6 mt-3 text-xs text-gray-600">
+              <span>info@redwan.sa</span>
+              <span>920014616</span>
+              <span>www.redwan.com</span>
+              <span>0505483828</span>
+            </div>
+          </footer>
         </div>
-      </section>
-
-      {/* Main Content */}
-      <section className="py-12 md:py-16">
-        <div className="container max-w-4xl">
-          {/* Key Info Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-            <div className="bg-card border border-border rounded-xl p-5 text-center">
-              <Calendar className="w-6 h-6 text-[var(--color-gold)] mx-auto mb-2" />
-              <p className="text-sm text-muted-foreground">التاريخ</p>
-              <p className="font-heading font-semibold mt-1">16 / 08 / 2026م</p>
-              <p className="text-xs text-muted-foreground">03 / 03 / 1448هـ</p>
-            </div>
-            <div className="bg-card border border-border rounded-xl p-5 text-center">
-              <Clock className="w-6 h-6 text-[var(--color-gold)] mx-auto mb-2" />
-              <p className="text-sm text-muted-foreground">فترة التصويت</p>
-              <p className="font-heading font-semibold mt-1">1:00 م — 3:00 م</p>
-              <p className="text-xs text-muted-foreground">يوم الأحد</p>
-            </div>
-            <div className="bg-card border border-border rounded-xl p-5 text-center">
-              <FileText className="w-6 h-6 text-[var(--color-gold)] mx-auto mb-2" />
-              <p className="text-sm text-muted-foreground">طريقة التصويت</p>
-              <p className="font-heading font-semibold mt-1">إلكتروني</p>
-              <p className="text-xs text-muted-foreground">عبر الرابط المخصص</p>
-            </div>
-          </div>
-
-          {/* Letter Content */}
-          <div className="bg-card border border-border rounded-2xl p-8 md:p-12 shadow-sm">
-            {/* Header */}
-            <div className="border-b border-border pb-8 mb-8">
-              <p className="text-muted-foreground mb-4">إلى: دائني شركة حسن مسفر الزهراني وشركاه المحترمين</p>
-              <p className="text-foreground">السلام عليكم ورحمة الله وبركاته، وبعد:</p>
-            </div>
-
-            {/* Intro */}
-            <div className="prose prose-lg max-w-none mb-10">
-              <p className="text-foreground leading-relaxed">
-                يسر أمين إجراء إعادة التنظيم المالي لشركة حسن مسفر الزهراني وشركاه دعوتكم إلى التصويت على مقترح إعادة التنظيم المالي، وذلك وفق المواعيد والإجراءات الآتية:
-              </p>
-            </div>
-
-            {/* Section 1: Voting Schedule */}
-            <div className="mb-10">
-              <h2 className="text-xl font-display font-bold text-foreground mb-6 flex items-center gap-3">
-                <span className="w-8 h-8 bg-[var(--color-gold)]/10 text-[var(--color-gold)] rounded-lg flex items-center justify-center text-sm font-bold">١</span>
-                موعد التصويت واجتماع الدائنين
-              </h2>
-
-              <div className="bg-muted/50 rounded-xl p-6 space-y-3">
-                <div className="flex justify-between items-center py-2 border-b border-border/50">
-                  <span className="text-muted-foreground">اليوم</span>
-                  <span className="font-heading font-semibold">الأحد</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-border/50">
-                  <span className="text-muted-foreground">التاريخ الهجري</span>
-                  <span className="font-heading font-semibold">03/03/1448هـ</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-border/50">
-                  <span className="text-muted-foreground">التاريخ الميلادي</span>
-                  <span className="font-heading font-semibold">16/08/2026م</span>
-                </div>
-                <div className="flex justify-between items-center py-2">
-                  <span className="text-muted-foreground">فترة التصويت</span>
-                  <span className="font-heading font-semibold">من 1:00 م حتى 3:00 م</span>
-                </div>
-              </div>
-
-              <p className="text-foreground mt-6 leading-relaxed">
-                يتم التصويت إلكترونياً من خلال الرابط المخصص للتصويت، وذلك باختيار الموافقة أو عدم الموافقة على مقترح إعادة التنظيم المالي.
-              </p>
-              <p className="text-foreground mt-4 leading-relaxed">
-                وبعقد أمين إجراء إعادة التنظيم المالي، بالتزامن مع فترة التصويت، اجتماعاً إلكترونياً للدائنين.
-              </p>
-            </div>
-
-            {/* Meeting Agenda */}
-            <div className="mb-10">
-              <h3 className="text-lg font-heading font-semibold text-foreground mb-4 flex items-center gap-2">
-                <Users className="w-5 h-5 text-[var(--color-gold)]" />
-                أجندة الاجتماع
-              </h3>
-
-              <div className="space-y-3">
-                {[
-                  { time: "12:30 — 1:00 م", text: "الترحيب بالحضور" },
-                  { time: "1:00 — 1:15 م", text: "كلمة افتتاحية من الأطراف ذات الصلة بالإجراء" },
-                  { time: "1:15 — 1:30 م", text: "عرض عن سير إجراء إعادة التنظيم المالي" },
-                  { time: "1:30 — 1:45 م", text: "استعراض مقترح إعادة التنظيم المالي" },
-                  { time: "1:45 — 2:15 م", text: "الإجابة عن استفسارات الدائنين المتعلقة بالمقترح" },
-                  { time: "2:15 — 3:00 م", text: "استمرار استقبال أصوات الدائنين عبر الرابط المخصص للتصويت" },
-                  { time: "3:00 — 4:30 م", text: "إغلاق باب التصويت وفرز الأصوات وإعلان النتيجة (قد يستغرق وقتاً أطول)" },
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-4 items-start bg-muted/30 rounded-lg p-4">
-                    <span className="text-sm text-[var(--color-gold)] font-mono whitespace-nowrap min-w-[120px]">{item.time}</span>
-                    <span className="text-foreground">{item.text}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Section 2: Proposal */}
-            <div className="mb-10">
-              <h2 className="text-xl font-display font-bold text-foreground mb-6 flex items-center gap-3">
-                <span className="w-8 h-8 bg-[var(--color-gold)]/10 text-[var(--color-gold)] rounded-lg flex items-center justify-center text-sm font-bold">٢</span>
-                مقترح إعادة التنظيم المالي
-              </h2>
-              <p className="text-foreground leading-relaxed">
-                يرفق مقترح إعادة التنظيم المالي بهذا الإعلان، لتمكين الدائنين من الاطلاع عليه قبل موعد التصويت، كما يتضمن الإعلان تفاصيل التصويت وروابط الدخول.
-              </p>
-            </div>
-
-            {/* Section 3: Results */}
-            <div className="mb-10">
-              <h2 className="text-xl font-display font-bold text-foreground mb-6 flex items-center gap-3">
-                <span className="w-8 h-8 bg-[var(--color-gold)]/10 text-[var(--color-gold)] rounded-lg flex items-center justify-center text-sm font-bold">٣</span>
-                إعلان نتيجة التصويت
-              </h2>
-              <p className="text-foreground leading-relaxed">
-                سيتم إعلان نتيجة التصويت بعد انتهاء فترة التصويت واستكمال الإجراءات النظامية، وسيُشعر الدائنون بها عبر وسائل التواصل المعتمدة.
-              </p>
-            </div>
-
-            {/* Important Instructions */}
-            <div className="mb-10">
-              <h2 className="text-xl font-display font-bold text-foreground mb-6">تعليمات مهمة</h2>
-              <div className="space-y-4">
-                {[
-                  "يجب تقديم المستندات المؤيدة للصفة، بما في ذلك الهوية، والوكالة أو التفويض الساري المفعول، بحسب الأحوال، إلى أمين الإجراء قبل موعد التصويت بيومين على الأقل، للتحقق منها واعتماد مشاركة المصوت.",
-                  "يقتصر الاطلاع على المقترح والتصويت على الأشخاص المخولين بذلك، ويحظر تداول المقترح أو نسخه أو نشره بأي وسيلة، إلا وفقاً للأنظمة والتعليمات ذات العلاقة.",
-                  "يتعين الدخول إلى رابط التصويت باستخدام البيانات والتعليمات الواردة في هذا الإعلان، واستكمال المتطلبات اللازمة قبل إبداء التصويت.",
-                  "في حال مواجهة أي مشكلة تقنية، يمكن التواصل مع فريق الدعم الفني عبر البريد الإلكتروني والواتساب.",
-                ].map((text, i) => (
-                  <div key={i} className="flex gap-3 items-start">
-                    <span className="w-6 h-6 bg-[var(--color-gold)]/10 text-[var(--color-gold)] rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">{i + 1}</span>
-                    <p className="text-foreground leading-relaxed">{text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Warning Box */}
-            <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-xl p-6 mb-10">
-              <div className="flex items-start gap-3">
-                <AlertTriangle className="w-6 h-6 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
-                <div>
-                  <h3 className="font-heading font-semibold text-amber-800 dark:text-amber-300 mb-3">تنبيه</h3>
-                  <ul className="space-y-3 text-amber-900 dark:text-amber-200">
-                    <li>يتم التصويت حصرياً من خلال الرابط الإلكتروني المخصص للتصويت، ولا يتم التصويت من خلال الاجتماع الإلكتروني.</li>
-                    <li>يقتصر التصويت على الفترة المحددة أعلاه، ولن يُقبل أي تصويت يرد بعد إغلاق الرابط عند الساعة 3:00 مساءً.</li>
-                    <li>يوصى بمراجعة المقترح المرفق، والتحقق من صلاحية رابط التصويت، واستكمال الوكالات أو التفويضات والمتطلبات اللازمة قبل الموعد المحدد بوقت كافٍ.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Info */}
-            <div className="bg-muted/50 rounded-xl p-6 mb-10">
-              <h3 className="font-heading font-semibold text-foreground mb-4">للتواصل والدعم الفني</h3>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a href="mailto:bankruptcy@redwan.sa" className="flex items-center gap-2 text-[var(--color-gold)] hover:underline">
-                  <Mail className="w-4 h-4" />
-                  <span>bankruptcy@redwan.sa</span>
-                </a>
-              </div>
-            </div>
-
-            {/* Signature */}
-            <div className="border-t border-border pt-8 text-center">
-              <p className="text-muted-foreground mb-2">شاكرين ومقدرين تعاونكم</p>
-              <p className="text-sm text-muted-foreground mb-4">Thank you for your cooperation</p>
-              <p className="font-heading font-semibold text-foreground text-lg">
-                أمين إجراء إعادة التنظيم المالي / عبدالرحمن بن رضوان المشيقح
-              </p>
-            </div>
-          </div>
-
-          {/* Back Link */}
-          <div className="mt-8 text-center">
-            <Link href="/services/bankruptcy" className="inline-flex items-center gap-2 text-[var(--color-gold)] hover:underline font-heading">
-              <ArrowLeft className="w-4 h-4" />
-              العودة لخدمات الإفلاس
-            </Link>
-          </div>
-        </div>
-      </section>
+      </div>
     </main>
   );
 }
