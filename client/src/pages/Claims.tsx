@@ -3,7 +3,7 @@ import { supabase, SUPABASE_URL, SUPABASE_ANON_KEY } from '@/lib/supabase';
 import { Link } from 'wouter';
 import { toast } from 'sonner';
 import SEOHead from '@/components/SEOHead';
-import { FileText, Upload, ChevronLeft, Calendar, Building2, Lock, AlertTriangle, CheckCircle2, Phone, Mail, ArrowRight } from 'lucide-react';
+import { FileText, Upload, ChevronLeft, Calendar, Building2, AlertTriangle, CheckCircle2, Phone, Mail, ArrowRight } from 'lucide-react';
 import { localePath } from "@/lib/localePath";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -31,16 +31,6 @@ interface CaseProcedure {
 }
 
 // Helpers
-function isDeadlineExpired(deadline?: string): boolean {
-  if (!deadline) return false;
-  try {
-    const d = new Date(deadline);
-    if (isNaN(d.getTime())) return false;
-    d.setHours(23, 59, 59, 999);
-    return new Date() > d;
-  } catch { return false; }
-}
-
 function daysUntilDeadline(deadline?: string): number | null {
   if (!deadline) return null;
   try {
@@ -160,11 +150,8 @@ export default function Claims() {
     }
   }
 
+  // البوابة تستقبل المطالبات حتى بعد انقضاء المدة النظامية؛ التصنيف (داخل/خارج المدة) يتم في النظام الإداري
   function handleSelectCase(c: CaseData) {
-    if (isDeadlineExpired(c.claims_deadline)) {
-      toast.error('انتهى الموعد النظامي لتقديم المطالبات لهذه القضية');
-      return;
-    }
     setSelectedCase(c);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -530,8 +517,7 @@ export default function Claims() {
   }
 
   // ==================== RENDER ====================
-  const activeCases = cases.filter(c => !isDeadlineExpired(c.claims_deadline));
-  const closedCases = cases.filter(c => isDeadlineExpired(c.claims_deadline));
+  const activeCases = cases;
 
   const inputClass = "w-full px-3 md:px-4 py-2.5 md:py-3 bg-[#faf8f5] border border-[#e8e0d4] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c9a227]/50 focus:border-[#c9a227] text-sm text-[#1e3a5f] placeholder-gray-400 transition-all";
   const labelClass = "block text-xs md:text-sm font-semibold text-[#1e3a5f] mb-1.5";
@@ -647,9 +633,11 @@ export default function Claims() {
                     </div>
                     <div className="space-y-4">
                       {activeCases.map(c => {
+                        // بعد انقضاء المدة تبقى القضية متاحة للتقديم بلا عدّاد ولا تحذير — التاريخ وحده يظهر أسفل البطاقة
                         const days = daysUntilDeadline(c.claims_deadline);
-                        const urgent = days !== null && days <= 7;
-                        const warning = days !== null && days <= 14;
+                        const remaining = days !== null && days > 0 ? days : null;
+                        const urgent = remaining !== null && remaining <= 7;
+                        const warning = remaining !== null && remaining <= 14;
                         return (
                           <div key={c.id} onClick={() => handleSelectCase(c)}
                             className="bg-white border border-gray-200 hover:border-[#c9a227] hover:shadow-lg rounded-xl cursor-pointer transition-all p-5 group">
@@ -668,7 +656,7 @@ export default function Claims() {
                                     {c.debtor_name_en && <p className="text-xs text-gray-500 italic" dir="ltr">{c.debtor_name_en}</p>}
                                   </div>
                                   <span className={`px-2.5 py-1 rounded text-xs font-medium whitespace-nowrap border ${urgent ? 'bg-red-50 text-red-700 border-red-200' : warning ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-green-50 text-green-700 border-green-200'}`}>
-                                    {days !== null ? (urgent ? `⚠ ${days} يوم متبقي` : `${days} يوم متبقي`) : 'متاح'}
+                                    {remaining !== null ? (urgent ? `⚠ ${remaining} يوم متبقي` : `${remaining} يوم متبقي`) : 'متاح'}
                                   </span>
                                 </div>
                                 <span className="inline-block mt-1 px-2 py-0.5 bg-[#1e3a5f]/10 text-[#1e3a5f] rounded text-xs">{c.procedure_type}</span>
@@ -703,33 +691,12 @@ export default function Claims() {
                   </div>
                 )}
 
-                {/* Closed Cases */}
-                {closedCases.length > 0 && (
-                  <div className="mt-8 pt-6 border-t border-dashed border-gray-300">
-                    <div className="flex items-center gap-2 mb-4">
-                      <Lock className="w-4 h-4 text-gray-400" />
-                      <h3 className="font-bold text-gray-600">القضايا المقفلة</h3>
-                      <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-xs">{closedCases.length}</span>
-                    </div>
-                    <div className="space-y-2">
-                      {closedCases.map(c => (
-                        <div key={c.id} className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 flex items-center gap-3">
-                          <Lock className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                          <div className="flex-1 min-w-0">
-                            <span className="font-medium text-sm text-gray-700">{c.debtor_name}</span>
-                            <span className="text-xs text-gray-500 mr-2">{c.procedure_type}</span>
-                            {c.claims_deadline && <div className="text-xs text-gray-500 mt-0.5">انتهت {formatDate(c.claims_deadline)}</div>}
-                          </div>
-                          <span className="text-xs text-red-600 bg-red-50 px-2 py-0.5 rounded font-medium">مقفلة</span>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-4 bg-blue-50 border border-blue-100 rounded-lg p-3">
-                      <p className="text-xs text-blue-800 flex items-center gap-2">
-                        <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" />
-                        للاستفسار: <a href="tel:920032760" className="font-bold underline">920032760</a> · <a href="mailto:bankruptcy@redwan.sa" className="font-bold underline" dir="ltr">bankruptcy@redwan.sa</a>
-                      </p>
-                    </div>
+                {activeCases.length > 0 && (
+                  <div className="mt-4 bg-blue-50 border border-blue-100 rounded-lg p-3">
+                    <p className="text-xs text-blue-800 flex items-center gap-2">
+                      <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" />
+                      للاستفسار: <a href="tel:920032760" className="font-bold underline">920032760</a> · <a href="mailto:bankruptcy@redwan.sa" className="font-bold underline" dir="ltr">bankruptcy@redwan.sa</a>
+                    </p>
                   </div>
                 )}
               </>
