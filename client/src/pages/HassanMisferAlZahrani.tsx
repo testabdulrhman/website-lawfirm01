@@ -274,25 +274,6 @@ export default function HassanMisferAlZahrani() {
             </p>
           </div>
 
-          {/* Footer */}
-          <footer className="mt-12 pt-6 border-t-2 border-[var(--color-navy)]">
-            <div className="flex items-center justify-between text-xs text-gray-600">
-              <div className="flex items-center gap-1">
-                <span>📍</span>
-                <span>الرياض - الحائري الشمالي - مجمع روبين بلازا</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <span>📍</span>
-                <span>القصيم - بريدة - طريق الملك عبدالله</span>
-              </div>
-            </div>
-            <div className="flex items-center justify-center gap-6 mt-3 text-xs text-gray-600">
-              <span>info@redwan.sa</span>
-              <span>920014616</span>
-              <span>www.redwan.com</span>
-              <span>0505483828</span>
-            </div>
-          </footer>
         </div>
       </div>
     </main>
