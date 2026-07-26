@@ -67,6 +67,26 @@ export default function HassanMisferAlZahrani() {
                     <span className="text-[10px] opacity-75">ثانية</span>
                   </div>
                 </div>
+                {/* Calendar Buttons */}
+                <div className="flex items-center gap-2 mt-1">
+                  <a
+                    href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%D8%A7%D9%84%D8%AA%D8%B5%D9%88%D9%8A%D8%AA+%D8%B9%D9%84%D9%89+%D9%85%D9%82%D8%AA%D8%B1%D8%AD+%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9+%D8%A7%D9%84%D8%AA%D9%86%D8%B8%D9%8A%D9%85+%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A&dates=20260816T100000Z/20260816T120000Z&details=%D8%A7%D9%84%D8%AA%D8%B5%D9%88%D9%8A%D8%AA+%D8%B9%D9%84%D9%89+%D9%85%D9%82%D8%AA%D8%B1%D8%AD+%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9+%D8%A7%D9%84%D8%AA%D9%86%D8%B8%D9%8A%D9%85+%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A+%D9%84%D8%B4%D8%B1%D9%83%D8%A9+%D8%AD%D8%B3%D9%86+%D9%85%D8%B3%D9%81%D8%B1+%D8%A7%D9%84%D8%B2%D9%87%D8%B1%D8%A7%D9%86%D9%8A+%D9%88%D8%B4%D8%B1%D9%83%D8%A7%D9%87%0A%D8%A7%D9%84%D8%B1%D8%A7%D8%A8%D8%B7%3A+https%3A%2F%2Fredwan.sa%2Fbankruptcy%2FHassan-Misfer-Al-Zahrani&location=%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9+%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/15 hover:bg-white/25 rounded-md text-xs font-medium transition-colors"
+                  >
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M19.5 22h-15A2.5 2.5 0 012 19.5v-15A2.5 2.5 0 014.5 2H6v1.5a.5.5 0 001 0V2h10v1.5a.5.5 0 001 0V2h1.5A2.5 2.5 0 0122 4.5v15a2.5 2.5 0 01-2.5 2.5zM4.5 3.5A1 1 0 003.5 4.5v15a1 1 0 001 1h15a1 1 0 001-1v-15a1 1 0 00-1-1H18v.5a.5.5 0 01-1 0V3.5H7v.5a.5.5 0 01-1 0V3.5H4.5zM20 8H4v-.5h16V8z"/></svg>
+                    Google Calendar
+                  </a>
+                  <a
+                    href="/voting-event.ics"
+                    download="voting-event.ics"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/15 hover:bg-white/25 rounded-md text-xs font-medium transition-colors"
+                  >
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M17 2a1 1 0 011 1v1h2a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h2V3a1 1 0 112 0v1h8V3a1 1 0 011-1zM4 10v10h16V10H4zm2 2h3v3H6v-3z"/></svg>
+                    Apple Calendar
+                  </a>
+                </div>
               </div>
             ) : isVotingOpen ? (
               <div className="flex items-center justify-center gap-2">
