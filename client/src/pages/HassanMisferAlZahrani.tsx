@@ -41,7 +41,7 @@ export default function HassanMisferAlZahrani() {
     <main className="min-h-screen bg-white" dir="rtl">
       {/* Countdown Banner */}
       {!isVotingEnded && (
-        <div className="sticky top-0 z-50 bg-gradient-to-l from-[var(--color-navy)] to-[#1a365d] text-white py-4 px-4 shadow-lg">
+        <div className="sticky top-[72px] z-40 bg-gradient-to-l from-[var(--color-navy)] to-[#1a365d] text-white py-4 px-4 shadow-lg">
           <div className="max-w-[950px] mx-auto">
             {countdown ? (
               <div className="flex flex-col items-center gap-2">
