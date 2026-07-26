@@ -47,8 +47,9 @@ export default function Footer() {
                 <li><Link href={lp("/faq")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'الأسئلة الشائعة' : 'FAQ'}</Link></li>
                 <li><Link href={lp("/cases-guide")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'دليل الدعاوى' : 'Cases Guide'}</Link></li>
                 <li><Link href={lp("/licenses")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'التراخيص' : 'Licenses'}</Link></li>
-                {/* مركز الإعلانات: محتوى ثابت خارج الـSPA — وصلة عادية لا Link */}
-                <li><a href="/announcements/" className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'إعلانات الإفلاس' : 'Bankruptcy Announcements'}</a></li>
+                {/* أُزيل رابط «إعلانات الإفلاس»: مجلد /announcements/ حُذف في dc3ec36
+                    لتقليص حجم النشر، فصار الرابط يعيد 404 في كل صفحة بالموقع.
+                    يُعاد عند إعادة نشر مركز الإعلانات. */}
               </ul>
             </div>
 
