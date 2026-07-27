@@ -388,7 +388,7 @@ export default function HassanMisferAlZahrani() {
 
       {/* WhatsApp Floating Button */}
       <a
-        href="https://wa.me/966505149800?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85+%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C+%D9%84%D8%AF%D9%8A+%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1+%D8%A8%D8%AE%D8%B5%D9%88%D8%B5+%D8%A7%D9%84%D8%AA%D8%B5%D9%88%D9%8A%D8%AA+%D8%B9%D9%84%D9%89+%D9%85%D9%82%D8%AA%D8%B1%D8%AD+%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9+%D8%A7%D9%84%D8%AA%D9%86%D8%B8%D9%8A%D9%85+%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A"
+        href="https://wa.me/966505149800?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85+%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C+%D9%84%D8%AF%D9%8A+%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1+%D8%A8%D8%AE%D8%B5%D9%88%D8%B5+%D8%A7%D9%84%D8%AA%D8%B5%D9%88%D9%8A%D8%AA+%D8%B9%D9%84%D9%89+%D9%85%D9%82%D8%AA%D8%B1%D8%AD+%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9+%D8%A7%D9%84%D8%AA%D9%86%D8%B8%D9%8A%D9%85+%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A%0AHello%2C+I+have+an+inquiry+regarding+the+voting+on+the+Financial+Reorganization+Proposal"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#25D366] hover:bg-[#1da851] text-white px-5 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 active:scale-95"
