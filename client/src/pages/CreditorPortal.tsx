@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useTranslation } from "@/hooks/useTranslation";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/lib/supabase";
+import { trackCreditorLogin } from "@/lib/analytics";
 import {
   STRINGS,
   fmtDate,
@@ -250,6 +251,7 @@ export default function CreditorPortal() {
   const [ticketRef, setTicketRef] = useState<string | null>(null);
 
   const otpRef = useRef<HTMLInputElement>(null);
+  const loginTrackedRef = useRef(false);
 
   // عدّاد إعادة الإرسال
   useEffect(() => {
@@ -428,6 +430,10 @@ export default function CreditorPortal() {
         hearings: json.hearings ?? [],
         votes: json.votes ?? [],
       });
+      if (!loginTrackedRef.current) {
+        trackCreditorLogin(method);
+        loginTrackedRef.current = true;
+      }
       setStage("portal");
     } catch {
       setError(t.errConn);

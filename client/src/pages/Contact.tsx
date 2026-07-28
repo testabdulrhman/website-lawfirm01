@@ -54,7 +54,7 @@ export default function Contact() {
         }),
       });
       if (response.ok) {
-        trackContactFormSubmit();
+        trackContactFormSubmit(formData.service);
         toast.success(lang === "ar" ? "تم إرسال رسالتك بنجاح! سنتواصل معك قريباً." : "Message sent successfully! We will contact you soon.");
         setFormData({ name: "", phone: "", email: "", service: "", message: "" });
       } else {

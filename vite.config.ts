@@ -50,7 +50,14 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginStorageProxy()];
+// JSX source-location attributes are useful while editing, but shipping them
+// adds HTML/JS weight and makes the client tree differ from the SSR build.
+const plugins = [
+  react(),
+  tailwindcss(),
+  ...(process.env.NODE_ENV === "production" ? [] : [jsxLocPlugin()]),
+  vitePluginStorageProxy(),
+];
 
 export default defineConfig({
   plugins,

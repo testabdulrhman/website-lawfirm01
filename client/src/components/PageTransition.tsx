@@ -10,26 +10,32 @@ import { useLocation } from "wouter";
 export default function PageTransition({ children }: { children: ReactNode }) {
   const [location] = useLocation();
   const [stage, setStage] = useState<"in" | "out">("in");
-  const [displayLocation, setDisplayLocation] = useState(location);
-  const prefersReduced =
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const normalizedLocation =
+    location.split(/[?#]/, 1)[0].replace(/\/+$/, "") || "/";
+  const [displayLocation, setDisplayLocation] = useState(normalizedLocation);
+  const [prefersReduced, setPrefersReduced] = useState(false);
 
   useEffect(() => {
-    if (location === displayLocation) return;
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setPrefersReduced(media.matches);
+    updatePreference();
+    media.addEventListener("change", updatePreference);
+    return () => media.removeEventListener("change", updatePreference);
+  }, []);
+
+  useEffect(() => {
+    if (normalizedLocation === displayLocation) return;
     if (prefersReduced) {
-      setDisplayLocation(location);
+      setDisplayLocation(normalizedLocation);
       return;
     }
     setStage("out");
     const t = setTimeout(() => {
-      setDisplayLocation(location);
+      setDisplayLocation(normalizedLocation);
       setStage("in");
     }, 160);
     return () => clearTimeout(t);
-  }, [location, displayLocation, prefersReduced]);
-
-  if (prefersReduced) return <>{children}</>;
+  }, [normalizedLocation, displayLocation, prefersReduced]);
 
   return (
     <div
@@ -37,7 +43,9 @@ export default function PageTransition({ children }: { children: ReactNode }) {
         opacity: stage === "in" ? 1 : 0,
         transform: stage === "in" ? "translateY(0)" : "translateY(12px)",
         transition:
-          "opacity 240ms cubic-bezier(0.23,1,0.32,1), transform 240ms cubic-bezier(0.23,1,0.32,1)",
+          prefersReduced
+            ? "none"
+            : "opacity 240ms cubic-bezier(0.23,1,0.32,1), transform 240ms cubic-bezier(0.23,1,0.32,1)",
       }}
       data-page={displayLocation}
     >

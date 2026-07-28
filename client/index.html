@@ -27,7 +27,7 @@
             window.dataLayer.push(arguments);
           };
 
-        window.addEventListener("load", function () {
+        function loadTagManager() {
           var w = window,
             d = document,
             s = "script",
@@ -41,6 +41,16 @@
           j.async = true;
           j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
           f.parentNode.insertBefore(j, f);
+        }
+
+        // Keep analytics off the critical rendering path. Conversion calls made
+        // before this runs stay queued in dataLayer and are consumed by GTM.
+        window.addEventListener("load", function () {
+          if ("requestIdleCallback" in window) {
+            window.requestIdleCallback(loadTagManager, { timeout: 3000 });
+          } else {
+            window.setTimeout(loadTagManager, 1500);
+          }
         });
       })();
     </script>
@@ -132,9 +142,9 @@
     <!-- Fonts (non-render-blocking with preload) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=optional" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=optional" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=optional" rel="stylesheet" /></noscript>
   </head>
 
   <body>

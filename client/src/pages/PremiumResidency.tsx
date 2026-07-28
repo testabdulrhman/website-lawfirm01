@@ -4,6 +4,7 @@ import { useScrollAnimation, getStaggerStyle } from "@/hooks/useScrollAnimation"
 import { useSEO, schemas } from "@/hooks/useSEO";
 import { useMemo, useState } from "react";
 import { localePath } from "@/lib/localePath";
+import { trackPremiumResidencyLead } from "@/lib/analytics";
 import {
   Globe, Home as HomeIcon, Briefcase, GraduationCap, Trophy, Building2,
   Users, Plane, ShieldCheck, Car, Heart, CheckCircle2, ArrowLeft, ArrowRight,
@@ -411,6 +412,7 @@ export default function PremiumResidency() {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setFormLoading(true);
+    trackPremiumResidencyLead(formData.track);
     // Build WhatsApp message with form data
     const trackLabel = formData.track;
     const msg = `*طلب استشارة - الإقامة المميزة*%0A%0Aالاسم: ${formData.name}%0Aالجوال: ${formData.phone}%0Aالجنسية: ${formData.nationality}%0Aالمسار: ${trackLabel}${formData.message ? `%0Aملاحظات: ${formData.message}` : ""}`;
@@ -467,7 +469,7 @@ export default function PremiumResidency() {
     schema: seoSchema,
   });
 
-  const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
+  const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation({ initialVisible: true });
   const { ref: whatRef, isVisible: whatVisible } = useScrollAnimation();
   const { ref: tracksRef, isVisible: tracksVisible } = useScrollAnimation({ threshold: 0.05 });
   const { ref: benefitsRef, isVisible: benefitsVisible } = useScrollAnimation({ threshold: 0.05 });

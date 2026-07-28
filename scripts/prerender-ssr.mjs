@@ -51,7 +51,15 @@ function applySEO(html, seo, route) {
   const ogTitle = seo.ogTitle || title;
   const ogDesc = seo.ogDesc || description;
   const isNoindex = seo.noindex === true;
-  const canonical = isNoindex ? '' : (seo.canonical || (route === '/' ? `${SITE}/` : `${SITE}${route}`));
+  const configuredCanonical =
+    seo.canonical || (route === '/' ? '/' : route);
+  const canonical = isNoindex
+    ? ''
+    : /^https?:\/\//.test(configuredCanonical)
+      ? configuredCanonical
+      : configuredCanonical === '/'
+        ? `${SITE}/`
+        : `${SITE}${configuredCanonical.startsWith('/') ? '' : '/'}${configuredCanonical}`;
   const ogUrl = seo.ogUrl || canonical;
   const ogType = seo.ogType || 'website';
 
@@ -253,12 +261,31 @@ async function run() {
       
       // Render the React app for this route
       const { html: appHtml } = render(route);
+
+      // React 19 emits image preload links before the rendered application.
+      // They belong in <head>; leaving them as children of #root makes the
+      // browser DOM differ from the client React tree and forces hydration to
+      // discard the prerendered page.
+      const resourceLinks = [];
+      const rootHtml = appHtml.replace(
+        /^(?:<link\b[^>]*\/>)+/,
+        (links) => {
+          resourceLinks.push(...(links.match(/<link\b[^>]*\/>/g) || []));
+          return '';
+        },
+      );
       
       // Inject the rendered HTML into the shell
       let html = baseHtml.replace(
         '<div id="root"></div>',
-        `<div id="root">${appHtml}</div>`
+        `<div id="root">${rootHtml}</div>`
       );
+      if (resourceLinks.length > 0) {
+        html = html.replace(
+          '</head>',
+          `    ${resourceLinks.join('\n    ')}\n  </head>`,
+        );
+      }
 
       // Apply SEO meta tags
       html = applySEO(html, seo, route);

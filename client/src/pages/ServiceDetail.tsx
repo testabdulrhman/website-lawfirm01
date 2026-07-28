@@ -424,7 +424,11 @@ export default function ServiceDetail() {
   const { lang, isRTL } = useTranslation();
   const lp = (p: string) => localePath(p, lang);
   const service = servicesData[params.slug || ""];
-  const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation();
+  // The first content paragraph is above the fold on mobile and frequently
+  // becomes the LCP element. Keep it visible in the initial HTML/paint.
+  const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation({
+    initialVisible: true,
+  });
 
   const labels = lang === "ar" ? {
     serviceNotFound: "الخدمة غير موجودة",
@@ -537,7 +541,10 @@ export default function ServiceDetail() {
           >
             {/* Main Content */}
             <div className="lg:col-span-2">
-              <p className="font-body text-sm md:text-lg text-[var(--color-navy)]/70 leading-relaxed mb-8 md:mb-10">
+              <p
+                className="text-sm md:text-lg text-[var(--color-navy)]/70 leading-relaxed mb-8 md:mb-10"
+                style={{ fontFamily: "Arial, Tahoma, sans-serif" }}
+              >
                 {content.description}
               </p>
 

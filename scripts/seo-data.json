@@ -1020,6 +1020,48 @@
     "ogUrl": "https://redwan.sa/en/bankruptcy/procedures",
     "canonical": "/en/bankruptcy/procedures"
   },
+  "/en/bankruptcy/procedures/preventive-settlement": {
+    "title": "What Is Preventive Settlement in Saudi Arabia?",
+    "description": "A guide to preventive settlement under the Saudi Bankruptcy Law: purpose, eligibility, filing stages and frequently asked questions.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/procedures/preventive-settlement",
+    "canonical": "/en/bankruptcy/procedures/preventive-settlement"
+  },
+  "/en/bankruptcy/procedures/preventive-settlement-small-debtors": {
+    "title": "Preventive Settlement for Small Debtors | Saudi Arabia",
+    "description": "An English guide to preventive settlement for small debtors, including the SAR 2 million debt threshold and commencement process.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/procedures/preventive-settlement-small-debtors",
+    "canonical": "/en/bankruptcy/procedures/preventive-settlement-small-debtors"
+  },
+  "/en/bankruptcy/procedures/financial-reorganization": {
+    "title": "Financial Reorganization Under Saudi Bankruptcy Law",
+    "description": "A guide to financial reorganization in Saudi Arabia, including who may apply, court review and the principal stages.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/procedures/financial-reorganization",
+    "canonical": "/en/bankruptcy/procedures/financial-reorganization"
+  },
+  "/en/bankruptcy/procedures/financial-reorganization-small-debtors": {
+    "title": "Financial Reorganization for Small Debtors | Saudi Arabia",
+    "description": "A guide to financial reorganization for small debtors, including the SAR 2 million threshold and simplified stages.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/procedures/financial-reorganization-small-debtors",
+    "canonical": "/en/bankruptcy/procedures/financial-reorganization-small-debtors"
+  },
+  "/en/bankruptcy/procedures/liquidation": {
+    "title": "Liquidation Under Saudi Bankruptcy Law",
+    "description": "A guide to liquidation under the Saudi Bankruptcy Law: purpose, eligibility, creditor debt threshold and principal stages.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/procedures/liquidation",
+    "canonical": "/en/bankruptcy/procedures/liquidation"
+  },
+  "/en/bankruptcy/procedures/liquidation-small-debtors": {
+    "title": "Liquidation for Small Debtors | Saudi Arabia",
+    "description": "A guide to liquidation for small debtors, including eligibility, the creditor threshold and simplified sale and distribution.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/procedures/liquidation-small-debtors",
+    "canonical": "/en/bankruptcy/procedures/liquidation-small-debtors"
+  },
+  "/en/bankruptcy/procedures/administrative-liquidation": {
+    "title": "Administrative Liquidation Under Saudi Bankruptcy Law",
+    "description": "A guide to administrative liquidation, used when expected asset proceeds are insufficient to cover liquidation costs.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/procedures/administrative-liquidation",
+    "canonical": "/en/bankruptcy/procedures/administrative-liquidation"
+  },
   "/en/sitemap": {
     "title": "Sitemap | Redwan Law Firm",
     "description": "Browse all pages, legal services, bankruptcy cases, licenses and contact information available on the Redwan Law Firm website.",
