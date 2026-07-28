@@ -259,6 +259,47 @@ const servicesData: Record<string, {
       ],
     },
   },
+  "administrative": {
+    icon: Landmark,
+    ar: {
+      title: "القضايا الإدارية وديوان المظالم",
+      description: "نقدم التمثيل والاستشارات القانونية في المنازعات الإدارية أمام المحاكم الإدارية وديوان المظالم، مع دراسة القرار أو العقد الإداري وإعداد المذكرات والاعتراضات وفق المدد النظامية.",
+      details: [
+        "الطعن في القرارات الإدارية",
+        "المنازعات المتعلقة بالعقود الإدارية",
+        "دعاوى التعويض عن القرارات الإدارية",
+        "المنازعات الوظيفية والتأديبية",
+        "إعداد لوائح الدعوى والمذكرات والاعتراضات",
+        "التمثيل أمام المحاكم الإدارية ومحاكم الاستئناف الإدارية",
+      ],
+      faqs: [
+        { q: "ما المقصود بالقضية الإدارية؟", a: "هي المنازعة التي تكون جهة الإدارة طرفاً فيها وتدخل ضمن اختصاص المحاكم الإدارية، مثل الطعن في قرار إداري أو منازعة عقد إداري أو مطالبة بالتعويض." },
+        { q: "هل توجد مدة للاعتراض على القرار الإداري؟", a: "تختلف المدد والإجراءات بحسب نوع القرار والمنازعة، وقد يسبق رفع الدعوى تظلم إداري. لذلك ينبغي مراجعة القرار وتاريخه فوراً لتحديد الإجراء والمدة النظامية المناسبة." },
+        { q: "هل تتولون القضايا أمام ديوان المظالم؟", a: "نعم، نقدم دراسة القضية وإعداد صحيفة الدعوى والمذكرات والتمثيل أمام المحاكم الإدارية وفق نطاق الترخيص والاختصاص النظامي." },
+        { q: "ما المستندات المطلوبة لدراسة القضية؟", a: "نحتاج عادة إلى القرار أو العقد محل النزاع، والمراسلات والتظلمات السابقة، وما يثبت تاريخ التبليغ، وأي مستندات تؤيد الطلبات. وقد تختلف المتطلبات بحسب كل حالة." },
+        { q: "هل يمكن الحصول على تقييم أولي عن بُعد؟", a: "نعم، يمكن إرسال المستندات وحجز موعد لدراسة الوقائع والمواعيد النظامية قبل تحديد مسار العمل المناسب." },
+      ],
+    },
+    en: {
+      title: "Administrative Law & Board of Grievances",
+      description: "We provide legal representation and advice in administrative disputes before Saudi administrative courts and the Board of Grievances, including review of administrative decisions and contracts, pleadings, and appeals within statutory deadlines.",
+      details: [
+        "Challenges to administrative decisions",
+        "Administrative contract disputes",
+        "Compensation claims arising from administrative decisions",
+        "Public employment and disciplinary disputes",
+        "Drafting claims, memoranda, and appeals",
+        "Representation before administrative and appellate administrative courts",
+      ],
+      faqs: [
+        { q: "What is an administrative case?", a: "It is a dispute involving a government authority that falls within the jurisdiction of Saudi administrative courts, such as challenges to administrative decisions, administrative contract disputes, or compensation claims." },
+        { q: "Is there a deadline for challenging an administrative decision?", a: "Deadlines and procedures vary by the type of decision and dispute, and an administrative grievance may be required before filing. The decision and notification date should therefore be reviewed promptly." },
+        { q: "Do you handle cases before the Board of Grievances?", a: "Yes. We assess the matter, prepare claims and memoranda, and provide representation before administrative courts within the applicable licensing and jurisdictional requirements." },
+        { q: "What documents are needed for an initial assessment?", a: "Typically, we need the disputed decision or contract, correspondence and prior grievances, proof of the notification date, and any documents supporting the requested relief." },
+        { q: "Can the initial assessment be conducted remotely?", a: "Yes. Documents can be shared securely and a remote consultation can be scheduled to review the facts and applicable deadlines." },
+      ],
+    },
+  },
   "arbitration": {
     icon: Landmark,
     ar: {

@@ -6,6 +6,7 @@ import { useSEO, schemas } from "@/hooks/useSEO";
 import { getCityBySlug, citiesData } from "@/data/cities";
 import { useState, useMemo } from "react";
 import { localePath } from "@/lib/localePath";
+import { trackEmailClick, trackPhoneClick, trackWhatsAppClick } from "@/lib/analytics";
 
 export default function CityPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -80,6 +81,7 @@ export default function CityPage() {
     keywords: content ? `${content.name}, ${content.title}, محامي, lawyer, ${content.region}` : "",
     canonical: city ? `/locations/${city.slug}` : undefined,
     schema,
+    fullTitle: true,
   });
 
   if (!city) {
@@ -118,6 +120,7 @@ export default function CityPage() {
           <div className="flex flex-wrap gap-4 mt-8">
             <a
               href="tel:+966505149800"
+              onClick={() => trackPhoneClick(`city_${city.slug}`)}
               className="inline-flex items-center gap-2 bg-[var(--color-gold)] text-[var(--color-navy)] px-5 py-3 font-heading text-sm font-semibold hover:bg-[var(--color-gold)]/90 transition-colors"
             >
               <Phone className="w-4 h-4" />
@@ -125,6 +128,7 @@ export default function CityPage() {
             </a>
             <a
               href="mailto:info@redwan.sa"
+              onClick={() => trackEmailClick(`city_${city.slug}`)}
               className="inline-flex items-center gap-2 border border-white/30 text-white px-5 py-3 font-heading text-sm font-semibold hover:border-white/60 transition-colors"
             >
               <Mail className="w-4 h-4" />
@@ -294,6 +298,7 @@ export default function CityPage() {
               </Link>
               <a
                 href="https://wa.me/966505149800"
+                onClick={() => trackWhatsAppClick(`city_${city.slug}`)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 border border-[var(--color-navy)]/20 text-[var(--color-navy)] px-8 py-3.5 font-heading text-sm font-semibold hover:border-[var(--color-navy)]/40 transition-colors"

@@ -18,6 +18,15 @@
         window.__REDWAN_ANALYTICS_DISABLED__ = analyticsDisabled;
         if (analyticsDisabled) return;
 
+        // Queue GA4 events immediately, even before the deferred GTM script loads.
+        // GTM consumes the queued gtag commands after initialization.
+        window.dataLayer = window.dataLayer || [];
+        window.gtag =
+          window.gtag ||
+          function () {
+            window.dataLayer.push(arguments);
+          };
+
         window.addEventListener("load", function () {
           var w = window,
             d = document,
