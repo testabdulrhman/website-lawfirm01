@@ -36,10 +36,13 @@ import Bankruptcy from "@/pages/Bankruptcy";
 import BankruptcyProcedures from "@/pages/BankruptcyProcedures";
 import BankruptcyProcedure from "@/pages/BankruptcyProcedure";
 import BankruptcyLP from "@/pages/BankruptcyLP";
+import HassanMisferAlZahrani from "@/pages/HassanMisferAlZahrani";
 import CasesGuide from "@/pages/CasesGuide";
 import LegalDictionary from "@/pages/LegalDictionary";
 import CityPage from "@/pages/CityPage";
 import Sitemap from "@/pages/Sitemap";
+import Licenses from "@/pages/Licenses";
+import PremiumResidency from "@/pages/PremiumResidency";
 import NotFound from "@/pages/NotFound";
 
 function SSRRouter({ url }: { url: string }) {
@@ -68,16 +71,19 @@ function SSRRouter({ url }: { url: string }) {
       <Route path="/bankruptcy/track">{() => <Layout><BankruptcyTrack /></Layout>}</Route>
       <Route path="/bankruptcy/ticket">{() => <Layout><BankruptcyTicket /></Layout>}</Route>
       <Route path="/bankruptcy/procedures">{() => <Layout><BankruptcyProcedures /></Layout>}</Route>
-      <Route path="/bankruptcy/procedures/:id">{() => <Layout><BankruptcyProcedure /></Layout>}</Route>
+      <Route path="/bankruptcy/procedures/:slug">{() => <Layout><BankruptcyProcedure /></Layout>}</Route>
       {/* بوابة الدائن — يجب أن تسبق قواعد :slug وإلا التقطتها وعرضت «الإجراء غير موجود» */}
       <Route path="/bankruptcy/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
       <Route path="/en/bankruptcy/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
       <Route path="/ur/bankruptcy/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
+      <Route path="/bankruptcy/Hassan-Misfer-Al-Zahrani">{() => <Layout><HassanMisferAlZahrani /></Layout>}</Route>
       <Route path="/bankruptcy/:slug">{() => <Layout><BankruptcyCase /></Layout>}</Route>
       <Route path="/cases-guide">{() => <Layout><CasesGuide /></Layout>}</Route>
       <Route path="/legal-dictionary">{() => <Layout><LegalDictionary /></Layout>}</Route>
       <Route path="/sitemap">{() => <Layout><Sitemap /></Layout>}</Route>
       <Route path="/locations/:slug">{() => <Layout><CityPage /></Layout>}</Route>
+      <Route path="/licenses">{() => <Layout><Licenses /></Layout>}</Route>
+      <Route path="/premium-residency">{() => <Layout><PremiumResidency /></Layout>}</Route>
 
       {/* English routes */}
       <Route path="/en">{() => <Layout><Home /></Layout>}</Route>
@@ -98,14 +104,18 @@ function SSRRouter({ url }: { url: string }) {
       <Route path="/en/bankruptcy/track">{() => <Layout><BankruptcyTrack /></Layout>}</Route>
       <Route path="/en/bankruptcy/ticket">{() => <Layout><BankruptcyTicket /></Layout>}</Route>
       <Route path="/en/bankruptcy/procedures">{() => <Layout><BankruptcyProcedures /></Layout>}</Route>
-      <Route path="/en/bankruptcy/procedures/:id">{() => <Layout><BankruptcyProcedure /></Layout>}</Route>
+      <Route path="/en/bankruptcy/procedures/:slug">{() => <Layout><BankruptcyProcedure /></Layout>}</Route>
+      <Route path="/en/bankruptcy/Hassan-Misfer-Al-Zahrani">{() => <Layout><HassanMisferAlZahrani /></Layout>}</Route>
       <Route path="/en/bankruptcy/:slug">{() => <Layout><BankruptcyCase /></Layout>}</Route>
       <Route path="/en/cases-guide">{() => <Layout><CasesGuide /></Layout>}</Route>
       <Route path="/en/legal-dictionary">{() => <Layout><LegalDictionary /></Layout>}</Route>
       <Route path="/en/sitemap">{() => <Layout><Sitemap /></Layout>}</Route>
       <Route path="/en/locations/:slug">{() => <Layout><CityPage /></Layout>}</Route>
+      <Route path="/en/licenses">{() => <Layout><Licenses /></Layout>}</Route>
+      <Route path="/en/premium-residency">{() => <Layout><PremiumResidency /></Layout>}</Route>
 
       {/* بوابة الدائن الموحّدة — ثلاث لغات */}
+      <Route path="/ur/premium-residency">{() => <Layout><PremiumResidency /></Layout>}</Route>
 
       {/* 404 */}
       <Route>{() => <Layout><NotFound /></Layout>}</Route>

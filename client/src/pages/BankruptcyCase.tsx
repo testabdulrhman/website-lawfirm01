@@ -164,7 +164,7 @@ const casesData: Record<string, BankruptcyCaseData> = {
     ar: {
       companyName: "شركة حسن مسفر الزهراني وشركاه",
       companyNameEn: "Hassan Misfer Al-Zahrani & Partners Group",
-      procedureType: "تصفية",
+      procedureType: "إعادة التنظيم المالي",
       status: "جاري",
       court: "المحكمة التجارية بالدمام",
       summary: "مجموعة شركات متخصصة في مجالات تجارية متنوعة.",
@@ -172,13 +172,13 @@ const casesData: Record<string, BankruptcyCaseData> = {
       keyFacts: [
         { label: "السجل التجاري", value: "2050001522" },
         { label: "المحكمة", value: "المحكمة التجارية بالدمام" },
-        { label: "نوع الإجراء", value: "تصفية" },
+        { label: "نوع الإجراء", value: "إعادة التنظيم المالي" },
       ],
     },
     en: {
       companyName: "Hassan Misfer Al-Zahrani & Partners Group",
       companyNameEn: "Hassan Misfer Al-Zahrani & Partners Group",
-      procedureType: "Liquidation",
+      procedureType: "Financial Reorganization",
       status: "Ongoing",
       court: "Commercial Court in Dammam",
       summary: "A group of companies operating in various commercial fields.",
@@ -186,7 +186,7 @@ const casesData: Record<string, BankruptcyCaseData> = {
       keyFacts: [
         { label: "Commercial Registration", value: "2050001522" },
         { label: "Court", value: "Commercial Court in Dammam" },
-        { label: "Procedure Type", value: "Liquidation" },
+        { label: "Procedure Type", value: "Financial Reorganization" },
       ],
     },
   },

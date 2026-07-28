@@ -42,7 +42,7 @@ const licensesData: Record<string, LicenseItem[]> = {
         "التحكيم التجاري المحلي والدولي",
       ],
       relatedServices: [
-        { title: "القضايا التجارية", path: "/services/commercial" },
+        { title: "القضايا التجارية", path: "/services/civil-commercial" },
         { title: "القضايا الجنائية", path: "/services/criminal" },
         { title: "قضايا العمل", path: "/services/labor" },
         { title: "التحكيم التجاري", path: "/services/arbitration" },
@@ -159,7 +159,7 @@ const licensesData: Record<string, LicenseItem[]> = {
         "Domestic and international commercial arbitration",
       ],
       relatedServices: [
-        { title: "Commercial Cases", path: "/services/commercial" },
+        { title: "Commercial Cases", path: "/services/civil-commercial" },
         { title: "Criminal Cases", path: "/services/criminal" },
         { title: "Labor Cases", path: "/services/labor" },
         { title: "Commercial Arbitration", path: "/services/arbitration" },

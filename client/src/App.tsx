@@ -116,7 +116,7 @@ function Router() {
               <Route path={"/en/bankruptcy/procedures"} component={BankruptcyProcedures} />
               <Route path={"/en/bankruptcy/procedures/:slug"} component={BankruptcyProcedure} />
               <Route path={"/en/bankruptcy/claims"} component={Claims} />
-
+              <Route path={"/en/bankruptcy/Hassan-Misfer-Al-Zahrani"} component={HassanMisferAlZahrani} />
               <Route path={"/en/bankruptcy/complete"} component={BankruptcyComplete} />
               <Route path={"/en/bankruptcy/:slug"} component={BankruptcyCase} />
               <Route path={"/en/blog"} component={Blog} />

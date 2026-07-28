@@ -945,6 +945,72 @@
     "ogUrl": "https://redwan.sa/en/bankruptcy",
     "canonical": "/en/bankruptcy"
   },
+  "/en/bankruptcy/ASHYAD-STEEL": {
+    "title": "ASHYAD STEEL Company – Liquidation | Redwan Law Firm",
+    "description": "Liquidation proceeding for ASHYAD STEEL Company, a Riyadh-based commercial and industrial iron trading company established in 2013.",
+    "keywords": "ASHYAD STEEL liquidation, Saudi bankruptcy, bankruptcy trustee, creditor claims",
+    "ogTitle": "ASHYAD STEEL Company – Liquidation",
+    "ogDesc": "Liquidation proceeding for ASHYAD STEEL Company in Riyadh.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/ASHYAD-STEEL",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/bankruptcy/ASHYAD-STEEL"
+  },
+  "/en/bankruptcy/tajalriayaa": {
+    "title": "Taj Al-Riaya Medical Company – Liquidation | Redwan Law Firm",
+    "description": "Liquidation proceeding for Taj Al-Riaya Medical Company, a company specialized in medical care and health services.",
+    "keywords": "Taj Al-Riaya Medical liquidation, Saudi bankruptcy, bankruptcy trustee, creditor claims",
+    "ogTitle": "Taj Al-Riaya Medical Company – Liquidation",
+    "ogDesc": "Liquidation proceeding for Taj Al-Riaya Medical Company.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/tajalriayaa",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/bankruptcy/tajalriayaa"
+  },
+  "/en/bankruptcy/Planting-for-Contracting": {
+    "title": "Planting for Contracting – Liquidation | Redwan Law Firm",
+    "description": "Liquidation proceeding for Planting for Contracting Company, a Riyadh company specialized in contracting, construction and building services.",
+    "keywords": "Planting for Contracting liquidation, Saudi bankruptcy, bankruptcy trustee, creditor claims",
+    "ogTitle": "Planting for Contracting – Liquidation",
+    "ogDesc": "Liquidation proceeding for Planting for Contracting Company.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/Planting-for-Contracting",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/bankruptcy/Planting-for-Contracting"
+  },
+  "/en/bankruptcy/Hassan-Misfer-Al-Zahrani": {
+    "title": "Financial Reorganization Vote | Hassan Misfer Al-Zahrani",
+    "description": "Creditor invitation to vote electronically on the financial reorganization proposal for Hassan Misfer Al-Zahrani & Partners Company on 16 August 2026.",
+    "keywords": "Hassan Misfer Al-Zahrani, financial reorganization vote, creditor meeting, Saudi bankruptcy trustee",
+    "ogTitle": "Financial Reorganization Vote | Hassan Misfer Al-Zahrani",
+    "ogDesc": "Creditor invitation to vote on the financial reorganization proposal on 16 August 2026.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/Hassan-Misfer-Al-Zahrani",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/bankruptcy/Hassan-Misfer-Al-Zahrani"
+  },
+  "/en/bankruptcy/Al-Anjaz-Hotel-Village": {
+    "title": "Al-Anjaz Hotel Village – Liquidation | Redwan Law Firm",
+    "description": "Liquidation proceeding for Al-Anjaz Hotel Village Company, a Riyadh company specialized in hospitality and hotel services.",
+    "keywords": "Al-Anjaz Hotel Village liquidation, Saudi bankruptcy, bankruptcy trustee, creditor claims",
+    "ogTitle": "Al-Anjaz Hotel Village – Liquidation",
+    "ogDesc": "Liquidation proceeding for Al-Anjaz Hotel Village Company.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/Al-Anjaz-Hotel-Village",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/bankruptcy/Al-Anjaz-Hotel-Village"
+  },
+  "/en/bankruptcy/Arcon-Gulf-Contracting": {
+    "title": "Arcon Gulf Contracting – Liquidation | Redwan Law Firm",
+    "description": "Liquidation proceeding for Arcon Gulf Contracting Co, a Dammam company specialized in contracting and construction works.",
+    "keywords": "Arcon Gulf Contracting liquidation, Saudi bankruptcy, bankruptcy trustee, creditor claims",
+    "ogTitle": "Arcon Gulf Contracting – Liquidation",
+    "ogDesc": "Liquidation proceeding for Arcon Gulf Contracting Co.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/Arcon-Gulf-Contracting",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/bankruptcy/Arcon-Gulf-Contracting"
+  },
   "/en/bankruptcy/procedures": {
     "title": "Bankruptcy Procedures | Redwan Law Firm",
     "description": "Complete guide to the seven bankruptcy procedures under Saudi Bankruptcy Law including preventive settlement, financial reorganization, and liquidation.",

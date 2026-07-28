@@ -10,7 +10,7 @@ const bankruptcyCases = [
   { slug: "ASHYAD-STEEL", nameAr: "شركة أشياد ستيل", nameEn: "ASHYAD STEEL Company", type: "تصفية", typeEn: "Liquidation" },
   { slug: "tajalriayaa", nameAr: "شركة تاج الرعاية الطبي", nameEn: "Taj Al-Riaya Medical Company", type: "تصفية", typeEn: "Liquidation" },
   { slug: "Planting-for-Contracting", nameAr: "شركة المزروعات للمقاولات", nameEn: "Planting for Contracting Company", type: "تصفية", typeEn: "Liquidation" },
-  { slug: "Hassan-Misfer-Al-Zahrani", nameAr: "شركة حسن مسفر الزهراني وشركاه", nameEn: "Hassan Misfer Al-Zahrani & Partners", type: "تصفية", typeEn: "Liquidation" },
+  { slug: "Hassan-Misfer-Al-Zahrani", nameAr: "شركة حسن مسفر الزهراني وشركاه", nameEn: "Hassan Misfer Al-Zahrani & Partners", type: "إعادة التنظيم المالي", typeEn: "Financial Reorganization" },
   { slug: "Al-Anjaz-Hotel-Village", nameAr: "شركة قرية الأنجاز الفندقية", nameEn: "Al-Anjaz Hotel Village Company", type: "تصفية", typeEn: "Liquidation" },
   { slug: "Arcon-Gulf-Contracting", nameAr: "شركة أركن الخليج للمقاولات", nameEn: "Arcon Gulf Contracting Co", type: "تصفية", typeEn: "Liquidation" },
 ];
