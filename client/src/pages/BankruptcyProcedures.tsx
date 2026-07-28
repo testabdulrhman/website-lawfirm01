@@ -10,6 +10,7 @@ import { useScrollAnimation, getStaggerStyle } from "@/hooks/useScrollAnimation"
 import { useSEO, schemas } from "@/hooks/useSEO";
 import { Scale, ArrowLeft, ArrowRight } from "lucide-react";
 import { bankruptcyProcedures } from "@/data/bankruptcyProcedures";
+import { bankruptcyProceduresEn } from "@/data/bankruptcyProceduresEn";
 import { localePath } from "@/lib/localePath";
 
 const BASE_URL = "https://redwan.sa";
@@ -18,34 +19,66 @@ export default function BankruptcyProcedures() {
   const { t, lang, isRTL } = useTranslation();
   const lp = (p: string) => localePath(p, lang);
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
+  const isEnglish = lang === "en";
+  const procedures = isEnglish ? bankruptcyProceduresEn : bankruptcyProcedures;
+  const copy = isEnglish
+    ? {
+        bankruptcy: "Bankruptcy",
+        procedures: "Bankruptcy Procedures",
+        title: "What Are the Seven Procedures Under the Saudi Bankruptcy Law?",
+        intro:
+          "The Saudi Bankruptcy Law provides seven principal procedures. Each guide explains the procedure, its purpose, who may use it, the main stages and common questions.",
+        sectionTitle: "The Seven Procedures",
+        smallDebtors: "Small debtors",
+        general: "General procedure",
+        read: "Read the guide",
+        seoDescription:
+          "A practical English guide to the seven procedures under the Saudi Bankruptcy Law, including preventive settlement, financial reorganization and liquidation.",
+        keywords:
+          "Saudi bankruptcy procedures, Saudi Bankruptcy Law, preventive settlement, financial reorganization, liquidation",
+      }
+    : {
+        bankruptcy: "الإفلاس والتصفية",
+        procedures: "إجراءات الإفلاس",
+        title: "ما هي إجراءات الإفلاس السبعة في النظام السعودي؟",
+        intro:
+          "يتضمّن نظام الإفلاس السعودي سبعة إجراءات رئيسية. اخترنا لك لكل إجراء صفحة مفصّلة توضح تعريفه وهدفه ومن يحق له التقدم به وخطواته، مع إجابات على أبرز الأسئلة.",
+        sectionTitle: "الإجراءات السبعة",
+        smallDebtors: "صغار المدينين",
+        general: "إجراء عام",
+        read: "اقرأ التفاصيل",
+        seoDescription:
+          "دليل إجراءات الإفلاس في النظام السعودي: التسوية الوقائية، إعادة التنظيم المالي، التصفية، والتصفية الإدارية، مع صفحات مفصّلة لكل إجراء.",
+        keywords:
+          "إجراءات الإفلاس, نظام الإفلاس السعودي, التسوية الوقائية, إعادة التنظيم المالي, التصفية, التصفية الإدارية",
+      };
 
   const seoSchema = useMemo(
     () => [
       schemas.breadcrumb([
-        { name: "الرئيسية", url: "/" },
-        { name: "الإفلاس والتصفية", url: "/bankruptcy" },
-        { name: "إجراءات الإفلاس", url: "/bankruptcy/procedures" },
+        { name: isEnglish ? "Home" : "الرئيسية", url: lp("/") },
+        { name: copy.bankruptcy, url: lp("/bankruptcy") },
+        { name: copy.procedures, url: lp("/bankruptcy/procedures") },
       ]),
       {
         "@context": "https://schema.org",
         "@type": "ItemList",
-        "name": "إجراءات الإفلاس في النظام السعودي",
-        "itemListElement": bankruptcyProcedures.map((p, i) => ({
+        "name": copy.title,
+        "itemListElement": procedures.map((p, i) => ({
           "@type": "ListItem",
           "position": i + 1,
           "name": p.name,
-          "url": `${BASE_URL}/bankruptcy/procedures/${p.slug}`,
+          "url": `${BASE_URL}${lp(`/bankruptcy/procedures/${p.slug}`)}`,
         })),
       },
     ],
-    [],
+    [copy.bankruptcy, copy.procedures, copy.title, isEnglish, lp, procedures],
   );
 
   useSEO({
-    title: "ما هي إجراءات الإفلاس السبعة في النظام السعودي؟",
-    description:
-      "دليل إجراءات الإفلاس في النظام السعودي: التسوية الوقائية، إعادة التنظيم المالي، التصفية، والتصفية الإدارية، مع صفحات مفصّلة لكل إجراء.",
-    keywords: "إجراءات الإفلاس, نظام الإفلاس السعودي, التسوية الوقائية, إعادة التنظيم المالي, التصفية, التصفية الإدارية",
+    title: copy.title,
+    description: copy.seoDescription,
+    keywords: copy.keywords,
     canonical: "/bankruptcy/procedures",
     schema: seoSchema,
   });
@@ -61,16 +94,15 @@ export default function BankruptcyProcedures() {
           <nav className="flex flex-wrap items-center gap-2 mb-6 font-body text-xs text-white/50">
             <Link href={lp("/")} className="hover:text-[var(--color-gold)] transition-colors">{t.nav.home}</Link>
             <span>/</span>
-            <Link href={lp("/bankruptcy")} className="hover:text-[var(--color-gold)] transition-colors">الإفلاس والتصفية</Link>
+            <Link href={lp("/bankruptcy")} className="hover:text-[var(--color-gold)] transition-colors">{copy.bankruptcy}</Link>
             <span>/</span>
-            <span className="text-[var(--color-gold)]">إجراءات الإفلاس</span>
+            <span className="text-[var(--color-gold)]">{copy.procedures}</span>
           </nav>
           <h1 className="font-display text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-4 max-w-3xl leading-snug">
-            ما هي إجراءات الإفلاس السبعة في النظام السعودي؟
+            {copy.title}
           </h1>
           <p className="font-body text-base md:text-lg text-white/60 max-w-2xl leading-relaxed">
-            يتضمّن نظام الإفلاس السعودي سبعة إجراءات رئيسية. اخترنا لك لكل إجراء صفحة مفصّلة توضح تعريفه وهدفه ومن يحق له
-            التقدم به وخطواته، مع إجابات على أبرز الأسئلة.
+            {copy.intro}
           </p>
         </div>
       </section>
@@ -85,12 +117,12 @@ export default function BankruptcyProcedures() {
           >
             <Scale size={24} className="text-[var(--color-gold)]" />
             <h2 className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-[var(--color-navy)]">
-              الإجراءات السبعة
+              {copy.sectionTitle}
             </h2>
           </div>
 
           <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            {bankruptcyProcedures.map((p, idx) => (
+            {procedures.map((p, idx) => (
               <Link
                 key={p.slug}
                 href={lp(`/bankruptcy/procedures/${p.slug}`)}
@@ -99,7 +131,7 @@ export default function BankruptcyProcedures() {
               >
                 <div className="flex items-center justify-between mb-4">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[var(--color-navy)]/10 text-[var(--color-navy)] font-body text-xs rounded-full">
-                    {p.isSmallDebtor ? "صغار المدينين" : "إجراء عام"}
+                    {p.isSmallDebtor ? copy.smallDebtors : copy.general}
                   </span>
                   <span className="font-display text-2xl font-bold text-[var(--color-gold)]/30">{String(idx + 1).padStart(2, "0")}</span>
                 </div>
@@ -110,7 +142,7 @@ export default function BankruptcyProcedures() {
                   {p.tldr}
                 </p>
                 <div className="flex items-center gap-2 text-[var(--color-gold)] font-heading text-sm font-semibold">
-                  <span>اقرأ التفاصيل</span>
+                  <span>{copy.read}</span>
                   <ArrowIcon size={16} className="group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>

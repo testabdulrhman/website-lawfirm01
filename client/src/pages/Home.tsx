@@ -63,7 +63,12 @@ export default function Home() {
     canonical: '/',
   });
 
-  const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation({ threshold: 0.1 });
+  // Above-the-fold text must be visible in the first paint. Waiting for an
+  // IntersectionObserver made the heading become the LCP several seconds late.
+  const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation({
+    threshold: 0.1,
+    initialVisible: true,
+  });
   const { ref: aboutRef, isVisible: aboutVisible } = useScrollAnimation({ threshold: 0.15 });
   const { ref: servicesRef, isVisible: servicesVisible } = useScrollAnimation({ threshold: 0.1 });
   const { ref: licensesRef, isVisible: licensesVisible } = useScrollAnimation({ threshold: 0.2 });

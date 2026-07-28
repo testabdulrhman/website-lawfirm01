@@ -1,7 +1,13 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Route, Switch } from "wouter";
-import { lazy, Suspense } from "react";
+import { Route, Switch, useLocation } from "wouter";
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useState,
+  type ComponentType,
+} from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
@@ -43,33 +49,122 @@ const Licenses = lazy(() => import("@/pages/Licenses"));
 const HassanMisferAlZahrani = lazy(() => import("@/pages/HassanMisferAlZahrani"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
-// مؤشر تحميل موحّد بألوان الهوية (كحلي/ذهبي)
-function PageLoader() {
-  return (
-    <div className="min-h-[60vh] flex items-center justify-center">
-      <div className="w-8 h-8 rounded-full border-2 border-[oklch(0.65_0.1_70)] border-t-transparent animate-spin" />
-    </div>
-  );
+function DeferredToaster() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  return mounted ? <Toaster /> : null;
 }
 
-function Router() {
+export type InitialPage = {
+  url: string;
+  path: string;
+  Component: ComponentType;
+};
+
+export async function loadInitialPage(pathname: string): Promise<InitialPage | undefined> {
+  const path = pathname.replace(/\/+$/, "") || "/";
+  const localePrefix = path === "/en" || path.startsWith("/en/")
+    ? "/en"
+    : path === "/ur" || path.startsWith("/ur/")
+      ? "/ur"
+      : "";
+  const localizedPath =
+    path === "/en" || path === "/ur"
+      ? "/"
+      : path.replace(/^\/(?:en|ur)(?=\/)/, "");
+
+  let Component: ComponentType;
+  let routePath = path;
+
+  if (localizedPath === "/bankruptcy-lp") Component = (await import("@/pages/BankruptcyLP")).default;
+  else if (localizedPath === "/") Component = Home;
+  else if (localizedPath === "/about") Component = (await import("@/pages/About")).default;
+  else if (localizedPath === "/team") Component = (await import("@/pages/Team")).default;
+  else if (localizedPath === "/services") Component = (await import("@/pages/Services")).default;
+  else if (localizedPath.startsWith("/services/")) {
+    Component = (await import("@/pages/ServiceDetail")).default;
+    routePath = `${localePrefix}/services/:slug`;
+  }
+  else if (localizedPath === "/bankruptcy") Component = (await import("@/pages/Bankruptcy")).default;
+  else if (localizedPath === "/bankruptcy/procedures") Component = (await import("@/pages/BankruptcyProcedures")).default;
+  else if (localizedPath.startsWith("/bankruptcy/procedures/")) {
+    Component = (await import("@/pages/BankruptcyProcedure")).default;
+    routePath = `${localePrefix}/bankruptcy/procedures/:slug`;
+  }
+  else if (localizedPath === "/bankruptcy/claims") Component = (await import("@/pages/Claims")).default;
+  else if (localizedPath === "/bankruptcy/Hassan-Misfer-Al-Zahrani") Component = (await import("@/pages/HassanMisferAlZahrani")).default;
+  else if (localizedPath === "/bankruptcy/track") Component = (await import("@/pages/BankruptcyTrack")).default;
+  else if (localizedPath === "/bankruptcy/ticket") Component = (await import("@/pages/BankruptcyTicket")).default;
+  else if (localizedPath === "/bankruptcy/complete") Component = (await import("@/pages/BankruptcyComplete")).default;
+  else if (localizedPath === "/bankruptcy/creditor") Component = (await import("@/pages/CreditorPortal")).default;
+  else if (localizedPath.startsWith("/bankruptcy/")) {
+    Component = (await import("@/pages/BankruptcyCase")).default;
+    routePath = `${localePrefix}/bankruptcy/:slug`;
+  }
+  else if (localizedPath === "/blog") Component = (await import("@/pages/Blog")).default;
+  else if (localizedPath.startsWith("/blog/")) {
+    Component = (await import("@/pages/BlogPost")).default;
+    routePath = `${localePrefix}/blog/:slug`;
+  }
+  else if (localizedPath === "/contact") Component = (await import("@/pages/Contact")).default;
+  else if (localizedPath === "/privacy") Component = (await import("@/pages/Privacy")).default;
+  else if (localizedPath === "/terms") Component = (await import("@/pages/Terms")).default;
+  else if (localizedPath === "/faq") Component = (await import("@/pages/FAQ")).default;
+  else if (localizedPath === "/careers/complete") Component = (await import("@/pages/CareersComplete")).default;
+  else if (localizedPath === "/careers") Component = (await import("@/pages/Careers")).default;
+  else if (localizedPath === "/cases-guide") Component = (await import("@/pages/CasesGuide")).default;
+  else if (localizedPath === "/legal-dictionary") Component = (await import("@/pages/LegalDictionary")).default;
+  else if (localizedPath === "/premium-residency") Component = (await import("@/pages/PremiumResidency")).default;
+  else if (localizedPath.startsWith("/locations/")) {
+    Component = (await import("@/pages/CityPage")).default;
+    routePath = `${localePrefix}/locations/:slug`;
+  }
+  else if (localizedPath === "/licenses") Component = (await import("@/pages/Licenses")).default;
+  else if (localizedPath === "/sitemap") Component = (await import("@/pages/Sitemap")).default;
+  else if (localizedPath === "/brand") Component = (await import("@/pages/Brand")).default;
+  else Component = (await import("@/pages/NotFound")).default;
+
+  return { url: path, path: routePath, Component };
+}
+
+function Router({ initialPage }: { initialPage?: InitialPage }) {
+  const [location] = useLocation();
+  const currentPath = location.split(/[?#]/, 1)[0].replace(/\/+$/, "") || "/";
+  const showInitialPage = initialPage?.url === currentPath;
+  const InitialLandingPage =
+    showInitialPage && initialPage?.path === "/bankruptcy-lp"
+      ? initialPage.Component
+      : undefined;
+  const InitialContentPage =
+    showInitialPage && initialPage?.path !== "/bankruptcy-lp"
+      ? initialPage?.Component
+      : undefined;
+
   return (
     <Switch>
       {/* صفحة هبوط إعلانات جوجل - بلا Navbar/Footer العادي (مسار تحويل مستقل) */}
       <Route path={"/bankruptcy-lp"}>
-        <Suspense
-          fallback={
-            <div className="min-h-screen flex items-center justify-center bg-[oklch(0.2_0.04_250)]">
-              <div className="w-8 h-8 rounded-full border-2 border-[oklch(0.65_0.1_70)] border-t-transparent animate-spin" />
-            </div>
-          }
-        >
-          <BankruptcyLP />
-        </Suspense>
+        {InitialLandingPage ? (
+          <InitialLandingPage />
+        ) : (
+          <Suspense
+            fallback={
+              <div className="min-h-screen flex items-center justify-center bg-[oklch(0.2_0.04_250)]">
+                <div className="w-8 h-8 rounded-full border-2 border-[oklch(0.65_0.1_70)] border-t-transparent animate-spin" />
+              </div>
+            }
+          >
+            <BankruptcyLP />
+          </Suspense>
+        )}
       </Route>
       <Route>
         <Layout>
-          <Suspense fallback={<PageLoader />}>
+          {InitialContentPage ? (
+            <Route path={initialPage!.path}>
+              <InitialContentPage />
+            </Route>
+          ) : (
             <Switch>
               {/* Arabic routes (default) */}
               <Route path={"/"} component={Home} />
@@ -136,22 +231,28 @@ function Router() {
               <Route path={"*"} component={NotFound} />
               <Route component={NotFound} />
             </Switch>
-          </Suspense>
+          )}
         </Layout>
       </Route>
     </Switch>
   );
 }
 
-function App() {
+function App({
+  initialPage,
+  helmetContext,
+}: {
+  initialPage?: InitialPage;
+  helmetContext?: Record<string, unknown>;
+}) {
   return (
     <ErrorBoundary>
-      <HelmetProvider>
+      <HelmetProvider context={helmetContext}>
         <LanguageProvider>
           <ThemeProvider defaultTheme="dark">
             <TooltipProvider>
-              <Toaster />
-              <Router />
+              <DeferredToaster />
+              <Router initialPage={initialPage} />
             </TooltipProvider>
           </ThemeProvider>
         </LanguageProvider>

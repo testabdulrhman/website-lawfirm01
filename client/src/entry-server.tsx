@@ -1,19 +1,15 @@
 /**
- * SSR Entry Point
- * Renders the React app to static HTML for a given route.
- * Used by the prerender script to generate full HTML for each page.
+ * SSR entry point.
+ *
+ * The server and browser intentionally render the same App tree. The only
+ * server-specific work here is choosing the already-imported page component
+ * for the requested URL and providing Wouter with the SSR path.
  */
-import React from "react";
+import React, { type ComponentType } from "react";
 import { renderToString } from "react-dom/server";
 import { Router } from "wouter";
-import { Route, Switch } from "wouter";
-import { HelmetProvider } from "react-helmet-async";
-import { ThemeProvider } from "./contexts/ThemeContext";
-import { LanguageProvider } from "./contexts/LanguageContext";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import Layout from "@/components/Layout";
+import App, { type InitialPage } from "./App";
 
-// Import all pages directly (no lazy loading for SSR)
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Services from "@/pages/Services";
@@ -27,6 +23,7 @@ import Terms from "@/pages/Terms";
 import Team from "@/pages/Team";
 import FAQ from "@/pages/FAQ";
 import Careers from "@/pages/Careers";
+import CareersComplete from "@/pages/CareersComplete";
 import BankruptcyComplete from "@/pages/BankruptcyComplete";
 import BankruptcyCase from "@/pages/BankruptcyCase";
 import BankruptcyTrack from "@/pages/BankruptcyTrack";
@@ -43,101 +40,78 @@ import CityPage from "@/pages/CityPage";
 import Sitemap from "@/pages/Sitemap";
 import Licenses from "@/pages/Licenses";
 import PremiumResidency from "@/pages/PremiumResidency";
+import Brand from "@/pages/Brand";
 import NotFound from "@/pages/NotFound";
 
-function SSRRouter({ url }: { url: string }) {
-  return (
-    <Switch>
-      {/* Landing page without Layout */}
-      <Route path="/bankruptcy-lp"><BankruptcyLP /></Route>
-      <Route path="/en/bankruptcy-lp"><BankruptcyLP /></Route>
+function getInitialPage(url: string): InitialPage {
+  const path = url.replace(/\/+$/, "") || "/";
+  const localePrefix = path === "/en" || path.startsWith("/en/")
+    ? "/en"
+    : path === "/ur" || path.startsWith("/ur/")
+      ? "/ur"
+      : "";
+  const localizedPath =
+    path === "/en" || path === "/ur"
+      ? "/"
+      : path.replace(/^\/(?:en|ur)(?=\/)/, "");
 
-      {/* All other routes with Layout */}
-      <Route path="/">{() => <Layout><Home /></Layout>}</Route>
-      <Route path="/about">{() => <Layout><About /></Layout>}</Route>
-      <Route path="/team">{() => <Layout><Team /></Layout>}</Route>
-      <Route path="/services">{() => <Layout><Services /></Layout>}</Route>
-      <Route path="/services/:slug">{() => <Layout><ServiceDetail /></Layout>}</Route>
-      <Route path="/blog">{() => <Layout><Blog /></Layout>}</Route>
-      <Route path="/blog/:slug">{() => <Layout><BlogPost /></Layout>}</Route>
-      <Route path="/contact">{() => <Layout><Contact /></Layout>}</Route>
-      <Route path="/claims">{() => <Layout><Claims /></Layout>}</Route>
-      <Route path="/privacy">{() => <Layout><Privacy /></Layout>}</Route>
-      <Route path="/terms">{() => <Layout><Terms /></Layout>}</Route>
-      <Route path="/faq">{() => <Layout><FAQ /></Layout>}</Route>
-      <Route path="/careers">{() => <Layout><Careers /></Layout>}</Route>
-      <Route path="/bankruptcy">{() => <Layout><Bankruptcy /></Layout>}</Route>
-      <Route path="/bankruptcy/claims">{() => <Layout><Claims /></Layout>}</Route>
-      <Route path="/bankruptcy/track">{() => <Layout><BankruptcyTrack /></Layout>}</Route>
-      <Route path="/bankruptcy/ticket">{() => <Layout><BankruptcyTicket /></Layout>}</Route>
-      <Route path="/bankruptcy/procedures">{() => <Layout><BankruptcyProcedures /></Layout>}</Route>
-      <Route path="/bankruptcy/procedures/:slug">{() => <Layout><BankruptcyProcedure /></Layout>}</Route>
-      {/* بوابة الدائن — يجب أن تسبق قواعد :slug وإلا التقطتها وعرضت «الإجراء غير موجود» */}
-      <Route path="/bankruptcy/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
-      <Route path="/en/bankruptcy/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
-      <Route path="/ur/bankruptcy/creditor">{() => <Layout><CreditorPortal /></Layout>}</Route>
-      <Route path="/bankruptcy/Hassan-Misfer-Al-Zahrani">{() => <Layout><HassanMisferAlZahrani /></Layout>}</Route>
-      <Route path="/bankruptcy/:slug">{() => <Layout><BankruptcyCase /></Layout>}</Route>
-      <Route path="/cases-guide">{() => <Layout><CasesGuide /></Layout>}</Route>
-      <Route path="/legal-dictionary">{() => <Layout><LegalDictionary /></Layout>}</Route>
-      <Route path="/sitemap">{() => <Layout><Sitemap /></Layout>}</Route>
-      <Route path="/locations/:slug">{() => <Layout><CityPage /></Layout>}</Route>
-      <Route path="/licenses">{() => <Layout><Licenses /></Layout>}</Route>
-      <Route path="/premium-residency">{() => <Layout><PremiumResidency /></Layout>}</Route>
+  let Component: ComponentType;
+  let routePath = path;
 
-      {/* English routes */}
-      <Route path="/en">{() => <Layout><Home /></Layout>}</Route>
-      <Route path="/en/about">{() => <Layout><About /></Layout>}</Route>
-      <Route path="/en/team">{() => <Layout><Team /></Layout>}</Route>
-      <Route path="/en/services">{() => <Layout><Services /></Layout>}</Route>
-      <Route path="/en/services/:slug">{() => <Layout><ServiceDetail /></Layout>}</Route>
-      <Route path="/en/blog">{() => <Layout><Blog /></Layout>}</Route>
-      <Route path="/en/blog/:slug">{() => <Layout><BlogPost /></Layout>}</Route>
-      <Route path="/en/contact">{() => <Layout><Contact /></Layout>}</Route>
-      <Route path="/en/claims">{() => <Layout><Claims /></Layout>}</Route>
-      <Route path="/en/privacy">{() => <Layout><Privacy /></Layout>}</Route>
-      <Route path="/en/terms">{() => <Layout><Terms /></Layout>}</Route>
-      <Route path="/en/faq">{() => <Layout><FAQ /></Layout>}</Route>
-      <Route path="/en/careers">{() => <Layout><Careers /></Layout>}</Route>
-      <Route path="/en/bankruptcy">{() => <Layout><Bankruptcy /></Layout>}</Route>
-      <Route path="/en/bankruptcy/claims">{() => <Layout><Claims /></Layout>}</Route>
-      <Route path="/en/bankruptcy/track">{() => <Layout><BankruptcyTrack /></Layout>}</Route>
-      <Route path="/en/bankruptcy/ticket">{() => <Layout><BankruptcyTicket /></Layout>}</Route>
-      <Route path="/en/bankruptcy/procedures">{() => <Layout><BankruptcyProcedures /></Layout>}</Route>
-      <Route path="/en/bankruptcy/procedures/:slug">{() => <Layout><BankruptcyProcedure /></Layout>}</Route>
-      <Route path="/en/bankruptcy/Hassan-Misfer-Al-Zahrani">{() => <Layout><HassanMisferAlZahrani /></Layout>}</Route>
-      <Route path="/en/bankruptcy/:slug">{() => <Layout><BankruptcyCase /></Layout>}</Route>
-      <Route path="/en/cases-guide">{() => <Layout><CasesGuide /></Layout>}</Route>
-      <Route path="/en/legal-dictionary">{() => <Layout><LegalDictionary /></Layout>}</Route>
-      <Route path="/en/sitemap">{() => <Layout><Sitemap /></Layout>}</Route>
-      <Route path="/en/locations/:slug">{() => <Layout><CityPage /></Layout>}</Route>
-      <Route path="/en/licenses">{() => <Layout><Licenses /></Layout>}</Route>
-      <Route path="/en/premium-residency">{() => <Layout><PremiumResidency /></Layout>}</Route>
+  if (localizedPath === "/bankruptcy-lp") Component = BankruptcyLP;
+  else if (localizedPath === "/") Component = Home;
+  else if (localizedPath === "/about") Component = About;
+  else if (localizedPath === "/team") Component = Team;
+  else if (localizedPath === "/services") Component = Services;
+  else if (localizedPath.startsWith("/services/")) {
+    Component = ServiceDetail;
+    routePath = `${localePrefix}/services/:slug`;
+  } else if (localizedPath === "/bankruptcy") Component = Bankruptcy;
+  else if (localizedPath === "/bankruptcy/procedures") Component = BankruptcyProcedures;
+  else if (localizedPath.startsWith("/bankruptcy/procedures/")) {
+    Component = BankruptcyProcedure;
+    routePath = `${localePrefix}/bankruptcy/procedures/:slug`;
+  } else if (localizedPath === "/bankruptcy/claims") Component = Claims;
+  else if (localizedPath === "/bankruptcy/Hassan-Misfer-Al-Zahrani") Component = HassanMisferAlZahrani;
+  else if (localizedPath === "/bankruptcy/track") Component = BankruptcyTrack;
+  else if (localizedPath === "/bankruptcy/ticket") Component = BankruptcyTicket;
+  else if (localizedPath === "/bankruptcy/complete") Component = BankruptcyComplete;
+  else if (localizedPath === "/bankruptcy/creditor") Component = CreditorPortal;
+  else if (localizedPath.startsWith("/bankruptcy/")) {
+    Component = BankruptcyCase;
+    routePath = `${localePrefix}/bankruptcy/:slug`;
+  } else if (localizedPath === "/blog") Component = Blog;
+  else if (localizedPath.startsWith("/blog/")) {
+    Component = BlogPost;
+    routePath = `${localePrefix}/blog/:slug`;
+  } else if (localizedPath === "/contact") Component = Contact;
+  else if (localizedPath === "/privacy") Component = Privacy;
+  else if (localizedPath === "/terms") Component = Terms;
+  else if (localizedPath === "/faq") Component = FAQ;
+  else if (localizedPath === "/careers/complete") Component = CareersComplete;
+  else if (localizedPath === "/careers") Component = Careers;
+  else if (localizedPath === "/cases-guide") Component = CasesGuide;
+  else if (localizedPath === "/legal-dictionary") Component = LegalDictionary;
+  else if (localizedPath === "/sitemap") Component = Sitemap;
+  else if (localizedPath.startsWith("/locations/")) {
+    Component = CityPage;
+    routePath = `${localePrefix}/locations/:slug`;
+  } else if (localizedPath === "/licenses") Component = Licenses;
+  else if (localizedPath === "/premium-residency") Component = PremiumResidency;
+  else if (localizedPath === "/brand") Component = Brand;
+  else Component = NotFound;
 
-      {/* بوابة الدائن الموحّدة — ثلاث لغات */}
-      <Route path="/ur/premium-residency">{() => <Layout><PremiumResidency /></Layout>}</Route>
-
-      {/* 404 */}
-      <Route>{() => <Layout><NotFound /></Layout>}</Route>
-    </Switch>
-  );
+  return { url: path, path: routePath, Component };
 }
 
 export function render(url: string) {
-  const helmetContext: { helmet?: any } = {};
+  const helmetContext: { helmet?: unknown } = {};
+  const initialPage = getInitialPage(url);
 
   const html = renderToString(
-    <HelmetProvider context={helmetContext}>
-      <Router ssrPath={url}>
-        <ThemeProvider>
-          <LanguageProvider>
-            <TooltipProvider>
-              <SSRRouter url={url} />
-            </TooltipProvider>
-          </LanguageProvider>
-        </ThemeProvider>
-      </Router>
-    </HelmetProvider>
+    <Router ssrPath={url}>
+      <App initialPage={initialPage} helmetContext={helmetContext} />
+    </Router>,
   );
 
   return { html, helmet: helmetContext.helmet };

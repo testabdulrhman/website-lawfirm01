@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ScrollProgress from "./ScrollProgress";
@@ -17,7 +17,15 @@ export default function Layout({ children }: LayoutProps) {
       <ScrollProgress />
       <Navbar />
       <main className="flex-1">
-        <PageTransition>{children}</PageTransition>
+        <Suspense
+          fallback={
+            <div className="min-h-[60vh] flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full border-2 border-[oklch(0.65_0.1_70)] border-t-transparent animate-spin" />
+            </div>
+          }
+        >
+          <PageTransition>{children}</PageTransition>
+        </Suspense>
       </main>
       <Footer />
       <ScrollToTop />

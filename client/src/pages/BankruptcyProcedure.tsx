@@ -26,6 +26,10 @@ import {
   getProcedureBySlug,
   proceduresSourceUrl,
 } from "@/data/bankruptcyProcedures";
+import {
+  bankruptcyProceduresEn,
+  getEnglishProcedureBySlug,
+} from "@/data/bankruptcyProceduresEn";
 
 function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
   const [open, setOpen] = useState(index === 0);
@@ -71,8 +75,62 @@ export default function BankruptcyProcedure() {
   const { lang, isRTL } = useTranslation();
   const lp = (p: string) => localePath(p, lang);
   const params = useParams<{ slug: string }>();
-  const procedure = getProcedureBySlug(params.slug || "");
+  const isEnglish = lang === "en";
+  const procedure = isEnglish
+    ? getEnglishProcedureBySlug(params.slug || "")
+    : getProcedureBySlug(params.slug || "");
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
+  const copy = isEnglish
+    ? {
+        home: "Home",
+        bankruptcy: "Bankruptcy",
+        procedures: "Bankruptcy Procedures",
+        notFound: "Procedure not found",
+        back: "Back to bankruptcy procedures",
+        small: "Small-debtor procedure",
+        general: "General procedure",
+        summary: "In brief:",
+        definition: (name: string) => `What is ${name}?`,
+        objective: "What is the purpose of this procedure?",
+        eligibility: "Who may use this procedure and when?",
+        useCases: "When the procedure may be used:",
+        steps: "What are the main stages?",
+        faq: (name: string) => `Frequently asked questions about ${name}`,
+        source: "Source: Saudi Bankruptcy Law, its Implementing Regulations and Bankruptcy Commission guidance —",
+        commission: "Bankruptcy Commission",
+        disclaimer: "This content is for general information and does not constitute legal advice.",
+        consultTitle: "Do you need advice about this procedure?",
+        consultText:
+          "Our bankruptcy team can help you assess the procedure that best fits your circumstances.",
+        book: "Book a consultation",
+        claim: "Submit a creditor claim",
+        other: "Other bankruptcy procedures",
+      }
+    : {
+        home: "الرئيسية",
+        bankruptcy: "الإفلاس والتصفية",
+        procedures: "إجراءات الإفلاس",
+        notFound: "الإجراء غير موجود",
+        back: "العودة لإجراءات الإفلاس",
+        small: "إجراء خاص بصغار المدينين",
+        general: "إجراء عام",
+        summary: "باختصار:",
+        definition: (name: string) => `ما تعريف ${name}؟`,
+        objective: "ما الهدف من هذا الإجراء؟",
+        eligibility: "من يحق له التقدم بالإجراء ومتى؟",
+        useCases: "الحالات التي يُلجأ فيها للإجراء:",
+        steps: "كيف تسير خطوات الإجراء؟",
+        faq: (name: string) => `أسئلة شائعة حول ${name}`,
+        source: "المصدر: نظام الإفلاس السعودي ولائحته التنفيذية ودليل لجنة الإفلاس —",
+        commission: "لجنة الإفلاس",
+        disclaimer: "هذا المحتوى لأغراض التوعية ولا يُعدّ استشارة قانونية.",
+        consultTitle: "هل تحتاج استشارة بشأن هذا الإجراء؟",
+        consultText:
+          "فريقنا المتخصص في إدارة إجراءات الإفلاس جاهز لمساعدتك على اختيار المسار الأنسب لوضعك.",
+        book: "احجز استشارة",
+        claim: "تقديم مطالبة دائن",
+        other: "إجراءات الإفلاس الأخرى",
+      };
 
   const canonical = procedure ? `/bankruptcy/procedures/${procedure.slug}` : undefined;
 
@@ -80,21 +138,21 @@ export default function BankruptcyProcedure() {
     if (!procedure) return [];
     return [
       schemas.breadcrumb([
-        { name: "الرئيسية", url: "/" },
-        { name: "الإفلاس والتصفية", url: "/bankruptcy" },
-        { name: "إجراءات الإفلاس", url: "/bankruptcy/procedures" },
-        { name: procedure.name, url: `/bankruptcy/procedures/${procedure.slug}` },
+        { name: copy.home, url: lp("/") },
+        { name: copy.bankruptcy, url: lp("/bankruptcy") },
+        { name: copy.procedures, url: lp("/bankruptcy/procedures") },
+        { name: procedure.name, url: lp(`/bankruptcy/procedures/${procedure.slug}`) },
       ]),
-      schemas.howTo(procedure.questionTitle, procedure.tldr, procedure.steps, `/bankruptcy/procedures/${procedure.slug}`),
+      schemas.howTo(procedure.questionTitle, procedure.tldr, procedure.steps, lp(`/bankruptcy/procedures/${procedure.slug}`)),
       schemas.faqPageForUrl(
         procedure.faqs.map((f) => ({ question: f.q, answer: f.a })),
-        `/bankruptcy/procedures/${procedure.slug}`,
+        lp(`/bankruptcy/procedures/${procedure.slug}`),
       ),
     ];
-  }, [procedure]);
+  }, [copy.bankruptcy, copy.home, copy.procedures, lp, procedure]);
 
   useSEO({
-    title: procedure ? procedure.questionTitle : "الإجراء غير موجود",
+    title: procedure ? procedure.questionTitle : copy.notFound,
     description: procedure ? procedure.metaDescription : "",
     keywords: procedure ? procedure.keywords : undefined,
     canonical,
@@ -109,19 +167,20 @@ export default function BankruptcyProcedure() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[var(--color-cream)]">
         <div className="text-center">
-          <h1 className="font-display text-3xl font-bold text-[var(--color-navy)] mb-4">الإجراء غير موجود</h1>
+          <h1 className="font-display text-3xl font-bold text-[var(--color-navy)] mb-4">{copy.notFound}</h1>
           <Link
             href={lp("/bankruptcy/procedures")}
             className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm hover:bg-[var(--color-gold-light)] transition-colors"
           >
-            <span>العودة لإجراءات الإفلاس</span>
+            <span>{copy.back}</span>
           </Link>
         </div>
       </div>
     );
   }
 
-  const others = bankruptcyProcedures.filter((p) => p.slug !== procedure.slug);
+  const others = (isEnglish ? bankruptcyProceduresEn : bankruptcyProcedures)
+    .filter((p) => p.slug !== procedure.slug);
 
   return (
     <div itemScope itemType="https://schema.org/FAQPage">
@@ -138,11 +197,11 @@ export default function BankruptcyProcedure() {
         </div>
         <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
           <nav className="flex flex-wrap items-center gap-2 mb-7 font-body text-xs text-white/50">
-            <Link href={lp("/")} className="hover:text-[var(--color-gold)] transition-colors">الرئيسية</Link>
+            <Link href={lp("/")} className="hover:text-[var(--color-gold)] transition-colors">{copy.home}</Link>
             <span>/</span>
-            <Link href={lp("/bankruptcy")} className="hover:text-[var(--color-gold)] transition-colors">الإفلاس والتصفية</Link>
+            <Link href={lp("/bankruptcy")} className="hover:text-[var(--color-gold)] transition-colors">{copy.bankruptcy}</Link>
             <span>/</span>
-            <Link href={lp("/bankruptcy/procedures")} className="hover:text-[var(--color-gold)] transition-colors">إجراءات الإفلاس</Link>
+            <Link href={lp("/bankruptcy/procedures")} className="hover:text-[var(--color-gold)] transition-colors">{copy.procedures}</Link>
             <span>/</span>
             <span className="text-[var(--color-gold)]">{procedure.name}</span>
           </nav>
@@ -150,7 +209,7 @@ export default function BankruptcyProcedure() {
           <div className="flex items-center gap-2 mb-4">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[var(--color-gold)]/15 text-[var(--color-gold)] font-body text-xs rounded-full">
               <Scale size={13} />
-              {procedure.isSmallDebtor ? "إجراء خاص بصغار المدينين" : "إجراء عام"}
+              {procedure.isSmallDebtor ? copy.small : copy.general}
             </span>
           </div>
 
@@ -161,7 +220,7 @@ export default function BankruptcyProcedure() {
           {/* TL;DR — إجابة موجزة قابلة للاقتباس */}
           <div className="mt-7 max-w-3xl bg-white/5 border-r-4 border-[var(--color-gold)] p-5 rounded-sm">
             <p className="faq-answer font-body text-sm md:text-base text-white/85 leading-relaxed">
-              <span className="text-[var(--color-gold)] font-semibold">باختصار: </span>
+              <span className="text-[var(--color-gold)] font-semibold">{copy.summary} </span>
               {procedure.tldr}
             </p>
           </div>
@@ -184,7 +243,7 @@ export default function BankruptcyProcedure() {
                   <div className="w-10 h-10 bg-[var(--color-navy)] flex items-center justify-center">
                     <FileText size={18} className="text-[var(--color-gold)]" />
                   </div>
-                  <h2 className="font-display text-xl md:text-2xl font-bold text-[var(--color-navy)]">ما تعريف {procedure.name}؟</h2>
+                  <h2 className="font-display text-xl md:text-2xl font-bold text-[var(--color-navy)]">{copy.definition(procedure.name)}</h2>
                 </div>
                 <p className="font-body text-[var(--color-navy)]/75 leading-loose">{procedure.definition}</p>
               </div>
@@ -195,7 +254,7 @@ export default function BankruptcyProcedure() {
                   <div className="w-10 h-10 bg-[var(--color-navy)] flex items-center justify-center">
                     <Target size={18} className="text-[var(--color-gold)]" />
                   </div>
-                  <h2 className="font-display text-xl md:text-2xl font-bold text-[var(--color-navy)]">ما الهدف من هذا الإجراء؟</h2>
+                  <h2 className="font-display text-xl md:text-2xl font-bold text-[var(--color-navy)]">{copy.objective}</h2>
                 </div>
                 <p className="font-body text-[var(--color-navy)]/75 leading-loose">{procedure.objective}</p>
               </div>
@@ -206,10 +265,10 @@ export default function BankruptcyProcedure() {
                   <div className="w-10 h-10 bg-[var(--color-navy)] flex items-center justify-center">
                     <UserCheck size={18} className="text-[var(--color-gold)]" />
                   </div>
-                  <h2 className="font-display text-xl md:text-2xl font-bold text-[var(--color-navy)]">من يحق له التقدم بالإجراء ومتى؟</h2>
+                  <h2 className="font-display text-xl md:text-2xl font-bold text-[var(--color-navy)]">{copy.eligibility}</h2>
                 </div>
                 <p className="font-body text-[var(--color-navy)]/75 leading-loose mb-5">{procedure.eligibility}</p>
-                <h3 className="font-heading text-base font-semibold text-[var(--color-navy)] mb-3">الحالات التي يُلجأ فيها للإجراء:</h3>
+                <h3 className="font-heading text-base font-semibold text-[var(--color-navy)] mb-3">{copy.useCases}</h3>
                 <ul className="space-y-2.5">
                   {procedure.whenToUse.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
@@ -226,7 +285,7 @@ export default function BankruptcyProcedure() {
                   <div className="w-10 h-10 bg-[var(--color-navy)] flex items-center justify-center">
                     <ListChecks size={18} className="text-[var(--color-gold)]" />
                   </div>
-                  <h2 className="font-display text-xl md:text-2xl font-bold text-[var(--color-navy)]">كيف تسير خطوات الإجراء؟</h2>
+                  <h2 className="font-display text-xl md:text-2xl font-bold text-[var(--color-navy)]">{copy.steps}</h2>
                 </div>
                 <div className="space-y-4">
                   {procedure.steps.map((step, i) => (
@@ -253,7 +312,7 @@ export default function BankruptcyProcedure() {
                   <div className="w-10 h-10 bg-[var(--color-navy)] flex items-center justify-center">
                     <HelpCircle size={18} className="text-[var(--color-gold)]" />
                   </div>
-                  <h2 className="font-display text-xl md:text-2xl font-bold text-[var(--color-navy)]">أسئلة شائعة حول {procedure.name}</h2>
+                  <h2 className="font-display text-xl md:text-2xl font-bold text-[var(--color-navy)]">{copy.faq(procedure.name)}</h2>
                 </div>
                 <div className="space-y-3">
                   {procedure.faqs.map((f, i) => (
@@ -261,11 +320,11 @@ export default function BankruptcyProcedure() {
                   ))}
                 </div>
                 <p className="mt-5 font-body text-xs text-[var(--color-navy)]/50 leading-relaxed">
-                  المصدر: نظام الإفلاس السعودي ولائحته التنفيذية ودليل لجنة الإفلاس —{" "}
+                  {copy.source}{" "}
                   <a href={proceduresSourceUrl} target="_blank" rel="noopener noreferrer" className="text-[var(--color-gold)] hover:underline">
-                    لجنة الإفلاس
+                    {copy.commission}
                   </a>
-                  . هذا المحتوى لأغراض التوعية ولا يُعدّ استشارة قانونية.
+                  . {copy.disclaimer}
                 </p>
               </div>
             </div>
@@ -274,29 +333,29 @@ export default function BankruptcyProcedure() {
             <aside className="lg:col-span-1 space-y-6">
               {/* CTA */}
               <div className="bg-[var(--color-navy)] p-6 md:p-7 sticky top-24">
-                <h3 className="font-display text-lg font-bold text-white mb-2">هل تحتاج استشارة بشأن هذا الإجراء؟</h3>
+                <h3 className="font-display text-lg font-bold text-white mb-2">{copy.consultTitle}</h3>
                 <p className="font-body text-sm text-white/60 leading-relaxed mb-5">
-                  فريقنا المتخصص في إدارة إجراءات الإفلاس جاهز لمساعدتك على اختيار المسار الأنسب لوضعك.
+                  {copy.consultText}
                 </p>
                 <Link
                   href={lp("/contact")}
                   className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm hover:bg-[var(--color-gold-light)] transition-colors mb-3"
                 >
                   <Phone size={16} />
-                  <span>احجز استشارة</span>
+                  <span>{copy.book}</span>
                 </Link>
                 <Link
                   href={lp("/bankruptcy/claims")}
                   className="flex items-center justify-center gap-2 w-full px-5 py-3 border border-white/20 text-white font-heading font-medium text-sm hover:border-[var(--color-gold)]/40 transition-colors"
                 >
                   <FileText size={16} />
-                  <span>تقديم مطالبة دائن</span>
+                  <span>{copy.claim}</span>
                 </Link>
               </div>
 
               {/* إجراءات أخرى */}
               <div className="bg-white border border-[var(--color-border)] p-6">
-                <h3 className="font-display text-base font-bold text-[var(--color-navy)] mb-4">إجراءات الإفلاس الأخرى</h3>
+                <h3 className="font-display text-base font-bold text-[var(--color-navy)] mb-4">{copy.other}</h3>
                 <ul className="space-y-1">
                   {others.map((p) => (
                     <li key={p.slug}>

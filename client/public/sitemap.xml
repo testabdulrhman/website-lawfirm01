@@ -426,6 +426,55 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures" />
   </url>
   <url>
+    <loc>https://redwan.sa/en/bankruptcy/procedures/administrative-liquidation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/administrative-liquidation" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/administrative-liquidation" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/en/bankruptcy/procedures/financial-reorganization</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/financial-reorganization" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/financial-reorganization" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/en/bankruptcy/procedures/financial-reorganization-small-debtors</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/financial-reorganization-small-debtors" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/financial-reorganization-small-debtors" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/en/bankruptcy/procedures/liquidation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/liquidation" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/liquidation" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/en/bankruptcy/procedures/liquidation-small-debtors</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/liquidation-small-debtors" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/liquidation-small-debtors" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/en/bankruptcy/procedures/preventive-settlement</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/preventive-settlement" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/preventive-settlement" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/en/bankruptcy/procedures/preventive-settlement-small-debtors</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/procedures/preventive-settlement-small-debtors" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/procedures/preventive-settlement-small-debtors" />
+  </url>
+  <url>
     <loc>https://redwan.sa/en/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

@@ -6,7 +6,12 @@ import SEOHead from '@/components/SEOHead';
 import { FileText, Upload, Calendar, Building2, AlertTriangle, CheckCircle2, Phone, Mail, ArrowRight } from 'lucide-react';
 import { localePath } from "@/lib/localePath";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { trackClaimSubmit } from "@/lib/analytics";
+import {
+  trackClaimStart,
+  trackClaimSubmit,
+  trackClaimSuccess,
+  trackFileUpload,
+} from "@/lib/analytics";
 
 // Types
 interface CaseData {
@@ -150,6 +155,7 @@ export default function Claims() {
   // البوابة تستقبل المطالبات حتى بعد انقضاء المدة النظامية؛ التصنيف (داخل/خارج المدة) يتم في النظام الإداري
   function handleSelectCase(c: CaseData) {
     setSelectedCase(c);
+    trackClaimStart(c.id);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -309,12 +315,14 @@ export default function Claims() {
       return;
     }
     setFiles({ ...files, [category]: { file, label } });
+    trackFileUpload(`claim_${category}`);
   }
 
   // Submit
   async function handleSubmit() {
     if (!selectedCase) return;
 
+    trackClaimSubmit(selectedCase.id);
     setSubmitting(true);
     setSubmitProgress(0);
     setSubmitLabel('حفظ بيانات المطالبة...');
@@ -372,7 +380,6 @@ export default function Claims() {
       const savedClaimRef = result.claim_ref || '';
       setClaimRef(savedClaimRef);
       setCaseSeq(result.case_seq ?? null);
-      trackClaimSubmit();
       setSubmitProgress(25);
       setSubmitLabel('تم حفظ البيانات...');
 
@@ -449,6 +456,7 @@ export default function Claims() {
 
       setSubmitProgress(100);
       setSubmitLabel(docsAttachOk ? 'اكتمل الإرسال بنجاح!' : 'تم تسجيل المطالبة');
+      trackClaimSuccess(selectedCase.id, docsAttachOk);
       await new Promise(r => setTimeout(r, 800));
       // تنبيه لطيف: المطالبة سُجّلت لكن تعذّر إرفاق المستندات (لا تُلغى المطالبة)
       if (!docsAttachOk) {

@@ -23,8 +23,7 @@ export default function Footer() {
                 <img
                   src="/images/logo-light.webp"
                   alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
-                  className="w-auto object-contain"
-                  style={{ height: '50px', maxWidth: '200px' }}
+                  className="w-[200px] h-[50px] object-contain"
                   width={200}
                   height={50}
                 />

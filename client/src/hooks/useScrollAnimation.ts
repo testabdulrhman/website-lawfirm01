@@ -4,12 +4,18 @@ interface UseScrollAnimationOptions {
   threshold?: number;
   rootMargin?: string;
   triggerOnce?: boolean;
+  initialVisible?: boolean;
 }
 
 export function useScrollAnimation(options: UseScrollAnimationOptions = {}) {
-  const { threshold = 0.15, rootMargin = "0px", triggerOnce = true } = options;
+  const {
+    threshold = 0.15,
+    rootMargin = "0px",
+    triggerOnce = true,
+    initialVisible = false,
+  } = options;
   const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(initialVisible);
 
   useEffect(() => {
     const element = ref.current;
