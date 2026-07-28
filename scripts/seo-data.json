@@ -8,7 +8,8 @@
     "ogUrl": "https://redwan.sa/bankruptcy/ticket",
     "ogType": "website",
     "ogImage": "",
-    "canonical": "https://redwan.sa/bankruptcy/ticket"
+    "canonical": "https://redwan.sa/bankruptcy/ticket",
+    "noindex": true
   },
   "/bankruptcy-lp": {
     "title": "محامي إفلاس للمدين المتعثّر | حماية نظامية وإعادة جدولة",
@@ -53,8 +54,8 @@
     "noindex": true
   },
   "/": {
-    "title": "محامي إفلاس وأمين إفلاس معتمد | بريدة والقصيم - المشيقح للمحاماة",
-    "description": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس. أمين إفلاس معتمد بترخيص 142147 من لجنة الإفلاس. خبرة +20 عاماً في القضايا التجارية والإفلاس - بريدة، القصيم.",
+    "title": "محامي وأمين إفلاس معتمد في بريدة والقصيم",
+    "description": "شركة محاماة في بريدة بخبرة تتجاوز 20 عاماً، وأمين إفلاس معتمد بترخيص 142147. خدمات قانونية وتجارية وإدارة إجراءات الإفلاس.",
     "keywords": "محامي إفلاس, أمين إفلاس معتمد, محامي بريدة, إدارة إجراءات الإفلاس, محامي القصيم, تسوية وقائية, إعادة تنظيم مالي, تصفية شركات",
     "ogTitle": "شركة عبدالرحمن رضوان المشيقح للمحاماة",
     "ogDesc": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس - بريدة، القصيم. خبرة تتجاوز 20 عاماً في القضايا التجارية والجنائية والعقارية والإفلاس.",
@@ -75,7 +76,7 @@
     "canonical": "https://redwan.sa/about"
   },
   "/team": {
-    "title": "فريقنا - المحامون | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "title": "فريق المحامين | المشيقح للمحاماة",
     "description": "تعرف على فريق المحامين في شركة عبدالرحمن رضوان المشيقح للمحاماة. فريق مؤهل بخبرات متنوعة في القضايا التجارية والجنائية والإفلاس.",
     "keywords": "فريق المحامين، محامي بريدة، عبدالرحمن المشيقح، محامية، أمين إفلاس",
     "ogTitle": "فريقنا - المحامون",
@@ -197,7 +198,7 @@
   },
   "/bankruptcy": {
     "title": "إدارة إجراءات الإفلاس | أمين إفلاس معتمد - ترخيص 142147",
-    "description": "بوابة إجراءات الإفلاس - تقديم مطالبات الدائنين، تتبع حالة المطالبات، والاطلاع على إجراءات التسوية الوقائية وإعادة التنظيم المالي والتصفية. أمين إفلاس معتمد من لجنة الإفلاس.",
+    "description": "إدارة إجراءات الإفلاس وتقديم مطالبات الدائنين ومتابعتها، مع شرح التسوية الوقائية وإعادة التنظيم المالي والتصفية بإشراف أمين معتمد.",
     "keywords": "إجراءات إفلاس, مطالبات دائنين, أمين إفلاس, تسوية وقائية, إعادة تنظيم مالي, تصفية, لجنة الإفلاس",
     "ogTitle": "قسم الإفلاس والتصفية",
     "ogDesc": "إدارة إجراءات الإفلاس والتصفية وإعادة التنظيم. تقديم مطالبات الدائنين وتتبع حالة المطالبات.",
@@ -218,8 +219,8 @@
     "canonical": "https://redwan.sa/bankruptcy/claims"
   },
   "/bankruptcy/ASHYAD-STEEL": {
-    "title": "شركة أشياد ستيل - تصفية | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "شركة متخصصة في تجارة الحديد التجاري والصناعي، تأسست عام 1434هـ في الرياض. بدأت كمؤسسة فردية ثم تحولت إلى شركة ذات مسؤولية محدودة عام 1438هـ. تعمل في استيراد وتوزيع منتجات الحديد المتنوعة مع قاعدة عملاء واسعة وفريق من 20 موظفاً.",
+    "title": "تصفية شركة أشياد ستيل | أمين الإفلاس",
+    "description": "بيانات إجراء تصفية شركة أشياد ستيل المتخصصة في تجارة الحديد بالرياض، ومعلومات الإجراء وأمين الإفلاس وخدمات الدائنين ذات الصلة.",
     "keywords": "إجراء إفلاس, أمين إفلاس, مطالبات دائنين, شركة أشياد ستيل, ASHYAD STEEL, تصفية, إفلاس, تصفية, bankruptcy, liquidation",
     "ogTitle": "شركة أشياد ستيل - تصفية",
     "ogDesc": "شركة متخصصة في تجارة الحديد التجاري والصناعي، تأسست عام 1434هـ في الرياض. بدأت كمؤسسة فردية ثم تحولت إلى شركة ذات مسؤولية محدودة عام 1438هـ. تعمل في استيراد وتوزيع منتجات الحديد المتنوعة مع قاعدة عملاء واسعة وفريق من 20 موظفاً.",
@@ -229,8 +230,8 @@
     "canonical": "https://redwan.sa/bankruptcy/ASHYAD-STEEL"
   },
   "/bankruptcy/tajalriayaa": {
-    "title": "شركة تاج الرعاية الطبي - تصفية | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "شركة متخصصة في مجال الرعاية الطبية والخدمات الصحية.",
+    "title": "تصفية شركة تاج الرعاية الطبي | أمين الإفلاس",
+    "description": "بيانات إجراء تصفية شركة تاج الرعاية الطبي المتخصصة في الخدمات الصحية، ومعلومات القضية وأمين الإفلاس والخدمات المتاحة للدائنين.",
     "keywords": "إجراء إفلاس, أمين إفلاس, مطالبات دائنين, شركة تاج الرعاية الطبي, tajalriayaa, تصفية, إفلاس, تصفية, bankruptcy, liquidation",
     "ogTitle": "شركة تاج الرعاية الطبي - تصفية",
     "ogDesc": "شركة متخصصة في مجال الرعاية الطبية والخدمات الصحية.",
@@ -240,8 +241,8 @@
     "canonical": "https://redwan.sa/bankruptcy/tajalriayaa"
   },
   "/bankruptcy/Planting-for-Contracting": {
-    "title": "شركة المزروعات للمقاولات - تصفية | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "شركة متخصصة في أعمال المقاولات والبناء.",
+    "title": "تصفية شركة المزروعات للمقاولات | أمين الإفلاس",
+    "description": "بيانات إجراء تصفية شركة المزروعات للمقاولات، ومعلومات القضية والمحكمة وأمين الإفلاس والخدمات المرتبطة بمطالبات الدائنين.",
     "keywords": "إجراء إفلاس, أمين إفلاس, مطالبات دائنين, شركة المزروعات للمقاولات, Planting for Contracting, تصفية, إفلاس, تصفية, bankruptcy, liquidation",
     "ogTitle": "شركة المزروعات للمقاولات - تصفية",
     "ogDesc": "شركة متخصصة في أعمال المقاولات والبناء.",
@@ -251,8 +252,8 @@
     "canonical": "https://redwan.sa/bankruptcy/Planting-for-Contracting"
   },
   "/bankruptcy/Hassan-Misfer-Al-Zahrani": {
-    "title": "التصويت على مقترح إعادة التنظيم المالي | شركة حسن مسفر الزهراني وشركاه",
-    "description": "دعوة الدائنين للتصويت إلكترونياً على مقترح إعادة التنظيم المالي لشركة حسن مسفر الزهراني وشركاه (سجل تجاري 2050001522) يوم الأحد 16/08/2026م من الساعة 1:00 حتى 3:00 مساءً.",
+    "title": "تصويت إعادة التنظيم المالي | حسن مسفر الزهراني",
+    "description": "دعوة دائني شركة حسن مسفر الزهراني وشركاه للتصويت إلكترونياً على مقترح إعادة التنظيم المالي يوم 16 أغسطس 2026 من الساعة 1 إلى 3 مساءً.",
     "keywords": "تصويت إعادة تنظيم مالي, شركة حسن مسفر الزهراني وشركاه, مقترح إعادة التنظيم, دائنين, اجتماع دائنين, أمين إفلاس, Hassan Misfer Al-Zahrani, financial reorganization voting",
     "ogTitle": "التصويت على مقترح إعادة التنظيم المالي | شركة حسن مسفر الزهراني وشركاه",
     "ogDesc": "دعوة الدائنين للتصويت إلكترونياً على مقترح إعادة التنظيم المالي لشركة حسن مسفر الزهراني وشركاه يوم 16/08/2026م.",
@@ -262,8 +263,8 @@
     "canonical": "https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani"
   },
   "/bankruptcy/Al-Anjaz-Hotel-Village": {
-    "title": "شركة قرية الأنجاز الفندقية - تصفية | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "شركة متخصصة في قطاع الضيافة والخدمات الفندقية.",
+    "title": "تصفية شركة قرية الأنجاز الفندقية | أمين الإفلاس",
+    "description": "بيانات إجراء تصفية شركة قرية الأنجاز الفندقية العاملة في قطاع الضيافة، ومعلومات القضية والمحكمة وأمين الإفلاس وخدمات الدائنين.",
     "keywords": "إجراء إفلاس, أمين إفلاس, مطالبات دائنين, شركة قرية الأنجاز الفندقية, Al-Anjaz Hotel Village, تصفية, إفلاس, تصفية, bankruptcy, liquidation",
     "ogTitle": "شركة قرية الأنجاز الفندقية - تصفية",
     "ogDesc": "شركة متخصصة في قطاع الضيافة والخدمات الفندقية.",
@@ -273,8 +274,8 @@
     "canonical": "https://redwan.sa/bankruptcy/Al-Anjaz-Hotel-Village"
   },
   "/bankruptcy/Arcon-Gulf-Contracting": {
-    "title": "شركة أركن الخليج للمقاولات - تصفية | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "شركة متخصصة في أعمال المقاولات والإنشاءات.",
+    "title": "تصفية شركة أركن الخليج للمقاولات | أمين الإفلاس",
+    "description": "بيانات إجراء تصفية شركة أركن الخليج للمقاولات، ومعلومات القضية والمحكمة وأمين الإفلاس والخدمات المرتبطة بمطالبات الدائنين.",
     "keywords": "إجراء إفلاس, أمين إفلاس, مطالبات دائنين, شركة أركن الخليج للمقاولات, Arcon Gulf Contracting Co, تصفية, إفلاس, تصفية, bankruptcy, liquidation",
     "ogTitle": "شركة أركن الخليج للمقاولات - تصفية",
     "ogDesc": "شركة متخصصة في أعمال المقاولات والإنشاءات.",
@@ -284,7 +285,7 @@
     "canonical": "https://redwan.sa/bankruptcy/Arcon-Gulf-Contracting"
   },
   "/blog": {
-    "title": "المدونة القانونية | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "title": "المدونة القانونية | المشيقح للمحاماة",
     "description": "مقالات ودراسات قانونية متخصصة في نظام الإفلاس السعودي، التسوية الوقائية، إعادة التنظيم المالي، وحقوق الدائنين والمدينين.",
     "keywords": "مدونة قانونية, نظام الإفلاس السعودي, مقالات قانونية, استشارات قانونية, التسوية الوقائية",
     "ogTitle": "المدونة القانونية | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
@@ -439,7 +440,7 @@
     "articleSection": "الإفلاس"
   },
   "/blog/إعادة-التنظيم-المالي-في-نظام-الإفلاس-السعودي": {
-    "title": "إعادة التنظيم المالي في نظام الإفلاس السعودي | دليل شامل 2024",
+    "title": "إعادة التنظيم المالي في نظام الإفلاس السعودي",
     "description": "دليل شامل عن إعادة التنظيم المالي: الشروط، الإجراءات، حقوق الدائنين والمدين، ودور أمين الإفلاس. مع أمثلة عملية من واقع القضايا.",
     "keywords": "إعادة التنظيم المالي, نظام الإفلاس السعودي, إعادة هيكلة ديون, أمين إفلاس, خطة إعادة تنظيم",
     "ogTitle": "إعادة التنظيم المالي في نظام الإفلاس السعودي: الإجراءات والشروط | شركة رضوان للمحاماة",
@@ -558,7 +559,7 @@
     "canonical": "https://redwan.sa/contact"
   },
   "/careers": {
-    "title": "انضم إلينا | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "title": "وظائف قانونية في بريدة | المشيقح للمحاماة",
     "description": "انضم إلى فريق شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس في بريدة. تعرّف على بيئة العمل وقدّم طلب التوظيف وأرفق سيرتك الذاتية.",
     "keywords": "وظائف محاماة, توظيف محامين, انضم إلينا, وظائف بريدة, وظائف القصيم",
     "ogTitle": "انضم إلينا",
@@ -569,7 +570,7 @@
     "canonical": "https://redwan.sa/careers"
   },
   "/careers/complete": {
-    "title": "استكمال مستندات طلب التوظيف | شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "title": "استكمال مستندات طلب التوظيف",
     "description": "صفحة خاصة لاستكمال مستندات طلب التوظيف المقدَّم لدى شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس.",
     "keywords": "استكمال مستندات, طلب توظيف, السيرة الذاتية",
     "ogTitle": "استكمال مستندات طلب التوظيف",
@@ -577,10 +578,11 @@
     "ogUrl": "https://redwan.sa/careers/complete",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/careers/complete"
+    "canonical": "https://redwan.sa/careers/complete",
+    "noindex": true
   },
   "/privacy": {
-    "title": "سياسة الخصوصية | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "title": "سياسة الخصوصية | المشيقح للمحاماة",
     "description": "سياسة الخصوصية وحماية البيانات الشخصية لشركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
     "keywords": "سياسة الخصوصية, حماية البيانات, شركة رضوان",
     "ogTitle": "سياسة الخصوصية | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
@@ -591,7 +593,7 @@
     "canonical": "https://redwan.sa/privacy"
   },
   "/terms": {
-    "title": "الشروط والأحكام | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "title": "الشروط والأحكام | المشيقح للمحاماة",
     "description": "الشروط والأحكام لاستخدام موقع شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
     "keywords": "الشروط والأحكام, شروط الاستخدام, شركة رضوان",
     "ogTitle": "الشروط والأحكام | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
@@ -602,7 +604,7 @@
     "canonical": "https://redwan.sa/terms"
   },
   "/faq": {
-    "title": "الأسئلة الشائعة | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "title": "الأسئلة الشائعة | المشيقح للمحاماة",
     "description": "إجابات على أكثر الأسئلة شيوعاً حول خدماتنا القانونية: الاستشارات، التوكيل، الإفلاس، التوثيق، والتسجيل العيني.",
     "keywords": "أسئلة شائعة، محامي، استشارة قانونية، توكيل محامي، إفلاس، توثيق",
     "ogTitle": "الأسئلة الشائعة",
@@ -613,7 +615,7 @@
     "canonical": "https://redwan.sa/faq"
   },
   "/sitemap": {
-    "title": "خريطة الموقع | شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "title": "خريطة الموقع | المشيقح للمحاماة",
     "description": "خريطة موقع شركة عبدالرحمن رضوان المشيقح للمحاماة - جميع الصفحات والخدمات",
     "keywords": "محاماة بريدة, إدارة إجراءات الإفلاس, استشارات قانونية, قضايا تجارية, نزاعات عقارية, تحكيم تجاري, محامي القصيم",
     "ogTitle": "خريطة الموقع",
@@ -770,8 +772,8 @@
     "noindex": true
   },
   "/cases-guide": {
-    "title": "دليل الدعاوى القضائية | تصنيفات منصة ناجز - شركة المشيقح للمحاماة",
-    "description": "دليل شامل ومحدّث لجميع تصنيفات الدعاوى القضائية في منصة ناجز: الأحوال الشخصية، التجارية، العمالية، الجزائية، العامة، التنفيذ، والإنهاءات. ابحث عن نوع دعواك واعرف الطلبات المتاحة.",
+    "title": "دليل الدعاوى القضائية وتصنيفات ناجز",
+    "description": "دليل محدث لتصنيفات الدعاوى في منصة ناجز، يشمل الأحوال الشخصية والتجارية والعمالية والجزائية والتنفيذ والإنهاءات مع البحث حسب النوع.",
     "keywords": "دليل الدعاوى القضائية, تصنيفات ناجز, أنواع الدعاوى, المحكمة التجارية, الأحوال الشخصية, الدعاوى العمالية, الإفلاس, التنفيذ, محامي بريدة",
     "ogTitle": "دليل الدعاوى القضائية | تصنيفات منصة ناجز",
     "ogDesc": "دليل شامل لجميع تصنيفات الدعاوى القضائية في منصة ناجز. ابحث عن نوع دعواك واعرف الطلبات المتاحة.",
@@ -814,8 +816,8 @@
     "canonical": "https://redwan.sa/en/licenses"
   },
   "/en": {
-    "title": "Abdulrahman Redwan Al-Mushaiqi Law Firm | Bankruptcy & Legal Services",
-    "description": "A leading Saudi law firm specializing in commercial, criminal, real estate litigation and bankruptcy management. Over 20 years of family legal expertise in Buraydah, Qassim.",
+    "title": "Saudi Law Firm & Bankruptcy Trustee | Redwan Law",
+    "description": "Saudi law firm in Buraydah with over 20 years of experience in commercial, criminal and real estate litigation and licensed bankruptcy management.",
     "keywords": "law firm Buraydah, bankruptcy management Saudi Arabia, legal consultation, commercial litigation, real estate disputes, Qassim lawyer",
     "ogImage": "https://redwan.sa/images/hero-law-firm.webp",
     "ogUrl": "https://redwan.sa/en",
@@ -837,7 +839,7 @@
   },
   "/en/services": {
     "title": "Legal Services | Redwan Law Firm",
-    "description": "Comprehensive legal services including commercial litigation, criminal defense, real estate disputes, bankruptcy management, arbitration, and legal consultation.",
+    "description": "Legal services in commercial litigation, criminal defense, real estate disputes, bankruptcy management, arbitration and legal consultation.",
     "keywords": "legal services, commercial litigation, criminal defense, real estate law, bankruptcy, arbitration, legal consultation Saudi Arabia",
     "ogUrl": "https://redwan.sa/en/services",
     "canonical": "/en/services"
@@ -872,7 +874,7 @@
   },
   "/en/services/bankruptcy": {
     "title": "Bankruptcy & Insolvency Management | Redwan Law Firm",
-    "description": "Licensed bankruptcy trustee services including preventive settlement, financial reorganization, liquidation, and creditor claims management under Saudi Bankruptcy Law.",
+    "description": "Licensed trustee services for preventive settlement, financial reorganization, liquidation and creditor claims under Saudi Bankruptcy Law.",
     "keywords": "bankruptcy management, insolvency, bankruptcy trustee, preventive settlement, financial reorganization, liquidation Saudi Arabia",
     "ogUrl": "https://redwan.sa/en/services/bankruptcy",
     "canonical": "/en/services/bankruptcy"
@@ -934,7 +936,7 @@
   },
   "/en/terms": {
     "title": "Terms & Conditions | Redwan Law Firm",
-    "description": "Terms and conditions governing the use of our website and services.",
+    "description": "Read the terms and conditions governing access to the Redwan Law Firm website, its legal information, online services and user responsibilities.",
     "ogUrl": "https://redwan.sa/en/terms",
     "canonical": "/en/terms"
   },
@@ -945,6 +947,72 @@
     "ogUrl": "https://redwan.sa/en/bankruptcy",
     "canonical": "/en/bankruptcy"
   },
+  "/en/bankruptcy/ASHYAD-STEEL": {
+    "title": "ASHYAD STEEL Company – Liquidation | Redwan Law Firm",
+    "description": "Liquidation proceeding for ASHYAD STEEL Company, a Riyadh-based commercial and industrial iron trading company established in 2013.",
+    "keywords": "ASHYAD STEEL liquidation, Saudi bankruptcy, bankruptcy trustee, creditor claims",
+    "ogTitle": "ASHYAD STEEL Company – Liquidation",
+    "ogDesc": "Liquidation proceeding for ASHYAD STEEL Company in Riyadh.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/ASHYAD-STEEL",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/bankruptcy/ASHYAD-STEEL"
+  },
+  "/en/bankruptcy/tajalriayaa": {
+    "title": "Taj Al-Riaya Medical Company – Liquidation | Redwan Law Firm",
+    "description": "Liquidation proceeding for Taj Al-Riaya Medical Company, a company specialized in medical care and health services.",
+    "keywords": "Taj Al-Riaya Medical liquidation, Saudi bankruptcy, bankruptcy trustee, creditor claims",
+    "ogTitle": "Taj Al-Riaya Medical Company – Liquidation",
+    "ogDesc": "Liquidation proceeding for Taj Al-Riaya Medical Company.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/tajalriayaa",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/bankruptcy/tajalriayaa"
+  },
+  "/en/bankruptcy/Planting-for-Contracting": {
+    "title": "Planting for Contracting – Liquidation | Redwan Law Firm",
+    "description": "Liquidation proceeding for Planting for Contracting Company, a Riyadh company specialized in contracting, construction and building services.",
+    "keywords": "Planting for Contracting liquidation, Saudi bankruptcy, bankruptcy trustee, creditor claims",
+    "ogTitle": "Planting for Contracting – Liquidation",
+    "ogDesc": "Liquidation proceeding for Planting for Contracting Company.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/Planting-for-Contracting",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/bankruptcy/Planting-for-Contracting"
+  },
+  "/en/bankruptcy/Hassan-Misfer-Al-Zahrani": {
+    "title": "Financial Reorganization Vote | Hassan Misfer Al-Zahrani",
+    "description": "Creditor invitation to vote electronically on the financial reorganization proposal for Hassan Misfer Al-Zahrani & Partners Company on 16 August 2026.",
+    "keywords": "Hassan Misfer Al-Zahrani, financial reorganization vote, creditor meeting, Saudi bankruptcy trustee",
+    "ogTitle": "Financial Reorganization Vote | Hassan Misfer Al-Zahrani",
+    "ogDesc": "Creditor invitation to vote on the financial reorganization proposal on 16 August 2026.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/Hassan-Misfer-Al-Zahrani",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/bankruptcy/Hassan-Misfer-Al-Zahrani"
+  },
+  "/en/bankruptcy/Al-Anjaz-Hotel-Village": {
+    "title": "Al-Anjaz Hotel Village – Liquidation | Redwan Law Firm",
+    "description": "Liquidation proceeding for Al-Anjaz Hotel Village Company, a Riyadh company specialized in hospitality and hotel services.",
+    "keywords": "Al-Anjaz Hotel Village liquidation, Saudi bankruptcy, bankruptcy trustee, creditor claims",
+    "ogTitle": "Al-Anjaz Hotel Village – Liquidation",
+    "ogDesc": "Liquidation proceeding for Al-Anjaz Hotel Village Company.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/Al-Anjaz-Hotel-Village",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/bankruptcy/Al-Anjaz-Hotel-Village"
+  },
+  "/en/bankruptcy/Arcon-Gulf-Contracting": {
+    "title": "Arcon Gulf Contracting – Liquidation | Redwan Law Firm",
+    "description": "Liquidation proceeding for Arcon Gulf Contracting Co, a Dammam company specialized in contracting and construction works.",
+    "keywords": "Arcon Gulf Contracting liquidation, Saudi bankruptcy, bankruptcy trustee, creditor claims",
+    "ogTitle": "Arcon Gulf Contracting – Liquidation",
+    "ogDesc": "Liquidation proceeding for Arcon Gulf Contracting Co.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/Arcon-Gulf-Contracting",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/bankruptcy/Arcon-Gulf-Contracting"
+  },
   "/en/bankruptcy/procedures": {
     "title": "Bankruptcy Procedures | Redwan Law Firm",
     "description": "Complete guide to the seven bankruptcy procedures under Saudi Bankruptcy Law including preventive settlement, financial reorganization, and liquidation.",
@@ -954,33 +1022,33 @@
   },
   "/en/sitemap": {
     "title": "Sitemap | Redwan Law Firm",
-    "description": "Complete sitemap of Abdulrahman Redwan Al-Mushaiqi Law Firm website.",
+    "description": "Browse all pages, legal services, bankruptcy cases, licenses and contact information available on the Redwan Law Firm website.",
     "ogUrl": "https://redwan.sa/en/sitemap",
     "canonical": "/en/sitemap"
   },
   "/premium-residency": {
-    "title": "الإقامة المميزة السعودية | محامي إقامة مميزة - شركة المشيقح للمحاماة",
+    "title": "الإقامة المميزة السعودية | محامي إقامة مميزة",
     "description": "خدمات قانونية متكاملة للحصول على الإقامة المميزة في السعودية. نساعدك في اختيار المسار الأنسب وتجهيز الملف وتقديم الطلب. 7 مسارات متاحة.",
     "keywords": "إقامة مميزة, إقامة مميزة السعودية, محامي إقامة مميزة, مسارات الإقامة المميزة, إقامة دائمة السعودية",
     "ogUrl": "https://redwan.sa/premium-residency",
     "canonical": "/premium-residency"
   },
   "/en/premium-residency": {
-    "title": "Saudi Premium Residency | Premium Residency Lawyer - Almushiqeh Law Firm",
-    "description": "Comprehensive legal services for obtaining Saudi Premium Residency. We help you choose the right track, prepare documents, and submit your application. 7 tracks available.",
+    "title": "Saudi Premium Residency Lawyer | Redwan Law",
+    "description": "Legal support for Saudi Premium Residency, including track selection, document preparation and application submission across all seven available tracks.",
     "keywords": "premium residency saudi arabia, premium residency lawyer, saudi green card, permanent residency saudi, premium residency tracks",
     "ogUrl": "https://redwan.sa/en/premium-residency",
     "canonical": "/en/premium-residency"
   },
   "/ur/premium-residency": {
-    "title": "سعودی پریمیم ریزیڈنسی | پریمیم ریزیڈنسی وکیل - المشیقح لا فرم",
+    "title": "سعودی پریمیم ریزیڈنسی وکیل | المشیقح لا فرم",
     "description": "سعودی عرب کی پریمیم ریزیڈنسی حاصل کرنے کے لیے مکمل قانونی خدمات۔ ہم آپ کو صحیح ٹریک منتخب کرنے، دستاویزات تیار کرنے اور درخواست جمع کرانے میں مدد کرتے ہیں۔",
     "keywords": "پریمیم ریزیڈنسی سعودی عرب, پریمیم ریزیڈنسی وکیل, سعودی گرین کارڈ, مستقل اقامت سعودی",
     "ogUrl": "https://redwan.sa/ur/premium-residency",
     "canonical": "/ur/premium-residency"
   },
   "/locations/riyadh": {
-    "title": "محامي في الرياض | شركة المشيقح للمحاماة - استشارات قانونية متخصصة",
+    "title": "محامي في الرياض | المشيقح للمحاماة",
     "description": "محامي متخصص في الرياض. خدمات قانونية شاملة تشمل القضايا التجارية، الإفلاس، النزاعات العقارية، والتحكيم. ترخيص وزارة العدل رقم 26/129. احجز استشارتك الآن.",
     "keywords": "محامي الرياض, محامي في الرياض, استشارات قانونية الرياض, مكتب محاماة منطقة الرياض",
     "ogTitle": "محامي في الرياض",
@@ -991,8 +1059,8 @@
     "canonical": "https://redwan.sa/locations/riyadh"
   },
   "/en/locations/riyadh": {
-    "title": "Lawyer in Riyadh | Al-Mushaiqeh Law Firm - Specialized Legal Services",
-    "description": "Specialized lawyer in Riyadh. Comprehensive legal services including commercial cases, bankruptcy, real estate disputes, and arbitration. Ministry of Justice License No. 26/129.",
+    "title": "Lawyer in Riyadh | Redwan Law Firm",
+    "description": "Legal services in Riyadh for commercial cases, bankruptcy, real estate disputes and arbitration. Licensed by the Saudi Ministry of Justice.",
     "keywords": "lawyer Riyadh, law firm Riyadh, legal services Riyadh, Saudi lawyer",
     "ogTitle": "Lawyer in Riyadh",
     "ogDesc": "Specialized lawyer in Riyadh. Comprehensive legal services including commercial cases, bankruptcy, real estate disputes, and arbitration. Ministry of Justice License No. 26/129.",
@@ -1002,7 +1070,7 @@
     "canonical": "https://redwan.sa/en/locations/riyadh"
   },
   "/locations/jeddah": {
-    "title": "محامي في جدة | شركة المشيقح للمحاماة - خدمات قانونية تجارية وبحرية",
+    "title": "محامي في جدة | المشيقح للمحاماة",
     "description": "محامي متخصص في جدة. خبرة في القضايا التجارية والبحرية والإفلاس والنزاعات العقارية. ترخيص وزارة العدل رقم 26/129. استشارة قانونية احترافية.",
     "keywords": "محامي جدة, محامي في جدة, استشارات قانونية جدة, مكتب محاماة منطقة مكة المكرمة",
     "ogTitle": "محامي في جدة",
@@ -1013,7 +1081,7 @@
     "canonical": "https://redwan.sa/locations/jeddah"
   },
   "/en/locations/jeddah": {
-    "title": "Lawyer in Jeddah | Al-Mushaiqeh Law Firm - Commercial & Maritime Legal Services",
+    "title": "Lawyer in Jeddah | Redwan Law Firm",
     "description": "Specialized lawyer in Jeddah. Expertise in commercial, maritime, bankruptcy cases and real estate disputes. Ministry of Justice License No. 26/129.",
     "keywords": "lawyer Jeddah, law firm Jeddah, legal services Jeddah, Saudi lawyer",
     "ogTitle": "Lawyer in Jeddah",
@@ -1036,7 +1104,7 @@
   },
   "/en/locations/buraydah": {
     "title": "Lawyer in Buraydah | Al-Mushaiqeh Law Firm - Headquarters",
-    "description": "Lawyer in Buraydah - Headquarters of Al-Mushaiqeh Law Firm. 20+ years experience in commercial, bankruptcy, and criminal cases. King Abdullah Road, Al-Ufuq District.",
+    "description": "Buraydah headquarters with over 20 years of experience in commercial, bankruptcy and criminal cases. Located on King Abdullah Road, Al-Ufuq.",
     "keywords": "lawyer Buraydah, law firm Buraydah, legal services Buraydah, Saudi lawyer",
     "ogTitle": "Lawyer in Buraydah",
     "ogDesc": "Lawyer in Buraydah - Headquarters of Al-Mushaiqeh Law Firm. 20+ years experience in commercial, bankruptcy, and criminal cases. King Abdullah Road, Al-Ufuq District.",
@@ -1046,7 +1114,7 @@
     "canonical": "https://redwan.sa/en/locations/buraydah"
   },
   "/locations/dammam": {
-    "title": "محامي في الدمام | شركة المشيقح للمحاماة - قضايا تجارية ونفطية",
+    "title": "محامي في الدمام | المشيقح للمحاماة",
     "description": "محامي متخصص في الدمام والمنطقة الشرقية. خبرة في القضايا التجارية والنفطية والإفلاس والعقود الصناعية. ترخيص وزارة العدل رقم 26/129.",
     "keywords": "محامي الدمام, محامي في الدمام, استشارات قانونية الدمام, مكتب محاماة المنطقة الشرقية",
     "ogTitle": "محامي في الدمام",
@@ -1057,8 +1125,8 @@
     "canonical": "https://redwan.sa/locations/dammam"
   },
   "/en/locations/dammam": {
-    "title": "Lawyer in Dammam | Al-Mushaiqeh Law Firm - Commercial & Industrial Cases",
-    "description": "Specialized lawyer in Dammam and Eastern Province. Expertise in commercial, oil & gas, bankruptcy cases and industrial contracts. Ministry of Justice License No. 26/129.",
+    "title": "Lawyer in Dammam | Redwan Law Firm",
+    "description": "Legal services in Dammam and the Eastern Province for commercial, oil and gas, bankruptcy matters and industrial contracts.",
     "keywords": "lawyer Dammam, law firm Dammam, legal services Dammam, Saudi lawyer",
     "ogTitle": "Lawyer in Dammam",
     "ogDesc": "Specialized lawyer in Dammam and Eastern Province. Expertise in commercial, oil & gas, bankruptcy cases and industrial contracts. Ministry of Justice License No. 26/129.",
@@ -1079,8 +1147,8 @@
     "canonical": "https://redwan.sa/locations/hail"
   },
   "/en/locations/hail": {
-    "title": "Lawyer in Hail | Al-Mushaiqeh Law Firm - Comprehensive Legal Services",
-    "description": "Specialized lawyer in Hail. Legal services including commercial, criminal, real estate cases and bankruptcy. Ministry of Justice License No. 26/129. Close to you in Hail region.",
+    "title": "Lawyer in Hail | Redwan Law Firm",
+    "description": "Legal services in Hail for commercial, criminal and real estate cases and bankruptcy, provided by a Saudi Ministry of Justice licensed firm.",
     "keywords": "lawyer Hail, law firm Hail, legal services Hail, Saudi lawyer",
     "ogTitle": "Lawyer in Hail",
     "ogDesc": "Specialized lawyer in Hail. Legal services including commercial, criminal, real estate cases and bankruptcy. Ministry of Justice License No. 26/129. Close to you in Hail region.",
@@ -1091,7 +1159,7 @@
   },
   "/en/services/documentation": {
     "title": "Documentation & Notarization | Al-Mushaiqeh Law Firm",
-    "description": "Official notarization and contract documentation services under Ministry of Justice license No. 45/57029. Drafting, reviewing and authenticating contracts and legal documents in Saudi Arabia.",
+    "description": "Notarization and contract documentation under Ministry of Justice license 45/57029, including drafting, review and authentication.",
     "keywords": "notarization Saudi Arabia, contract documentation, legal drafting, notary lawyer, authenticate contracts",
     "ogTitle": "Documentation & Notarization",
     "ogDesc": "Official notarization and contract documentation services under Ministry of Justice license No. 45/57029.",

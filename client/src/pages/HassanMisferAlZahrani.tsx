@@ -110,11 +110,14 @@ export default function HassanMisferAlZahrani() {
 
           {/* Row-by-row bilingual content */}
           <div className="space-y-0">
-            {/* Title */}
-            <Row
-              ar={<span className="font-bold text-base">إعلان التصويت على مقترح إعادة التنظيم المالي</span>}
-              en={<span className="font-bold text-sm">Notice of Voting on the Financial Reorganization Proposal</span>}
-            />
+            <h1 className="grid grid-cols-2 gap-6 py-4 border-b border-gray-200">
+              <span className="text-right font-bold text-lg text-gray-900" dir="rtl">
+                إعلان التصويت على مقترح إعادة التنظيم المالي
+              </span>
+              <span className="text-left font-bold text-base text-gray-700" dir="ltr" lang="en">
+                Notice of Voting on the Financial Reorganization Proposal
+              </span>
+            </h1>
             <Row
               ar="شركة حسن مسفر الزهراني وشركاه (سجل تجاري رقم 2050001522)."
               en="Hassan Misfer Al-Zahrani & Partners Company Commercial Registration No. (2050001522)."

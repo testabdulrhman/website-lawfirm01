@@ -27,37 +27,41 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/ASHYAD-STEEL" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/ASHYAD-STEEL" />
   </url>
   <url>
     <loc>https://redwan.sa/bankruptcy/Al-Anjaz-Hotel-Village</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/Al-Anjaz-Hotel-Village" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/Al-Anjaz-Hotel-Village" />
   </url>
   <url>
     <loc>https://redwan.sa/bankruptcy/Arcon-Gulf-Contracting</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/Arcon-Gulf-Contracting" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/Arcon-Gulf-Contracting" />
   </url>
   <url>
     <loc>https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/Hassan-Misfer-Al-Zahrani" />
   </url>
   <url>
     <loc>https://redwan.sa/bankruptcy/Planting-for-Contracting</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/Planting-for-Contracting" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/Planting-for-Contracting" />
   </url>
   <url>
     <loc>https://redwan.sa/bankruptcy/claims</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/claims" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/claims" />
   </url>
   <url>
     <loc>https://redwan.sa/bankruptcy/procedures</loc>
@@ -113,6 +117,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/tajalriayaa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/tajalriayaa" />
   </url>
   <url>
     <loc>https://redwan.sa/blog</loc>
@@ -243,6 +248,7 @@
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/premium-residency" />
     <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/premium-residency" />
+    <xhtml:link rel="alternate" hreflang="ur" href="https://redwan.sa/ur/premium-residency" />
   </url>
   <url>
     <loc>https://redwan.sa/privacy</loc>
@@ -371,11 +377,46 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy" />
   </url>
   <url>
-    <loc>https://redwan.sa/en/bankruptcy/claims</loc>
+    <loc>https://redwan.sa/en/bankruptcy/ASHYAD-STEEL</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/claims" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/claims" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/ASHYAD-STEEL" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/ASHYAD-STEEL" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/en/bankruptcy/Al-Anjaz-Hotel-Village</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/Al-Anjaz-Hotel-Village" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/Al-Anjaz-Hotel-Village" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/en/bankruptcy/Arcon-Gulf-Contracting</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/Arcon-Gulf-Contracting" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/Arcon-Gulf-Contracting" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/en/bankruptcy/Hassan-Misfer-Al-Zahrani</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/Hassan-Misfer-Al-Zahrani" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/en/bankruptcy/Planting-for-Contracting</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/Planting-for-Contracting" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/Planting-for-Contracting" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/en/bankruptcy/tajalriayaa</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/tajalriayaa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/tajalriayaa" />
   </url>
   <url>
     <loc>https://redwan.sa/en/bankruptcy/procedures</loc>
@@ -453,6 +494,7 @@
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/premium-residency" />
     <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/premium-residency" />
+    <xhtml:link rel="alternate" hreflang="ur" href="https://redwan.sa/ur/premium-residency" />
   </url>
   <url>
     <loc>https://redwan.sa/en/privacy</loc>
@@ -558,5 +600,13 @@
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/terms" />
     <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/terms" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/ur/premium-residency</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/premium-residency" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/premium-residency" />
+    <xhtml:link rel="alternate" hreflang="ur" href="https://redwan.sa/ur/premium-residency" />
   </url>
 </urlset>

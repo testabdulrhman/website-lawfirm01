@@ -156,8 +156,10 @@ function applySEO(html, seo, route) {
   const enUrl = `${SITE}${enPath}`;
   // Only declare an alternate for a language that is actually prerendered —
   // pointing hreflang at a 404 is worse than omitting it.
-  const hasAr = arPath === '/' ? SEO_DATA['/'] !== undefined : SEO_DATA[arPath] !== undefined;
-  const hasEn = SEO_DATA[enPath] !== undefined;
+  const arSeo = arPath === '/' ? SEO_DATA['/'] : SEO_DATA[arPath];
+  const enSeo = SEO_DATA[enPath];
+  const hasAr = arSeo !== undefined && arSeo.noindex !== true;
+  const hasEn = enSeo !== undefined && enSeo.noindex !== true;
   const hreflangLinks = [];
   if (hasAr) hreflangLinks.push(`<link rel="alternate" hreflang="ar" href="${esc(arUrl)}" />`);
   if (hasEn) hreflangLinks.push(`<link rel="alternate" hreflang="en" href="${esc(enUrl)}" />`);

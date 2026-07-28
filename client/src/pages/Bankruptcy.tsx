@@ -10,7 +10,7 @@ const bankruptcyCases = [
   { slug: "ASHYAD-STEEL", nameAr: "شركة أشياد ستيل", nameEn: "ASHYAD STEEL Company", type: "تصفية", typeEn: "Liquidation" },
   { slug: "tajalriayaa", nameAr: "شركة تاج الرعاية الطبي", nameEn: "Taj Al-Riaya Medical Company", type: "تصفية", typeEn: "Liquidation" },
   { slug: "Planting-for-Contracting", nameAr: "شركة المزروعات للمقاولات", nameEn: "Planting for Contracting Company", type: "تصفية", typeEn: "Liquidation" },
-  { slug: "Hassan-Misfer-Al-Zahrani", nameAr: "شركة حسن مسفر الزهراني وشركاه", nameEn: "Hassan Misfer Al-Zahrani & Partners", type: "تصفية", typeEn: "Liquidation" },
+  { slug: "Hassan-Misfer-Al-Zahrani", nameAr: "شركة حسن مسفر الزهراني وشركاه", nameEn: "Hassan Misfer Al-Zahrani & Partners", type: "إعادة التنظيم المالي", typeEn: "Financial Reorganization" },
   { slug: "Al-Anjaz-Hotel-Village", nameAr: "شركة قرية الأنجاز الفندقية", nameEn: "Al-Anjaz Hotel Village Company", type: "تصفية", typeEn: "Liquidation" },
   { slug: "Arcon-Gulf-Contracting", nameAr: "شركة أركن الخليج للمقاولات", nameEn: "Arcon Gulf Contracting Co", type: "تصفية", typeEn: "Liquidation" },
 ];
@@ -68,8 +68,7 @@ export default function Bankruptcy() {
       </section>
 
       {/* رابط إجراءات الإفلاس السبعة */}
-      {lang === "ar" && (
-        <section className="py-10 md:py-12 bg-white border-b border-[var(--color-border)]">
+      <section className="py-10 md:py-12 bg-white border-b border-[var(--color-border)]">
           <div className="container mx-auto px-5 md:px-4 lg:px-8">
             <Link
               href={lp("/bankruptcy/procedures")}
@@ -77,20 +76,23 @@ export default function Bankruptcy() {
             >
               <div>
                 <h2 className="font-display text-xl md:text-2xl font-bold text-white mb-2">
-                  ما هي إجراءات الإفلاس السبعة في النظام السعودي؟
+                  {lang === "ar"
+                    ? "ما هي إجراءات الإفلاس السبعة في النظام السعودي؟"
+                    : "What are the seven bankruptcy procedures in Saudi law?"}
                 </h2>
                 <p className="font-body text-sm md:text-base text-white/60 max-w-2xl leading-relaxed">
-                  تعرّف على كل إجراء على حدة — التسوية الوقائية وإعادة التنظيم المالي والتصفية والتصفية الإدارية — بصفحات مفصّلة وأسئلة شائعة.
+                  {lang === "ar"
+                    ? "تعرّف على كل إجراء على حدة — التسوية الوقائية وإعادة التنظيم المالي والتصفية والتصفية الإدارية — بصفحات مفصّلة وأسئلة شائعة."
+                    : "Explore preventive settlement, financial reorganization, liquidation and administrative liquidation under Saudi Bankruptcy Law."}
                 </p>
               </div>
               <span className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm flex-shrink-0">
-                <span>استكشف الإجراءات</span>
+                <span>{lang === "ar" ? "استكشف الإجراءات" : "Explore procedures"}</span>
                 <ArrowIcon size={16} className="group-hover:translate-x-1 transition-transform" />
               </span>
             </Link>
           </div>
-        </section>
-      )}
+      </section>
 
       {/* Quick Actions */}
       <section className="py-12 md:py-16 bg-[var(--color-cream)]">

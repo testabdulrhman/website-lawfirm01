@@ -8,12 +8,27 @@ import type { Language } from "@/contexts/LanguageContext";
  */
 export function localePath(path: string, lang: Language): string {
   if (lang === "ar") return path;
-  const prefix = lang === "en" ? "/en" : "/ur";
-  // For root path
-  if (path === "/") return prefix;
+
   // Ensure no double prefix
   if (path.startsWith("/en") || path.startsWith("/ur")) return path;
-  return `${prefix}${path}`;
+
+  if (lang === "ur") {
+    // Urdu currently has two complete, indexable experiences only. Linking the
+    // remaining navigation to Arabic prevents hundreds of internal 404s.
+    const urduRoutes = ["/premium-residency", "/bankruptcy/creditor"];
+    return urduRoutes.includes(path) ? `/ur${path}` : path;
+  }
+
+  // These pages do not yet have distinct English content. Keep their links on
+  // the complete Arabic versions instead of generating thin/duplicate pages.
+  const arabicOnlyExactRoutes = new Set(["/careers", "/cases-guide", "/legal-dictionary"]);
+  const isArabicOnlyDetail =
+    path.startsWith("/blog/") ||
+    path.startsWith("/bankruptcy/procedures/");
+
+  if (arabicOnlyExactRoutes.has(path) || isArabicOnlyDetail) return path;
+
+  return path === "/" ? "/en" : `/en${path}`;
 }
 
 /**

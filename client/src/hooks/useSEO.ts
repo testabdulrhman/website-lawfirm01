@@ -13,6 +13,9 @@ interface SEOProps {
   fullTitle?: boolean;
 }
 
+const SITE_NAME_AR = "المشيقح للمحاماة";
+const SITE_NAME_EN = "Redwan Law Firm";
+const SITE_NAME_UR = "المشیقح لا فرم";
 const SITE_NAME = "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس";
 const BASE_URL = "https://redwan.sa";
 
@@ -30,13 +33,23 @@ export function useSEO({
   const [location] = useLocation();
   // Auto-detect language from current path for canonical
   const isEnglishPage = location === "/en" || location.startsWith("/en/");
+  const isUrduPage = location === "/ur" || location.startsWith("/ur/");
   const effectiveCanonical = canonical
-    ? (isEnglishPage && !canonical.startsWith("/en") ? (canonical === "/" ? "/en" : `/en${canonical}`) : canonical)
+    ? (
+        isEnglishPage && !canonical.startsWith("/en")
+          ? (canonical === "/" ? "/en" : `/en${canonical}`)
+          : isUrduPage && !canonical.startsWith("/ur")
+            ? (canonical === "/" ? "/ur" : `/ur${canonical}`)
+            : canonical
+      )
     : undefined;
+  const siteName = isEnglishPage ? SITE_NAME_EN : isUrduPage ? SITE_NAME_UR : SITE_NAME_AR;
+  const formattedTitle =
+    fullTitle || title.includes("|") ? title : `${title} | ${siteName}`;
 
   useEffect(() => {
     // Title
-    document.title = fullTitle ? title : `${title} | ${SITE_NAME}`;
+    document.title = formattedTitle;
 
     // Meta description
     setMeta("description", description);
@@ -54,10 +67,10 @@ export function useSEO({
     }
 
     // Open Graph
-    setMeta("og:title", fullTitle ? title : `${title} | ${SITE_NAME}`, "property");
+    setMeta("og:title", formattedTitle, "property");
     setMeta("og:description", description, "property");
     setMeta("og:type", ogType, "property");
-    setMeta("og:site_name", SITE_NAME, "property");
+    setMeta("og:site_name", siteName, "property");
     if (ogImage) {
       setMeta("og:image", ogImage, "property");
     }
@@ -82,7 +95,7 @@ export function useSEO({
     }
 
     // Hreflang alternate links
-    setHreflang(effectiveCanonical);
+    setHreflang(effectiveCanonical, noindex);
 
     // Schema markup — preserve site-wide @graph (data-site-schema), replace page-specific only
     if (schema) {
@@ -103,7 +116,7 @@ export function useSEO({
       // Cleanup page schema scripts on unmount (keep site-wide)
       document.querySelectorAll('script[data-page-schema]').forEach(el => el.remove());
     };
-  }, [title, description, keywords, ogImage, ogType, effectiveCanonical, noindex, schema, fullTitle, location]);
+  }, [title, description, keywords, ogImage, ogType, effectiveCanonical, noindex, schema, formattedTitle, siteName, location]);
 }
 
 function setMeta(name: string, content: string, attr: "name" | "property" = "name") {
@@ -130,28 +143,31 @@ function setCanonical(href: string) {
  * Injects hreflang <link> tags for Arabic/English alternate pages.
  * Arabic path: /about → English: /en/about
  */
-function setHreflang(canonical?: string) {
+function setHreflang(canonical?: string, noindex = false) {
   // Remove ALL existing hreflang links (both prerender-injected and client-injected)
   document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el => el.remove());
-  if (!canonical) return;
+  if (!canonical || noindex) return;
 
   const BASE = "https://redwan.sa";
-  // Determine the Arabic and English paths
-  let arPath: string;
-  let enPath: string;
-  if (canonical.startsWith("/en")) {
-    enPath = canonical;
-    arPath = canonical === "/en" ? "/" : canonical.replace(/^\/en/, "");
-  } else {
-    arPath = canonical;
-    enPath = canonical === "/" ? "/en" : `/en${canonical}`;
-  }
+  const arPath = canonical
+    .replace(/^\/en(?=\/|$)/, "")
+    .replace(/^\/ur(?=\/|$)/, "") || "/";
+  const enPath = arPath === "/" ? "/en" : `/en${arPath}`;
 
-  const pairs: [string, string][] = [
-    ["ar", `${BASE}${arPath}`],
-    ["en", `${BASE}${enPath}`],
-    ["x-default", `${BASE}${arPath}`],
-  ];
+  const arabicOnly =
+    arPath === "/careers" ||
+    arPath === "/cases-guide" ||
+    arPath === "/legal-dictionary" ||
+    arPath === "/bankruptcy/claims" ||
+    arPath.startsWith("/blog/") ||
+    arPath.startsWith("/bankruptcy/procedures/");
+
+  const pairs: [string, string][] = [["ar", `${BASE}${arPath}`]];
+  if (!arabicOnly) pairs.push(["en", `${BASE}${enPath}`]);
+  if (arPath === "/premium-residency") {
+    pairs.push(["ur", `${BASE}/ur/premium-residency`]);
+  }
+  pairs.push(["x-default", `${BASE}${arPath}`]);
 
   pairs.forEach(([hreflang, href]) => {
     const link = document.createElement("link");

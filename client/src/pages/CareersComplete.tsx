@@ -87,6 +87,7 @@ export default function CareersComplete() {
     description:
       "صفحة خاصة لاستكمال مستندات طلب التوظيف المقدَّم لدى شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس.",
     canonical: "/careers/complete",
+    noindex: true,
   });
 
   const [loading, setLoading] = useState(true);
