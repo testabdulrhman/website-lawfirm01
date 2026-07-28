@@ -451,11 +451,15 @@ export default function PremiumResidency() {
 
   useSEO({
     title: lang === "ar"
-      ? "الإقامة المميزة السعودية | محامي إقامة مميزة - شركة المشيقح للمحاماة"
-      : "Saudi Premium Residency | Premium Residency Lawyer - Almushiqeh Law Firm",
+      ? "الإقامة المميزة السعودية | محامي إقامة مميزة"
+      : lang === "ur"
+        ? "سعودی پریمیم ریزیڈنسی وکیل | المشیقح لا فرم"
+        : "Saudi Premium Residency Lawyer | Redwan Law",
     description: lang === "ar"
       ? "خدمات قانونية متكاملة للحصول على الإقامة المميزة في السعودية. نساعدك في اختيار المسار الأنسب وتجهيز الملف وتقديم الطلب. 7 مسارات متاحة: دائمة، سنوية، مستثمر، رائد أعمال، كفاءة استثنائية."
-      : "Comprehensive legal services for obtaining Saudi Premium Residency. We help you choose the right track, prepare documents, and submit your application. 7 tracks available: permanent, annual, investor, entrepreneur, exceptional talent.",
+      : lang === "ur"
+        ? "سعودی عرب کی پریمیم ریزیڈنسی حاصل کرنے کے لیے مکمل قانونی خدمات۔ ہم صحیح ٹریک کے انتخاب، دستاویزات کی تیاری اور درخواست جمع کرانے میں مدد کرتے ہیں۔"
+        : "Legal support for Saudi Premium Residency, including track selection, document preparation and application submission across all seven available tracks.",
     keywords: lang === "ar"
       ? "إقامة مميزة, إقامة مميزة السعودية, محامي إقامة مميزة, مسارات الإقامة المميزة, إقامة دائمة السعودية, Premium Residency"
       : "premium residency saudi arabia, premium residency lawyer, saudi green card, permanent residency saudi, premium residency tracks",
@@ -505,6 +509,26 @@ export default function PremiumResidency() {
               <Phone size={16} />
               {c.ctaBtn}
             </Link>
+            <nav className="flex flex-wrap items-center gap-2 mt-5" aria-label="Premium Residency languages">
+              {[
+                { href: "/premium-residency", label: "العربية", code: "ar" },
+                { href: "/en/premium-residency", label: "English", code: "en" },
+                { href: "/ur/premium-residency", label: "اردو", code: "ur" },
+              ].map((item) => (
+                <Link
+                  key={item.code}
+                  href={item.href}
+                  hrefLang={item.code}
+                  className={`px-3 py-1.5 border text-xs transition-colors ${
+                    lang === item.code
+                      ? "border-[var(--color-gold)] bg-[var(--color-gold)] text-[var(--color-navy)]"
+                      : "border-white/25 text-white/70 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
           </div>
         </div>
       </section>

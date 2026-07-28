@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useSEO } from "@/hooks/useSEO";
+import { localePath } from "@/lib/localePath";
 
 interface SitemapSection {
   title: string;
@@ -9,6 +10,7 @@ interface SitemapSection {
 
 export default function Sitemap() {
   const { lang, isRTL } = useTranslation();
+  const lp = (path: string) => localePath(path, lang);
 
   const sections: SitemapSection[] = lang === "ar" ? [
     {
@@ -58,7 +60,6 @@ export default function Sitemap() {
         { label: "شركة قرية الأنجاز الفندقية — Al-Anjaz Hotel Village (تصفية)", href: "/bankruptcy/Al-Anjaz-Hotel-Village" },
         { label: "شركة أركن الخليج للمقاولات — Arcon Gulf Contracting (تصفية)", href: "/bankruptcy/Arcon-Gulf-Contracting" },
         { label: "تقديم مطالبة دائنين", href: "/bankruptcy/claims" },
-        { label: "إكمال بيانات المطالبة", href: "/bankruptcy/complete" },
       ],
     },
     {
@@ -124,9 +125,14 @@ export default function Sitemap() {
       title: "Bankruptcy & Liquidation",
       links: [
         { label: "Bankruptcy & Liquidation Service", href: "/services/bankruptcy" },
+        { label: "Seven Bankruptcy Procedures", href: "/bankruptcy/procedures" },
         { label: "ASHYAD STEEL Company (Liquidation)", href: "/bankruptcy/ASHYAD-STEEL" },
+        { label: "Taj Al-Riaya Medical Company (Liquidation)", href: "/bankruptcy/tajalriayaa" },
+        { label: "Planting for Contracting Company (Liquidation)", href: "/bankruptcy/Planting-for-Contracting" },
+        { label: "Hassan Misfer Al-Zahrani & Partners (Financial Reorganization)", href: "/bankruptcy/Hassan-Misfer-Al-Zahrani" },
+        { label: "Al-Anjaz Hotel Village Company (Liquidation)", href: "/bankruptcy/Al-Anjaz-Hotel-Village" },
+        { label: "Arcon Gulf Contracting Co (Liquidation)", href: "/bankruptcy/Arcon-Gulf-Contracting" },
         { label: "Submit Creditor Claim", href: "/bankruptcy/claims" },
-        { label: "Complete Claim Data", href: "/bankruptcy/complete" },
       ],
     },
     {
@@ -201,7 +207,7 @@ export default function Sitemap() {
                     <li key={linkIdx} className={`flex items-center gap-2 ${isRTL ? 'pr-0' : 'pl-0'}`}>
                       <span className="w-1.5 h-1.5 bg-[var(--color-gold)] flex-shrink-0" />
                       <Link
-                        href={link.href}
+                        href={lp(link.href)}
                         className="font-body text-sm text-[var(--color-navy)]/70 hover:text-[var(--color-gold)] transition-colors"
                       >
                         {link.label}

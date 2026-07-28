@@ -46,6 +46,10 @@ export default function Footer() {
                 <li><Link href={lp("/contact")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.contact}</Link></li>
                 <li><Link href={lp("/faq")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'الأسئلة الشائعة' : 'FAQ'}</Link></li>
                 <li><Link href={lp("/cases-guide")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'دليل الدعاوى' : 'Cases Guide'}</Link></li>
+                <li><Link href={lp("/legal-dictionary")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'المعجم القانوني' : 'Legal Dictionary'}</Link></li>
+                <li><Link href={lp("/bankruptcy")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'إجراءات الإفلاس' : 'Bankruptcy Proceedings'}</Link></li>
+                <li><Link href={lp("/bankruptcy/procedures")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'أنواع إجراءات الإفلاس' : 'Bankruptcy Procedures'}</Link></li>
+                <li><Link href={lp("/premium-residency")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'الإقامة المميزة' : lang === 'ur' ? 'پریمیم ریزیڈنسی' : 'Premium Residency'}</Link></li>
                 <li><Link href={lp("/licenses")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{lang === 'ar' ? 'التراخيص' : 'Licenses'}</Link></li>
                 {/* أُزيل رابط «إعلانات الإفلاس»: مجلد /announcements/ حُذف في dc3ec36
                     لتقليص حجم النشر، فصار الرابط يعيد 404 في كل صفحة بالموقع.
@@ -166,6 +170,9 @@ export default function Footer() {
               </Link>
               <Link href={lp("/terms")} className="font-body text-xs text-white/30 hover:text-[var(--color-gold)] transition-colors">
                 {t.footer.terms}
+              </Link>
+              <Link href={lp("/sitemap")} className="font-body text-xs text-white/30 hover:text-[var(--color-gold)] transition-colors">
+                {lang === "ar" ? "خريطة الموقع" : "Sitemap"}
               </Link>
               <span className="font-body text-xs text-white/30">
                 {lang === "ar" ? "ترخيص محاماة رقم: 26/129" : "License No: 26/129"}

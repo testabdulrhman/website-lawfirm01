@@ -21,7 +21,7 @@ export function localePath(path: string, lang: Language): string {
 
   // These pages do not yet have distinct English content. Keep their links on
   // the complete Arabic versions instead of generating thin/duplicate pages.
-  const arabicOnlyExactRoutes = new Set(["/careers", "/cases-guide"]);
+  const arabicOnlyExactRoutes = new Set(["/careers", "/cases-guide", "/legal-dictionary"]);
   const isArabicOnlyDetail =
     path.startsWith("/blog/") ||
     path.startsWith("/bankruptcy/procedures/");
