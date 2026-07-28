@@ -8,6 +8,7 @@ declare global {
   interface Window {
     gtag: (...args: unknown[]) => void;
     dataLayer: unknown[];
+    __REDWAN_ANALYTICS_DISABLED__?: boolean;
   }
 }
 
@@ -22,7 +23,14 @@ type GAEventParams = {
  * إرسال حدث مخصص إلى Google Analytics
  */
 export function trackEvent(eventName: string, params?: GAEventParams) {
-  if (typeof window !== "undefined" && window.gtag) {
+  if (
+    typeof window !== "undefined" &&
+    !window.__REDWAN_ANALYTICS_DISABLED__ &&
+    !new URLSearchParams(window.location.search)
+      .getAll("manus_scraper")
+      .includes("1") &&
+    window.gtag
+  ) {
     window.gtag("event", eventName, params);
   }
 }

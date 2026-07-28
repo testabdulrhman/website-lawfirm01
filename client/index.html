@@ -3,7 +3,38 @@
 
   <head>
     <!-- Google Tag Manager (deferred for performance) -->
-    <script>window.addEventListener('load',function(){var w=window,d=document,s='script',l='dataLayer',i='GTM-5SW2MXVW';w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);});</script>
+    <script>
+      (function () {
+        var analyticsDisabled = false;
+        try {
+          analyticsDisabled = new URLSearchParams(window.location.search)
+            .getAll("manus_scraper")
+            .includes("1");
+        } catch (error) {
+          analyticsDisabled =
+            /(?:^|[?&])manus_scraper=1(?:&|$)/.test(window.location.search);
+        }
+
+        window.__REDWAN_ANALYTICS_DISABLED__ = analyticsDisabled;
+        if (analyticsDisabled) return;
+
+        window.addEventListener("load", function () {
+          var w = window,
+            d = document,
+            s = "script",
+            l = "dataLayer",
+            i = "GTM-5SW2MXVW";
+          w[l] = w[l] || [];
+          w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != "dataLayer" ? "&l=" + l : "";
+          j.async = true;
+          j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+          f.parentNode.insertBefore(j, f);
+        });
+      })();
+    </script>
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8" />
     <meta
