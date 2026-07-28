@@ -1,8 +1,7 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-
   <head>
-    <!-- Google Tag Manager (deferred for performance) -->
+    <!-- Google Analytics 4 (deferred for performance) -->
     <script>
       (function () {
         var analyticsDisabled = false;
@@ -11,8 +10,9 @@
             .getAll("manus_scraper")
             .includes("1");
         } catch (error) {
-          analyticsDisabled =
-            /(?:^|[?&])manus_scraper=1(?:&|$)/.test(window.location.search);
+          analyticsDisabled = /(?:^|[?&])manus_scraper=1(?:&|$)/.test(
+            window.location.search
+          );
         }
 
         window.__REDWAN_ANALYTICS_DISABLED__ = analyticsDisabled;
@@ -27,44 +27,53 @@
             window.dataLayer.push(arguments);
           };
 
-        function loadTagManager() {
-          var w = window,
-            d = document,
-            s = "script",
-            l = "dataLayer",
-            i = "GTM-5SW2MXVW";
-          w[l] = w[l] || [];
-          w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-          var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s),
-            dl = l != "dataLayer" ? "&l=" + l : "";
-          j.async = true;
-          j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-          f.parentNode.insertBefore(j, f);
+        // Configure the GA4 destination before any interaction events are
+        // queued. The previous GTM container sent page views but had no custom
+        // event triggers, so conversion events remained in dataLayer.
+        window.gtag("js", new Date());
+        window.gtag("config", "G-C7J9TYX4NP");
+
+        function loadAnalytics() {
+          var firstScript = document.getElementsByTagName("script")[0];
+          var analyticsScript = document.createElement("script");
+          analyticsScript.async = true;
+          analyticsScript.src =
+            "https://www.googletagmanager.com/gtag/js?id=G-C7J9TYX4NP";
+          firstScript.parentNode.insertBefore(analyticsScript, firstScript);
         }
 
         // Keep analytics off the critical rendering path. Conversion calls made
-        // before this runs stay queued in dataLayer and are consumed by GTM.
+        // before this runs stay queued in dataLayer and are consumed by GA4.
         window.addEventListener("load", function () {
           if ("requestIdleCallback" in window) {
-            window.requestIdleCallback(loadTagManager, { timeout: 3000 });
+            window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
           } else {
-            window.setTimeout(loadTagManager, 1500);
+            window.setTimeout(loadAnalytics, 1500);
           }
         });
       })();
     </script>
-    <!-- End Google Tag Manager -->
+    <!-- End Google Analytics 4 -->
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>شركة عبدالرحمن رضوان المشيقح للمحاماة</title>
-    <meta name="description" content="شركة رضوان للمحاماة وإدارة إجراءات الإفلاس - خدمات التمثيل القانوني والاستشارات في القضايا التجارية والإفلاس - بريدة، السعودية" />
-    <meta name="author" content="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس" />
+    <meta
+      name="description"
+      content="شركة رضوان للمحاماة وإدارة إجراءات الإفلاس - خدمات التمثيل القانوني والاستشارات في القضايا التجارية والإفلاس - بريدة، السعودية"
+    />
+    <meta
+      name="author"
+      content="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
+    />
     <meta name="robots" content="index, follow" />
-    <meta name="google-site-verification" content="ThlSG3ruhfuJbKIQ6xo2vx_lCNWUppfMK97aTQ3eutA" />
-    <meta name="facebook-domain-verification" content="zdhzbaei6dwd0jpuow58e5puft4pi8" />
+    <meta
+      name="google-site-verification"
+      content="ThlSG3ruhfuJbKIQ6xo2vx_lCNWUppfMK97aTQ3eutA"
+    />
+    <meta
+      name="facebook-domain-verification"
+      content="zdhzbaei6dwd0jpuow58e5puft4pi8"
+    />
     <link rel="canonical" href="https://redwan.sa" />
     <meta name="theme-color" content="#0F1B2D" />
 
@@ -76,84 +85,218 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://redwan.sa" />
-    <meta property="og:title" content="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس | Redwan Law Firm" />
-    <meta property="og:description" content="منشأة قانونية تقدم خدمات التمثيل القانوني والاستشارات للعملاء في جميع المجالات القانونية بتراخيص نظامية معتمدة - بريدة، المملكة العربية السعودية" />
+    <meta
+      property="og:title"
+      content="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس | Redwan Law Firm"
+    />
+    <meta
+      property="og:description"
+      content="منشأة قانونية تقدم خدمات التمثيل القانوني والاستشارات للعملاء في جميع المجالات القانونية بتراخيص نظامية معتمدة - بريدة، المملكة العربية السعودية"
+    />
     <meta property="og:locale" content="ar_SA" />
     <meta property="og:site_name" content="شركة رضوان للمحاماة" />
-    <meta property="og:image" content="https://redwan.sa/images/hero-law-firm.webp" />
+    <meta
+      property="og:image"
+      content="https://redwan.sa/images/hero-law-firm.webp"
+    />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس" />
-    <meta name="twitter:description" content="منشأة قانونية تقدم خدمات التمثيل القانوني والاستشارات للعملاء في جميع المجالات القانونية بتراخيص نظامية معتمدة" />
-    <meta name="twitter:image" content="https://redwan.sa/images/hero-law-firm.webp" />
+    <meta
+      name="twitter:title"
+      content="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
+    />
+    <meta
+      name="twitter:description"
+      content="منشأة قانونية تقدم خدمات التمثيل القانوني والاستشارات للعملاء في جميع المجالات القانونية بتراخيص نظامية معتمدة"
+    />
+    <meta
+      name="twitter:image"
+      content="https://redwan.sa/images/hero-law-firm.webp"
+    />
 
     <!-- Structured Data: Site-wide @graph (single source of truth) -->
     <script type="application/ld+json" data-site-schema="true">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "@id": "https://redwan.sa/#organization",
-          "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-          "alternateName": "Abdulrahman Redwan Al-Mushaiqi Law Firm",
-          "url": "https://redwan.sa",
-          "logo": {"@type": "ImageObject", "url": "https://redwan.sa/images/logo-dark.webp"},
-          "image": "https://redwan.sa/images/hero-law-firm.webp",
-          "foundingDate": "2020",
-          "founder": {"@type": "Person", "name": "عبدالرحمن بن رضوان المشيقح", "jobTitle": "محامٍ وأمين إفلاس وموثّق"},
-          "address": {"@type": "PostalAddress", "streetAddress": "طريق الملك عبدالله، حي الأفق، الدور الثاني، مكتب رقم 1", "addressLocality": "بريدة", "addressRegion": "القصيم", "postalCode": "52387", "addressCountry": "SA"},
-          "contactPoint": {"@type": "ContactPoint", "telephone": "+966505149800", "contactType": "customer service", "availableLanguage": ["Arabic", "English"]},
-          "sameAs": ["https://www.linkedin.com/company/redwan-sa", "https://x.com/redwan_law", "https://snapchat.com/@redwan.sa"]
-        },
-        {
-          "@type": "LegalService",
-          "@id": "https://redwan.sa/#legalservice",
-          "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-          "alternateName": "Abdulrahman Redwan Al-Mushaiqi Law Firm",
-          "url": "https://redwan.sa",
-          "logo": "https://redwan.sa/images/logo-dark.webp",
-          "image": "https://redwan.sa/images/hero-law-firm.webp",
-          "description": "شركة محاماة سعودية متخصصة في القضايا التجارية والجنائية والعقارية وإدارة إجراءات الإفلاس، مقرها بريدة بخبرة تتجاوز 20 عاماً.",
-          "telephone": "+966505149800",
-          "email": "info@redwan.sa",
-          "address": {"@type": "PostalAddress", "streetAddress": "طريق الملك عبدالله، حي الأفق، الدور الثاني، مكتب رقم 1", "addressLocality": "بريدة", "addressRegion": "القصيم", "postalCode": "52387", "addressCountry": "SA"},
-          "geo": {"@type": "GeoCoordinates", "latitude": 26.3260, "longitude": 43.9750},
-          "openingHoursSpecification": {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "08:00", "closes": "16:00"},
-          "priceRange": "$$",
-          "areaServed": {"@type": "Country", "name": "Saudi Arabia"},
-          "hasOfferCatalog": {"@type": "OfferCatalog", "name": "الخدمات القانونية", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "القضايا المدنية والتجارية"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "القضايا الجنائية"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "النزاعات العقارية"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "الإفلاس والتصفية"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "الاستشارات القانونية"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "التحكيم التجاري"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "التوثيق والعقود"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "قضايا العمل والعمال"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "القضايا الإدارية"}}]},
-          "knowsLanguage": ["ar", "en"]
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://redwan.sa/#website",
-          "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-          "alternateName": "Redwan Law Firm",
-          "url": "https://redwan.sa",
-          "inLanguage": ["ar", "en"],
-          "publisher": {"@id": "https://redwan.sa/#organization"}
-        }
-      ]
-    }
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://redwan.sa/#organization",
+            "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+            "alternateName": "Abdulrahman Redwan Al-Mushaiqi Law Firm",
+            "url": "https://redwan.sa",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://redwan.sa/images/logo-dark.webp"
+            },
+            "image": "https://redwan.sa/images/hero-law-firm.webp",
+            "foundingDate": "2020",
+            "founder": {
+              "@type": "Person",
+              "name": "عبدالرحمن بن رضوان المشيقح",
+              "jobTitle": "محامٍ وأمين إفلاس وموثّق"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "طريق الملك عبدالله، حي الأفق، الدور الثاني، مكتب رقم 1",
+              "addressLocality": "بريدة",
+              "addressRegion": "القصيم",
+              "postalCode": "52387",
+              "addressCountry": "SA"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+966505149800",
+              "contactType": "customer service",
+              "availableLanguage": ["Arabic", "English"]
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/redwan-sa",
+              "https://x.com/redwan_law",
+              "https://snapchat.com/@redwan.sa"
+            ]
+          },
+          {
+            "@type": "LegalService",
+            "@id": "https://redwan.sa/#legalservice",
+            "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+            "alternateName": "Abdulrahman Redwan Al-Mushaiqi Law Firm",
+            "url": "https://redwan.sa",
+            "logo": "https://redwan.sa/images/logo-dark.webp",
+            "image": "https://redwan.sa/images/hero-law-firm.webp",
+            "description": "شركة محاماة سعودية متخصصة في القضايا التجارية والجنائية والعقارية وإدارة إجراءات الإفلاس، مقرها بريدة بخبرة تتجاوز 20 عاماً.",
+            "telephone": "+966505149800",
+            "email": "info@redwan.sa",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "طريق الملك عبدالله، حي الأفق، الدور الثاني، مكتب رقم 1",
+              "addressLocality": "بريدة",
+              "addressRegion": "القصيم",
+              "postalCode": "52387",
+              "addressCountry": "SA"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 26.326,
+              "longitude": 43.975
+            },
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday"
+              ],
+              "opens": "08:00",
+              "closes": "16:00"
+            },
+            "priceRange": "$$",
+            "areaServed": { "@type": "Country", "name": "Saudi Arabia" },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "الخدمات القانونية",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "القضايا المدنية والتجارية"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "القضايا الجنائية"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "النزاعات العقارية"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "الإفلاس والتصفية"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "الاستشارات القانونية"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "التحكيم التجاري"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "التوثيق والعقود"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "قضايا العمل والعمال"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "القضايا الإدارية"
+                  }
+                }
+              ]
+            },
+            "knowsLanguage": ["ar", "en"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://redwan.sa/#website",
+            "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+            "alternateName": "Redwan Law Firm",
+            "url": "https://redwan.sa",
+            "inLanguage": ["ar", "en"],
+            "publisher": { "@id": "https://redwan.sa/#organization" }
+          }
+        ]
+      }
     </script>
 
     <!-- Fonts (non-render-blocking with preload) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=optional" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=optional" rel="stylesheet" /></noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=optional"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript
+      ><link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=optional"
+        rel="stylesheet"
+    /></noscript>
   </head>
 
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SW2MXVW"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-
   </body>
-
 </html>
