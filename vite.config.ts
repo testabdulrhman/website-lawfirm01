@@ -85,9 +85,6 @@ export default defineConfig({
           ) {
             return "react-vendor";
           }
-          if (id.includes("/@supabase/") || id.includes("/axios/")) {
-            return "data-vendor";
-          }
           if (
             id.includes("/@radix-ui/") ||
             id.includes("/lucide-react/") ||

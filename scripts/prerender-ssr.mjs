@@ -63,6 +63,23 @@ function applySEO(html, seo, route) {
   const ogUrl = seo.ogUrl || canonical;
   const ogType = seo.ogType || 'website';
 
+  // The prerendered HTML is already complete, so JavaScript hydration is not
+  // part of the critical paint. Keep CSS at high priority and let module
+  // downloads yield bandwidth to it on constrained mobile connections.
+  html = html
+    .replace(
+      /<link rel="stylesheet" crossorigin/g,
+      '<link rel="stylesheet" crossorigin fetchpriority="high"',
+    )
+    .replace(
+      /<link rel="modulepreload" crossorigin/g,
+      '<link rel="modulepreload" crossorigin fetchpriority="low"',
+    )
+    .replace(
+      /<script type="module" crossorigin/g,
+      '<script type="module" crossorigin fetchpriority="low"',
+    );
+
   // <title>
   html = replaceTag(html, /<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`);
 
