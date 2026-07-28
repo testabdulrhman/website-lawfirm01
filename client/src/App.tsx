@@ -13,10 +13,9 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { HelmetProvider } from "react-helmet-async";
 import Layout from "@/components/Layout";
-// الصفحة الرئيسية تُحمّل مباشرة (فوق الطية) لتفادي وميض التحميل الأولي
-import Home from "@/pages/Home";
 
 // تقسيم الحزمة: تحميل كسول لبقية الصفحات لتقليل حجم أول تحميل (code-splitting)
+const Home = lazy(() => import("@/pages/Home"));
 const About = lazy(() => import("@/pages/About"));
 const Services = lazy(() => import("@/pages/Services"));
 const ServiceDetail = lazy(() => import("@/pages/ServiceDetail"));
@@ -77,7 +76,7 @@ export async function loadInitialPage(pathname: string): Promise<InitialPage | u
   let routePath = path;
 
   if (localizedPath === "/bankruptcy-lp") Component = (await import("@/pages/BankruptcyLP")).default;
-  else if (localizedPath === "/") Component = Home;
+  else if (localizedPath === "/") Component = (await import("@/pages/Home")).default;
   else if (localizedPath === "/about") Component = (await import("@/pages/About")).default;
   else if (localizedPath === "/team") Component = (await import("@/pages/Team")).default;
   else if (localizedPath === "/services") Component = (await import("@/pages/Services")).default;
