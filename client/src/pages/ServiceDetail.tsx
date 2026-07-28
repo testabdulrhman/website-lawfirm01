@@ -221,15 +221,15 @@ const servicesData: Record<string, {
   "bankruptcy": {
     icon: Scale,
     ar: {
-      title: "الإفلاس والتصفية",
-      description: "نقدم خدمات متخصصة في إجراءات الإفلاس وإعادة التنظيم المالي والتصفية وفق نظام الإفلاس السعودي، بترخيص رسمي من لجنة الإفلاس.",
+      title: "محامي إفلاس للشركات والدائنين",
+      description: "نقدم الاستشارة والتمثيل القانوني للشركات المتعثرة والدائنين والمدينين في إجراءات التسوية الوقائية وإعادة التنظيم المالي والتصفية وفق نظام الإفلاس السعودي، ونخدم العملاء في جميع مناطق المملكة من مقرنا الرئيسي في بريدة.",
       details: [
-        "إجراءات التسوية الوقائية",
-        "إعادة التنظيم المالي",
-        "التصفية وبيع الأصول",
-        "تمثيل الدائنين والمدينين",
-        "إعداد خطط السداد",
-        "الإشراف على تنفيذ خطط إعادة التنظيم",
+        "تقييم الوضع المالي والقانوني واختيار الإجراء المناسب",
+        "تمثيل الشركات في طلبات التسوية الوقائية",
+        "تمثيل المدينين في إجراءات إعادة التنظيم المالي",
+        "تمثيل الدائنين وتقديم المطالبات والاعتراضات",
+        "الاستشارة في التصفية وحماية حقوق الأطراف",
+        "إعداد الخطط والمذكرات والتفاوض مع أصحاب المصلحة",
       ],
       faqs: [
         { q: "ما الفرق بين التسوية الوقائية وإعادة التنظيم؟", a: "التسوية الوقائية تتم قبل التعثر الفعلي وتهدف لمنعه، بينما إعادة التنظيم تتم بعد التعثر وتهدف لإعادة هيكلة الديون. كلا الإجراءين يهدفان لاستمرار النشاط التجاري مع حماية حقوق الدائنين." },
@@ -240,15 +240,15 @@ const servicesData: Record<string, {
       ],
     },
     en: {
-      title: "Bankruptcy & Liquidation",
-      description: "We provide specialized services in bankruptcy proceedings, financial reorganization, and liquidation under Saudi Bankruptcy Law, with an official license from the Bankruptcy Commission.",
+      title: "Bankruptcy Lawyer for Companies and Creditors",
+      description: "We advise and represent distressed companies, creditors and debtors in preventive settlement, financial reorganization and liquidation under Saudi Bankruptcy Law, serving clients across Saudi Arabia from our Buraydah head office.",
       details: [
-        "Preventive settlement procedures",
-        "Financial reorganization",
-        "Liquidation and asset sales",
-        "Representing creditors and debtors",
-        "Preparing repayment plans",
-        "Supervising reorganization plan implementation",
+        "Assessing the legal and financial position and selecting the appropriate procedure",
+        "Representing companies in preventive settlement applications",
+        "Representing debtors in financial reorganization proceedings",
+        "Representing creditors in claims and objections",
+        "Advising on liquidation and protecting stakeholder rights",
+        "Preparing plans and submissions and negotiating with stakeholders",
       ],
       faqs: [
         { q: "What is the difference between preventive settlement and reorganization?", a: "Preventive settlement occurs before actual default and aims to prevent it, while reorganization occurs after default and aims to restructure debts. Both procedures aim to continue business activity while protecting creditors' rights." },
@@ -479,8 +479,16 @@ export default function ServiceDetail() {
     return schemaList;
   }, [service, lang, params.slug]);
 
+  const pageTitle = params.slug === 'bankruptcy'
+    ? (lang === 'ar'
+        ? 'محامي إفلاس للشركات والدائنين | المشيقح للمحاماة'
+        : 'Bankruptcy Lawyer for Companies and Creditors | Al-Mushaiqi')
+    : service
+      ? service[langKey(lang)].title
+      : (lang === 'ar' ? 'خدمة غير موجودة' : 'Service Not Found');
+
   useSEO({
-    title: service ? service[langKey(lang)].title : (lang === 'ar' ? 'خدمة غير موجودة' : 'Service Not Found'),
+    title: pageTitle,
     description: service ? service[langKey(lang)].description : '',
     keywords: service ? `${service[langKey(lang)].title}, ${lang === 'ar' ? 'محاماة، خدمات قانونية' : 'law, legal services'}` : '',
     canonical: `/services/${params.slug}`,
@@ -592,63 +600,21 @@ export default function ServiceDetail() {
                 </div>
               )}
 
-              {/* Claims CTA - only for bankruptcy */}
+              {/* Separate legal representation from the operational trustee portal. */}
               {params.slug === 'bankruptcy' && (
                 <div className={`mb-8 md:mb-12 p-4 md:p-6 bg-[var(--color-navy)]/5 ${isRTL ? 'border-r-4' : 'border-l-4'} border-[var(--color-gold)]`}>
-                  <h3 className="font-heading text-base md:text-lg font-semibold text-[var(--color-navy)] mb-2">{labels.submitClaim}</h3>
-                  <p className="font-body text-xs md:text-sm text-[var(--color-navy)]/60 mb-3 md:mb-4">{labels.claimDesc}</p>
-                  <Link href={lp("/bankruptcy/claims")} className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm hover:bg-[var(--color-gold-light)] transition-colors">
-                    <span>{labels.submitClaimBtn}</span>
+                  <h3 className="font-heading text-base md:text-lg font-semibold text-[var(--color-navy)] mb-2">
+                    {lang === 'ar' ? 'هل تبحث عن إجراء قائم أو تقديم مطالبة؟' : 'Looking for an active proceeding or creditor claim?'}
+                  </h3>
+                  <p className="font-body text-xs md:text-sm text-[var(--color-navy)]/60 mb-3 md:mb-4">
+                    {lang === 'ar'
+                      ? 'انتقل إلى قسم إدارة إجراءات الإفلاس للاطلاع على الحالات الجارية وإجراءات النظام وبوابة الدائنين.'
+                      : 'Visit the bankruptcy management section for active proceedings, procedure guides and the creditor portal.'}
+                  </p>
+                  <Link href={lp("/bankruptcy")} className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm hover:bg-[var(--color-gold-light)] transition-colors">
+                    <span>{lang === 'ar' ? 'إدارة الإجراءات والمطالبات' : 'Proceedings and Claims'}</span>
                     <BackArrow size={14} />
                   </Link>
-                </div>
-              )}
-
-              {/* Current Bankruptcy Cases - only for bankruptcy */}
-              {params.slug === 'bankruptcy' && (
-                <div className="mb-8 md:mb-12">
-                  <h3 className="font-heading text-lg md:text-xl font-semibold text-[var(--color-navy)] mb-4 md:mb-6">
-                    {lang === 'ar' ? 'إجراءاتنا الحالية' : 'Our Current Proceedings'}
-                  </h3>
-                  <div className="grid gap-4">
-                    {[
-                      { slug: 'ASHYAD-STEEL', logo: '/images/asyad-steel-logo.png', ar: 'شركة أشياد ستيل', en: 'ASHYAD STEEL', enName: 'ASHYAD STEEL' },
-                      { slug: 'tajalriayaa', logo: '', ar: 'شركة تاج الرعاية الطبي', en: 'Taj Al-Riaya Medical', enName: 'tajalriayaa' },
-                      { slug: 'Planting-for-Contracting', logo: '', ar: 'شركة المزروعات للمقاولات', en: 'Planting for Contracting', enName: 'Planting for Contracting' },
-                      { slug: 'Hassan-Misfer-Al-Zahrani', logo: '', ar: 'شركة حسن مسفر الزهراني وشركاه', en: 'Hassan Misfer Al-Zahrani & Partners', enName: 'Hassan Misfer Al-Zahrani & Partners Group' },
-                      { slug: 'Al-Anjaz-Hotel-Village', logo: '', ar: 'شركة قرية الأنجاز الفندقية', en: 'Al-Anjaz Hotel Village', enName: 'Al-Anjaz Hotel Village' },
-                      { slug: 'Arcon-Gulf-Contracting', logo: '', ar: 'شركة أركن الخليج للمقاولات', en: 'Arcon Gulf Contracting Co', enName: 'Arcon Gulf Contracting Co' },
-                    ].map((c) => (
-                      <Link key={c.slug} href={lp(`/bankruptcy/${c.slug}`)} className="group block p-4 md:p-5 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)] transition-colors">
-                        <div className="flex items-center gap-4">
-                          <div className="w-14 h-14 md:w-16 md:h-16 flex-shrink-0 bg-gray-50 p-2 flex items-center justify-center">
-                            {c.logo ? (
-                              <img src={c.logo} alt={c.enName} className="w-full h-full object-contain" />
-                            ) : (
-                              <Building size={24} className="text-[var(--color-navy)]/30" />
-                            )}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h4 className="font-heading text-sm md:text-base font-semibold text-[var(--color-navy)] group-hover:text-[var(--color-gold)] transition-colors">
-                              {lang === 'ar' ? c.ar : c.en}
-                            </h4>
-                            <p className="font-body text-xs text-[var(--color-navy)]/50 mt-0.5">{c.enName}</p>
-                            <div className="flex items-center gap-2 mt-1.5">
-                              <span className="inline-block px-2 py-0.5 text-[10px] font-heading font-semibold bg-[var(--color-gold)]/10 text-[var(--color-gold)] border border-[var(--color-gold)]/20">
-                                {lang === 'ar' ? 'تصفية' : 'Liquidation'}
-                              </span>
-                              <span className="inline-block px-2 py-0.5 text-[10px] font-heading font-semibold bg-green-50 text-green-700 border border-green-200">
-                                {lang === 'ar' ? 'جاري' : 'Ongoing'}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="flex-shrink-0 text-[var(--color-navy)]/30 group-hover:text-[var(--color-gold)] transition-colors">
-                            {isRTL ? <ArrowLeft size={18} /> : <ArrowRight size={18} />}
-                          </div>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
                 </div>
               )}
 

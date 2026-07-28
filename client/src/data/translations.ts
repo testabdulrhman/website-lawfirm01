@@ -16,12 +16,12 @@ export const translations = {
     },
     // Hero
     hero: {
-      location: "بريدة، المملكة العربية السعودية",
-      title1: "معك خطوة بخطوة",
-      title2: "نحو الحل القانوني",
-      title3: "الأمثل",
-      subtitle: "شركة محاماة في بريدة تقدم التمثيل القانوني والاستشارات القانونية وإدارة إجراءات الإفلاس، وتغطي القضايا التجارية والنزاعات العقارية والتحكيم التجاري بتراخيص نظامية معتمدة.",
-      exploreServices: "استكشف خدماتنا",
+      location: "المقر الرئيسي: بريدة | نخدم جميع مناطق المملكة",
+      title1: "محامي إفلاس",
+      title2: "وأمين إفلاس معتمد",
+      title3: "للشركات",
+      subtitle: "نقدم للشركات والدائنين والمدينين الاستشارات والتمثيل القانوني في إجراءات الإفلاس، ونتولى إدارة الإجراءات بترخيص أمين إفلاس معتمد من لجنة الإفلاس.",
+      exploreServices: "خدمات الإفلاس للشركات",
       getConsultation: "احصل على استشارة قانونية",
       licenses: "تراخيص نظامية",
       legalAreas: "مجالات قانونية",
@@ -34,7 +34,7 @@ export const translations = {
       title1: "شركة عبدالرحمن رضوان المشيقح",
       title2: "للمحاماة وإدارة إجراءات الإفلاس",
       subtitle: "خبرة عائلية راسخة في القانون",
-      description: "لم تبدأ رحلتنا القانونية اليوم — بل هي امتداد لخبرة عائلية متراكمة تتجاوز 20 عاماً في التقاضي والممارسة القانونية. نقدّم اليوم خدمات محاماة في بريدة تشمل الاستشارات القانونية وإدارة إجراءات الإفلاس والقضايا التجارية والنزاعات العقارية والتحكيم التجاري بعمق معرفي استثنائي.",
+      description: "لم تبدأ رحلتنا القانونية اليوم — بل هي امتداد لخبرة عائلية متراكمة تتجاوز 20 عاماً في التقاضي والممارسة القانونية. مقرنا الرئيسي في بريدة، ونقدّم للشركات والعملاء في جميع مناطق المملكة خدمات المحاماة وإدارة إجراءات الإفلاس والقضايا التجارية والنزاعات العقارية والتحكيم التجاري.",
       learnMore: "اعرف المزيد عنا",
     },
     // Services
@@ -74,7 +74,8 @@ export const translations = {
       claimsValueLabel: "إجمالي المطالبات المُدارة",
       creditorsCount: "دائن",
       creditorsCountLabel: "مطالبات دائنين تحت الإدارة",
-      cta: "تعرّف على خدمات الإفلاس",
+      cta: "استشارات وتمثيل قضايا الإفلاس",
+      portalCta: "إجراءات الإفلاس والمطالبات",
     },
     // CTA
     cta: {
@@ -162,12 +163,12 @@ export const translations = {
     },
     // Hero
     hero: {
-      location: "Buraydah, Kingdom of Saudi Arabia",
-      title1: "With You Step by Step",
-      title2: "Towards the Optimal",
-      title3: "Legal Solution",
-      subtitle: "A legal firm providing legal representation and consultation services to clients across all legal fields, with officially licensed credentials from competent authorities.",
-      exploreServices: "Explore Our Services",
+      location: "Head Office: Buraydah | Serving Clients Across Saudi Arabia",
+      title1: "Bankruptcy Lawyer",
+      title2: "and Licensed Trustee",
+      title3: "for Companies",
+      subtitle: "We advise and represent companies, creditors and debtors in bankruptcy matters, and manage proceedings under a Bankruptcy Commission trustee license.",
+      exploreServices: "Bankruptcy Services for Companies",
       getConsultation: "Get a Legal Consultation",
       licenses: "Licensed Credentials",
       legalAreas: "Legal Areas",
@@ -180,7 +181,7 @@ export const translations = {
       title1: "Abdulrahman Redwan Al-Mushaiqeh",
       title2: "Law Firm & Bankruptcy Management",
       subtitle: "A Deep-Rooted Family Legacy in Law",
-      description: "Our legal journey did not begin today — it is an extension of a family legacy spanning over 20 years in litigation and legal practice, refined across generations and culminating in the establishment of our firm to deliver legal services with exceptional depth of knowledge.",
+      description: "Our legal journey builds on more than 20 years of family experience in litigation and legal practice. From our head office in Buraydah, we serve companies and clients across Saudi Arabia in bankruptcy, commercial disputes, real estate matters and arbitration.",
       learnMore: "Learn More About Us",
     },
     // Services
@@ -220,7 +221,8 @@ export const translations = {
       claimsValueLabel: "Total Claims Under Management",
       creditorsCount: "Creditors",
       creditorsCountLabel: "Creditor Claims Under Administration",
-      cta: "Explore Bankruptcy Services",
+      cta: "Bankruptcy Advice and Representation",
+      portalCta: "Proceedings and Creditor Claims",
     },
     // CTA
     cta: {
