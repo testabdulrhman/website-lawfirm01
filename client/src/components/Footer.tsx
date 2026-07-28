@@ -1,4 +1,4 @@
-import { MessageCircle, Linkedin, Instagram, MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MessageCircle, Linkedin, Instagram, Facebook, MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackWhatsAppClick, trackPhoneClick, trackEmailClick } from "@/lib/analytics";
@@ -130,6 +130,15 @@ export default function Footer() {
                   className="group w-10 h-10 bg-white/10 rounded-sm flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#E4405F] hover:scale-110 hover:shadow-[0_0_20px_rgba(228,64,95,0.4)] active:scale-95"
                 >
                   <Instagram size={18} className="text-white/70 transition-colors duration-300 group-hover:text-white" />
+                </a>
+                <a
+                  href="https://www.facebook.com/redwanlegal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="group w-10 h-10 bg-white/10 rounded-sm flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#1877F2] hover:scale-110 hover:shadow-[0_0_20px_rgba(24,119,242,0.4)] active:scale-95"
+                >
+                  <Facebook size={18} className="text-white/70 transition-colors duration-300 group-hover:text-white" />
                 </a>
                 <a
                   href="https://snapchat.com/@redwan.sa"
