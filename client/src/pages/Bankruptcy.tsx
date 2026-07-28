@@ -57,12 +57,12 @@ export default function Bankruptcy() {
             </span>
           </div>
           <h1 className="font-display text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-4">
-            {lang === "ar" ? "قسم الإفلاس والتصفية" : "Bankruptcy & Liquidation"}
+            {lang === "ar" ? "إدارة إجراءات الإفلاس" : "Bankruptcy Proceeding Management"}
           </h1>
           <p className="font-body text-base md:text-lg text-white/60 max-w-2xl">
             {lang === "ar"
-              ? "نتولى إدارة إجراءات الإفلاس والتسوية الوقائية وإعادة التنظيم وفق نظام الإفلاس السعودي"
-              : "We manage bankruptcy proceedings, preventive settlements, and reorganization under Saudi Bankruptcy Law"}
+              ? "قسم أمين الإفلاس للحالات الجارية وإجراءات النظام ومطالبات الدائنين"
+              : "Trustee section for active cases, statutory procedures and creditor claims"}
           </p>
         </div>
       </section>

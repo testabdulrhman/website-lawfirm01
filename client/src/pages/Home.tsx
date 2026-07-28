@@ -52,11 +52,11 @@ export default function Home() {
   useSEO({
     fullTitle: true,
     title: lang === 'ar'
-      ? 'محامي إفلاس وأمين إفلاس معتمد | بريدة والقصيم - المشيقح للمحاماة'
-      : 'Bankruptcy Lawyer & Licensed Trustee | Buraydah, Qassim - Al-Mushaiqi Law Firm',
+      ? 'محامي إفلاس وأمين إفلاس معتمد للشركات | المشيقح'
+      : 'Bankruptcy Lawyer & Licensed Trustee for Companies | Al-Mushaiqi',
     description: lang === 'ar'
-      ? 'شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس. أمين إفلاس معتمد بترخيص 142147 من لجنة الإفلاس. خبرة +20 عاماً في القضايا التجارية والإفلاس - بريدة، القصيم.'
-      : 'Abdulrahman Redwan Al-Mushaiqi Law Firm & Bankruptcy Management. Licensed Bankruptcy Trustee (License #142147). 20+ years in commercial litigation and bankruptcy - Buraydah, Qassim.',
+      ? 'استشارات وتمثيل الشركات والدائنين والمدينين في إجراءات الإفلاس، وإدارة الإجراءات بترخيص أمين إفلاس 142147. مقرنا بريدة ونخدم جميع مناطق المملكة.'
+      : 'Bankruptcy advice and representation for companies, creditors and debtors, plus proceeding management by Licensed Trustee #142147. Based in Buraydah and serving Saudi Arabia.',
     keywords: lang === 'ar'
       ? 'محامي إفلاس, أمين إفلاس معتمد, محامي بريدة, إدارة إجراءات الإفلاس, محامي القصيم, تسوية وقائية, إعادة تنظيم مالي, تصفية شركات'
       : 'bankruptcy lawyer, licensed bankruptcy trustee, Buraydah lawyer, bankruptcy management, Qassim lawyer, preventive settlement, financial reorganization, company liquidation',
@@ -77,10 +77,10 @@ export default function Home() {
   const { ref: parallaxRef, offset: parallaxOffset } = useParallax(0.15);
 
   const featuredServices = [
-    { icon: Briefcase, title: t.services.items[0].title, slug: t.services.items[0].slug },
-    { icon: Gavel, title: t.services.items[2].title, slug: t.services.items[2].slug },
-    { icon: Building, title: t.services.items[3].title, slug: t.services.items[3].slug },
     { icon: Scale, title: t.services.items[4].title, slug: t.services.items[4].slug },
+    { icon: Briefcase, title: t.services.items[0].title, slug: t.services.items[0].slug },
+    { icon: Users, title: t.services.items[1].title, slug: t.services.items[1].slug },
+    { icon: Building, title: t.services.items[3].title, slug: t.services.items[3].slug },
   ];
 
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
@@ -147,7 +147,7 @@ export default function Home() {
                 style={getFadeStyle(heroVisible, "up", 450)}
               >
                 <Link
-                  href={lp("/services")}
+                  href={lp("/services/bankruptcy")}
                   className="flex items-center justify-center gap-3 px-6 md:px-8 py-3.5 md:py-4 bg-transparent border-2 border-white/20 text-white font-heading font-medium text-sm md:text-base hover:border-white/50 active:bg-white/10 transition-all duration-200"
                 >
                   <span>{t.hero.exploreServices}</span>
@@ -401,12 +401,22 @@ export default function Home() {
               </div>
             </div>
 
-            <div style={getFadeStyle(bankruptcyVisible, "up", 500)}>
+            <div
+              className="flex flex-col sm:flex-row gap-4 sm:items-center"
+              style={getFadeStyle(bankruptcyVisible, "up", 500)}
+            >
               <Link
                 href={lp("/services/bankruptcy")}
                 className="group inline-flex items-center gap-3 font-heading text-sm font-semibold text-[var(--color-gold)] hover:text-[var(--color-gold-light)] transition-colors"
               >
                 <span>{t.bankruptcyRecord.cta}</span>
+                <ArrowIcon size={16} className={`${arrowHoverClass} transition-transform`} />
+              </Link>
+              <Link
+                href={lp("/bankruptcy")}
+                className="group inline-flex items-center gap-3 font-heading text-sm font-semibold text-white/70 hover:text-white transition-colors"
+              >
+                <span>{t.bankruptcyRecord.portalCta}</span>
                 <ArrowIcon size={16} className={`${arrowHoverClass} transition-transform`} />
               </Link>
             </div>
