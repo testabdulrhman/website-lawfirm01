@@ -6,6 +6,7 @@ import SEOHead from '@/components/SEOHead';
 import { FileText, Upload, Calendar, Building2, AlertTriangle, CheckCircle2, Phone, Mail, ArrowRight } from 'lucide-react';
 import { localePath } from "@/lib/localePath";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { trackClaimSubmit } from "@/lib/analytics";
 
 // Types
 interface CaseData {
@@ -371,6 +372,7 @@ export default function Claims() {
       const savedClaimRef = result.claim_ref || '';
       setClaimRef(savedClaimRef);
       setCaseSeq(result.case_seq ?? null);
+      trackClaimSubmit();
       setSubmitProgress(25);
       setSubmitLabel('تم حفظ البيانات...');
 

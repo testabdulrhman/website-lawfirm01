@@ -77,7 +77,7 @@ function SSRRouter({ url }: { url: string }) {
       <Route path="/cases-guide">{() => <Layout><CasesGuide /></Layout>}</Route>
       <Route path="/legal-dictionary">{() => <Layout><LegalDictionary /></Layout>}</Route>
       <Route path="/sitemap">{() => <Layout><Sitemap /></Layout>}</Route>
-      <Route path="/locations/:city">{() => <Layout><CityPage /></Layout>}</Route>
+      <Route path="/locations/:slug">{() => <Layout><CityPage /></Layout>}</Route>
 
       {/* English routes */}
       <Route path="/en">{() => <Layout><Home /></Layout>}</Route>
@@ -103,7 +103,7 @@ function SSRRouter({ url }: { url: string }) {
       <Route path="/en/cases-guide">{() => <Layout><CasesGuide /></Layout>}</Route>
       <Route path="/en/legal-dictionary">{() => <Layout><LegalDictionary /></Layout>}</Route>
       <Route path="/en/sitemap">{() => <Layout><Sitemap /></Layout>}</Route>
-      <Route path="/en/locations/:city">{() => <Layout><CityPage /></Layout>}</Route>
+      <Route path="/en/locations/:slug">{() => <Layout><CityPage /></Layout>}</Route>
 
       {/* بوابة الدائن الموحّدة — ثلاث لغات */}
 
