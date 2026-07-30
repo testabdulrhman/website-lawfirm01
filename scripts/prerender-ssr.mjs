@@ -149,11 +149,26 @@ function applySEO(html, seo, route) {
       'description': description,
       'datePublished': seo.datePublished || '',
       'dateModified': seo.dateModified || seo.datePublished || '',
-      'author': {
-        '@type': 'Organization',
-        'name': 'شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس',
-        'url': SITE
-      },
+      'author': seo.authorName
+        ? {
+            '@type': 'Person',
+            'name': seo.authorName,
+            'url': seo.authorUrl || `${SITE}/team`,
+            ...(seo.authorJobTitle ? { 'jobTitle': seo.authorJobTitle } : {})
+          }
+        : {
+            '@type': 'Organization',
+            'name': 'شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس',
+            'url': SITE
+          },
+      ...(seo.reviewedBy && {
+        'reviewedBy': {
+          '@type': 'Person',
+          'name': seo.reviewedBy.name,
+          'url': seo.reviewedBy.url || `${SITE}/team`,
+          ...(seo.reviewedBy.jobTitle ? { 'jobTitle': seo.reviewedBy.jobTitle } : {})
+        }
+      }),
       'publisher': {
         '@type': 'Organization',
         'name': 'شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس',
