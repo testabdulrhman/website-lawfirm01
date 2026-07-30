@@ -45,6 +45,7 @@ const Sitemap = lazy(() => import("@/pages/Sitemap"));
 const PremiumResidency = lazy(() => import("@/pages/PremiumResidency"));
 const Brand = lazy(() => import("@/pages/Brand"));
 const Licenses = lazy(() => import("@/pages/Licenses"));
+const BankruptcyTrusteeLicense = lazy(() => import("@/pages/BankruptcyTrusteeLicense"));
 const HassanMisferAlZahrani = lazy(() => import("@/pages/HassanMisferAlZahrani"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
@@ -118,6 +119,7 @@ export async function loadInitialPage(pathname: string): Promise<InitialPage | u
     Component = (await import("@/pages/CityPage")).default;
     routePath = `${localePrefix}/locations/:slug`;
   }
+  else if (localizedPath === "/licenses/bankruptcy-trustee") Component = (await import("@/pages/BankruptcyTrusteeLicense")).default;
   else if (localizedPath === "/licenses") Component = (await import("@/pages/Licenses")).default;
   else if (localizedPath === "/sitemap") Component = (await import("@/pages/Sitemap")).default;
   else if (localizedPath === "/brand") Component = (await import("@/pages/Brand")).default;
@@ -198,6 +200,7 @@ function Router({ initialPage }: { initialPage?: InitialPage }) {
               <Route path={"/legal-dictionary"} component={LegalDictionary} />
               <Route path={"/premium-residency"} component={PremiumResidency} />
               <Route path={"/locations/:slug"} component={CityPage} />
+              <Route path={"/licenses/bankruptcy-trustee"} component={BankruptcyTrusteeLicense} />
               <Route path={"/licenses"} component={Licenses} />
               <Route path={"/sitemap"} component={Sitemap} />
               {/* English routes (/en prefix) */}
@@ -222,6 +225,7 @@ function Router({ initialPage }: { initialPage?: InitialPage }) {
 
               <Route path={"/en/premium-residency"} component={PremiumResidency} />
               <Route path={"/en/locations/:slug"} component={CityPage} />
+              <Route path={"/en/licenses/bankruptcy-trustee"} component={BankruptcyTrusteeLicense} />
               <Route path={"/en/licenses"} component={Licenses} />
               <Route path={"/en/sitemap"} component={Sitemap} />
               {/* Urdu routes (/ur prefix) */}

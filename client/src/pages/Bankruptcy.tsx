@@ -25,10 +25,10 @@ export default function Bankruptcy() {
   ]), schemas.bankruptcyService], [lang]);
 
   useSEO({
-    title: lang === 'ar' ? 'إدارة إجراءات الإفلاس | أمين إفلاس معتمد - ترخيص 142147' : 'Bankruptcy Management | Licensed Trustee #142147',
+    title: lang === 'ar' ? 'إدارة إجراءات الإفلاس والحالات الجارية' : 'Bankruptcy Proceedings & Active Cases',
     description: lang === 'ar'
-      ? 'بوابة إجراءات الإفلاس - تقديم مطالبات الدائنين، تتبع حالة المطالبات، والاطلاع على إجراءات التسوية الوقائية وإعادة التنظيم المالي والتصفية. أمين إفلاس معتمد من لجنة الإفلاس.'
-      : 'Bankruptcy portal - submit creditor claims, track claim status, and access preventive settlement, financial reorganization, and liquidation procedures. Licensed Bankruptcy Trustee.',
+      ? 'بوابة إجراءات الإفلاس والحالات الجارية: تقديم مطالبات الدائنين ومتابعتها، والاطلاع على التسوية الوقائية وإعادة التنظيم المالي والتصفية.'
+      : 'Bankruptcy proceedings and active cases portal: submit and track creditor claims and access preventive settlement, reorganization and liquidation information.',
     keywords: lang === 'ar'
       ? 'إجراءات إفلاس, مطالبات دائنين, أمين إفلاس, تسوية وقائية, إعادة تنظيم مالي, تصفية, لجنة الإفلاس'
       : 'bankruptcy proceedings, creditor claims, bankruptcy trustee, preventive settlement, financial reorganization, liquidation, bankruptcy commission',
@@ -64,6 +64,18 @@ export default function Bankruptcy() {
               ? "قسم أمين الإفلاس للحالات الجارية وإجراءات النظام ومطالبات الدائنين"
               : "Trustee section for active cases, statutory procedures and creditor claims"}
           </p>
+          <Link
+            href={lp("/licenses/bankruptcy-trustee")}
+            className="inline-flex items-center gap-2 mt-6 text-sm font-heading font-semibold text-[var(--color-gold)] hover:text-white transition-colors"
+          >
+            <Scale size={16} />
+            <span>
+              {lang === "ar"
+                ? "عن ترخيص أمين الإفلاس رقم 142147"
+                : "About Bankruptcy Trustee License No. 142147"}
+            </span>
+            <ArrowIcon size={14} />
+          </Link>
         </div>
       </section>
 

@@ -39,6 +39,7 @@ import LegalDictionary from "@/pages/LegalDictionary";
 import CityPage from "@/pages/CityPage";
 import Sitemap from "@/pages/Sitemap";
 import Licenses from "@/pages/Licenses";
+import BankruptcyTrusteeLicense from "@/pages/BankruptcyTrusteeLicense";
 import PremiumResidency from "@/pages/PremiumResidency";
 import Brand from "@/pages/Brand";
 import NotFound from "@/pages/NotFound";
@@ -96,7 +97,8 @@ function getInitialPage(url: string): InitialPage {
   else if (localizedPath.startsWith("/locations/")) {
     Component = CityPage;
     routePath = `${localePrefix}/locations/:slug`;
-  } else if (localizedPath === "/licenses") Component = Licenses;
+  } else if (localizedPath === "/licenses/bankruptcy-trustee") Component = BankruptcyTrusteeLicense;
+  else if (localizedPath === "/licenses") Component = Licenses;
   else if (localizedPath === "/premium-residency") Component = PremiumResidency;
   else if (localizedPath === "/brand") Component = Brand;
   else Component = NotFound;

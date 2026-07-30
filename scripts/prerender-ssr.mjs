@@ -127,6 +127,19 @@ function applySEO(html, seo, route) {
     }
   }
 
+  // Optional page-specific structured data supplied by seo-data.json.
+  // This keeps critical Service/Credential markup in the initial HTML instead
+  // of waiting for client-side hydration.
+  if (seo.structuredData && typeof seo.structuredData === 'object') {
+    const structuredDataItems = Array.isArray(seo.structuredData)
+      ? seo.structuredData
+      : [seo.structuredData];
+    for (const item of structuredDataItems) {
+      const schemaScript = `<script type="application/ld+json" data-page-schema="true">${JSON.stringify(item)}</script>`;
+      html = html.replace('</head>', `    ${schemaScript}\n  </head>`);
+    }
+  }
+
   // Article/BlogPosting JSON-LD for blog posts
   if (route.startsWith('/blog/') && route !== '/blog') {
     const articleLd = {

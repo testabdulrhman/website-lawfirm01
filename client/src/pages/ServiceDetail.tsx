@@ -611,10 +611,16 @@ export default function ServiceDetail() {
                       ? 'انتقل إلى قسم إدارة إجراءات الإفلاس للاطلاع على الحالات الجارية وإجراءات النظام وبوابة الدائنين.'
                       : 'Visit the bankruptcy management section for active proceedings, procedure guides and the creditor portal.'}
                   </p>
-                  <Link href={lp("/bankruptcy")} className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm hover:bg-[var(--color-gold-light)] transition-colors">
-                    <span>{lang === 'ar' ? 'إدارة الإجراءات والمطالبات' : 'Proceedings and Claims'}</span>
-                    <BackArrow size={14} />
-                  </Link>
+                  <div className="flex flex-wrap gap-2">
+                    <Link href={lp("/bankruptcy")} className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm hover:bg-[var(--color-gold-light)] transition-colors">
+                      <span>{lang === 'ar' ? 'إدارة الإجراءات والمطالبات' : 'Proceedings and Claims'}</span>
+                      <BackArrow size={14} />
+                    </Link>
+                    <Link href={lp("/licenses/bankruptcy-trustee")} className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--color-navy)]/15 text-[var(--color-navy)] font-heading font-semibold text-sm hover:border-[var(--color-gold)] transition-colors">
+                      <span>{lang === 'ar' ? 'ترخيص أمين الإفلاس' : 'Trustee License'}</span>
+                      <BackArrow size={14} />
+                    </Link>
+                  </div>
                 </div>
               )}
 

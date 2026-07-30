@@ -72,9 +72,10 @@ const licensesData: Record<string, LicenseItem[]> = {
         "إدارة اجتماعات الدائنين والتصويت على الخطط",
       ],
       relatedServices: [
-        { title: "إدارة إجراءات الإفلاس", path: "/services/bankruptcy" },
+        { title: "تفاصيل ترخيص أمين الإفلاس", path: "/licenses/bankruptcy-trustee" },
+        { title: "إدارة إجراءات الإفلاس", path: "/bankruptcy" },
+        { title: "خدمات محامي الإفلاس", path: "/services/bankruptcy" },
         { title: "تقديم المطالبات", path: "/bankruptcy/claims" },
-        { title: "الاستشارات القانونية", path: "/services/consultation" },
       ],
       faqs: [
         { q: "ما الفرق بين أمين الإفلاس والمحامي؟", a: "أمين الإفلاس يُعيّن من المحكمة التجارية لإدارة الإجراء بحيادية بين المدين والدائنين، بينما المحامي يمثل طرفاً واحداً." },
@@ -189,9 +190,10 @@ const licensesData: Record<string, LicenseItem[]> = {
         "Managing creditor meetings and plan voting",
       ],
       relatedServices: [
-        { title: "Bankruptcy Management", path: "/services/bankruptcy" },
+        { title: "Bankruptcy Trustee License Details", path: "/licenses/bankruptcy-trustee" },
+        { title: "Bankruptcy Proceedings", path: "/bankruptcy" },
+        { title: "Bankruptcy Legal Services", path: "/services/bankruptcy" },
         { title: "Claims Submission", path: "/bankruptcy/claims" },
-        { title: "Legal Consultation", path: "/services/consultation" },
       ],
       faqs: [
         { q: "What is the difference between a bankruptcy trustee and a lawyer?", a: "A bankruptcy trustee is appointed by the Commercial Court to manage proceedings impartially, while a lawyer represents one party." },

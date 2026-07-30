@@ -197,11 +197,11 @@
     "canonical": "https://redwan.sa/services/personal-status"
   },
   "/bankruptcy": {
-    "title": "إدارة إجراءات الإفلاس | أمين إفلاس معتمد - ترخيص 142147",
-    "description": "إدارة إجراءات الإفلاس وتقديم مطالبات الدائنين ومتابعتها، مع شرح التسوية الوقائية وإعادة التنظيم المالي والتصفية بإشراف أمين معتمد.",
-    "keywords": "إجراءات إفلاس, مطالبات دائنين, أمين إفلاس, تسوية وقائية, إعادة تنظيم مالي, تصفية, لجنة الإفلاس",
-    "ogTitle": "قسم الإفلاس والتصفية",
-    "ogDesc": "إدارة إجراءات الإفلاس والتصفية وإعادة التنظيم. تقديم مطالبات الدائنين وتتبع حالة المطالبات.",
+    "title": "إدارة إجراءات الإفلاس والحالات الجارية | المشيقح",
+    "description": "بوابة إجراءات الإفلاس والحالات الجارية: تقديم مطالبات الدائنين ومتابعتها، والاطلاع على التسوية الوقائية وإعادة التنظيم المالي والتصفية.",
+    "keywords": "إجراءات إفلاس, مطالبات دائنين, حالات إفلاس, تسوية وقائية, إعادة تنظيم مالي, تصفية, لجنة الإفلاس",
+    "ogTitle": "إدارة إجراءات الإفلاس والحالات الجارية",
+    "ogDesc": "الحالات الجارية وإجراءات النظام وبوابة الدائنين لتقديم المطالبات ومتابعتها.",
     "ogUrl": "https://redwan.sa/bankruptcy",
     "ogType": "website",
     "ogImage": null,
@@ -804,6 +804,86 @@
     "ogImage": "",
     "canonical": "https://redwan.sa/licenses"
   },
+  "/licenses/bankruptcy-trustee": {
+    "title": "أمين إفلاس معتمد في السعودية | ترخيص 142147",
+    "description": "أمين إفلاس معتمد لدى لجنة الإفلاس بترخيص 142147 لإدارة إجراءات التصفية وإعادة التنظيم المالي بعد التعيين من المحكمة في أنحاء السعودية.",
+    "keywords": "أمين إفلاس, أمين إفلاس معتمد, ترخيص أمين إفلاس, لجنة الإفلاس, إدارة إجراءات الإفلاس, أمين إفلاس السعودية",
+    "ogTitle": "أمين إفلاس معتمد في السعودية | ترخيص 142147",
+    "ogDesc": "تعرف على ترخيص أمين الإفلاس رقم 142147 ودوره في إدارة إجراءات التصفية وإعادة التنظيم المالي بعد التعيين القضائي.",
+    "ogUrl": "https://redwan.sa/licenses/bankruptcy-trustee",
+    "ogType": "website",
+    "ogImage": "",
+    "canonical": "https://redwan.sa/licenses/bankruptcy-trustee",
+    "faq": [
+      {
+        "q": "ما المقصود بأمين الإفلاس المعتمد؟",
+        "a": "هو ممارس مهني مرخص من لجنة الإفلاس، ويجوز للمحكمة تعيينه لإدارة إجراء الإفلاس وفق نظام الإفلاس ولائحته التنفيذية والقرارات ذات الصلة."
+      },
+      {
+        "q": "كيف يتم تعيين أمين الإفلاس؟",
+        "a": "يكون التعيين بقرار من المحكمة المختصة وفق متطلبات الإجراء والنظام. وجود الترخيص لا يعني التعيين تلقائياً في كل طلب."
+      },
+      {
+        "q": "ما الفرق بين أمين الإفلاس ومحامي الإفلاس؟",
+        "a": "أمين الإفلاس يدير الإجراء بصفته المهنية وبحياد بعد تعيينه، بينما محامي الإفلاس يقدم المشورة ويمثل المدين أو الدائن أو طرفاً آخر."
+      },
+      {
+        "q": "هل خدمات أمين الإفلاس محصورة في مدينة بريدة؟",
+        "a": "لا. الترخيص مهني على مستوى المملكة، ويتيح إدارة الإجراءات في المحاكم المختصة بمختلف المناطق بحسب قرار التعيين ومتطلبات كل حالة."
+      }
+    ],
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "الرئيسية",
+            "item": "https://redwan.sa/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "التراخيص",
+            "item": "https://redwan.sa/licenses"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "أمين إفلاس معتمد",
+            "item": "https://redwan.sa/licenses/bankruptcy-trustee"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "إدارة إجراءات الإفلاس بصفة أمين إفلاس معتمد",
+        "serviceType": "إدارة إجراءات الإفلاس بعد التعيين من المحكمة",
+        "url": "https://redwan.sa/licenses/bankruptcy-trustee",
+        "areaServed": {
+          "@type": "Country",
+          "name": "Saudi Arabia"
+        },
+        "provider": {
+          "@type": "LegalService",
+          "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+          "url": "https://redwan.sa",
+          "hasCredential": {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "ترخيص ممارسة أعمال أمناء الإفلاس",
+            "identifier": "142147",
+            "recognizedBy": {
+              "@type": "GovernmentOrganization",
+              "name": "لجنة الإفلاس"
+            }
+          }
+        }
+      }
+    ]
+  },
   "/en/licenses": {
     "title": "Professional Licenses & Accreditations | Redwan Law Firm",
     "description": "Abdulrahman Redwan Al-Mushaiqi Law Firm holds four official licenses: Legal Practice, Bankruptcy Trustee, Notarization, and Real Estate Registration.",
@@ -814,6 +894,86 @@
     "ogType": "website",
     "ogImage": "",
     "canonical": "https://redwan.sa/en/licenses"
+  },
+  "/en/licenses/bankruptcy-trustee": {
+    "title": "Licensed Bankruptcy Trustee in Saudi Arabia | License 142147",
+    "description": "Bankruptcy Commission licensed trustee (No. 142147) for court-appointed liquidation and financial reorganization proceedings across Saudi Arabia.",
+    "keywords": "licensed bankruptcy trustee Saudi Arabia, bankruptcy trustee license, Bankruptcy Commission, liquidation trustee, financial reorganization",
+    "ogTitle": "Licensed Bankruptcy Trustee in Saudi Arabia | License 142147",
+    "ogDesc": "Learn about Bankruptcy Trustee License No. 142147 and the court-appointed role in liquidation and financial reorganization proceedings.",
+    "ogUrl": "https://redwan.sa/en/licenses/bankruptcy-trustee",
+    "ogType": "website",
+    "ogImage": "",
+    "canonical": "https://redwan.sa/en/licenses/bankruptcy-trustee",
+    "faq": [
+      {
+        "q": "What is a licensed bankruptcy trustee?",
+        "a": "A professional licensed by the Saudi Bankruptcy Commission who may be appointed by the competent court to administer a proceeding under the Bankruptcy Law."
+      },
+      {
+        "q": "How is a bankruptcy trustee appointed?",
+        "a": "Appointment is made by the competent court in accordance with the applicable proceeding and statutory requirements."
+      },
+      {
+        "q": "What is the difference between a trustee and a bankruptcy lawyer?",
+        "a": "A trustee administers the court-appointed proceeding impartially, while a bankruptcy lawyer advises and represents a debtor, creditor or another party."
+      },
+      {
+        "q": "Are trustee services limited to Buraydah?",
+        "a": "No. The professional license applies across Saudi Arabia, subject to the court appointment and the requirements of each proceeding."
+      }
+    ],
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://redwan.sa/en"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Licenses",
+            "item": "https://redwan.sa/en/licenses"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Licensed Bankruptcy Trustee",
+            "item": "https://redwan.sa/en/licenses/bankruptcy-trustee"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Licensed Bankruptcy Trustee Services",
+        "serviceType": "Court-appointed bankruptcy proceeding administration",
+        "url": "https://redwan.sa/en/licenses/bankruptcy-trustee",
+        "areaServed": {
+          "@type": "Country",
+          "name": "Saudi Arabia"
+        },
+        "provider": {
+          "@type": "LegalService",
+          "name": "Redwan Law Firm",
+          "url": "https://redwan.sa",
+          "hasCredential": {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "Bankruptcy Trustee License",
+            "identifier": "142147",
+            "recognizedBy": {
+              "@type": "GovernmentOrganization",
+              "name": "Saudi Bankruptcy Commission"
+            }
+          }
+        }
+      }
+    ]
   },
   "/en": {
     "title": "Saudi Law Firm & Bankruptcy Trustee | Redwan Law",

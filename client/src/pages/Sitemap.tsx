@@ -44,6 +44,7 @@ export default function Sitemap() {
     {
       title: "الإفلاس والتصفية",
       links: [
+        { label: "أمين إفلاس معتمد — ترخيص 142147", href: "/licenses/bankruptcy-trustee" },
         { label: "خدمة الإفلاس والتصفية", href: "/services/bankruptcy" },
         { label: "إجراءات الإفلاس السبعة", href: "/bankruptcy/procedures" },
         { label: "إجراء التسوية الوقائية", href: "/bankruptcy/procedures/preventive-settlement" },
@@ -124,6 +125,7 @@ export default function Sitemap() {
     {
       title: "Bankruptcy & Liquidation",
       links: [
+        { label: "Licensed Bankruptcy Trustee — License 142147", href: "/licenses/bankruptcy-trustee" },
         { label: "Bankruptcy & Liquidation Service", href: "/services/bankruptcy" },
         { label: "Seven Bankruptcy Procedures", href: "/bankruptcy/procedures" },
         { label: "ASHYAD STEEL Company (Liquidation)", href: "/bankruptcy/ASHYAD-STEEL" },
