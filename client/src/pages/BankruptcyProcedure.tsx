@@ -104,6 +104,7 @@ export default function BankruptcyProcedure() {
           "Our bankruptcy team can help you assess the procedure that best fits your circumstances.",
         book: "Book a consultation",
         claim: "Submit a creditor claim",
+        trustee: "Licensed trustee details",
         other: "Other bankruptcy procedures",
       }
     : {
@@ -129,6 +130,7 @@ export default function BankruptcyProcedure() {
           "فريقنا المتخصص في إدارة إجراءات الإفلاس جاهز لمساعدتك على اختيار المسار الأنسب لوضعك.",
         book: "احجز استشارة",
         claim: "تقديم مطالبة دائن",
+        trustee: "عن أمين الإفلاس المعتمد",
         other: "إجراءات الإفلاس الأخرى",
       };
 
@@ -350,6 +352,13 @@ export default function BankruptcyProcedure() {
                 >
                   <FileText size={16} />
                   <span>{copy.claim}</span>
+                </Link>
+                <Link
+                  href={lp("/licenses/bankruptcy-trustee")}
+                  className="flex items-center justify-center gap-2 w-full mt-3 px-5 py-3 border border-white/20 text-white font-heading font-medium text-sm hover:border-[var(--color-gold)]/40 transition-colors"
+                >
+                  <Scale size={16} />
+                  <span>{copy.trustee}</span>
                 </Link>
               </div>
 

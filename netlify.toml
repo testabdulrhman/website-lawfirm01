@@ -80,6 +80,18 @@
 
 # ── Old WordPress pages: 301 redirect to closest match ──
 [[redirects]]
+  from = "/archives/2812"
+  to = "/blog/الدليل-الإرشادي-لنظام-الإفلاس-ولائحته-التنفيذية"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/archives/2812/"
+  to = "/blog/الدليل-الإرشادي-لنظام-الإفلاس-ولائحته-التنفيذية"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/considering-divorce"
   to = "/services/personal-status"
   status = 301
@@ -263,4 +275,3 @@
   for = "/en/bankruptcy/claims"
   [headers.values]
     X-Robots-Tag = "noindex"
-

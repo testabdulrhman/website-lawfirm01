@@ -323,6 +323,31 @@ export default function BlogPost() {
                 </div>
               )}
 
+              {article.category === "الإفلاس" && (
+                <div className="bg-white p-5 border border-[var(--color-border)]">
+                  <h3 className="font-heading text-sm font-semibold text-[var(--color-navy)] mb-4">
+                    {lang === "ar" ? "دليل خدمات الإفلاس" : "Bankruptcy resources"}
+                  </h3>
+                  <div className="space-y-1">
+                    {[
+                      { label: lang === "ar" ? "محامي إفلاس للشركات والدائنين" : "Bankruptcy legal services", path: "/services/bankruptcy" },
+                      { label: lang === "ar" ? "أمين إفلاس معتمد — ترخيص 142147" : "Licensed bankruptcy trustee", path: "/licenses/bankruptcy-trustee" },
+                      { label: lang === "ar" ? "إجراءات الإفلاس السبعة" : "Seven bankruptcy procedures", path: "/bankruptcy/procedures" },
+                      { label: lang === "ar" ? "تقديم مطالبة دائن" : "Submit a creditor claim", path: "/bankruptcy/claims" },
+                    ].map((item) => (
+                      <Link
+                        key={item.path}
+                        href={lp(item.path)}
+                        className="flex items-center justify-between gap-2 py-2.5 border-b border-[var(--color-border)] last:border-0 font-body text-sm text-[var(--color-navy)]/75 hover:text-[var(--color-gold)] transition-colors"
+                      >
+                        <span>{item.label}</span>
+                        <ChevronIcon size={14} className="flex-shrink-0" />
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* CTA */}
               <div className="bg-[var(--color-navy)] p-5 text-center">
                 <h3 className="font-heading text-sm font-semibold text-white mb-2">{t.cta.title}</h3>

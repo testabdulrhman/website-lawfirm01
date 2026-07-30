@@ -208,6 +208,13 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/licenses" />
   </url>
   <url>
+    <loc>https://redwan.sa/licenses/bankruptcy-trustee</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/licenses/bankruptcy-trustee" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/licenses/bankruptcy-trustee" />
+  </url>
+  <url>
     <loc>https://redwan.sa/locations/buraydah</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -501,6 +508,13 @@
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/licenses" />
     <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/licenses" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/en/licenses/bankruptcy-trustee</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/licenses/bankruptcy-trustee" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/licenses/bankruptcy-trustee" />
   </url>
   <url>
     <loc>https://redwan.sa/en/locations/buraydah</loc>
