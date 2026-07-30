@@ -44,12 +44,27 @@ export default function BlogPost() {
     "headline": article.title,
     "description": article.metaDescription,
     "datePublished": article.date,
-    "dateModified": article.date,
-    "author": {
-      "@type": "Organization",
-      "name": lang === "ar" ? "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس" : "Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Management",
-      "url": "https://redwan.sa"
-    },
+    "dateModified": article.updatedDate || article.date,
+    "author": article.reviewer
+      ? {
+          "@type": "Person",
+          "name": article.reviewer.name,
+          "url": article.reviewer.url ? `https://redwan.sa${article.reviewer.url}` : "https://redwan.sa/team",
+          "jobTitle": article.reviewer.role,
+        }
+      : {
+          "@type": "Organization",
+          "name": lang === "ar" ? "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس" : "Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Management",
+          "url": "https://redwan.sa"
+        },
+    ...(article.reviewer && {
+      "reviewedBy": {
+        "@type": "Person",
+        "name": article.reviewer.name,
+        "url": article.reviewer.url ? `https://redwan.sa${article.reviewer.url}` : "https://redwan.sa/team",
+        "jobTitle": article.reviewer.role,
+      },
+    }),
     "publisher": {
       "@type": "Organization",
       "name": lang === "ar" ? "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس" : "Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Management",
@@ -113,6 +128,22 @@ export default function BlogPost() {
       return text;
     };
 
+    const parseTableRow = (row: string): string[] =>
+      row
+        .trim()
+        .replace(/^\|/, "")
+        .replace(/\|$/, "")
+        .split("|")
+        .map(cell => cell.trim());
+
+    const headingId = (text: string): string =>
+      text
+        .replace(/\[(.+?)\]\(.+?\)/g, "$1")
+        .replace(/\*\*(.+?)\*\*/g, "$1")
+        .replace(/[^\u0600-\u06FFa-zA-Z0-9\s-]/g, "")
+        .trim()
+        .replace(/\s+/g, "-");
+
     const flushList = () => {
       if (inList && listItems.length > 0) {
         elements.push(
@@ -140,23 +171,78 @@ export default function BlogPost() {
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
+      const nextLine = lines[i + 1] || "";
+      const separatorCells = parseTableRow(nextLine);
+      const isTable =
+        line.trim().startsWith("|") &&
+        separatorCells.length > 0 &&
+        separatorCells.every(cell => /^:?-{3,}:?$/.test(cell));
+
+      if (isTable) {
+        flushList();
+        const headers = parseTableRow(line);
+        const rows: string[][] = [];
+        i += 2;
+        while (i < lines.length && lines[i].trim().startsWith("|")) {
+          rows.push(parseTableRow(lines[i]));
+          i++;
+        }
+        i--;
+        elements.push(
+          <div key={key++} className="overflow-x-auto my-6">
+            <table className="w-full min-w-[680px] border-collapse text-right font-body text-sm">
+              <thead>
+                <tr className="bg-[var(--color-navy)] text-white">
+                  {headers.map((header, index) => (
+                    <th
+                      key={index}
+                      className="p-3 border border-[var(--color-border)] font-heading font-semibold"
+                      dangerouslySetInnerHTML={{ __html: processInlineMarkdown(header) }}
+                    />
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((row, rowIndex) => (
+                  <tr key={rowIndex} className={rowIndex % 2 === 0 ? "bg-white" : "bg-[var(--color-cream)]/60"}>
+                    {headers.map((_, cellIndex) => (
+                      <td
+                        key={cellIndex}
+                        className="p-3 border border-[var(--color-border)] text-[var(--color-navy)]/80 align-top leading-relaxed"
+                        dangerouslySetInnerHTML={{ __html: processInlineMarkdown(row[cellIndex] || "") }}
+                      />
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+        continue;
+      }
 
       // Headings
       if (line.startsWith("## ")) {
         flushList();
         const text = line.replace("## ", "");
         elements.push(
-          <h2 key={key++} id={text.replace(/\s+/g, "-")} className="font-heading text-xl md:text-2xl font-bold text-[var(--color-navy)] mt-10 mb-4 pb-2 border-b border-[var(--color-border)]">
-            {text}
-          </h2>
+          <h2
+            key={key++}
+            id={headingId(text)}
+            className="font-heading text-xl md:text-2xl font-bold text-[var(--color-navy)] mt-10 mb-4 pb-2 border-b border-[var(--color-border)]"
+            dangerouslySetInnerHTML={{ __html: processInlineMarkdown(text) }}
+          />
         );
       } else if (line.startsWith("### ")) {
         flushList();
         const text = line.replace("### ", "");
         elements.push(
-          <h3 key={key++} className="font-heading text-lg md:text-xl font-semibold text-[var(--color-navy)] mt-6 mb-3">
-            {text}
-          </h3>
+          <h3
+            key={key++}
+            id={headingId(text)}
+            className="font-heading text-lg md:text-xl font-semibold text-[var(--color-navy)] mt-6 mb-3"
+            dangerouslySetInnerHTML={{ __html: processInlineMarkdown(text) }}
+          />
         );
       }
       // Blockquote
@@ -266,6 +352,15 @@ export default function BlogPost() {
                 {new Date(article.date).toLocaleDateString("ar-SA", { year: "numeric", month: "long", day: "numeric" })}
               </time>
             </span>
+            {article.updatedDate && (
+              <span className="flex items-center gap-1.5 font-body text-sm text-white/50">
+                <Calendar size={14} />
+                {lang === "ar" ? "آخر مراجعة:" : "Last reviewed:"}
+                <time dateTime={article.updatedDate}>
+                  {new Date(article.updatedDate).toLocaleDateString("ar-SA", { year: "numeric", month: "long", day: "numeric" })}
+                </time>
+              </span>
+            )}
             <span className="flex items-center gap-1.5 font-body text-sm text-white/50">
               <Clock size={14} />
               {article.readTime} {lang === "ar" ? "قراءة" : "read"}
@@ -280,7 +375,42 @@ export default function BlogPost() {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 lg:gap-12">
             {/* Main Content */}
             <div className="max-w-none bg-white p-6 md:p-10 border border-[var(--color-border)]">
+              {article.reviewer && (
+                <div className="mb-8 p-4 border-r-4 border-[var(--color-gold)] bg-[var(--color-gold)]/5">
+                  <p className="font-body text-sm text-[var(--color-navy)]/75 leading-relaxed">
+                    {lang === "ar" ? "مراجعة قانونية:" : "Legally reviewed by:"}{" "}
+                    {article.reviewer.url ? (
+                      <Link href={lp(article.reviewer.url)} className="font-semibold text-[var(--color-navy)] hover:text-[var(--color-gold)]">
+                        {article.reviewer.name}
+                      </Link>
+                    ) : (
+                      <strong>{article.reviewer.name}</strong>
+                    )}
+                    {" — "}
+                    {article.reviewer.role}
+                  </p>
+                </div>
+              )}
               {renderContent(article.content)}
+
+              {article.faqItems && article.faqItems.length > 0 && (
+                <section aria-labelledby="article-faq-title" className="mt-12 pt-8 border-t border-[var(--color-border)]">
+                  <h2 id="article-faq-title" className="font-heading text-xl md:text-2xl font-bold text-[var(--color-navy)] mb-5">
+                    {lang === "ar" ? "أسئلة شائعة عن نظام الإفلاس" : "Frequently asked questions"}
+                  </h2>
+                  <div className="space-y-4">
+                    {article.faqItems.map((item, index) => (
+                      <details key={index} className="group border border-[var(--color-border)] bg-[var(--color-cream)]/30">
+                        <summary className="cursor-pointer list-none p-4 font-heading font-semibold text-[var(--color-navy)] flex items-center justify-between gap-3">
+                          <span>{item.question}</span>
+                          <span aria-hidden="true" className="text-[var(--color-gold)] text-lg group-open:rotate-45 transition-transform">+</span>
+                        </summary>
+                        <p className="px-4 pb-4 font-body text-[var(--color-navy)]/75 leading-[1.9]">{item.answer}</p>
+                      </details>
+                    ))}
+                  </div>
+                </section>
+              )}
             </div>
 
             {/* Sidebar */}
