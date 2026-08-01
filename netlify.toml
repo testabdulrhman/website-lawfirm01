@@ -139,6 +139,25 @@
   status = 301
   force = true
 
+# ── Removed unverified bankruptcy report: 410 Gone ──
+[[redirects]]
+  from = "/bankruptcy/reports/2026-07"
+  to = "/404.html"
+  status = 410
+  force = true
+
+[[redirects]]
+  from = "/en/bankruptcy/reports/2026-07"
+  to = "/404.html"
+  status = 410
+  force = true
+
+[[redirects]]
+  from = "/ur/bankruptcy/reports/2026-07"
+  to = "/404.html"
+  status = 410
+  force = true
+
 # ── Old WordPress: 410 Gone for crawl-only paths ──
 [[redirects]]
   from = "/icon-with-text/"

@@ -2,18 +2,6 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "wouter";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const reports = [
-  {
-    month: "يوليو 2026",
-    monthEn: "July 2026",
-    slug: "/bankruptcy/reports/2026-07",
-    total: 70,
-    highlight: "التصفية الإدارية تهيمن بـ 70%",
-    highlightEn: "Administrative liquidation dominates at 70%",
-    published: "31/07/2026",
-  },
-];
-
 export default function BankruptcyReports() {
   const { lang } = useLanguage();
   const isEnglish = lang === "en";
@@ -57,37 +45,15 @@ export default function BankruptcyReports() {
           </p>
         </header>
 
-        {/* Reports Grid */}
-        <div className="grid gap-6">
-          {reports.map((report) => (
-            <Link key={report.slug} href={report.slug}>
-              <div className="group bg-[oklch(0.18_0.03_250)] border border-[oklch(0.3_0.04_250)] rounded-xl p-6 hover:border-[oklch(0.75_0.12_70)]/50 transition-all cursor-pointer">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                  <div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="px-3 py-1 bg-[oklch(0.75_0.12_70)]/20 text-[oklch(0.75_0.12_70)] text-sm rounded-full border border-[oklch(0.75_0.12_70)]/30">
-                        {isEnglish ? report.monthEn : report.month}
-                      </span>
-                      <span className="text-xs text-gray-500">{report.published}</span>
-                    </div>
-                    <h2 className="text-xl font-bold text-white group-hover:text-[oklch(0.75_0.12_70)] transition-colors">
-                      {isEnglish ? `Bankruptcy Report — ${report.monthEn}` : `تقرير الإفلاس — ${report.month}`}
-                    </h2>
-                    <p className="text-gray-400 mt-1">{isEnglish ? report.highlightEn : report.highlight}</p>
-                  </div>
-                  <div className="flex items-center gap-6">
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-[oklch(0.75_0.12_70)]">{report.total}</div>
-                      <div className="text-xs text-gray-500">{isEnglish ? "Announcements" : "إعلان"}</div>
-                    </div>
-                    <div className="text-gray-400 group-hover:text-[oklch(0.75_0.12_70)] transition-colors">
-                      {isEnglish ? "→" : "←"}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
+        <div className="border border-[var(--color-gold)]/25 bg-[var(--color-navy-light)] p-6 md:p-8">
+          <h2 className="font-heading text-xl font-semibold text-white">
+            {isEnglish ? "Reports are being prepared" : "التقارير قيد الإعداد"}
+          </h2>
+          <p className="font-body text-gray-400 mt-3">
+            {isEnglish
+              ? "The first verified report will be published after completing source validation and editorial review."
+              : "سيُنشر أول تقرير موثّق بعد اكتمال التحقق من المصادر والمراجعة التحريرية."}
+          </p>
         </div>
 
         {/* Coming Soon */}
