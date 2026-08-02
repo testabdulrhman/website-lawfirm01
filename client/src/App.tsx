@@ -47,7 +47,6 @@ const Brand = lazy(() => import("@/pages/Brand"));
 const Licenses = lazy(() => import("@/pages/Licenses"));
 const BankruptcyTrusteeLicense = lazy(() => import("@/pages/BankruptcyTrusteeLicense"));
 const HassanMisferAlZahrani = lazy(() => import("@/pages/HassanMisferAlZahrani"));
-const BankruptcyReport202607 = lazy(() => import("@/pages/BankruptcyReport202607"));
 const BankruptcyReports = lazy(() => import("@/pages/BankruptcyReports"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
@@ -99,7 +98,6 @@ export async function loadInitialPage(pathname: string): Promise<InitialPage | u
   else if (localizedPath === "/bankruptcy/ticket") Component = (await import("@/pages/BankruptcyTicket")).default;
   else if (localizedPath === "/bankruptcy/complete") Component = (await import("@/pages/BankruptcyComplete")).default;
   else if (localizedPath === "/bankruptcy/creditor") Component = (await import("@/pages/CreditorPortal")).default;
-  else if (localizedPath === "/bankruptcy/reports/2026-07") Component = (await import("@/pages/BankruptcyReport202607")).default;
   else if (localizedPath === "/bankruptcy/reports") Component = (await import("@/pages/BankruptcyReports")).default;
   else if (localizedPath.startsWith("/bankruptcy/")) {
     Component = (await import("@/pages/BankruptcyCase")).default;
@@ -181,7 +179,6 @@ function Router({ initialPage }: { initialPage?: InitialPage }) {
               <Route path={"/bankruptcy/procedures"} component={BankruptcyProcedures} />
               <Route path={"/bankruptcy/procedures/:slug"} component={BankruptcyProcedure} />
               <Route path={"/bankruptcy/claims"} component={Claims} />
-              <Route path={"/bankruptcy/reports/2026-07"} component={BankruptcyReport202607} />
               <Route path={"/bankruptcy/reports"} component={BankruptcyReports} />
               <Route path={"/bankruptcy/Hassan-Misfer-Al-Zahrani"} component={HassanMisferAlZahrani} />
               <Route path={"/bankruptcy/track"} component={BankruptcyTrack} />
