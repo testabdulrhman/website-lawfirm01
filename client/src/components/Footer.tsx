@@ -178,6 +178,14 @@ export default function Footer() {
               </span>
             </div>
           </div>
+
+          <p
+            lang="en"
+            dir="ltr"
+            className="mt-5 text-center font-body text-xs text-white/30"
+          >
+            ABDULRAHMAN REDWAN ALMOSHIQEH Company For Legal
+          </p>
         </div>
       </footer>
 
