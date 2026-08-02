@@ -13,10 +13,10 @@ export default function Footer() {
   return (
     <>
       {/* Footer */}
-      <footer className="bg-[var(--color-navy)] py-12 md:py-16">
+      <footer className="bg-[var(--color-navy)] py-10 md:py-12">
         <div className="container mx-auto px-4 lg:px-8">
           {/* Mobile: Stack vertically, Desktop: 4-col grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-10 md:mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 mb-8 md:mb-10">
             {/* Brand */}
             <div className="sm:col-span-2 lg:col-span-1">
               <Link href={lp("/")} className="inline-block mb-4">
@@ -36,7 +36,7 @@ export default function Footer() {
             {/* Quick Links */}
             <div>
               <h4 className="font-heading text-sm font-semibold text-white mb-4">{t.footer.quickLinks}</h4>
-              <ul className="space-y-3">
+              <ul className="grid grid-cols-2 gap-x-5 gap-y-2.5">
                 <li><Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.home}</Link></li>
                 <li><Link href={lp("/about")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.about}</Link></li>
                 <li><Link href={lp("/services")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.services}</Link></li>
@@ -159,7 +159,7 @@ export default function Footer() {
           </div>
 
           {/* Bottom Bar */}
-          <div className="pt-8 border-t border-white/10 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 lg:gap-6 text-center">
+          <div className="pt-6 border-t border-white/10 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 lg:gap-6 text-center">
             <p className="font-body text-xs text-white/30 leading-relaxed lg:text-start">
               © {new Date().getFullYear()} {t.footer.copyright}
             </p>
