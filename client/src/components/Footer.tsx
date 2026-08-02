@@ -159,11 +159,18 @@ export default function Footer() {
           </div>
 
           {/* Bottom Bar */}
-          <div className={`pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 ${isRTL ? 'text-center md:text-right' : 'text-center md:text-left'}`}>
-            <p className="font-body text-xs text-white/30 leading-relaxed">
+          <div className="pt-8 border-t border-white/10 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 lg:gap-6 text-center">
+            <p className="font-body text-xs text-white/30 leading-relaxed lg:text-start">
               © {new Date().getFullYear()} {t.footer.copyright}
             </p>
-            <div className="flex items-center gap-4 md:gap-6 flex-wrap justify-center">
+            <p
+              lang="en"
+              dir="ltr"
+              className="font-body text-xs text-white/30 whitespace-nowrap"
+            >
+              ABDULRAHMAN REDWAN ALMOSHIQEH Company For Legal
+            </p>
+            <div className="flex items-center gap-4 md:gap-6 flex-wrap justify-center lg:justify-end">
               <Link href={lp("/privacy")} className="font-body text-xs text-white/30 hover:text-[var(--color-gold)] transition-colors">
                 {t.footer.privacy}
               </Link>
@@ -178,14 +185,6 @@ export default function Footer() {
               </span>
             </div>
           </div>
-
-          <p
-            lang="en"
-            dir="ltr"
-            className="mt-5 text-center font-body text-xs text-white/30"
-          >
-            ABDULRAHMAN REDWAN ALMOSHIQEH Company For Legal
-          </p>
         </div>
       </footer>
 
