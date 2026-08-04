@@ -18,8 +18,7 @@ export default function BankruptcyReports() {
             <Link href="/bankruptcy" className="hover:text-[var(--color-gold)]">الإفلاس</Link><span>/</span>
             <span className="text-[var(--color-gold)]">التقارير الشهرية</span>
           </nav>
-          <p className="font-heading text-sm font-semibold text-[var(--color-gold)]">مرصد إعلانات الإفلاس السعودية</p>
-          <h1 className="mt-4 max-w-4xl font-heading text-4xl font-bold leading-tight md:text-5xl">التقارير الشهرية لإعلانات الإفلاس</h1>
+          <h1 className="max-w-4xl font-heading text-4xl font-bold leading-tight md:text-5xl">التقارير الشهرية لإعلانات الإفلاس</h1>
           <p className="mt-6 max-w-3xl font-body text-lg leading-8 text-white/70">
             تقارير عربية أصلية تجمع الإعلانات الرسمية وتحللها، مع تفسير مهني للدائنين والشركات والمستثمرين.
           </p>
