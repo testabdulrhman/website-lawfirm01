@@ -158,7 +158,7 @@ export default function BankruptcyReportJuly2026() {
             <span className="text-[var(--color-gold)]">يوليو 2026</span>
           </nav>
 
-          <div className="grid items-end gap-10 lg:grid-cols-[1fr_auto]">
+          <div>
             <div className="max-w-4xl">
               <div className="mb-5 inline-flex items-center gap-2 border border-[var(--color-gold)]/45 px-3 py-2 text-sm text-[var(--color-gold)]">
                 <FileText className="h-4 w-4" />
@@ -174,14 +174,6 @@ export default function BankruptcyReportJuly2026() {
               </p>
               <p className="mt-4 text-sm text-white/50">تاريخ النشر: 4 أغسطس 2026 · آخر تحديث: 4 أغسطس 2026</p>
             </div>
-            <a
-              href="/downloads/redwan-bankruptcy-report-july-2026.pdf"
-              download
-              className="inline-flex min-h-12 items-center justify-center gap-2 bg-[var(--color-gold)] px-6 py-3 font-heading font-semibold text-[var(--color-navy)] transition-opacity hover:opacity-90"
-            >
-              <Download className="h-5 w-5" />
-              تنزيل التقرير PDF
-            </a>
           </div>
         </div>
       </section>
@@ -597,6 +589,16 @@ export default function BankruptcyReportJuly2026() {
               أو غيابها قد يحد من دقته. التقرير معلوماتي عام ولا يعد استشارة قانونية أو حكماً على الملاءة المالية لأي طرف.
             </p>
           </div>
+        </div>
+        <div className="container mx-auto mt-8 px-5 md:px-8">
+          <a
+            href="/downloads/redwan-bankruptcy-report-july-2026.pdf"
+            download
+            className="inline-flex min-h-11 items-center justify-center gap-2 border border-[var(--color-navy)]/20 px-5 py-2.5 font-heading text-sm font-semibold text-[var(--color-navy)] transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+          >
+            <Download className="h-4 w-4" />
+            تحميل نسخة PDF
+          </a>
         </div>
       </section>
 
