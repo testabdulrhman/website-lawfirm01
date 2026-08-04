@@ -48,6 +48,7 @@ const Licenses = lazy(() => import("@/pages/Licenses"));
 const BankruptcyTrusteeLicense = lazy(() => import("@/pages/BankruptcyTrusteeLicense"));
 const HassanMisferAlZahrani = lazy(() => import("@/pages/HassanMisferAlZahrani"));
 const BankruptcyReports = lazy(() => import("@/pages/BankruptcyReports"));
+const BankruptcyReportJuly2026 = lazy(() => import("@/pages/BankruptcyReportJuly2026"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 function DeferredToaster() {
@@ -98,6 +99,7 @@ export async function loadInitialPage(pathname: string): Promise<InitialPage | u
   else if (localizedPath === "/bankruptcy/ticket") Component = (await import("@/pages/BankruptcyTicket")).default;
   else if (localizedPath === "/bankruptcy/complete") Component = (await import("@/pages/BankruptcyComplete")).default;
   else if (localizedPath === "/bankruptcy/creditor") Component = (await import("@/pages/CreditorPortal")).default;
+  else if (localizedPath === "/bankruptcy/reports/2026-07") Component = (await import("@/pages/BankruptcyReportJuly2026")).default;
   else if (localizedPath === "/bankruptcy/reports") Component = (await import("@/pages/BankruptcyReports")).default;
   else if (localizedPath.startsWith("/bankruptcy/")) {
     Component = (await import("@/pages/BankruptcyCase")).default;
@@ -179,6 +181,7 @@ function Router({ initialPage }: { initialPage?: InitialPage }) {
               <Route path={"/bankruptcy/procedures"} component={BankruptcyProcedures} />
               <Route path={"/bankruptcy/procedures/:slug"} component={BankruptcyProcedure} />
               <Route path={"/bankruptcy/claims"} component={Claims} />
+              <Route path={"/bankruptcy/reports/2026-07"} component={BankruptcyReportJuly2026} />
               <Route path={"/bankruptcy/reports"} component={BankruptcyReports} />
               <Route path={"/bankruptcy/Hassan-Misfer-Al-Zahrani"} component={HassanMisferAlZahrani} />
               <Route path={"/bankruptcy/track"} component={BankruptcyTrack} />

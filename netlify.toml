@@ -139,13 +139,7 @@
   status = 301
   force = true
 
-# ── Removed unverified bankruptcy report: 410 Gone ──
-[[redirects]]
-  from = "/bankruptcy/reports/2026-07"
-  to = "/404.html"
-  status = 410
-  force = true
-
+# ── Untranslated bankruptcy report variants: 410 Gone ──
 [[redirects]]
   from = "/en/bankruptcy/reports/2026-07"
   to = "/404.html"

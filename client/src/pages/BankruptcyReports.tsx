@@ -1,67 +1,59 @@
-import { Helmet } from "react-helmet-async";
 import { Link } from "wouter";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { ArrowLeft, Download, FileText } from "lucide-react";
+import { useSEO } from "@/hooks/useSEO";
 
 export default function BankruptcyReports() {
-  const { lang } = useLanguage();
-  const isEnglish = lang === "en";
-
-  const title = isEnglish
-    ? "Saudi Bankruptcy Monthly Reports"
-    : "التقارير الشهرية لإعلانات الإفلاس السعودية";
-  const description = isEnglish
-    ? "Monthly analytical reports on Saudi bankruptcy announcements, with professional legal commentary from a licensed bankruptcy trustee."
-    : "تقارير تحليلية شهرية لإعلانات الإفلاس في المملكة العربية السعودية، مع تعليق قانوني مهني من أمين إفلاس مرخّص.";
+  useSEO({
+    title: "التقارير الشهرية لإعلانات الإفلاس السعودية",
+    description: "تقارير تحليلية شهرية لإعلانات الإفلاس في المملكة العربية السعودية، مع بيانات موثقة وتعليق مهني من أمين إفلاس مرخص.",
+    canonical: "/bankruptcy/reports",
+  });
 
   return (
-    <>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href="https://redwan.sa/bankruptcy/reports" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-      </Helmet>
-
-      <div className="max-w-5xl mx-auto px-4 py-12" dir={isEnglish ? "ltr" : "rtl"}>
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8">
-          <Link href="/" className="hover:text-[oklch(0.75_0.12_70)] transition-colors">{isEnglish ? "Home" : "الرئيسية"}</Link>
-          <span>/</span>
-          <Link href="/bankruptcy" className="hover:text-[oklch(0.75_0.12_70)] transition-colors">{isEnglish ? "Bankruptcy" : "الإفلاس"}</Link>
-          <span>/</span>
-          <span className="text-gray-300">{isEnglish ? "Reports" : "التقارير"}</span>
-        </nav>
-
-        {/* Header */}
-        <header className="mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            {isEnglish ? "Bankruptcy Monthly Reports" : "التقارير الشهرية للإفلاس"}
-          </h1>
-          <p className="text-gray-400 text-lg max-w-3xl">
-            {isEnglish
-              ? "Professional monthly analysis of Saudi bankruptcy announcements. Each report covers all announcements published by the Bankruptcy Commission (Isar), with statistics, company listings, and expert legal commentary."
-              : "تحليل شهري مهني لإعلانات الإفلاس السعودية. يغطي كل تقرير جميع الإعلانات المنشورة من لجنة الإفلاس (إيسار)، مع إحصائيات وقوائم الشركات وتعليق قانوني متخصص."}
-          </p>
-        </header>
-
-        <div className="border border-[var(--color-gold)]/25 bg-[var(--color-navy-light)] p-6 md:p-8">
-          <h2 className="font-heading text-xl font-semibold text-white">
-            {isEnglish ? "Reports are being prepared" : "التقارير قيد الإعداد"}
-          </h2>
-          <p className="font-body text-gray-400 mt-3">
-            {isEnglish
-              ? "The first verified report will be published after completing source validation and editorial review."
-              : "سيُنشر أول تقرير موثّق بعد اكتمال التحقق من المصادر والمراجعة التحريرية."}
+    <main dir="rtl" className="bg-[#f6f3ed] text-[var(--color-navy)]">
+      <section className="bg-[var(--color-navy)] pt-32 pb-16 text-white md:pt-40 md:pb-24">
+        <div className="container mx-auto px-5 md:px-8">
+          <nav className="mb-7 flex items-center gap-2 text-sm text-white/60">
+            <Link href="/" className="hover:text-[var(--color-gold)]">الرئيسية</Link><span>/</span>
+            <Link href="/bankruptcy" className="hover:text-[var(--color-gold)]">الإفلاس</Link><span>/</span>
+            <span className="text-[var(--color-gold)]">التقارير الشهرية</span>
+          </nav>
+          <p className="font-heading text-sm font-semibold text-[var(--color-gold)]">مرصد إعلانات الإفلاس السعودية</p>
+          <h1 className="mt-4 max-w-4xl font-heading text-4xl font-bold leading-tight md:text-5xl">التقارير الشهرية لإعلانات الإفلاس</h1>
+          <p className="mt-6 max-w-3xl font-body text-lg leading-8 text-white/70">
+            تقارير عربية أصلية تجمع الإعلانات الرسمية وتحللها، مع تفسير مهني للدائنين والشركات والمستثمرين.
           </p>
         </div>
+      </section>
 
-        {/* Coming Soon */}
-        <div className="mt-12 text-center text-gray-500">
-          <p>{isEnglish ? "New reports are published at the end of each month." : "تُنشر التقارير الجديدة في نهاية كل شهر."}</p>
-          <p className="mt-2 text-sm">{isEnglish ? "Subscribe to get notified when new reports are available." : "تابعنا للحصول على إشعار عند صدور تقارير جديدة."}</p>
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-5 md:px-8">
+          <article className="grid overflow-hidden border border-black/10 bg-white lg:grid-cols-[0.7fr_1.3fr]">
+            <div className="flex min-h-64 flex-col justify-between bg-[var(--color-navy)] p-8 text-white md:p-10">
+              <FileText className="h-10 w-10 text-[var(--color-gold)]" />
+              <div>
+                <div className="font-heading text-5xl font-bold text-[var(--color-gold)]">51</div>
+                <div className="mt-2 text-white/60">إعلاناً رسمياً موثقاً</div>
+              </div>
+            </div>
+            <div className="p-8 md:p-12">
+              <div className="text-sm font-semibold text-[var(--color-gold)]">الإصدار الأول · يوليو 2026</div>
+              <h2 className="mt-3 font-heading text-3xl font-bold">تقرير إعلانات الإفلاس في السعودية</h2>
+              <p className="mt-5 max-w-2xl leading-8 text-[var(--color-navy)]/65">
+                توزيع الإجراءات والمحاكم، قائمة الشركات والحالات المعلنة، روابط لجنة الإفلاس، وتنبيهات عملية مع تعليق مهني من أمين إفلاس مرخص.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link href="/bankruptcy/reports/2026-07" className="inline-flex min-h-12 items-center justify-center gap-2 bg-[var(--color-gold)] px-6 py-3 font-heading font-semibold text-[var(--color-navy)]">
+                  قراءة التقرير <ArrowLeft className="h-4 w-4" />
+                </Link>
+                <a href="/downloads/redwan-bankruptcy-report-july-2026.pdf" download className="inline-flex min-h-12 items-center justify-center gap-2 border border-black/20 px-6 py-3 font-heading font-semibold">
+                  <Download className="h-4 w-4" /> تنزيل PDF
+                </a>
+              </div>
+            </div>
+          </article>
         </div>
-      </div>
-    </>
+      </section>
+    </main>
   );
 }
