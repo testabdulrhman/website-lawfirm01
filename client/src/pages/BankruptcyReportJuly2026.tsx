@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import reportData from "@/data/bankruptcyReportJuly2026.json";
+import otherReportData from "@/data/bankruptcyReportJuly2026Other.json";
 
 type ReportRow = {
   debtor: string;
@@ -25,7 +26,19 @@ type ReportRow = {
   officeManaged: boolean;
 };
 
+type OtherReportRow = {
+  debtor: string;
+  registration: string | null;
+  procedure: string;
+  court: string;
+  announcementType: string;
+  announcementDate: string;
+  officialUrl: string;
+  scopeCategory: "انتقال إجرائي" | "إعلان لاحق أو تشغيلي";
+};
+
 const announcements = reportData as ReportRow[];
+const otherAnnouncements = otherReportData as OtherReportRow[];
 
 const procedureSummary = [
   { label: "التصفية الإدارية", value: 38, percentage: 74.5 },
@@ -40,6 +53,44 @@ const courtSummary = [
   { label: "المحكمة التجارية بالدمام", value: 5, percentage: 9.8 },
   { label: "المحكمة التجارية ببريدة", value: 1, percentage: 2 },
   { label: "المحكمة التجارية بالمدينة المنورة", value: 1, percentage: 2 },
+];
+
+const ageSummary = [
+  { value: "1957", label: "أقدم شركة تأسيساً", detail: "شركة الطوب الأحمر السعودي" },
+  { value: "2024", label: "أحدث شركة تأسيساً", detail: "شركة التطوير المتميز لحلول الأعمال" },
+  { value: "15.5", label: "متوسط العمر المقصوص", detail: "سنة - بعد استبعاد الأطراف" },
+  { value: "14.9", label: "وسيط العمر", detail: "سنة عند إعلان افتتاح الإجراء" },
+];
+
+const ageDistribution = [
+  { label: "أقل من 5 سنوات", value: 4, percentage: 8.3 },
+  { label: "من 5 إلى أقل من 10", value: 7, percentage: 14.6 },
+  { label: "من 10 إلى أقل من 20", value: 22, percentage: 45.8 },
+  { label: "من 20 إلى أقل من 30", value: 11, percentage: 22.9 },
+  { label: "30 سنة فأكثر", value: 4, percentage: 8.3 },
+];
+
+const sectorSummary = [
+  { label: "الأغذية والمطاعم", value: 10, percentage: 20.8 },
+  { label: "التشييد والمقاولات والعقار", value: 8, percentage: 16.7 },
+  { label: "غير مصنف", value: 7, percentage: 14.6 },
+  { label: "التجارة والتجزئة", value: 5, percentage: 10.4 },
+  { label: "الصناعة والتعدين", value: 4, percentage: 8.3 },
+  { label: "الصحة", value: 3, percentage: 6.3 },
+  { label: "النقل والخدمات اللوجستية", value: 3, percentage: 6.3 },
+  { label: "الاستثمار والخدمات المالية", value: 3, percentage: 6.3 },
+  { label: "التعليم", value: 2, percentage: 4.2 },
+  { label: "الخدمات المهنية والتقنية", value: 2, percentage: 4.2 },
+  { label: "الرياضة واللياقة", value: 1, percentage: 2.1 },
+];
+
+const otherTypeSummary = [
+  { label: "بيع أصول", value: 5 },
+  { label: "مواعيد طلبات افتتاح", value: 5 },
+  { label: "تعذر إبلاغ دائنين", value: 3 },
+  { label: "انتقال إجرائي", value: 3 },
+  { label: "تصويت دائنين", value: 2 },
+  { label: "تغيير بيانات تواصل", value: 1 },
 ];
 
 function compactProcedure(value: string) {
@@ -59,7 +110,7 @@ export default function BankruptcyReportJuly2026() {
   useSEO({
     title: "تقرير إعلانات الإفلاس في السعودية — يوليو 2026",
     description:
-      "تحليل مهني موثق لـ51 إعلان إفلاس منشوراً في السعودية خلال يوليو 2026، مع توزيع الإجراءات والمحاكم وقائمة الشركات وروابط الإعلانات الرسمية.",
+      "تحليل مهني موثق لـ70 إعلاناً نشرته لجنة الإفلاس إيسار خلال يوليو 2026، منها 51 افتتاحاً جديداً، مع تحليل الإجراءات والأعمار والقطاعات وروابط المصادر الرسمية.",
     canonical: "/bankruptcy/reports/2026-07",
     ogType: "article",
   });
@@ -118,8 +169,8 @@ export default function BankruptcyReportJuly2026() {
                 <span className="mt-2 block text-[var(--color-gold)]">يوليو 2026</span>
               </h1>
               <p className="mt-6 max-w-3xl font-body text-lg leading-8 text-white/75">
-                قراءة مهنية لـ51 إعلاناً منشوراً لدى لجنة الإفلاس، تشمل توزيع الإجراءات والمحاكم
-                وقائمة الشركات الداخلة في إجراءات الإفلاس، مع روابط المصادر الرسمية.
+                قراءة مهنية لـ70 إعلاناً نشرته لجنة الإفلاس «إيسار»، منها 51 إعلان افتتاح جديد،
+                مع تحليل الإجراءات والمحاكم وأعمار الشركات وقطاعاتها وروابط المصادر الرسمية.
               </p>
               <p className="mt-4 text-sm text-white/50">تاريخ النشر: 4 أغسطس 2026 · آخر تحديث: 4 أغسطس 2026</p>
             </div>
@@ -144,8 +195,10 @@ export default function BankruptcyReportJuly2026() {
             {[
               ["الملخص", "#summary"],
               ["الإجراءات", "#procedures"],
+              ["الأعمار والقطاعات", "#profile"],
               ["ماذا تعني النتائج؟", "#meaning"],
               ["الإعلانات", "#announcements"],
+              ["إعلانات أخرى", "#other-announcements"],
               ["المنهجية", "#methodology"],
             ].map(([label, href]) => (
               <a
@@ -163,10 +216,10 @@ export default function BankruptcyReportJuly2026() {
       <section className="border-b border-black/10 bg-[#f6f3ed] py-10">
         <div className="container mx-auto grid gap-px bg-black/10 px-5 md:grid-cols-4 md:px-8">
           {[
-            ["51", "إجمالي الإعلانات"],
-            ["48", "شركة ومنشأة"],
-            ["3", "أفراد (دون عرض الهوية)"],
-            ["5", "محاكم تجارية"],
+            ["70", "إجمالي إعلانات إيسار"],
+            ["51", "افتتاحاً جديداً"],
+            ["3", "انتقالات إجرائية"],
+            ["16", "إعلاناً لاحقاً وتشغيلياً"],
           ].map(([value, label]) => (
             <div key={label} className="bg-[#f6f3ed] px-6 py-7 text-center">
               <div className="font-heading text-4xl font-bold text-[var(--color-gold)]">{value}</div>
@@ -183,8 +236,12 @@ export default function BankruptcyReportJuly2026() {
             <h2 className="mt-3 font-heading text-3xl font-bold md:text-4xl">ما الذي تحرّك خلال الشهر؟</h2>
             <div className="mt-7 space-y-5 font-body leading-8 text-[var(--color-navy)]/75">
               <p>
-                شكّلت <strong className="text-[var(--color-navy)]">التصفية الإدارية 74.5%</strong> من إعلانات يوليو؛
-                إذ ظهر هذا الإجراء في 38 إعلاناً من أصل 51. وتعكس هذه النسبة تركيب عينة الإعلانات المنشورة خلال الشهر،
+                رصد التقرير 70 إعلاناً فريداً خلال الشهر تخص 68 مديناً. ولقياس الدخول الجديد إلى الإجراءات،
+                اقتصر التحليل الرئيسي على 51 افتتاحاً جديداً: 48 شركة ومنشأة و3 أفراد دون عرض بيانات الهوية.
+              </p>
+              <p>
+                شكّلت <strong className="text-[var(--color-navy)]">التصفية الإدارية 74.5%</strong> من الافتتاحات الجديدة؛
+                إذ ظهر هذا الإجراء في 38 إعلاناً من أصل 51. وتعكس هذه النسبة تركيب عينة الافتتاحات المنشورة خلال الشهر،
                 ولا تكفي وحدها للحكم على اتجاه سنوي أو على حجم التعثر في الاقتصاد.
               </p>
               <p>
@@ -194,6 +251,10 @@ export default function BankruptcyReportJuly2026() {
               <p>
                 استحوذت المحكمة التجارية بالرياض على 33 إعلاناً، تلتها جدة بـ11 ثم الدمام بـ5. هذا توزيع بحسب
                 <strong className="text-[var(--color-navy)]"> المحكمة الواردة في الإعلان</strong>، وليس قياساً مباشراً لتعرض مدينة أو قطاع للتعثر.
+              </p>
+              <p>
+                أما الإعلانات الـ19 الأخرى فتشمل 3 حالات انتهى فيها إجراء تصفية وافتتح بعدها إجراء تصفية إدارية،
+                و16 إعلاناً لاحقاً أو تشغيلياً مثل بيع الأصول، ومواعيد التصويت، وتعذر إبلاغ بعض الدائنين.
               </p>
             </div>
           </div>
@@ -297,9 +358,69 @@ export default function BankruptcyReportJuly2026() {
               <div key={item.label} className="border border-black/10 p-6">
                 <div className="font-heading text-3xl font-bold text-[var(--color-gold)]">{item.value}</div>
                 <div className="mt-2 font-heading font-semibold">{item.label.replace("المحكمة التجارية ب", "")}</div>
-                <div className="mt-1 text-sm text-[var(--color-navy)]/55">{item.percentage}% من الإعلانات</div>
+                <div className="mt-1 text-sm text-[var(--color-navy)]/55">{item.percentage}% من الافتتاحات الجديدة</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="profile" className="scroll-mt-32 border-y border-black/10 bg-[#f6f3ed] py-16 md:py-24">
+        <div className="container mx-auto px-5 md:px-8">
+          <p className="font-heading text-sm font-semibold text-[var(--color-gold)]">ملامح الشركات</p>
+          <h2 className="mt-3 font-heading text-3xl font-bold">أعمار الشركات وقطاعاتها</h2>
+          <p className="mt-4 max-w-4xl leading-8 text-[var(--color-navy)]/65">
+            يغطي تحليل العمر والقطاع 48 شركة ومنشأة وردت ضمن الافتتاحات الجديدة، ولا يشمل الأفراد الثلاثة.
+            حُسب العمر عند تاريخ إعلان افتتاح الإجراء، ويعرض القطاع بوصفه تصنيفاً تحليلياً أولياً لا وصفاً نظامياً ملزماً.
+          </p>
+
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {ageSummary.map((item) => (
+              <article key={item.label} className="border border-black/10 bg-white p-6">
+                <div className="font-heading text-3xl font-bold text-[var(--color-gold)]">{item.value}</div>
+                <h3 className="mt-3 font-heading font-bold">{item.label}</h3>
+                <p className="mt-2 text-sm leading-6 text-[var(--color-navy)]/55">{item.detail}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-8 grid gap-8 lg:grid-cols-2">
+            <article className="border border-black/10 bg-white p-6 md:p-8">
+              <h3 className="font-heading text-xl font-bold">توزيع أعمار الشركات</h3>
+              <div className="mt-7 space-y-5">
+                {ageDistribution.map((item) => (
+                  <div key={item.label}>
+                    <div className="mb-2 flex items-end justify-between gap-4">
+                      <span className="font-heading font-semibold">{item.label}</span>
+                      <span className="text-sm text-[var(--color-navy)]/60">{item.value} · {item.percentage}%</span>
+                    </div>
+                    <div className="h-2 bg-black/10">
+                      <div className="h-full bg-[var(--color-gold)]" style={{ width: `${item.percentage}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-7 border-t border-black/10 pt-5 text-sm leading-7 text-[var(--color-navy)]/55">
+                بلغ المتوسط الحسابي 16.7 سنة، بينما بلغ المتوسط المقصوص قرابة 10% نحو 15.5 سنة بعد استبعاد أصغر 4 أعمار وأكبر 4 أعمار.
+              </p>
+            </article>
+
+            <article className="border border-black/10 bg-white p-6 md:p-8">
+              <h3 className="font-heading text-xl font-bold">التوزيع القطاعي الأولي</h3>
+              <p className="mt-3 text-sm leading-7 text-[var(--color-navy)]/55">
+                النسب من أصل 48 شركة ومنشأة. توفرت بيانات نشاط لـ41 حالة، وبقيت 7 حالات ضمن «غير مصنف».
+              </p>
+              <div className="mt-7 grid gap-x-8 gap-y-4 sm:grid-cols-2">
+                {sectorSummary.map((item) => (
+                  <div key={item.label} className="border-b border-black/10 pb-3">
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="font-heading text-sm font-semibold leading-6">{item.label}</span>
+                      <span className="shrink-0 text-sm text-[var(--color-gold)]">{item.value} · {item.percentage}%</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -332,8 +453,8 @@ export default function BankruptcyReportJuly2026() {
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
               <p className="font-heading text-sm font-semibold text-[var(--color-gold)]">سجل الشهر</p>
-              <h2 className="mt-3 font-heading text-3xl font-bold">الشركات والحالات المعلنة</h2>
-              <p className="mt-3 text-[var(--color-navy)]/60">يعرض الجدول {filtered.length} من أصل 51 إعلاناً.</p>
+              <h2 className="mt-3 font-heading text-3xl font-bold">الافتتاحات الجديدة</h2>
+              <p className="mt-3 text-[var(--color-navy)]/60">يعرض الجدول {filtered.length} من أصل 51 افتتاحاً جديداً.</p>
             </div>
             {(query || procedure || court) && (
               <button onClick={resetFilters} className="inline-flex items-center gap-2 self-start text-sm font-semibold text-[var(--color-gold)]">
@@ -407,20 +528,73 @@ export default function BankruptcyReportJuly2026() {
         </div>
       </section>
 
+      <section id="other-announcements" className="scroll-mt-32 border-t border-black/10 bg-[#f6f3ed] py-16 md:py-24">
+        <div className="container mx-auto px-5 md:px-8">
+          <p className="font-heading text-sm font-semibold text-[var(--color-gold)]">اكتمال نطاق الشهر</p>
+          <h2 className="mt-3 font-heading text-3xl font-bold">الإعلانات خارج احتساب الافتتاحات الجديدة</h2>
+          <p className="mt-4 max-w-4xl leading-8 text-[var(--color-navy)]/65">
+            هذه الإعلانات الـ19 جزء من إجمالي ما نشرته «إيسار» خلال يوليو، لكنها لا تدخل في احتساب الافتتاحات الجديدة:
+            3 انتقالات إجرائية بعد إنهاء إجراء سابق، و16 إعلاناً لاحقاً أو تشغيلياً.
+          </p>
+
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {otherTypeSummary.map((item) => (
+              <div key={item.label} className="flex items-center justify-between border border-black/10 bg-white px-5 py-4">
+                <span className="font-heading font-semibold">{item.label}</span>
+                <span className="font-heading text-2xl font-bold text-[var(--color-gold)]">{item.value}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 overflow-x-auto border border-black/10 bg-white">
+            <table className="min-w-[1020px] w-full border-collapse text-right text-sm">
+              <thead className="bg-[var(--color-navy)] text-white">
+                <tr>
+                  <th className="px-4 py-4 font-heading">#</th>
+                  <th className="px-4 py-4 font-heading">المدين</th>
+                  <th className="px-4 py-4 font-heading">التصنيف</th>
+                  <th className="px-4 py-4 font-heading">نوع الإعلان</th>
+                  <th className="px-4 py-4 font-heading">التاريخ</th>
+                  <th className="px-4 py-4 font-heading">المصدر</th>
+                </tr>
+              </thead>
+              <tbody>
+                {otherAnnouncements.map((item, index) => (
+                  <tr key={item.officialUrl} className="even:bg-[#f6f3ed]">
+                    <td className="border-t border-black/10 px-4 py-4 text-[var(--color-navy)]/50">{index + 1}</td>
+                    <td className="border-t border-black/10 px-4 py-4 font-semibold">{item.debtor}</td>
+                    <td className="border-t border-black/10 px-4 py-4">{item.scopeCategory}</td>
+                    <td className="border-t border-black/10 px-4 py-4">{item.announcementType}</td>
+                    <td className="border-t border-black/10 px-4 py-4 whitespace-nowrap">{formatDate(item.announcementDate)}</td>
+                    <td className="border-t border-black/10 px-4 py-4">
+                      <a href={item.officialUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-semibold text-[var(--color-gold)] hover:underline">
+                        إعلان إيسار <ExternalLink className="h-3.5 w-3.5" />
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       <section id="methodology" className="scroll-mt-32 border-y border-black/10 bg-[#f6f3ed] py-12">
         <div className="container mx-auto grid gap-8 px-5 md:grid-cols-2 md:px-8">
           <div>
             <h2 className="font-heading text-xl font-bold">المنهجية والمصدر</h2>
             <p className="mt-4 leading-8 text-[var(--color-navy)]/65">
-              أُعد التقرير من الإعلانات المنشورة في موقع لجنة الإفلاس عن شهر يوليو 2026، ثم نُقحت السجلات وأزيل التكرار.
-              يفتح رابط المصدر في كل صف الإعلان الرسمي للتحقق من تفاصيله.
+              أُعد التقرير من 70 إعلاناً فريداً منشوراً في موقع لجنة الإفلاس «إيسار» خلال يوليو 2026.
+              صُنفت 51 حالة افتتاحاً جديداً، واستُبعد من هذا المؤشر 3 إعلانات أنهت إجراء تصفية وافتتحت إجراء تصفية إدارية،
+              إضافة إلى 16 إعلاناً لاحقاً أو تشغيلياً. يفتح رابط المصدر في كل صف الإعلان الرسمي للتحقق من تفاصيله.
             </p>
           </div>
           <div>
             <h2 className="font-heading text-xl font-bold">حدود التقرير</h2>
             <p className="mt-4 leading-8 text-[var(--color-navy)]/65">
-              لا يتضمن المصدر تصنيفاً قطاعياً موحداً يسمح بمقارنة موثوقة، ولذلك لم ننسب الحالات إلى قطاعات.
-              كما أن التقرير معلوماتي عام ولا يعد استشارة قانونية أو حكماً على الملاءة المالية لأي طرف.
+              حُسب عمر 48 شركة ومنشأة عند تاريخ إعلان افتتاح الإجراء. والمتوسط المقصوص ناتج عن حذف أصغر 4 أعمار
+              وأكبر 4 أعمار. أما القطاع فهو تصنيف تحليلي أولي بالاستناد إلى الاسم التجاري والأنشطة المسجلة؛ وتعدد الأنشطة
+              أو غيابها قد يحد من دقته. التقرير معلوماتي عام ولا يعد استشارة قانونية أو حكماً على الملاءة المالية لأي طرف.
             </p>
           </div>
         </div>
