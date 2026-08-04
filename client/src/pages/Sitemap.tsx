@@ -47,6 +47,8 @@ export default function Sitemap() {
         { label: "أمين إفلاس معتمد — ترخيص 142147", href: "/licenses/bankruptcy-trustee" },
         { label: "خدمة الإفلاس والتصفية", href: "/services/bankruptcy" },
         { label: "إجراءات الإفلاس السبعة", href: "/bankruptcy/procedures" },
+        { label: "التقارير الشهرية لإعلانات الإفلاس", href: "/bankruptcy/reports" },
+        { label: "تقرير إعلانات الإفلاس — يوليو 2026", href: "/bankruptcy/reports/2026-07" },
         { label: "إجراء التسوية الوقائية", href: "/bankruptcy/procedures/preventive-settlement" },
         { label: "إجراء التسوية الوقائية لصغار المدينين", href: "/bankruptcy/procedures/preventive-settlement-small-debtors" },
         { label: "إجراء إعادة التنظيم المالي", href: "/bankruptcy/procedures/financial-reorganization" },

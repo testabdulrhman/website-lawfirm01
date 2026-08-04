@@ -23,6 +23,20 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy" />
   </url>
   <url>
+    <loc>https://redwan.sa/bankruptcy/reports</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/reports" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/bankruptcy/reports/2026-07</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/reports/2026-07" />
+  </url>
+  <url>
     <loc>https://redwan.sa/bankruptcy/ASHYAD-STEEL</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

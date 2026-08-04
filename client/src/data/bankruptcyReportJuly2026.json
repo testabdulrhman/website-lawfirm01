@@ -1,0 +1,512 @@
+[
+  {
+    "debtor": "شركة أدمة المحدودة",
+    "registration": "1010436228",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية لصغار المدينين",
+    "announcementDate": "2026-07-26",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=671160F6D6750E38",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة الرياض للدهانات",
+    "registration": "1010071960",
+    "procedure": "إجراء التصفية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "افتتاح مباشر",
+    "announcementDate": "2026-07-26",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=B41E32A238FFE085",
+    "officeManaged": true
+  },
+  {
+    "debtor": "شركة بيت القهوة المحدودة شركة شخص واحد",
+    "registration": "1010580908",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-26",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=8256AEA033B28B3B",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة مطاعم دار الدبلوماسية",
+    "registration": "1010183351",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-26",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=6754ECDB0D0AE9EF",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة وتد الوطنية لوكالة التأمين",
+    "registration": "1010320561",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-26",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=14AC39C5232E29E2",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة الجودي العربية للمقاولات والاعمال الصناعية",
+    "registration": "2055005989",
+    "procedure": "إجراء التصفية",
+    "court": "المحكمة التجارية بالدمام",
+    "openingReason": "افتتاح مباشر",
+    "announcementDate": "2026-07-23",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=0E6DC63798D1AECB",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة مستشفى ابناء محمد ابراهيم الفريح",
+    "registration": "1131052281",
+    "procedure": "إجراء إعادة التنظيم المالي",
+    "court": "المحكمة التجارية بالدمام",
+    "openingReason": "افتتاح مباشر",
+    "announcementDate": "2026-07-20",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=881356171A0A08B6",
+    "officeManaged": false
+  },
+  {
+    "debtor": "سعيد ابن عثمان ابن سعيد باخطيب",
+    "registration": null,
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بجدة",
+    "openingReason": "رفض إجراء التصفية لصغار المدينين",
+    "announcementDate": "2026-07-19",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=9091F573D372AC00",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة انجل الطبية",
+    "registration": "1010830479",
+    "procedure": "إجراء التصفية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "افتتاح مباشر",
+    "announcementDate": "2026-07-19",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=78EF6250587A6397",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة سواعد الغد التجارية",
+    "registration": "2063605758",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالدمام",
+    "openingReason": "افتتاح مباشر",
+    "announcementDate": "2026-07-19",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=34A78608CFF2BFD3",
+    "officeManaged": false
+  },
+  {
+    "debtor": "فهد عبدالرحمن بن عبدالعزيز البجادي",
+    "registration": null,
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-19",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=B422CC7CBB6B85C7",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة يوناسكو",
+    "registration": "3550027525",
+    "procedure": "إجراء إعادة التنظيم المالي",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "افتتاح مباشر",
+    "announcementDate": "2026-07-16",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=D47A42960F1E7125",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة اسواق العالم للمراكز التجاريه المحدودة",
+    "registration": "1010180454",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية لصغار المدينين",
+    "announcementDate": "2026-07-13",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=02E8CEA67339D4B0",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة التطوير المتميز لحلول الاعمال",
+    "registration": "1010968484",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "افتتاح مباشر",
+    "announcementDate": "2026-07-13",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=41E4C85811DB6CEF",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة الطوب الأحمر السعودي",
+    "registration": "4030000446",
+    "procedure": "إجراء إعادة التنظيم المالي",
+    "court": "المحكمة التجارية بجدة",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-13",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=63D78CB33D1F5E2F",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة القرار الأفضل",
+    "registration": "1010274409",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية لصغار المدينين",
+    "announcementDate": "2026-07-13",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=CADF0C8983467924",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة القرن لأنظمة الحاسب الالي",
+    "registration": "1010186776",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-13",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=642F122349BBA987",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة بيت الرز للتجارة",
+    "registration": "1010124929",
+    "procedure": "إجراء التصفية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "افتتاح مباشر",
+    "announcementDate": "2026-07-13",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=0379FE40E2B3F73D",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة ثوابت الجزيرة للتجارة  قابضة",
+    "registration": "1010884237",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-13",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=0D70A6FE569E32D0",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة جاما للاستثمار",
+    "registration": "1010116806",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-13",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=D1983F996CB8D919",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة عبدالعزيز بن ماطر الرشيدي وشريكته للتجارة والمقاولات",
+    "registration": "1131055743",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-13",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=FC4244220738FBAB",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة قصر الاطفال للتجاره المحدودة",
+    "registration": "1010187690",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-13",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=900ADDD3FD70FB53",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة لندن للتطوير العقاري",
+    "registration": "1010689994",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية لصغار المدينين",
+    "announcementDate": "2026-07-13",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=3EDDD2A8ED19B391",
+    "officeManaged": false
+  },
+  {
+    "debtor": "الشركة السعودية للزيوت",
+    "registration": "1010289147",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-12",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=E0E3731E02A3BC91",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة احمد محمد عطيه وشركاه العقاريه",
+    "registration": "4030163913",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بجدة",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-12",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=8031EBE471EB625E",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة العالم الصغير للخدمات اللوجستية",
+    "registration": "4030530294",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بجدة",
+    "openingReason": "رفض إجراء التصفية لصغار المدينين",
+    "announcementDate": "2026-07-12",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=55E33614ABC13229",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة المحدود للانشاءات المعمارية السريعة شركة شخص واحد",
+    "registration": "4030124297",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بجدة",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-12",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=D4B4FC2AB1E7EDD5",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة بيت البترجي للياقة",
+    "registration": "4030151999",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بجدة",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-12",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=EB28112A978086E7",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة ديار بيكري التجارية",
+    "registration": "1129004763",
+    "procedure": "إجراء التصفية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "افتتاح مباشر",
+    "announcementDate": "2026-07-12",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=69F1D61CDDDC0E77",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة ضوء المستقبل للتعليم",
+    "registration": "4030149089",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بجدة",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-12",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=63B5D6FE519645E4",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة عبدالله محمد علي القحطاني للتجارة",
+    "registration": "4030159095",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بجدة",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-12",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=E7E26849AF92D393",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة هدف لتقنيات وخدمات الطيران",
+    "registration": "1010308941",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-12",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=0493FC5E4795DADB",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة دي إيه إنفستمنتس (شركة دار الابار المحدودة القابضة)",
+    "registration": "4030279610",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بجدة",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-09",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=0089E5A0611C84B5",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة ندى علي القحطاني (معرض مسقط عمان للسيارات)",
+    "registration": "1010933878",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-09",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=B9B98A645BF2D1DB",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة الاخوان المتميزون للتجارة والمقاولات",
+    "registration": "2051059255",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالدمام",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-08",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=6A5134C924373C21",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة سماكم الثانية",
+    "registration": "1010273725",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-08",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=FE2B28BBF699A00E",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة البحرينية العالمية للتجارة والمقاولات",
+    "registration": "1010440459",
+    "procedure": "إجراء التصفية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "افتتاح مباشر",
+    "announcementDate": "2026-07-07",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=A319AA29E1A0AE93",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة أبناء غداف سليم اللقماني للتجارة والتنمية المحدودة",
+    "registration": "7001593529",
+    "procedure": "إجراء التصفية",
+    "court": "المحكمة التجارية بالمدينة المنورة",
+    "openingReason": "افتتاح مباشر",
+    "announcementDate": "2026-07-06",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=1636866BB8123FD9",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة البدائع للتربية والتعليم",
+    "registration": "1129000779",
+    "procedure": "إجراء التصفية",
+    "court": "المحكمة التجارية ببريدة",
+    "openingReason": "افتتاح مباشر",
+    "announcementDate": "2026-07-06",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=6E6FCFAA7346BF7F",
+    "officeManaged": false
+  },
+  {
+    "debtor": "مفرح احمد الزهراني",
+    "registration": null,
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالدمام",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-06",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=C1BE0649EF7793AB",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة أركان الجزيرة للاستثمار",
+    "registration": "4030212789",
+    "procedure": "إجراء التسوية الوقائية",
+    "court": "المحكمة التجارية بجدة",
+    "openingReason": "افتتاح مباشر",
+    "announcementDate": "2026-07-05",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=49AAFD30FCE162E4",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة البائع الماهر للتجارة",
+    "registration": "1010370892",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-05",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=49CC78095219DBE9",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة الحلول الأنيقة للتجارة (شركة سميه عليان المحلبدي)",
+    "registration": "4030195793",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بجدة",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-05",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=629077CE916702E4",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة الخير الخليجية التجارية شركة شخص واحد",
+    "registration": "1010504631",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "افتتاح مباشر",
+    "announcementDate": "2026-07-05",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=A839375A0E4A0777",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة أيام الحلا للتجارة",
+    "registration": "1010306985",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-05",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=9CF633CF67985B37",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة تبر الخليج شركة شخص واحد",
+    "registration": "1010349162",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية لصغار المدينين",
+    "announcementDate": "2026-07-05",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=41C0A9926565B4AD",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة دلتا للأزياء العالمية",
+    "registration": "1010351292",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-05",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=EC575E3804C47A4E",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة شعار البيدق التجارية",
+    "registration": "4030271254",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية لصغار المدينين",
+    "announcementDate": "2026-07-05",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=D770273EE1C202E4",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة صيدليات السقاف",
+    "registration": "1010167028",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية",
+    "announcementDate": "2026-07-05",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=3ED15132ADAB9602",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة مشعان المحدودة",
+    "registration": "1010449470",
+    "procedure": "إجراء التصفية الإدارية",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "رفض إجراء التصفية لصغار المدينين",
+    "announcementDate": "2026-07-05",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=B9E9AA672E595ACF",
+    "officeManaged": false
+  },
+  {
+    "debtor": "شركة وادي الجملة لبيع المواد الغذائية",
+    "registration": "1010456389",
+    "procedure": "إجراء إعادة التنظيم المالي",
+    "court": "المحكمة التجارية بالرياض",
+    "openingReason": "افتتاح مباشر",
+    "announcementDate": "2026-07-01",
+    "officialUrl": "https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=7780B87655C7030B",
+    "officeManaged": false
+  }
+]
