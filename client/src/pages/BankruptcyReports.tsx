@@ -31,15 +31,15 @@ export default function BankruptcyReports() {
             <div className="flex min-h-64 flex-col justify-between bg-[var(--color-navy)] p-8 text-white md:p-10">
               <FileText className="h-10 w-10 text-[var(--color-gold)]" />
               <div>
-                <div className="font-heading text-5xl font-bold text-[var(--color-gold)]">51</div>
-                <div className="mt-2 text-white/60">إعلاناً رسمياً موثقاً</div>
+                <div className="font-heading text-5xl font-bold text-[var(--color-gold)]">70</div>
+                <div className="mt-2 text-white/60">إعلاناً رسمياً موثقاً · 51 افتتاحاً جديداً</div>
               </div>
             </div>
             <div className="p-8 md:p-12">
               <div className="text-sm font-semibold text-[var(--color-gold)]">الإصدار الأول · يوليو 2026</div>
               <h2 className="mt-3 font-heading text-3xl font-bold">تقرير إعلانات الإفلاس في السعودية</h2>
               <p className="mt-5 max-w-2xl leading-8 text-[var(--color-navy)]/65">
-                توزيع الإجراءات والمحاكم، قائمة الشركات والحالات المعلنة، روابط لجنة الإفلاس، وتنبيهات عملية مع تعليق مهني من أمين إفلاس مرخص.
+                تحليل الافتتاحات الجديدة والإعلانات اللاحقة، وتوزيع الإجراءات والمحاكم، وأعمار الشركات وقطاعاتها، وروابط لجنة الإفلاس مع تعليق مهني من أمين إفلاس مرخص.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link href="/bankruptcy/reports/2026-07" className="inline-flex min-h-12 items-center justify-center gap-2 bg-[var(--color-gold)] px-6 py-3 font-heading font-semibold text-[var(--color-navy)]">
