@@ -47,11 +47,8 @@ function compactProcedure(value: string) {
 }
 
 function formatDate(value: string) {
-  return new Intl.DateTimeFormat("ar-SA", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(new Date(`${value}T12:00:00`));
+  const [year, month, day] = value.split("-");
+  return `${day}/${month}/${year}`;
 }
 
 export default function BankruptcyReportJuly2026() {
