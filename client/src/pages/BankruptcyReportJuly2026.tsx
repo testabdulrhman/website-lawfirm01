@@ -138,6 +138,31 @@ export default function BankruptcyReportJuly2026() {
         </div>
       </section>
 
+      <nav
+        aria-label="أقسام التقرير"
+        className="sticky top-[72px] z-30 border-b border-black/10 bg-white/95 shadow-sm backdrop-blur-md"
+      >
+        <div className="container mx-auto overflow-x-auto px-5 md:px-8">
+          <div className="flex min-w-max items-center justify-center gap-1 py-3 md:gap-3">
+            {[
+              ["الملخص", "#summary"],
+              ["الإجراءات", "#procedures"],
+              ["ماذا تعني النتائج؟", "#meaning"],
+              ["الإعلانات", "#announcements"],
+              ["المنهجية", "#methodology"],
+            ].map(([label, href]) => (
+              <a
+                key={href}
+                href={href}
+                className="border-b-2 border-transparent px-4 py-2 font-heading text-sm font-semibold text-[var(--color-navy)]/65 transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-navy)]"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </nav>
+
       <section className="border-b border-black/10 bg-[#f6f3ed] py-10">
         <div className="container mx-auto grid gap-px bg-black/10 px-5 md:grid-cols-4 md:px-8">
           {[
@@ -154,7 +179,7 @@ export default function BankruptcyReportJuly2026() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section id="summary" className="scroll-mt-32 py-16 md:py-24">
         <div className="container mx-auto grid gap-12 px-5 md:px-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="font-heading text-sm font-semibold text-[var(--color-gold)]">الملخص التنفيذي</p>
@@ -176,7 +201,7 @@ export default function BankruptcyReportJuly2026() {
             </div>
           </div>
 
-          <div className="border border-black/10 bg-[#f6f3ed] p-6 md:p-8">
+          <div id="procedures" className="scroll-mt-32 border border-black/10 bg-[#f6f3ed] p-6 md:p-8">
             <h3 className="font-heading text-xl font-bold">الإعلانات حسب نوع الإجراء</h3>
             <div className="mt-8 space-y-6">
               {procedureSummary.map((item) => (
@@ -195,7 +220,7 @@ export default function BankruptcyReportJuly2026() {
         </div>
       </section>
 
-      <section className="bg-[var(--color-navy)] py-16 text-white md:py-20">
+      <section id="meaning" className="scroll-mt-32 bg-[var(--color-navy)] py-16 text-white md:py-20">
         <div className="container mx-auto px-5 md:px-8">
           <p className="font-heading text-sm font-semibold text-[var(--color-gold)]">قراءة عملية</p>
           <h2 className="mt-3 font-heading text-3xl font-bold">ماذا تعني النتائج لأطراف السوق؟</h2>
@@ -305,7 +330,7 @@ export default function BankruptcyReportJuly2026() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section id="announcements" className="scroll-mt-32 py-16 md:py-24">
         <div className="container mx-auto px-5 md:px-8">
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
@@ -385,7 +410,7 @@ export default function BankruptcyReportJuly2026() {
         </div>
       </section>
 
-      <section className="border-y border-black/10 bg-[#f6f3ed] py-12">
+      <section id="methodology" className="scroll-mt-32 border-y border-black/10 bg-[#f6f3ed] py-12">
         <div className="container mx-auto grid gap-8 px-5 md:grid-cols-2 md:px-8">
           <div>
             <h2 className="font-heading text-xl font-bold">المنهجية والمصدر</h2>
