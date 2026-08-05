@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { Link } from "wouter";
 import {
   BriefcaseBusiness,
@@ -56,9 +56,9 @@ const courtSummary = [
 ];
 
 const ageSummary = [
-  { value: "1957", label: "أقدم شركة تأسيساً", detail: "شركة الطوب الأحمر السعودي" },
-  { value: "2024", label: "أحدث شركة تأسيساً", detail: "شركة التطوير المتميز لحلول الأعمال" },
-  { value: "15.5", label: "متوسط العمر المقصوص", detail: "سنة - بعد استبعاد الأطراف" },
+  { value: "1957", label: "أقدم منشأة تأسيساً", detail: "شركة الطوب الأحمر السعودي" },
+  { value: "2024", label: "أحدث منشأة تأسيساً", detail: "شركة التطوير المتميز لحلول الأعمال" },
+  { value: "15.5", label: "متوسط العمر المقصوص", detail: "سنة - بعد استبعاد أدنى 4 أعمار وأعلى 4 أعمار" },
   { value: "14.9", label: "وسيط العمر", detail: "سنة عند إعلان افتتاح الإجراء" },
 ];
 
@@ -102,6 +102,17 @@ function formatDate(value: string) {
   return `${day}/${month}/${year}`;
 }
 
+function ResponsiveCellContent({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="grid grid-cols-[6.75rem_minmax(0,1fr)] items-start gap-3 md:block">
+      <span aria-hidden="true" className="font-heading text-xs font-semibold text-[var(--color-navy)]/55 md:hidden">
+        {label}
+      </span>
+      <div className="min-w-0">{children}</div>
+    </div>
+  );
+}
+
 export default function BankruptcyReportJuly2026() {
   const [query, setQuery] = useState("");
   const [procedure, setProcedure] = useState("");
@@ -110,7 +121,7 @@ export default function BankruptcyReportJuly2026() {
   useSEO({
     title: "تقرير إعلانات الإفلاس في السعودية — يوليو 2026",
     description:
-      "تحليل مهني موثق لـ70 إعلاناً نشرته لجنة الإفلاس إيسار خلال يوليو 2026، منها 51 افتتاحاً جديداً، مع تحليل الإجراءات والأعمار والقطاعات وروابط المصادر الرسمية.",
+      "تحليل مهني مستند إلى 70 إعلاناً نشرته لجنة الإفلاس «إيسار» خلال يوليو 2026، منها 51 افتتاحاً جديداً، مع تحليل الإجراءات والأعمار والقطاعات وروابط المصادر الرسمية.",
     canonical: "/bankruptcy/reports/2026-07",
     ogType: "article",
   });
@@ -146,7 +157,7 @@ export default function BankruptcyReportJuly2026() {
 
   return (
     <main dir="rtl" className="bg-white text-[var(--color-navy)]">
-      <section className="bg-[var(--color-navy)] pt-32 pb-16 md:pt-40 md:pb-24 text-white">
+      <section className="bg-[var(--color-navy)] pb-12 pt-28 text-white md:pb-16 md:pt-32">
         <div className="container mx-auto px-5 md:px-8">
           <nav aria-label="مسار التنقل" className="mb-7 flex flex-wrap items-center gap-2 text-sm text-white/60">
             <Link href="/" className="transition-colors hover:text-[var(--color-gold)]">الرئيسية</Link>
@@ -162,15 +173,15 @@ export default function BankruptcyReportJuly2026() {
             <div className="max-w-4xl">
               <div className="mb-5 inline-flex items-center gap-2 border border-[var(--color-gold)]/45 px-3 py-2 text-sm text-[var(--color-gold)]">
                 <FileText className="h-4 w-4" />
-                تقرير شهري موثّق من الإعلانات الرسمية
+                تقرير شهري مستند إلى الإعلانات الرسمية
               </div>
               <h1 className="font-heading text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
-                تقرير إعلانات الإفلاس في السعودية
+                تقرير إعلانات الإفلاس في السعودية{" "}
                 <span className="mt-2 block text-[var(--color-gold)]">يوليو 2026</span>
               </h1>
               <p className="mt-6 max-w-3xl font-body text-lg leading-8 text-white/75">
                 قراءة مهنية لـ70 إعلاناً نشرته لجنة الإفلاس «إيسار»، منها 51 إعلان افتتاح جديد،
-                مع تحليل الإجراءات والمحاكم وأعمار الشركات وقطاعاتها وروابط المصادر الرسمية.
+                مع تحليل الإجراءات والمحاكم وأعمار المنشآت وقطاعاتها وروابط المصادر الرسمية.
               </p>
               <p className="mt-4 text-sm text-white/50">تاريخ النشر: 4 أغسطس 2026 · آخر تحديث: 4 أغسطس 2026</p>
             </div>
@@ -182,31 +193,34 @@ export default function BankruptcyReportJuly2026() {
         aria-label="أقسام التقرير"
         className="sticky top-[72px] z-30 border-b border-black/10 bg-white/95 shadow-sm backdrop-blur-md"
       >
-        <div className="container mx-auto overflow-x-auto px-5 md:px-8">
-          <div className="flex min-w-max items-center justify-center gap-1 py-3 md:gap-3">
-            {[
-              ["الملخص", "#summary"],
-              ["الإجراءات", "#procedures"],
-              ["الأعمار والقطاعات", "#profile"],
-              ["ماذا تعني النتائج؟", "#meaning"],
-              ["الإعلانات", "#announcements"],
-              ["إعلانات أخرى", "#other-announcements"],
-              ["المنهجية", "#methodology"],
-            ].map(([label, href]) => (
-              <a
-                key={href}
-                href={href}
-                className="border-b-2 border-transparent px-4 py-2 font-heading text-sm font-semibold text-[var(--color-navy)]/65 transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-navy)]"
-              >
-                {label}
-              </a>
-            ))}
+        <div className="relative">
+          <div className="container mx-auto snap-x snap-mandatory overflow-x-auto px-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:px-8">
+            <div className="flex min-w-max items-center gap-1 py-3 md:min-w-full md:justify-center md:gap-3">
+              {[
+                ["الملخص", "#summary"],
+                ["الإجراءات", "#procedures"],
+                ["ماذا تعني النتائج؟", "#meaning"],
+                ["الأعمار والقطاعات", "#profile"],
+                ["الإعلانات", "#announcements"],
+                ["إعلانات أخرى", "#other-announcements"],
+                ["المنهجية", "#methodology"],
+              ].map(([label, href]) => (
+                <a
+                  key={href}
+                  href={href}
+                  className="snap-start whitespace-nowrap border-b-2 border-transparent px-4 py-2 font-heading text-sm font-semibold text-[var(--color-navy)]/65 transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-navy)]"
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
           </div>
+          <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-white to-transparent md:hidden" />
         </div>
       </nav>
 
       <section className="border-b border-black/10 bg-[#f6f3ed] py-10">
-        <div className="container mx-auto grid gap-px bg-black/10 px-5 md:grid-cols-4 md:px-8">
+        <div className="container mx-auto grid grid-cols-2 gap-px bg-black/10 px-5 md:grid-cols-4 md:px-8">
           {[
             ["70", "إجمالي إعلانات إيسار"],
             ["51", "افتتاحاً جديداً"],
@@ -228,13 +242,14 @@ export default function BankruptcyReportJuly2026() {
             <h2 className="mt-3 font-heading text-3xl font-bold md:text-4xl">ما الذي تحرّك خلال الشهر؟</h2>
             <div className="mt-7 space-y-5 font-body leading-8 text-[var(--color-navy)]/75">
               <p>
-                رصد التقرير 70 إعلاناً فريداً خلال الشهر تخص 68 مديناً. ولقياس الدخول الجديد إلى الإجراءات،
-                اقتصر التحليل الرئيسي على 51 افتتاحاً جديداً: 48 شركة ومنشأة و3 أفراد دون عرض بيانات الهوية.
+                رصد التقرير 70 إعلاناً فريداً خلال الشهر تتعلق بـ68 مديناً. ولقياس الدخول الجديد إلى الإجراءات،
+                اقتصر التحليل الرئيسي على 51 افتتاحاً جديداً: 48 شركة ومنشأة و3 أفراد دون عرض أرقام الهوية الوطنية.
               </p>
               <p>
                 شكّلت <strong className="text-[var(--color-navy)]">التصفية الإدارية 74.5%</strong> من الافتتاحات الجديدة؛
-                إذ ظهر هذا الإجراء في 38 إعلاناً من أصل 51. وتعكس هذه النسبة تركيب عينة الافتتاحات المنشورة خلال الشهر،
-                ولا تكفي وحدها للحكم على اتجاه سنوي أو على حجم التعثر في الاقتصاد.
+                إذ ظهر هذا الإجراء في 38 إعلاناً من أصل 51. وتعكس هذه النسبة توزيع الافتتاحات المنشورة خلال الشهر،
+                ولا تكفي وحدها للحكم على اتجاه سنوي أو على حجم التعثر في الاقتصاد. ويُعد يوليو 2026 خط الأساس
+                لهذه السلسلة، على أن تبدأ المقارنات الشهرية من الإصدارات اللاحقة.
               </p>
               <p>
                 جاءت التصفية في المرتبة الثانية بـ8 إعلانات، ثم إعادة التنظيم المالي بـ4 إعلانات، والتسوية الوقائية بإعلان واحد.
@@ -252,7 +267,7 @@ export default function BankruptcyReportJuly2026() {
           </div>
 
           <div id="procedures" className="scroll-mt-32 border border-black/10 bg-[#f6f3ed] p-6 md:p-8">
-            <h3 className="font-heading text-xl font-bold">الإعلانات حسب نوع الإجراء</h3>
+            <h3 className="font-heading text-xl font-bold">الافتتاحات الجديدة حسب نوع الإجراء</h3>
             <div className="mt-8 space-y-6">
               {procedureSummary.map((item) => (
                 <div key={item.label}>
@@ -308,7 +323,7 @@ export default function BankruptcyReportJuly2026() {
             <ShieldCheck className="h-8 w-8 text-[var(--color-gold)]" />
             <p className="mt-6 font-heading text-xl font-bold">تعليق مهني</p>
             <blockquote className="mt-4 font-body text-lg leading-9 text-[var(--color-navy)]/80">
-              «ارتفاع إعلانات التصفية الإدارية في عينة هذا الشهر يبرز أهمية التدخل المبكر، وحفظ المستندات، ومتابعة
+              «غلبة افتتاحات التصفية الإدارية خلال هذا الشهر تبرز أهمية التدخل المبكر، وحفظ المستندات، ومتابعة
               الإعلانات والمواعيد النظامية. ولا يصح وصف جميع المنشآت الواردة بأنها شركات مفلسة؛ لأن الأثر القانوني
               يختلف باختلاف الإجراء ومرحلة القضية وقرارات المحكمة.»
             </blockquote>
@@ -341,7 +356,7 @@ export default function BankruptcyReportJuly2026() {
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-5 md:px-8">
           <p className="font-heading text-sm font-semibold text-[var(--color-gold)]">التوزيع الجغرافي القضائي</p>
-          <h2 className="mt-3 font-heading text-3xl font-bold">الإعلانات حسب المحكمة</h2>
+          <h2 className="mt-3 font-heading text-3xl font-bold">الافتتاحات الجديدة حسب المحكمة</h2>
           <p className="mt-4 max-w-3xl leading-7 text-[var(--color-navy)]/65">
             يصف الجدول مكان المحكمة الوارد في الإعلان، ولا يمثل بالضرورة مقر النشاط أو توزيع التعثر الاقتصادي.
           </p>
@@ -359,8 +374,8 @@ export default function BankruptcyReportJuly2026() {
 
       <section id="profile" className="scroll-mt-32 border-y border-black/10 bg-[#f6f3ed] py-16 md:py-24">
         <div className="container mx-auto px-5 md:px-8">
-          <p className="font-heading text-sm font-semibold text-[var(--color-gold)]">ملامح الشركات</p>
-          <h2 className="mt-3 font-heading text-3xl font-bold">أعمار الشركات وقطاعاتها</h2>
+          <p className="font-heading text-sm font-semibold text-[var(--color-gold)]">ملامح المنشآت</p>
+          <h2 className="mt-3 font-heading text-3xl font-bold">أعمار المنشآت وقطاعاتها</h2>
           <p className="mt-4 max-w-4xl leading-8 text-[var(--color-navy)]/65">
             يغطي تحليل العمر والقطاع 48 شركة ومنشأة وردت ضمن الافتتاحات الجديدة، ولا يشمل الأفراد الثلاثة.
             حُسب العمر عند تاريخ إعلان افتتاح الإجراء، ويعرض القطاع بوصفه تصنيفاً تحليلياً أولياً لا وصفاً نظامياً ملزماً.
@@ -378,7 +393,7 @@ export default function BankruptcyReportJuly2026() {
 
           <div className="mt-8 grid gap-8 lg:grid-cols-2">
             <article className="border border-black/10 bg-white p-6 md:p-8">
-              <h3 className="font-heading text-xl font-bold">توزيع أعمار الشركات</h3>
+              <h3 className="font-heading text-xl font-bold">توزيع أعمار المنشآت</h3>
               <div className="mt-7 space-y-5">
                 {ageDistribution.map((item) => (
                   <div key={item.label}>
@@ -398,9 +413,10 @@ export default function BankruptcyReportJuly2026() {
             </article>
 
             <article className="border border-black/10 bg-white p-6 md:p-8">
-              <h3 className="font-heading text-xl font-bold">التوزيع القطاعي الأولي</h3>
+              <h3 className="font-heading text-xl font-bold">التوزيع القطاعي التحليلي</h3>
               <p className="mt-3 text-sm leading-7 text-[var(--color-navy)]/55">
-                النسب من أصل 48 شركة ومنشأة. توفرت بيانات نشاط لـ41 حالة، وبقيت 7 حالات ضمن «غير مصنف».
+                النسب من أصل 48 شركة ومنشأة. استخدم التقرير فئات تحليلية موحدة داخل هذا الإصدار، وأُسندت كل منشأة
+                إلى الفئة الأقرب لنشاطها بالاستناد إلى الاسم التجاري والأنشطة المسجلة المتاحة؛ وبقيت 7 حالات ضمن «غير مصنف».
               </p>
               <div className="mt-7 grid gap-x-8 gap-y-4 sm:grid-cols-2">
                 {sectorSummary.map((item) => (
@@ -413,29 +429,6 @@ export default function BankruptcyReportJuly2026() {
                 ))}
               </div>
             </article>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#f6f3ed] py-16 md:py-24">
-        <div className="container mx-auto px-5 md:px-8">
-          <div className="grid gap-8 border border-[var(--color-gold)]/50 bg-[var(--color-navy)] p-7 text-white md:grid-cols-[1fr_auto] md:p-10">
-            <div>
-              <p className="font-heading text-sm font-semibold text-[var(--color-gold)]">حالة يديرها المكتب</p>
-              <h2 className="mt-3 font-heading text-2xl font-bold">شركة الرياض للدهانات</h2>
-              <p className="mt-4 max-w-3xl leading-8 text-white/65">
-                ورد إعلان افتتاح إجراء التصفية للشركة ضمن بيانات يوليو 2026، ويتولى عبدالرحمن بن رضوان المشيقح
-                مهام أمين الإجراء. يرجى الاعتماد على الإعلان الرسمي في المواعيد والتعليمات.
-              </p>
-            </div>
-            <a
-              href="https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=B41E32A238FFE085"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-12 items-center justify-center gap-2 self-center border border-white/30 px-5 py-3 font-heading font-semibold transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
-            >
-              الإعلان الرسمي <ExternalLink className="h-4 w-4" />
-            </a>
           </div>
         </div>
       </section>
@@ -482,35 +475,57 @@ export default function BankruptcyReportJuly2026() {
             </label>
           </div>
 
-          <div className="mt-5 overflow-x-auto border border-black/10">
-            <table className="min-w-[1120px] w-full border-collapse text-right text-sm">
-              <thead className="bg-[var(--color-navy)] text-white">
+          <div className="mt-5 md:overflow-x-auto md:border md:border-black/10">
+            <table className="block w-full text-right text-sm md:table md:min-w-[1120px] md:border-collapse">
+              <caption className="sr-only">قائمة الافتتاحات الجديدة في إجراءات الإفلاس خلال يوليو 2026</caption>
+              <thead className="sr-only bg-[var(--color-navy)] text-white md:not-sr-only md:table-header-group">
                 <tr>
-                  <th className="px-4 py-4 font-heading">#</th>
-                  <th className="px-4 py-4 font-heading">الاسم</th>
-                  <th className="px-4 py-4 font-heading">السجل التجاري</th>
-                  <th className="px-4 py-4 font-heading">الإجراء</th>
-                  <th className="px-4 py-4 font-heading">المحكمة</th>
-                  <th className="px-4 py-4 font-heading">تاريخ الإعلان</th>
-                  <th className="px-4 py-4 font-heading">المصدر</th>
+                  <th id="new-index" scope="col" className="px-4 py-4 font-heading">#</th>
+                  <th id="new-name" scope="col" className="px-4 py-4 font-heading">الاسم</th>
+                  <th id="new-registration" scope="col" className="px-4 py-4 font-heading">السجل التجاري</th>
+                  <th id="new-procedure" scope="col" className="px-4 py-4 font-heading">الإجراء</th>
+                  <th id="new-court" scope="col" className="px-4 py-4 font-heading">المحكمة</th>
+                  <th id="new-date" scope="col" className="px-4 py-4 font-heading">تاريخ الإعلان</th>
+                  <th id="new-source" scope="col" className="px-4 py-4 font-heading">المصدر</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="grid gap-3 bg-[#f6f3ed] p-3 md:table-row-group md:bg-transparent md:p-0">
                 {filtered.map((item, index) => (
-                  <tr key={item.officialUrl} className={item.officeManaged ? "bg-[var(--color-gold)]/10" : "even:bg-[#f6f3ed]"}>
-                    <td className="border-t border-black/10 px-4 py-4 text-[var(--color-navy)]/50">{index + 1}</td>
-                    <td className="border-t border-black/10 px-4 py-4 font-semibold">
+                  <tr
+                    key={item.officialUrl}
+                    className={`grid grid-cols-[2rem_minmax(0,1fr)] gap-x-3 gap-y-2 border border-black/10 p-4 shadow-sm md:table-row md:border-0 md:p-0 md:shadow-none ${
+                      item.officeManaged ? "bg-[var(--color-gold)]/10" : "bg-white md:even:bg-[#f6f3ed]"
+                    }`}
+                  >
+                    <td className="flex h-8 w-8 items-center justify-center bg-[var(--color-navy)] text-white md:table-cell md:h-auto md:w-auto md:border-t md:border-black/10 md:bg-transparent md:px-4 md:py-4 md:text-[var(--color-navy)]/50">
+                      {index + 1}
+                    </td>
+                    <th scope="row" className="min-w-0 self-center text-right font-semibold md:table-cell md:border-t md:border-black/10 md:px-4 md:py-4">
                       {item.debtor}
                       {item.officeManaged && <span className="mt-1 block text-xs text-[var(--color-gold)]">بإدارة المكتب</span>}
+                    </th>
+                    <td className="col-span-2 border-t border-black/10 py-2.5 md:table-cell md:px-4 md:py-4">
+                      <ResponsiveCellContent label="السجل التجاري">
+                        <span className="tabular-nums">{item.registration ?? "غير معروض (فرد)"}</span>
+                      </ResponsiveCellContent>
                     </td>
-                    <td className="border-t border-black/10 px-4 py-4 tabular-nums">{item.registration ?? "غير معروض (فرد)"}</td>
-                    <td className="border-t border-black/10 px-4 py-4">{compactProcedure(item.procedure)}</td>
-                    <td className="border-t border-black/10 px-4 py-4">{item.court}</td>
-                    <td className="border-t border-black/10 px-4 py-4 whitespace-nowrap">{formatDate(item.announcementDate)}</td>
-                    <td className="border-t border-black/10 px-4 py-4">
-                      <a href={item.officialUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-semibold text-[var(--color-gold)] hover:underline">
-                        لجنة الإفلاس <ExternalLink className="h-3.5 w-3.5" />
-                      </a>
+                    <td className="col-span-2 border-t border-black/10 py-2.5 md:table-cell md:px-4 md:py-4">
+                      <ResponsiveCellContent label="الإجراء">{compactProcedure(item.procedure)}</ResponsiveCellContent>
+                    </td>
+                    <td className="col-span-2 border-t border-black/10 py-2.5 md:table-cell md:px-4 md:py-4">
+                      <ResponsiveCellContent label="المحكمة">{item.court}</ResponsiveCellContent>
+                    </td>
+                    <td className="col-span-2 border-t border-black/10 py-2.5 md:table-cell md:px-4 md:py-4">
+                      <ResponsiveCellContent label="تاريخ الإعلان">
+                        <span className="whitespace-nowrap">{formatDate(item.announcementDate)}</span>
+                      </ResponsiveCellContent>
+                    </td>
+                    <td className="col-span-2 border-t border-black/10 pt-2.5 md:table-cell md:px-4 md:py-4">
+                      <ResponsiveCellContent label="المصدر">
+                        <a href={item.officialUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1 font-semibold text-[var(--color-gold)] hover:underline md:min-h-0">
+                          لجنة الإفلاس <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
+                      </ResponsiveCellContent>
                     </td>
                   </tr>
                 ))}
@@ -538,35 +553,73 @@ export default function BankruptcyReportJuly2026() {
             ))}
           </div>
 
-          <div className="mt-8 overflow-x-auto border border-black/10 bg-white">
-            <table className="min-w-[1020px] w-full border-collapse text-right text-sm">
-              <thead className="bg-[var(--color-navy)] text-white">
+          <div className="mt-8 md:overflow-x-auto md:border md:border-black/10">
+            <table className="block w-full text-right text-sm md:table md:min-w-[1020px] md:border-collapse">
+              <caption className="sr-only">الإعلانات اللاحقة والتشغيلية والانتقالات الإجرائية خلال يوليو 2026</caption>
+              <thead className="sr-only bg-[var(--color-navy)] text-white md:not-sr-only md:table-header-group">
                 <tr>
-                  <th className="px-4 py-4 font-heading">#</th>
-                  <th className="px-4 py-4 font-heading">المدين</th>
-                  <th className="px-4 py-4 font-heading">التصنيف</th>
-                  <th className="px-4 py-4 font-heading">نوع الإعلان</th>
-                  <th className="px-4 py-4 font-heading">التاريخ</th>
-                  <th className="px-4 py-4 font-heading">المصدر</th>
+                  <th id="other-index" scope="col" className="px-4 py-4 font-heading">#</th>
+                  <th id="other-name" scope="col" className="px-4 py-4 font-heading">المدين</th>
+                  <th id="other-category" scope="col" className="px-4 py-4 font-heading">التصنيف</th>
+                  <th id="other-type" scope="col" className="px-4 py-4 font-heading">نوع الإعلان</th>
+                  <th id="other-date" scope="col" className="px-4 py-4 font-heading">التاريخ</th>
+                  <th id="other-source" scope="col" className="px-4 py-4 font-heading">المصدر</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="grid gap-3 bg-white p-3 md:table-row-group md:p-0">
                 {otherAnnouncements.map((item, index) => (
-                  <tr key={item.officialUrl} className="even:bg-[#f6f3ed]">
-                    <td className="border-t border-black/10 px-4 py-4 text-[var(--color-navy)]/50">{index + 1}</td>
-                    <td className="border-t border-black/10 px-4 py-4 font-semibold">{item.debtor}</td>
-                    <td className="border-t border-black/10 px-4 py-4">{item.scopeCategory}</td>
-                    <td className="border-t border-black/10 px-4 py-4">{item.announcementType}</td>
-                    <td className="border-t border-black/10 px-4 py-4 whitespace-nowrap">{formatDate(item.announcementDate)}</td>
-                    <td className="border-t border-black/10 px-4 py-4">
-                      <a href={item.officialUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-semibold text-[var(--color-gold)] hover:underline">
-                        إعلان إيسار <ExternalLink className="h-3.5 w-3.5" />
-                      </a>
+                  <tr key={item.officialUrl} className="grid grid-cols-[2rem_minmax(0,1fr)] gap-x-3 gap-y-2 border border-black/10 bg-white p-4 shadow-sm md:table-row md:border-0 md:p-0 md:shadow-none md:even:bg-[#f6f3ed]">
+                    <td className="flex h-8 w-8 items-center justify-center bg-[var(--color-navy)] text-white md:table-cell md:h-auto md:w-auto md:border-t md:border-black/10 md:bg-transparent md:px-4 md:py-4 md:text-[var(--color-navy)]/50">
+                      {index + 1}
+                    </td>
+                    <th scope="row" className="min-w-0 self-center text-right font-semibold md:table-cell md:border-t md:border-black/10 md:px-4 md:py-4">
+                      {item.debtor}
+                    </th>
+                    <td className="col-span-2 border-t border-black/10 py-2.5 md:table-cell md:px-4 md:py-4">
+                      <ResponsiveCellContent label="التصنيف">{item.scopeCategory}</ResponsiveCellContent>
+                    </td>
+                    <td className="col-span-2 border-t border-black/10 py-2.5 md:table-cell md:px-4 md:py-4">
+                      <ResponsiveCellContent label="نوع الإعلان">{item.announcementType}</ResponsiveCellContent>
+                    </td>
+                    <td className="col-span-2 border-t border-black/10 py-2.5 md:table-cell md:px-4 md:py-4">
+                      <ResponsiveCellContent label="التاريخ">
+                        <span className="whitespace-nowrap">{formatDate(item.announcementDate)}</span>
+                      </ResponsiveCellContent>
+                    </td>
+                    <td className="col-span-2 border-t border-black/10 pt-2.5 md:table-cell md:px-4 md:py-4">
+                      <ResponsiveCellContent label="المصدر">
+                        <a href={item.officialUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1 font-semibold text-[var(--color-gold)] hover:underline md:min-h-0">
+                          إعلان إيسار <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
+                      </ResponsiveCellContent>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-16 md:py-24">
+        <div className="container mx-auto px-5 md:px-8">
+          <div className="grid gap-8 border border-[var(--color-gold)]/50 bg-[var(--color-navy)] p-7 text-white md:grid-cols-[1fr_auto] md:p-10">
+            <div>
+              <p className="font-heading text-sm font-semibold text-[var(--color-gold)]">حالة ضمن بيانات الشهر يدير المكتب إجراءها</p>
+              <h2 className="mt-3 font-heading text-2xl font-bold">شركة الرياض للدهانات</h2>
+              <p className="mt-4 max-w-3xl leading-8 text-white/65">
+                ورد إعلان افتتاح إجراء التصفية للشركة ضمن بيانات يوليو 2026، ويتولى عبدالرحمن بن رضوان المشيقح
+                مهام أمين الإجراء. يرجى الاعتماد على الإعلان الرسمي في المواعيد والتعليمات.
+              </p>
+            </div>
+            <a
+              href="https://bankruptcy.gov.sa/ar/Announcements/Pages/announcementDetails.aspx?adid=B41E32A238FFE085"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-12 items-center justify-center gap-2 self-center border border-white/30 px-5 py-3 font-heading font-semibold transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+            >
+              الإعلان الرسمي <ExternalLink className="h-4 w-4" />
+            </a>
           </div>
         </div>
       </section>
@@ -578,7 +631,8 @@ export default function BankruptcyReportJuly2026() {
             <p className="mt-4 leading-8 text-[var(--color-navy)]/65">
               أُعد التقرير من 70 إعلاناً فريداً منشوراً في موقع لجنة الإفلاس «إيسار» خلال يوليو 2026.
               صُنفت 51 حالة افتتاحاً جديداً، واستُبعد من هذا المؤشر 3 إعلانات أنهت إجراء تصفية وافتتحت إجراء تصفية إدارية،
-              إضافة إلى 16 إعلاناً لاحقاً أو تشغيلياً. يفتح رابط المصدر في كل صف الإعلان الرسمي للتحقق من تفاصيله.
+              إضافة إلى 16 إعلاناً لاحقاً أو تشغيلياً. يقود رابط المصدر في كل صف إلى الإعلان الرسمي للتحقق من تفاصيله.
+              ونُقلت أسماء المدينين كما وردت في الإعلانات الرسمية دون تحرير لغوي؛ لذلك قد تتضمن بعض الأسماء صيغاً قانونية مكررة.
             </p>
           </div>
           <div>
@@ -604,16 +658,16 @@ export default function BankruptcyReportJuly2026() {
 
       <section className="bg-[var(--color-navy)] py-16 text-white md:py-20">
         <div className="container mx-auto px-5 text-center md:px-8">
-          <h2 className="font-heading text-3xl font-bold">هل ظهر أحد مدينيك ضمن الإعلانات؟</h2>
+          <h2 className="font-heading text-3xl font-bold">هل يخصك أحد هذه الإعلانات؟</h2>
           <p className="mx-auto mt-5 max-w-2xl leading-8 text-white/65">
-            راجع الإعلان الرسمي أولاً، ثم تواصل معنا لدراسة المطالبة ومستنداتها والمواعيد المرتبطة بالإجراء.
+            سواء كنت دائناً يستعد لتقديم مطالبة، أو منشأة تراجع خياراتها قبل تفاقم التعثر، نساعدك على فهم الإجراء وتحديد الخطوة التالية.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Link href="/bankruptcy/claims" className="inline-flex min-h-12 items-center justify-center bg-[var(--color-gold)] px-7 py-3 font-heading font-semibold text-[var(--color-navy)]">
               تقديم مطالبة دائن
             </Link>
             <Link href="/contact" className="inline-flex min-h-12 items-center justify-center border border-white/30 px-7 py-3 font-heading font-semibold text-white hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]">
-              تواصل معنا
+              طلب استشارة قانونية
             </Link>
           </div>
         </div>
