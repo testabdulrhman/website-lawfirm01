@@ -191,6 +191,8 @@ export interface Strings {
   editData: string;
   resend: string;
   resendIn: (s: number) => string;
+  /** إرشاد من لم يصله الرمز — الردّ واحد للمسجَّل وغيره، فلا يعرف السبب */
+  otpNotArrived: string;
   // errors
   errId: string;
   errPhone: string;
@@ -319,6 +321,8 @@ const AR: Strings = {
   verifyEnter: 'تحقق ودخول',
   editData: 'تعديل البيانات',
   resend: 'إعادة إرسال الرمز',
+  otpNotArrived:
+    'لم يصلك الرمز؟ تأكّد أن الوسيلة مطابقة لما سجّلته في مطالبتك — فبعض الدائنين مسجَّل لهم البريد دون الجوال. جرّب الوسيلة الأخرى، وإن لم تنجح فراسلنا على bankruptcy@redwan.sa',
   resendIn: (s) => `إعادة الإرسال بعد ${s} ث`,
   errId: 'أدخل رقم الهوية / السجل.',
   errPhone: 'أدخل رقم الجوال المسجّل في المطالبة.',
@@ -441,6 +445,9 @@ const EN: Strings = {
   verifyEnter: 'Verify & sign in',
   editData: 'Edit details',
   resend: 'Resend the code',
+  otpNotArrived:
+    "Code didn't arrive? Make sure it matches what you registered in your claim — some creditors have only an email on file. "
+    + 'Try the other method, or contact us at bankruptcy@redwan.sa',
   resendIn: (s) => `Resend in ${s}s`,
   errId: 'Enter your ID / registration number.',
   errPhone: 'Enter the mobile number registered with the claim.',
@@ -563,6 +570,8 @@ const UR: Strings = {
   verifyEnter: 'تصدیق کریں اور داخل ہوں',
   editData: 'تفصیلات میں ترمیم',
   resend: 'کوڈ دوبارہ بھیجیں',
+  otpNotArrived:
+    'کوڈ نہیں ملا؟ یقینی بنائیں کہ یہ وہی ہے جو آپ نے اپنے دعوے میں درج کیا تھا — بعض قرض خواہوں کا صرف ای میل درج ہے۔ دوسرا طریقہ آزمائیں، یا ہم سے رابطہ کریں: bankruptcy@redwan.sa',
   resendIn: (s) => `${s} سیکنڈ بعد دوبارہ بھیجیں`,
   errId: 'اپنا شناختی / رجسٹریشن نمبر درج کریں۔',
   errPhone: 'دعوے میں درج موبائل نمبر درج کریں۔',

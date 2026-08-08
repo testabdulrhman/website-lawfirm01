@@ -715,6 +715,12 @@ export default function CreditorPortal() {
                     {resendIn > 0 ? t.resendIn(resendIn) : t.resend}
                   </button>
                 </div>
+
+                {/* الردّ واحد للمسجَّل وغيره حمايةً للبيانات، فلا يعرف من لم
+                    يصله الرمز سببَ ذلك — وهذا يدلّه عليه */}
+                <p className="mt-4 border-t border-[var(--color-navy)]/10 pt-3 font-body text-[11px] leading-6 text-[var(--color-navy)]/50">
+                  {t.otpNotArrived}
+                </p>
               </div>
             </div>
           </div>
