@@ -193,6 +193,39 @@ export interface Strings {
   resendIn: (s: number) => string;
   /** إرشاد من لم يصله الرمز — الردّ واحد للمسجَّل وغيره، فلا يعرف السبب */
   otpNotArrived: string;
+  // طلب ربط جوال بمطالبة — لمن ليس جواله مسجَّلاً فيها
+  accessLink: string;
+  accessTitle: string;
+  accessIntro: string;
+  accessTargetId: string;
+  accessTargetIdHint: string;
+  accessName: string;
+  accessMyId: string;
+  accessMyPhone: string;
+  accessMyEmail: string;
+  accessRelationship: string;
+  accessRelPick: string;
+  /** المفتاح هو القيمة التي تُرسل (عربية دائماً)، والقيمة هي المعروض */
+  accessRel: Record<string, string>;
+  accessAuthRef: string;
+  accessAuthRefHint: string;
+  accessNote: string;
+  accessFiles: string;
+  accessFilesHint: string;
+  accessAdd: string;
+  accessSubmit: string;
+  accessBack: string;
+  accessOptional: string;
+  accessSentTitle: string;
+  accessSentIntro: string;
+  accessSentNext: string;
+  errAccessRequired: string;
+  errAccessId: string;
+  errAccessPhone: string;
+  errAccessRel: string;
+  errAccessFiles: string;
+  errAccessSize: string;
+  errAccessRead: string;
   // errors
   errId: string;
   errPhone: string;
@@ -324,6 +357,45 @@ const AR: Strings = {
   otpNotArrived:
     'لم يصلك الرمز؟ تأكّد أن الوسيلة مطابقة لما سجّلته في مطالبتك — فبعض الدائنين مسجَّل لهم البريد دون الجوال. جرّب الوسيلة الأخرى، وإن لم تنجح فراسلنا على bankruptcy@redwan.sa',
   resendIn: (s) => `إعادة الإرسال بعد ${s} ث`,
+  accessLink: 'جوالي غير مسجَّل في المطالبة — أطلب ربطه',
+  accessTitle: 'طلب ربط بمطالبة',
+  accessIntro:
+    'إن كنت تنوب عن صاحب مطالبة ولم يكن جوالك مسجَّلاً فيها، فأرسل ما يثبت صفتك، ويراجعه المكتب ثم يربط جوالك بمطالبته.',
+  accessTargetId: 'رقم هوية أو سجل صاحب المطالبة',
+  accessTargetIdHint: 'عشر خانات — هوية الدائن نفسه لا هويتك',
+  accessName: 'اسمك',
+  accessMyId: 'رقم هويتك',
+  accessMyPhone: 'جوالك',
+  accessMyEmail: 'بريدك الإلكتروني',
+  accessRelationship: 'صفتك',
+  accessRelPick: 'اختر صفتك',
+  accessRel: {
+    'وكيل': 'وكيل بموجب وكالة',
+    'وارث': 'وارث',
+    'مفوَّض': 'مفوَّض عن منشأة',
+    'موظف مفوَّض': 'موظف مفوَّض',
+    'أخرى': 'صفة أخرى',
+  },
+  accessAuthRef: 'رقم الوكالة أو التفويض',
+  accessAuthRefHint: 'كما هو في ناجز أو في خطاب التفويض',
+  accessNote: 'ما تودّ إضافته',
+  accessFiles: 'المرفقات',
+  accessFilesHint: 'صورة هويتك والوكالة — حتى أربعة ملفات، كل ملف دون خمسة ميجابايت',
+  accessAdd: 'إضافة ملف',
+  accessSubmit: 'إرسال الطلب',
+  accessBack: 'رجوع إلى الدخول',
+  accessOptional: 'اختياري',
+  accessSentTitle: 'استلمنا طلبك',
+  accessSentIntro: 'احتفظ برقم الطلب أعلاه، فهو مرجعك عند مراسلتنا.',
+  accessSentNext:
+    'يراجع المكتب ما أرسلته، فإن ثبتت صفتك رُبط جوالك بالمطالبة وأمكنك الدخول بالرمز. وإن احتجنا شيئاً اتصلنا بك على الجوال الذي أدخلته.',
+  errAccessRequired: 'أكمل الحقول المطلوبة.',
+  errAccessId: 'رقم الهوية عشر خانات.',
+  errAccessPhone: 'رقم الجوال يبدأ بـ05 ويتكوّن من عشر خانات.',
+  errAccessRel: 'اختر صفتك من القائمة.',
+  errAccessFiles: 'الحد أربعة مرفقات.',
+  errAccessSize: 'حجم المرفق يتجاوز خمسة ميجابايت.',
+  errAccessRead: 'تعذّرت قراءة أحد المرفقات.',
   errId: 'أدخل رقم الهوية / السجل.',
   errPhone: 'أدخل رقم الجوال المسجّل في المطالبة.',
   errEmail: 'أدخل بريداً إلكترونياً صحيحاً.',
@@ -449,6 +521,45 @@ const EN: Strings = {
     "Code didn't arrive? Make sure it matches what you registered in your claim — some creditors have only an email on file. "
     + 'Try the other method, or contact us at bankruptcy@redwan.sa',
   resendIn: (s) => `Resend in ${s}s`,
+  accessLink: 'My number is not on the claim — request access',
+  accessTitle: 'Request access to a claim',
+  accessIntro:
+    'If you act on behalf of a creditor and your number is not registered on their claim, send us proof of your capacity. We will review it and link your number to the claim.',
+  accessTargetId: "Creditor's ID or registration number",
+  accessTargetIdHint: 'Ten digits — the creditor’s own number, not yours',
+  accessName: 'Your name',
+  accessMyId: 'Your ID number',
+  accessMyPhone: 'Your mobile',
+  accessMyEmail: 'Your email',
+  accessRelationship: 'Your capacity',
+  accessRelPick: 'Select your capacity',
+  accessRel: {
+    'وكيل': 'Attorney under power of attorney',
+    'وارث': 'Heir',
+    'مفوَّض': 'Authorised representative of an entity',
+    'موظف مفوَّض': 'Authorised employee',
+    'أخرى': 'Other capacity',
+  },
+  accessAuthRef: 'Power of attorney or authorisation number',
+  accessAuthRefHint: 'As shown in Najiz or on the authorisation letter',
+  accessNote: 'Anything you wish to add',
+  accessFiles: 'Attachments',
+  accessFilesHint: 'Your ID and the power of attorney — up to four files, each under 5 MB',
+  accessAdd: 'Add a file',
+  accessSubmit: 'Send request',
+  accessBack: 'Back to sign in',
+  accessOptional: 'optional',
+  accessSentTitle: 'We have received your request',
+  accessSentIntro: 'Keep the reference above — quote it in any follow-up.',
+  accessSentNext:
+    'We will review what you sent. If your capacity is established, your number will be linked to the claim and you can sign in with a code. If we need anything further we will call the number you entered.',
+  errAccessRequired: 'Please complete the required fields.',
+  errAccessId: 'An ID number is ten digits.',
+  errAccessPhone: 'A mobile number starts with 05 and is ten digits.',
+  errAccessRel: 'Select your capacity from the list.',
+  errAccessFiles: 'Up to four attachments.',
+  errAccessSize: 'The attachment exceeds 5 MB.',
+  errAccessRead: 'One of the attachments could not be read.',
   errId: 'Enter your ID / registration number.',
   errPhone: 'Enter the mobile number registered with the claim.',
   errEmail: 'Enter a valid email address.',
@@ -573,6 +684,45 @@ const UR: Strings = {
   otpNotArrived:
     'کوڈ نہیں ملا؟ یقینی بنائیں کہ یہ وہی ہے جو آپ نے اپنے دعوے میں درج کیا تھا — بعض قرض خواہوں کا صرف ای میل درج ہے۔ دوسرا طریقہ آزمائیں، یا ہم سے رابطہ کریں: bankruptcy@redwan.sa',
   resendIn: (s) => `${s} سیکنڈ بعد دوبارہ بھیجیں`,
+  accessLink: 'میرا نمبر دعوے میں درج نہیں — رسائی کی درخواست دیں',
+  accessTitle: 'دعوے تک رسائی کی درخواست',
+  accessIntro:
+    'اگر آپ کسی قرض خواہ کی جانب سے کام کر رہے ہیں اور آپ کا نمبر اُن کے دعوے میں درج نہیں، تو اپنی حیثیت کا ثبوت بھیجیں۔ دفتر جائزہ لے کر آپ کا نمبر دعوے سے منسلک کر دے گا۔',
+  accessTargetId: 'قرض خواہ کا شناختی / رجسٹریشن نمبر',
+  accessTargetIdHint: 'دس ہندسے — قرض خواہ کا اپنا نمبر، آپ کا نہیں',
+  accessName: 'آپ کا نام',
+  accessMyId: 'آپ کا شناختی نمبر',
+  accessMyPhone: 'آپ کا موبائل',
+  accessMyEmail: 'آپ کا ای میل',
+  accessRelationship: 'آپ کی حیثیت',
+  accessRelPick: 'اپنی حیثیت منتخب کریں',
+  accessRel: {
+    'وكيل': 'مختارنامے کے تحت وکیل',
+    'وارث': 'وارث',
+    'مفوَّض': 'ادارے کا مجاز نمائندہ',
+    'موظف مفوَّض': 'مجاز ملازم',
+    'أخرى': 'دیگر حیثیت',
+  },
+  accessAuthRef: 'مختارنامہ یا اجازت نامہ نمبر',
+  accessAuthRefHint: 'جیسا ناجز یا اجازت نامے میں درج ہے',
+  accessNote: 'کوئی اضافی بات',
+  accessFiles: 'منسلکات',
+  accessFilesHint: 'آپ کی شناخت اور مختارنامہ — زیادہ سے زیادہ چار فائلیں، ہر ایک 5 MB سے کم',
+  accessAdd: 'فائل شامل کریں',
+  accessSubmit: 'درخواست بھیجیں',
+  accessBack: 'واپس داخلے کی طرف',
+  accessOptional: 'اختیاری',
+  accessSentTitle: 'ہمیں آپ کی درخواست موصول ہوئی',
+  accessSentIntro: 'اوپر دیا گیا حوالہ نمبر محفوظ رکھیں — رابطے کے وقت یہی بتائیں۔',
+  accessSentNext:
+    'دفتر آپ کی بھیجی ہوئی تفصیل کا جائزہ لے گا۔ حیثیت ثابت ہونے پر آپ کا نمبر دعوے سے منسلک کر دیا جائے گا اور آپ کوڈ کے ذریعے داخل ہو سکیں گے۔ ضرورت پڑنے پر ہم اسی نمبر پر رابطہ کریں گے۔',
+  errAccessRequired: 'مطلوبہ خانے مکمل کریں۔',
+  errAccessId: 'شناختی نمبر دس ہندسوں کا ہوتا ہے۔',
+  errAccessPhone: 'موبائل نمبر 05 سے شروع ہوتا ہے اور دس ہندسوں کا ہوتا ہے۔',
+  errAccessRel: 'فہرست سے اپنی حیثیت منتخب کریں۔',
+  errAccessFiles: 'زیادہ سے زیادہ چار منسلکات۔',
+  errAccessSize: 'منسلکہ 5 MB سے بڑا ہے۔',
+  errAccessRead: 'ایک منسلکہ پڑھا نہیں جا سکا۔',
   errId: 'اپنا شناختی / رجسٹریشن نمبر درج کریں۔',
   errPhone: 'دعوے میں درج موبائل نمبر درج کریں۔',
   errEmail: 'درست ای میل درج کریں۔',

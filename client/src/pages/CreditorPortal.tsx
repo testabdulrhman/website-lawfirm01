@@ -31,16 +31,20 @@ import {
   File as FileIcon,
   FileImage,
   FileText,
+  KeyRound,
   Loader2,
   LogOut,
   MessageSquarePlus,
+  Paperclip,
   Send,
   ShieldCheck,
   Smartphone,
+  Upload,
   User,
   Users,
   Vote,
   Video,
+  X,
 } from "lucide-react";
 
 // ============================================================
@@ -178,10 +182,55 @@ interface PortalData {
   votes: VoteItem[];
 }
 
-type Stage = "id" | "otp" | "select" | "portal";
+type Stage = "id" | "otp" | "select" | "portal" | "access" | "accessSent";
 type Method = "phone" | "email";
 type CreditorOption = { id_number: string; creditor_name: string; claims: number };
 type Tab = "claims" | "tickets" | "vote" | "profile";
+
+// ── طلب ربط جوال بمطالبة ──
+// الحدود هنا تطابق ما تفرضه الدالة submit-access-request، فيُردّ الخطأ
+// قبل الرفع لا بعده
+const ACCESS_MAX_FILES = 4;
+const ACCESS_MAX_BYTES = 5 * 1024 * 1024;
+
+interface AccessForm {
+  targetId: string;
+  name: string;
+  myId: string;
+  myPhone: string;
+  myEmail: string;
+  relationship: string;
+  authRef: string;
+  note: string;
+}
+
+const EMPTY_ACCESS: AccessForm = {
+  targetId: "",
+  name: "",
+  myId: "",
+  myPhone: "",
+  myEmail: "",
+  relationship: "",
+  authRef: "",
+  note: "",
+};
+
+/** الرقم السعودي بصيغة موحّدة: 05xxxxxxxx */
+function normalizeSaudiPhone(raw: string): string {
+  const d = raw.replace(/[^\d]/g, "");
+  if (d.startsWith("966")) return "0" + d.slice(3);
+  if (d.startsWith("5") && d.length === 9) return "0" + d;
+  return d;
+}
+
+function readAsBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result).split(",")[1] ?? "");
+    reader.onerror = () => reject(new Error("read"));
+    reader.readAsDataURL(file);
+  });
+}
 
 // ─── مساعدات العرض ───
 
@@ -197,6 +246,48 @@ function docLabel(d: ClaimDocument, i: number, t: Strings, lang: Lang): string {
   if (cat) return cat;
   if (d.file_name) return d.file_name;
   return `${t.myDocs} ${i + 1}`;
+}
+
+/** حقل نصّي في نموذج طلب الربط — الحقول متشابهة فلا تُكرَّر */
+function AccessField({
+  id,
+  label,
+  hint,
+  value,
+  onChange,
+  type = "text",
+  inputMode,
+  autoComplete,
+  ltr,
+}: {
+  id: string;
+  label: string;
+  hint?: string;
+  value: string;
+  onChange: (v: string) => void;
+  type?: string;
+  inputMode?: "numeric" | "tel" | "email";
+  autoComplete?: string;
+  ltr?: boolean;
+}) {
+  return (
+    <div>
+      <Label htmlFor={id} className="font-body text-sm text-[var(--color-navy)]/70">
+        {label}
+      </Label>
+      <Input
+        id={id}
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        inputMode={inputMode}
+        autoComplete={autoComplete}
+        dir={ltr ? "ltr" : undefined}
+        className="mt-1.5"
+      />
+      {hint && <p className="font-body text-xs text-[var(--color-navy)]/45 mt-1">{hint}</p>}
+    </div>
+  );
 }
 
 function docIconFor(d: ClaimDocument) {
@@ -243,6 +334,11 @@ export default function CreditorPortal() {
   });
 
   // نموذج الاستفسار
+  // ── طلب الربط: لمن ليس جواله مسجَّلاً في مطالبة ──
+  const [access, setAccess] = useState<AccessForm>(EMPTY_ACCESS);
+  const [accessFiles, setAccessFiles] = useState<File[]>([]);
+  const [accessRef, setAccessRef] = useState<string | null>(null);
+
   const [ticketOpen, setTicketOpen] = useState(false);
   const [ticketSubject, setTicketSubject] = useState("");
   const [ticketBody, setTicketBody] = useState("");
@@ -302,6 +398,83 @@ export default function CreditorPortal() {
       setError(t.errConn);
     }
     setLoading(false);
+  }
+
+  // ── 1ب) طلب ربط جوال بمطالبة ──
+  function addAccessFiles(list: FileList | null) {
+    if (!list?.length) return;
+    const incoming = Array.from(list);
+    if (incoming.some((f) => f.size > ACCESS_MAX_BYTES)) { setError(t.errAccessSize); return; }
+    if (accessFiles.length + incoming.length > ACCESS_MAX_FILES) { setError(t.errAccessFiles); return; }
+    setError(null);
+    setAccessFiles([...accessFiles, ...incoming]);
+  }
+
+  async function submitAccess() {
+    const phoneValue = normalizeSaudiPhone(access.myPhone);
+    if (!access.targetId.trim() || !access.name.trim() || !access.myId.trim() || !phoneValue) {
+      setError(t.errAccessRequired);
+      return;
+    }
+    if (!/^\d{10}$/.test(access.targetId.trim()) || !/^\d{10}$/.test(access.myId.trim())) {
+      setError(t.errAccessId);
+      return;
+    }
+    if (!/^05\d{8}$/.test(phoneValue)) { setError(t.errAccessPhone); return; }
+    if (!access.relationship) { setError(t.errAccessRel); return; }
+
+    setLoading(true);
+    setError(null);
+    try {
+      const attachments = await Promise.all(
+        accessFiles.map(async (f) => ({
+          name: f.name,
+          type: f.type || null,
+          data: await readAsBase64(f),
+        })),
+      ).catch(() => null);
+
+      if (!attachments) { setError(t.errAccessRead); setLoading(false); return; }
+
+      const res = await fetch(`${FN}/submit-access-request`, {
+        method: "POST",
+        headers: HEADERS,
+        body: JSON.stringify({
+          target_id_number: access.targetId.trim(),
+          requester_name: access.name.trim(),
+          requester_id_number: access.myId.trim(),
+          requester_phone: phoneValue,
+          requester_email: access.myEmail.trim(),
+          relationship: access.relationship,
+          authorization_ref: access.authRef.trim(),
+          note: access.note.trim(),
+          attachments,
+        }),
+      });
+      const json = await res.json();
+      if (!res.ok) {
+        setError(json.message ?? json.error ?? t.errConn);
+      } else {
+        setAccessRef(json.reference ?? null);
+        goStageTop("accessSent");
+      }
+    } catch {
+      setError(t.errConn);
+    }
+    setLoading(false);
+  }
+
+  // شاشة الطلب أطول من التي قبلها، فلولا العودة إلى الأعلى لاختفى
+  // عنوانها تحت الشريط الثابت
+  function goStageTop(next: Stage) {
+    setStage(next);
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }
+
+  function openAccess() {
+    setError(null);
+    setInfo(null);
+    goStageTop("access");
   }
 
   // ── 2) التحقق من الرمز ──
@@ -589,10 +762,254 @@ export default function CreditorPortal() {
                   </Button>
                 </div>
 
+                {/* لمن ينوب عن دائن وليس جواله مسجَّلاً في مطالبته */}
+                <button
+                  type="button"
+                  onClick={openAccess}
+                  className="mt-5 flex w-full items-center justify-center gap-2 border-t border-[var(--color-navy)]/10 pt-4 font-heading text-xs text-[var(--color-navy)]/60 transition-colors hover:text-[var(--color-gold)]"
+                >
+                  <KeyRound className="w-3.5 h-3.5" />
+                  {t.accessLink}
+                </button>
+
                 <p className="font-body text-xs text-[var(--color-navy)]/40 mt-5 text-center leading-relaxed">
                   {t.sessionNote}
                 </p>
               </div>
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
+
+  // ════════════════ شاشة طلب الربط ════════════════
+  // لمن ينوب عن دائن وليس جواله مسجَّلاً في مطالبته
+  if (stage === "access") {
+    return (
+      <>
+        {seo}
+        <section className="pt-28 md:pt-32 pb-16 md:pb-20 min-h-screen bg-[var(--color-cream)]">
+          <div className="container mx-auto px-5 md:px-4 lg:px-8">
+            <div className="mx-auto max-w-md">
+              <div className="text-center mb-8">
+                <div className="w-14 h-14 mx-auto mb-4 bg-[var(--color-navy)] flex items-center justify-center">
+                  <KeyRound className="w-7 h-7 text-[var(--color-gold)]" />
+                </div>
+                <h1 className="font-display text-2xl md:text-3xl font-bold text-[var(--color-navy)]">
+                  {t.accessTitle}
+                </h1>
+                <p className="font-body text-sm text-[var(--color-navy)]/60 mt-2 leading-relaxed">
+                  {t.accessIntro}
+                </p>
+              </div>
+
+              <div className="bg-white border border-[var(--color-border)] p-4 md:p-6">
+                {error && <ErrorNote msg={error} />}
+
+                <div className="space-y-4">
+                  <AccessField
+                    id="ac-target"
+                    label={t.accessTargetId}
+                    hint={t.accessTargetIdHint}
+                    value={access.targetId}
+                    onChange={(v) => setAccess({ ...access, targetId: v.replace(/\D/g, "").slice(0, 10) })}
+                    inputMode="numeric"
+                    ltr
+                  />
+
+                  <div className="border-t border-[var(--color-border)] pt-4 space-y-4">
+                    <AccessField
+                      id="ac-name"
+                      label={t.accessName}
+                      value={access.name}
+                      onChange={(v) => setAccess({ ...access, name: v })}
+                      autoComplete="name"
+                    />
+                    <AccessField
+                      id="ac-myid"
+                      label={t.accessMyId}
+                      value={access.myId}
+                      onChange={(v) => setAccess({ ...access, myId: v.replace(/\D/g, "").slice(0, 10) })}
+                      inputMode="numeric"
+                      ltr
+                    />
+                    <AccessField
+                      id="ac-phone"
+                      label={t.accessMyPhone}
+                      value={access.myPhone}
+                      onChange={(v) => setAccess({ ...access, myPhone: v })}
+                      inputMode="tel"
+                      autoComplete="tel"
+                      ltr
+                    />
+                    <AccessField
+                      id="ac-email"
+                      label={`${t.accessMyEmail} — ${t.accessOptional}`}
+                      value={access.myEmail}
+                      onChange={(v) => setAccess({ ...access, myEmail: v.trim() })}
+                      type="email"
+                      inputMode="email"
+                      autoComplete="email"
+                      ltr
+                    />
+                  </div>
+
+                  <div className="border-t border-[var(--color-border)] pt-4 space-y-4">
+                    <div>
+                      <Label htmlFor="ac-rel" className="font-body text-sm text-[var(--color-navy)]/70">
+                        {t.accessRelationship}
+                      </Label>
+                      <select
+                        id="ac-rel"
+                        value={access.relationship}
+                        onChange={(e) => setAccess({ ...access, relationship: e.target.value })}
+                        dir={isRTL ? "rtl" : "ltr"}
+                        className="mt-1.5 w-full border border-[var(--color-border)] bg-white px-3 py-2 font-body text-sm text-[var(--color-navy)] focus:border-[var(--color-gold)] focus:outline-none"
+                      >
+                        <option value="">{t.accessRelPick}</option>
+                        {Object.entries(t.accessRel).map(([value, label]) => (
+                          <option key={value} value={value}>{label}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <AccessField
+                      id="ac-auth"
+                      label={`${t.accessAuthRef} — ${t.accessOptional}`}
+                      hint={t.accessAuthRefHint}
+                      value={access.authRef}
+                      onChange={(v) => setAccess({ ...access, authRef: v })}
+                      ltr
+                    />
+
+                    <div>
+                      <Label htmlFor="ac-note" className="font-body text-sm text-[var(--color-navy)]/70">
+                        {t.accessNote} — {t.accessOptional}
+                      </Label>
+                      <Textarea
+                        id="ac-note"
+                        value={access.note}
+                        onChange={(e) => setAccess({ ...access, note: e.target.value })}
+                        rows={3}
+                        className="mt-1.5"
+                      />
+                    </div>
+                  </div>
+
+                  {/* المرفقات */}
+                  <div className="border-t border-[var(--color-border)] pt-4">
+                    <Label className="font-body text-sm text-[var(--color-navy)]/70">{t.accessFiles}</Label>
+                    <p className="font-body text-xs text-[var(--color-navy)]/45 mt-1">{t.accessFilesHint}</p>
+
+                    {accessFiles.length > 0 && (
+                      <ul className="mt-3 space-y-2">
+                        {accessFiles.map((f, i) => (
+                          <li
+                            key={`${f.name}-${i}`}
+                            className="flex items-center gap-2 border border-[var(--color-border)] bg-[var(--color-cream)] px-3 py-2"
+                          >
+                            <Paperclip className="w-3.5 h-3.5 shrink-0 text-[var(--color-gold)]" />
+                            <span className="font-body text-xs text-[var(--color-navy)] truncate flex-1">{f.name}</span>
+                            <button
+                              type="button"
+                              onClick={() => setAccessFiles(accessFiles.filter((_, j) => j !== i))}
+                              className="shrink-0 text-[var(--color-navy)]/40 hover:text-[var(--color-navy)] transition-colors"
+                              aria-label={f.name}
+                            >
+                              <X className="w-3.5 h-3.5" />
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {accessFiles.length < ACCESS_MAX_FILES && (
+                      <label className="mt-3 flex cursor-pointer items-center justify-center gap-2 border border-dashed border-[var(--color-border)] px-4 py-3 font-heading text-sm text-[var(--color-navy)]/70 transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-navy)]">
+                        <Upload className="w-4 h-4" />
+                        {t.accessAdd}
+                        <input
+                          type="file"
+                          multiple
+                          className="hidden"
+                          accept=".pdf,.jpg,.jpeg,.png,.webp"
+                          onChange={(e) => { addAccessFiles(e.target.files); e.target.value = ""; }}
+                        />
+                      </label>
+                    )}
+                  </div>
+
+                  <Button
+                    onClick={() => void submitAccess()}
+                    disabled={loading}
+                    className="w-full bg-[var(--color-navy)] hover:bg-[var(--color-navy-light)] text-[var(--color-cream)] font-heading"
+                  >
+                    {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                    <span className="ms-2">{t.accessSubmit}</span>
+                  </Button>
+
+                  <button
+                    type="button"
+                    onClick={() => { goStageTop("id"); setError(null); }}
+                    className="w-full font-body text-xs text-[var(--color-navy)]/50 hover:text-[var(--color-navy)] transition-colors"
+                  >
+                    {t.accessBack}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
+
+  // ════════════════ شاشة تأكيد طلب الربط ════════════════
+  if (stage === "accessSent") {
+    return (
+      <>
+        {seo}
+        <section className="pt-28 md:pt-32 pb-16 md:pb-20 min-h-screen bg-[var(--color-cream)]">
+          <div className="container mx-auto px-5 md:px-4 lg:px-8">
+            <div className="mx-auto max-w-md text-center">
+              <div className="w-14 h-14 mx-auto mb-4 bg-[var(--color-navy)] flex items-center justify-center">
+                <CheckCircle2 className="w-7 h-7 text-[var(--color-gold)]" />
+              </div>
+              <h1 className="font-display text-2xl md:text-3xl font-bold text-[var(--color-navy)]">
+                {t.accessSentTitle}
+              </h1>
+
+              <div className="mt-6 bg-white border border-[var(--color-border)] p-5 md:p-6 text-start">
+                {accessRef && (
+                  <>
+                    <p
+                      className="font-heading text-base font-bold tracking-wide text-[var(--color-navy)]"
+                      dir="ltr"
+                    >
+                      {accessRef}
+                    </p>
+                    <p className="font-body text-sm text-[var(--color-navy)]/70 leading-relaxed mt-1">
+                      {t.accessSentIntro}
+                    </p>
+                  </>
+                )}
+                <p className="font-body text-sm text-[var(--color-navy)]/60 leading-relaxed mt-3 border-t border-[var(--color-border)] pt-3">
+                  {t.accessSentNext}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setAccess(EMPTY_ACCESS);
+                  setAccessFiles([]);
+                  setAccessRef(null);
+                  goStageTop("id");
+                }}
+                className="mt-6 font-body text-xs text-[var(--color-navy)]/50 hover:text-[var(--color-navy)] transition-colors"
+              >
+                {t.accessBack}
+              </button>
             </div>
           </div>
         </section>
@@ -721,6 +1138,14 @@ export default function CreditorPortal() {
                 <p className="mt-4 border-t border-[var(--color-navy)]/10 pt-3 font-body text-[11px] leading-6 text-[var(--color-navy)]/50">
                   {t.otpNotArrived}
                 </p>
+                <button
+                  type="button"
+                  onClick={openAccess}
+                  className="mt-2 flex items-center gap-1.5 font-heading text-[11px] text-[var(--color-gold)] transition-colors hover:underline"
+                >
+                  <KeyRound className="w-3 h-3" />
+                  {t.accessLink}
+                </button>
               </div>
             </div>
           </div>
