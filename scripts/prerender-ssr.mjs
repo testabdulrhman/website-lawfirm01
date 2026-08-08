@@ -140,8 +140,9 @@ function applySEO(html, seo, route) {
     }
   }
 
-  // Article/BlogPosting JSON-LD for blog posts
-  if (route.startsWith('/blog/') && route !== '/blog') {
+  // Article JSON-LD for blog posts and explicitly marked reports.
+  if (seo.article === true || (route.startsWith('/blog/') && route !== '/blog')) {
+    const isReport = route.startsWith('/bankruptcy/reports/');
     const articleLd = {
       '@context': 'https://schema.org',
       '@type': 'Article',
@@ -185,11 +186,17 @@ function applySEO(html, seo, route) {
       'image': seo.ogImage || `${SITE}/images/hero-law-firm.webp`,
       'articleSection': seo.articleSection || '',
       'inLanguage': 'ar',
-      'isPartOf': {
-        '@type': 'Blog',
-        'name': 'المدونة القانونية',
-        'url': `${SITE}/blog`
-      }
+      'isPartOf': isReport
+        ? {
+            '@type': 'CollectionPage',
+            'name': 'التقارير الشهرية لإعلانات الإفلاس',
+            'url': `${SITE}/bankruptcy/reports`
+          }
+        : {
+            '@type': 'Blog',
+            'name': 'المدونة القانونية',
+            'url': `${SITE}/blog`
+          }
     };
     // Remove empty fields
     if (!articleLd.datePublished) delete articleLd.datePublished;

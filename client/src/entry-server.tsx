@@ -36,6 +36,7 @@ import BankruptcyLP from "@/pages/BankruptcyLP";
 import HassanMisferAlZahrani from "@/pages/HassanMisferAlZahrani";
 import BankruptcyReports from "@/pages/BankruptcyReports";
 import BankruptcyReportJuly2026 from "@/pages/BankruptcyReportJuly2026";
+import BankruptcyMonthlyArchiveReport from "@/pages/BankruptcyMonthlyArchiveReport";
 import CasesGuide from "@/pages/CasesGuide";
 import LegalDictionary from "@/pages/LegalDictionary";
 import CityPage from "@/pages/CityPage";
@@ -81,6 +82,10 @@ function getInitialPage(url: string): InitialPage {
   else if (localizedPath === "/bankruptcy/complete") Component = BankruptcyComplete;
   else if (localizedPath === "/bankruptcy/creditor") Component = CreditorPortal;
   else if (localizedPath === "/bankruptcy/reports/2026-07") Component = BankruptcyReportJuly2026;
+  else if (/^\/bankruptcy\/reports\/2026-(?:01|02|03|04|05|06)$/.test(localizedPath)) {
+    Component = BankruptcyMonthlyArchiveReport;
+    routePath = `${localePrefix}/bankruptcy/reports/:month`;
+  }
   else if (localizedPath === "/bankruptcy/reports") Component = BankruptcyReports;
   else if (localizedPath.startsWith("/bankruptcy/")) {
     Component = BankruptcyCase;
