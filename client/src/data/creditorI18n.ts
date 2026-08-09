@@ -228,6 +228,9 @@ export interface Strings {
   errAccessRead: string;
   /** ردّ الدالة عربيّ وحده، فيُترجم هنا */
   errNotRegistered: string;
+  noClaimsTitle: string;
+  noClaimsBody: string;
+  noClaimsAsk: string;
   // errors
   errId: string;
   errPhone: string;
@@ -357,7 +360,7 @@ const AR: Strings = {
   editData: 'تعديل البيانات',
   resend: 'إعادة إرسال الرمز',
   otpNotArrived:
-    'لم يصلك الرمز؟ تأكّد أن الوسيلة مطابقة لما سجّلته في مطالبتك — فبعض الدائنين مسجَّل لهم البريد دون الجوال. جرّب الوسيلة الأخرى، وإن لم تنجح فراسلنا على bankruptcy@redwan.sa',
+    'لم يصلك الرمز؟ الرمز يُرسل إلى كل رقم صحيح، فتأخّره سببه التسليم لا التسجيل. تحقّق من الرقم، أو جرّب البريد الإلكتروني، أو راسلنا على bankruptcy@redwan.sa',
   resendIn: (s) => `إعادة الإرسال بعد ${s} ث`,
   accessLink: 'جوالي غير مسجَّل في المطالبة — أطلب ربطه',
   accessTitle: 'طلب ربط بمطالبة',
@@ -400,6 +403,10 @@ const AR: Strings = {
   errAccessRead: 'تعذّرت قراءة أحد المرفقات.',
   errNotRegistered:
     'لا توجد مطالبة مسجّلة بهذه الوسيلة. إن كنت تنوب عن دائن فقدّم طلب ربط من الرابط أدناه.',
+  noClaimsTitle: 'لا توجد مطالبة بهذا الرقم',
+  noClaimsBody:
+    'تحقّقنا من الرقم، ولم نجد عليه مطالبة مسجّلة في أيٍّ من الإجراءات التي يديرها المكتب. فإن كنت تنوب عن دائن — وكيلاً أو وارثاً أو مفوَّضاً — فقدّم طلب ربط، يراجعه المكتب ثم يربط رقمك بمطالبته.',
+  noClaimsAsk: 'تقديم طلب ربط',
   errId: 'أدخل رقم الهوية / السجل.',
   errPhone: 'أدخل رقم الجوال المسجّل في المطالبة.',
   errEmail: 'أدخل بريداً إلكترونياً صحيحاً.',
@@ -522,8 +529,8 @@ const EN: Strings = {
   editData: 'Edit details',
   resend: 'Resend the code',
   otpNotArrived:
-    "Code didn't arrive? Make sure it matches what you registered in your claim — some creditors have only an email on file. "
-    + 'Try the other method, or contact us at bankruptcy@redwan.sa',
+    "Code didn't arrive? A code is sent to every valid number, so a delay is a delivery issue, not a registration one. "
+    + 'Check the number, try email instead, or contact us at bankruptcy@redwan.sa',
   resendIn: (s) => `Resend in ${s}s`,
   accessLink: 'My number is not on the claim — request access',
   accessTitle: 'Request access to a claim',
@@ -566,6 +573,10 @@ const EN: Strings = {
   errAccessRead: 'One of the attachments could not be read.',
   errNotRegistered:
     'No claim is registered with these details. If you act on behalf of a creditor, use the access request link below.',
+  noClaimsTitle: 'No claim on this number',
+  noClaimsBody:
+    'We verified your number and found no claim registered against it in any proceeding this office administers. If you act on behalf of a creditor — as attorney, heir or authorised representative — submit an access request. We will review it and link your number to their claim.',
+  noClaimsAsk: 'Submit an access request',
   errId: 'Enter your ID / registration number.',
   errPhone: 'Enter the mobile number registered with the claim.',
   errEmail: 'Enter a valid email address.',
@@ -688,7 +699,7 @@ const UR: Strings = {
   editData: 'تفصیلات میں ترمیم',
   resend: 'کوڈ دوبارہ بھیجیں',
   otpNotArrived:
-    'کوڈ نہیں ملا؟ یقینی بنائیں کہ یہ وہی ہے جو آپ نے اپنے دعوے میں درج کیا تھا — بعض قرض خواہوں کا صرف ای میل درج ہے۔ دوسرا طریقہ آزمائیں، یا ہم سے رابطہ کریں: bankruptcy@redwan.sa',
+    'کوڈ نہیں ملا؟ ہر درست نمبر پر کوڈ بھیجا جاتا ہے، اس لیے تاخیر کی وجہ ترسیل ہے، اندراج نہیں۔ نمبر جانچیں، ای میل آزمائیں، یا ہم سے رابطہ کریں: bankruptcy@redwan.sa',
   resendIn: (s) => `${s} سیکنڈ بعد دوبارہ بھیجیں`,
   accessLink: 'میرا نمبر دعوے میں درج نہیں — رسائی کی درخواست دیں',
   accessTitle: 'دعوے تک رسائی کی درخواست',
@@ -731,6 +742,10 @@ const UR: Strings = {
   errAccessRead: 'ایک منسلکہ پڑھا نہیں جا سکا۔',
   errNotRegistered:
     'ان تفصیلات کے ساتھ کوئی دعویٰ درج نہیں۔ اگر آپ کسی قرض خواہ کی جانب سے کام کر رہے ہیں تو نیچے دیا گیا لنک استعمال کریں۔',
+  noClaimsTitle: 'اس نمبر پر کوئی دعویٰ نہیں',
+  noClaimsBody:
+    'ہم نے آپ کے نمبر کی تصدیق کی، اور دفتر کے زیرِ انتظام کسی بھی کارروائی میں اس پر کوئی دعویٰ درج نہیں ملا۔ اگر آپ کسی قرض خواہ کی جانب سے کام کر رہے ہیں — وکیل، وارث یا مجاز نمائندہ — تو رسائی کی درخواست دیں۔ دفتر جائزہ لے کر آپ کا نمبر اُن کے دعوے سے منسلک کر دے گا۔',
+  noClaimsAsk: 'رسائی کی درخواست دیں',
   errId: 'اپنا شناختی / رجسٹریشن نمبر درج کریں۔',
   errPhone: 'دعوے میں درج موبائل نمبر درج کریں۔',
   errEmail: 'درست ای میل درج کریں۔',

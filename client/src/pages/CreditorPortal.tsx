@@ -36,6 +36,7 @@ import {
   LogOut,
   MessageSquarePlus,
   Paperclip,
+  SearchX,
   Send,
   ShieldCheck,
   Smartphone,
@@ -182,7 +183,7 @@ interface PortalData {
   votes: VoteItem[];
 }
 
-type Stage = "id" | "otp" | "select" | "portal" | "access" | "accessSent";
+type Stage = "id" | "otp" | "select" | "portal" | "access" | "accessSent" | "noClaims";
 type Method = "phone" | "email";
 type CreditorOption = { id_number: string; creditor_name: string; claims: number };
 type Tab = "claims" | "tickets" | "vote" | "profile";
@@ -476,9 +477,10 @@ export default function CreditorPortal() {
     window.scrollTo({ top: 0, behavior: "auto" });
   }
 
-  function openAccess() {
+  function openAccess(prefillPhone = "") {
     setError(null);
     setInfo(null);
+    if (prefillPhone) setAccess((a) => ({ ...a, myPhone: prefillPhone }));
     goStageTop("access");
   }
 
@@ -508,6 +510,12 @@ export default function CreditorPortal() {
               : json.message
             : t.errVerify,
         );
+        setLoading(false);
+        return;
+      }
+      // تحقّقٌ ناجح بلا مطالبة: لا جلسة ولا بيانات — يُدَلّ على طلب الربط
+      if (json.no_claims) {
+        setStage("noClaims");
         setLoading(false);
         return;
       }
@@ -770,7 +778,7 @@ export default function CreditorPortal() {
                 {/* لمن ينوب عن دائن وليس جواله مسجَّلاً في مطالبته */}
                 <button
                   type="button"
-                  onClick={openAccess}
+                  onClick={() => openAccess()}
                   className="mt-5 flex w-full items-center justify-center gap-2 border-t border-[var(--color-navy)]/10 pt-4 font-heading text-xs text-[var(--color-navy)]/60 transition-colors hover:text-[var(--color-gold)]"
                 >
                   <KeyRound className="w-3.5 h-3.5" />
@@ -781,6 +789,53 @@ export default function CreditorPortal() {
                   {t.sessionNote}
                 </p>
               </div>
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
+
+  // ════════════════ شاشة «لا مطالبة بهذا الرقم» ════════════════
+  // بعد تحقّق ناجح: الرقم ثبت لصاحبه، ولا مطالبة عليه
+  if (stage === "noClaims") {
+    return (
+      <>
+        {seo}
+        <section className="pt-28 md:pt-32 pb-16 md:pb-20 min-h-screen bg-[var(--color-cream)]">
+          <div className="container mx-auto px-5 md:px-4 lg:px-8">
+            <div className="mx-auto max-w-md text-center">
+              <div className="w-14 h-14 mx-auto mb-4 bg-[var(--color-navy)] flex items-center justify-center">
+                <SearchX className="w-7 h-7 text-[var(--color-gold)]" />
+              </div>
+              <h1 className="font-display text-2xl md:text-3xl font-bold text-[var(--color-navy)]">
+                {t.noClaimsTitle}
+              </h1>
+
+              <div className="mt-6 bg-white border border-[var(--color-border)] p-5 md:p-6 text-start">
+                <p className="font-heading text-sm font-bold text-[var(--color-navy)]" dir="ltr">
+                  {method === "email" ? email : phone}
+                </p>
+                <p className="font-body text-sm text-[var(--color-navy)]/70 leading-relaxed mt-3 border-t border-[var(--color-border)] pt-3">
+                  {t.noClaimsBody}
+                </p>
+
+                <Button
+                  onClick={() => openAccess(method === "phone" ? phone.trim() : "")}
+                  className="w-full mt-5 bg-[var(--color-navy)] hover:bg-[var(--color-navy-light)] text-[var(--color-cream)] font-heading"
+                >
+                  <KeyRound className="w-4 h-4" />
+                  <span className="ms-2">{t.noClaimsAsk}</span>
+                </Button>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => { goStageTop("id"); setOtp(""); setError(null); }}
+                className="mt-6 font-body text-xs text-[var(--color-navy)]/50 hover:text-[var(--color-navy)] transition-colors"
+              >
+                {t.accessBack}
+              </button>
             </div>
           </div>
         </section>
@@ -1145,7 +1200,7 @@ export default function CreditorPortal() {
                 </p>
                 <button
                   type="button"
-                  onClick={openAccess}
+                  onClick={() => openAccess()}
                   className="mt-2 flex items-center gap-1.5 font-heading text-[11px] text-[var(--color-gold)] transition-colors hover:underline"
                 >
                   <KeyRound className="w-3 h-3" />
