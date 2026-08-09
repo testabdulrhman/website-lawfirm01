@@ -173,3 +173,48 @@ export function trackMeetingClick() {
     case_name: "Hassan-Misfer-Al-Zahrani",
   });
 }
+
+// ===== حجز المواعيد (redwan.sa/appointments) =====
+// ⚠️ لا يُرسل أي اسم أو جوال أو بريد أو ملاحظات إلى GA4 — مفتاح الخدمة
+//    وطريقة الاجتماع فقط. booking_success هو التحويل الوحيد المعتمد.
+
+/** بدء تعبئة نموذج الحجز (أول تفاعل) */
+export function trackBookingStart() {
+  trackEvent("booking_start", { event_category: "booking" });
+}
+
+/** اختيار وقت متاح */
+export function trackBookingSlotSelected(serviceKey: string) {
+  trackEvent("booking_slot_selected", {
+    event_category: "booking",
+    service_type: serviceKey,
+  });
+}
+
+/** ضغط زر التأكيد (قبل معرفة النتيجة) */
+export function trackBookingSubmit(serviceKey: string, method: string) {
+  trackEvent("booking_submit", {
+    event_category: "booking",
+    service_type: serviceKey,
+    meeting_method: method,
+  });
+}
+
+/** نجاح الحجز — التحويل الرئيسي */
+export function trackBookingSuccess(serviceKey: string, method: string) {
+  trackEvent("booking_success", {
+    event_category: "conversion",
+    service_type: serviceKey,
+    meeting_method: method,
+  });
+}
+
+/** فشل الحجز — السبب مصنّف بلا أي بيانات شخصية */
+export function trackBookingError(
+  reason: "slot_taken" | "rate_limited" | "server_error" | "network"
+) {
+  trackEvent("booking_error", {
+    event_category: "booking",
+    event_label: reason,
+  });
+}

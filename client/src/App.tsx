@@ -22,6 +22,8 @@ const ServiceDetail = lazy(() => import("@/pages/ServiceDetail"));
 const Blog = lazy(() => import("@/pages/Blog"));
 const BlogPost = lazy(() => import("@/pages/BlogPost"));
 const Contact = lazy(() => import("@/pages/Contact"));
+const Appointments = lazy(() => import("@/pages/Appointments"));
+const AppointmentSuccess = lazy(() => import("@/pages/AppointmentSuccess"));
 const Claims = lazy(() => import("@/pages/Claims"));
 const Privacy = lazy(() => import("@/pages/Privacy"));
 const Terms = lazy(() => import("@/pages/Terms"));
@@ -115,6 +117,8 @@ export async function loadInitialPage(pathname: string): Promise<InitialPage | u
     Component = (await import("@/pages/BlogPost")).default;
     routePath = `${localePrefix}/blog/:slug`;
   }
+  else if (localizedPath === "/appointments/success") Component = (await import("@/pages/AppointmentSuccess")).default;
+  else if (localizedPath === "/appointments") Component = (await import("@/pages/Appointments")).default;
   else if (localizedPath === "/contact") Component = (await import("@/pages/Contact")).default;
   else if (localizedPath === "/privacy") Component = (await import("@/pages/Privacy")).default;
   else if (localizedPath === "/terms") Component = (await import("@/pages/Terms")).default;
@@ -202,6 +206,8 @@ function Router({ initialPage }: { initialPage?: InitialPage }) {
               <Route path={"/bankruptcy/:slug"} component={BankruptcyCase} />
               <Route path={"/blog"} component={Blog} />
               <Route path={"/blog/:slug"} component={BlogPost} />
+              <Route path={"/appointments/success"} component={AppointmentSuccess} />
+              <Route path={"/appointments"} component={Appointments} />
               <Route path={"/contact"} component={Contact} />
               <Route path={"/privacy"} component={Privacy} />
               <Route path={"/terms"} component={Terms} />

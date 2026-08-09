@@ -1569,5 +1569,25 @@
     "ogImage": null,
     "canonical": "https://redwan.sa/ur/bankruptcy/creditor",
     "noindex": true
+  },
+  "/appointments": {
+    "title": "حجز موعد استشارة قانونية | المشيقح للمحاماة — بريدة",
+    "description": "احجز موعد استشارة قانونية مع شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس. اختر الخدمة وطريقة الاجتماع — حضورياً في بريدة أو عن بُعد — والوقت المتاح فعلياً بتوقيت السعودية.",
+    "keywords": "حجز موعد محامي, استشارة قانونية بريدة, موعد محامي القصيم, استشارة قانونية عن بعد, محامي إفلاس",
+    "ogTitle": "حجز موعد استشارة قانونية",
+    "ogDesc": "اختر الخدمة وطريقة الاجتماع والوقت المتاح، واحصل على رقم مرجعي فور تأكيد الحجز.",
+    "ogUrl": "https://redwan.sa/appointments",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/appointments"
+  },
+  "/appointments/success": {
+    "title": "تم تأكيد الموعد | المشيقح للمحاماة",
+    "description": "تأكيد حجز موعد الاستشارة القانونية.",
+    "ogUrl": "https://redwan.sa/appointments/success",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/appointments/success",
+    "noindex": true
   }
 }

@@ -226,6 +226,8 @@ export interface Strings {
   errAccessFiles: string;
   errAccessSize: string;
   errAccessRead: string;
+  /** ردّ الدالة عربيّ وحده، فيُترجم هنا */
+  errNotRegistered: string;
   // errors
   errId: string;
   errPhone: string;
@@ -396,6 +398,8 @@ const AR: Strings = {
   errAccessFiles: 'الحد أربعة مرفقات.',
   errAccessSize: 'حجم المرفق يتجاوز خمسة ميجابايت.',
   errAccessRead: 'تعذّرت قراءة أحد المرفقات.',
+  errNotRegistered:
+    'لا توجد مطالبة مسجّلة بهذه الوسيلة. إن كنت تنوب عن دائن فقدّم طلب ربط من الرابط أدناه.',
   errId: 'أدخل رقم الهوية / السجل.',
   errPhone: 'أدخل رقم الجوال المسجّل في المطالبة.',
   errEmail: 'أدخل بريداً إلكترونياً صحيحاً.',
@@ -560,6 +564,8 @@ const EN: Strings = {
   errAccessFiles: 'Up to four attachments.',
   errAccessSize: 'The attachment exceeds 5 MB.',
   errAccessRead: 'One of the attachments could not be read.',
+  errNotRegistered:
+    'No claim is registered with these details. If you act on behalf of a creditor, use the access request link below.',
   errId: 'Enter your ID / registration number.',
   errPhone: 'Enter the mobile number registered with the claim.',
   errEmail: 'Enter a valid email address.',
@@ -723,6 +729,8 @@ const UR: Strings = {
   errAccessFiles: 'زیادہ سے زیادہ چار منسلکات۔',
   errAccessSize: 'منسلکہ 5 MB سے بڑا ہے۔',
   errAccessRead: 'ایک منسلکہ پڑھا نہیں جا سکا۔',
+  errNotRegistered:
+    'ان تفصیلات کے ساتھ کوئی دعویٰ درج نہیں۔ اگر آپ کسی قرض خواہ کی جانب سے کام کر رہے ہیں تو نیچے دیا گیا لنک استعمال کریں۔',
   errId: 'اپنا شناختی / رجسٹریشن نمبر درج کریں۔',
   errPhone: 'دعوے میں درج موبائل نمبر درج کریں۔',
   errEmail: 'درست ای میل درج کریں۔',

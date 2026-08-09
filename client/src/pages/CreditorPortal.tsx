@@ -385,7 +385,12 @@ export default function CreditorPortal() {
       });
       const json = await res.json();
       if (!res.ok) {
-        setError(json.message ?? json.error ?? t.errSendCode);
+        // رسالة الدالة عربيّة، فتُقدَّم الترجمة لمن غيّر لغته
+        setError(
+          json.error === "not_registered"
+            ? t.errNotRegistered
+            : json.message ?? json.error ?? t.errSendCode,
+        );
       } else {
         setInfo(json.message ?? t.otpSent);
         setResendIn(60);

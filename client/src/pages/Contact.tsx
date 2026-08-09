@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef } from "react";
-import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send, MessageCircle, CalendarCheck } from "lucide-react";
 
 import { toast } from "sonner";
 import { Link } from "wouter";
@@ -105,6 +105,32 @@ export default function Contact() {
           <p className="font-body text-base md:text-lg text-white/60 max-w-2xl">
             {t.contact.subtitle}
           </p>
+        </div>
+      </section>
+
+      {/* بطاقة حجز الموعد — نظام الحجز كامل في /appointments ولا يُكرَّر هنا */}
+      <section className="bg-white py-10 md:py-14 border-b border-[var(--color-border)]">
+        <div className="container mx-auto px-5 md:px-4 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-center gap-6 border border-[var(--color-navy)]/15 bg-[var(--color-cream)] p-6 md:p-8">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center bg-[var(--color-gold)]">
+              <CalendarCheck className="h-6 w-6 text-[var(--color-navy)]" strokeWidth={1.75} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h2 className="font-heading text-lg md:text-xl font-semibold text-[var(--color-navy)] mb-2">
+                احجز موعد استشارة مباشرة
+              </h2>
+              <p className="font-body text-sm text-[var(--color-navy)]/70 leading-relaxed">
+                اختر الخدمة وطريقة الاجتماع — حضورياً في المكتب أو عن بُعد — من الأوقات الشاغرة
+                فعلياً، ويصلك رقم مرجعي فور التأكيد.
+              </p>
+            </div>
+            <Link
+              href={lp("/appointments")}
+              className="inline-flex shrink-0 items-center justify-center gap-2 bg-[var(--color-navy)] px-6 py-3 font-heading text-sm font-medium text-[var(--color-cream)] transition-colors hover:bg-[var(--color-navy-light)] active:scale-[0.97]"
+            >
+              حجز موعد
+            </Link>
+          </div>
         </div>
       </section>
 

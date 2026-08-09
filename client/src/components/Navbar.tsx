@@ -242,7 +242,7 @@ export default function Navbar() {
           </button>
 
           <Link
-            href={lp("/contact")}
+            href={lp("/appointments")}
             onClick={() => trackBookConsultation("navbar_desktop")}
             className={`flex items-center gap-2 px-5 py-2.5 font-heading text-sm font-medium transition-all duration-200 active:scale-[0.97] ${
               showTransparent ? "bg-[var(--color-gold)] text-[var(--color-navy)] hover:bg-[var(--color-gold-light)]" : "bg-[var(--color-navy)] text-[var(--color-cream)] hover:bg-[var(--color-navy-light)]"
@@ -545,7 +545,7 @@ export default function Navbar() {
           {/* Mobile CTA - Fixed at bottom */}
           <div className="px-6 pb-8 pt-4 border-t border-[var(--color-border)]/50">
             <Link
-              href={lp("/contact")}
+              href={lp("/appointments")}
               onClick={() => trackBookConsultation("navbar_mobile")}
               className="flex items-center justify-center gap-3 w-full px-6 py-4 bg-[var(--color-navy)] text-[var(--color-cream)] font-heading text-base font-semibold active:scale-[0.97] transition-transform"
             >

@@ -17,6 +17,8 @@ import ServiceDetail from "@/pages/ServiceDetail";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
 import Contact from "@/pages/Contact";
+import Appointments from "@/pages/Appointments";
+import AppointmentSuccess from "@/pages/AppointmentSuccess";
 import Claims from "@/pages/Claims";
 import Privacy from "@/pages/Privacy";
 import Terms from "@/pages/Terms";
@@ -94,7 +96,9 @@ function getInitialPage(url: string): InitialPage {
   else if (localizedPath.startsWith("/blog/")) {
     Component = BlogPost;
     routePath = `${localePrefix}/blog/:slug`;
-  } else if (localizedPath === "/contact") Component = Contact;
+  } else if (localizedPath === "/appointments/success") Component = AppointmentSuccess;
+  else if (localizedPath === "/appointments") Component = Appointments;
+  else if (localizedPath === "/contact") Component = Contact;
   else if (localizedPath === "/privacy") Component = Privacy;
   else if (localizedPath === "/terms") Component = Terms;
   else if (localizedPath === "/faq") Component = FAQ;

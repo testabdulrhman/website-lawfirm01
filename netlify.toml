@@ -5,6 +5,12 @@
 [build.environment]
   NODE_VERSION = "22"
 
+# ── دوال الخادم: وسيط حجز المواعيد إلى نظام الـCRM ──
+# المفاتيح تأتي من متغيرات بيئة Netlify ولا تدخل المستودع إطلاقاً.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 # Disable pretty URLs to prevent trailing slash additions
 [build.processing]
   skip_processing = false
@@ -222,6 +228,17 @@
 # ── Landing page: noindex via header ──
 [[headers]]
   for = "/bankruptcy-lp"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+# ── تأكيد حجز الموعد: صفحة نتيجة لا تُفهرس ──
+[[headers]]
+  for = "/appointments/success"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/en/appointments/success"
   [headers.values]
     X-Robots-Tag = "noindex"
 
