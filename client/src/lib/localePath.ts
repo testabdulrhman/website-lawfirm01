@@ -21,7 +21,16 @@ export function localePath(path: string, lang: Language): string {
 
   // These pages do not yet have distinct English content. Keep their links on
   // the complete Arabic versions instead of generating thin/duplicate pages.
-  const arabicOnlyExactRoutes = new Set(["/careers", "/cases-guide", "/legal-dictionary"]);
+  const arabicOnlyExactRoutes = new Set([
+    "/careers",
+    "/cases-guide",
+    "/legal-dictionary",
+    // The booking flow is currently Arabic-only. Keeping English CTAs on the
+    // complete Arabic route is preferable to generating /en/appointments,
+    // which is not prerendered and therefore returns a real 404 on Netlify.
+    "/appointments",
+    "/appointments/success",
+  ]);
   const isArabicOnlyDetail =
     path.startsWith("/blog/") ||
     path.startsWith("/bankruptcy/procedures/");

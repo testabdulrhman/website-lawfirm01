@@ -102,7 +102,35 @@
     "article": true,
     "datePublished": "2026-08-04",
     "dateModified": "2026-08-04",
-    "articleSection": "تقارير الإفلاس"
+    "articleSection": "تقارير الإفلاس",
+    "authorName": "عبدالرحمن بن رضوان المشيقح",
+    "authorUrl": "https://redwan.sa/team",
+    "authorJobTitle": "محامٍ وأمين إفلاس مرخص",
+    "temporalCoverage": "2026-07",
+    "contentLocation": "المملكة العربية السعودية",
+    "about": [
+      "إعلانات الإفلاس في السعودية",
+      "نظام الإفلاس السعودي",
+      "لجنة الإفلاس إيسار",
+      "التصفية وإعادة التنظيم المالي والتسوية الوقائية"
+    ],
+    "isBasedOn": "https://bankruptcy.gov.sa/",
+    "dataset": {
+      "name": "بيانات إعلانات الإفلاس في السعودية — يوليو 2026",
+      "description": "مجموعة بيانات موثقة لـ70 إعلاناً منشوراً من لجنة الإفلاس إيسار خلال يوليو 2026، تشمل 51 افتتاحاً جديداً وروابط الإعلانات الرسمية.",
+      "variableMeasured": [
+        "نوع الإعلان",
+        "نوع إجراء الإفلاس",
+        "اسم المدين",
+        "رقم السجل التجاري",
+        "تاريخ الإعلان",
+        "المحكمة",
+        "القطاع",
+        "عمر المنشأة"
+      ],
+      "measurementTechnique": "جمع الإعلانات الرسمية المنشورة في موقع لجنة الإفلاس إيسار، ثم إزالة التكرارات وتصنيف نوع الإعلان والإجراء وفق المنهجية المبينة في التقرير.",
+      "isBasedOn": "https://bankruptcy.gov.sa/"
+    }
   },
   "/bankruptcy/reports": {
     "title": "التقارير الشهرية لإعلانات الإفلاس السعودية | شركة المشيقح للمحاماة",
@@ -200,7 +228,58 @@
     "ogUrl": "https://redwan.sa/team",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/team"
+    "canonical": "https://redwan.sa/team",
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://redwan.sa/" },
+          { "@type": "ListItem", "position": 2, "name": "فريقنا", "item": "https://redwan.sa/team" }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "عبدالرحمن بن رضوان المشيقح",
+        "jobTitle": "المؤسس والمدير التنفيذي — محامٍ وأمين إفلاس وموثّق",
+        "description": "محامٍ وأمين إفلاس وموثّق بخبرة تتجاوز عشر سنوات في الأعمال القانونية، وحاصل على درجة الماجستير في الأنظمة بمرتبة الشرف الأولى.",
+        "sameAs": ["https://x.com/amoshiqah"],
+        "worksFor": { "@type": "LegalService", "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس", "url": "https://redwan.sa" },
+        "hasCredential": [
+          { "@type": "EducationalOccupationalCredential", "credentialCategory": "ترخيص محاماة", "identifier": "26/129", "recognizedBy": { "@type": "GovernmentOrganization", "name": "وزارة العدل" } },
+          { "@type": "EducationalOccupationalCredential", "credentialCategory": "ترخيص أمانة إفلاس", "identifier": "142147", "recognizedBy": { "@type": "GovernmentOrganization", "name": "لجنة الإفلاس" } }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "يسرى بنت رضوان المشيقح",
+        "jobTitle": "محامية",
+        "worksFor": { "@type": "LegalService", "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس", "url": "https://redwan.sa" }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "محمد بن عمر الجندي",
+        "jobTitle": "محامي متدرب",
+        "worksFor": { "@type": "LegalService", "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس", "url": "https://redwan.sa" }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "رنا بنت نائف الحربي",
+        "jobTitle": "محامية متدربة",
+        "worksFor": { "@type": "LegalService", "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس", "url": "https://redwan.sa" }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "رضوان بن عبدالله المشيقح",
+        "jobTitle": "مدير إداري",
+        "worksFor": { "@type": "LegalService", "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس", "url": "https://redwan.sa" }
+      }
+    ]
   },
   "/services": {
     "title": "12 خدمة قانونية متخصصة | المشيقح للمحاماة - بريدة",
@@ -1189,7 +1268,29 @@
     "description": "Meet our team of experienced lawyers and legal professionals at Abdulrahman Redwan Al-Mushaiqi Law Firm.",
     "keywords": "legal team, lawyers, Buraydah attorneys, legal professionals",
     "ogUrl": "https://redwan.sa/en/team",
-    "canonical": "/en/team"
+    "canonical": "/en/team",
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://redwan.sa/en" },
+          { "@type": "ListItem", "position": 2, "name": "Our Team", "item": "https://redwan.sa/en/team" }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Abdulrahman Redwan Al-Mushaiqeh",
+        "jobTitle": "Founder and Managing Director — Attorney, Bankruptcy Trustee and Notary",
+        "sameAs": ["https://x.com/amoshiqah"],
+        "worksFor": { "@type": "LegalService", "name": "Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Management", "url": "https://redwan.sa/en" },
+        "hasCredential": [
+          { "@type": "EducationalOccupationalCredential", "credentialCategory": "Law Practice License", "identifier": "26/129", "recognizedBy": { "@type": "GovernmentOrganization", "name": "Saudi Ministry of Justice" } },
+          { "@type": "EducationalOccupationalCredential", "credentialCategory": "Bankruptcy Trustee License", "identifier": "142147", "recognizedBy": { "@type": "GovernmentOrganization", "name": "Saudi Bankruptcy Commission" } }
+        ]
+      }
+    ]
   },
   "/en/services": {
     "title": "Legal Services | Redwan Law Firm",

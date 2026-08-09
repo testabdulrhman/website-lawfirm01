@@ -29,7 +29,7 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Content-Security-Policy = "frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://wa.me https://www.google.com"
 
-# ── Caching: hashed build assets are immutable; static images cached a week ──
+# ── Caching: hashed build assets are immutable; static images cached 30 days ──
 [[headers]]
   for = "/assets/*"
   [headers.values]
@@ -38,7 +38,7 @@
 [[headers]]
   for = "/images/*"
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
 
 # ── بوابة الدائن: كل خدمات الدائن من /bankruptcy/creditor ──
 # الأداتان القديمتان (تتبّع المطالبة وتذكرة الاستفسار) اندمجتا في البوابة الموحّدة.

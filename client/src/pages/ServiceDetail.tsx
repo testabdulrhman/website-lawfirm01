@@ -685,7 +685,7 @@ export default function ServiceDetail() {
               <div className="space-y-3 md:space-y-4">
                 {content.faqs.map((faq) => (
                   <div key={faq.q} className="p-4 md:p-6 bg-white border border-[var(--color-border)]">
-                    <h4 className="font-heading text-sm md:text-base font-semibold text-[var(--color-navy)] mb-1.5 md:mb-2">{faq.q}</h4>
+                    <h3 className="font-heading text-sm md:text-base font-semibold text-[var(--color-navy)] mb-1.5 md:mb-2">{faq.q}</h3>
                     <p className="font-body text-xs md:text-sm text-[var(--color-navy)]/60">{faq.a}</p>
                   </div>
                 ))}
@@ -697,7 +697,7 @@ export default function ServiceDetail() {
               <div className="lg:sticky lg:top-28 space-y-4 md:space-y-6">
                 {/* CTA Card */}
                 <div className="p-5 md:p-8 bg-[var(--color-navy)] text-center">
-                  <h4 className="font-heading text-base md:text-lg font-semibold text-white mb-2 md:mb-3">{labels.needHelp}</h4>
+                  <h3 className="font-heading text-base md:text-lg font-semibold text-white mb-2 md:mb-3">{labels.needHelp}</h3>
                   <p className="font-body text-xs md:text-sm text-white/60 mb-4 md:mb-6">
                     {labels.contactDesc}
                   </p>
@@ -718,7 +718,7 @@ export default function ServiceDetail() {
 
                 {/* Other Services */}
                 <div className="p-4 md:p-6 bg-white border border-[var(--color-border)]">
-                  <h4 className="font-heading text-xs md:text-sm font-semibold text-[var(--color-navy)] mb-3 md:mb-4">{labels.otherServices}</h4>
+                  <h3 className="font-heading text-xs md:text-sm font-semibold text-[var(--color-navy)] mb-3 md:mb-4">{labels.otherServices}</h3>
                   <div className="space-y-2">
                     {Object.entries(servicesData)
                       .filter(([slug]) => slug !== params.slug)

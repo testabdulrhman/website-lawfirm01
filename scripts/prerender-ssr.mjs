@@ -186,6 +186,19 @@ function applySEO(html, seo, route) {
       'image': seo.ogImage || `${SITE}/images/hero-law-firm.webp`,
       'articleSection': seo.articleSection || '',
       'inLanguage': 'ar',
+      ...(seo.temporalCoverage ? { 'temporalCoverage': seo.temporalCoverage } : {}),
+      ...(seo.about
+        ? {
+            'about': (Array.isArray(seo.about) ? seo.about : [seo.about]).map((name) => ({
+              '@type': 'Thing',
+              'name': name
+            }))
+          }
+        : {}),
+      ...(seo.contentLocation
+        ? { 'contentLocation': { '@type': 'Country', 'name': seo.contentLocation } }
+        : {}),
+      ...(seo.isBasedOn ? { 'isBasedOn': seo.isBasedOn } : {}),
       'isPartOf': isReport
         ? {
             '@type': 'CollectionPage',
@@ -204,6 +217,42 @@ function applySEO(html, seo, route) {
     if (!articleLd.articleSection) delete articleLd.articleSection;
     const articleScript = `<script type="application/ld+json" data-page-schema="true">${JSON.stringify(articleLd)}</script>`;
     html = html.replace('</head>', `    ${articleScript}\n  </head>`);
+
+    if (seo.dataset && typeof seo.dataset === 'object') {
+      const datasetLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Dataset',
+        'name': seo.dataset.name || title,
+        'description': seo.dataset.description || description,
+        'url': canonical || `${SITE}${route}`,
+        'inLanguage': 'ar',
+        'creator': {
+          '@type': 'Organization',
+          'name': 'شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس',
+          'url': SITE
+        },
+        ...(seo.temporalCoverage ? { 'temporalCoverage': seo.temporalCoverage } : {}),
+        ...(seo.contentLocation
+          ? { 'spatialCoverage': { '@type': 'Country', 'name': seo.contentLocation } }
+          : {}),
+        ...(seo.dataset.variableMeasured
+          ? { 'variableMeasured': seo.dataset.variableMeasured }
+          : {}),
+        ...(seo.dataset.measurementTechnique
+          ? { 'measurementTechnique': seo.dataset.measurementTechnique }
+          : {}),
+        ...(seo.dataset.isBasedOn || seo.isBasedOn
+          ? { 'isBasedOn': seo.dataset.isBasedOn || seo.isBasedOn }
+          : {}),
+        'includedInDataCatalog': {
+          '@type': 'DataCatalog',
+          'name': 'التقارير الشهرية لإعلانات الإفلاس',
+          'url': `${SITE}/bankruptcy/reports`
+        }
+      };
+      const datasetScript = `<script type="application/ld+json" data-page-schema="true">${JSON.stringify(datasetLd)}</script>`;
+      html = html.replace('</head>', `    ${datasetScript}\n  </head>`);
+    }
   }
 
   // hreflang

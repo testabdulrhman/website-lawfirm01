@@ -54,6 +54,17 @@ export default function Privacy() {
         ],
       },
       {
+        title: "معالجة نموذج التواصل عبر Formspree",
+        content: "عند إرسال نموذج التواصل، تُنقل البيانات التي أدخلتها إلى خدمة Formspree بوصفها مزوداً تقنياً لمعالجة النموذج وتسليم الرسالة إلى الشركة.",
+        list: [
+          "تشمل البيانات: الاسم ورقم الهاتف والبريد الإلكتروني ونوع الخدمة ونص الاستفسار.",
+          "يقتصر استخدام البيانات على استلام الاستفسار والتواصل مع صاحبه وتقديم الخدمة المطلوبة.",
+          "لا تُرسل حقول النموذج الشخصية إلى Google Analytics ضمن أحداث القياس في الموقع.",
+          "تُحتفظ نسخة الرسالة لدى مزود النموذج لمدة تصل إلى 30 يوماً وفق إعداد الحساب الحالي، مع مراعاة ما قد يلزم الاحتفاظ به نظاماً لدى الشركة.",
+        ],
+        extra: "يُفضّل عدم إدراج معلومات شديدة الحساسية أو مستندات القضية داخل نموذج التواصل العام؛ ويمكن ترتيب قناة تبادل مناسبة بعد التواصل الأولي.",
+      },
+      {
         title: "السرية المهنية",
         content: "بالإضافة إلى سياسة الخصوصية هذه، تلتزم الشركة بالسرية المهنية المنصوص عليها في نظام المحاماة السعودي. جميع المعلومات المتعلقة بقضايا العملاء تخضع لحماية السرية المهنية المطلقة، ولا يتم الإفصاح عنها إلا بموافقة العميل أو بأمر قضائي.",
       },
@@ -67,15 +78,6 @@ export default function Privacy() {
           "مصدر الزيارة (محرك بحث، رابط مباشر، إعلان).",
         ],
         extra: "تُعالج هذه البيانات بواسطة Google وفقاً لسياسة الخصوصية الخاصة بها. يمكنك منع جمع هذه البيانات عبر تثبيت إضافة Google Analytics Opt-out Browser Add-on.",
-      },
-      {
-        title: "جمع البيانات المقدَّمة من المستخدم ومشاركتها مع Google",
-        content: "لتحسين قياس الإحالات الناجحة واستهداف الإعلانات، قد نشارك بيانات مجزّأة ومشفّرة مع Google. تشمل هذه البيانات:",
-        list: [
-          "عنوان البريد الإلكتروني (بصيغة مشفّرة/مجزّأة).",
-          "رقم الهاتف (بصيغة مشفّرة/مجزّأة).",
-        ],
-        extra: "تتم هذه المشاركة وفق معايير الخصوصية المعتمدة من Google، ولا يمكن استخدام هذه البيانات لتحديد هويتك بشكل مباشر. الغرض من ذلك هو تحسين دقة قياس أداء الحملات الإعلانية وتقديم محتوى أكثر صلة. يحق لك رفض هذه المشاركة عبر التواصل معنا.",
       },
       {
         title: "ملفات تعريف الارتباط (Cookies)",
@@ -93,8 +95,8 @@ export default function Privacy() {
         list: [
           "بموافقتك الصريحة.",
           "للامتثال لأمر قضائي أو متطلب قانوني.",
-          "مع مقدمي خدمات موثوقين يساعدوننا في تشغيل موقعنا (مع التزامهم بالسرية).",
-          "مع Google لأغراض التحليل وقياس أداء الإعلانات (بيانات مجزّأة ومشفّرة فقط).",
+          "مع مقدمي خدمات موثوقين يساعدوننا في تشغيل الموقع، ومنهم Formspree لمعالجة نموذج التواصل، في حدود الغرض المطلوب.",
+          "مع Google لأغراض تحليل استخدام الموقع وقياس أداء الإعلانات، دون إرسال حقول نموذج التواصل الشخصية ضمن أحداث القياس.",
         ],
       },
       {
@@ -114,7 +116,7 @@ export default function Privacy() {
         contact: true,
       },
     ],
-    lastUpdated: "آخر تحديث: يوليو 2026",
+    lastUpdated: "آخر تحديث: أغسطس 2026",
     companyName: "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
     email: "البريد الإلكتروني:",
     phone: "الهاتف:",
@@ -164,6 +166,17 @@ export default function Privacy() {
         ],
       },
       {
+        title: "Contact Form Processing by Formspree",
+        content: "When you submit the contact form, the information you enter is transmitted to Formspree as the technical processor used to deliver the message to the Firm.",
+        list: [
+          "The data includes your name, phone number, email address, service type, and inquiry text.",
+          "The information is used only to receive the inquiry, contact you, and provide the requested service.",
+          "Personal fields from the form are not sent to Google Analytics as part of the site's measurement events.",
+          "A copy of the message is retained by the form provider for up to 30 days under the current account configuration, subject to any legal retention obligations applicable to the Firm.",
+        ],
+        extra: "Please do not include highly sensitive information or case documents in the general contact form. A suitable exchange channel can be arranged after the initial contact.",
+      },
+      {
         title: "Professional Confidentiality",
         content: "In addition to this privacy policy, the Firm adheres to professional confidentiality as stipulated in the Saudi Advocacy Law. All information related to client cases is subject to absolute professional confidentiality protection and is not disclosed except with client consent or by court order.",
       },
@@ -177,15 +190,6 @@ export default function Privacy() {
           "Traffic source (search engine, direct link, advertisement).",
         ],
         extra: "This data is processed by Google in accordance with its privacy policy. You can prevent this data collection by installing the Google Analytics Opt-out Browser Add-on.",
-      },
-      {
-        title: "User-Provided Data Collection & Sharing with Google",
-        content: "To improve conversion measurement and ad targeting, we may share hashed and encrypted data with Google. This data includes:",
-        list: [
-          "Email address (in hashed/encrypted format).",
-          "Phone number (in hashed/encrypted format).",
-        ],
-        extra: "This sharing is conducted in accordance with Google's privacy standards and cannot be used to directly identify you. The purpose is to improve the accuracy of advertising campaign performance measurement and deliver more relevant content. You have the right to opt out of this sharing by contacting us.",
       },
       {
         title: "Cookies",
@@ -203,8 +207,8 @@ export default function Privacy() {
         list: [
           "With your explicit consent.",
           "To comply with a court order or legal requirement.",
-          "With trusted service providers who help us operate our website (with their commitment to confidentiality).",
-          "With Google for analytics and ad performance measurement purposes (hashed and encrypted data only).",
+          "With trusted providers that help operate the website, including Formspree for contact-form processing, only to the extent required for that purpose.",
+          "With Google for website analytics and advertising performance measurement, without sending personal contact-form fields in measurement events.",
         ],
       },
       {
@@ -224,7 +228,7 @@ export default function Privacy() {
         contact: true,
       },
     ],
-    lastUpdated: "Last updated: July 2026",
+    lastUpdated: "Last updated: August 2026",
     companyName: "Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Administration",
     email: "Email:",
     phone: "Phone:",

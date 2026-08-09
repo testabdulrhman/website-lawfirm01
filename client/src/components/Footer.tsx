@@ -21,11 +21,11 @@ export default function Footer() {
             <div className="sm:col-span-2 lg:col-span-1">
               <Link href={lp("/")} className="inline-block mb-4">
                 <img
-                  src="/images/logo-light.webp"
+                  src="/images/logo-light-512.webp"
                   alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
                   className="w-[200px] h-[50px] object-contain"
-                  width={200}
-                  height={50}
+                  width={512}
+                  height={156}
                 />
               </Link>
               <p className="font-body text-sm text-white/50 leading-relaxed max-w-[280px]">
@@ -35,7 +35,7 @@ export default function Footer() {
 
             {/* Quick Links */}
             <div>
-              <h4 className="font-heading text-sm font-semibold text-white mb-4">{t.footer.quickLinks}</h4>
+              <h2 className="font-heading text-sm font-semibold text-white mb-4">{t.footer.quickLinks}</h2>
               <ul className="grid grid-cols-2 gap-x-5 gap-y-2.5">
                 <li><Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.home}</Link></li>
                 <li><Link href={lp("/about")} className="font-body text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors">{t.nav.about}</Link></li>
@@ -58,7 +58,7 @@ export default function Footer() {
 
             {/* Services */}
             <div>
-              <h4 className="font-heading text-sm font-semibold text-white mb-4">{t.footer.ourServices}</h4>
+              <h2 className="font-heading text-sm font-semibold text-white mb-4">{t.footer.ourServices}</h2>
               <ul className="space-y-3">
                 {serviceLinks.map((link) => (
                   <li key={link.slug}>
@@ -72,7 +72,7 @@ export default function Footer() {
 
             {/* Contact */}
             <div>
-              <h4 className="font-heading text-sm font-semibold text-white mb-4">{t.footer.contactUs}</h4>
+              <h2 className="font-heading text-sm font-semibold text-white mb-4">{t.footer.contactUs}</h2>
               <div className="space-y-3">
                 <div className="flex items-start gap-2.5">
                   <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-[var(--color-gold)]" />
@@ -113,7 +113,8 @@ export default function Footer() {
                   href="https://x.com/redwan_law"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group w-10 h-10 bg-white/10 rounded-sm flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-white hover:scale-110 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] active:scale-95"
+                  aria-label="X"
+                  className="group w-11 h-11 bg-white/10 rounded-sm flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-white hover:scale-110 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] active:scale-95"
                 >
                   <span className="text-white/70 text-sm font-heading transition-colors duration-300 group-hover:text-[#0F1B2D]">X</span>
                 </a>
@@ -121,7 +122,8 @@ export default function Footer() {
                   href="https://www.linkedin.com/company/redwan-sa"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group w-10 h-10 bg-white/10 rounded-sm flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#0A66C2] hover:scale-110 hover:shadow-[0_0_20px_rgba(10,102,194,0.4)] active:scale-95"
+                  aria-label="LinkedIn"
+                  className="group w-11 h-11 bg-white/10 rounded-sm flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#0A66C2] hover:scale-110 hover:shadow-[0_0_20px_rgba(10,102,194,0.4)] active:scale-95"
                 >
                   <Linkedin size={18} className="text-white/70 transition-colors duration-300 group-hover:text-white" />
                 </a>
@@ -130,7 +132,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="group w-10 h-10 bg-white/10 rounded-sm flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#E4405F] hover:scale-110 hover:shadow-[0_0_20px_rgba(228,64,95,0.4)] active:scale-95"
+                  className="group w-11 h-11 bg-white/10 rounded-sm flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#E4405F] hover:scale-110 hover:shadow-[0_0_20px_rgba(228,64,95,0.4)] active:scale-95"
                 >
                   <Instagram size={18} className="text-white/70 transition-colors duration-300 group-hover:text-white" />
                 </a>
@@ -139,7 +141,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
-                  className="group w-10 h-10 bg-white/10 rounded-sm flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#1877F2] hover:scale-110 hover:shadow-[0_0_20px_rgba(24,119,242,0.4)] active:scale-95"
+                  className="group w-11 h-11 bg-white/10 rounded-sm flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#1877F2] hover:scale-110 hover:shadow-[0_0_20px_rgba(24,119,242,0.4)] active:scale-95"
                 >
                   <Facebook size={18} className="text-white/70 transition-colors duration-300 group-hover:text-white" />
                 </a>
@@ -148,7 +150,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Snapchat"
-                  className="group w-10 h-10 bg-white/10 rounded-sm flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#FFFC00] hover:scale-110 hover:shadow-[0_0_20px_rgba(255,252,0,0.4)] active:scale-95"
+                  className="group w-11 h-11 bg-white/10 rounded-sm flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#FFFC00] hover:scale-110 hover:shadow-[0_0_20px_rgba(255,252,0,0.4)] active:scale-95"
                 >
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" className="text-white/70 transition-colors duration-300 group-hover:text-[#0F1B2D]" aria-hidden="true">
                     <path d="M12.206 1c.97.004 3.799.207 5.13 3.183.448 1.003.34 2.71.253 4.083l-.004.06c-.01.158-.02.31-.029.456.07.04.184.083.354.083.252-.011.55-.094.882-.262a.93.93 0 0 1 .386-.08c.146 0 .295.027.422.082l.012.004c.357.127.59.382.596.65.007.342-.318.638-.965.892-.072.028-.16.057-.252.087-.338.107-.85.27-.988.595-.071.169-.043.39.085.658l.003.007c.044.103 1.103 2.524 3.46 2.914.184.03.317.195.307.385a.46.46 0 0 1-.036.153c-.124.29-.646.502-1.595.65-.097.015-.139.16-.19.347-.022.08-.044.162-.075.246-.037.105-.111.156-.24.156h-.014c-.093 0-.227-.018-.397-.055-.263-.057-.62-.114-1.065-.114-.247 0-.502.022-.76.066-.498.083-.927.39-1.423.745-.708.506-1.51 1.08-2.73 1.08-.053 0-.106-.002-.158-.005l-.124.003c-1.22 0-2.022-.574-2.73-1.08-.495-.354-.924-.661-1.422-.744a4.605 4.605 0 0 0-.76-.066c-.466 0-.835.072-1.066.114-.155.029-.288.054-.397.054-.183 0-.255-.111-.286-.205-.03-.084-.052-.167-.075-.247-.05-.187-.092-.331-.19-.346-.948-.148-1.47-.36-1.594-.65a.456.456 0 0 1-.036-.153c-.01-.19.123-.355.307-.385 2.356-.39 3.415-2.811 3.46-2.914l.002-.007c.128-.268.156-.49.085-.658-.138-.325-.65-.488-.988-.595-.092-.03-.18-.059-.252-.087-.647-.254-.972-.55-.965-.892.006-.268.24-.523.596-.65l.012-.004a1.21 1.21 0 0 1 .422-.082c.14 0 .27.027.386.08.332.168.63.251.882.262.17 0 .284-.043.354-.083-.009-.146-.019-.298-.029-.456l-.004-.06c-.087-1.373-.195-3.08.253-4.083C8.407 1.207 11.236 1.004 12.206 1z"/>
@@ -160,27 +162,27 @@ export default function Footer() {
 
           {/* Bottom Bar */}
           <div className="pt-6 border-t border-white/10 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 lg:gap-6 text-center">
-            <p className="font-body text-xs text-white/30 leading-relaxed lg:text-start">
+            <p className="font-body text-xs text-white/60 leading-relaxed lg:text-start">
               © {new Date().getFullYear()} {t.footer.copyright}
             </p>
             <p
               lang="en"
               dir="ltr"
-              className="font-body text-xs text-white/30 whitespace-nowrap"
+              className="font-body text-xs text-white/60 whitespace-nowrap"
             >
               ABDULRAHMAN REDWAN ALMOSHIQEH Company For Legal
             </p>
             <div className="flex items-center gap-4 md:gap-6 flex-wrap justify-center lg:justify-end">
-              <Link href={lp("/privacy")} className="font-body text-xs text-white/30 hover:text-[var(--color-gold)] transition-colors">
+              <Link href={lp("/privacy")} className="font-body text-xs text-white/60 hover:text-[var(--color-gold)] transition-colors">
                 {t.footer.privacy}
               </Link>
-              <Link href={lp("/terms")} className="font-body text-xs text-white/30 hover:text-[var(--color-gold)] transition-colors">
+              <Link href={lp("/terms")} className="font-body text-xs text-white/60 hover:text-[var(--color-gold)] transition-colors">
                 {t.footer.terms}
               </Link>
-              <Link href={lp("/sitemap")} className="font-body text-xs text-white/30 hover:text-[var(--color-gold)] transition-colors">
+              <Link href={lp("/sitemap")} className="font-body text-xs text-white/60 hover:text-[var(--color-gold)] transition-colors">
                 {lang === "ar" ? "خريطة الموقع" : "Sitemap"}
               </Link>
-              <span className="font-body text-xs text-white/30">
+              <span className="font-body text-xs text-white/60">
                 {lang === "ar" ? "ترخيص محاماة رقم: 26/129" : "License No: 26/129"}
               </span>
             </div>

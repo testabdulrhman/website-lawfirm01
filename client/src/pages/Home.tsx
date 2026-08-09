@@ -96,13 +96,15 @@ export default function Home() {
           style={{ transform: `translateY(${parallaxOffset * 0.4}px)` }}
         >
           <img
-            src="/images/hero-law-firm.webp"
+            src="/images/hero-law-firm-1280.webp"
+            srcSet="/images/hero-law-firm-768.webp 768w, /images/hero-law-firm-1280.webp 1280w, /images/hero-law-firm.webp 2048w"
+            sizes="100vw"
             alt={lang === "ar" ? "مكتب محاماة" : "Law Office"}
             className="w-full h-full object-cover"
             loading="eager"
             fetchPriority="high"
-            width={1200}
-            height={800}
+            width={1280}
+            height={720}
           />
           <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-[oklch(0.1_0.04_250/0.85)] via-[oklch(0.1_0.04_250/0.65)] to-[oklch(0.1_0.04_250/0.35)] md:from-[oklch(0.1_0.04_250/0.75)] md:via-[oklch(0.1_0.04_250/0.55)] md:to-[oklch(0.1_0.04_250/0.3)]" />
         </div>
@@ -258,12 +260,14 @@ export default function Home() {
             <div className={`relative ${isRTL ? 'order-2' : 'order-2 lg:order-2'}`} style={getFadeStyle(aboutVisible, isRTL ? "left" : "right", 200)}>
               <div className="relative">
                 <img
-                  src="/images/office-interior.webp"
+                  src="/images/office-interior-768.webp"
+                  srcSet="/images/office-interior-768.webp 768w, /images/office-interior-1280.webp 1280w, /images/office-interior.webp 2048w"
+                  sizes="(max-width: 1023px) 100vw, 50vw"
                   alt={lang === "ar" ? "مكتب شركة رضوان للمحاماة" : "Redwan Law Firm Office"}
                   className="w-full h-[280px] md:h-[380px] object-cover"
                   loading="lazy"
-                  width={800}
-                  height={380}
+                  width={768}
+                  height={432}
                 />
                 {/* Decorative accent */}
                 <div className={`absolute -bottom-3 md:-bottom-5 ${isRTL ? '-right-3 md:-right-5' : '-left-3 md:-left-5'} w-full h-full border-2 border-[var(--color-gold)]/20 -z-10`} />

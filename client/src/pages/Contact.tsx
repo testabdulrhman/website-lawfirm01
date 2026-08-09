@@ -312,6 +312,22 @@ export default function Contact() {
                   />
                 </div>
 
+                <label className="mb-4 flex items-start gap-2.5 font-body text-[11px] md:text-xs text-[var(--color-navy)]/60 leading-relaxed">
+                  <input
+                    type="checkbox"
+                    name="privacy_consent"
+                    required
+                    className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--color-navy)]"
+                  />
+                  <span>
+                    {lang === "ar" ? "أوافق على معالجة بياناتي للرد على الاستفسار وفق " : "I consent to the processing of my data to respond to this inquiry under the "}
+                    <Link href={lp("/privacy")} className="font-semibold text-[var(--color-gold)] underline underline-offset-2">
+                      {lang === "ar" ? "سياسة الخصوصية" : "Privacy Policy"}
+                    </Link>
+                    {lang === "ar" ? ". تُرسل بيانات هذا النموذج عبر مزود معالجة خارجي موضح في السياسة." : ". This form is transmitted through the external processor identified in the policy."}
+                  </span>
+                </label>
+
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -324,10 +340,6 @@ export default function Contact() {
                   )}
                   <span>{isSubmitting ? (lang === "ar" ? "جاري الإرسال..." : "Sending...") : t.contact.send}</span>
                 </button>
-
-                <p className="font-body text-[10px] md:text-xs text-[var(--color-navy)]/40 mt-3 md:mt-4 text-center">
-                  {lang === "ar" ? "جميع المعلومات سرية ومحمية. سنتواصل معك خلال 24 ساعة عمل." : "All information is confidential and protected. We will contact you within 24 business hours."}
-                </p>
               </form>
             </div>
           </div>

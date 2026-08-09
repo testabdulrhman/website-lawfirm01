@@ -54,12 +54,14 @@ export default function About() {
       <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 bg-[var(--color-navy)]">
         <div className="absolute inset-0 opacity-10">
           <img
-            src="/images/office-interior.webp"
+            src="/images/office-interior-1280.webp"
+            srcSet="/images/office-interior-768.webp 768w, /images/office-interior-1280.webp 1280w, /images/office-interior.webp 2048w"
+            sizes="100vw"
             alt=""
             className="w-full h-full object-cover"
             loading="lazy"
-            width={800}
-            height={400}
+            width={1280}
+            height={720}
           />
         </div>
         <div
@@ -118,12 +120,14 @@ export default function About() {
             </div>
             <div className="relative">
               <img
-                src="/images/office-interior.webp"
+                src="/images/office-interior-768.webp"
+                srcSet="/images/office-interior-768.webp 768w, /images/office-interior-1280.webp 1280w, /images/office-interior.webp 2048w"
+                sizes="(max-width: 1023px) 100vw, 50vw"
                 alt={lang === "ar" ? "مكتب شركة رضوان" : "Redwan Law Office"}
                 className="w-full h-[280px] md:h-[400px] object-cover"
                 loading="lazy"
-                width={800}
-                height={400}
+                width={768}
+                height={432}
               />
               <div className={`absolute -bottom-4 ${isRTL ? '-right-4 md:-right-6' : '-left-4 md:-left-6'} -bottom-4 md:-bottom-6 w-24 h-24 md:w-32 md:h-32 bg-[var(--color-gold)] flex items-center justify-center`}>
                 <div className="text-center">

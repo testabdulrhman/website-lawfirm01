@@ -169,12 +169,14 @@ export default function Team() {
       <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 bg-[var(--color-navy)]">
         <div className="absolute inset-0 opacity-10">
           <img
-            src="/images/office-interior.webp"
+            src="/images/office-interior-1280.webp"
+            srcSet="/images/office-interior-768.webp 768w, /images/office-interior-1280.webp 1280w, /images/office-interior.webp 2048w"
+            sizes="100vw"
             alt=""
             className="w-full h-full object-cover"
             loading="lazy"
-            width={800}
-            height={400}
+            width={1280}
+            height={720}
           />
         </div>
         <div

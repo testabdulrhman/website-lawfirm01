@@ -25,13 +25,15 @@ export default function HeroSection() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img
-          src="/images/hero-law-firm.webp"
+          src="/images/hero-law-firm-1280.webp"
+          srcSet="/images/hero-law-firm-768.webp 768w, /images/hero-law-firm-1280.webp 1280w, /images/hero-law-firm.webp 2048w"
+          sizes="100vw"
           alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
           className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out"
           style={{ transform: loaded ? "scale(1)" : "scale(1.1)" }}
           fetchPriority="high"
-          width={1200}
-          height={800}
+          width={1280}
+          height={720}
         />
         <div className="absolute inset-0 bg-gradient-to-l from-[oklch(0.12_0.04_250/0.92)] via-[oklch(0.15_0.04_250/0.85)] to-[oklch(0.12_0.04_250/0.7)]" />
       </div>

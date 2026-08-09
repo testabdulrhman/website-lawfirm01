@@ -17,8 +17,8 @@ import { useTranslation } from "@/hooks/useTranslation";
 import { trackBookConsultation, trackLanguageSwitch, trackPhoneClick } from "@/lib/analytics";
 import { localePath } from "@/lib/localePath";
 
-const LOGO_LIGHT = "/images/logo-light.webp";
-const LOGO_DARK = "/images/logo-dark.webp";
+const LOGO_LIGHT = "/images/logo-light-512.webp";
+const LOGO_DARK = "/images/logo-dark-512.webp";
 
 // Icon per service slug (visual rhythm for the mega menu)
 const SERVICE_ICONS: Record<string, typeof Briefcase> = {
@@ -127,8 +127,8 @@ export default function Navbar() {
             alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
             className="w-auto object-contain transition-all duration-300"
             style={{ height: showTransparent ? "52px" : "46px", maxWidth: "220px" }}
-            width={220}
-            height={52}
+            width={512}
+            height={156}
           />
         </Link>
 
@@ -235,7 +235,7 @@ export default function Navbar() {
             className={`flex items-center gap-1.5 px-3 py-2 text-xs font-heading font-medium rounded transition-all duration-200 ${
               showTransparent ? "text-white/80 hover:text-white hover:bg-white/10" : "text-[var(--color-navy)]/70 hover:text-[var(--color-navy)] hover:bg-[var(--color-navy)]/5"
             }`}
-            aria-label="Switch language"
+            aria-label={lang === "ar" ? "EN – Switch language" : "عربي – تغيير اللغة"}
           >
             <Globe size={14} />
             <span>{lang === "ar" ? "EN" : "عربي"}</span>
@@ -256,15 +256,15 @@ export default function Navbar() {
         {/* Mobile: Language Toggle + Hamburger */}
         <div className="flex lg:hidden items-center gap-2">
           <button
-            onClick={toggleLang}
-            className={`p-2 text-xs font-heading font-medium transition-colors ${showTransparent ? "text-white/80" : "text-[var(--color-navy)]/70"}`}
-            aria-label="Switch language"
+            onClick={() => { toggleLang(); trackLanguageSwitch?.(lang === "ar" ? "en" : "ar"); }}
+            className={`w-11 h-11 flex items-center justify-center text-xs font-heading font-medium transition-colors ${showTransparent ? "text-white/80" : "text-[var(--color-navy)]/70"}`}
+            aria-label={lang === "ar" ? "Switch language to English" : "تغيير اللغة إلى العربية"}
           >
             <Globe size={20} />
           </button>
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className={`p-2.5 transition-colors ${showTransparent ? "text-white" : "text-[var(--color-navy)]"}`}
+            className={`w-11 h-11 flex items-center justify-center transition-colors ${showTransparent ? "text-white" : "text-[var(--color-navy)]"}`}
             aria-label={isMobileOpen ? t.nav.closeMenu : t.nav.openMenu}
           >
             {isMobileOpen ? <X size={26} /> : <Menu size={26} />}
@@ -401,13 +401,13 @@ export default function Navbar() {
               alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
               className="w-auto object-contain"
               style={{ height: "46px", maxWidth: "220px" }}
-              width={220}
-              height={46}
+              width={512}
+              height={156}
             />
           </Link>
           <button
             onClick={() => setIsMobileOpen(false)}
-            className="p-2.5 text-[var(--color-navy)] transition-colors"
+            className="w-11 h-11 flex items-center justify-center text-[var(--color-navy)] transition-colors"
             aria-label={t.nav.closeMenu}
           >
             <X size={26} />
