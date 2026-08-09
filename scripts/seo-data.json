@@ -170,11 +170,11 @@
     "noindex": true
   },
   "/": {
-    "title": "محامي إفلاس وأمين إفلاس معتمد للشركات | المشيقح",
-    "description": "استشارات وتمثيل الشركات والدائنين والمدينين في إجراءات الإفلاس، وإدارة الإجراءات بترخيص أمين إفلاس 142147. مقرنا بريدة ونخدم جميع مناطق المملكة.",
-    "keywords": "محامي إفلاس, أمين إفلاس معتمد, محامي بريدة, إدارة إجراءات الإفلاس, محامي القصيم, تسوية وقائية, إعادة تنظيم مالي, تصفية شركات",
-    "ogTitle": "محامي إفلاس وأمين إفلاس معتمد للشركات | المشيقح",
-    "ogDesc": "استشارات وتمثيل قانوني للشركات في إجراءات الإفلاس، وإدارة الإجراءات بترخيص أمين إفلاس معتمد. المقر الرئيسي في بريدة والخدمة في جميع مناطق المملكة.",
+    "title": "شركة المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "description": "شركة محاماة سعودية مقرها بريدة وتخدم جميع مناطق المملكة في القضايا التجارية والإفلاس والتوثيق والتسجيل العيني بأربعة تراخيص نظامية.",
+    "keywords": "شركة محاماة سعودية, مكتب محاماة بريدة, خدمات قانونية للشركات, إدارة إجراءات الإفلاس, التوثيق, التسجيل العيني",
+    "ogTitle": "شركة المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "ogDesc": "شركة محاماة سعودية بأربعة تراخيص نظامية، مقرها الرئيسي في بريدة وتخدم الشركات والعملاء في جميع مناطق المملكة.",
     "ogUrl": "https://redwan.sa/",
     "ogType": "website",
     "ogImage": null,
@@ -258,15 +258,77 @@
     "canonical": "https://redwan.sa/services/real-estate"
   },
   "/services/bankruptcy": {
-    "title": "محامي إفلاس للشركات والدائنين | المشيقح للمحاماة",
+    "title": "محامي إفلاس للشركات والدائنين في السعودية | المشيقح",
     "description": "استشارات وتمثيل قانوني للشركات المتعثرة والدائنين والمدينين في التسوية الوقائية وإعادة التنظيم المالي والتصفية بجميع مناطق المملكة.",
-    "keywords": "محامي إفلاس, تسوية وقائية, إعادة تنظيم مالي, تصفية, أمين إفلاس معتمد, حقوق الدائنين, حماية المدين",
-    "ogTitle": "محامي إفلاس للشركات والدائنين",
-    "ogDesc": "استشارات وتمثيل قانوني في التسوية الوقائية وإعادة التنظيم المالي والتصفية وفق نظام الإفلاس السعودي.",
+    "keywords": "محامي إفلاس, محامي إفلاس شركات, محامي تصفية شركات, إفلاس الشركات, تمثيل الدائنين, إعادة التنظيم المالي, التسوية الوقائية",
+    "ogTitle": "محامي إفلاس للشركات والدائنين في السعودية",
+    "ogDesc": "استشارات وتمثيل قانوني للشركات والدائنين والمدينين في إجراءات الإفلاس وفق النظام السعودي.",
     "ogUrl": "https://redwan.sa/services/bankruptcy",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/services/bankruptcy"
+    "canonical": "https://redwan.sa/services/bankruptcy",
+    "faq": [
+      {
+        "q": "ما الفرق بين التسوية الوقائية وإعادة التنظيم المالي؟",
+        "a": "يتحدد الإجراء المناسب وفق ظروف المدين ومتطلبات الافتتاح وآثار كل إجراء. تتيح التسوية الوقائية للمدين التفاوض على مقترح مع بقائه في الإدارة، بينما تجري إعادة التنظيم المالي تحت إشراف أمين إفلاس مرخص وبمشاركة الدائنين."
+      },
+      {
+        "q": "ما الفرق بين محامي الإفلاس وأمين الإفلاس؟",
+        "a": "محامي الإفلاس يقدم المشورة ويمثل المدين أو الدائن أو طرفاً آخر، بينما يدير أمين الإفلاس الإجراء بصفته المهنية وبحياد بعد تعيينه من المحكمة."
+      },
+      {
+        "q": "متى تحتاج الشركة إلى استشارة محامي إفلاس؟",
+        "a": "عند ظهور تعثر في التدفقات النقدية أو تراكم مطالبات الدائنين أو صعوبة الوفاء بالديون، وقبل اتخاذ قرار قد يؤثر في أهلية الشركة لإجراء مناسب أو في حقوق الأطراف."
+      },
+      {
+        "q": "هل يمكن للدائن تقديم مطالبة عبر هذه الصفحة؟",
+        "a": "هذه صفحة للخدمة القانونية. تُقدّم مطالبة الدائن عبر بوابة الحالة إذا كان المكتب يدير الإجراء بصفته أميناً، أو وفق وسيلة التقديم المحددة في الإعلان الرسمي للأمين المعين."
+      }
+    ],
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "الرئيسية",
+            "item": "https://redwan.sa/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "الخدمات",
+            "item": "https://redwan.sa/services"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "محامي إفلاس للشركات والدائنين",
+            "item": "https://redwan.sa/services/bankruptcy"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "خدمات محامي الإفلاس للشركات والدائنين",
+        "description": "استشارات وتمثيل قانوني للشركات المتعثرة والدائنين والمدينين في إجراءات الإفلاس وفق النظام السعودي.",
+        "serviceType": "الاستشارات والتمثيل القانوني في إجراءات الإفلاس",
+        "url": "https://redwan.sa/services/bankruptcy",
+        "areaServed": {
+          "@type": "Country",
+          "name": "Saudi Arabia"
+        },
+        "provider": {
+          "@type": "LegalService",
+          "@id": "https://redwan.sa/#legalservice",
+          "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+          "url": "https://redwan.sa"
+        }
+      }
+    ]
   },
   "/services/consultation": {
     "title": "استشارات قانونية في بريدة | رأي قانوني متخصص",
@@ -958,6 +1020,10 @@
       {
         "q": "هل خدمات أمين الإفلاس محصورة في مدينة بريدة؟",
         "a": "لا. الترخيص مهني على مستوى المملكة، ويتيح إدارة الإجراءات في المحاكم المختصة بمختلف المناطق بحسب قرار التعيين ومتطلبات كل حالة."
+      },
+      {
+        "q": "كيف أتحقق من ترخيص أمين الإفلاس؟",
+        "a": "تنشر لجنة الإفلاس قائمة الأمناء المرخصين على موقعها الرسمي. يمكن البحث في القائمة والتحقق من بيانات الممارس، إضافة إلى الاطلاع على رقم الترخيص 142147 في هذه الصفحة."
       }
     ],
     "structuredData": [
@@ -1104,9 +1170,9 @@
     ]
   },
   "/en": {
-    "title": "Saudi Law Firm & Bankruptcy Trustee | Redwan Law",
-    "description": "Saudi law firm in Buraydah with over 20 years of experience in commercial, criminal and real estate litigation and licensed bankruptcy management.",
-    "keywords": "law firm Buraydah, bankruptcy management Saudi Arabia, legal consultation, commercial litigation, real estate disputes, Qassim lawyer",
+    "title": "Al-Mushaiqeh Law Firm & Bankruptcy Management",
+    "description": "A Saudi law firm headquartered in Buraydah and serving clients nationwide in commercial matters, bankruptcy, notarization and real estate registration under four professional licenses.",
+    "keywords": "Saudi law firm, Buraydah law firm, corporate legal services, bankruptcy management, notarization, real estate registration",
     "ogImage": "https://redwan.sa/images/hero-law-firm.webp",
     "ogUrl": "https://redwan.sa/en",
     "canonical": "/en"
@@ -1161,11 +1227,69 @@
     "canonical": "/en/services/real-estate"
   },
   "/en/services/bankruptcy": {
-    "title": "Bankruptcy & Insolvency Management | Redwan Law Firm",
-    "description": "Licensed trustee services for preventive settlement, financial reorganization, liquidation and creditor claims under Saudi Bankruptcy Law.",
-    "keywords": "bankruptcy management, insolvency, bankruptcy trustee, preventive settlement, financial reorganization, liquidation Saudi Arabia",
+    "title": "Saudi Bankruptcy Lawyer for Companies and Creditors | Al-Mushaiqeh",
+    "description": "Legal advice and representation for distressed companies, creditors and debtors in preventive settlement, financial reorganization and liquidation across Saudi Arabia.",
+    "keywords": "Saudi bankruptcy lawyer, corporate bankruptcy counsel, creditor representation, financial reorganization, preventive settlement, liquidation advice",
     "ogUrl": "https://redwan.sa/en/services/bankruptcy",
-    "canonical": "/en/services/bankruptcy"
+    "canonical": "/en/services/bankruptcy",
+    "faq": [
+      {
+        "q": "What is the difference between preventive settlement and financial reorganization?",
+        "a": "The appropriate procedure depends on the debtor's circumstances, commencement requirements and legal effects. Preventive settlement enables the debtor to negotiate an arrangement while remaining in management, whereas financial reorganization proceeds under the supervision of a licensed trustee with creditor participation."
+      },
+      {
+        "q": "What is the difference between a bankruptcy lawyer and a trustee?",
+        "a": "A bankruptcy lawyer advises and represents a debtor, creditor or another party, while a licensed trustee administers the proceeding impartially after appointment by the competent court."
+      },
+      {
+        "q": "When should a company seek bankruptcy legal advice?",
+        "a": "When cash-flow distress, accumulating creditor claims or difficulty meeting debts arises, and before taking decisions that may affect eligibility for a suitable procedure or the rights of stakeholders."
+      }
+    ],
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://redwan.sa/en"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://redwan.sa/en/services"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Bankruptcy Lawyer for Companies and Creditors",
+            "item": "https://redwan.sa/en/services/bankruptcy"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Saudi Bankruptcy Legal Services for Companies and Creditors",
+        "description": "Legal advice and representation for distressed companies, creditors and debtors in Saudi bankruptcy proceedings.",
+        "serviceType": "Bankruptcy legal advice and representation",
+        "url": "https://redwan.sa/en/services/bankruptcy",
+        "areaServed": {
+          "@type": "Country",
+          "name": "Saudi Arabia"
+        },
+        "provider": {
+          "@type": "LegalService",
+          "@id": "https://redwan.sa/#legalservice",
+          "name": "Abdulrahman Redwan Al-Mushaiqeh Law Firm",
+          "url": "https://redwan.sa"
+        }
+      }
+    ]
   },
   "/en/services/consultation": {
     "title": "Legal Consultation | Redwan Law Firm",

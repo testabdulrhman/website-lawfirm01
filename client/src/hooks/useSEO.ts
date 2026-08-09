@@ -438,30 +438,30 @@ export const schemas = {
   bankruptcyService: {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "إدارة إجراءات الإفلاس",
-    "alternateName": "Bankruptcy Management Services",
-    "description": "خدمات إدارة إجراءات الإفلاس المتكاملة: التسوية الوقائية، إعادة التنظيم المالي، التصفية، وتمثيل الدائنين والمدينين. أمين إفلاس معتمد بترخيص 142147 من لجنة الإفلاس.",
+    "name": "خدمات محامي الإفلاس للشركات والدائنين",
+    "alternateName": "Bankruptcy Legal Services for Companies and Creditors",
+    "description": "استشارات وتمثيل قانوني للشركات المتعثرة والدائنين والمدينين في التسوية الوقائية وإعادة التنظيم المالي والتصفية وفق نظام الإفلاس السعودي.",
+    "url": "https://redwan.sa/services/bankruptcy",
     "provider": {
       "@type": "LegalService",
       "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
       "url": "https://redwan.sa"
     },
-    "serviceType": "إدارة إجراءات الإفلاس",
+    "serviceType": "الاستشارات والتمثيل القانوني في إجراءات الإفلاس",
     "areaServed": {
       "@type": "Country",
       "name": "المملكة العربية السعودية"
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "خدمات الإفلاس",
+      "name": "خدمات محامي الإفلاس",
       "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "التسوية الوقائية" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "إعادة التنظيم المالي" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "التصفية" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "التصفية الإدارية" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تمثيل الدائنين" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تمثيل المدينين" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "إعداد خطط السداد" } }
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تقييم الخيارات النظامية للشركات المتعثرة" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "التمثيل القانوني في التسوية الوقائية" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "التمثيل القانوني في إعادة التنظيم المالي" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "الاستشارة القانونية في التصفية" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تمثيل الدائنين في المطالبات والاعتراضات" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تمثيل المدينين في إجراءات الإفلاس" } }
       ]
     }
   }

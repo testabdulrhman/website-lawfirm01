@@ -506,7 +506,7 @@ export default function Claims() {
           "@type": "BreadcrumbList",
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://redwan.sa" },
-            { "@type": "ListItem", "position": 2, "name": "الإفلاس والتصفية", "item": "https://redwan.sa/services/bankruptcy" },
+            { "@type": "ListItem", "position": 2, "name": "إجراءات الإفلاس", "item": "https://redwan.sa/bankruptcy" },
             { "@type": "ListItem", "position": 3, "name": "تقديم مطالبة دائن", "item": "https://redwan.sa/bankruptcy/claims" }
           ]
         }
@@ -519,7 +519,7 @@ export default function Claims() {
           <div className="flex items-center gap-3 mb-4">
             <Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">الرئيسية</Link>
             <span className="text-white/30">/</span>
-            <Link href={lp("/services/bankruptcy")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">الإفلاس والتصفية</Link>
+            <Link href={lp("/bankruptcy")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">إجراءات الإفلاس</Link>
             <span className="text-white/30">/</span>
             <span className="font-body text-sm text-[var(--color-gold)]">تقديم مطالبة</span>
           </div>

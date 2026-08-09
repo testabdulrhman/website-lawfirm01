@@ -221,27 +221,27 @@ const servicesData: Record<string, {
   "bankruptcy": {
     icon: Scale,
     ar: {
-      title: "محامي إفلاس للشركات والدائنين",
-      description: "نقدم الاستشارة والتمثيل القانوني للشركات المتعثرة والدائنين والمدينين في إجراءات التسوية الوقائية وإعادة التنظيم المالي والتصفية وفق نظام الإفلاس السعودي، ونخدم العملاء في جميع مناطق المملكة من مقرنا الرئيسي في بريدة.",
+      title: "محامي إفلاس للشركات والدائنين في السعودية",
+      description: "نقدم بصفة محامي إفلاس الاستشارة والتمثيل القانوني للشركات المتعثرة والدائنين والمدينين في التسوية الوقائية وإعادة التنظيم المالي والتصفية وفق نظام الإفلاس السعودي. مقرنا الرئيسي في بريدة ونخدم العملاء في جميع مناطق المملكة حضورياً وعن بُعد.",
       details: [
-        "تقييم الوضع المالي والقانوني واختيار الإجراء المناسب",
-        "تمثيل الشركات في طلبات التسوية الوقائية",
-        "تمثيل المدينين في إجراءات إعادة التنظيم المالي",
-        "تمثيل الدائنين وتقديم المطالبات والاعتراضات",
-        "الاستشارة في التصفية وحماية حقوق الأطراف",
-        "إعداد الخطط والمذكرات والتفاوض مع أصحاب المصلحة",
+        "تقييم الوضع القانوني والمالي وتحديد الخيارات النظامية المتاحة",
+        "إعداد وتمثيل الشركات في طلبات التسوية الوقائية",
+        "تمثيل المدينين في طلبات وإجراءات إعادة التنظيم المالي",
+        "تمثيل الدائنين في المطالبات والاعتراضات والتصويت",
+        "تقديم المشورة القانونية في التصفية وأولويات حقوق الدائنين",
+        "إعداد المذكرات والمقترحات والتفاوض مع أصحاب المصلحة",
       ],
       faqs: [
-        { q: "ما الفرق بين التسوية الوقائية وإعادة التنظيم؟", a: "التسوية الوقائية تتم قبل التعثر الفعلي وتهدف لمنعه، بينما إعادة التنظيم تتم بعد التعثر وتهدف لإعادة هيكلة الديون. كلا الإجراءين يهدفان لاستمرار النشاط التجاري مع حماية حقوق الدائنين." },
-        { q: "هل يفقد المدين السيطرة على أعماله؟", a: "في التسوية الوقائية يبقى المدين مسيطراً، أما في التصفية فيتولى أمين الإفلاس الإدارة." },
-        { q: "ما هي خدمات أمين الإفلاس؟", a: "نقدم خدمات أمانة الإفلاس الشاملة بترخيص رقم 142147 من لجنة الإفلاس، وتشمل: التسوية الوقائية، إعادة التنظيم المالي، التصفية، وإدارة أصول المدين وفق نظام الإفلاس السعودي." },
-        { q: "متى يحق لي تقديم طلب إفلاس؟", a: "يحق لك تقديم طلب إفلاس عندما تكون غير قادر على سداد ديونك المستحقة أو عندما تتوقع عدم القدرة على السداد مستقبلاً. ننصح بالتواصل معنا مبكراً لدراسة الخيارات المتاحة قبل تفاقم الوضع." },
-        { q: "كيف يمكنني تقديم مطالبة كدائن؟", a: "إذا كنت دائناً لأحد المدينين الخاضعين لإجراءات الإفلاس، يمكنك تقديم مطالبتك إلكترونياً عبر نظام المطالبات الإلكتروني في موقعنا." },
+        { q: "ما الفرق بين التسوية الوقائية وإعادة التنظيم المالي؟", a: "يختلف الإجراء المناسب بحسب وضع المدين وشروط الافتتاح وآثار كل إجراء. تهدف التسوية الوقائية إلى تمكين المدين من الاتفاق مع دائنيه مع بقائه في إدارة نشاطه، بينما تكون إعادة التنظيم المالي تحت إشراف أمين الإفلاس وفق أحكام النظام وقرار المحكمة." },
+        { q: "هل يفقد المدين السيطرة على أعماله؟", a: "تختلف صلاحيات المدين بحسب الإجراء وقرار المحكمة. يبقى المدين في التسوية الوقائية مسؤولاً عن إدارة نشاطه، بينما يشرف أمين الإفلاس على إعادة التنظيم المالي ويتولى إدارة إجراء التصفية وفق الصلاحيات النظامية." },
+        { q: "ما الفرق بين محامي الإفلاس وأمين الإفلاس؟", a: "محامي الإفلاس يقدم المشورة ويمثل طرفاً محدداً كالشركة أو الدائن. أما أمين الإفلاس فهو ممارس مرخص قد تعينه المحكمة لإدارة الإجراء باستقلال، ولا يجمع المكتب بين الدورين في الحالة نفسها عند وجود تعارض مصالح." },
+        { q: "متى ينبغي للشركة طلب استشارة في الإفلاس؟", a: "يفضل طلب المشورة مبكراً عند ظهور تعثر في التدفقات النقدية أو تراكم مطالبات التنفيذ أو صعوبة الوفاء بالديون؛ لأن اختيار الإجراء وشروط تقديمه يختلفان من حالة إلى أخرى ويحتاجان إلى مراجعة قانونية ومالية." },
+        { q: "كيف يمكنني تقديم مطالبة كدائن؟", a: "إذا كان الإجراء من الحالات التي يديرها المكتب، يمكنك اختيار الحالة من بوابة إجراءات الإفلاس ثم تقديم المطالبة بالمستندات المؤيدة لها. أما الإجراءات الأخرى فتُتبع فيها قناة التقديم المحددة في إعلان أمين الإفلاس المختص." },
       ],
     },
     en: {
-      title: "Bankruptcy Lawyer for Companies and Creditors",
-      description: "We advise and represent distressed companies, creditors and debtors in preventive settlement, financial reorganization and liquidation under Saudi Bankruptcy Law, serving clients across Saudi Arabia from our Buraydah head office.",
+      title: "Bankruptcy Lawyer for Companies and Creditors in Saudi Arabia",
+      description: "Acting as bankruptcy counsel, we advise and represent distressed companies, creditors and debtors in preventive settlement, financial reorganization and liquidation under Saudi Bankruptcy Law. We serve clients nationwide from our Buraydah head office, in person and remotely.",
       details: [
         "Assessing the legal and financial position and selecting the appropriate procedure",
         "Representing companies in preventive settlement applications",
@@ -251,11 +251,11 @@ const servicesData: Record<string, {
         "Preparing plans and submissions and negotiating with stakeholders",
       ],
       faqs: [
-        { q: "What is the difference between preventive settlement and reorganization?", a: "Preventive settlement occurs before actual default and aims to prevent it, while reorganization occurs after default and aims to restructure debts. Both procedures aim to continue business activity while protecting creditors' rights." },
-        { q: "Does the debtor lose control of their business?", a: "In preventive settlement, the debtor remains in control. In liquidation, the bankruptcy trustee takes over management." },
-        { q: "What are bankruptcy trustee services?", a: "We provide comprehensive bankruptcy trustee services under license No. 142147 from the Bankruptcy Commission, including: preventive settlement, financial reorganization, liquidation, and debtor asset management under Saudi Bankruptcy Law." },
-        { q: "When am I eligible to file for bankruptcy?", a: "You may file for bankruptcy when you are unable to pay your due debts or when you anticipate inability to pay in the future. We recommend contacting us early to study available options before the situation worsens." },
-        { q: "How can I submit a creditor claim?", a: "If you are a creditor of a debtor undergoing bankruptcy proceedings, you can submit your claim electronically through our online claims system on our website." },
+        { q: "What is the difference between preventive settlement and financial reorganization?", a: "The appropriate procedure depends on the debtor's circumstances, commencement requirements, and legal effects. Preventive settlement enables the debtor to negotiate an arrangement while remaining in management, whereas financial reorganization proceeds under the supervision of a licensed trustee with creditor participation." },
+        { q: "Does the debtor lose control of their business?", a: "The debtor's authority depends on the proceeding and the court order. The debtor remains responsible for its business in preventive settlement, while a trustee supervises financial reorganization and administers liquidation within the statutory mandate." },
+        { q: "What is the difference between a bankruptcy lawyer and a trustee?", a: "A bankruptcy lawyer advises and represents a specific party such as a company or creditor. A licensed trustee may be appointed by the court to administer the proceeding independently. The firm does not combine both roles in the same matter where a conflict exists." },
+        { q: "When should a company seek bankruptcy advice?", a: "Early advice is appropriate when cash flow deteriorates, enforcement claims accumulate or debts become difficult to meet. Eligibility and the appropriate procedure require legal and financial review of the specific circumstances." },
+        { q: "How can I submit a creditor claim?", a: "For proceedings administered by the firm, select the relevant case in the bankruptcy section and submit the claim with supporting documents. For other proceedings, use the channel identified in the responsible trustee's official announcement." },
       ],
     },
   },
@@ -481,8 +481,8 @@ export default function ServiceDetail() {
 
   const pageTitle = params.slug === 'bankruptcy'
     ? (lang === 'ar'
-        ? 'محامي إفلاس للشركات والدائنين | المشيقح للمحاماة'
-        : 'Bankruptcy Lawyer for Companies and Creditors | Al-Mushaiqi')
+        ? 'محامي إفلاس للشركات والدائنين في السعودية | المشيقح'
+        : 'Saudi Bankruptcy Lawyer for Companies and Creditors | Al-Mushaiqi')
     : service
       ? service[langKey(lang)].title
       : (lang === 'ar' ? 'خدمة غير موجودة' : 'Service Not Found');
@@ -490,7 +490,13 @@ export default function ServiceDetail() {
   useSEO({
     title: pageTitle,
     description: service ? service[langKey(lang)].description : '',
-    keywords: service ? `${service[langKey(lang)].title}, ${lang === 'ar' ? 'محاماة، خدمات قانونية' : 'law, legal services'}` : '',
+    keywords: service
+      ? params.slug === 'bankruptcy'
+        ? lang === 'ar'
+          ? 'محامي إفلاس، محامي إفلاس شركات، محامي تصفية شركات، إفلاس الشركات، تمثيل الدائنين، إعادة التنظيم المالي، التسوية الوقائية'
+          : 'Saudi bankruptcy lawyer, corporate bankruptcy counsel, creditor representation, financial reorganization, preventive settlement, liquidation advice'
+        : `${service[langKey(lang)].title}, ${lang === 'ar' ? 'محاماة، خدمات قانونية' : 'law, legal services'}`
+      : '',
     canonical: `/services/${params.slug}`,
     schema: seoSchema,
   });
@@ -511,6 +517,35 @@ export default function ServiceDetail() {
   const Icon = service.icon;
   const content = service[langKey(lang)];
   const BackArrow = isRTL ? ArrowLeft : ArrowRight;
+  const bankruptcyGuidance = lang === 'ar'
+    ? [
+        {
+          title: 'للشركات والمدينين',
+          text: 'دراسة مؤشرات التعثر والالتزامات القائمة، ومقارنة الإجراءات المتاحة وآثارها قبل إعداد الطلب أو المقترح.'
+        },
+        {
+          title: 'للدائنين',
+          text: 'مراجعة إعلان الإجراء، وإعداد المطالبة ومستنداتها، ودراسة الاعتراض أو التصويت أو غير ذلك من الحقوق بحسب المرحلة.'
+        },
+        {
+          title: 'للمراجعة الأولية',
+          text: 'يفيد تجهيز السجل التجاري، والقوائم المالية، وبيان الديون والأصول، والعقود والأحكام والمطالبات ذات الصلة.'
+        }
+      ]
+    : [
+        {
+          title: 'For companies and debtors',
+          text: 'Reviewing distress indicators and existing obligations, then comparing available proceedings and their effects before preparing an application or proposal.'
+        },
+        {
+          title: 'For creditors',
+          text: 'Reviewing the proceeding announcement, preparing the claim and evidence, and assessing objection, voting and other rights at the relevant stage.'
+        },
+        {
+          title: 'For the initial review',
+          text: 'Useful records include the commercial registration, financial statements, schedules of debts and assets, contracts, judgments and related claims.'
+        }
+      ];
 
   return (
     <>
@@ -556,7 +591,7 @@ export default function ServiceDetail() {
                 {content.description}
               </p>
 
-              <h3 className="font-heading text-lg md:text-xl font-semibold text-[var(--color-navy)] mb-4 md:mb-6">{labels.whatWeOffer}</h3>
+              <h2 className="font-heading text-lg md:text-xl font-semibold text-[var(--color-navy)] mb-4 md:mb-6">{labels.whatWeOffer}</h2>
               <div className="grid sm:grid-cols-2 gap-3 md:gap-4 mb-8 md:mb-12">
                 {content.details.map((detail) => (
                   <div key={detail} className="flex items-start gap-2.5 md:gap-3 p-3 md:p-4 bg-white border border-[var(--color-border)]">
@@ -565,6 +600,27 @@ export default function ServiceDetail() {
                   </div>
                 ))}
               </div>
+
+              {params.slug === 'bankruptcy' && (
+                <section className="mb-8 md:mb-12" aria-labelledby="bankruptcy-guidance-title">
+                  <h2 id="bankruptcy-guidance-title" className="font-display text-xl md:text-2xl font-bold text-[var(--color-navy)] mb-3">
+                    {lang === 'ar' ? 'متى تحتاج إلى محامي إفلاس متخصص؟' : 'When do you need specialized bankruptcy counsel?'}
+                  </h2>
+                  <p className="font-body text-sm md:text-base text-[var(--color-navy)]/65 leading-relaxed mb-5">
+                    {lang === 'ar'
+                      ? 'تبدأ الخدمة بتحديد صفة طالب المشورة ومرحلة التعثر أو الإجراء؛ لأن احتياج الشركة يختلف عن احتياج الدائن، كما يختلف دور المحامي عن دور أمين الإفلاس المعيّن من المحكمة.'
+                      : 'The engagement starts by identifying the client’s capacity and the stage of distress or proceedings, because a company’s needs differ from a creditor’s and counsel’s role differs from that of a court-appointed trustee.'}
+                  </p>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    {bankruptcyGuidance.map((item) => (
+                      <article key={item.title} className="bg-white border border-[var(--color-border)] p-5">
+                        <h3 className="font-heading font-semibold text-[var(--color-navy)] mb-2">{item.title}</h3>
+                        <p className="font-body text-xs md:text-sm text-[var(--color-navy)]/65 leading-relaxed">{item.text}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              )}
 
               {/* Bankruptcy Track Record - only for bankruptcy */}
               {params.slug === 'bankruptcy' && (
@@ -625,7 +681,7 @@ export default function ServiceDetail() {
               )}
 
               {/* FAQs */}
-              <h3 className="font-heading text-lg md:text-xl font-semibold text-[var(--color-navy)] mb-4 md:mb-6">{labels.faqs}</h3>
+              <h2 className="font-heading text-lg md:text-xl font-semibold text-[var(--color-navy)] mb-4 md:mb-6">{labels.faqs}</h2>
               <div className="space-y-3 md:space-y-4">
                 {content.faqs.map((faq) => (
                   <div key={faq.q} className="p-4 md:p-6 bg-white border border-[var(--color-border)]">

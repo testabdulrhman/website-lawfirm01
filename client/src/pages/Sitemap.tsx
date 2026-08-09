@@ -35,7 +35,7 @@ export default function Sitemap() {
         { label: "قضايا العمل والعمال", href: "/services/labor" },
         { label: "القضايا الجنائية", href: "/services/criminal" },
         { label: "النزاعات العقارية", href: "/services/real-estate" },
-        { label: "الإفلاس والتصفية", href: "/services/bankruptcy" },
+        { label: "محامي إفلاس للشركات والدائنين", href: "/services/bankruptcy" },
         { label: "الاستشارات القانونية", href: "/services/consultation" },
         { label: "القضايا الإدارية", href: "/services/administrative" },
         { label: "التحكيم التجاري", href: "/services/arbitration" },
@@ -45,7 +45,7 @@ export default function Sitemap() {
       title: "الإفلاس والتصفية",
       links: [
         { label: "أمين إفلاس معتمد — ترخيص 142147", href: "/licenses/bankruptcy-trustee" },
-        { label: "خدمة الإفلاس والتصفية", href: "/services/bankruptcy" },
+        { label: "خدمات محامي الإفلاس", href: "/services/bankruptcy" },
         { label: "إجراءات الإفلاس السبعة", href: "/bankruptcy/procedures" },
         { label: "التقارير الشهرية لإعلانات الإفلاس", href: "/bankruptcy/reports" },
         { label: "تقرير إعلانات الإفلاس — يناير 2026", href: "/bankruptcy/reports/2026-01" },

@@ -52,14 +52,14 @@ export default function Home() {
   useSEO({
     fullTitle: true,
     title: lang === 'ar'
-      ? 'محامي إفلاس وأمين إفلاس معتمد للشركات | المشيقح'
-      : 'Bankruptcy Lawyer & Licensed Trustee for Companies | Al-Mushaiqi',
+      ? 'شركة المشيقح للمحاماة وإدارة إجراءات الإفلاس'
+      : 'Al-Mushaiqeh Law Firm & Bankruptcy Management',
     description: lang === 'ar'
-      ? 'استشارات وتمثيل الشركات والدائنين والمدينين في إجراءات الإفلاس، وإدارة الإجراءات بترخيص أمين إفلاس 142147. مقرنا بريدة ونخدم جميع مناطق المملكة.'
-      : 'Bankruptcy advice and representation for companies, creditors and debtors, plus proceeding management by Licensed Trustee #142147. Based in Buraydah and serving Saudi Arabia.',
+      ? 'شركة محاماة سعودية مقرها بريدة وتخدم جميع مناطق المملكة في القضايا التجارية والإفلاس والتوثيق والتسجيل العيني بأربعة تراخيص نظامية.'
+      : 'A Saudi law firm headquartered in Buraydah and serving clients nationwide in commercial matters, bankruptcy, notarization and real estate registration under four professional licenses.',
     keywords: lang === 'ar'
-      ? 'محامي إفلاس, أمين إفلاس معتمد, محامي بريدة, إدارة إجراءات الإفلاس, محامي القصيم, تسوية وقائية, إعادة تنظيم مالي, تصفية شركات'
-      : 'bankruptcy lawyer, licensed bankruptcy trustee, Buraydah lawyer, bankruptcy management, Qassim lawyer, preventive settlement, financial reorganization, company liquidation',
+      ? 'شركة محاماة سعودية، مكتب محاماة بريدة، خدمات قانونية للشركات، إدارة إجراءات الإفلاس، التوثيق، التسجيل العيني'
+      : 'Saudi law firm, Buraydah law firm, corporate legal services, bankruptcy management, notarization, real estate registration',
     canonical: '/',
   });
 

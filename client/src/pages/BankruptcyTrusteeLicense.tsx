@@ -52,6 +52,11 @@ export default function BankruptcyTrusteeLicense() {
             "لا. الترخيص مهني على مستوى المملكة، ويتيح إدارة الإجراءات في المحاكم المختصة بمختلف المناطق بحسب قرار التعيين ومتطلبات كل حالة.",
         },
         {
+          question: "كيف أتحقق من ترخيص أمين الإفلاس؟",
+          answer:
+            "تنشر لجنة الإفلاس قائمة الأمناء المرخصين على موقعها الرسمي. يمكن البحث في القائمة والتحقق من بيانات الممارس، إضافة إلى الاطلاع على رقم الترخيص 142147 في هذه الصفحة.",
+        },
+        {
           question: "هل أرسل مطالبة الدائن عبر هذه الصفحة؟",
           answer:
             "لا. تُقدّم المطالبة من صفحة المطالبات أو بوابة الدائن، وبعد اختيار إجراء الإفلاس المعني وإرفاق المستندات المؤيدة.",
@@ -77,6 +82,11 @@ export default function BankruptcyTrusteeLicense() {
           question: "Are trustee services limited to Buraydah?",
           answer:
             "No. The professional license applies across Saudi Arabia, subject to the court appointment and the requirements of each proceeding.",
+        },
+        {
+          question: "How can I verify a bankruptcy trustee license?",
+          answer:
+            "The Saudi Bankruptcy Commission publishes the official list of licensed trustees on its website. The list can be searched to verify the practitioner alongside license No. 142147 shown on this page.",
         },
         {
           question: "Can a creditor submit a claim on this page?",
@@ -201,7 +211,7 @@ export default function BankruptcyTrusteeLicense() {
                 {isArabic ? "ترخيص ساري رقم 142147" : "Active License No. 142147"}
               </div>
               <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-5">
-                {isArabic ? "أمين إفلاس معتمد في السعودية" : "Licensed Bankruptcy Trustee in Saudi Arabia"}
+                {isArabic ? "أمين إفلاس معتمد لدى لجنة الإفلاس" : "Saudi Bankruptcy Commission Licensed Trustee"}
               </h1>
               <p className="font-body text-base md:text-lg text-white/70 leading-relaxed max-w-3xl">
                 {isArabic
@@ -224,6 +234,15 @@ export default function BankruptcyTrusteeLicense() {
                   <span className="block text-xs text-white/45 mb-1">{isArabic ? "الجهة المرخِّصة" : "Licensing authority"}</span>
                   <strong className="text-base text-white">{isArabic ? "لجنة الإفلاس" : "Saudi Bankruptcy Commission"}</strong>
                 </div>
+                <a
+                  href="https://www.bankruptcy.gov.sa/ar/Pages/officeholder.aspx"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="col-span-2 inline-flex items-center gap-2 pt-4 border-t border-white/10 text-sm font-semibold text-[var(--color-gold)] hover:text-[var(--color-gold-light)] transition-colors"
+                >
+                  {isArabic ? "التحقق عبر قائمة الأمناء الرسمية" : "Verify through the official trustee list"}
+                  <Arrow size={14} />
+                </a>
               </div>
             </div>
           </div>
