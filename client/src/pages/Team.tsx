@@ -152,7 +152,7 @@ export default function Team() {
   useSEO({
     title: lang === 'ar' ? 'فريقنا - المحامون' : 'Our Team - Attorneys',
     description: lang === 'ar'
-      ? 'تعرف على فريق المحامين في شركة عبدالرحمن رضوان المشيقح للمحاماة. فريق مؤهل بخبرات متنوعة في القضايا التجارية والجنائية والإفلاس.'
+      ? 'تعرف على فريق المحامين في شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس. فريق مؤهل بخبرات متنوعة في القضايا التجارية والجنائية والإفلاس.'
       : 'Meet the attorneys at Abdulrahman Redwan Al-Mushaiqi Law Firm. A qualified team with diverse expertise in commercial, criminal, and bankruptcy cases.',
     canonical: '/team',
     schema: seoSchema,

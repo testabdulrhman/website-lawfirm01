@@ -133,7 +133,7 @@ export default function BankruptcyTrusteeLicense() {
         provider: {
           "@type": "LegalService",
           name: isArabic
-            ? "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
+            ? "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
             : "Redwan Law Firm",
           url: "https://redwan.sa",
           hasCredential: {

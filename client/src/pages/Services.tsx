@@ -16,7 +16,7 @@ export default function Services() {
   useSEO({
     title: lang === 'ar' ? 'خدماتنا القانونية' : 'Our Legal Services',
     description: lang === 'ar'
-      ? 'خدمات قانونية متكاملة: قضايا تجارية، جنائية، عقارية، إفلاس، توثيق، تحكيم، واستشارات قانونية. شركة عبدالرحمن رضوان المشيقح للمحاماة.'
+      ? 'خدمات قانونية متكاملة: قضايا تجارية، جنائية، عقارية، إفلاس، توثيق، تحكيم، واستشارات قانونية. شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس.'
       : 'Comprehensive legal services: commercial, criminal, real estate, bankruptcy, notarization, arbitration, and legal consultation. Abdulrahman Redwan Al-Mushaiqi Law Firm.',
     keywords: lang === 'ar'
       ? 'خدمات قانونية، قضايا تجارية، قضايا جنائية، إفلاس، توثيق، تحكيم تجاري، محامي بريدة'

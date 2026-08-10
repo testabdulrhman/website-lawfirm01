@@ -518,7 +518,7 @@ export default function BankruptcyComplete() {
               إكمال بيانات المطالبة
             </h1>
             <p className="font-body text-sm text-white/70">
-              شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس
+              شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس
             </p>
           </div>
 

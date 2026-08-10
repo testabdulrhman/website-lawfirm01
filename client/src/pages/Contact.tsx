@@ -17,7 +17,7 @@ export default function Contact() {
   useSEO({
     title: lang === 'ar' ? 'تواصل معنا - احجز استشارة' : 'Contact Us - Book a Consultation',
     description: lang === 'ar'
-      ? 'تواصل مع شركة عبدالرحمن رضوان المشيقح للمحاماة. احجز استشارة قانونية الآن. هاتف: 0505149800 | بريدة، القصيم.'
+      ? 'تواصل مع شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس. احجز استشارة قانونية الآن. هاتف: 0505149800 | بريدة، القصيم.'
       : 'Contact Abdulrahman Redwan Al-Mushaiqi Law Firm. Book a legal consultation now. Phone: 0505149800 | Buraydah, Qassim.',
     keywords: lang === 'ar'
       ? 'تواصل معنا، استشارة قانونية، محامي بريدة، حجز موعد، رقم محامي'

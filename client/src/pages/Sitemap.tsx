@@ -181,7 +181,7 @@ export default function Sitemap() {
     title: lang === "ar" ? "خريطة الموقع" : "Sitemap",
     description:
       lang === "ar"
-        ? "خريطة موقع شركة عبدالرحمن رضوان المشيقح للمحاماة - جميع الصفحات والخدمات"
+        ? "خريطة موقع شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس - جميع الصفحات والخدمات"
         : "Sitemap of Redwan Law Firm - All pages and services",
     canonical: "/sitemap",
   });

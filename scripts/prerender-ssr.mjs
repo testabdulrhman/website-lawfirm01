@@ -159,7 +159,7 @@ function applySEO(html, seo, route) {
           }
         : {
             '@type': 'Organization',
-            'name': 'شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس',
+            'name': 'شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس',
             'url': SITE
           },
       ...(seo.reviewedBy && {
@@ -172,7 +172,7 @@ function applySEO(html, seo, route) {
       }),
       'publisher': {
         '@type': 'Organization',
-        'name': 'شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس',
+        'name': 'شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس',
         'url': SITE,
         'logo': {
           '@type': 'ImageObject',
@@ -228,7 +228,7 @@ function applySEO(html, seo, route) {
         'inLanguage': 'ar',
         'creator': {
           '@type': 'Organization',
-          'name': 'شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس',
+          'name': 'شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس',
           'url': SITE
         },
         ...(seo.temporalCoverage ? { 'temporalCoverage': seo.temporalCoverage } : {}),

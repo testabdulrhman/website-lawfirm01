@@ -1,5 +1,5 @@
 /*
- * Navbar — شركة عبدالرحمن رضوان المشيقح للمحاماة
+ * Navbar — شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس
  * Design philosophy: Navy (#0f1b2d) + Gold (#b8860b) — Editorial / refined legal authority.
  * Fonts: Playfair Display (display), Montserrat (heading), Noto Sans Arabic (body).
  * Mega Menu: services panel reveals on hover/focus with origin-aware scale-in,
@@ -124,7 +124,7 @@ export default function Navbar() {
         <Link href={lp("/")} className="flex items-center shrink-0">
           <img
             src={showTransparent ? LOGO_LIGHT : LOGO_DARK}
-            alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
+            alt="شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
             className="w-auto object-contain transition-all duration-300"
             style={{ height: showTransparent ? "52px" : "46px", maxWidth: "220px" }}
             width={512}
@@ -398,7 +398,7 @@ export default function Navbar() {
           <Link href={lp("/")} className="flex items-center shrink-0">
             <img
               src={LOGO_DARK}
-              alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
+              alt="شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
               className="w-auto object-contain"
               style={{ height: "46px", maxWidth: "220px" }}
               width={512}

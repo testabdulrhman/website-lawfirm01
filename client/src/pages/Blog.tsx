@@ -22,7 +22,7 @@ export default function Blog() {
     "publisher": {
       "@type": "Organization",
       "name": lang === "ar"
-        ? "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
+        ? "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
         : "Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Management",
       "url": "https://redwan.sa"
     },

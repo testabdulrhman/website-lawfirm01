@@ -7,7 +7,7 @@ const GOOGLE_RATING = 4.2;
 const GOOGLE_REVIEW_COUNT = 13;
 const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=" +
-  encodeURIComponent("شركة عبدالرحمن بن رضوان المشيقح للمحاماة بريدة");
+  encodeURIComponent("شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس بريدة");
 
 const FILL_PERCENT = (GOOGLE_RATING / 5) * 100;
 

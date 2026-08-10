@@ -404,7 +404,7 @@ export default function BankruptcyLP() {
     title:
       "محامي إفلاس للمدين المتعثّر | حماية نظامية وإعادة جدولة الديون - بريدة والقصيم",
     description:
-      "تعثّرت في سداد ديونك؟ نظام الإفلاس السعودي يحميك قانونياً. شركة عبدالرحمن رضوان المشيقح للمحاماة تساعدك على إيقاف الملاحقات وإعادة تنظيم ديونك. استشارة عبر الهاتف أو واتساب — اتصل: 0505149800.",
+      "تعثّرت في سداد ديونك؟ نظام الإفلاس السعودي يحميك قانونياً. شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس تساعدك على إيقاف الملاحقات وإعادة تنظيم ديونك. استشارة عبر الهاتف أو واتساب — اتصل: 0505149800.",
     keywords:
       "محامي إفلاس, نظام الإفلاس السعودي, إعادة تنظيم الديون, تعثّر مالي, حماية من الدائنين, التسوية الوقائية, إعادة الجدولة, محامي إفلاس بريدة, محامي القصيم, الإفلاس للمدين",
     canonical: "/bankruptcy-lp",
@@ -416,7 +416,7 @@ export default function BankruptcyLP() {
       {
         "@context": "https://schema.org",
         "@type": "LegalService",
-        name: "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+        name: "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
         url: "https://redwan.sa/bankruptcy-lp",
         telephone: "+966505149800",
         email: "info@redwan.sa",
@@ -455,7 +455,7 @@ export default function BankruptcyLP() {
         <div className="container mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
           <img
             src={LOGO_LIGHT}
-            alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
+            alt="شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
             className="w-auto object-contain"
             style={{ height: "40px", maxWidth: "180px" }}
           />
@@ -795,7 +795,7 @@ export default function BankruptcyLP() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-right">
             <div className="flex flex-col md:flex-row items-center gap-3 md:gap-5">
               <span className="font-heading text-sm text-white/70">
-                شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس
+                شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس
               </span>
               <span className="font-body text-xs text-white/30">
                 ترخيص محاماة رقم: 26/129

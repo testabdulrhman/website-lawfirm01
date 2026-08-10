@@ -434,7 +434,7 @@ export default function PremiumResidency() {
       name: lang === "ar" ? "خدمات الإقامة المميزة السعودية" : "Saudi Premium Residency Services",
       provider: {
         "@type": "LegalService",
-        name: "شركة عبدالرحمن رضوان المشيقح للمحاماة",
+        name: "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
         url: "https://redwan.sa",
       },
       areaServed: { "@type": "Country", name: "Saudi Arabia" },

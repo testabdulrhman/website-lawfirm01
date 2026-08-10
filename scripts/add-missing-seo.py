@@ -6,7 +6,7 @@ import json, os
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PATH = os.path.join(BASE, "scripts", "seo-data.json")
 SITE = "https://redwan.sa"
-FIRM = "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
+FIRM = "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
 
 with open(PATH, encoding="utf-8") as f:
     data = json.load(f)

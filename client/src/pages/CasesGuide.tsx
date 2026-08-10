@@ -73,7 +73,7 @@ export default function CasesGuide() {
       "url": "https://redwan.sa/cases-guide",
       "publisher": {
         "@type": "Organization",
-        "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+        "name": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
         "url": "https://redwan.sa"
       }
     },

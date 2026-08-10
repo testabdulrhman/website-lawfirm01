@@ -299,7 +299,7 @@ export default function BankruptcyTicket() {
                 </h1>
               </div>
               <p className="font-body text-sm text-white/70">
-                شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس
+                شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس
               </p>
             </div>
 

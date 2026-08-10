@@ -54,7 +54,7 @@ export default function BlogPost() {
         }
       : {
           "@type": "Organization",
-          "name": lang === "ar" ? "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس" : "Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Management",
+          "name": lang === "ar" ? "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس" : "Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Management",
           "url": "https://redwan.sa"
         },
     ...(article.reviewer && {
@@ -67,7 +67,7 @@ export default function BlogPost() {
     }),
     "publisher": {
       "@type": "Organization",
-      "name": lang === "ar" ? "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس" : "Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Management",
+      "name": lang === "ar" ? "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس" : "Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Management",
       "url": "https://redwan.sa"
     },
     "mainEntityOfPage": {
@@ -308,7 +308,7 @@ export default function BlogPost() {
         ogType="article"
         article={{
           publishedTime: article.date,
-          author: "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+          author: "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
           section: article.category,
         }}
         structuredData={articleStructuredData}

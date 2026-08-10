@@ -298,7 +298,7 @@ export default function Licenses() {
   useSEO({
     title: lang === 'ar' ? 'التراخيص والاعتمادات المهنية' : 'Professional Licenses & Accreditations',
     description: lang === 'ar'
-      ? 'شركة عبدالرحمن رضوان المشيقح للمحاماة حاصلة على أربعة تراخيص نظامية: المحاماة، أمانة الإفلاس، التوثيق، والتسجيل العقاري.'
+      ? 'شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس حاصلة على أربعة تراخيص نظامية: المحاماة، أمانة الإفلاس، التوثيق، والتسجيل العقاري.'
       : 'Abdulrahman Redwan Al-Mushaiqi Law Firm holds four official licenses: Legal Practice, Bankruptcy Trustee, Notarization, and Real Estate Registration.',
     canonical: '/licenses',
     schema: seoSchema,

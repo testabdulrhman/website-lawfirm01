@@ -63,7 +63,7 @@ export default function SEOHead({
   useEffect(() => {
     const siteName =
       lang === "ar"
-        ? "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
+        ? "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
         : "Abdulrahman Redwan Al-Mushaikih Law Firm & Bankruptcy Management";
     const fullTitle = `${title} | ${siteName}`;
     const locale = lang === "ar" ? "ar_SA" : "en_US";

@@ -28,7 +28,7 @@ export default function HeroSection() {
           src="/images/hero-law-firm-1280.webp"
           srcSet="/images/hero-law-firm-768.webp 768w, /images/hero-law-firm-1280.webp 1280w, /images/hero-law-firm.webp 2048w"
           sizes="100vw"
-          alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
+          alt="شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
           className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out"
           style={{ transform: loaded ? "scale(1)" : "scale(1.1)" }}
           fetchPriority="high"

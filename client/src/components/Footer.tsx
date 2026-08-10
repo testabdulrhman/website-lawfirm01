@@ -22,7 +22,7 @@ export default function Footer() {
               <Link href={lp("/")} className="inline-block mb-4">
                 <img
                   src="/images/logo-light-512.webp"
-                  alt="شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
+                  alt="شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
                   className="w-[200px] h-[50px] object-contain"
                   width={512}
                   height={156}

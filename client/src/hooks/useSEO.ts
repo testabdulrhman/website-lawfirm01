@@ -16,7 +16,7 @@ interface SEOProps {
 const SITE_NAME_AR = "المشيقح للمحاماة";
 const SITE_NAME_EN = "Redwan Law Firm";
 const SITE_NAME_UR = "المشیقح لا فرم";
-const SITE_NAME = "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس";
+const SITE_NAME = "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس";
 const BASE_URL = "https://redwan.sa";
 
 export function useSEO({
@@ -186,7 +186,7 @@ export const schemas = {
   localBusiness: {
     "@context": "https://schema.org",
     "@type": "LegalService",
-    "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "name": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
     "alternateName": "Abdulrahman Redwan Al-Mushaiqi Law Firm",
     "url": "https://redwan.sa",
     "logo": `${BASE_URL}/images/logo-dark.webp`,
@@ -243,7 +243,7 @@ export const schemas = {
   organization: {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "name": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
     "url": "https://redwan.sa",
     "logo": `${BASE_URL}/images/logo-dark.webp`,
     "foundingDate": "2020",
@@ -273,13 +273,13 @@ export const schemas = {
   attorney: {
     "@context": "https://schema.org",
     "@type": "Attorney",
-    "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "name": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
     "alternateName": "Abdulrahman Redwan Al-Mushaiqi Law Firm & Bankruptcy Management",
     "url": "https://redwan.sa",
     "logo": `${BASE_URL}/images/logo-dark.webp`,
     "image": `${BASE_URL}/images/hero-law-firm.webp`,
     "description": "شركة محاماة سعودية مرخصة برقم 26/129 متخصصة في إدارة إجراءات الإفلاس والقضايا التجارية والجنائية والعقارية، مقرها بريدة وتخدم جميع مناطق المملكة.",
-    "legalName": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "legalName": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
     "knowsAbout": [
       "إدارة إجراءات الإفلاس",
       "التسوية الوقائية",
@@ -432,7 +432,7 @@ export const schemas = {
     "description": description || "",
     "worksFor": {
       "@type": "LegalService",
-      "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
+      "name": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
     }
   }),
 
@@ -445,7 +445,7 @@ export const schemas = {
     "url": "https://redwan.sa/services/bankruptcy",
     "provider": {
       "@type": "LegalService",
-      "name": "شركة عبدالرحمن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+      "name": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
       "url": "https://redwan.sa"
     },
     "serviceType": "الاستشارات والتمثيل القانوني في إجراءات الإفلاس",

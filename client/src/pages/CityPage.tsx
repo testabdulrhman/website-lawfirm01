@@ -32,7 +32,7 @@ export default function CityPage() {
         "@context": "https://schema.org",
         "@type": "LegalService",
         "name": lang === "ar"
-          ? `شركة عبدالرحمن رضوان المشيقح للمحاماة - ${cityContent.name}`
+          ? `شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس - ${cityContent.name}`
           : `Al-Mushaiqeh Law Firm - ${cityContent.name}`,
         "url": `https://redwan.sa/locations/${city.slug}`,
         "description": cityContent.intro,
