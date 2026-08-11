@@ -380,8 +380,11 @@ export default function Home() {
                 style={getFadeStyle(bankruptcyVisible, "up", 200)}
               >
                 <div className="flex items-baseline gap-2 mb-3">
+                  <span className="font-heading text-base md:text-lg text-white/70">
+                    {lang === "ar" ? "أكثر من" : "Over"}
+                  </span>
                   <span className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--color-gold)]">
-                    <CountUp end={633052460} />
+                    <CountUp end={630} />
                   </span>
                   <span className="font-heading text-base md:text-lg text-white/70">
                     {t.bankruptcyRecord.claimsValue}

@@ -71,7 +71,7 @@ export const translations = {
     bankruptcyRecord: {
       label: "إدارة إجراءات الإفلاس",
       title: "سجل حافل في إدارة إجراءات الإفلاس والمطالبات",
-      claimsValue: "ريال سعودي",
+      claimsValue: "مليون ريال",
       claimsValueLabel: "مجموع مبالغ المطالبات",
       creditorsCount: "مطالبة",
       creditorsCountLabel: "إجمالي المطالبات المسجّلة",
@@ -219,7 +219,7 @@ export const translations = {
     bankruptcyRecord: {
       label: "Bankruptcy Management",
       title: "Proven Track Record in Claims Management",
-      claimsValue: "SAR",
+      claimsValue: "million SAR",
       claimsValueLabel: "Total Value of Registered Claims",
       creditorsCount: "Claims",
       creditorsCountLabel: "Total Registered Claims",
