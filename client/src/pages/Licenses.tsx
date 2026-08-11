@@ -342,18 +342,35 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 export default function Licenses() {
   const { t, lang, isRTL } = useTranslation();
   const lp = (p: string) => localePath(p, lang);
+  const licenses = licensesData[lang === 'ar' ? 'ar' : 'en'];
 
   const seoSchema = useMemo(() => [
     schemas.breadcrumb([
       { name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' },
       { name: lang === 'ar' ? 'التراخيص' : 'Licenses', url: '/licenses' },
     ]),
-  ], [lang]);
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": lang === 'ar' ? 'التراخيص والاعتمادات المهنية' : 'Professional Licenses & Accreditations',
+      "url": lang === 'ar' ? 'https://redwan.sa/licenses' : 'https://redwan.sa/en/licenses',
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": licenses.length,
+        "itemListElement": licenses.map((license, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": license.title,
+          "url": `${lang === 'ar' ? 'https://redwan.sa/licenses' : 'https://redwan.sa/en/licenses'}#${license.slug}`,
+        })),
+      },
+    },
+  ], [lang, licenses]);
 
   useSEO({
     title: lang === 'ar' ? 'التراخيص والاعتمادات المهنية' : 'Professional Licenses & Accreditations',
     description: lang === 'ar'
-      ? 'شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس حاصلة على خمسة تراخيص نظامية: المحاماة، أمانة الإفلاس، خبرة الإفلاس في مجال المحاماة، التوثيق، والتسجيل العقاري.'
+      ? 'خمسة تراخيص نظامية تشمل المحاماة وأمانة الإفلاس وخبرة الإفلاس في مجال المحاماة والتوثيق والتسجيل العيني.'
       : 'The firm holds five official licenses: Legal Practice, Bankruptcy Trustee, Bankruptcy Expert in Legal Practice, Notarization, and Real Estate Registration.',
     canonical: '/licenses',
     schema: seoSchema,
@@ -361,7 +378,6 @@ export default function Licenses() {
 
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
 
-  const licenses = licensesData[lang === 'ar' ? 'ar' : 'en'];
   const Arrow = isRTL ? ChevronLeft : ChevronRight;
 
   return (

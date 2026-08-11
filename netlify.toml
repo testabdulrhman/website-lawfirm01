@@ -272,6 +272,11 @@
   [headers.values]
     X-Robots-Tag = "noindex"
 
+[[headers]]
+  for = "/en/bankruptcy/complete"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
 # بوابة الدائن: خلف تحقق OTP — تُخدَم بـ200 وتبقى خارج الفهرسة
 [[headers]]
   for = "/bankruptcy/creditor"

@@ -30,30 +30,18 @@ export default function CityPage() {
     return [
       {
         "@context": "https://schema.org",
-        "@type": "LegalService",
+        "@type": "Service",
         "name": lang === "ar"
-          ? `شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس - ${cityContent.name}`
-          : `Al-Mushaiqeh Law Firm - ${cityContent.name}`,
+          ? `الخدمات القانونية في ${cityContent.name}`
+          : `Legal Services in ${cityContent.name}`,
         "url": `https://redwan.sa/locations/${city.slug}`,
         "description": cityContent.intro,
-        "telephone": "+966505149800",
-        "email": "info@redwan.sa",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": cityContent.name,
-          "addressRegion": cityContent.region,
-          "addressCountry": "SA",
+        "provider": {
+          "@id": "https://redwan.sa/#legalservice",
         },
         "areaServed": {
           "@type": "City",
           "name": cityContent.name,
-        },
-        "priceRange": "$$",
-        "openingHoursSpecification": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
-          "opens": "08:00",
-          "closes": "16:00",
         },
       },
       {
@@ -115,6 +103,13 @@ export default function CityPage() {
           <p className="font-body text-base md:text-lg text-white/60 max-w-2xl">
             {t.heroSubtitle}
           </p>
+          {city.slug !== "buraydah" && (
+            <p className="font-body text-sm text-white/75 max-w-2xl mt-4 border-s-2 border-[var(--color-gold)] ps-3">
+              {lang === "ar"
+                ? `المقر الرئيسي للشركة في بريدة، ونخدم عملاء ${t.name} عن بُعد وبالحضور عند الحاجة.`
+                : `The firm's head office is in Buraydah. We serve clients in ${t.name} remotely and attend in person when required.`}
+            </p>
+          )}
 
           {/* Quick Contact */}
           <div className="flex flex-wrap gap-4 mt-8">

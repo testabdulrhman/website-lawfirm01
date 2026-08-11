@@ -39,7 +39,7 @@ function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
   }, [started, end]);
 
   // Render final value in HTML for crawlers (noscript/SSR), animate visually
-  return <span ref={ref}>{displayCount}{suffix}</span>;
+  return <span ref={ref}>{displayCount.toLocaleString("en-US")}{suffix}</span>;
 }
 
 const serviceIcons = [Briefcase, Gavel, Building, Scale];
@@ -53,7 +53,7 @@ export default function Home() {
   useSEO({
     fullTitle: true,
     title: lang === 'ar'
-      ? 'شركة المشيقح للمحاماة وإدارة إجراءات الإفلاس'
+      ? 'شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس'
       : 'Al-Mushaiqeh Law Firm & Bankruptcy Management',
     description: lang === 'ar'
       ? 'شركة محاماة سعودية مقرها بريدة وتخدم جميع مناطق المملكة في القضايا التجارية والإفلاس والتوثيق والتسجيل العيني بخمسة تراخيص نظامية.'
@@ -130,10 +130,18 @@ export default function Home() {
                 style={getFadeStyle(heroVisible, "up", 150)}
               >
                 {t.hero.title1}
-                <br />
-                {t.hero.title2}
-                <br />
-                <span className="text-[var(--color-gold)]">{t.hero.title3}</span>
+                {t.hero.title2 && (
+                  <>
+                    <br />
+                    {t.hero.title2}
+                  </>
+                )}
+                {t.hero.title3 && (
+                  <>
+                    <br />
+                    <span className="text-[var(--color-gold)]">{t.hero.title3}</span>
+                  </>
+                )}
               </h1>
 
               {/* Description */}
@@ -373,12 +381,9 @@ export default function Home() {
               >
                 <div className="flex items-baseline gap-2 mb-3">
                   <span className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--color-gold)]">
-                    <CountUp end={500} suffix="+" />
+                    <CountUp end={633052460} />
                   </span>
                   <span className="font-heading text-base md:text-lg text-white/70">
-                    {lang === "ar" ? "مليون" : "M"}
-                  </span>
-                  <span className="font-heading text-sm text-white/50">
                     {t.bankruptcyRecord.claimsValue}
                   </span>
                 </div>
@@ -394,7 +399,7 @@ export default function Home() {
               >
                 <div className="flex items-baseline gap-2 mb-3">
                   <span className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--color-gold)]">
-                    <CountUp end={500} suffix="+" />
+                    <CountUp end={600} />
                   </span>
                   <span className="font-heading text-base md:text-lg text-white/70">
                     {t.bankruptcyRecord.creditorsCount}
@@ -527,10 +532,12 @@ export default function Home() {
       <section className="relative py-16 md:py-20 lg:py-28 overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310419663031020868/RdzCt9LFS29ZVcU4VNgpAF/services-law-JMYuzYAraEJcBSCnrsZST3.webp"
+            src="/images/services-law-1280.webp"
             alt={lang === "ar" ? "استشارات قانونية متخصصة" : "Specialized legal consultation"}
             className="w-full h-full object-cover scale-110"
             loading="lazy"
+            width={1280}
+            height={960}
           />
           <div className="absolute inset-0 bg-[oklch(0.12_0.04_250/0.9)]" />
         </div>

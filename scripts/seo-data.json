@@ -198,10 +198,10 @@
     "noindex": true
   },
   "/": {
-    "title": "شركة المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "title": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
     "description": "شركة محاماة سعودية مقرها بريدة وتخدم جميع مناطق المملكة في القضايا التجارية والإفلاس والتوثيق والتسجيل العيني بخمسة تراخيص نظامية.",
     "keywords": "شركة محاماة سعودية, مكتب محاماة بريدة, خدمات قانونية للشركات, إدارة إجراءات الإفلاس, التوثيق, التسجيل العيني",
-    "ogTitle": "شركة المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "ogTitle": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
     "ogDesc": "شركة محاماة سعودية بخمسة تراخيص نظامية، مقرها الرئيسي في بريدة وتخدم الشركات والعملاء في جميع مناطق المملكة.",
     "ogUrl": "https://redwan.sa/",
     "ogType": "website",
@@ -1064,15 +1064,32 @@
     ]
   },
   "/licenses": {
-    "title": "التراخيص والاعتمادات المهنية | شركة المشيقح للمحاماة",
-    "description": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس حاصلة على خمسة تراخيص نظامية تشمل المحاماة وأمانة الإفلاس وخبرة الإفلاس في مجال المحاماة والتوثيق والتسجيل العقاري.",
+    "title": "التراخيص والاعتمادات المهنية",
+    "description": "خمسة تراخيص نظامية تشمل المحاماة وأمانة الإفلاس وخبرة الإفلاس في مجال المحاماة والتوثيق والتسجيل العيني.",
     "keywords": "تراخيص محاماة, ترخيص أمين إفلاس, موثق معتمد, تسجيل عقاري, شركة محاماة مرخصة",
-    "ogTitle": "التراخيص والاعتمادات المهنية | شركة المشيقح للمحاماة",
+    "ogTitle": "التراخيص والاعتمادات المهنية",
     "ogDesc": "خمسة تراخيص نظامية تشمل المحاماة وأمانة الإفلاس وخبرة الإفلاس في مجال المحاماة والتوثيق والتسجيل العقاري.",
     "ogUrl": "https://redwan.sa/licenses",
     "ogType": "website",
     "ogImage": "",
-    "canonical": "https://redwan.sa/licenses"
+    "canonical": "https://redwan.sa/licenses",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "التراخيص والاعتمادات المهنية",
+      "url": "https://redwan.sa/licenses",
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": 5,
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "ترخيص المحاماة" },
+          { "@type": "ListItem", "position": 2, "name": "ترخيص أمين إفلاس" },
+          { "@type": "ListItem", "position": 3, "name": "ترخيص خبير إفلاس في مجال المحاماة" },
+          { "@type": "ListItem", "position": 4, "name": "ترخيص التوثيق" },
+          { "@type": "ListItem", "position": 5, "name": "ترخيص التسجيل العيني للعقار" }
+        ]
+      }
+    }
   },
   "/licenses/bankruptcy-trustee": {
     "title": "أمين إفلاس معتمد في السعودية | ترخيص 142147",
@@ -1167,7 +1184,24 @@
     "ogUrl": "https://redwan.sa/en/licenses",
     "ogType": "website",
     "ogImage": "",
-    "canonical": "https://redwan.sa/en/licenses"
+    "canonical": "https://redwan.sa/en/licenses",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Professional Licenses & Accreditations",
+      "url": "https://redwan.sa/en/licenses",
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": 5,
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Legal Practice License" },
+          { "@type": "ListItem", "position": 2, "name": "Bankruptcy Trustee License" },
+          { "@type": "ListItem", "position": 3, "name": "Bankruptcy Expert License in Legal Practice" },
+          { "@type": "ListItem", "position": 4, "name": "Notarization License" },
+          { "@type": "ListItem", "position": 5, "name": "Real Estate Registration License" }
+        ]
+      }
+    }
   },
   "/en/licenses/bankruptcy-trustee": {
     "title": "Licensed Bankruptcy Trustee in Saudi Arabia | License 142147",
@@ -1605,59 +1639,64 @@
     "canonical": "/ur/premium-residency"
   },
   "/locations/riyadh": {
-    "title": "محامي في الرياض | المشيقح للمحاماة",
-    "description": "محامي متخصص في الرياض. خدمات قانونية شاملة تشمل القضايا التجارية، الإفلاس، النزاعات العقارية، والتحكيم. ترخيص وزارة العدل رقم 26/129. احجز استشارتك الآن.",
+    "title": "محامي في الرياض | استشارات وقضايا تجارية",
+    "description": "خدمات قانونية للشركات والأفراد في الرياض، نقدمها من مقرنا الرئيسي ببريدة عن بُعد وبالحضور عند الحاجة، وتشمل القضايا التجارية والإفلاس والتحكيم.",
     "keywords": "محامي الرياض, محامي في الرياض, استشارات قانونية الرياض, مكتب محاماة منطقة الرياض",
     "ogTitle": "محامي في الرياض",
-    "ogDesc": "محامي متخصص في الرياض. خدمات قانونية شاملة تشمل القضايا التجارية، الإفلاس، النزاعات العقارية، والتحكيم. ترخيص وزارة العدل رقم 26/129. احجز استشارتك الآن.",
+    "ogDesc": "خدمات قانونية للشركات والأفراد في الرياض من مقرنا الرئيسي ببريدة، عن بُعد وبالحضور عند الحاجة.",
     "ogUrl": "https://redwan.sa/locations/riyadh",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/locations/riyadh"
+    "canonical": "https://redwan.sa/locations/riyadh",
+    "structuredData": { "@context": "https://schema.org", "@type": "Service", "name": "الخدمات القانونية في الرياض", "url": "https://redwan.sa/locations/riyadh", "provider": { "@id": "https://redwan.sa/#legalservice" }, "areaServed": { "@type": "City", "name": "الرياض" } }
   },
   "/en/locations/riyadh": {
     "title": "Lawyer in Riyadh | Redwan Law Firm",
-    "description": "Legal services in Riyadh for commercial cases, bankruptcy, real estate disputes and arbitration. Licensed by the Saudi Ministry of Justice.",
+    "description": "Legal services for clients in Riyadh, delivered from our Buraydah head office remotely and in person when required, including commercial and bankruptcy matters.",
     "keywords": "lawyer Riyadh, law firm Riyadh, legal services Riyadh, Saudi lawyer",
     "ogTitle": "Lawyer in Riyadh",
-    "ogDesc": "Specialized lawyer in Riyadh. Comprehensive legal services including commercial cases, bankruptcy, real estate disputes, and arbitration. Ministry of Justice License No. 26/129.",
+    "ogDesc": "Legal services for Riyadh clients from our Buraydah head office, remotely and in person when required.",
     "ogUrl": "https://redwan.sa/en/locations/riyadh",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/en/locations/riyadh"
+    "canonical": "https://redwan.sa/en/locations/riyadh",
+    "structuredData": { "@context": "https://schema.org", "@type": "Service", "name": "Legal Services in Riyadh", "url": "https://redwan.sa/en/locations/riyadh", "provider": { "@id": "https://redwan.sa/#legalservice" }, "areaServed": { "@type": "City", "name": "Riyadh" } }
   },
   "/locations/jeddah": {
-    "title": "محامي في جدة | المشيقح للمحاماة",
-    "description": "محامي متخصص في جدة. خبرة في القضايا التجارية والبحرية والإفلاس والنزاعات العقارية. ترخيص وزارة العدل رقم 26/129. استشارة قانونية احترافية.",
+    "title": "محامي في جدة | خدمات قانونية للشركات",
+    "description": "خدمات قانونية للشركات والأفراد في جدة، نقدمها من مقرنا الرئيسي ببريدة عن بُعد وبالحضور عند الحاجة، وتشمل القضايا التجارية والإفلاس والعقود.",
     "keywords": "محامي جدة, محامي في جدة, استشارات قانونية جدة, مكتب محاماة منطقة مكة المكرمة",
     "ogTitle": "محامي في جدة",
-    "ogDesc": "محامي متخصص في جدة. خبرة في القضايا التجارية والبحرية والإفلاس والنزاعات العقارية. ترخيص وزارة العدل رقم 26/129. استشارة قانونية احترافية.",
+    "ogDesc": "خدمات قانونية للشركات والأفراد في جدة من مقرنا الرئيسي ببريدة، عن بُعد وبالحضور عند الحاجة.",
     "ogUrl": "https://redwan.sa/locations/jeddah",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/locations/jeddah"
+    "canonical": "https://redwan.sa/locations/jeddah",
+    "structuredData": { "@context": "https://schema.org", "@type": "Service", "name": "الخدمات القانونية في جدة", "url": "https://redwan.sa/locations/jeddah", "provider": { "@id": "https://redwan.sa/#legalservice" }, "areaServed": { "@type": "City", "name": "جدة" } }
   },
   "/en/locations/jeddah": {
     "title": "Lawyer in Jeddah | Redwan Law Firm",
-    "description": "Specialized lawyer in Jeddah. Expertise in commercial, maritime, bankruptcy cases and real estate disputes. Ministry of Justice License No. 26/129.",
+    "description": "Legal services for clients in Jeddah, delivered from our Buraydah head office remotely and in person when required, including commercial and bankruptcy matters.",
     "keywords": "lawyer Jeddah, law firm Jeddah, legal services Jeddah, Saudi lawyer",
     "ogTitle": "Lawyer in Jeddah",
-    "ogDesc": "Specialized lawyer in Jeddah. Expertise in commercial, maritime, bankruptcy cases and real estate disputes. Ministry of Justice License No. 26/129.",
+    "ogDesc": "Legal services for Jeddah clients from our Buraydah head office, remotely and in person when required.",
     "ogUrl": "https://redwan.sa/en/locations/jeddah",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/en/locations/jeddah"
+    "canonical": "https://redwan.sa/en/locations/jeddah",
+    "structuredData": { "@context": "https://schema.org", "@type": "Service", "name": "Legal Services in Jeddah", "url": "https://redwan.sa/en/locations/jeddah", "provider": { "@id": "https://redwan.sa/#legalservice" }, "areaServed": { "@type": "City", "name": "Jeddah" } }
   },
   "/locations/buraydah": {
-    "title": "محامي في بريدة | 5 تراخيص قانونية - المشيقح",
-    "description": "مكتب المشيقح للمحاماة في بريدة، المقر الرئيسي. محاماة وأمانة إفلاس وتوثيق وتسجيل عيني، وخدمات للأفراد والشركات في القصيم. اتصل 0505149800.",
+    "title": "محامي في بريدة | المقر الرئيسي و5 تراخيص",
+    "description": "المقر الرئيسي في بريدة بخمسة تراخيص تشمل المحاماة وأمانة الإفلاس وخبرة الإفلاس والتوثيق والتسجيل العيني. خدمات للأفراد والشركات في القصيم.",
     "keywords": "محامي بريدة, محامي في بريدة, استشارات قانونية بريدة, مكتب محاماة منطقة القصيم",
     "ogTitle": "محامي في بريدة",
-    "ogDesc": "مكتب المشيقح للمحاماة في بريدة، المقر الرئيسي. محاماة وأمانة إفلاس وتوثيق وتسجيل عيني، وخدمات للأفراد والشركات في القصيم. اتصل 0505149800.",
+    "ogDesc": "المقر الرئيسي في بريدة بخمسة تراخيص تشمل المحاماة وأمانة الإفلاس وخبرة الإفلاس والتوثيق والتسجيل العيني. خدمات للأفراد والشركات في القصيم.",
     "ogUrl": "https://redwan.sa/locations/buraydah",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/locations/buraydah"
+    "canonical": "https://redwan.sa/locations/buraydah",
+    "structuredData": { "@context": "https://schema.org", "@type": "Service", "name": "الخدمات القانونية في بريدة", "url": "https://redwan.sa/locations/buraydah", "provider": { "@id": "https://redwan.sa/#legalservice" }, "areaServed": { "@type": "City", "name": "بريدة" } }
   },
   "/en/locations/buraydah": {
     "title": "Lawyer in Buraydah | Al-Mushaiqeh Law Firm - Headquarters",
@@ -1668,32 +1707,35 @@
     "ogUrl": "https://redwan.sa/en/locations/buraydah",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/en/locations/buraydah"
+    "canonical": "https://redwan.sa/en/locations/buraydah",
+    "structuredData": { "@context": "https://schema.org", "@type": "Service", "name": "Legal Services in Buraydah", "url": "https://redwan.sa/en/locations/buraydah", "provider": { "@id": "https://redwan.sa/#legalservice" }, "areaServed": { "@type": "City", "name": "Buraydah" } }
   },
   "/locations/dammam": {
-    "title": "محامي في الدمام | المشيقح للمحاماة",
-    "description": "محامي متخصص في الدمام والمنطقة الشرقية. خبرة في القضايا التجارية والنفطية والإفلاس والعقود الصناعية. ترخيص وزارة العدل رقم 26/129.",
+    "title": "محامي في الدمام | قضايا تجارية وإفلاس",
+    "description": "خدمات قانونية للشركات والأفراد في الدمام والمنطقة الشرقية، نقدمها من مقرنا الرئيسي ببريدة عن بُعد وبالحضور عند الحاجة.",
     "keywords": "محامي الدمام, محامي في الدمام, استشارات قانونية الدمام, مكتب محاماة المنطقة الشرقية",
     "ogTitle": "محامي في الدمام",
-    "ogDesc": "محامي متخصص في الدمام والمنطقة الشرقية. خبرة في القضايا التجارية والنفطية والإفلاس والعقود الصناعية. ترخيص وزارة العدل رقم 26/129.",
+    "ogDesc": "خدمات قانونية في الدمام والمنطقة الشرقية من مقرنا الرئيسي ببريدة، عن بُعد وبالحضور عند الحاجة.",
     "ogUrl": "https://redwan.sa/locations/dammam",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/locations/dammam"
+    "canonical": "https://redwan.sa/locations/dammam",
+    "structuredData": { "@context": "https://schema.org", "@type": "Service", "name": "الخدمات القانونية في الدمام", "url": "https://redwan.sa/locations/dammam", "provider": { "@id": "https://redwan.sa/#legalservice" }, "areaServed": { "@type": "City", "name": "الدمام" } }
   },
   "/en/locations/dammam": {
     "title": "Lawyer in Dammam | Redwan Law Firm",
-    "description": "Legal services in Dammam and the Eastern Province for commercial, oil and gas, bankruptcy matters and industrial contracts.",
+    "description": "Legal services for clients in Dammam and the Eastern Province, delivered from our Buraydah head office remotely and in person when required.",
     "keywords": "lawyer Dammam, law firm Dammam, legal services Dammam, Saudi lawyer",
     "ogTitle": "Lawyer in Dammam",
-    "ogDesc": "Specialized lawyer in Dammam and Eastern Province. Expertise in commercial, oil & gas, bankruptcy cases and industrial contracts. Ministry of Justice License No. 26/129.",
+    "ogDesc": "Legal services for Dammam and Eastern Province clients from our Buraydah head office, remotely and in person when required.",
     "ogUrl": "https://redwan.sa/en/locations/dammam",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/en/locations/dammam"
+    "canonical": "https://redwan.sa/en/locations/dammam",
+    "structuredData": { "@context": "https://schema.org", "@type": "Service", "name": "Legal Services in Dammam", "url": "https://redwan.sa/en/locations/dammam", "provider": { "@id": "https://redwan.sa/#legalservice" }, "areaServed": { "@type": "City", "name": "Dammam" } }
   },
   "/locations/hail": {
-    "title": "محامي في حائل | قضايا تجارية وعقارية - المشيقح",
+    "title": "محامي في حائل | قضايا تجارية وعقارية",
     "description": "خدمات قانونية لأفراد وشركات حائل في القضايا التجارية والعقارية والعمالية والإفلاس، يقدمها مكتبنا المرخص من بريدة حضورياً وعن بُعد. اتصل 0505149800.",
     "keywords": "محامي حائل, محامي في حائل, استشارات قانونية حائل, مكتب محاماة منطقة حائل",
     "ogTitle": "محامي في حائل",
@@ -1701,18 +1743,20 @@
     "ogUrl": "https://redwan.sa/locations/hail",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/locations/hail"
+    "canonical": "https://redwan.sa/locations/hail",
+    "structuredData": { "@context": "https://schema.org", "@type": "Service", "name": "الخدمات القانونية في حائل", "url": "https://redwan.sa/locations/hail", "provider": { "@id": "https://redwan.sa/#legalservice" }, "areaServed": { "@type": "City", "name": "حائل" } }
   },
   "/en/locations/hail": {
     "title": "Lawyer in Hail | Redwan Law Firm",
     "description": "Legal services in Hail for commercial, criminal and real estate cases and bankruptcy, provided by a Saudi Ministry of Justice licensed firm.",
     "keywords": "lawyer Hail, law firm Hail, legal services Hail, Saudi lawyer",
     "ogTitle": "Lawyer in Hail",
-    "ogDesc": "Specialized lawyer in Hail. Legal services including commercial, criminal, real estate cases and bankruptcy. Ministry of Justice License No. 26/129. Close to you in Hail region.",
+    "ogDesc": "Legal services for Hail clients from our Buraydah head office, remotely and in person when required.",
     "ogUrl": "https://redwan.sa/en/locations/hail",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/en/locations/hail"
+    "canonical": "https://redwan.sa/en/locations/hail",
+    "structuredData": { "@context": "https://schema.org", "@type": "Service", "name": "Legal Services in Hail", "url": "https://redwan.sa/en/locations/hail", "provider": { "@id": "https://redwan.sa/#legalservice" }, "areaServed": { "@type": "City", "name": "Hail" } }
   },
   "/en/services/documentation": {
     "title": "Documentation & Notarization | Al-Mushaiqeh Law Firm",
@@ -1747,6 +1791,18 @@
     "ogType": "website",
     "ogImage": null,
     "canonical": "https://redwan.sa/bankruptcy/complete",
+    "noindex": true
+  },
+  "/en/bankruptcy/complete": {
+    "title": "Complete Creditor Claim Information | Bankruptcy Proceedings",
+    "description": "Secure page for completing creditor claim information and uploading requested documents through the private link sent to you.",
+    "keywords": "complete creditor claim, creditor documents",
+    "ogTitle": "Complete Creditor Claim Information",
+    "ogDesc": "Secure page for completing creditor claim information and uploading requested documents.",
+    "ogUrl": "https://redwan.sa/en/bankruptcy/complete",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/en/bankruptcy/complete",
     "noindex": true
   },
   "/en/bankruptcy/claims": {
@@ -1798,8 +1854,8 @@
     "noindex": true
   },
   "/appointments": {
-    "title": "حجز موعد استشارة قانونية | المشيقح للمحاماة — بريدة",
-    "description": "احجز موعد استشارة قانونية مع شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس. اختر الخدمة وطريقة الاجتماع — حضورياً في بريدة أو عن بُعد — والوقت المتاح فعلياً بتوقيت السعودية.",
+    "title": "حجز موعد استشارة قانونية | حضورياً أو عن بُعد",
+    "description": "احجز موعد استشارة قانونية حضورياً في بريدة أو عن بُعد. اختر الخدمة وطريقة الاجتماع والوقت المتاح فعلياً بتوقيت السعودية.",
     "keywords": "حجز موعد محامي, استشارة قانونية بريدة, موعد محامي القصيم, استشارة قانونية عن بعد, محامي إفلاس",
     "ogTitle": "حجز موعد استشارة قانونية",
     "ogDesc": "اختر الخدمة وطريقة الاجتماع والوقت المتاح، واحصل على رقم مرجعي فور تأكيد الحجز.",

@@ -142,9 +142,12 @@ export default function Contact() {
             <div className="lg:col-span-2 order-2 lg:order-1 space-y-6 md:space-y-8">
               <div className="relative overflow-hidden">
                 <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310419663031020868/YnXXVn35ryxUKUfHFrqdpE/consultation-room-redwan-eGoY26nuX2d58DHtEFP9ti.webp"
+                  src="/images/consultation-room-960.webp"
                   alt={lang === "ar" ? "غرفة الاستشارات" : "Consultation Room"}
                   className="w-full h-[180px] md:h-[220px] object-cover"
+                  loading="lazy"
+                  width={960}
+                  height={640}
                 />
               </div>
 
