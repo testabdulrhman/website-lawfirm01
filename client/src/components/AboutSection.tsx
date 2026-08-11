@@ -104,7 +104,7 @@ export default function AboutSection() {
                 height={380}
               />
               <div className="absolute -bottom-4 -right-4 w-28 h-28 bg-[var(--color-gold)] flex items-center justify-center flex-col shadow-lg">
-                <span className="font-display text-xl font-bold text-[var(--color-navy)]">4</span>
+                <span className="font-display text-xl font-bold text-[var(--color-navy)]">5</span>
                 <span className="font-body text-[10px] text-[var(--color-navy)]/80">تراخيص</span>
               </div>
             </div>

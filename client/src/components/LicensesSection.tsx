@@ -1,4 +1,4 @@
-import { FileCheck, Building, Landmark, Scale } from "lucide-react";
+import { FileCheck, Building, Landmark, Scale, Award } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const licenses = [
@@ -33,6 +33,14 @@ const licenses = [
     issuer: "لجنة الإفلاس",
     membership: "",
     desc: "تقديم الخدمات المرتبطة بمزاولة أعمال أمناء الإفلاس وإعادة التنظيم المالي.",
+  },
+  {
+    icon: Award,
+    title: "خبير إفلاس في مجال المحاماة",
+    number: "247007",
+    issuer: "لجنة الإفلاس",
+    membership: "",
+    desc: "مزاولة أعمال الخبراء القانونية المنصوص عليها في نظام الإفلاس ولائحته التنفيذية.",
   },
 ];
 

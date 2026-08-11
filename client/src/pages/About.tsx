@@ -15,12 +15,14 @@ const licensesData = {
     { icon: Building, title: "ممارسة أعمال التسجيل العيني", number: "2223002594", issuer: "الهيئة العامة للعقار", membership: "", desc: "تقديم الخدمات المرتبطة بمزاولة أعمال التسجيل العيني للعقار." },
     { icon: FileCheck, title: "ممارسة أعمال التوثيق", number: "45/57029", issuer: "وزارة العدل", membership: "", desc: "مزاولة أعمال التوثيق الرسمي للعقود والمستندات القانونية." },
     { icon: Scale, title: "ممارسة أعمال أمناء الإفلاس", number: "142147", issuer: "لجنة الإفلاس", membership: "", desc: "تقديم الخدمات المرتبطة بمزاولة أعمال أمناء الإفلاس وإعادة التنظيم المالي." },
+    { icon: Award, title: "خبير إفلاس في مجال المحاماة", number: "247007", issuer: "لجنة الإفلاس", membership: "", desc: "مزاولة أعمال الخبراء القانونية المنصوص عليها في نظام الإفلاس ولائحته التنفيذية." },
   ],
   en: [
     { icon: Landmark, title: "Legal Practice", number: "26/129", issuer: "Ministry of Justice", membership: "Saudi Bar Association Membership No: (494216)", desc: "Providing legal representation and litigation services before all courts." },
     { icon: Building, title: "Real Estate Registration", number: "2223002594", issuer: "General Authority for Real Estate", membership: "", desc: "Providing real estate registration and documentation services." },
     { icon: FileCheck, title: "Notarization", number: "45/57029", issuer: "Ministry of Justice", membership: "", desc: "Official notarization of contracts and legal documents." },
     { icon: Scale, title: "Bankruptcy Trustees", number: "142147", issuer: "Bankruptcy Commission", membership: "", desc: "Providing bankruptcy trustee services and financial reorganization." },
+    { icon: Award, title: "Bankruptcy Expert — Legal Practice", number: "247007", issuer: "Bankruptcy Commission", membership: "", desc: "Performing legal expert work under the Bankruptcy Law and its Implementing Regulations." },
   ],
 };
 

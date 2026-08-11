@@ -6,7 +6,7 @@ export default function HeroSection() {
   const [loaded, setLoaded] = useState(false);
   const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation({ threshold: 0.3 });
 
-  const licensesCount = useCountUp(4, 1800, statsVisible);
+  const licensesCount = useCountUp(5, 1800, statsVisible);
   const fieldsCount = useCountUp(7, 2000, statsVisible);
   const servicesCount = useCountUp(12, 2200, statsVisible);
 

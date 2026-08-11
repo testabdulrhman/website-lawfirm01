@@ -333,15 +333,38 @@ export const schemas = {
       "https://www.linkedin.com/company/redwan-sa",
       "https://snapchat.com/@redwan.sa"
     ],
-    "hasCredential": {
-      "@type": "EducationalOccupationalCredential",
-      "credentialCategory": "ترخيص محاماة",
-      "recognizedBy": {
-        "@type": "GovernmentOrganization",
-        "name": "وزارة العدل - المملكة العربية السعودية"
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "ترخيص محاماة",
+        "recognizedBy": { "@type": "GovernmentOrganization", "name": "وزارة العدل - المملكة العربية السعودية" },
+        "identifier": "26/129"
       },
-      "identifier": "26/129"
-    },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "ترخيص ممارسة أعمال أمناء الإفلاس",
+        "recognizedBy": { "@type": "GovernmentOrganization", "name": "لجنة الإفلاس" },
+        "identifier": "142147"
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "ترخيص خبير في مجال المحاماة",
+        "recognizedBy": { "@type": "GovernmentOrganization", "name": "لجنة الإفلاس" },
+        "identifier": "247007"
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "ترخيص ممارسة أعمال التوثيق",
+        "recognizedBy": { "@type": "GovernmentOrganization", "name": "وزارة العدل - المملكة العربية السعودية" },
+        "identifier": "45/57029"
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "ترخيص ممارسة أعمال التسجيل العيني",
+        "recognizedBy": { "@type": "GovernmentOrganization", "name": "الهيئة العامة للعقار" },
+        "identifier": "2223002594"
+      }
+    ],
     "slogan": "معك خطوة بخطوة نحو الحل القانوني الأمثل"
   },
 

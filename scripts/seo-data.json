@@ -199,10 +199,10 @@
   },
   "/": {
     "title": "شركة المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "شركة محاماة سعودية مقرها بريدة وتخدم جميع مناطق المملكة في القضايا التجارية والإفلاس والتوثيق والتسجيل العيني بأربعة تراخيص نظامية.",
+    "description": "شركة محاماة سعودية مقرها بريدة وتخدم جميع مناطق المملكة في القضايا التجارية والإفلاس والتوثيق والتسجيل العيني بخمسة تراخيص نظامية.",
     "keywords": "شركة محاماة سعودية, مكتب محاماة بريدة, خدمات قانونية للشركات, إدارة إجراءات الإفلاس, التوثيق, التسجيل العيني",
     "ogTitle": "شركة المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "ogDesc": "شركة محاماة سعودية بأربعة تراخيص نظامية، مقرها الرئيسي في بريدة وتخدم الشركات والعملاء في جميع مناطق المملكة.",
+    "ogDesc": "شركة محاماة سعودية بخمسة تراخيص نظامية، مقرها الرئيسي في بريدة وتخدم الشركات والعملاء في جميع مناطق المملكة.",
     "ogUrl": "https://redwan.sa/",
     "ogType": "website",
     "ogImage": null,
@@ -210,7 +210,7 @@
   },
   "/about": {
     "title": "من نحن | شركة المشيقح للمحاماة وأمانة الإفلاس - بريدة",
-    "description": "شركة محاماة سعودية في بريدة. 4 تراخيص مهنية: محاماة، أمانة إفلاس، توثيق، تسجيل عيني. خبرة عائلية 20+ سنة في القانون التجاري والإفلاس.",
+    "description": "شركة محاماة سعودية في بريدة بخمسة تراخيص مهنية: محاماة، أمانة إفلاس، خبير إفلاس في مجال المحاماة، توثيق، وتسجيل عيني.",
     "keywords": "من نحن، شركة محاماة بريدة، تراخيص محاماة، خبرة قانونية، القصيم",
     "ogTitle": "من نحن - نبذة عن الشركة",
     "ogDesc": "تعرف على شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس - خبرة عائلية راسخة تتجاوز 20 عاماً في القانون. رؤيتنا، قيمنا، وتراخيصنا النظامية.",
@@ -248,7 +248,8 @@
         "worksFor": { "@type": "LegalService", "name": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس", "url": "https://redwan.sa" },
         "hasCredential": [
           { "@type": "EducationalOccupationalCredential", "credentialCategory": "ترخيص محاماة", "identifier": "26/129", "recognizedBy": { "@type": "GovernmentOrganization", "name": "وزارة العدل" } },
-          { "@type": "EducationalOccupationalCredential", "credentialCategory": "ترخيص أمانة إفلاس", "identifier": "142147", "recognizedBy": { "@type": "GovernmentOrganization", "name": "لجنة الإفلاس" } }
+          { "@type": "EducationalOccupationalCredential", "credentialCategory": "ترخيص أمانة إفلاس", "identifier": "142147", "recognizedBy": { "@type": "GovernmentOrganization", "name": "لجنة الإفلاس" } },
+          { "@type": "EducationalOccupationalCredential", "credentialCategory": "ترخيص خبير في مجال المحاماة", "identifier": "247007", "recognizedBy": { "@type": "GovernmentOrganization", "name": "لجنة الإفلاس" } }
         ]
       },
       {
@@ -283,7 +284,7 @@
   },
   "/services": {
     "title": "12 خدمة قانونية متخصصة | المشيقح للمحاماة - بريدة",
-    "description": "خدمات قانونية شاملة في بريدة والقصيم: تجاري، جنائي، عقاري، إفلاس، عمالي، توثيق، تحكيم، واستشارات. 4 تراخيص مهنية وخبرة 20+ سنة.",
+    "description": "خدمات قانونية شاملة في بريدة والقصيم: تجاري، جنائي، عقاري، إفلاس، عمالي، توثيق، تحكيم، واستشارات. 5 تراخيص مهنية وخبرة 20+ سنة.",
     "keywords": "خدمات قانونية، قضايا تجارية، قضايا جنائية، إفلاس، توثيق، تحكيم تجاري، محامي بريدة",
     "ogTitle": "خدماتنا القانونية",
     "ogDesc": "خدمات قانونية متكاملة: قضايا تجارية، جنائية، عقارية، إفلاس، توثيق، تحكيم، واستشارات قانونية. شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس.",
@@ -1064,10 +1065,10 @@
   },
   "/licenses": {
     "title": "التراخيص والاعتمادات المهنية | شركة المشيقح للمحاماة",
-    "description": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس حاصلة على أربعة تراخيص نظامية: المحاماة، أمانة الإفلاس، التوثيق، والتسجيل العقاري. جميعها صادرة من جهات حكومية رسمية.",
+    "description": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس حاصلة على خمسة تراخيص نظامية تشمل المحاماة وأمانة الإفلاس وخبرة الإفلاس في مجال المحاماة والتوثيق والتسجيل العقاري.",
     "keywords": "تراخيص محاماة, ترخيص أمين إفلاس, موثق معتمد, تسجيل عقاري, شركة محاماة مرخصة",
     "ogTitle": "التراخيص والاعتمادات المهنية | شركة المشيقح للمحاماة",
-    "ogDesc": "أربعة تراخيص نظامية تؤهل الشركة لتقديم خدمات المحاماة وأمانة الإفلاس والتوثيق والتسجيل العقاري.",
+    "ogDesc": "خمسة تراخيص نظامية تشمل المحاماة وأمانة الإفلاس وخبرة الإفلاس في مجال المحاماة والتوثيق والتسجيل العقاري.",
     "ogUrl": "https://redwan.sa/licenses",
     "ogType": "website",
     "ogImage": "",
@@ -1159,10 +1160,10 @@
   },
   "/en/licenses": {
     "title": "Professional Licenses & Accreditations | Redwan Law Firm",
-    "description": "Abdulrahman Redwan Al-Mushaiqi Law Firm holds four official licenses: Legal Practice, Bankruptcy Trustee, Notarization, and Real Estate Registration.",
+    "description": "The firm holds five official licenses: Legal Practice, Bankruptcy Trustee, Bankruptcy Expert in Legal Practice, Notarization, and Real Estate Registration.",
     "keywords": "law firm licenses, bankruptcy trustee license, notary public, real estate registration, licensed law firm Saudi Arabia",
     "ogTitle": "Professional Licenses & Accreditations | Redwan Law Firm",
-    "ogDesc": "Four official licenses qualifying the firm to provide legal practice, bankruptcy trustee, notarization, and real estate registration services.",
+    "ogDesc": "Five official licenses covering legal practice, bankruptcy trusteeship, bankruptcy expertise in legal practice, notarization, and real estate registration.",
     "ogUrl": "https://redwan.sa/en/licenses",
     "ogType": "website",
     "ogImage": "",
@@ -1250,7 +1251,7 @@
   },
   "/en": {
     "title": "Al-Mushaiqeh Law Firm & Bankruptcy Management",
-    "description": "A Saudi law firm headquartered in Buraydah and serving clients nationwide in commercial matters, bankruptcy, notarization and real estate registration under four professional licenses.",
+    "description": "A Saudi law firm headquartered in Buraydah and serving clients nationwide in commercial matters, bankruptcy, notarization and real estate registration under five professional licenses.",
     "keywords": "Saudi law firm, Buraydah law firm, corporate legal services, bankruptcy management, notarization, real estate registration",
     "ogImage": "https://redwan.sa/images/hero-law-firm.webp",
     "ogUrl": "https://redwan.sa/en",
@@ -1287,7 +1288,8 @@
         "worksFor": { "@type": "LegalService", "name": "Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Management", "url": "https://redwan.sa/en" },
         "hasCredential": [
           { "@type": "EducationalOccupationalCredential", "credentialCategory": "Law Practice License", "identifier": "26/129", "recognizedBy": { "@type": "GovernmentOrganization", "name": "Saudi Ministry of Justice" } },
-          { "@type": "EducationalOccupationalCredential", "credentialCategory": "Bankruptcy Trustee License", "identifier": "142147", "recognizedBy": { "@type": "GovernmentOrganization", "name": "Saudi Bankruptcy Commission" } }
+          { "@type": "EducationalOccupationalCredential", "credentialCategory": "Bankruptcy Trustee License", "identifier": "142147", "recognizedBy": { "@type": "GovernmentOrganization", "name": "Saudi Bankruptcy Commission" } },
+          { "@type": "EducationalOccupationalCredential", "credentialCategory": "Bankruptcy Expert License — Legal Practice", "identifier": "247007", "recognizedBy": { "@type": "GovernmentOrganization", "name": "Saudi Bankruptcy Commission" } }
         ]
       }
     ]
@@ -1647,7 +1649,7 @@
     "canonical": "https://redwan.sa/en/locations/jeddah"
   },
   "/locations/buraydah": {
-    "title": "محامي في بريدة | 4 تراخيص قانونية - المشيقح",
+    "title": "محامي في بريدة | 5 تراخيص قانونية - المشيقح",
     "description": "مكتب المشيقح للمحاماة في بريدة، المقر الرئيسي. محاماة وأمانة إفلاس وتوثيق وتسجيل عيني، وخدمات للأفراد والشركات في القصيم. اتصل 0505149800.",
     "keywords": "محامي بريدة, محامي في بريدة, استشارات قانونية بريدة, مكتب محاماة منطقة القصيم",
     "ogTitle": "محامي في بريدة",

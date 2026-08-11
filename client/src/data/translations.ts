@@ -20,7 +20,7 @@ export const translations = {
       title1: "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
       title2: "للمحاماة",
       title3: "وإدارة إجراءات الإفلاس",
-      subtitle: "شركة محاماة سعودية بأربعة تراخيص نظامية، مقرها الرئيسي في بريدة وتقدم خدماتها للشركات والعملاء في جميع مناطق المملكة.",
+      subtitle: "شركة محاماة سعودية بخمسة تراخيص نظامية، مقرها الرئيسي في بريدة وتقدم خدماتها للشركات والعملاء في جميع مناطق المملكة.",
       exploreServices: "خدمات محامي الإفلاس",
       getConsultation: "احصل على استشارة قانونية",
       licenses: "تراخيص نظامية",
@@ -64,6 +64,7 @@ export const translations = {
         { name: "التسجيل العيني", number: "#2223002594", issuer: "الهيئة العامة للعقار" },
         { name: "التوثيق", number: "#45/57029", issuer: "وزارة العدل" },
         { name: "أمناء الإفلاس", number: "#142147", issuer: "لجنة الإفلاس" },
+        { name: "خبير إفلاس في مجال المحاماة", number: "#247007", issuer: "لجنة الإفلاس" },
       ],
     },
     // Bankruptcy Track Record
@@ -167,7 +168,7 @@ export const translations = {
       title1: "Abdulrahman Redwan Al-Mushaiqeh",
       title2: "Law Firm",
       title3: "& Bankruptcy Management",
-      subtitle: "A Saudi law firm holding four professional licenses, headquartered in Buraydah and serving companies and clients across the Kingdom.",
+      subtitle: "A Saudi law firm holding five professional licenses, headquartered in Buraydah and serving companies and clients across the Kingdom.",
       exploreServices: "Bankruptcy Legal Services",
       getConsultation: "Get a Legal Consultation",
       licenses: "Licensed Credentials",
@@ -211,6 +212,7 @@ export const translations = {
         { name: "Real Estate Registration", number: "#2223002594", issuer: "General Authority for Real Estate" },
         { name: "Notarization", number: "#45/57029", issuer: "Ministry of Justice" },
         { name: "Bankruptcy Trustees", number: "#142147", issuer: "Bankruptcy Commission" },
+        { name: "Bankruptcy Expert — Legal Practice", number: "#247007", issuer: "Bankruptcy Commission" },
       ],
     },
     // Bankruptcy Track Record

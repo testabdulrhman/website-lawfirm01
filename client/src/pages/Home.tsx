@@ -8,6 +8,7 @@ import { useSEO } from "@/hooks/useSEO";
 import { trackBookConsultation, trackPhoneClick } from "@/lib/analytics";
 import { localePath } from "@/lib/localePath";
 import GoogleReviews from "@/components/GoogleReviews";
+import ClientsSection from "@/components/ClientsSection";
 
 function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
   const [displayCount, setDisplayCount] = useState(end);
@@ -55,8 +56,8 @@ export default function Home() {
       ? 'شركة المشيقح للمحاماة وإدارة إجراءات الإفلاس'
       : 'Al-Mushaiqeh Law Firm & Bankruptcy Management',
     description: lang === 'ar'
-      ? 'شركة محاماة سعودية مقرها بريدة وتخدم جميع مناطق المملكة في القضايا التجارية والإفلاس والتوثيق والتسجيل العيني بأربعة تراخيص نظامية.'
-      : 'A Saudi law firm headquartered in Buraydah and serving clients nationwide in commercial matters, bankruptcy, notarization and real estate registration under four professional licenses.',
+      ? 'شركة محاماة سعودية مقرها بريدة وتخدم جميع مناطق المملكة في القضايا التجارية والإفلاس والتوثيق والتسجيل العيني بخمسة تراخيص نظامية.'
+      : 'A Saudi law firm headquartered in Buraydah and serving clients nationwide in commercial matters, bankruptcy, notarization and real estate registration under five professional licenses.',
     keywords: lang === 'ar'
       ? 'شركة محاماة سعودية، مكتب محاماة بريدة، خدمات قانونية للشركات، إدارة إجراءات الإفلاس، التوثيق، التسجيل العيني'
       : 'Saudi law firm, Buraydah law firm, corporate legal services, bankruptcy management, notarization, real estate registration',
@@ -167,7 +168,7 @@ export default function Home() {
             {/* Stats with stagger */}
             <div className="grid grid-cols-3 gap-4 md:gap-8 mt-12 md:mt-16 pt-6 md:pt-8 border-t border-white/10">
               {[
-                { end: 4, suffix: "", label: t.hero.licenses },
+                { end: 5, suffix: "", label: t.hero.licenses },
                 { end: 7, suffix: "+", label: t.hero.legalAreas },
                 { end: 12, suffix: "", label: t.hero.specializedServices },
               ].map((stat, idx) => (
@@ -239,7 +240,7 @@ export default function Home() {
                     <Scale size={18} className="text-[var(--color-gold)]" />
                   </div>
                   <div>
-                    <span className="font-display text-lg font-bold text-[var(--color-navy)] block">4</span>
+                    <span className="font-display text-lg font-bold text-[var(--color-navy)] block">5</span>
                     <span className="font-body text-[11px] text-[var(--color-navy)]/50">{t.hero.licenses}</span>
                   </div>
                 </div>
@@ -431,16 +432,16 @@ export default function Home() {
       {/* Licenses Brief with stagger */}
       <section className="py-12 md:py-20 bg-white">
         <div className="container mx-auto px-5 md:px-4 lg:px-8">
-          <div ref={licensesRef} className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+          <div ref={licensesRef} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-6">
             {t.licenses.items.map((lic, idx) => (
               <div
                 key={lic.number}
                 className="flex items-center gap-3 md:gap-4 p-3 md:p-5 border border-[var(--color-border)] hover:border-[var(--color-gold)]/40 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 cursor-default"
                 style={getStaggerStyle(licensesVisible, idx, 80)}
               >
-                {[Landmark, Building, FileCheck, Scale][idx] && (
+                {[Landmark, Building, FileCheck, Scale, Award][idx] && (
                   (() => {
-                    const Icon = [Landmark, Building, FileCheck, Scale][idx];
+                    const Icon = [Landmark, Building, FileCheck, Scale, Award][idx];
                     return <Icon size={18} className="text-[var(--color-gold)] flex-shrink-0" />;
                   })()
                 )}
@@ -453,6 +454,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ClientsSection />
 
       {/* Google Reviews — trust proof */}
       <GoogleReviews />

@@ -13,6 +13,7 @@ interface LicenseItem {
   number: string;
   issuer: string;
   membership: string;
+  additionalInfo?: string;
   status: string;
   scope: string;
   description: string;
@@ -109,6 +110,33 @@ const licensesData: Record<string, LicenseItem[]> = {
         { q: "ما الفرق بين التوثيق لدى موثّق معتمد وكتابة العدل؟", a: "الموثّق المعتمد يقدم نفس خدمات كتابة العدل لكن بمرونة أكبر في المواعيد والمكان. الوثائق لها نفس الحجية القانونية." },
         { q: "هل التوثيق يتم إلكترونياً؟", a: "نعم، يتم التوثيق عبر منصة ناجز الإلكترونية مع إمكانية الحضور الشخصي عند الحاجة." },
         { q: "ما هي تكلفة التوثيق؟", a: "تختلف التكلفة حسب نوع المستند. تواصل معنا للحصول على تسعيرة دقيقة حسب احتياجك." },
+      ],
+    },
+    {
+      slug: "bankruptcy-expert",
+      icon: Award,
+      title: "خبير إفلاس في مجال المحاماة",
+      number: "247007",
+      issuer: "لجنة الإفلاس",
+      membership: "",
+      additionalInfo: "تاريخ الترخيص: 10 فبراير 2026 · تاريخ إصدار الوثيقة: 11 فبراير 2026",
+      status: "ساري",
+      scope: "أعمال الخبرة القانونية وفق نظام الإفلاس ولائحته التنفيذية",
+      description: "ترخيص خبير في مجال (المحاماة) صادر من لجنة الإفلاس، ويجيز لمرخّصه مزاولة أعمال الخبراء المنصوص عليها في نظام الإفلاس ولائحته التنفيذية.",
+      capabilities: [
+        "ممارسة أعمال الخبراء في نطاق نظام الإفلاس ولائحته التنفيذية",
+        "تقديم الخبرة القانونية في المسائل المرتبطة بإجراءات الإفلاس",
+        "دراسة المسائل النظامية التي تدخل في نطاق التكليف",
+        "إعداد الآراء والتقارير المهنية وفق نطاق المهمة",
+      ],
+      relatedServices: [
+        { title: "إدارة إجراءات الإفلاس", path: "/bankruptcy" },
+        { title: "خدمات محامي الإفلاس", path: "/services/bankruptcy" },
+      ],
+      faqs: [
+        { q: "ما الفرق بين خبير الإفلاس وأمين الإفلاس؟", a: "يقدّم الخبير رأياً فنياً أو مهنياً في حدود المهمة المسندة إليه، بينما يُعيَّن أمين الإفلاس لإدارة الإجراء بحياد وفق اختصاصاته النظامية." },
+        { q: "من الجهة التي أصدرت الترخيص؟", a: "صدر الترخيص من لجنة الإفلاس في المملكة العربية السعودية." },
+        { q: "كيف يمكن التحقق من الترخيص؟", a: "يمكن التحقق من بيانات الترخيص عبر رمز الاستجابة السريعة المطبوع على الوثيقة أو من خلال السجلات الرسمية للجنة الإفلاس." },
       ],
     },
     {
@@ -230,6 +258,33 @@ const licensesData: Record<string, LicenseItem[]> = {
       ],
     },
     {
+      slug: "bankruptcy-expert",
+      icon: Award,
+      title: "Bankruptcy Expert License — Legal Practice",
+      number: "247007",
+      issuer: "Saudi Bankruptcy Commission",
+      membership: "",
+      additionalInfo: "License date: 10 February 2026 · Document issue date: 11 February 2026",
+      status: "Active",
+      scope: "Legal expert work under the Bankruptcy Law and its Implementing Regulations",
+      description: "A license as an expert in the field of legal practice issued by the Saudi Bankruptcy Commission, authorizing the license holder to perform expert work provided for under the Bankruptcy Law and its Implementing Regulations.",
+      capabilities: [
+        "Performing expert work within the scope of the Bankruptcy Law and its Implementing Regulations",
+        "Providing legal expertise on matters related to bankruptcy proceedings",
+        "Reviewing legal issues within the scope of an assigned engagement",
+        "Preparing professional opinions and reports within the assigned mandate",
+      ],
+      relatedServices: [
+        { title: "Bankruptcy Proceedings", path: "/bankruptcy" },
+        { title: "Bankruptcy Legal Services", path: "/services/bankruptcy" },
+      ],
+      faqs: [
+        { q: "What is the difference between a bankruptcy expert and a bankruptcy trustee?", a: "An expert provides a technical or professional opinion within the assigned mandate, while a bankruptcy trustee is appointed to administer the proceeding impartially under the trustee's statutory powers." },
+        { q: "Which authority issued the license?", a: "The license was issued by the Saudi Bankruptcy Commission." },
+        { q: "How can the license be verified?", a: "The license details can be verified using the QR code printed on the certificate or through the official records of the Saudi Bankruptcy Commission." },
+      ],
+    },
+    {
       slug: "real-estate-registration",
       icon: Building,
       title: "Real Estate Registration License",
@@ -298,8 +353,8 @@ export default function Licenses() {
   useSEO({
     title: lang === 'ar' ? 'التراخيص والاعتمادات المهنية' : 'Professional Licenses & Accreditations',
     description: lang === 'ar'
-      ? 'شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس حاصلة على أربعة تراخيص نظامية: المحاماة، أمانة الإفلاس، التوثيق، والتسجيل العقاري.'
-      : 'Abdulrahman Redwan Al-Mushaiqi Law Firm holds four official licenses: Legal Practice, Bankruptcy Trustee, Notarization, and Real Estate Registration.',
+      ? 'شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس حاصلة على خمسة تراخيص نظامية: المحاماة، أمانة الإفلاس، خبرة الإفلاس في مجال المحاماة، التوثيق، والتسجيل العقاري.'
+      : 'The firm holds five official licenses: Legal Practice, Bankruptcy Trustee, Bankruptcy Expert in Legal Practice, Notarization, and Real Estate Registration.',
     canonical: '/licenses',
     schema: seoSchema,
   });
@@ -338,12 +393,12 @@ export default function Licenses() {
           </div>
           <p className="font-body text-base md:text-lg text-white/70 max-w-2xl">
             {lang === 'ar'
-              ? 'أربعة تراخيص نظامية صادرة من جهات حكومية رسمية تؤهل الشركة لتقديم خدمات المحاماة وأمانة الإفلاس والتوثيق والتسجيل العقاري.'
-              : 'Four official licenses issued by government authorities qualifying the firm to provide legal practice, bankruptcy trustee, notarization, and real estate registration services.'}
+              ? 'خمسة تراخيص نظامية صادرة من جهات حكومية رسمية تشمل المحاماة وأمانة الإفلاس وخبرة الإفلاس في مجال المحاماة والتوثيق والتسجيل العقاري.'
+              : 'Five official licenses issued by government authorities covering legal practice, bankruptcy trusteeship, bankruptcy expertise in legal practice, notarization, and real estate registration.'}
           </p>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-10">
             {licenses.map((license) => {
               const Icon = license.icon;
               return (
@@ -423,6 +478,15 @@ export default function Licenses() {
                       <Award className="w-4 h-4 text-[var(--color-gold)] flex-shrink-0" />
                       <span className="font-body text-sm text-[var(--color-navy)] font-medium">
                         {license.membership}
+                      </span>
+                    </div>
+                  )}
+
+                  {license.additionalInfo && (
+                    <div className="flex items-center gap-2 mb-8 px-4 py-3 bg-gray-50 border border-gray-100 rounded-sm">
+                      <Award className="w-4 h-4 text-[var(--color-gold)] flex-shrink-0" />
+                      <span className="font-body text-sm text-[var(--color-navy)] font-medium">
+                        {license.additionalInfo}
                       </span>
                     </div>
                   )}
