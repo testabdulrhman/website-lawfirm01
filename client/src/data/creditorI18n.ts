@@ -412,7 +412,7 @@ const AR: Strings = {
   errAccessSize: 'حجم المرفق يتجاوز خمسة ميجابايت.',
   errAccessRead: 'تعذّرت قراءة أحد المرفقات.',
   errNotRegistered:
-    'لا توجد مطالبة مسجّلة بهذه الوسيلة. إن كنت تنوب عن دائن فقدّم طلب ربط من الرابط أدناه.',
+    'لا توجد مطالبة مسجّلة برقم الهوية/السجل. إن كنت وكيلاً أو مفوَّضاً عن دائن، فسجّل الدخول برقم جوالك وقدّم طلب ربط مطالبة.',
   noClaimsTitle: 'لا توجد مطالبة بهذا الرقم',
   noClaimsBody:
     'تحقّقنا من الرقم، ولم نجد عليه مطالبة مسجّلة في أيٍّ من الإجراءات التي يديرها المكتب. فإن كنت تنوب عن دائن — وكيلاً أو وارثاً أو مفوَّضاً — فقدّم طلب ربط، يراجعه المكتب ثم يربط رقمك بمطالبته.',
@@ -587,7 +587,7 @@ const EN: Strings = {
   errAccessSize: 'The attachment exceeds 5 MB.',
   errAccessRead: 'One of the attachments could not be read.',
   errNotRegistered:
-    'No claim is registered with these details. If you act on behalf of a creditor, use the access request link below.',
+    'No claim is registered under this ID or commercial registration number. If you are an attorney or authorised representative of a creditor, sign in with your own mobile number and submit a claim access request.',
   noClaimsTitle: 'No claim on this number',
   noClaimsBody:
     'We verified your number and found no claim registered against it in any proceeding this office administers. If you act on behalf of a creditor — as attorney, heir or authorised representative — submit an access request. We will review it and link your number to their claim.',
@@ -761,7 +761,7 @@ const UR: Strings = {
   errAccessSize: 'منسلکہ 5 MB سے بڑا ہے۔',
   errAccessRead: 'ایک منسلکہ پڑھا نہیں جا سکا۔',
   errNotRegistered:
-    'ان تفصیلات کے ساتھ کوئی دعویٰ درج نہیں۔ اگر آپ کسی قرض خواہ کی جانب سے کام کر رہے ہیں تو نیچے دیا گیا لنک استعمال کریں۔',
+    'اس شناختی/تجارتی رجسٹریشن نمبر پر کوئی دعویٰ درج نہیں۔ اگر آپ کسی قرض خواہ کے وکیل یا مجاز نمائندہ ہیں، تو اپنے موبائل نمبر سے داخل ہوں اور دعوے سے منسلک ہونے کی درخواست دیں۔',
   noClaimsTitle: 'اس نمبر پر کوئی دعویٰ نہیں',
   noClaimsBody:
     'ہم نے آپ کے نمبر کی تصدیق کی، اور دفتر کے زیرِ انتظام کسی بھی کارروائی میں اس پر کوئی دعویٰ درج نہیں ملا۔ اگر آپ کسی قرض خواہ کی جانب سے کام کر رہے ہیں — وکیل، وارث یا مجاز نمائندہ — تو رسائی کی درخواست دیں۔ دفتر جائزہ لے کر آپ کا نمبر اُن کے دعوے سے منسلک کر دے گا۔',
