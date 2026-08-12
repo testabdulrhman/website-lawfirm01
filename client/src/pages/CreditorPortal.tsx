@@ -775,16 +775,6 @@ export default function CreditorPortal() {
                   </Button>
                 </div>
 
-                {/* لمن ينوب عن دائن وليس جواله مسجَّلاً في مطالبته */}
-                <button
-                  type="button"
-                  onClick={() => openAccess()}
-                  className="mt-5 flex w-full items-center justify-center gap-2 border-t border-[var(--color-navy)]/10 pt-4 font-heading text-xs text-[var(--color-navy)]/60 transition-colors hover:text-[var(--color-gold)]"
-                >
-                  <KeyRound className="w-3.5 h-3.5" />
-                  {t.accessLink}
-                </button>
-
                 <p className="font-body text-xs text-[var(--color-navy)]/40 mt-5 text-center leading-relaxed">
                   {t.sessionNote}
                 </p>
@@ -1193,19 +1183,11 @@ export default function CreditorPortal() {
                   </button>
                 </div>
 
-                {/* الردّ واحد للمسجَّل وغيره حمايةً للبيانات، فلا يعرف من لم
-                    يصله الرمز سببَ ذلك — وهذا يدلّه عليه */}
+                {/* الرمز يصل لكل رقم، فتأخّره سببه التسليم لا التسجيل.
+                    وطلب الربط لا يُعرض هنا — يجده بعد الدخول إن لم تكن له مطالبة */}
                 <p className="mt-4 border-t border-[var(--color-navy)]/10 pt-3 font-body text-[11px] leading-6 text-[var(--color-navy)]/50">
                   {t.otpNotArrived}
                 </p>
-                <button
-                  type="button"
-                  onClick={() => openAccess()}
-                  className="mt-2 flex items-center gap-1.5 font-heading text-[11px] text-[var(--color-gold)] transition-colors hover:underline"
-                >
-                  <KeyRound className="w-3 h-3" />
-                  {t.accessLink}
-                </button>
               </div>
             </div>
           </div>
