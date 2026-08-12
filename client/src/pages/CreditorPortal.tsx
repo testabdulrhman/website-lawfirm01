@@ -184,7 +184,7 @@ interface PortalData {
 }
 
 type Stage = "id" | "otp" | "select" | "portal" | "access" | "accessSent" | "noClaims";
-type Method = "phone" | "email";
+type Method = "id" | "phone" | "email";
 type CreditorOption = { id_number: string; creditor_name: string; claims: number };
 type Tab = "claims" | "tickets" | "vote" | "profile";
 
@@ -309,7 +309,9 @@ export default function CreditorPortal() {
 
   const [stage, setStage] = useState<Stage>("id");
   const [tab, setTab] = useState<Tab>("claims");
-  const [method, setMethod] = useState<Method>("phone");
+  const [method, setMethod] = useState<Method>("id");
+  const [idNum, setIdNum] = useState("");
+  const [sentTo, setSentTo] = useState<string[]>([]);
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [creditorOptions, setCreditorOptions] = useState<CreditorOption[]>([]);
@@ -367,7 +369,15 @@ export default function CreditorPortal() {
   }
 
   // ── 1) طلب رمز التحقق ──
+  /** ما يُرسل إلى الوظيفتين: مفتاحٌ واحد حسب الوسيلة المختارة */
+  function authBody(): Record<string, string> {
+    if (method === "id") return { id_number: idNum.trim() };
+    if (method === "email") return { email: email.trim() };
+    return { phone: phone.trim() };
+  }
+
   async function requestOtp(isResend = false) {
+    if (method === "id" && !idNum.trim()) { setError(t.errIdNum); return; }
     if (method === "phone" && !phone.trim()) { setError(t.errPhone); return; }
     if (method === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
       setError(t.errEmail);
@@ -380,9 +390,7 @@ export default function CreditorPortal() {
       const res = await fetch(`${FN}/request-otp`, {
         method: "POST",
         headers: HEADERS,
-        body: JSON.stringify(
-          method === "email" ? { email: email.trim() } : { phone: phone.trim() },
-        ),
+        body: JSON.stringify(authBody()),
       });
       const json = await res.json();
       if (!res.ok) {
@@ -394,6 +402,9 @@ export default function CreditorPortal() {
         );
       } else {
         setInfo(json.message ?? t.otpSent);
+        // مواضع الإرسال مقنَّعة: يعرف صاحبها أين يبحث
+        const d = json.destinations ?? {};
+        setSentTo([...(d.phones ?? []), ...(d.emails ?? [])]);
         setResendIn(60);
         if (!isResend) {
           setStage("otp");
@@ -494,11 +505,7 @@ export default function CreditorPortal() {
       const res = await fetch(`${FN}/verify-otp`, {
         method: "POST",
         headers: HEADERS,
-        body: JSON.stringify(
-          method === "email"
-            ? { email: email.trim(), otp: value }
-            : { phone: phone.trim(), otp: value },
-        ),
+        body: JSON.stringify({ ...authBody(), otp: value }),
       });
       const json = await res.json();
       if (!res.ok || !json.success) {
@@ -706,9 +713,9 @@ export default function CreditorPortal() {
                 {error && <ErrorNote msg={error} />}
 
                 <div className="space-y-4">
-                  {/* الجوال هو الأصل، والبريد بديل لمن لا جوال له في المطالبة */}
-                  <div className="grid grid-cols-2 gap-0 border border-[var(--color-border)]">
-                    {(["phone", "email"] as Method[]).map((m) => (
+                  {/* الهوية أضمن: يذكرها من نسي أيّ رقم سجّله في مطالبته */}
+                  <div className="grid grid-cols-3 gap-0 border border-[var(--color-border)]">
+                    {(["id", "phone", "email"] as Method[]).map((m) => (
                       <button
                         key={m}
                         type="button"
@@ -721,12 +728,31 @@ export default function CreditorPortal() {
                             : "bg-white text-[var(--color-navy)]/60 hover:bg-[var(--color-cream)]")
                         }
                       >
-                        {m === "phone" ? t.methodPhone : t.methodEmail}
+                        {m === "id" ? t.methodId : m === "phone" ? t.methodPhone : t.methodEmail}
                       </button>
                     ))}
                   </div>
 
-                  {method === "phone" ? (
+                  {method === "id" ? (
+                    <div>
+                      <Label htmlFor="cp-idnum" className="font-body text-sm text-[var(--color-navy)]/70">
+                        {t.idNumLabel}
+                      </Label>
+                      <Input
+                        id="cp-idnum"
+                        name="idNumber"
+                        value={idNum}
+                        onChange={(e) => setIdNum(e.target.value.trim())}
+                        placeholder={t.idNumLabel}
+                        inputMode="numeric"
+                        dir="ltr"
+                        className="mt-1.5"
+                      />
+                      <p className="font-body text-xs text-[var(--color-navy)]/45 mt-1.5">
+                        {t.idNumHint}
+                      </p>
+                    </div>
+                  ) : method === "phone" ? (
                     <div>
                       <Label htmlFor="cp-phone" className="font-body text-sm text-[var(--color-navy)]/70">
                         {t.phoneLabel}
@@ -763,7 +789,9 @@ export default function CreditorPortal() {
                     </div>
                   )}
 
-                  <p className="font-body text-xs text-[var(--color-navy)]/45">{t.methodHint}</p>
+                  {method !== "id" && (
+                    <p className="font-body text-xs text-[var(--color-navy)]/45">{t.methodHint}</p>
+                  )}
 
                   <Button
                     onClick={() => void requestOtp()}
@@ -1134,6 +1162,17 @@ export default function CreditorPortal() {
                 {info && (
                   <div className="mb-4 p-3 bg-[var(--color-cream)] border border-[var(--color-border)]">
                     <p className="font-body text-xs text-[var(--color-navy)]/60">{info}</p>
+                    {sentTo.length > 0 && (
+                      <p className="font-body text-xs text-[var(--color-navy)]/80 mt-1.5">
+                        {t.sentTo}{" "}
+                        {sentTo.map((d, i) => (
+                          <span key={d}>
+                            {i > 0 && " · "}
+                            <span dir="ltr" className="font-heading">{d}</span>
+                          </span>
+                        ))}
+                      </p>
+                    )}
                   </div>
                 )}
 

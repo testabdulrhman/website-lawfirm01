@@ -164,6 +164,11 @@ export interface Strings {
   emailLabel: string;
   methodPhone: string;
   methodEmail: string;
+  methodId: string;
+  idNumLabel: string;
+  idNumHint: string;
+  sentTo: string;
+  errIdNum: string;
   methodHint: string;
   selectTitle: string;
   selectIntro: string;
@@ -328,11 +333,16 @@ const AR: Strings = {
   eServices: 'الخدمات الإلكترونية للدائنين',
   bankruptcyProc: 'إجراءات الإفلاس',
   loginTitle: 'الدخول إلى بوابة الدائن',
-  loginIntro: 'تابع مطالباتك وتذاكرك وبياناتك في إجراءات الإفلاس. أدخل رقم الجوال أو البريد المسجّل في مطالبتك وسيصلك رمز تحقق.',
+  loginIntro: 'تابع مطالباتك وتذاكرك وبياناتك في إجراءات الإفلاس. أدخل رقم هويتك أو سجلك التجاري — أو الجوال أو البريد المسجّل في مطالبتك — وسيصلك رمز تحقق.',
   idLabel: 'رقم الهوية / السجل',
   phoneLabel: 'رقم الجوال المسجّل في المطالبة',
   emailLabel: 'البريد الإلكتروني المسجّل في المطالبة',
   methodPhone: 'رقم الجوال',
+  methodId: 'رقم الهوية',
+  idNumLabel: 'رقم الهوية أو السجل التجاري',
+  idNumHint: 'يصلك الرمز على الجوال والبريد المسجَّلين في مطالبتك',
+  sentTo: 'أرسلنا الرمز إلى',
+  errIdNum: 'أدخل رقم الهوية أو السجل التجاري.',
   methodEmail: 'البريد الإلكتروني',
   methodHint: 'يصلك رمز التحقق على الوسيلة التي تختارها.',
   selectTitle: 'اختر الدائن',
@@ -497,11 +507,16 @@ const EN: Strings = {
   eServices: 'Creditor e-Services',
   bankruptcyProc: 'Bankruptcy proceedings',
   loginTitle: 'Sign in to the Creditor Portal',
-  loginIntro: 'Track your claims, tickets and details in the bankruptcy proceedings. Enter the mobile number or email registered with your claim and a verification code will be sent to you.',
+  loginIntro: 'Track your claims, tickets and details in the bankruptcy proceedings. Enter your ID or commercial registration number — or the mobile or email registered with your claim — and a verification code will be sent to you.',
   idLabel: 'ID / Commercial registration number',
   phoneLabel: 'Mobile number registered with the claim',
   emailLabel: 'Email registered with the claim',
   methodPhone: 'Mobile number',
+  methodId: 'ID number',
+  idNumLabel: 'ID or commercial registration number',
+  idNumHint: 'The code goes to the mobile and email registered on your claim',
+  sentTo: 'We sent the code to',
+  errIdNum: 'Enter your ID or commercial registration number.',
   methodEmail: 'Email',
   methodHint: 'The verification code is sent to the method you choose.',
   selectTitle: 'Select creditor',
@@ -667,11 +682,16 @@ const UR: Strings = {
   eServices: 'قرض خواہان کے لیے الیکٹرانک خدمات',
   bankruptcyProc: 'دیوالیہ کارروائیاں',
   loginTitle: 'قرض خواہ پورٹل میں داخل ہوں',
-  loginIntro: 'دیوالیہ کارروائیوں میں اپنے دعوے، ٹکٹس اور تفصیلات دیکھیں۔ اپنے دعوے میں درج موبائل نمبر یا ای میل درج کریں، تصدیقی کوڈ آپ کو بھیجا جائے گا۔',
+  loginIntro: 'دیوالیہ کارروائیوں میں اپنے دعوے، ٹکٹس اور تفصیلات دیکھیں۔ اپنا شناختی یا تجارتی رجسٹریشن نمبر — یا دعوے میں درج موبائل یا ای میل — درج کریں، تصدیقی کوڈ بھیجا جائے گا۔',
   idLabel: 'شناختی نمبر / تجارتی رجسٹریشن',
   phoneLabel: 'دعوے میں درج موبائل نمبر',
   emailLabel: 'دعوے میں درج ای میل',
   methodPhone: 'موبائل نمبر',
+  methodId: 'شناختی نمبر',
+  idNumLabel: 'شناختی یا تجارتی رجسٹریشن نمبر',
+  idNumHint: 'کوڈ آپ کے دعوے میں درج موبائل اور ای میل پر بھیجا جائے گا',
+  sentTo: 'ہم نے کوڈ بھیجا:',
+  errIdNum: 'اپنا شناختی یا تجارتی رجسٹریشن نمبر درج کریں۔',
   methodEmail: 'ای میل',
   methodHint: 'تصدیقی کوڈ آپ کے منتخب کردہ ذریعے پر بھیجا جائے گا۔',
   selectTitle: 'قرض خواہ منتخب کریں',

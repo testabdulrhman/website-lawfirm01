@@ -145,7 +145,7 @@ export function trackPremiumResidencyLead(track: string) {
 }
 
 /** نجاح دخول الدائن إلى البوابة */
-export function trackCreditorLogin(method: "phone" | "email") {
+export function trackCreditorLogin(method: "id" | "phone" | "email") {
   trackEvent("creditor_login", {
     event_category: "creditor_portal",
     login_method: method,
