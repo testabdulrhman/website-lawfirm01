@@ -131,7 +131,7 @@ export default function Privacy() {
     sections: [
       {
         title: "Introduction",
-        content: `Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Administration ("the Firm") is committed to protecting the privacy of its website users and clients. This policy explains how we collect, use, and protect the personal information you provide to us.`,
+        content: `Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management ("the Firm") is committed to protecting the privacy of its website users and clients. This policy explains how we collect, use, and protect the personal information you provide to us.`,
         extra: "By using our website or services, you agree to the practices described in this policy. We reserve the right to update this policy from time to time.",
       },
       {
@@ -229,7 +229,7 @@ export default function Privacy() {
       },
     ],
     lastUpdated: "Last updated: August 2026",
-    companyName: "Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Administration",
+    companyName: "Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management",
     email: "Email:",
     phone: "Phone:",
     address: "Address: King Abdullah Road, Al-Ufuq District, Buraydah 52387",

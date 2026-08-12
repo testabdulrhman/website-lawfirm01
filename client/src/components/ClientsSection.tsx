@@ -61,7 +61,7 @@ export default function ClientsSection() {
           <p className="font-body text-sm md:text-base text-[var(--color-navy)]/60 leading-relaxed">
             {isArabic
               ? "جهات من قطاعات متعددة وثقت بخدمات شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس."
-              : "Organizations across multiple sectors have trusted the services of Abdulrahman Bin Redwan Al-Mushaiqeh Law Firm and Bankruptcy Proceedings Management Company."}
+              : "Organizations across multiple sectors have trusted the services of Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management."}
           </p>
         </div>
 

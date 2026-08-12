@@ -103,7 +103,7 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
     pageSubtitle: "Our team includes qualified lawyers and legal consultants dedicated to delivering the best legal services with accumulated experience and diverse specializations.",
     members: [
       {
-        name: "Abdulrahman Redwan Al-Mushaiqeh",
+        name: "Abdulrahman bin Redwan Al-Moshiqeh",
         role: "Attorney",
         title: "Founder & Managing Director",
         initials: "A",
@@ -153,7 +153,7 @@ export default function Team() {
     title: lang === 'ar' ? 'فريقنا - المحامون' : 'Our Team - Attorneys',
     description: lang === 'ar'
       ? 'تعرف على فريق المحامين في شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس. فريق مؤهل بخبرات متنوعة في القضايا التجارية والجنائية والإفلاس.'
-      : 'Meet the attorneys at Abdulrahman Redwan Al-Mushaiqi Law Firm. A qualified team with diverse expertise in commercial, criminal, and bankruptcy cases.',
+      : 'Meet the attorneys at Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management. A qualified team with diverse expertise in commercial, criminal, and bankruptcy cases.',
     canonical: '/team',
     schema: seoSchema,
   });

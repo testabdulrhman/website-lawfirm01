@@ -170,7 +170,7 @@ export default function Footer() {
               dir="ltr"
               className="font-body text-xs text-white/60 whitespace-nowrap"
             >
-              ABDULRAHMAN REDWAN ALMOSHIQEH Company For Legal
+              Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management
             </p>
             <div className="flex items-center gap-4 md:gap-6 flex-wrap justify-center lg:justify-end">
               <Link href={lp("/privacy")} className="inline-flex min-h-8 items-center font-body text-xs text-white/60 hover:text-[var(--color-gold)] transition-colors">

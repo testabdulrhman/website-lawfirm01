@@ -18,7 +18,7 @@ export default function Contact() {
     title: lang === 'ar' ? 'تواصل معنا - احجز استشارة' : 'Contact Us - Book a Consultation',
     description: lang === 'ar'
       ? 'تواصل مع شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس. احجز استشارة قانونية الآن. هاتف: 0505149800 | بريدة، القصيم.'
-      : 'Contact Abdulrahman Redwan Al-Mushaiqi Law Firm. Book a legal consultation now. Phone: 0505149800 | Buraydah, Qassim.',
+      : 'Contact Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management. Book a legal consultation now. Phone: 0505149800 | Buraydah, Qassim.',
     keywords: lang === 'ar'
       ? 'تواصل معنا، استشارة قانونية، محامي بريدة، حجز موعد، رقم محامي'
       : 'contact us, legal consultation, lawyer Buraydah, book appointment, lawyer phone number',
@@ -366,7 +366,7 @@ export default function Contact() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title={lang === "ar" ? "موقع شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس على الخريطة" : "Redwan Law Firm Location"}
+              title={lang === "ar" ? "موقع شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس على الخريطة" : "Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management Location"}
             />
           </div>
           <p className="font-body text-xs text-[var(--color-navy)]/50 mt-3">

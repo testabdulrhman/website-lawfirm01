@@ -182,7 +182,7 @@ export default function Sitemap() {
     description:
       lang === "ar"
         ? "خريطة موقع شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس - جميع الصفحات والخدمات"
-        : "Sitemap of Redwan Law Firm - All pages and services",
+        : "Sitemap of Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management - All pages and services",
     canonical: "/sitemap",
   });
 

@@ -74,7 +74,7 @@ export default function Terms() {
     address: "العنوان: طريق الملك عبدالله، حي الأفق، بريدة 52387",
   } : {
     seoTitle: "Terms & Conditions",
-    seoDesc: "Terms and conditions for using Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Administration website",
+    seoDesc: "Terms and conditions for using Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management website",
     seoKeywords: ["terms and conditions", "terms of use", "Redwan Law"],
     home: "Home",
     pageTitle: "Terms & Conditions",
@@ -82,7 +82,7 @@ export default function Terms() {
     sections: [
       {
         title: "Introduction",
-        content: "Welcome to the website of Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Administration. By using this website, you agree to be bound by these terms and conditions. If you do not agree to any of these terms, please do not use the website.",
+        content: "Welcome to the website of Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management. By using this website, you agree to be bound by these terms and conditions. If you do not agree to any of these terms, please do not use the website.",
       },
       {
         title: "Nature of Content",
@@ -101,7 +101,7 @@ export default function Terms() {
       },
       {
         title: "Intellectual Property",
-        content: "All content published on this website, including text, articles, logos, and designs, is the intellectual property of Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Administration. Copying or republishing any content without prior written permission is prohibited.",
+        content: "All content published on this website, including text, articles, logos, and designs, is the intellectual property of Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management. Copying or republishing any content without prior written permission is prohibited.",
       },
       {
         title: "Limitation of Liability",
@@ -131,7 +131,7 @@ export default function Terms() {
       },
     ],
     lastUpdated: "Last updated: May 2025",
-    companyName: "Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Administration",
+    companyName: "Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management",
     email: "Email:",
     phone: "Phone:",
     address: "Address: King Abdullah Road, Al-Ufuq District, Buraydah 52387",

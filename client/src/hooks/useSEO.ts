@@ -14,7 +14,7 @@ interface SEOProps {
 }
 
 const SITE_NAME_AR = "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس";
-const SITE_NAME_EN = "Redwan Law Firm";
+const SITE_NAME_EN = "Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management";
 const SITE_NAME_UR = "المشیقح لا فرم";
 const SITE_NAME = "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس";
 const BASE_URL = "https://redwan.sa";
@@ -192,7 +192,7 @@ export const schemas = {
     "@context": "https://schema.org",
     "@type": "LegalService",
     "name": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "alternateName": "Abdulrahman Redwan Al-Mushaiqi Law Firm",
+    "alternateName": "Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management",
     "url": "https://redwan.sa",
     "logo": `${BASE_URL}/images/logo-dark.webp`,
     "image": `${BASE_URL}/images/hero-law-firm.webp`,
@@ -281,7 +281,7 @@ export const schemas = {
     "@context": "https://schema.org",
     "@type": "Attorney",
     "name": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "alternateName": "Abdulrahman Redwan Al-Mushaiqi Law Firm & Bankruptcy Management",
+    "alternateName": "Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management",
     "url": "https://redwan.sa",
     "logo": `${BASE_URL}/images/logo-dark.webp`,
     "image": `${BASE_URL}/images/hero-law-firm.webp`,

@@ -36,7 +36,7 @@ export default function About() {
     title: lang === 'ar' ? 'من نحن - نبذة عن الشركة' : 'About Us - Our Story',
     description: lang === 'ar'
       ? 'تعرف على شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس - خبرة عائلية راسخة تتجاوز 20 عاماً في القانون. رؤيتنا، قيمنا، وتراخيصنا النظامية.'
-      : 'Learn about Abdulrahman Redwan Al-Mushaiqi Law Firm - A family legacy of over 20 years in law. Our vision, values, and official licenses.',
+      : 'Learn about Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management - A family legacy of over 20 years in law. Our vision, values, and official licenses.',
     keywords: lang === 'ar'
       ? 'من نحن، شركة محاماة بريدة، تراخيص محاماة، خبرة قانونية، القصيم'
       : 'about us, law firm Buraydah, legal licenses, legal expertise, Qassim',
@@ -113,7 +113,7 @@ export default function About() {
                   </>
                 ) : (
                   <>
-                    <p>Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Management is a specialized legal firm providing legal representation and consultation services to clients across all legal fields.</p>
+                    <p>Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management is a specialized legal firm providing legal representation and consultation services to clients across all legal fields.</p>
                     <p>Our legal journey did not begin today — it is an extension of a family legacy spanning over 20 years in litigation and legal practice, refined across generations and culminating in the establishment of our firm to deliver legal services with exceptional depth of knowledge.</p>
                     <p>Headquartered in Buraydah, Al-Qassim Region, we serve clients throughout the Kingdom of Saudi Arabia through a specialized and qualified team.</p>
                   </>

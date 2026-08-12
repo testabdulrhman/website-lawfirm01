@@ -23,7 +23,7 @@ export default function Blog() {
       "@type": "Organization",
       "name": lang === "ar"
         ? "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
-        : "Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Management",
+        : "Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management",
       "url": "https://redwan.sa"
     },
     "blogPost": blogArticles.map(article => ({

@@ -165,9 +165,9 @@ export const translations = {
     // Hero
     hero: {
       location: "Head Office: Buraydah | Serving Clients Across Saudi Arabia",
-      title1: "Abdulrahman Redwan Al-Mushaiqeh",
+      title1: "Abdulrahman bin Redwan Al-Moshiqeh",
       title2: "Law Firm",
-      title3: "& Bankruptcy Management",
+      title3: "and Bankruptcy Procedures Management",
       subtitle: "A Saudi law firm holding five professional licenses, headquartered in Buraydah and serving companies and clients across the Kingdom.",
       exploreServices: "Bankruptcy Legal Services",
       getConsultation: "Get a Legal Consultation",
@@ -179,8 +179,8 @@ export const translations = {
     // About section (home)
     aboutSection: {
       label: "About Us",
-      title1: "Abdulrahman Redwan Al-Mushaiqeh",
-      title2: "Law Firm & Bankruptcy Management",
+      title1: "Abdulrahman bin Redwan Al-Moshiqeh",
+      title2: "Law Firm and Bankruptcy Procedures Management",
       subtitle: "A Deep-Rooted Family Legacy in Law",
       description: "Our legal journey builds on more than 20 years of family experience in litigation and legal practice. From our head office in Buraydah, we serve companies and clients across Saudi Arabia in bankruptcy, commercial disputes, real estate matters and arbitration.",
       learnMore: "Learn More About Us",
@@ -241,7 +241,7 @@ export const translations = {
       address: "King Abdullah Road, Al-Ufuq District",
       city: "Buraydah 52387, 2nd Floor, Office No. 1",
       workHours: "Sunday - Thursday: 8:00 AM - 4:00 PM",
-      copyright: "All rights reserved to Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Management",
+      copyright: "All rights reserved to Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management",
       privacy: "Privacy Policy",
       terms: "Terms & Conditions",
       whatsapp: "Chat on WhatsApp",
@@ -271,7 +271,7 @@ export const translations = {
     // About page
     about: {
       title: "About Us",
-      subtitle: "Learn about Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Management",
+      subtitle: "Learn about Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management",
       familyExperience: "A Deep-Rooted Family Legacy in Law",
       familyDescription: "Our legal journey did not begin today — it is an extension of a family legacy spanning over 20 years in litigation and legal practice, refined across generations and culminating in the establishment of our firm to deliver legal services with exceptional depth of knowledge.",
       values: "Our Values",
@@ -285,7 +285,7 @@ export const translations = {
       teamTitle: "Specialized Legal Professionals",
       teamSubtitle: "Our team includes qualified lawyers and legal consultants dedicated to delivering the best legal services.",
       teamMembers: [
-        { name: "Abdulrahman Redwan Al-Mushaiqeh", role: "Attorney" },
+        { name: "Abdulrahman bin Redwan Al-Moshiqeh", role: "Attorney" },
         { name: "Bayan Ibrahim Al-Salloom", role: "Attorney" },
         { name: "Yusra Redwan Al-Mushaiqeh", role: "Attorney" },
         { name: "Mohammed Omar Al-Jundi", role: "Trainee Attorney" },

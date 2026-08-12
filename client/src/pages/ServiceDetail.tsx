@@ -482,7 +482,7 @@ export default function ServiceDetail() {
   const pageTitle = params.slug === 'bankruptcy'
     ? (lang === 'ar'
         ? 'محامي إفلاس للشركات والدائنين في السعودية'
-        : 'Saudi Bankruptcy Lawyer for Companies and Creditors | Al-Mushaiqi')
+        : 'Saudi Bankruptcy Lawyer for Companies and Creditors | Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management')
     : service
       ? service[langKey(lang)].title
       : (lang === 'ar' ? 'خدمة غير موجودة' : 'Service Not Found');

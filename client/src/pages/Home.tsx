@@ -79,7 +79,7 @@ export default function Home() {
     fullTitle: true,
     title: lang === 'ar'
       ? 'شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس'
-      : 'Al-Mushaiqeh Law Firm & Bankruptcy Management',
+      : 'Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management',
     description: lang === 'ar'
       ? 'شركة محاماة سعودية مقرها بريدة وتخدم جميع مناطق المملكة في القضايا التجارية والإفلاس والتوثيق والتسجيل العيني بخمسة تراخيص نظامية.'
       : 'A Saudi law firm serving clients nationwide in commercial disputes, bankruptcy, notarization and real estate registration under five professional licenses.',
@@ -293,7 +293,7 @@ export default function Home() {
                   src="/images/office-interior-768.webp"
                   srcSet="/images/office-interior-768.webp 768w, /images/office-interior-1280.webp 1280w, /images/office-interior.webp 2048w"
                   sizes="(max-width: 1023px) 100vw, 50vw"
-                  alt={lang === "ar" ? "مكتب شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس" : "Redwan Law Firm Office"}
+                  alt={lang === "ar" ? "مكتب شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس" : "Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management Office"}
                   className="w-full h-[280px] md:h-[380px] object-cover"
                   loading="lazy"
                   width={768}
