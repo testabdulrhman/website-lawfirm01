@@ -33,9 +33,7 @@ const Careers = lazy(() => import("@/pages/Careers"));
 const CareersComplete = lazy(() => import("@/pages/CareersComplete"));
 const BankruptcyComplete = lazy(() => import("@/pages/BankruptcyComplete"));
 const BankruptcyCase = lazy(() => import("@/pages/BankruptcyCase"));
-const BankruptcyTrack = lazy(() => import("@/pages/BankruptcyTrack"));
 const CreditorPortal = lazy(() => import("@/pages/CreditorPortal"));
-const BankruptcyTicket = lazy(() => import("@/pages/BankruptcyTicket"));
 const Bankruptcy = lazy(() => import("@/pages/Bankruptcy"));
 const BankruptcyProcedures = lazy(() => import("@/pages/BankruptcyProcedures"));
 const BankruptcyProcedure = lazy(() => import("@/pages/BankruptcyProcedure"));
@@ -98,8 +96,6 @@ export async function loadInitialPage(pathname: string): Promise<InitialPage | u
   }
   else if (localizedPath === "/bankruptcy/claims") Component = (await import("@/pages/Claims")).default;
   else if (localizedPath === "/bankruptcy/Hassan-Misfer-Al-Zahrani") Component = (await import("@/pages/HassanMisferAlZahrani")).default;
-  else if (localizedPath === "/bankruptcy/track") Component = (await import("@/pages/BankruptcyTrack")).default;
-  else if (localizedPath === "/bankruptcy/ticket") Component = (await import("@/pages/BankruptcyTicket")).default;
   else if (localizedPath === "/bankruptcy/complete") Component = (await import("@/pages/BankruptcyComplete")).default;
   else if (localizedPath === "/bankruptcy/creditor") Component = (await import("@/pages/CreditorPortal")).default;
   else if (localizedPath === "/bankruptcy/reports/2026-07") Component = (await import("@/pages/BankruptcyReportJuly2026")).default;
@@ -194,8 +190,6 @@ function Router({ initialPage }: { initialPage?: InitialPage }) {
               <Route path={"/bankruptcy/reports/:month"} component={BankruptcyMonthlyArchiveReport} />
               <Route path={"/bankruptcy/reports"} component={BankruptcyReports} />
               <Route path={"/bankruptcy/Hassan-Misfer-Al-Zahrani"} component={HassanMisferAlZahrani} />
-              <Route path={"/bankruptcy/track"} component={BankruptcyTrack} />
-              <Route path={"/bankruptcy/ticket"} component={BankruptcyTicket} />
               <Route path={"/bankruptcy/complete"} component={BankruptcyComplete} />
               {/* بوابة الدائن الموحّدة — ثلاث لغات.
                   يجب أن تسبق /bankruptcy/:slug و /en/bankruptcy/:slug،

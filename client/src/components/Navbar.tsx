@@ -41,6 +41,8 @@ export default function Navbar() {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
   const aboutTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileCloseButtonRef = useRef<HTMLButtonElement>(null);
   const [location] = useLocation();
   const { t, lang, toggleLang, isRTL } = useTranslation();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -91,7 +93,25 @@ export default function Navbar() {
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isMobileOpen ? "hidden" : "";
+    if (isMobileOpen) {
+      window.requestAnimationFrame(() => mobileCloseButtonRef.current?.focus());
+    }
     return () => { document.body.style.overflow = ""; };
+  }, [isMobileOpen]);
+
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      const mobileWasOpen = isMobileOpen;
+      setIsMobileOpen(false);
+      setIsMegaOpen(false);
+      setIsAboutOpen(false);
+      setIsMobileServicesOpen(false);
+      setIsMobileAboutOpen(false);
+      if (mobileWasOpen) mobileMenuButtonRef.current?.focus();
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, [isMobileOpen]);
 
   const isHome = location === "/" || location === "/en";
@@ -110,6 +130,7 @@ export default function Navbar() {
 
   return (
     <nav
+      aria-label={lang === "ar" ? "التنقل الرئيسي" : "Main navigation"}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         showTransparent
           ? "bg-gradient-to-b from-[oklch(0.1_0.04_250/0.6)] to-transparent"
@@ -146,6 +167,8 @@ export default function Navbar() {
                   href={link.href}
                   onFocus={openMega}
                   aria-expanded={isMegaOpen}
+                  aria-haspopup="true"
+                  aria-controls="desktop-services-menu"
                   className={`flex items-center gap-1 text-sm font-heading font-medium transition-colors duration-200 relative after:content-[''] after:absolute after:bottom-[-4px] ${isRTL ? "after:right-0" : "after:left-0"} after:h-[2px] after:bg-[var(--color-gold)] after:transition-all after:duration-300 ${
                     servicesActive || isMegaOpen ? "after:w-full" : "after:w-0 hover:after:w-full"
                   } ${
@@ -169,7 +192,10 @@ export default function Navbar() {
               >
                 <button
                   onFocus={openAbout}
+                  onClick={() => setIsAboutOpen((open) => !open)}
                   aria-expanded={isAboutOpen}
+                  aria-haspopup="true"
+                  aria-controls="desktop-about-menu"
                   className={`flex items-center gap-1 text-sm font-heading font-medium transition-colors duration-200 relative after:content-[''] after:absolute after:bottom-[-4px] ${isRTL ? "after:right-0" : "after:left-0"} after:h-[2px] after:bg-[var(--color-gold)] after:transition-all after:duration-300 ${
                     aboutActive || isAboutOpen ? "after:w-full" : "after:w-0 hover:after:w-full"
                   } ${
@@ -185,6 +211,9 @@ export default function Navbar() {
                 </button>
                 {/* About Dropdown */}
                 <div
+                  id="desktop-about-menu"
+                  aria-hidden={!isAboutOpen}
+                  inert={!isAboutOpen ? true : undefined}
                   className="absolute top-full pt-2"
                   style={{ [isRTL ? 'right' : 'left']: 0, pointerEvents: isAboutOpen ? 'auto' : 'none' }}
                 >
@@ -263,9 +292,12 @@ export default function Navbar() {
             <Globe size={20} />
           </button>
           <button
+            ref={mobileMenuButtonRef}
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             className={`w-11 h-11 flex items-center justify-center transition-colors ${showTransparent ? "text-white" : "text-[var(--color-navy)]"}`}
             aria-label={isMobileOpen ? t.nav.closeMenu : t.nav.openMenu}
+            aria-expanded={isMobileOpen}
+            aria-controls="mobile-navigation-menu"
           >
             {isMobileOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
@@ -274,6 +306,9 @@ export default function Navbar() {
 
       {/* ===== Mega Menu (Desktop) ===== */}
       <div
+        id="desktop-services-menu"
+        aria-hidden={!isMegaOpen}
+        inert={!isMegaOpen ? true : undefined}
         className="hidden lg:block absolute left-0 right-0 top-full"
         onMouseEnter={openMega}
         onMouseLeave={scheduleCloseMega}
@@ -390,6 +425,12 @@ export default function Navbar() {
 
       {/* ===== Mobile Menu - Full Screen Overlay ===== */}
       <div
+        id="mobile-navigation-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label={lang === "ar" ? "قائمة التنقل" : "Navigation menu"}
+        aria-hidden={!isMobileOpen}
+        inert={!isMobileOpen ? true : undefined}
         className={`lg:hidden fixed inset-0 top-0 bg-[oklch(0.98_0.005_90)] z-[60] transition-all duration-300 ease-out ${
           isMobileOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
@@ -406,6 +447,7 @@ export default function Navbar() {
             />
           </Link>
           <button
+            ref={mobileCloseButtonRef}
             onClick={() => setIsMobileOpen(false)}
             className="w-11 h-11 flex items-center justify-center text-[var(--color-navy)] transition-colors"
             aria-label={t.nav.closeMenu}
@@ -425,6 +467,7 @@ export default function Navbar() {
                         servicesActive ? "text-[var(--color-gold)]" : "text-[var(--color-navy)]"
                       }`}
                       aria-expanded={isMobileServicesOpen}
+                      aria-controls="mobile-services-menu"
                     >
                       <span>{link.label}</span>
                       <ChevronDown
@@ -434,6 +477,9 @@ export default function Navbar() {
                       />
                     </button>
                     <div
+                      id="mobile-services-menu"
+                      aria-hidden={!isMobileServicesOpen}
+                      inert={!isMobileServicesOpen ? true : undefined}
                       className="overflow-hidden transition-all duration-300 ease-out"
                       style={{ maxHeight: isMobileServicesOpen ? `${(services.length + 1) * 52 + 56}px` : "0px" }}
                     >
@@ -476,6 +522,7 @@ export default function Navbar() {
                         aboutActive ? "text-[var(--color-gold)]" : "text-[var(--color-navy)]"
                       }`}
                       aria-expanded={isMobileAboutOpen}
+                      aria-controls="mobile-about-menu"
                     >
                       <span>{link.label}</span>
                       <ChevronDown
@@ -485,6 +532,9 @@ export default function Navbar() {
                       />
                     </button>
                     <div
+                      id="mobile-about-menu"
+                      aria-hidden={!isMobileAboutOpen}
+                      inert={!isMobileAboutOpen ? true : undefined}
                       className="overflow-hidden transition-all duration-300 ease-out"
                       style={{ maxHeight: isMobileAboutOpen ? `${aboutSubLinks.length * 52}px` : "0px" }}
                     >
@@ -522,7 +572,7 @@ export default function Navbar() {
               <a
                 href="tel:+966505149800"
                 onClick={() => trackPhoneClick("navbar_mobile")}
-                className="flex items-center justify-center gap-3 text-[var(--color-navy)]/70 font-body text-base mb-4"
+                className="flex min-h-11 items-center justify-center gap-3 text-[var(--color-navy)]/70 font-body text-base mb-4"
                 dir="ltr"
               >
                 <Phone size={18} className="text-[var(--color-gold)]" />
@@ -534,7 +584,8 @@ export default function Navbar() {
             <div className="mt-4 flex justify-center">
               <button
                 onClick={toggleLang}
-                className="flex items-center gap-2 px-4 py-2.5 border border-[var(--color-border)] text-[var(--color-navy)] font-heading text-sm rounded transition-colors hover:bg-[var(--color-navy)]/5"
+                aria-label={lang === "ar" ? "Switch language to English" : "تغيير اللغة إلى العربية"}
+                className="flex min-h-11 items-center gap-2 px-4 py-2.5 border border-[var(--color-border)] text-[var(--color-navy)] font-heading text-sm rounded transition-colors hover:bg-[var(--color-navy)]/5"
               >
                 <Globe size={16} />
                 <span>{lang === "ar" ? "Switch to English" : "التبديل إلى العربية"}</span>

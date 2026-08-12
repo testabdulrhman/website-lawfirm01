@@ -4,7 +4,7 @@
  */
 import { useState, useEffect } from "react";
 import { Copy, Check, ExternalLink } from "lucide-react";
-import { Helmet } from "react-helmet-async";
+import { useSEO } from "@/hooks/useSEO";
 
 interface LogoItem {
   id: string;
@@ -158,6 +158,12 @@ export default function Brand() {
   const baseUrl = "https://redwan.sa";
   const [toastVisible, setToastVisible] = useState(false);
 
+  useSEO({
+    title: "شعارات الشركة — داخلي",
+    description: "صفحة داخلية لأصول الهوية البصرية للشركة.",
+    noindex: true,
+  });
+
   useEffect(() => {
     if (toastVisible) {
       const timer = setTimeout(() => setToastVisible(false), 2500);
@@ -171,12 +177,6 @@ export default function Brand() {
 
   return (
     <>
-      {/* noindex - إخفاء من محركات البحث */}
-      <Helmet>
-        <meta name="robots" content="noindex, nofollow" />
-        <title>شعارات الشركة — داخلي</title>
-      </Helmet>
-
       <div className="min-h-screen bg-gray-50 py-10 px-4" dir="rtl">
         <div className="max-w-6xl mx-auto">
           {/* Header */}

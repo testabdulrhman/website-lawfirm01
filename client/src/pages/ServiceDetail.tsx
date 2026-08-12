@@ -481,7 +481,7 @@ export default function ServiceDetail() {
 
   const pageTitle = params.slug === 'bankruptcy'
     ? (lang === 'ar'
-        ? 'محامي إفلاس للشركات والدائنين في السعودية | المشيقح'
+        ? 'محامي إفلاس للشركات والدائنين في السعودية'
         : 'Saudi Bankruptcy Lawyer for Companies and Creditors | Al-Mushaiqi')
     : service
       ? service[langKey(lang)].title

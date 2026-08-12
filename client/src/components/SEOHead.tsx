@@ -65,7 +65,9 @@ export default function SEOHead({
       lang === "ar"
         ? "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
         : "Abdulrahman Redwan Al-Mushaikih Law Firm & Bankruptcy Management";
-    const fullTitle = `${title} | ${siteName}`;
+    // Keep Arabic result titles concise; the complete legal name is supplied
+    // separately as og:site_name and in the site-wide Organization schema.
+    const fullTitle = lang === "ar" || title.includes("|") ? title : `${title} | ${siteName}`;
     const locale = lang === "ar" ? "ar_SA" : "en_US";
 
     // Title

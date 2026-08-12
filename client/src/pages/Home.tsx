@@ -1,8 +1,9 @@
 import { ArrowLeft, ArrowRight, Scale, FileCheck, Building, Landmark, Briefcase, Shield, Users, Gavel, BookOpen, Award, Calendar, Clock } from "lucide-react";
-import { blogArticles } from "@/data/blogArticles";
+import { blogHighlights } from "@/data/blogHighlights";
 import { Link } from "wouter";
-import { useScrollAnimation, useParallax, getStaggerStyle, getFadeStyle } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation, getStaggerStyle, getFadeStyle } from "@/hooks/useScrollAnimation";
 import { useEffect, useState, useRef } from "react";
+import { preload } from "react-dom";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useSEO } from "@/hooks/useSEO";
 import { trackBookConsultation, trackPhoneClick } from "@/lib/analytics";
@@ -26,6 +27,10 @@ function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
 
   useEffect(() => {
     if (!started) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setDisplayCount(end);
+      return;
+    }
     // Animate from 0 to end for visual effect
     setDisplayCount(0);
     let current = 0;
@@ -39,7 +44,20 @@ function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
   }, [started, end]);
 
   // Render final value in HTML for crawlers (noscript/SSR), animate visually
-  return <span ref={ref}>{displayCount.toLocaleString("en-US")}{suffix}</span>;
+  const finalValue = `${end.toLocaleString("en-US")}${suffix}`;
+  return (
+    <span
+      ref={ref}
+      aria-label={finalValue}
+      style={{
+        display: "inline-block",
+        minWidth: `${finalValue.length}ch`,
+        fontVariantNumeric: "tabular-nums",
+      }}
+    >
+      {displayCount.toLocaleString("en-US")}{suffix}
+    </span>
+  );
 }
 
 const serviceIcons = [Briefcase, Gavel, Building, Scale];
@@ -47,6 +65,13 @@ const serviceIcons = [Briefcase, Gavel, Building, Scale];
 export default function Home() {
   const { t, lang, isRTL } = useTranslation();
   const lp = (p: string) => localePath(p, lang);
+
+  preload("/images/hero-law-firm-1280.webp", {
+    as: "image",
+    imageSrcSet: "/images/hero-law-firm-768.webp 768w, /images/hero-law-firm-1280.webp 1280w, /images/hero-law-firm.webp 2048w",
+    imageSizes: "100vw",
+    fetchPriority: "high",
+  });
 
   // Site-level schemas (LegalService, Organization, WebSite) are in index.html @graph.
   // Home page only needs page-specific schema (none needed for homepage).
@@ -57,7 +82,7 @@ export default function Home() {
       : 'Al-Mushaiqeh Law Firm & Bankruptcy Management',
     description: lang === 'ar'
       ? 'شركة محاماة سعودية مقرها بريدة وتخدم جميع مناطق المملكة في القضايا التجارية والإفلاس والتوثيق والتسجيل العيني بخمسة تراخيص نظامية.'
-      : 'A Saudi law firm headquartered in Buraydah and serving clients nationwide in commercial matters, bankruptcy, notarization and real estate registration under five professional licenses.',
+      : 'A Saudi law firm serving clients nationwide in commercial disputes, bankruptcy, notarization and real estate registration under five professional licenses.',
     keywords: lang === 'ar'
       ? 'شركة محاماة سعودية، مكتب محاماة بريدة، خدمات قانونية للشركات، إدارة إجراءات الإفلاس، التوثيق، التسجيل العيني'
       : 'Saudi law firm, Buraydah law firm, corporate legal services, bankruptcy management, notarization, real estate registration',
@@ -75,7 +100,6 @@ export default function Home() {
   const { ref: licensesRef, isVisible: licensesVisible } = useScrollAnimation({ threshold: 0.2 });
   const { ref: bankruptcyRef, isVisible: bankruptcyVisible } = useScrollAnimation({ threshold: 0.15 });
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation({ threshold: 0.15 });
-  const { ref: parallaxRef, offset: parallaxOffset } = useParallax(0.15);
 
   const featuredServices = [
     { icon: Scale, title: t.services.items[4].title, slug: t.services.items[4].slug },
@@ -89,13 +113,9 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero Section with Parallax */}
+      {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        <div
-          ref={parallaxRef}
-          className="absolute inset-0"
-          style={{ transform: `translateY(${parallaxOffset * 0.4}px)` }}
-        >
+        <div className="absolute inset-0">
           <img
             src="/images/hero-law-firm-1280.webp"
             srcSet="/images/hero-law-firm-768.webp 768w, /images/hero-law-firm-1280.webp 1280w, /images/hero-law-firm.webp 2048w"
@@ -164,7 +184,8 @@ export default function Home() {
                   <span>{t.hero.exploreServices}</span>
                 </Link>
                 <Link
-                  href={lp("/contact")}
+                  href={lp("/appointments")}
+                  onClick={() => trackBookConsultation("homepage_hero")}
                   className="group flex items-center justify-center gap-3 px-6 md:px-8 py-3.5 md:py-4 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm md:text-base hover:bg-[var(--color-gold-light)] transition-all duration-200 active:scale-[0.97]"
                 >
                   <span>{t.hero.getConsultation}</span>
@@ -257,7 +278,7 @@ export default function Home() {
               <div style={getFadeStyle(aboutVisible, "up", 400)}>
                 <Link
                   href={lp("/about")}
-                  className="group inline-flex items-center gap-2 font-heading text-sm font-semibold text-[var(--color-navy)] hover:text-[var(--color-gold)] transition-colors"
+                  className="group inline-flex min-h-11 items-center gap-2 font-heading text-sm font-semibold text-[var(--color-navy)] hover:text-[var(--color-gold)] transition-colors"
                 >
                   <span>{t.aboutSection.learnMore}</span>
                   <ArrowIcon size={16} className={`${arrowHoverClass} transition-transform`} />
@@ -272,7 +293,7 @@ export default function Home() {
                   src="/images/office-interior-768.webp"
                   srcSet="/images/office-interior-768.webp 768w, /images/office-interior-1280.webp 1280w, /images/office-interior.webp 2048w"
                   sizes="(max-width: 1023px) 100vw, 50vw"
-                  alt={lang === "ar" ? "مكتب شركة رضوان للمحاماة" : "Redwan Law Firm Office"}
+                  alt={lang === "ar" ? "مكتب شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس" : "Redwan Law Firm Office"}
                   className="w-full h-[280px] md:h-[380px] object-cover"
                   loading="lazy"
                   width={768}
@@ -317,7 +338,7 @@ export default function Home() {
                 </h2>
                 <Link
                   href={lp("/services")}
-                  className="group flex items-center gap-2 font-heading text-sm font-semibold text-[var(--color-navy)] hover:text-[var(--color-gold)] transition-colors"
+                  className="group inline-flex min-h-11 items-center gap-2 font-heading text-sm font-semibold text-[var(--color-navy)] hover:text-[var(--color-gold)] transition-colors"
                 >
                   <span>{t.services.viewAll}</span>
                   <ArrowIcon size={16} className={`${arrowHoverClass} transition-transform`} />
@@ -420,14 +441,14 @@ export default function Home() {
             >
               <Link
                 href={lp("/services/bankruptcy")}
-                className="group inline-flex items-center gap-3 font-heading text-sm font-semibold text-[var(--color-gold)] hover:text-[var(--color-gold-light)] transition-colors"
+                className="group inline-flex min-h-11 items-center gap-3 font-heading text-sm font-semibold text-[var(--color-gold)] hover:text-[var(--color-gold-light)] transition-colors"
               >
                 <span>{t.bankruptcyRecord.cta}</span>
                 <ArrowIcon size={16} className={`${arrowHoverClass} transition-transform`} />
               </Link>
               <Link
                 href={lp("/bankruptcy")}
-                className="group inline-flex items-center gap-3 font-heading text-sm font-semibold text-white/70 hover:text-white transition-colors"
+                className="group inline-flex min-h-11 items-center gap-3 font-heading text-sm font-semibold text-white/70 hover:text-white transition-colors"
               >
                 <span>{t.bankruptcyRecord.portalCta}</span>
                 <ArrowIcon size={16} className={`${arrowHoverClass} transition-transform`} />
@@ -487,7 +508,7 @@ export default function Home() {
             </h2>
             <Link
               href={lp("/blog")}
-              className="group flex items-center gap-2 font-heading text-sm font-semibold text-[var(--color-navy)] hover:text-[var(--color-gold)] transition-colors"
+              className="group inline-flex min-h-11 items-center gap-2 font-heading text-sm font-semibold text-[var(--color-navy)] hover:text-[var(--color-gold)] transition-colors"
             >
               <span>{lang === "ar" ? "عرض جميع المقالات" : "View All Articles"}</span>
               <ArrowIcon size={16} className={`${arrowHoverClass} transition-transform`} />
@@ -495,7 +516,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogArticles.slice(0, 3).map((article, idx) => (
+            {blogHighlights.map((article) => (
               <Link
                 key={article.id}
                 href={lp(`/blog/${article.slug}`)}
@@ -570,8 +591,8 @@ export default function Home() {
             style={getFadeStyle(ctaVisible, "up", 300)}
           >
             <Link
-              href={lp("/contact")}
-              onClick={() => trackBookConsultation('hero_section')}
+              href={lp("/appointments")}
+              onClick={() => trackBookConsultation('homepage_final_cta')}
               className="group flex items-center gap-3 px-6 md:px-8 py-3.5 md:py-4 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm md:text-base hover:bg-[var(--color-gold-light)] hover:shadow-[0_8px_30px_oklch(0.65_0.1_70/0.3)] transition-all duration-200 active:scale-[0.97] w-full sm:w-auto justify-center"
             >
               <span>{t.cta.contactUs}</span>

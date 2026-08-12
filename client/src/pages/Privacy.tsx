@@ -12,7 +12,7 @@ export default function Privacy() {
   const content = lang === "ar" ? {
     seoTitle: "سياسة الخصوصية",
     seoDesc: "سياسة الخصوصية وحماية البيانات الشخصية لشركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    seoKeywords: ["سياسة الخصوصية", "حماية البيانات", "شركة رضوان"],
+    seoKeywords: ["سياسة الخصوصية", "حماية البيانات", "شركة محاماة سعودية"],
     home: "الرئيسية",
     pageTitle: "سياسة الخصوصية",
     subtitle: "التزامنا بحماية خصوصيتك وبياناتك الشخصية",
@@ -123,7 +123,7 @@ export default function Privacy() {
     address: "العنوان: طريق الملك عبدالله، حي الأفق، بريدة 52387",
   } : {
     seoTitle: "Privacy Policy",
-    seoDesc: "Privacy policy and personal data protection for Abdulrahman Redwan Al-Mushaiqeh Law Firm & Bankruptcy Administration",
+    seoDesc: "Our privacy policy explains how we collect, use, retain and protect personal information submitted through the website and its online forms.",
     seoKeywords: ["privacy policy", "data protection", "Redwan Law"],
     home: "Home",
     pageTitle: "Privacy Policy",

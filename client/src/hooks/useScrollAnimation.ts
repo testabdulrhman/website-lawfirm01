@@ -51,6 +51,11 @@ export function useCountUp(target: number, duration: number = 2000, isVisible: b
     if (!isVisible || hasAnimated.current) return;
     hasAnimated.current = true;
 
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCount(target);
+      return;
+    }
+
     // Start animation from 0 for visual effect
     setCount(0);
     const startTime = performance.now();
@@ -70,35 +75,6 @@ export function useCountUp(target: number, duration: number = 2000, isVisible: b
   }, [isVisible, target, duration]);
 
   return count;
-}
-
-// Parallax hook - subtle background movement on scroll
-export function useParallax(speed: number = 0.3) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [offset, setOffset] = useState(0);
-
-  useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) return;
-
-    const handleScroll = () => {
-      const element = ref.current;
-      if (!element) return;
-      const rect = element.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      // Only calculate when element is in or near viewport
-      if (rect.bottom >= -100 && rect.top <= windowHeight + 100) {
-        const scrolled = (windowHeight - rect.top) * speed;
-        setOffset(scrolled);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Initial calculation
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [speed]);
-
-  return { ref, offset };
 }
 
 // Stagger children animation - returns CSS style for each child

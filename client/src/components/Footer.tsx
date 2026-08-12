@@ -173,13 +173,13 @@ export default function Footer() {
               ABDULRAHMAN REDWAN ALMOSHIQEH Company For Legal
             </p>
             <div className="flex items-center gap-4 md:gap-6 flex-wrap justify-center lg:justify-end">
-              <Link href={lp("/privacy")} className="font-body text-xs text-white/60 hover:text-[var(--color-gold)] transition-colors">
+              <Link href={lp("/privacy")} className="inline-flex min-h-8 items-center font-body text-xs text-white/60 hover:text-[var(--color-gold)] transition-colors">
                 {t.footer.privacy}
               </Link>
-              <Link href={lp("/terms")} className="font-body text-xs text-white/60 hover:text-[var(--color-gold)] transition-colors">
+              <Link href={lp("/terms")} className="inline-flex min-h-8 items-center font-body text-xs text-white/60 hover:text-[var(--color-gold)] transition-colors">
                 {t.footer.terms}
               </Link>
-              <Link href={lp("/sitemap")} className="font-body text-xs text-white/60 hover:text-[var(--color-gold)] transition-colors">
+              <Link href={lp("/sitemap")} className="inline-flex min-h-8 items-center font-body text-xs text-white/60 hover:text-[var(--color-gold)] transition-colors">
                 {lang === "ar" ? "خريطة الموقع" : "Sitemap"}
               </Link>
               <span className="font-body text-xs text-white/60">

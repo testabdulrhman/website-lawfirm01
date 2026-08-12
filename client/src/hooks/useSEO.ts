@@ -13,7 +13,7 @@ interface SEOProps {
   fullTitle?: boolean;
 }
 
-const SITE_NAME_AR = "المشيقح للمحاماة";
+const SITE_NAME_AR = "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس";
 const SITE_NAME_EN = "Redwan Law Firm";
 const SITE_NAME_UR = "المشیقح لا فرم";
 const SITE_NAME = "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس";
@@ -44,8 +44,13 @@ export function useSEO({
       )
     : undefined;
   const siteName = isEnglishPage ? SITE_NAME_EN : isUrduPage ? SITE_NAME_UR : SITE_NAME_AR;
+  // Arabic pages keep concise topical titles. The complete legal name remains
+  // available as og:site_name and in site-wide structured data; we never use
+  // an abbreviated Arabic company name as a title suffix.
   const formattedTitle =
-    fullTitle || title.includes("|") ? title : `${title} | ${siteName}`;
+    fullTitle || title.includes("|") || (!isEnglishPage && !isUrduPage)
+      ? title
+      : `${title} | ${siteName}`;
 
   useEffect(() => {
     // Title
@@ -221,6 +226,8 @@ export const schemas = {
     "sameAs": [
       "https://x.com/redwan_law",
       "https://www.linkedin.com/company/redwan-sa",
+      "https://www.instagram.com/redwanlegal",
+      "https://www.facebook.com/redwanlegal",
       "https://snapchat.com/@redwan.sa"
     ],
     "hasOfferCatalog": {
@@ -331,6 +338,8 @@ export const schemas = {
     "sameAs": [
       "https://x.com/redwan_law",
       "https://www.linkedin.com/company/redwan-sa",
+      "https://www.instagram.com/redwanlegal",
+      "https://www.facebook.com/redwanlegal",
       "https://snapchat.com/@redwan.sa"
     ],
     "hasCredential": [
@@ -372,7 +381,6 @@ export const schemas = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "inLanguage": "ar",
-    "dateModified": new Date().toISOString().split("T")[0],
     "url": `${BASE_URL}/faq`,
     "isPartOf": {
       "@type": "WebSite",
@@ -404,7 +412,6 @@ export const schemas = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "inLanguage": "ar",
-    "dateModified": new Date().toISOString().split("T")[0],
     "url": `${BASE_URL}${pageUrl}`,
     "isPartOf": {
       "@type": "WebSite",

@@ -366,7 +366,7 @@ export default function Contact() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title={lang === "ar" ? "موقع شركة رضوان للمحاماة على الخريطة" : "Redwan Law Firm Location"}
+              title={lang === "ar" ? "موقع شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس على الخريطة" : "Redwan Law Firm Location"}
             />
           </div>
           <p className="font-body text-xs text-[var(--color-navy)]/50 mt-3">

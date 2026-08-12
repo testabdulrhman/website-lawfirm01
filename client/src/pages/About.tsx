@@ -125,7 +125,7 @@ export default function About() {
                 src="/images/office-interior-768.webp"
                 srcSet="/images/office-interior-768.webp 768w, /images/office-interior-1280.webp 1280w, /images/office-interior.webp 2048w"
                 sizes="(max-width: 1023px) 100vw, 50vw"
-                alt={lang === "ar" ? "مكتب شركة رضوان" : "Redwan Law Office"}
+                alt={lang === "ar" ? "مكتب شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس" : "Redwan Law Office"}
                 className="w-full h-[280px] md:h-[400px] object-cover"
                 loading="lazy"
                 width={768}

@@ -97,7 +97,7 @@ export default function AboutSection() {
             >
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310419663031020868/RdzCt9LFS29ZVcU4VNgpAF/office-interior-N7k4rwH57VbAYQc4FQvJAz.webp"
-                alt="مكتب شركة رضوان للمحاماة"
+                alt="مكتب شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
                 className="w-full h-[300px] lg:h-[380px] object-cover"
                 loading="lazy"
                 width={800}

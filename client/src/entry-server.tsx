@@ -28,9 +28,7 @@ import Careers from "@/pages/Careers";
 import CareersComplete from "@/pages/CareersComplete";
 import BankruptcyComplete from "@/pages/BankruptcyComplete";
 import BankruptcyCase from "@/pages/BankruptcyCase";
-import BankruptcyTrack from "@/pages/BankruptcyTrack";
 import CreditorPortal from "@/pages/CreditorPortal";
-import BankruptcyTicket from "@/pages/BankruptcyTicket";
 import Bankruptcy from "@/pages/Bankruptcy";
 import BankruptcyProcedures from "@/pages/BankruptcyProcedures";
 import BankruptcyProcedure from "@/pages/BankruptcyProcedure";
@@ -79,8 +77,6 @@ function getInitialPage(url: string): InitialPage {
     routePath = `${localePrefix}/bankruptcy/procedures/:slug`;
   } else if (localizedPath === "/bankruptcy/claims") Component = Claims;
   else if (localizedPath === "/bankruptcy/Hassan-Misfer-Al-Zahrani") Component = HassanMisferAlZahrani;
-  else if (localizedPath === "/bankruptcy/track") Component = BankruptcyTrack;
-  else if (localizedPath === "/bankruptcy/ticket") Component = BankruptcyTicket;
   else if (localizedPath === "/bankruptcy/complete") Component = BankruptcyComplete;
   else if (localizedPath === "/bankruptcy/creditor") Component = CreditorPortal;
   else if (localizedPath === "/bankruptcy/reports/2026-07") Component = BankruptcyReportJuly2026;

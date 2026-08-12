@@ -11,12 +11,18 @@ interface LayoutProps {
 }
 
 export default function Layout({ children }: LayoutProps) {
-  const { isRTL } = useLanguage();
+  const { isRTL, lang } = useLanguage();
   return (
     <div className="min-h-screen flex flex-col" dir={isRTL ? "rtl" : "ltr"}>
+      <a
+        href="#main-content"
+        className="skip-link"
+      >
+        {lang === "ar" ? "تخطَّ إلى المحتوى الرئيسي" : "Skip to main content"}
+      </a>
       <ScrollProgress />
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         <Suspense
           fallback={
             <div className="min-h-[60vh] flex items-center justify-center">
