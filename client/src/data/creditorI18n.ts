@@ -179,6 +179,9 @@ export interface Strings {
   voteOpensIn: string;
   voteClosed: string;
   voteNotEligible: string;
+  voteMyWeight: string;
+  voteMyClass: string;
+  voteWeightNote: string;
   voteViewProposal: string;
   voteConfidential: string;
   voteApprove: string;
@@ -352,6 +355,10 @@ const AR: Strings = {
   voteWindow: 'فترة التصويت',
   voteOpensIn: 'لم يُفتح باب التصويت بعد',
   voteClosed: 'أُغلق باب التصويت',
+  voteMyWeight: 'المبلغ الذي تصوّت به',
+  voteMyClass: 'فئتك في التصويت',
+  voteWeightNote:
+    'وزن صوتك هو مجموع مبالغ مطالباتك المعتمدة، والنصاب يُحسب لكل فئة على حدة.',
   voteNotEligible: 'مشاركتك في التصويت غير معتمدة. راجع أمين الإجراء لاستكمال مستندات الصفة.',
   voteViewProposal: 'الاطّلاع على المقترح',
   voteConfidential: 'المقترح سرّي: يقتصر الاطّلاع عليه على المخوّلين، ويحظر تداوله أو نسخه أو نشره.',
@@ -526,6 +533,10 @@ const EN: Strings = {
   voteWindow: 'Voting period',
   voteOpensIn: 'Voting has not opened yet',
   voteClosed: 'Voting is closed',
+  voteMyWeight: 'The amount your vote carries',
+  voteMyClass: 'Your voting class',
+  voteWeightNote:
+    'Your voting weight is the total of your approved claim amounts; the quorum is computed for each class separately.',
   voteNotEligible: 'Your participation is not approved. Contact the trustee to complete your authorisation documents.',
   voteViewProposal: 'View the proposal',
   voteConfidential: 'The proposal is confidential: access is limited to authorised persons; copying or sharing is prohibited.',
@@ -701,6 +712,10 @@ const UR: Strings = {
   voteWindow: 'ووٹنگ کا وقت',
   voteOpensIn: 'ووٹنگ ابھی شروع نہیں ہوئی',
   voteClosed: 'ووٹنگ بند ہو چکی ہے',
+  voteMyWeight: 'آپ کے ووٹ کی مالیت',
+  voteMyClass: 'ووٹنگ میں آپ کی فہرست',
+  voteWeightNote:
+    'آپ کے ووٹ کا وزن آپ کے منظور شدہ دعووں کی کل رقم ہے؛ کورم ہر فہرست کے لیے الگ شمار ہوتا ہے۔',
   voteNotEligible: 'آپ کی شرکت منظور نہیں ہے۔ دستاویزات مکمل کرنے کے لیے ٹرسٹی سے رابطہ کریں۔',
   voteViewProposal: 'تجویز دیکھیں',
   voteConfidential: 'تجویز خفیہ ہے: صرف مجاز افراد دیکھ سکتے ہیں، نقل یا اشاعت ممنوع ہے۔',

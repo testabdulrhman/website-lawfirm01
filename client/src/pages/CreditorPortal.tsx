@@ -168,6 +168,9 @@ interface VoteItem {
   status: string;
   result: string | null;
   eligible: boolean;
+  /** وزن صوته بالريال وفئته — لا تأتيان إلا لمن كان مؤهَّلاً */
+  my_weight: number | null;
+  my_class: string | null;
   open: boolean;
   server_time: string;
   my_vote: { choice: string; voted_at: string } | null;
@@ -1555,6 +1558,23 @@ export default function CreditorPortal() {
                     </div>
                   ) : (
                     <>
+                      {/* بأيّ مبلغ يصوّت وفي أيّ فئة — قبل أن يختار */}
+                      {v.my_weight != null && (
+                        <div className="mt-4 border border-[var(--color-border)] bg-[var(--color-cream)] px-4 py-3">
+                          <p className="font-body text-xs text-[var(--color-navy)]/60">{t.voteMyWeight}</p>
+                          <p className="font-heading text-lg font-bold text-[var(--color-navy)] mt-0.5" dir="ltr">
+                            {fmtCurrency(v.my_weight, l)}
+                          </p>
+                          {v.my_class && (
+                            <p className="font-body text-xs text-[var(--color-navy)]/60 mt-1">
+                              {t.voteMyClass}: <span className="text-[var(--color-navy)]">{v.my_class}</span>
+                            </p>
+                          )}
+                          <p className="font-body text-[11px] text-[var(--color-navy)]/45 mt-2 leading-5">
+                            {t.voteWeightNote}
+                          </p>
+                        </div>
+                      )}
                       {v.proposal_url && (
                         <div className="mt-4">
                           <a
