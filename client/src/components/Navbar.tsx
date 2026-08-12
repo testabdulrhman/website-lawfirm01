@@ -16,6 +16,7 @@ import {
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackBookConsultation, trackLanguageSwitch, trackPhoneClick } from "@/lib/analytics";
 import { localePath } from "@/lib/localePath";
+import { FIRM_NAME_AR } from "@/lib/firmIdentity";
 
 const LOGO_LIGHT = "/images/logo-light-512.webp";
 const LOGO_DARK = "/images/logo-dark-512.webp";
@@ -145,7 +146,7 @@ export default function Navbar() {
         <Link href={lp("/")} className="flex items-center shrink-0">
           <img
             src={showTransparent ? LOGO_LIGHT : LOGO_DARK}
-            alt="شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
+            alt={FIRM_NAME_AR}
             className="w-auto object-contain transition-all duration-300"
             style={{ height: showTransparent ? "52px" : "46px", maxWidth: "220px" }}
             width={512}
@@ -439,7 +440,7 @@ export default function Navbar() {
           <Link href={lp("/")} className="flex items-center shrink-0">
             <img
               src={LOGO_DARK}
-              alt="شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
+              alt={FIRM_NAME_AR}
               className="w-auto object-contain"
               style={{ height: "46px", maxWidth: "220px" }}
               width={512}

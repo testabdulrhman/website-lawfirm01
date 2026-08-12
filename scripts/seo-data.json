@@ -141,7 +141,26 @@
     "ogUrl": "https://redwan.sa/bankruptcy/reports",
     "ogType": "website",
     "ogImage": "",
-    "canonical": "https://redwan.sa/bankruptcy/reports"
+    "canonical": "https://redwan.sa/bankruptcy/reports",
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "التقارير الشهرية لإعلانات الإفلاس السعودية",
+        "url": "https://redwan.sa/bankruptcy/reports",
+        "inLanguage": "ar",
+        "about": ["إعلانات الإفلاس في السعودية", "نظام الإفلاس السعودي", "لجنة الإفلاس إيسار"]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://redwan.sa/" },
+          { "@type": "ListItem", "position": 2, "name": "الإفلاس", "item": "https://redwan.sa/bankruptcy" },
+          { "@type": "ListItem", "position": 3, "name": "التقارير الشهرية", "item": "https://redwan.sa/bankruptcy/reports" }
+        ]
+      }
+    ]
   },
   "/bankruptcy-lp": {
     "title": "محامي إفلاس للمدين المتعثّر | حماية نظامية وإعادة جدولة",
@@ -205,7 +224,25 @@
     "ogUrl": "https://redwan.sa/about",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/about"
+    "canonical": "https://redwan.sa/about",
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "من نحن",
+        "url": "https://redwan.sa/about",
+        "about": { "@id": "https://redwan.sa/#organization" },
+        "inLanguage": "ar"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://redwan.sa/" },
+          { "@type": "ListItem", "position": 2, "name": "من نحن", "item": "https://redwan.sa/about" }
+        ]
+      }
+    ]
   },
   "/team": {
     "title": "فريق المحامين والمستشارين القانونيين",
@@ -506,7 +543,16 @@
     "ogUrl": "https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani"
+    "canonical": "https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://redwan.sa/" },
+        { "@type": "ListItem", "position": 2, "name": "إجراءات الإفلاس", "item": "https://redwan.sa/bankruptcy" },
+        { "@type": "ListItem", "position": 3, "name": "شركة حسن مسفر الزهراني وشركاه", "item": "https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani" }
+      ]
+    }
   },
   "/bankruptcy/Al-Anjaz-Hotel-Village": {
     "title": "تصفية شركة قرية الأنجاز الفندقية | أمين الإفلاس",
@@ -539,7 +585,26 @@
     "ogUrl": "https://redwan.sa/blog",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/blog"
+    "canonical": "https://redwan.sa/blog",
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "المدونة القانونية السعودية",
+        "description": "مقالات ودراسات قانونية متخصصة في نظام الإفلاس السعودي والقضايا التجارية.",
+        "url": "https://redwan.sa/blog",
+        "publisher": { "@id": "https://redwan.sa/#organization" },
+        "inLanguage": "ar"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://redwan.sa/" },
+          { "@type": "ListItem", "position": 2, "name": "المدونة القانونية", "item": "https://redwan.sa/blog" }
+        ]
+      }
+    ]
   },
   "/blog/تعليق-المطالبات-في-نظام-الإفلاس-السعودي": {
     "title": "تعليق المطالبات في نظام الإفلاس | حماية المدين من التنفيذ",
@@ -814,7 +879,25 @@
     "ogUrl": "https://redwan.sa/contact",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/contact"
+    "canonical": "https://redwan.sa/contact",
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "تواصل معنا",
+        "url": "https://redwan.sa/contact",
+        "mainEntity": { "@id": "https://redwan.sa/#organization" },
+        "inLanguage": "ar"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://redwan.sa/" },
+          { "@type": "ListItem", "position": 2, "name": "تواصل معنا", "item": "https://redwan.sa/contact" }
+        ]
+      }
+    ]
   },
   "/careers": {
     "title": "انضم إلينا | شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
@@ -1049,6 +1132,32 @@
       "ترجمة قانونية",
       "مصطلحات عدلية",
       "قاموس قانوني سعودي"
+    ],
+    "ogTitle": "المعجم القانوني | ترجمة المصطلحات العدلية السعودية",
+    "ogDesc": "معجم شامل لـ695 مصطلحاً قانونياً سعودياً مع ترجمتها الرسمية إلى الإنجليزية.",
+    "ogUrl": "https://redwan.sa/legal-dictionary",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/legal-dictionary",
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "DefinedTermSet",
+        "@id": "https://redwan.sa/legal-dictionary#term-set",
+        "name": "المعجم القانوني للمصطلحات العدلية السعودية",
+        "description": "مجموعة من 695 مصطلحاً قانونياً سعودياً مع ترجمتها الرسمية إلى الإنجليزية.",
+        "url": "https://redwan.sa/legal-dictionary",
+        "inLanguage": ["ar", "en"],
+        "isBasedOn": "https://www.moj.gov.sa/Documents/DictionaryOfLegalTermsV1.pdf"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://redwan.sa/" },
+          { "@type": "ListItem", "position": 2, "name": "المعجم القانوني", "item": "https://redwan.sa/legal-dictionary" }
+        ]
+      }
     ]
   },
   "/licenses": {

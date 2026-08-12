@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearch, useLocation } from "wouter";
+import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -118,7 +119,19 @@ const FIELD_TYPES: Record<
 // ============================================================
 export default function BankruptcyComplete() {
   const search = useSearch();
-  const [, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
+  const isEnglish = location.startsWith("/en/");
+
+  useSEO({
+    title: isEnglish
+      ? "Complete Creditor Claim Information | Bankruptcy Proceedings"
+      : "استكمال بيانات المطالبة | إجراءات الإفلاس",
+    description: isEnglish
+      ? "Secure page for completing creditor claim information and uploading documents through the private link sent to you."
+      : "صفحة آمنة لاستكمال بيانات مطالبة الدائن ورفع المستندات المطلوبة عبر الرابط الخاص المرسل إليك.",
+    canonical: "/bankruptcy/complete",
+    noindex: true,
+  });
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

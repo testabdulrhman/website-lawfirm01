@@ -12,6 +12,7 @@ import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackWhatsAppClick, trackPhoneClick, trackEmailClick } from "@/lib/analytics";
 import { localePath } from "@/lib/localePath";
+import { FIRM_NAME_AR, FIRM_NAME_EN } from "@/lib/firmIdentity";
 
 export default function Footer() {
   const { t, lang, isRTL } = useTranslation();
@@ -89,7 +90,7 @@ export default function Footer() {
               <Link href={lp("/")} className="shrink-0">
                 <img
                   src="/images/logo-light-512.webp"
-                  alt="شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
+                  alt={FIRM_NAME_AR}
                   className="h-auto w-[190px] object-contain"
                   width={512}
                   height={156}
@@ -215,7 +216,7 @@ export default function Footer() {
               </div>
             </div>
             <p lang="en" dir="ltr" className="mt-4 border-t border-white/[0.06] pt-4 text-center font-body text-[11px] tracking-[0.01em] text-white/35">
-              Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management
+              {FIRM_NAME_EN}
             </p>
           </div>
         </div>

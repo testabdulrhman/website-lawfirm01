@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { legalTerms, arabicLetters, type LegalTerm } from "@/data/legalDictionary";
 import SEOHead from "@/components/SEOHead";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -10,12 +10,12 @@ export default function LegalDictionary() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const { ref: heroRef } = useScrollAnimation();
 
-  // Handle scroll to top button visibility
-  if (typeof window !== "undefined") {
-    window.addEventListener("scroll", () => {
-      setShowScrollTop(window.scrollY > 400);
-    });
-  }
+  useEffect(() => {
+    const handleScroll = () => setShowScrollTop(window.scrollY > 400);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const filteredTerms = useMemo(() => {
     let results = legalTerms;
@@ -90,6 +90,28 @@ export default function LegalDictionary() {
     ],
   };
 
+  const pageSchema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "DefinedTermSet",
+      "@id": "https://redwan.sa/legal-dictionary#term-set",
+      name: "المعجم القانوني للمصطلحات العدلية السعودية",
+      description: "مجموعة من 695 مصطلحاً قانونياً سعودياً مع ترجمتها الرسمية إلى الإنجليزية.",
+      url: "https://redwan.sa/legal-dictionary",
+      inLanguage: ["ar", "en"],
+      isBasedOn: "https://www.moj.gov.sa/Documents/DictionaryOfLegalTermsV1.pdf",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "الرئيسية", item: "https://redwan.sa/" },
+        { "@type": "ListItem", position: 2, name: "المعجم القانوني", item: "https://redwan.sa/legal-dictionary" },
+      ],
+    },
+    faqSchema,
+  ];
+
   return (
     <>
       <SEOHead
@@ -97,16 +119,16 @@ export default function LegalDictionary() {
         description="معجم شامل لـ 695 مصطلحاً قانونياً سعودياً مع ترجمتها الرسمية إلى الإنجليزية. مستخلص من 12 نظاماً عدلياً صادراً عن وزارة العدل."
         keywords={["معجم قانوني", "مصطلحات قانونية", "ترجمة قانونية", "مصطلحات عدلية", "قاموس قانوني سعودي", "legal dictionary saudi", "legal terms arabic english"]}
         canonicalUrl="https://redwan.sa/legal-dictionary"
-        structuredData={faqSchema}
+        structuredData={pageSchema}
       />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 bg-gradient-to-b from-[#0F1B2D] to-[#1a2d47]">
         <div className="container max-w-5xl" ref={heroRef}>
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C9A96E]/10 border border-[#C9A96E]/20 mb-6">
-              <BookOpen className="w-4 h-4 text-[#C9A96E]" />
-              <span className="text-[#C9A96E] text-sm font-medium">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--color-gold)]/10 border border-[var(--color-gold)]/20 mb-6">
+              <BookOpen className="w-4 h-4 text-[var(--color-gold)]" />
+              <span className="text-[var(--color-gold)] text-sm font-medium">
                 وزارة العدل — مركز البحوث
               </span>
             </div>
@@ -131,7 +153,7 @@ export default function LegalDictionary() {
                 placeholder="ابحث بالعربي أو الإنجليزي..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pr-12 pl-4 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C9A96E]/50 focus:border-[#C9A96E]/50 text-lg backdrop-blur-sm transition-all"
+                className="w-full pr-12 pl-4 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-gold)]/50 focus:border-[var(--color-gold)]/50 text-lg backdrop-blur-sm transition-all"
               />
             </div>
           </div>
@@ -146,7 +168,7 @@ export default function LegalDictionary() {
               onClick={() => setSelectedLetter(null)}
               className={`shrink-0 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                 !selectedLetter
-                  ? "bg-[#C9A96E] text-[#0F1B2D]"
+                  ? "bg-[var(--color-gold)] text-[#0F1B2D]"
                   : "text-gray-300 hover:bg-white/10"
               }`}
             >
@@ -160,7 +182,7 @@ export default function LegalDictionary() {
                 }
                 className={`shrink-0 w-8 h-8 rounded-lg text-sm font-medium transition-all ${
                   selectedLetter === letter
-                    ? "bg-[#C9A96E] text-[#0F1B2D]"
+                    ? "bg-[var(--color-gold)] text-[#0F1B2D]"
                     : "text-gray-300 hover:bg-white/10"
                 }`}
               >
@@ -187,7 +209,7 @@ export default function LegalDictionary() {
                   setSearchQuery("");
                   setSelectedLetter(null);
                 }}
-                className="text-[#C9A96E] text-sm hover:underline"
+                className="text-[var(--color-gold)] text-sm hover:underline"
               >
                 مسح الفلتر
               </button>
@@ -208,10 +230,10 @@ export default function LegalDictionary() {
               {sortedLetters.map((letter) => (
                 <div key={letter} id={`letter-${letter}`}>
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="w-10 h-10 rounded-lg bg-[#C9A96E]/10 border border-[#C9A96E]/20 flex items-center justify-center text-[#C9A96E] font-bold text-lg">
+                    <span className="w-10 h-10 rounded-lg bg-[var(--color-gold)]/10 border border-[var(--color-gold)]/20 flex items-center justify-center text-[var(--color-gold)] font-bold text-lg">
                       {letter}
                     </span>
-                    <div className="h-px flex-1 bg-gradient-to-l from-transparent to-[#C9A96E]/20" />
+                    <div className="h-px flex-1 bg-gradient-to-l from-transparent to-[var(--color-gold)]/20" />
                     <span className="text-gray-500 text-xs">
                       {termsByLetter[letter].length} مصطلح
                     </span>
@@ -221,7 +243,7 @@ export default function LegalDictionary() {
                     {termsByLetter[letter].map((term) => (
                       <div
                         key={term.id}
-                        className="group flex items-center justify-between gap-4 px-4 py-3 rounded-lg bg-white/[0.02] border border-white/5 hover:border-[#C9A96E]/20 hover:bg-white/[0.04] transition-all"
+                        className="group flex items-center justify-between gap-4 px-4 py-3 rounded-sm bg-white/[0.02] border border-white/5 hover:border-[var(--color-gold)]/20 hover:bg-white/[0.04] transition-all"
                       >
                         <div className="flex items-center gap-3 min-w-0">
                           <span className="text-gray-500 text-xs font-mono shrink-0 w-6 text-center">
@@ -253,7 +275,7 @@ export default function LegalDictionary() {
               href="https://www.moj.gov.sa/Documents/DictionaryOfLegalTermsV1.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#C9A96E] hover:underline"
+              className="text-[var(--color-gold)] hover:underline"
             >
               معجم المصطلحات العدلية — وزارة العدل
             </a>{" "}
@@ -266,7 +288,7 @@ export default function LegalDictionary() {
       {showScrollTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-6 left-6 w-12 h-12 rounded-full bg-[#C9A96E] text-[#0F1B2D] shadow-lg flex items-center justify-center hover:scale-110 transition-transform z-50"
+          className="fixed bottom-6 left-6 w-12 h-12 rounded-full bg-[var(--color-gold)] text-[#0F1B2D] shadow-lg flex items-center justify-center hover:scale-110 transition-transform z-50"
           aria-label="العودة للأعلى"
         >
           <ArrowUp className="w-5 h-5" />

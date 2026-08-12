@@ -13,7 +13,17 @@ export default function Contact() {
   const { t, lang, isRTL } = useTranslation();
   const lp = (p: string) => localePath(p, lang);
 
-  const seoSchema = useMemo(() => [schemas.breadcrumb([{ name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' }, { name: lang === 'ar' ? 'تواصل معنا' : 'Contact', url: '/contact' }])], [lang]);
+  const seoSchema = useMemo(() => [
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      name: lang === "ar" ? "تواصل معنا" : "Contact Us",
+      url: `https://redwan.sa${lang === "en" ? "/en" : ""}/contact`,
+      mainEntity: { "@id": "https://redwan.sa/#organization" },
+      inLanguage: lang === "ar" ? "ar" : "en",
+    },
+    schemas.breadcrumb([{ name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' }, { name: lang === 'ar' ? 'تواصل معنا' : 'Contact', url: '/contact' }]),
+  ], [lang]);
   useSEO({
     title: lang === 'ar' ? 'تواصل معنا - احجز استشارة' : 'Contact Us - Book a Consultation',
     description: lang === 'ar'

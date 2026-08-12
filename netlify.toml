@@ -18,6 +18,13 @@
 [build.processing.html]
   pretty_urls = false
 
+# Normalize the malformed duplicate-slash URL observed in crawl testing.
+[[redirects]]
+  from = "//about"
+  to = "/about"
+  status = 301
+  force = true
+
 # ── Security Headers (all pages) ──
 [[headers]]
   for = "/*"

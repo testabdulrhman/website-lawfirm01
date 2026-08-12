@@ -1,4 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
+import { useLocation } from "wouter";
+import { useSEO, schemas } from "@/hooks/useSEO";
 import {
   trackCalendarAdd,
   trackEmailClick,
@@ -15,10 +17,26 @@ const VOTING_LINK = ''; // TODO: Add actual voting link
 const MEETING_LINK = ''; // TODO: Add actual meeting link
 
 export default function HassanMisferAlZahrani() {
+  const [location] = useLocation();
+  const isEnglish = location.startsWith("/en/");
   const [now, setNow] = useState(new Date());
 
+  useSEO({
+    title: isEnglish
+      ? "Financial Reorganization Proposal Vote | Hassan Misfer Al-Zahrani & Partners"
+      : "تصويت إعادة التنظيم المالي | حسن مسفر الزهراني",
+    description: isEnglish
+      ? "Invitation to creditors of Hassan Misfer Al-Zahrani & Partners to vote electronically on the financial reorganization proposal on 16 August 2026."
+      : "دعوة دائني شركة حسن مسفر الزهراني وشركاه للتصويت إلكترونياً على مقترح إعادة التنظيم المالي يوم 16 أغسطس 2026 من الساعة 1 إلى 3 مساءً.",
+    canonical: "/bankruptcy/Hassan-Misfer-Al-Zahrani",
+    schema: schemas.breadcrumb([
+      { name: isEnglish ? "Home" : "الرئيسية", url: "/" },
+      { name: isEnglish ? "Bankruptcy Proceedings" : "إجراءات الإفلاس", url: "/bankruptcy" },
+      { name: isEnglish ? "Hassan Misfer Al-Zahrani & Partners" : "شركة حسن مسفر الزهراني وشركاه", url: "/bankruptcy/Hassan-Misfer-Al-Zahrani" },
+    ]),
+  });
+
   useEffect(() => {
-    document.title = "التصويت على مقترح إعادة التنظيم المالي | شركة حسن مسفر الزهراني وشركاه";
     window.scrollTo(0, 0);
     const timer = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(timer);

@@ -6,6 +6,7 @@
 // ============================================================
 import { useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { FIRM_NAME_AR, FIRM_NAME_EN } from "@/lib/firmIdentity";
 
 interface SEOHeadProps {
   title: string;
@@ -48,6 +49,10 @@ function setCanonical(href: string) {
   el.href = href;
 }
 
+function absoluteUrl(url: string) {
+  return /^https?:\/\//.test(url) ? url : `${BASE_URL}${url.startsWith("/") ? "" : "/"}${url}`;
+}
+
 export default function SEOHead({
   title,
   description,
@@ -61,10 +66,7 @@ export default function SEOHead({
   const { lang } = useLanguage();
 
   useEffect(() => {
-    const siteName =
-      lang === "ar"
-        ? "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس"
-        : "Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management";
+    const siteName = lang === "ar" ? FIRM_NAME_AR : FIRM_NAME_EN;
     // Keep Arabic result titles concise; the complete legal name is supplied
     // separately as og:site_name and in the site-wide Organization schema.
     const fullTitle = lang === "ar" || title.includes("|") ? title : `${title} | ${siteName}`;
@@ -79,7 +81,7 @@ export default function SEOHead({
     const existingKeywords = document.querySelector('meta[name="keywords"]');
     if (existingKeywords) existingKeywords.remove();
     if (canonicalUrl) {
-      setCanonical(`${BASE_URL}${canonicalUrl}`);
+      setCanonical(absoluteUrl(canonicalUrl));
     }
 
     // Open Graph
@@ -89,7 +91,7 @@ export default function SEOHead({
     setMeta("og:site_name", siteName, "property");
     setMeta("og:locale", locale, "property");
     if (canonicalUrl) {
-      setMeta("og:url", `${BASE_URL}${canonicalUrl}`, "property");
+      setMeta("og:url", absoluteUrl(canonicalUrl), "property");
     }
     if (ogImage) {
       setMeta("og:image", ogImage, "property");

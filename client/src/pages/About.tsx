@@ -30,8 +30,17 @@ export default function About() {
   const { t, lang, isRTL } = useTranslation();
   const lp = (p: string) => localePath(p, lang);
 
-  // Only page-level schema (breadcrumb). Site-level schemas are in index.html @graph.
-  const seoSchema = useMemo(() => [schemas.breadcrumb([{ name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' }, { name: lang === 'ar' ? 'من نحن' : 'About', url: '/about' }])], [lang]);
+  const seoSchema = useMemo(() => [
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      name: lang === "ar" ? "من نحن" : "About Us",
+      url: `https://redwan.sa${lang === "en" ? "/en" : ""}/about`,
+      about: { "@id": "https://redwan.sa/#organization" },
+      inLanguage: lang === "ar" ? "ar" : "en",
+    },
+    schemas.breadcrumb([{ name: lang === 'ar' ? 'الرئيسية' : 'Home', url: '/' }, { name: lang === 'ar' ? 'من نحن' : 'About', url: '/about' }]),
+  ], [lang]);
   useSEO({
     title: lang === 'ar' ? 'من نحن - نبذة عن الشركة' : 'About Us - Our Story',
     description: lang === 'ar'

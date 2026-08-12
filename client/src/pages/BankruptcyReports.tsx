@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { ArrowLeft, Download, FileText } from "lucide-react";
-import { useSEO } from "@/hooks/useSEO";
+import { useSEO, schemas } from "@/hooks/useSEO";
 
 export default function BankruptcyReports() {
   const archiveReports = [
@@ -16,6 +16,21 @@ export default function BankruptcyReports() {
     title: "التقارير الشهرية لإعلانات الإفلاس السعودية",
     description: "تقارير تحليلية شهرية لإعلانات الإفلاس في المملكة العربية السعودية، مع بيانات موثقة وتعليق مهني من أمين إفلاس مرخص.",
     canonical: "/bankruptcy/reports",
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: "التقارير الشهرية لإعلانات الإفلاس السعودية",
+        url: "https://redwan.sa/bankruptcy/reports",
+        inLanguage: "ar",
+        about: ["إعلانات الإفلاس في السعودية", "نظام الإفلاس السعودي", "لجنة الإفلاس إيسار"],
+      },
+      schemas.breadcrumb([
+        { name: "الرئيسية", url: "/" },
+        { name: "الإفلاس", url: "/bankruptcy" },
+        { name: "التقارير الشهرية", url: "/bankruptcy/reports" },
+      ]),
+    ],
   });
 
   return (
