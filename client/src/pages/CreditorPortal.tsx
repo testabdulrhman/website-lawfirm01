@@ -523,8 +523,10 @@ export default function CreditorPortal() {
         setLoading(false);
         return;
       }
-      // تحقّقٌ ناجح بلا مطالبة: لا جلسة ولا بيانات — يُدَلّ على طلب الربط
+      // تحقّقٌ ناجح بلا مطالبة: جلسةٌ بلا هوية — لا تفتح مطالبةً ولا
+      // تصويتاً، وتكفيه لتقديم استفسار
       if (json.no_claims) {
+        if (json.session_token) setSessionToken(json.session_token);
         setStage("noClaims");
         setLoading(false);
         return;
@@ -848,6 +850,66 @@ export default function CreditorPortal() {
                   <KeyRound className="w-4 h-4" />
                   <span className="ms-2">{t.noClaimsAsk}</span>
                 </Button>
+
+                {/* من ثبت رقمه له أن يسأل ولو لم يكن دائناً */}
+                {sessionToken && !ticketRef && !ticketOpen && (
+                  <button
+                    type="button"
+                    onClick={() => { setTicketError(null); setTicketOpen(true); }}
+                    className="w-full mt-2 border border-[var(--color-border)] py-2.5 font-heading text-sm text-[var(--color-navy)] transition-colors hover:bg-[var(--color-cream)]"
+                  >
+                    {t.noClaimsAskTicket}
+                  </button>
+                )}
+
+                {sessionToken && ticketOpen && !ticketRef && (
+                  <div className="mt-4 space-y-3 border-t border-[var(--color-border)] pt-4">
+                    {ticketError && <ErrorNote msg={ticketError} />}
+                    <div>
+                      <Label htmlFor="nc-subject" className="font-body text-sm text-[var(--color-navy)]/70">
+                        {t.subject}
+                      </Label>
+                      <Input
+                        id="nc-subject"
+                        value={ticketSubject}
+                        onChange={(e) => setTicketSubject(e.target.value)}
+                        maxLength={300}
+                        className="mt-1.5"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="nc-body" className="font-body text-sm text-[var(--color-navy)]/70">
+                        {t.ticketBody}
+                      </Label>
+                      <Textarea
+                        id="nc-body"
+                        value={ticketBody}
+                        onChange={(e) => setTicketBody(e.target.value)}
+                        rows={4}
+                        maxLength={5000}
+                        className="mt-1.5 resize-none"
+                      />
+                    </div>
+                    <Button
+                      onClick={() => void submitTicket()}
+                      disabled={ticketSending || !ticketSubject.trim() || !ticketBody.trim()}
+                      className="w-full bg-[var(--color-navy)] hover:bg-[var(--color-navy-light)] text-[var(--color-cream)] font-heading"
+                    >
+                      {ticketSending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                      <span className="ms-2">{t.send}</span>
+                    </Button>
+                  </div>
+                )}
+
+                {sessionToken && ticketRef && (
+                  <div className="mt-4 border-t border-[var(--color-border)] pt-4 text-center">
+                    <CheckCircle2 className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                    <p className="font-heading text-sm font-semibold text-[var(--color-navy)]">
+                      {t.ticketReceived}
+                    </p>
+                    <p className="font-body text-xs text-[var(--color-navy)]/50 mt-1" dir="ltr">{ticketRef}</p>
+                  </div>
+                )}
               </div>
 
               <button

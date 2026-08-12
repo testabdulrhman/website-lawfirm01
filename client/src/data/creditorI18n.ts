@@ -239,6 +239,7 @@ export interface Strings {
   noClaimsTitle: string;
   noClaimsBody: string;
   noClaimsAsk: string;
+  noClaimsAskTicket: string;
   // errors
   errId: string;
   errPhone: string;
@@ -424,6 +425,7 @@ const AR: Strings = {
   noClaimsBody:
     'تحقّقنا من الرقم، ولم نجد عليه مطالبة مسجّلة في أيٍّ من الإجراءات التي يديرها المكتب. فإن كنت تنوب عن دائن — وكيلاً أو وارثاً أو مفوَّضاً — فقدّم طلب ربط، يراجعه المكتب ثم يربط رقمك بمطالبته.',
   noClaimsAsk: 'تقديم طلب ربط',
+  noClaimsAskTicket: 'أو أرسل استفساراً للمكتب',
   errId: 'أدخل رقم الهوية / السجل.',
   errPhone: 'أدخل رقم الجوال المسجّل في المطالبة.',
   errEmail: 'أدخل بريداً إلكترونياً صحيحاً.',
@@ -603,6 +605,7 @@ const EN: Strings = {
   noClaimsBody:
     'We verified your number and found no claim registered against it in any proceeding this office administers. If you act on behalf of a creditor — as attorney, heir or authorised representative — submit an access request. We will review it and link your number to their claim.',
   noClaimsAsk: 'Submit an access request',
+  noClaimsAskTicket: 'Or send an enquiry to the office',
   errId: 'Enter your ID / registration number.',
   errPhone: 'Enter the mobile number registered with the claim.',
   errEmail: 'Enter a valid email address.',
@@ -781,6 +784,7 @@ const UR: Strings = {
   noClaimsBody:
     'ہم نے آپ کے نمبر کی تصدیق کی، اور دفتر کے زیرِ انتظام کسی بھی کارروائی میں اس پر کوئی دعویٰ درج نہیں ملا۔ اگر آپ کسی قرض خواہ کی جانب سے کام کر رہے ہیں — وکیل، وارث یا مجاز نمائندہ — تو رسائی کی درخواست دیں۔ دفتر جائزہ لے کر آپ کا نمبر اُن کے دعوے سے منسلک کر دے گا۔',
   noClaimsAsk: 'رسائی کی درخواست دیں',
+  noClaimsAskTicket: 'یا دفتر کو استفسار بھیجیں',
   errId: 'اپنا شناختی / رجسٹریشن نمبر درج کریں۔',
   errPhone: 'دعوے میں درج موبائل نمبر درج کریں۔',
   errEmail: 'درست ای میل درج کریں۔',
