@@ -232,7 +232,7 @@
         "name": "عبدالرحمن بن رضوان المشيقح",
         "jobTitle": "المؤسس والمدير التنفيذي — محامٍ وأمين إفلاس وموثّق",
         "description": "محامٍ وأمين إفلاس وموثّق بخبرة تتجاوز عشر سنوات في الأعمال القانونية، وحاصل على درجة الماجستير في الأنظمة بمرتبة الشرف الأولى.",
-        "sameAs": ["https://x.com/amoshiqah"],
+        "sameAs": ["https://x.com/redwanlegal"],
         "worksFor": { "@type": "LegalService", "name": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس", "url": "https://redwan.sa" },
         "hasCredential": [
           { "@type": "EducationalOccupationalCredential", "credentialCategory": "ترخيص محاماة", "identifier": "26/129", "recognizedBy": { "@type": "GovernmentOrganization", "name": "وزارة العدل" } },
@@ -1306,7 +1306,7 @@
         "@type": "Person",
         "name": "Abdulrahman bin Redwan Al-Moshiqeh",
         "jobTitle": "Founder and Managing Director — Attorney, Bankruptcy Trustee and Notary",
-        "sameAs": ["https://x.com/amoshiqah"],
+        "sameAs": ["https://x.com/redwanlegal"],
         "worksFor": { "@type": "LegalService", "name": "Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management", "url": "https://redwan.sa/en" },
         "hasCredential": [
           { "@type": "EducationalOccupationalCredential", "credentialCategory": "Law Practice License", "identifier": "26/129", "recognizedBy": { "@type": "GovernmentOrganization", "name": "Saudi Ministry of Justice" } },
@@ -1842,19 +1842,19 @@
     "noindex": true
   },
   "/appointments": {
-    "title": "حجز موعد استشارة قانونية | حضورياً أو عن بُعد",
-    "description": "احجز موعد استشارة قانونية حضورياً في بريدة أو عن بُعد. اختر الخدمة وطريقة الاجتماع والوقت المتاح فعلياً بتوقيت السعودية.",
-    "keywords": "حجز موعد محامي, استشارة قانونية بريدة, موعد محامي القصيم, استشارة قانونية عن بعد, محامي إفلاس",
-    "ogTitle": "حجز موعد استشارة قانونية",
-    "ogDesc": "اختر الخدمة وطريقة الاجتماع والوقت المتاح، واحصل على رقم مرجعي فور تأكيد الحجز.",
+    "title": "حجز موعد | شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    "description": "اختر نوع الخدمة وطريقة الاجتماع والوقت المناسب لإتمام حجز موعد حضوري في مقر المكتب ببريدة أو عن بُعد.",
+    "keywords": "حجز موعد, موعد مكتب محاماة, اجتماع حضوري, اجتماع عن بعد, موعد محامي",
+    "ogTitle": "حجز موعد",
+    "ogDesc": "اختر نوع الخدمة وطريقة الاجتماع والوقت المناسب، واحصل على رقم مرجعي فور تأكيد الحجز.",
     "ogUrl": "https://redwan.sa/appointments",
     "ogType": "website",
     "ogImage": null,
     "canonical": "https://redwan.sa/appointments"
   },
   "/appointments/success": {
-    "title": "تم تأكيد موعد الاستشارة القانونية",
-    "description": "تأكيد حجز موعد الاستشارة القانونية.",
+    "title": "تم تأكيد الموعد",
+    "description": "تأكيد حجز الموعد.",
     "ogUrl": "https://redwan.sa/appointments/success",
     "ogType": "website",
     "ogImage": null,

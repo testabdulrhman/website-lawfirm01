@@ -47,7 +47,7 @@ export default function AppointmentSuccess() {
 
   useSEO({
     title: 'تم تأكيد الموعد',
-    description: 'تأكيد حجز موعد الاستشارة القانونية مع شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس.',
+    description: 'تأكيد حجز موعد مع شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس.',
     canonical: '/appointments/success',
     noindex: true,
   });

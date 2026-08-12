@@ -64,7 +64,7 @@ const teamData: Record<string, { pageLabel: string; pageTitle: string; pageSubti
         role: "محامي",
         title: "المؤسس والمدير التنفيذي",
         initials: "ع",
-        twitter: "https://x.com/amoshiqah",
+        twitter: "https://x.com/redwanlegal",
         bio: "محامٍ، وأمين إفلاس، وموثّق، بخبرة تتجاوز عشر سنوات في الأعمال القانونية. محاضر متعاون بجامعة المستقبل، حاصل على درجة الماجستير في الأنظمة بمرتبة الشرف الأولى. يمتلك خبرة سابقة في الدوائر والمحاكم التجارية بالرياض.",
       },
       {

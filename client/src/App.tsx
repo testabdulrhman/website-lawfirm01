@@ -1,5 +1,3 @@
-import { Toaster } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { Route, Switch, useLocation } from "wouter";
 import {
   lazy,
@@ -51,11 +49,35 @@ const BankruptcyReports = lazy(() => import("@/pages/BankruptcyReports"));
 const BankruptcyReportJuly2026 = lazy(() => import("@/pages/BankruptcyReportJuly2026"));
 const BankruptcyMonthlyArchiveReport = lazy(() => import("@/pages/BankruptcyMonthlyArchiveReport"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
+const LazyToaster = lazy(() =>
+  import("@/components/ui/sonner").then(module => ({ default: module.Toaster }))
+);
 
 function DeferredToaster() {
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  return mounted ? <Toaster /> : null;
+  useEffect(() => {
+    const windowWithIdleCallback = window as typeof window & {
+      requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+      cancelIdleCallback?: (handle: number) => void;
+    };
+
+    if (windowWithIdleCallback.requestIdleCallback) {
+      const handle = windowWithIdleCallback.requestIdleCallback(
+        () => setMounted(true),
+        { timeout: 2000 }
+      );
+      return () => windowWithIdleCallback.cancelIdleCallback?.(handle);
+    }
+
+    const timer = window.setTimeout(() => setMounted(true), 1000);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  return mounted ? (
+    <Suspense fallback={null}>
+      <LazyToaster />
+    </Suspense>
+  ) : null;
 }
 
 export type InitialPage = {
@@ -265,10 +287,8 @@ function App({
       <HelmetProvider context={helmetContext}>
         <LanguageProvider>
           <ThemeProvider defaultTheme="dark">
-            <TooltipProvider>
-              <DeferredToaster />
-              <Router initialPage={initialPage} />
-            </TooltipProvider>
+            <DeferredToaster />
+            <Router initialPage={initialPage} />
           </ThemeProvider>
         </LanguageProvider>
       </HelmetProvider>

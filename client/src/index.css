@@ -1,5 +1,74 @@
-@import "tailwindcss";
+@import "tailwindcss" source(none);
 @import "tw-animate-css";
+
+/* Tailwind v4 otherwise scans the complete shadcn component library, including
+   dozens of components that are not shipped by this site. Keep application
+   sources plus the small set of UI primitives that are actually imported. */
+@source "./";
+@source not "./components/ui";
+@source "./components/ui/badge.tsx";
+@source "./components/ui/button.tsx";
+@source "./components/ui/card.tsx";
+@source "./components/ui/dialog.tsx";
+@source "./components/ui/input.tsx";
+@source "./components/ui/label.tsx";
+@source "./components/ui/select.tsx";
+@source "./components/ui/separator.tsx";
+@source "./components/ui/sheet.tsx";
+@source "./components/ui/skeleton.tsx";
+@source "./components/ui/sonner.tsx";
+@source "./components/ui/textarea.tsx";
+@source "./components/ui/toggle.tsx";
+@source "./components/ui/tooltip.tsx";
+
+/* Self-hosted variable fonts. `optional` keeps text immediately visible on
+   slow connections and avoids making a font request part of the LCP path. */
+@font-face {
+  font-family: "Noto Sans Arabic";
+  font-style: normal;
+  font-weight: 400 700;
+  font-stretch: 100%;
+  font-display: optional;
+  src: url("/fonts/noto-sans-arabic-400-700.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891,
+    U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41,
+    U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB,
+    U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EEFF;
+}
+
+@font-face {
+  font-family: "Noto Sans Arabic";
+  font-style: normal;
+  font-weight: 400 700;
+  font-stretch: 100%;
+  font-display: optional;
+  src: url("/fonts/noto-sans-arabic-latin-400-700.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC,
+    U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+    U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: optional;
+  src: url("/fonts/montserrat-latin-400-700.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC,
+    U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+    U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: optional;
+  src: url("/fonts/playfair-display-latin-400-800.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC,
+    U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+    U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 @custom-variant dark (&:is(.dark *));
 

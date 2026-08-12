@@ -85,13 +85,10 @@ export default defineConfig({
           ) {
             return "react-vendor";
           }
-          if (
-            id.includes("/@radix-ui/") ||
-            id.includes("/lucide-react/") ||
-            id.includes("/framer-motion/")
-          ) {
-            return "ui-vendor";
-          }
+          // Do not force every icon and Radix component used anywhere on the
+          // site into one shared chunk. That made the homepage download UI
+          // code needed only by lazy routes. Rollup can now tree-shake and
+          // split those dependencies with the route that actually uses them.
         },
       },
     },
