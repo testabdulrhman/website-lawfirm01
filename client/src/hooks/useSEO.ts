@@ -224,7 +224,7 @@ export const schemas = {
       "name": "Saudi Arabia"
     },
     "sameAs": [
-      "https://x.com/redwan_law",
+      "https://x.com/redwanlegal",
       "https://www.linkedin.com/company/redwan-sa",
       "https://www.instagram.com/redwanlegal",
       "https://www.facebook.com/redwanlegal",
@@ -336,7 +336,7 @@ export const schemas = {
       { "@type": "City", "name": "حائل" }
     ],
     "sameAs": [
-      "https://x.com/redwan_law",
+      "https://x.com/redwanlegal",
       "https://www.linkedin.com/company/redwan-sa",
       "https://www.instagram.com/redwanlegal",
       "https://www.facebook.com/redwanlegal",
