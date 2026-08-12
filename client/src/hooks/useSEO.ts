@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "wouter";
+import { FIRM_NAME_AR, FIRM_NAME_EN } from "@/lib/firmIdentity";
 
 interface SEOProps {
   title: string;
@@ -13,10 +14,10 @@ interface SEOProps {
   fullTitle?: boolean;
 }
 
-const SITE_NAME_AR = "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس";
-const SITE_NAME_EN = "Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management";
+const SITE_NAME_AR = FIRM_NAME_AR;
+const SITE_NAME_EN = FIRM_NAME_EN;
 const SITE_NAME_UR = "المشیقح لا فرم";
-const SITE_NAME = "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس";
+const SITE_NAME = FIRM_NAME_AR;
 const BASE_URL = "https://redwan.sa";
 
 export function useSEO({
