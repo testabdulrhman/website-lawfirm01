@@ -97,10 +97,6 @@ export default function Footer() {
               <p className="mt-4 max-w-sm font-body text-sm leading-7 text-white/55">
                 {t.footer.description}
               </p>
-              <p lang="en" dir="ltr" className="mt-3 max-w-sm font-body text-[11px] leading-5 tracking-[0.01em] text-white/35">
-                {FIRM_NAME_EN}
-              </p>
-
               <div className="mt-5 flex items-center justify-between gap-4 border-s-2 border-[var(--color-gold)] ps-4">
                 <div>
                   <p className="font-body text-xs text-white/50">{labels.bookEyebrow}</p>
@@ -205,8 +201,11 @@ export default function Footer() {
             </section>
           </div>
 
-          <div className="flex flex-col items-center justify-between gap-3 pt-5 text-center lg:flex-row lg:text-start">
-            <p className="font-body text-xs leading-6 text-white/50">© {new Date().getFullYear()} {t.footer.copyright}</p>
+          <div className="grid items-center gap-3 pt-5 text-center lg:grid-cols-3 lg:gap-6">
+            <p className="font-body text-xs leading-6 text-white/50 lg:text-start">© {new Date().getFullYear()} {t.footer.copyright}</p>
+            <p lang="en" dir="ltr" className="font-body text-[10px] leading-4 tracking-[0.01em] text-white/35">
+              {FIRM_NAME_EN}
+            </p>
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 lg:justify-end">
               <Link href={lp("/privacy")} className="font-body text-xs text-white/50 transition-colors hover:text-[var(--color-gold)]">{t.footer.privacy}</Link>
               <Link href={lp("/terms")} className="font-body text-xs text-white/50 transition-colors hover:text-[var(--color-gold)]">{t.footer.terms}</Link>
