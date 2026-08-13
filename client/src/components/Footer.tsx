@@ -29,7 +29,6 @@ export default function Footer() {
         bookEyebrow: "تحتاج إلى استشارة قانونية؟",
         bookTitle: "ابدأ بخطوة واضحة",
         bookCta: "احجز استشارة",
-        license: "ترخيص محاماة رقم: 26/129",
         sitemap: "خريطة الموقع",
       }
     : lang === "ur"
@@ -42,7 +41,6 @@ export default function Footer() {
           bookEyebrow: "قانونی مشورہ درکار ہے؟",
           bookTitle: "واضح اگلا قدم اٹھائیں",
           bookCta: "مشاورت بک کریں",
-          license: "قانونی لائسنس نمبر: 26/129",
           sitemap: "سائٹ میپ",
         }
       : {
@@ -54,7 +52,6 @@ export default function Footer() {
           bookEyebrow: "Need legal advice?",
           bookTitle: "Take a clear next step",
           bookCta: "Book a consultation",
-          license: "Law Practice License No. 26/129",
           sitemap: "Sitemap",
         };
 
@@ -84,39 +81,41 @@ export default function Footer() {
       <footer className="relative overflow-hidden border-t border-[var(--color-gold)]/30 bg-[var(--color-navy)] text-white">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_0%,rgba(184,134,63,0.10),transparent_30%),radial-gradient(circle_at_90%_100%,rgba(255,255,255,0.035),transparent_28%)]" />
 
-        <div className="container relative mx-auto px-4 pb-40 pt-9 sm:pb-9 lg:px-8 lg:py-11">
-          <div className="grid items-center gap-6 border-b border-white/10 pb-8 lg:grid-cols-[minmax(0,1fr)_auto]">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-              <Link href={lp("/")} className="shrink-0">
+        <div className="container relative mx-auto px-4 pb-24 pt-8 sm:pb-8 lg:px-8 lg:py-9">
+          <div className="grid gap-8 border-b border-white/10 pb-7 lg:grid-cols-[minmax(240px,0.9fr)_minmax(0,1.8fr)_minmax(280px,1fr)] lg:gap-10">
+            <section aria-label={lang === "ar" ? "هوية الشركة" : lang === "ur" ? "ادارے کی شناخت" : "Firm identity"}>
+              <Link href={lp("/")} className="inline-block">
                 <img
                   src="/images/logo-light-512.webp"
                   alt={FIRM_NAME_AR}
-                  className="h-auto w-[190px] object-contain"
+                  className="h-auto w-[205px] object-contain"
                   width={512}
                   height={156}
                   loading="lazy"
                 />
               </Link>
-              <p className="max-w-xl border-white/10 font-body text-sm leading-7 text-white/55 sm:border-s sm:ps-6">
+              <p className="mt-4 max-w-sm font-body text-sm leading-7 text-white/55">
                 {t.footer.description}
               </p>
-            </div>
+              <p lang="en" dir="ltr" className="mt-3 max-w-sm font-body text-[11px] leading-5 tracking-[0.01em] text-white/35">
+                {FIRM_NAME_EN}
+              </p>
 
-            <div className="flex items-center justify-between gap-5 border-s-2 border-[var(--color-gold)] ps-4 lg:min-w-[290px]">
-              <div>
-                <p className="font-body text-xs text-white/50">{labels.bookEyebrow}</p>
-                <p className="mt-1 font-heading text-base font-semibold text-white">{labels.bookTitle}</p>
+              <div className="mt-5 flex items-center justify-between gap-4 border-s-2 border-[var(--color-gold)] ps-4">
+                <div>
+                  <p className="font-body text-xs text-white/50">{labels.bookEyebrow}</p>
+                  <p className="mt-1 font-heading text-sm font-semibold text-white">{labels.bookTitle}</p>
+                </div>
+                <Link
+                  href={lp("/appointments")}
+                  className="inline-flex min-h-10 shrink-0 items-center justify-center bg-[var(--color-gold)] px-4 font-heading text-xs font-semibold text-[var(--color-navy)] transition-colors hover:bg-white"
+                >
+                  {labels.bookCta}
+                </Link>
               </div>
-              <Link
-                href={lp("/appointments")}
-                className="inline-flex min-h-11 shrink-0 items-center justify-center bg-[var(--color-gold)] px-5 font-heading text-sm font-semibold text-[var(--color-navy)] transition-colors hover:bg-white"
-              >
-                {labels.bookCta}
-              </Link>
-            </div>
-          </div>
+            </section>
 
-          <div className="grid grid-cols-2 gap-x-6 gap-y-9 py-8 md:grid-cols-4 lg:grid-cols-[0.9fr_1.05fr_1.35fr_1.7fr] lg:gap-10">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3">
             <nav aria-label={labels.company}>
               <h2 className="mb-4 border-s-2 border-[var(--color-gold)] ps-3 font-heading text-sm font-semibold text-white">
                 {labels.company}
@@ -155,8 +154,9 @@ export default function Footer() {
                 ))}
               </ul>
             </nav>
+            </div>
 
-            <section aria-labelledby="footer-contact-heading" className="col-span-2 border border-white/10 bg-white/[0.035] p-5 md:col-span-1">
+            <section aria-labelledby="footer-contact-heading" className="self-start border border-white/10 bg-white/[0.035] p-5">
               <h2 id="footer-contact-heading" className="mb-4 border-s-2 border-[var(--color-gold)] ps-3 font-heading text-sm font-semibold text-white">
                 {t.footer.contactUs}
               </h2>
@@ -205,19 +205,13 @@ export default function Footer() {
             </section>
           </div>
 
-          <div className="border-t border-white/10 pt-5">
-            <div className="flex flex-col items-center justify-between gap-3 text-center lg:flex-row lg:text-start">
-              <p className="font-body text-xs leading-6 text-white/50">© {new Date().getFullYear()} {t.footer.copyright}</p>
-              <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 lg:justify-end">
-                <Link href={lp("/privacy")} className="font-body text-xs text-white/50 transition-colors hover:text-[var(--color-gold)]">{t.footer.privacy}</Link>
-                <Link href={lp("/terms")} className="font-body text-xs text-white/50 transition-colors hover:text-[var(--color-gold)]">{t.footer.terms}</Link>
-                <Link href={lp("/sitemap")} className="font-body text-xs text-white/50 transition-colors hover:text-[var(--color-gold)]">{labels.sitemap}</Link>
-                <span className="font-body text-xs text-white/50">{labels.license}</span>
-              </div>
+          <div className="flex flex-col items-center justify-between gap-3 pt-5 text-center lg:flex-row lg:text-start">
+            <p className="font-body text-xs leading-6 text-white/50">© {new Date().getFullYear()} {t.footer.copyright}</p>
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 lg:justify-end">
+              <Link href={lp("/privacy")} className="font-body text-xs text-white/50 transition-colors hover:text-[var(--color-gold)]">{t.footer.privacy}</Link>
+              <Link href={lp("/terms")} className="font-body text-xs text-white/50 transition-colors hover:text-[var(--color-gold)]">{t.footer.terms}</Link>
+              <Link href={lp("/sitemap")} className="font-body text-xs text-white/50 transition-colors hover:text-[var(--color-gold)]">{labels.sitemap}</Link>
             </div>
-            <p lang="en" dir="ltr" className="mt-4 border-t border-white/[0.06] pt-4 text-center font-body text-[11px] tracking-[0.01em] text-white/35">
-              {FIRM_NAME_EN}
-            </p>
           </div>
         </div>
       </footer>
