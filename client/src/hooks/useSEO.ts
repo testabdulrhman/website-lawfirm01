@@ -19,6 +19,7 @@ const SITE_NAME_EN = FIRM_NAME_EN;
 const SITE_NAME_UR = "المشیقح لا فرم";
 const SITE_NAME = FIRM_NAME_AR;
 const BASE_URL = "https://redwan.sa";
+const DEFAULT_OG_IMAGE = `${BASE_URL}/images/redwan-site-share.png`;
 
 export function useSEO({
   title,
@@ -52,6 +53,7 @@ export function useSEO({
     fullTitle || title.includes("|") || (!isEnglishPage && !isUrduPage)
       ? title
       : `${title} | ${siteName}`;
+  const effectiveOgImage = ogImage || DEFAULT_OG_IMAGE;
 
   useEffect(() => {
     // Title
@@ -77,9 +79,11 @@ export function useSEO({
     setMeta("og:description", description, "property");
     setMeta("og:type", ogType, "property");
     setMeta("og:site_name", siteName, "property");
-    if (ogImage) {
-      setMeta("og:image", ogImage, "property");
-    }
+    setMeta("og:image", effectiveOgImage, "property");
+    setMeta("og:image:width", "1200", "property");
+    setMeta("og:image:height", "630", "property");
+    setMeta("og:image:type", "image/png", "property");
+    setMeta("og:image:alt", siteName, "property");
     if (effectiveCanonical) {
       setMeta("og:url", `${BASE_URL}${effectiveCanonical}`, "property");
       setCanonical(`${BASE_URL}${effectiveCanonical}`);
@@ -96,9 +100,8 @@ export function useSEO({
     setMeta("twitter:card", "summary_large_image", "name");
     setMeta("twitter:title", title, "name");
     setMeta("twitter:description", description, "name");
-    if (ogImage) {
-      setMeta("twitter:image", ogImage, "name");
-    }
+    setMeta("twitter:image", effectiveOgImage, "name");
+    setMeta("twitter:image:alt", siteName, "name");
 
     // Hreflang alternate links
     setHreflang(effectiveCanonical, noindex);
@@ -122,7 +125,7 @@ export function useSEO({
       // Cleanup page schema scripts on unmount (keep site-wide)
       document.querySelectorAll('script[data-page-schema]').forEach(el => el.remove());
     };
-  }, [title, description, keywords, ogImage, ogType, effectiveCanonical, noindex, schema, formattedTitle, siteName, location]);
+  }, [title, description, keywords, effectiveOgImage, ogType, effectiveCanonical, noindex, schema, formattedTitle, siteName, location]);
 }
 
 function setMeta(name: string, content: string, attr: "name" | "property" = "name") {
