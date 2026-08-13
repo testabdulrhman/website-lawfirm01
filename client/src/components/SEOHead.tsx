@@ -24,6 +24,7 @@ interface SEOHeadProps {
 }
 
 const BASE_URL = "https://redwan.sa";
+const DEFAULT_OG_IMAGE = `${BASE_URL}/images/redwan-site-share.png`;
 
 function setMeta(name: string, content: string, attr: "name" | "property" = "name") {
   let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null;
@@ -71,6 +72,7 @@ export default function SEOHead({
     // separately as og:site_name and in the site-wide Organization schema.
     const fullTitle = lang === "ar" || title.includes("|") ? title : `${title} | ${siteName}`;
     const locale = lang === "ar" ? "ar_SA" : "en_US";
+    const effectiveOgImage = ogImage || DEFAULT_OG_IMAGE;
 
     // Title
     document.title = fullTitle;
@@ -93,17 +95,18 @@ export default function SEOHead({
     if (canonicalUrl) {
       setMeta("og:url", absoluteUrl(canonicalUrl), "property");
     }
-    if (ogImage) {
-      setMeta("og:image", ogImage, "property");
-    }
+    setMeta("og:image", effectiveOgImage, "property");
+    setMeta("og:image:width", "1200", "property");
+    setMeta("og:image:height", "630", "property");
+    setMeta("og:image:type", "image/png", "property");
+    setMeta("og:image:alt", siteName, "property");
 
     // Twitter
     setMeta("twitter:card", "summary_large_image", "name");
     setMeta("twitter:title", fullTitle, "name");
     setMeta("twitter:description", description, "name");
-    if (ogImage) {
-      setMeta("twitter:image", ogImage, "name");
-    }
+    setMeta("twitter:image", effectiveOgImage, "name");
+    setMeta("twitter:image:alt", siteName, "name");
 
     // Article specific
     if (article) {
