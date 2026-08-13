@@ -1301,6 +1301,9 @@ export default function CreditorPortal() {
   }
 
   // ════════════════ البوابة ════════════════
+  // تصويتٌ مفتوح ينتظر صوته — أظهرُ ما في البوابة، فلا يفوته
+  const voteNeedsAction = votes.some((v) => v.open && v.eligible && !v.my_vote);
+
   const NAV: { key: Tab; label: string; icon: typeof FileText; count?: number }[] = [
     { key: "claims", label: t.navClaims, icon: FileText, count: claims.length },
     { key: "tickets", label: t.navTickets, icon: MessageSquarePlus, count: tickets.length },
@@ -1378,9 +1381,12 @@ export default function CreditorPortal() {
             </a>
           ))}
 
-          {/* شريط التبويبات — أفقي على كل المقاسات، قابل للتمرير عند الضيق */}
+          {/* شريط التبويبات: على الجوال يأخذ كلُّ تبويب عرضه الطبيعي
+              ويُمرَّر الشريط أفقياً — وقَسْمُه على الأربعة بالتساوي كان
+              يترك للكلمة أربعين بكسلاً فتُقتطع. وعلى الشاشات الواسعة
+              يتقاسمون العرض كما كانوا. */}
           <div className="bg-white border border-[var(--color-border)] mb-5">
-            <div className="flex overflow-x-auto">
+            <div className="flex overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {NAV.map((n) => {
                 const active = tab === n.key;
                 return (
@@ -1388,16 +1394,30 @@ export default function CreditorPortal() {
                     key={n.key}
                     type="button"
                     onClick={() => setTab(n.key)}
-                    className={`min-w-0 flex-1 shrink-0 flex items-center justify-center gap-1.5 px-3 py-3 font-heading text-xs md:text-sm border-b-2 transition-colors whitespace-nowrap ${
-                      active
-                        ? "border-[var(--color-gold)] text-[var(--color-navy)] bg-[var(--color-cream)]"
-                        : "border-transparent text-[var(--color-navy)]/50 hover:text-[var(--color-navy)]"
+                    className={`shrink-0 md:min-w-0 md:flex-1 flex items-center justify-center gap-1.5 px-4 md:px-3 py-3.5 md:py-3 font-heading text-sm border-b-2 transition-colors whitespace-nowrap ${
+                      n.key === "vote" && voteNeedsAction && !active
+                        ? "border-[var(--color-gold)] bg-[var(--color-gold)] text-[var(--color-navy)] font-bold"
+                        : n.key === "vote" && !active
+                          ? "border-[var(--color-gold)]/40 bg-[var(--color-gold)]/10 text-[var(--color-navy)]"
+                          : active
+                            ? "border-[var(--color-gold)] text-[var(--color-navy)] bg-[var(--color-cream)]"
+                            : "border-transparent text-[var(--color-navy)]/50 hover:text-[var(--color-navy)]"
                     }`}
                   >
+                    {n.key === "vote" && voteNeedsAction && (
+                      <span className="relative flex h-2 w-2 shrink-0">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-navy)] opacity-60" />
+                        <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-navy)]" />
+                      </span>
+                    )}
                     <n.icon className="w-4 h-4 shrink-0" />
-                    <span className="truncate">{n.label}</span>
+                    <span className="md:truncate">{n.label}</span>
                     {n.count !== undefined && n.count > 0 && (
-                      <span className="shrink-0 px-1.5 py-0.5 bg-[var(--color-navy)]/10 text-[10px] font-mono rounded">
+                      <span className={`shrink-0 px-1.5 py-0.5 text-[10px] font-mono rounded ${
+                        n.key === "vote" && voteNeedsAction && !active
+                          ? "bg-[var(--color-navy)] text-[var(--color-cream)]"
+                          : "bg-[var(--color-navy)]/10"
+                      }`}>
                         {fmtNumber(n.count)}
                       </span>
                     )}
