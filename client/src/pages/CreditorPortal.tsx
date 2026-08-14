@@ -1788,14 +1788,13 @@ function EmptyState({ icon: Icon, msg }: { icon: typeof FileText; msg: string })
 }
 
 function Field({ label, value, ltr }: { label: string; value?: string | null; ltr?: boolean }) {
+  // الأرقام والبُرُد تُعزل بـ bdi لا بقلب اتجاه الفقرة: قلبُه يدفع
+  // القيمة إلى يسار الشاشة بعيداً عن تسميتها، فيصعب ربطُهما على الجوال
   return (
     <div className="min-w-0">
       <p className="font-body text-xs text-[var(--color-navy)]/50">{label}</p>
-      <p
-        className="font-body text-sm text-[var(--color-navy)] mt-0.5 break-words"
-        dir={ltr ? "ltr" : undefined}
-      >
-        {value || "—"}
+      <p className="font-body text-sm text-[var(--color-navy)] mt-0.5 break-words">
+        {value ? (ltr ? <bdi dir="ltr">{value}</bdi> : value) : "—"}
       </p>
     </div>
   );
