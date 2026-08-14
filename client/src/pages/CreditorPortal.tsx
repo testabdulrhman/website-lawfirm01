@@ -1449,7 +1449,8 @@ export default function CreditorPortal() {
             </div>
           </div>
 
-          {error && <ErrorNote msg={error} />}
+          {/* في تبويب التصويت تُعرض الرسالة عند الأزرار نفسها، فلا تُكرّر */}
+          {error && tab !== "vote" && <ErrorNote msg={error} />}
           {loading && (
             <div className="flex items-center justify-center py-10">
               <Loader2 className="w-6 h-6 animate-spin text-[var(--color-gold)]" />
@@ -1724,6 +1725,11 @@ export default function CreditorPortal() {
                               {t.voteReject}
                             </Button>
                           </div>
+                          {error && (
+                            <div className="mt-3">
+                              <ErrorNote msg={error} />
+                            </div>
+                          )}
                           <p className="font-body text-xs text-[var(--color-navy)]/45 mt-2 text-center">
                             {t.voteFinal}
                           </p>
