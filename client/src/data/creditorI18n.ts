@@ -204,6 +204,12 @@ export interface Strings {
   // طلب ربط جوال بمطالبة — لمن ليس جواله مسجَّلاً فيها
   accessLink: string;
   accessTitle: string;
+  docsTitle: string;
+  docsIntro: string;
+  docsSubmit: string;
+  docsCta: string;
+  docsCtaHint: string;
+  docsBack: string;
   accessIntro: string;
   accessTargetId: string;
   accessTargetIdHint: string;
@@ -382,6 +388,14 @@ const AR: Strings = {
   resendIn: (s) => `إعادة الإرسال بعد ${s} ث`,
   accessLink: 'جوالي غير مسجَّل في المطالبة — أطلب ربطه',
   accessTitle: 'طلب ربط بمطالبة',
+  docsTitle: 'إرفاق مستندات الصفة',
+  docsIntro:
+    'إن كان من سيصوّت غير من قدّم المطالبة، أو تغيّرت وكالتك، فأرفق الوكالة السارية وصورة هوية من سيصوّت. يراجعها المكتب قبل موعد التصويت.',
+  docsSubmit: 'إرسال المستندات',
+  docsBack: 'العودة إلى البوابة',
+  docsCta: 'إرفاق مستندات الصفة',
+  docsCtaHint:
+    'للوكيل أو المفوَّض إن استُجدّت وكالته أو تغيّر من يصوّت عن الدائن. ومن يصوّت بنفسه لا يحتاجها.',
   accessIntro:
     'إن كنت تنوب عن صاحب مطالبة ولم يكن جوالك مسجَّلاً فيها، فأرسل ما يثبت صفتك، ويراجعه المكتب ثم يربط جوالك بمطالبته.',
   accessTargetId: 'رقم هوية أو سجل صاحب المطالبة',
@@ -562,6 +576,14 @@ const EN: Strings = {
   resendIn: (s) => `Resend in ${s}s`,
   accessLink: 'My number is not on the claim — request access',
   accessTitle: 'Request access to a claim',
+  docsTitle: 'Submit capacity documents',
+  docsIntro:
+    'If the person voting is not the one who filed the claim, or your power of attorney has changed, attach the valid Power of Attorney and the ID of the person voting. The office will review them before the vote.',
+  docsSubmit: 'Send documents',
+  docsBack: 'Back to the portal',
+  docsCta: 'Submit capacity documents',
+  docsCtaHint:
+    'For an attorney or authorised representative whose authorisation is new or changed. Not needed if you vote yourself.',
   accessIntro:
     'If you act on behalf of a creditor and your number is not registered on their claim, send us proof of your capacity. We will review it and link your number to the claim.',
   accessTargetId: "Creditor's ID or registration number",
@@ -741,6 +763,14 @@ const UR: Strings = {
   resendIn: (s) => `${s} سیکنڈ بعد دوبارہ بھیجیں`,
   accessLink: 'میرا نمبر دعوے میں درج نہیں — رسائی کی درخواست دیں',
   accessTitle: 'دعوے تک رسائی کی درخواست',
+  docsTitle: 'اہلیت کی دستاویزات جمع کرائیں',
+  docsIntro:
+    'اگر ووٹ دینے والا وہ نہیں جس نے دعویٰ دائر کیا، یا آپ کا مختارنامہ بدل گیا ہے، تو مؤثر مختارنامہ اور ووٹ دینے والے کی شناخت منسلک کریں۔ دفتر ووٹنگ سے پہلے جائزہ لے گا۔',
+  docsSubmit: 'دستاویزات بھیجیں',
+  docsBack: 'پورٹل پر واپس',
+  docsCta: 'اہلیت کی دستاویزات جمع کرائیں',
+  docsCtaHint:
+    'اُس وکیل یا مجاز نمائندے کے لیے جس کی اجازت نئی یا تبدیل شدہ ہے۔ خود ووٹ دینے والے کو ضرورت نہیں۔',
   accessIntro:
     'اگر آپ کسی قرض خواہ کی جانب سے کام کر رہے ہیں اور آپ کا نمبر اُن کے دعوے میں درج نہیں، تو اپنی حیثیت کا ثبوت بھیجیں۔ دفتر جائزہ لے کر آپ کا نمبر دعوے سے منسلک کر دے گا۔',
   accessTargetId: 'قرض خواہ کا شناختی / رجسٹریشن نمبر',

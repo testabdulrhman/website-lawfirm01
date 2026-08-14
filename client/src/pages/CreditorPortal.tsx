@@ -344,6 +344,9 @@ export default function CreditorPortal() {
   const [access, setAccess] = useState<AccessForm>(EMPTY_ACCESS);
   const [accessFiles, setAccessFiles] = useState<File[]>([]);
   const [accessRef, setAccessRef] = useState<string | null>(null);
+  // النموذج واحد ومدخلاه اثنان: «ربط» لمن لا مطالبة له، و«مستندات
+  // صفة» لدائنٍ داخلٍ رقمُه مربوط أصلاً وإنما يرفع سند وكالته
+  const [accessKind, setAccessKind] = useState<"ربط" | "مستندات صفة">("ربط");
 
   const [ticketOpen, setTicketOpen] = useState(false);
   const [ticketSubject, setTicketSubject] = useState("");
@@ -466,6 +469,7 @@ export default function CreditorPortal() {
           requester_phone: phoneValue,
           requester_email: access.myEmail.trim(),
           relationship: access.relationship,
+          kind: accessKind,
           authorization_ref: access.authRef.trim(),
           note: access.note.trim(),
           attachments,
@@ -494,7 +498,25 @@ export default function CreditorPortal() {
   function openAccess(prefillPhone = "") {
     setError(null);
     setInfo(null);
+    setAccessKind("ربط");
+    setAccessRef(null);
     if (prefillPhone) setAccess((a) => ({ ...a, myPhone: prefillPhone }));
+    goStageTop("access");
+  }
+
+  /** من داخل البوابة: هويّة صاحب المطالبة وجواله معروفان من جلسته */
+  function openCapacityDocs() {
+    setError(null);
+    setInfo(null);
+    setAccessKind("مستندات صفة");
+    setAccessRef(null);
+    setAccess((a) => ({
+      ...a,
+      targetId: creditor?.id_number ?? "",
+      name: a.name || creditor?.representative_name || creditor?.name || "",
+      myPhone: a.myPhone || creditor?.phone || "",
+      myEmail: a.myEmail || creditor?.email || "",
+    }));
     goStageTop("access");
   }
 
@@ -940,10 +962,10 @@ export default function CreditorPortal() {
                   <KeyRound className="w-7 h-7 text-[var(--color-gold)]" />
                 </div>
                 <h1 className="font-display text-2xl md:text-3xl font-bold text-[var(--color-navy)]">
-                  {t.accessTitle}
+                  {accessKind === "مستندات صفة" ? t.docsTitle : t.accessTitle}
                 </h1>
                 <p className="font-body text-sm text-[var(--color-navy)]/60 mt-2 leading-relaxed">
-                  {t.accessIntro}
+                  {accessKind === "مستندات صفة" ? t.docsIntro : t.accessIntro}
                 </p>
               </div>
 
@@ -1088,15 +1110,15 @@ export default function CreditorPortal() {
                     className="w-full bg-[var(--color-navy)] hover:bg-[var(--color-navy-light)] text-[var(--color-cream)] font-heading"
                   >
                     {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
-                    <span className="ms-2">{t.accessSubmit}</span>
+                    <span className="ms-2">{accessKind === "مستندات صفة" ? t.docsSubmit : t.accessSubmit}</span>
                   </Button>
 
                   <button
                     type="button"
-                    onClick={() => { goStageTop("id"); setError(null); }}
+                    onClick={() => { goStageTop(creditor ? "portal" : "id"); setError(null); }}
                     className="w-full font-body text-xs text-[var(--color-navy)]/50 hover:text-[var(--color-navy)] transition-colors"
                   >
-                    {t.accessBack}
+                    {creditor ? t.docsBack : t.accessBack}
                   </button>
                 </div>
               </div>
@@ -1147,11 +1169,11 @@ export default function CreditorPortal() {
                   setAccess(EMPTY_ACCESS);
                   setAccessFiles([]);
                   setAccessRef(null);
-                  goStageTop("id");
+                  goStageTop(creditor ? "portal" : "id");
                 }}
                 className="mt-6 font-body text-xs text-[var(--color-navy)]/50 hover:text-[var(--color-navy)] transition-colors"
               >
-                {t.accessBack}
+                {creditor ? t.docsBack : t.accessBack}
               </button>
             </div>
           </div>
@@ -1748,9 +1770,22 @@ export default function CreditorPortal() {
                     <Field label={t.fAddress} value={creditor.address ?? creditor.street_name} />
                     <Field label={t.fRep} value={creditor.representative_name} />
                   </div>
-                  <p className="font-body text-xs text-[var(--color-navy)]/40 mt-6 pt-4 border-t border-[var(--color-border)] leading-relaxed">
-                    {t.editHint}
-                  </p>
+                  <div className="mt-6 pt-4 border-t border-[var(--color-border)]">
+                    <p className="font-body text-xs text-[var(--color-navy)]/40 leading-relaxed">
+                      {t.editHint}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={openCapacityDocs}
+                      className="w-full mt-4 flex items-center justify-center gap-2 bg-[var(--color-navy)] hover:bg-[var(--color-navy-light)] text-[var(--color-cream)] py-3 font-heading text-sm transition-colors"
+                    >
+                      <Paperclip className="w-4 h-4" />
+                      {t.docsCta}
+                    </button>
+                    <p className="font-body text-xs text-[var(--color-navy)]/45 mt-2 leading-relaxed">
+                      {t.docsCtaHint}
+                    </p>
+                  </div>
                 </>
               )}
             </div>
