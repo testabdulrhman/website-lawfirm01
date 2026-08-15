@@ -250,7 +250,7 @@ export default function BankruptcyCompanies() {
                   <h3 className="font-heading text-lg font-semibold text-[var(--color-navy)] mb-3">{path.title}</h3>
                   <p className="font-body text-sm text-[var(--color-navy)]/65 leading-relaxed">{path.text}</p>
                   {path.href && (
-                    <span className="inline-flex items-center gap-2 mt-5 font-heading text-sm font-semibold text-[var(--color-gold)]">
+                    <span className="inline-flex items-center gap-2 mt-5 font-heading text-sm font-semibold text-[var(--color-navy)] underline decoration-[var(--color-gold)] decoration-2 underline-offset-4">
                       اقرأ عن الإجراء
                       <ArrowLeft size={14} />
                     </span>
