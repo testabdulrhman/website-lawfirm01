@@ -168,6 +168,7 @@ function setHreflang(canonical?: string, noindex = false) {
     arPath === "/cases-guide" ||
     arPath === "/legal-dictionary" ||
     arPath.startsWith("/appointments") ||
+    arPath === "/bankruptcy/companies" ||
     arPath === "/bankruptcy/claims" ||
     arPath.startsWith("/bankruptcy/reports") ||
     arPath.startsWith("/blog/") ||
@@ -475,7 +476,7 @@ export const schemas = {
     "@type": "Service",
     "name": "خدمات محامي الإفلاس للشركات والدائنين",
     "alternateName": "Bankruptcy Legal Services for Companies and Creditors",
-    "description": "استشارات وتمثيل قانوني للشركات المتعثرة والدائنين والمدينين في التسوية الوقائية وإعادة التنظيم المالي والتصفية وفق نظام الإفلاس السعودي.",
+    "description": "دراسة أوضاع الشركات المتعثرة وإعادة هيكلة الديون، والاستشارات والتمثيل القانوني للشركات والدائنين في التسوية الوقائية وإعادة التنظيم المالي والتصفية وفق نظام الإفلاس السعودي.",
     "url": "https://redwan.sa/services/bankruptcy",
     "provider": {
       "@type": "LegalService",
@@ -491,7 +492,8 @@ export const schemas = {
       "@type": "OfferCatalog",
       "name": "خدمات محامي الإفلاس",
       "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تقييم الخيارات النظامية للشركات المتعثرة" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "دراسة وضع الشركات المتعثرة وقابلية استمرار النشاط" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "إعادة هيكلة ديون الشركات والتفاوض مع الدائنين" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "التمثيل القانوني في التسوية الوقائية" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "التمثيل القانوني في إعادة التنظيم المالي" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "الاستشارة القانونية في التصفية" } },

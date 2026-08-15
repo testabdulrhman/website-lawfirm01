@@ -79,6 +79,36 @@ export default function Bankruptcy() {
         </div>
       </section>
 
+      {/* مسار مستقل للشركات — يفصل التمثيل القانوني عن الحالات التي يديرها المكتب بصفة أمين. */}
+      {lang === "ar" && (
+        <section className="py-8 md:py-10 bg-[var(--color-cream)] border-b border-[var(--color-border)]">
+          <div className="container mx-auto px-5 md:px-4 lg:px-8">
+            <Link
+              href="/bankruptcy/companies"
+              className="group flex flex-col md:flex-row md:items-center justify-between gap-5 bg-white border-r-4 border-[var(--color-gold)] p-6 md:p-8 hover:shadow-lg transition-shadow"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-11 h-11 bg-[var(--color-navy)] flex items-center justify-center flex-shrink-0">
+                  <Building2 size={20} className="text-[var(--color-gold)]" />
+                </div>
+                <div>
+                  <h2 className="font-display text-xl md:text-2xl font-bold text-[var(--color-navy)] mb-2">
+                    هل تمثل شركة متعثرة أو تبحث عن إعادة هيكلة الديون؟
+                  </h2>
+                  <p className="font-body text-sm text-[var(--color-navy)]/60 leading-relaxed max-w-3xl">
+                    انتقل إلى مسار الخدمات القانونية للشركات لدراسة الوضع والخيارات المتاحة. هذا المسار مستقل عن الحالات التي يديرها المكتب بصفة أمين إفلاس.
+                  </p>
+                </div>
+              </div>
+              <span className="inline-flex items-center gap-2 font-heading text-sm font-semibold text-[var(--color-gold)] flex-shrink-0">
+                إفلاس الشركات في السعودية
+                <ArrowIcon size={15} className="group-hover:-translate-x-1 transition-transform" />
+              </span>
+            </Link>
+          </div>
+        </section>
+      )}
+
       {/* رابط إجراءات الإفلاس السبعة */}
       <section className="py-10 md:py-12 bg-white border-b border-[var(--color-border)]">
           <div className="container mx-auto px-5 md:px-4 lg:px-8">

@@ -46,6 +46,7 @@ export default function Sitemap() {
       links: [
         { label: "أمين إفلاس معتمد — ترخيص 142147", href: "/licenses/bankruptcy-trustee" },
         { label: "خدمات محامي الإفلاس", href: "/services/bankruptcy" },
+        { label: "إفلاس الشركات في السعودية", href: "/bankruptcy/companies" },
         { label: "إجراءات الإفلاس السبعة", href: "/bankruptcy/procedures" },
         { label: "التقارير الشهرية لإعلانات الإفلاس", href: "/bankruptcy/reports" },
         { label: "تقرير إعلانات الإفلاس — يناير 2026", href: "/bankruptcy/reports/2026-01" },

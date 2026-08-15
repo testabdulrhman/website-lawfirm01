@@ -33,6 +33,7 @@ const BankruptcyComplete = lazy(() => import("@/pages/BankruptcyComplete"));
 const BankruptcyCase = lazy(() => import("@/pages/BankruptcyCase"));
 const CreditorPortal = lazy(() => import("@/pages/CreditorPortal"));
 const Bankruptcy = lazy(() => import("@/pages/Bankruptcy"));
+const BankruptcyCompanies = lazy(() => import("@/pages/BankruptcyCompanies"));
 const BankruptcyProcedures = lazy(() => import("@/pages/BankruptcyProcedures"));
 const BankruptcyProcedure = lazy(() => import("@/pages/BankruptcyProcedure"));
 const BankruptcyLP = lazy(() => import("@/pages/BankruptcyLP"));
@@ -111,6 +112,7 @@ export async function loadInitialPage(pathname: string): Promise<InitialPage | u
     routePath = `${localePrefix}/services/:slug`;
   }
   else if (localizedPath === "/bankruptcy") Component = (await import("@/pages/Bankruptcy")).default;
+  else if (localizedPath === "/bankruptcy/companies" && localePrefix === "") Component = (await import("@/pages/BankruptcyCompanies")).default;
   else if (localizedPath === "/bankruptcy/procedures") Component = (await import("@/pages/BankruptcyProcedures")).default;
   else if (localizedPath.startsWith("/bankruptcy/procedures/")) {
     Component = (await import("@/pages/BankruptcyProcedure")).default;
@@ -205,6 +207,7 @@ function Router({ initialPage }: { initialPage?: InitialPage }) {
               <Route path={"/services"} component={Services} />
               <Route path={"/services/:slug"} component={ServiceDetail} />
               <Route path={"/bankruptcy"} component={Bankruptcy} />
+              <Route path={"/bankruptcy/companies"} component={BankruptcyCompanies} />
               <Route path={"/bankruptcy/procedures"} component={BankruptcyProcedures} />
               <Route path={"/bankruptcy/procedures/:slug"} component={BankruptcyProcedure} />
               <Route path={"/bankruptcy/claims"} component={Claims} />
