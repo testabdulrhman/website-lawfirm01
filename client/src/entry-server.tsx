@@ -30,6 +30,7 @@ import BankruptcyComplete from "@/pages/BankruptcyComplete";
 import BankruptcyCase from "@/pages/BankruptcyCase";
 import CreditorPortal from "@/pages/CreditorPortal";
 import Bankruptcy from "@/pages/Bankruptcy";
+import BankruptcyCompanies from "@/pages/BankruptcyCompanies";
 import BankruptcyProcedures from "@/pages/BankruptcyProcedures";
 import BankruptcyProcedure from "@/pages/BankruptcyProcedure";
 import BankruptcyLP from "@/pages/BankruptcyLP";
@@ -71,6 +72,7 @@ function getInitialPage(url: string): InitialPage {
     Component = ServiceDetail;
     routePath = `${localePrefix}/services/:slug`;
   } else if (localizedPath === "/bankruptcy") Component = Bankruptcy;
+  else if (localizedPath === "/bankruptcy/companies" && localePrefix === "") Component = BankruptcyCompanies;
   else if (localizedPath === "/bankruptcy/procedures") Component = BankruptcyProcedures;
   else if (localizedPath.startsWith("/bankruptcy/procedures/")) {
     Component = BankruptcyProcedure;

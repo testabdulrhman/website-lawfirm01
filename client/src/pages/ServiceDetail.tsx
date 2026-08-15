@@ -222,16 +222,17 @@ const servicesData: Record<string, {
     icon: Scale,
     ar: {
       title: "محامي إفلاس للشركات والدائنين في السعودية",
-      description: "نقدم بصفة محامي إفلاس الاستشارة والتمثيل القانوني للشركات المتعثرة والدائنين والمدينين في التسوية الوقائية وإعادة التنظيم المالي والتصفية وفق نظام الإفلاس السعودي. مقرنا الرئيسي في بريدة ونخدم العملاء في جميع مناطق المملكة حضورياً وعن بُعد.",
+      description: "نقدم بصفة محامي إفلاس دراسة أوضاع الشركات المتعثرة وإعادة هيكلة ديونها، ثم الاستشارة والتمثيل القانوني في التسوية الوقائية وإعادة التنظيم المالي والتصفية. كما نمثل الدائنين في المطالبات والاعتراضات والتصويت. مقرنا الرئيسي في بريدة ونخدم الشركات في جميع مناطق المملكة حضورياً وعن بُعد.",
       details: [
-        "تقييم الوضع القانوني والمالي وتحديد الخيارات النظامية المتاحة",
-        "إعداد وتمثيل الشركات في طلبات التسوية الوقائية",
-        "تمثيل المدينين في طلبات وإجراءات إعادة التنظيم المالي",
+        "دراسة وضع الشركة وقابلية استمرار النشاط وهيكل الديون",
+        "إعادة هيكلة الديون والتفاوض مع الدائنين قبل الإجراء عند ملاءمة ذلك",
+        "إعداد وتمثيل الشركات في التسوية الوقائية وإعادة التنظيم المالي",
+        "تقديم المشورة القانونية في التصفية وآثارها على أصحاب المصلحة",
         "تمثيل الدائنين في المطالبات والاعتراضات والتصويت",
-        "تقديم المشورة القانونية في التصفية وأولويات حقوق الدائنين",
-        "إعداد المذكرات والمقترحات والتفاوض مع أصحاب المصلحة",
+        "إعداد الطلبات والمذكرات والمقترحات وخطة العمل القانونية",
       ],
       faqs: [
+        { q: "هل كل شركة متعثرة يجب أن تفتتح إجراء إفلاس؟", a: "لا. قد يكون الحل تعاقدياً من خلال إعادة جدولة الالتزامات أو التفاوض مع الدائنين، وقد يكون أحد إجراءات الإفلاس هو الأنسب. يتطلب القرار دراسة المركز المالي والقانوني وقابلية استمرار النشاط ومواقف أصحاب المصلحة." },
         { q: "ما الفرق بين التسوية الوقائية وإعادة التنظيم المالي؟", a: "يختلف الإجراء المناسب بحسب وضع المدين وشروط الافتتاح وآثار كل إجراء. تهدف التسوية الوقائية إلى تمكين المدين من الاتفاق مع دائنيه مع بقائه في إدارة نشاطه، بينما تكون إعادة التنظيم المالي تحت إشراف أمين الإفلاس وفق أحكام النظام وقرار المحكمة." },
         { q: "هل يفقد المدين السيطرة على أعماله؟", a: "تختلف صلاحيات المدين بحسب الإجراء وقرار المحكمة. يبقى المدين في التسوية الوقائية مسؤولاً عن إدارة نشاطه، بينما يشرف أمين الإفلاس على إعادة التنظيم المالي ويتولى إدارة إجراء التصفية وفق الصلاحيات النظامية." },
         { q: "ما الفرق بين محامي الإفلاس وأمين الإفلاس؟", a: "محامي الإفلاس يقدم المشورة ويمثل طرفاً محدداً كالشركة أو الدائن. أما أمين الإفلاس فهو ممارس مرخص قد تعينه المحكمة لإدارة الإجراء باستقلال، ولا يجمع المكتب بين الدورين في الحالة نفسها عند وجود تعارض مصالح." },
@@ -241,16 +242,17 @@ const servicesData: Record<string, {
     },
     en: {
       title: "Bankruptcy Lawyer for Companies and Creditors in Saudi Arabia",
-      description: "Acting as bankruptcy counsel, we advise and represent distressed companies, creditors and debtors in preventive settlement, financial reorganization and liquidation under Saudi Bankruptcy Law. We serve clients nationwide from our Buraydah head office, in person and remotely.",
+      description: "Acting as bankruptcy counsel, we assess distressed companies and debt restructuring options, then advise and represent companies in preventive settlement, financial reorganization and liquidation. We also represent creditors in claims, objections and voting across Saudi Arabia.",
       details: [
-        "Assessing the legal and financial position and selecting the appropriate procedure",
-        "Representing companies in preventive settlement applications",
-        "Representing debtors in financial reorganization proceedings",
-        "Representing creditors in claims and objections",
-        "Advising on liquidation and protecting stakeholder rights",
-        "Preparing plans and submissions and negotiating with stakeholders",
+        "Assessing business viability and the company's debt structure",
+        "Debt restructuring and creditor negotiations before proceedings where appropriate",
+        "Representing companies in preventive settlement and financial reorganization",
+        "Advising on liquidation and its effects on stakeholders",
+        "Representing creditors in claims, objections and voting",
+        "Preparing applications, submissions, proposals and the legal action plan",
       ],
       faqs: [
+        { q: "Does every distressed company need to commence bankruptcy proceedings?", a: "No. A contractual restructuring or creditor negotiation may be appropriate, while some cases require a statutory proceeding. The decision depends on the company's legal and financial position, business viability and stakeholder positions." },
         { q: "What is the difference between preventive settlement and financial reorganization?", a: "The appropriate procedure depends on the debtor's circumstances, commencement requirements, and legal effects. Preventive settlement enables the debtor to negotiate an arrangement while remaining in management, whereas financial reorganization proceeds under the supervision of a licensed trustee with creditor participation." },
         { q: "Does the debtor lose control of their business?", a: "The debtor's authority depends on the proceeding and the court order. The debtor remains responsible for its business in preventive settlement, while a trustee supervises financial reorganization and administers liquidation within the statutory mandate." },
         { q: "What is the difference between a bankruptcy lawyer and a trustee?", a: "A bankruptcy lawyer advises and represents a specific party such as a company or creditor. A licensed trustee may be appointed by the court to administer the proceeding independently. The firm does not combine both roles in the same matter where a conflict exists." },
@@ -622,6 +624,30 @@ export default function ServiceDetail() {
                 </section>
               )}
 
+              {params.slug === 'bankruptcy' && (
+                <section className="mb-8 md:mb-12 bg-white border border-[var(--color-border)] p-6 md:p-8" aria-labelledby="company-bankruptcy-title">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+                    <div className="max-w-2xl">
+                      <p className="font-heading text-xs font-semibold text-[var(--color-gold)] mb-2">
+                        {lang === 'ar' ? 'للشركات المتعثرة' : 'For distressed companies'}
+                      </p>
+                      <h2 id="company-bankruptcy-title" className="font-display text-xl md:text-2xl font-bold text-[var(--color-navy)] mb-2">
+                        {lang === 'ar' ? 'دراسة وضع الشركة قبل اختيار الإجراء' : 'Assess the company before selecting a proceeding'}
+                      </h2>
+                      <p className="font-body text-sm text-[var(--color-navy)]/65 leading-relaxed">
+                        {lang === 'ar'
+                          ? 'صفحة مخصصة لإفلاس الشركات وإعادة هيكلة الديون، تشرح مؤشرات المراجعة المبكرة والمسارات المحتملة والمستندات اللازمة لبدء الدراسة.'
+                          : 'A dedicated Arabic resource explains early review signals, possible paths and the documents needed to begin a corporate assessment.'}
+                      </p>
+                    </div>
+                    <Link href="/bankruptcy/companies" className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm flex-shrink-0 hover:bg-[var(--color-gold-light)] transition-colors">
+                      <span>{lang === 'ar' ? 'إفلاس الشركات في السعودية' : 'Corporate bankruptcy in Saudi Arabia'}</span>
+                      <BackArrow size={14} />
+                    </Link>
+                  </div>
+                </section>
+              )}
+
               {/* Bankruptcy Track Record - only for bankruptcy */}
               {params.slug === 'bankruptcy' && (
                 <div className="mb-8 md:mb-12 p-5 md:p-8 bg-[var(--color-navy)] relative overflow-hidden">
@@ -635,20 +661,20 @@ export default function ServiceDetail() {
                     <div className="grid grid-cols-2 gap-4 md:gap-6 mb-5">
                       <div className="border-t border-white/10 pt-4">
                         <div className="flex items-baseline gap-1.5">
-                          <span className="font-display text-2xl md:text-3xl font-bold text-[var(--color-gold)]">+500</span>
+                          <span className="font-display text-2xl md:text-3xl font-bold text-[var(--color-gold)]">+630</span>
                           <span className="font-heading text-xs text-white/60">{lang === 'ar' ? 'مليون ر.س' : 'M SAR'}</span>
                         </div>
                         <p className="font-body text-[10px] md:text-xs text-white/40 mt-1">
-                          {lang === 'ar' ? 'إجمالي المطالبات المُدارة' : 'Total Claims Under Management'}
+                          {lang === 'ar' ? 'إجمالي مبالغ المطالبات المسجلة' : 'Total Value of Registered Claims'}
                         </p>
                       </div>
                       <div className="border-t border-white/10 pt-4">
                         <div className="flex items-baseline gap-1.5">
-                          <span className="font-display text-2xl md:text-3xl font-bold text-[var(--color-gold)]">+452</span>
-                          <span className="font-heading text-xs text-white/60">{lang === 'ar' ? 'دائن' : 'Creditors'}</span>
+                          <span className="font-display text-2xl md:text-3xl font-bold text-[var(--color-gold)]">600</span>
+                          <span className="font-heading text-xs text-white/60">{lang === 'ar' ? 'مطالبة' : 'Claims'}</span>
                         </div>
                         <p className="font-body text-[10px] md:text-xs text-white/40 mt-1">
-                          {lang === 'ar' ? 'مطالبات دائنين تحت الإدارة' : 'Creditor Claims Administered'}
+                          {lang === 'ar' ? 'إجمالي المطالبات المسجلة' : 'Total Registered Claims'}
                         </p>
                       </div>
                     </div>
@@ -697,15 +723,22 @@ export default function ServiceDetail() {
               <div className="lg:sticky lg:top-28 space-y-4 md:space-y-6">
                 {/* CTA Card */}
                 <div className="p-5 md:p-8 bg-[var(--color-navy)] text-center">
-                  <h3 className="font-heading text-base md:text-lg font-semibold text-white mb-2 md:mb-3">{labels.needHelp}</h3>
+                  <h3 className="font-heading text-base md:text-lg font-semibold text-white mb-2 md:mb-3">
+                    {params.slug === 'bankruptcy'
+                      ? (lang === 'ar' ? 'هل تمثل شركة متعثرة؟' : 'Do you represent a distressed company?')
+                      : labels.needHelp}
+                  </h3>
                   <p className="font-body text-xs md:text-sm text-white/60 mb-4 md:mb-6">
-                    {labels.contactDesc}
+                    {params.slug === 'bankruptcy'
+                      ? (lang === 'ar' ? 'احجز موعداً أولياً لفهم الحالة وتحديد المعلومات المطلوبة للدراسة.' : 'Book an initial meeting to understand the situation and define the information required for assessment.')
+                      : labels.contactDesc}
                   </p>
                   <Link
-                    href={lp("/contact")}
+                    href={params.slug === 'bankruptcy' ? lp("/appointments") : lp("/contact")}
+                    onClick={params.slug === 'bankruptcy' ? () => trackBookConsultation('bankruptcy_service_sidebar') : undefined}
                     className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm hover:bg-[var(--color-gold-light)] transition-colors"
                   >
-                    <span>{labels.contactUs}</span>
+                    <span>{params.slug === 'bankruptcy' ? (lang === 'ar' ? 'حجز موعد' : 'Book a Meeting') : labels.contactUs}</span>
                     <BackArrow size={14} />
                   </Link>
                   <div className="mt-4 pt-4 border-t border-white/10">
