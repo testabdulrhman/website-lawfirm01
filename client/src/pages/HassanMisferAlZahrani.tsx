@@ -14,7 +14,7 @@ import {
 const MEETING_START = new Date('2026-08-16T09:30:00Z'); // 12:30 PM Saudi
 const VOTING_START = new Date('2026-08-16T10:00:00Z'); // 1:00 PM Saudi
 const VOTING_END = new Date('2026-08-16T12:00:00Z'); // 3:00 PM Saudi
-const VOTING_LINK = ''; // TODO: Add actual voting link
+const VOTING_LINK = 'https://redwan.sa/bankruptcy/creditor';
 const MEETING_LINK = 'https://teams.live.com/meet/9340091875810?p=vX7vW4yTYFSqeuCwxx';
 
 export default function HassanMisferAlZahrani() {
@@ -185,16 +185,16 @@ export default function HassanMisferAlZahrani() {
               en="Voting Period: From 1:00 PM to 3:00 PM."
             />
             <Row
-              ar="يتم التصويت إلكترونياً من خلال الرابط المخصص للتصويت، وذلك باختيار الموافقة أو عدم الموافقة على مقترح إعادة التنظيم المالي."
-              en="Voting shall be conducted electronically through the designated voting link by selecting either approval or rejection of the Financial Reorganization Proposal."
+              ar="يتم التصويت إلكترونياً من خلال بوابة الدائن، وذلك باختيار الموافقة أو عدم الموافقة على مقترح إعادة التنظيم المالي."
+              en="Voting shall be conducted electronically through the Creditor Portal by selecting either approval or rejection of the Financial Reorganization Proposal."
             />
-            {/* Voting Button - Auto-activates on voting date */}
+            {/* Voting Button - Creditor Portal is available in advance; voting opens at the scheduled time */}
             <div className="grid grid-cols-2 gap-6 py-4 border-b border-gray-100">
               <div className="text-right" dir="rtl">
-                {isVotingOpen && VOTING_LINK ? (
+                {VOTING_LINK && !isVotingEnded ? (
                   <a href={VOTING_LINK} onClick={trackVoteClick} target="_blank" rel="noopener noreferrer" className="w-full py-3 px-6 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold text-base flex items-center justify-center gap-2 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    التصويت الآن
+                    فتح بوابة التصويت
                   </a>
                 ) : (
                   <button disabled className="w-full py-3 px-6 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-bold text-base flex items-center justify-center gap-2">
@@ -203,14 +203,14 @@ export default function HassanMisferAlZahrani() {
                   </button>
                 )}
                 <p className="text-xs text-gray-500 mt-2 text-center">
-                  {isVotingEnded ? 'انتهت فترة التصويت' : isVotingOpen ? 'التصويت مفتوح الآن' : 'سيتوفر الرابط يوم الأحد 03/03/1448هـ (16/08/2026م) الساعة 1:00 مساءً'}
+                  {isVotingEnded ? 'انتهت فترة التصويت' : isVotingOpen ? 'التصويت مفتوح الآن' : 'يمكن فتح بوابة الدائن وتجهيز الدخول مسبقاً؛ يبدأ التصويت يوم الأحد 16/08/2026م الساعة 1:00 مساءً'}
                 </p>
               </div>
               <div className="text-left" dir="ltr">
-                {isVotingOpen && VOTING_LINK ? (
+                {VOTING_LINK && !isVotingEnded ? (
                   <a href={VOTING_LINK} onClick={trackVoteClick} target="_blank" rel="noopener noreferrer" className="w-full py-3 px-6 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    Vote Now
+                    Open Creditor Portal
                   </a>
                 ) : (
                   <button disabled className="w-full py-3 px-6 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-bold text-sm flex items-center justify-center gap-2">
@@ -219,7 +219,7 @@ export default function HassanMisferAlZahrani() {
                   </button>
                 )}
                 <p className="text-xs text-gray-400 mt-2 text-center">
-                  {isVotingEnded ? 'Voting period has ended' : isVotingOpen ? 'Voting is now open' : 'Available on Sunday 03/03/1448 AH (16/08/2026) at 1:00 PM'}
+                  {isVotingEnded ? 'Voting period has ended' : isVotingOpen ? 'Voting is now open' : 'You may open the Creditor Portal and prepare in advance; voting starts on Sunday, 16 August 2026 at 1:00 PM'}
                 </p>
               </div>
             </div>
