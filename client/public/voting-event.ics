@@ -4,12 +4,12 @@ PRODID:-//Redwan Law//Voting Event//AR
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-DTSTART:20260816T100000Z
+DTSTART:20260816T093000Z
 DTEND:20260816T120000Z
-SUMMARY:التصويت على مقترح إعادة التنظيم المالي - شركة حسن مسفر الزهراني وشركاه
-DESCRIPTION:التصويت على مقترح إعادة التنظيم المالي لشركة حسن مسفر الزهراني وشركاه\nالرابط: https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani
-LOCATION:اجتماع إلكتروني
-URL:https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani
+SUMMARY:اجتماع التصويت على مقترح إعادة التنظيم المالي - شركة حسن مسفر الزهراني وشركاه
+DESCRIPTION:اجتماع التصويت على مقترح إعادة التنظيم المالي لشركة حسن مسفر الزهراني وشركاه\nرابط اجتماع Microsoft Teams: https://teams.live.com/meet/9340091875810?p=vX7vW4yTYFSqeuCwxx\nصفحة الدائنين: https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani
+LOCATION:Microsoft Teams
+URL:https://teams.live.com/meet/9340091875810?p=vX7vW4yTYFSqeuCwxx
 BEGIN:VALARM
 TRIGGER:-PT60M
 ACTION:DISPLAY
