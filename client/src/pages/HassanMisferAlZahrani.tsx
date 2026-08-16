@@ -227,13 +227,13 @@ export default function HassanMisferAlZahrani() {
               ar="ويعقد أمين إجراء إعادة التنظيم المالي، بالتزامن مع فترة التصويت، اجتماعاً إلكترونياً للدائنين."
               en="Concurrently with the voting period, the Financial Reorganization Procedure Trustee will hold an electronic meeting for the creditors."
             />
-            {/* Meeting Button - Auto-activates on voting date */}
+            {/* Meeting Button - Available before the scheduled time so creditors can prepare Teams */}
             <div className="grid grid-cols-2 gap-6 py-4 border-b border-gray-100">
               <div className="text-right" dir="rtl">
-                {isMeetingOpen && MEETING_LINK ? (
+                {MEETING_LINK && !isVotingEnded ? (
                   <a href={MEETING_LINK} onClick={trackMeetingClick} target="_blank" rel="noopener noreferrer" className="w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold text-base flex items-center justify-center gap-2 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-                    دخول الاجتماع
+                    فتح رابط الاجتماع
                   </a>
                 ) : (
                   <button disabled className="w-full py-3 px-6 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-bold text-base flex items-center justify-center gap-2">
@@ -242,14 +242,14 @@ export default function HassanMisferAlZahrani() {
                   </button>
                 )}
                 <p className="text-xs text-gray-500 mt-2 text-center">
-                  {isVotingEnded ? 'انتهى الاجتماع' : isMeetingOpen ? 'الاجتماع منعقد الآن' : 'سيتوفر الرابط يوم الأحد 03/03/1448هـ (16/08/2026م) الساعة 12:30 ظهراً'}
+                  {isVotingEnded ? 'انتهى الاجتماع' : isMeetingOpen ? 'الاجتماع منعقد الآن' : 'يمكن فتح الرابط وتجهيز Microsoft Teams مسبقاً؛ يبدأ الاجتماع يوم الأحد 16/08/2026م الساعة 12:30 ظهراً'}
                 </p>
               </div>
               <div className="text-left" dir="ltr">
-                {isMeetingOpen && MEETING_LINK ? (
+                {MEETING_LINK && !isVotingEnded ? (
                   <a href={MEETING_LINK} onClick={trackMeetingClick} target="_blank" rel="noopener noreferrer" className="w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-                    Join Meeting
+                    Open Meeting Link
                   </a>
                 ) : (
                   <button disabled className="w-full py-3 px-6 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-bold text-sm flex items-center justify-center gap-2">
@@ -258,7 +258,7 @@ export default function HassanMisferAlZahrani() {
                   </button>
                 )}
                 <p className="text-xs text-gray-400 mt-2 text-center">
-                  {isVotingEnded ? 'Meeting has ended' : isMeetingOpen ? 'Meeting is in progress' : 'Available on Sunday 03/03/1448 AH (16/08/2026) at 12:30 PM'}
+                  {isVotingEnded ? 'Meeting has ended' : isMeetingOpen ? 'Meeting is in progress' : 'You may open the link and prepare Microsoft Teams in advance; the meeting starts on Sunday, 16 August 2026 at 12:30 PM'}
                 </p>
               </div>
             </div>
