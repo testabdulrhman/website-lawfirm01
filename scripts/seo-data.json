@@ -494,16 +494,16 @@
     "ogImage": null,
     "canonical": "https://redwan.sa/bankruptcy"
   },
-  "/bankruptcy/companies": {
+  "/services/bankruptcy/companies": {
     "title": "إفلاس الشركات في السعودية | دراسة التعثر وإعادة الهيكلة",
     "description": "دراسة قانونية للشركات المتعثرة في السعودية: إعادة هيكلة الديون، التسوية الوقائية، إعادة التنظيم المالي أو التصفية، ثم إعداد الطلب والتمثيل عند التكليف.",
     "keywords": "إفلاس الشركات في السعودية, شركة متعثرة, إعادة هيكلة ديون الشركات, محامي إفلاس شركات, التسوية الوقائية, إعادة التنظيم المالي, تصفية الشركات",
     "ogTitle": "إفلاس الشركات في السعودية | دراسة الخيارات قبل الإجراء",
     "ogDesc": "دراسة وضع الشركة وهيكل الديون وقابلية استمرار النشاط، ثم مقارنة إعادة الهيكلة والتسوية الوقائية وإعادة التنظيم المالي والتصفية.",
-    "ogUrl": "https://redwan.sa/bankruptcy/companies",
+    "ogUrl": "https://redwan.sa/services/bankruptcy/companies",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/bankruptcy/companies",
+    "canonical": "https://redwan.sa/services/bankruptcy/companies",
     "faq": [
       {
         "q": "هل كل شركة متعثرة يجب أن تفتتح إجراء إفلاس؟",
@@ -533,7 +533,7 @@
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://redwan.sa/" },
           { "@type": "ListItem", "position": 2, "name": "خدمات محامي الإفلاس", "item": "https://redwan.sa/services/bankruptcy" },
-          { "@type": "ListItem", "position": 3, "name": "إفلاس الشركات في السعودية", "item": "https://redwan.sa/bankruptcy/companies" }
+          { "@type": "ListItem", "position": 3, "name": "إفلاس الشركات في السعودية", "item": "https://redwan.sa/services/bankruptcy/companies" }
         ]
       },
       {
@@ -541,7 +541,7 @@
         "@type": "Service",
         "name": "دراسة أوضاع الشركات المتعثرة وخيارات الإفلاس",
         "description": "دراسة قانونية للشركات المتعثرة في السعودية ومقارنة إعادة هيكلة الديون والتسوية الوقائية وإعادة التنظيم المالي والتصفية.",
-        "url": "https://redwan.sa/bankruptcy/companies",
+        "url": "https://redwan.sa/services/bankruptcy/companies",
         "serviceType": "الاستشارات والتمثيل القانوني للشركات المتعثرة",
         "areaServed": { "@type": "Country", "name": "المملكة العربية السعودية" },
         "provider": {

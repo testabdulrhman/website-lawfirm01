@@ -23,11 +23,11 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy" />
   </url>
   <url>
-    <loc>https://redwan.sa/bankruptcy/companies</loc>
+    <loc>https://redwan.sa/services/bankruptcy/companies</loc>
     <lastmod>2026-08-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/bankruptcy/companies" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/services/bankruptcy/companies" />
   </url>
   <url>
     <loc>https://redwan.sa/bankruptcy/reports</loc>

@@ -68,11 +68,11 @@ function getInitialPage(url: string): InitialPage {
   else if (localizedPath === "/about") Component = About;
   else if (localizedPath === "/team") Component = Team;
   else if (localizedPath === "/services") Component = Services;
+  else if (localizedPath === "/services/bankruptcy/companies" && localePrefix === "") Component = BankruptcyCompanies;
   else if (localizedPath.startsWith("/services/")) {
     Component = ServiceDetail;
     routePath = `${localePrefix}/services/:slug`;
   } else if (localizedPath === "/bankruptcy") Component = Bankruptcy;
-  else if (localizedPath === "/bankruptcy/companies" && localePrefix === "") Component = BankruptcyCompanies;
   else if (localizedPath === "/bankruptcy/procedures") Component = BankruptcyProcedures;
   else if (localizedPath.startsWith("/bankruptcy/procedures/")) {
     Component = BankruptcyProcedure;

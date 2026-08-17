@@ -84,7 +84,7 @@ export default function Bankruptcy() {
         <section className="py-8 md:py-10 bg-[var(--color-cream)] border-b border-[var(--color-border)]">
           <div className="container mx-auto px-5 md:px-4 lg:px-8">
             <Link
-              href="/bankruptcy/companies"
+              href="/services/bankruptcy/companies"
               className="group flex flex-col md:flex-row md:items-center justify-between gap-5 bg-white border-r-4 border-[var(--color-gold)] p-6 md:p-8 hover:shadow-lg transition-shadow"
             >
               <div className="flex items-start gap-4">

@@ -104,7 +104,7 @@ const faqItems = [
 ];
 
 export default function BankruptcyCompanies() {
-  const pagePath = "/bankruptcy/companies";
+  const pagePath = "/services/bankruptcy/companies";
   const seoSchema = [
     schemas.breadcrumb([
       { name: "الرئيسية", url: "/" },
@@ -124,7 +124,7 @@ export default function BankruptcyCompanies() {
       name: "دراسة أوضاع الشركات المتعثرة وخيارات الإفلاس",
       description:
         "دراسة قانونية للشركات المتعثرة في السعودية، ومقارنة إعادة هيكلة الديون والتسوية الوقائية وإعادة التنظيم المالي والتصفية، ثم إعداد الطلب والتمثيل القانوني عند التكليف.",
-      url: "https://redwan.sa/bankruptcy/companies",
+      url: "https://redwan.sa/services/bankruptcy/companies",
       serviceType: "الاستشارات والتمثيل القانوني للشركات المتعثرة",
       areaServed: { "@type": "Country", name: "المملكة العربية السعودية" },
       provider: {

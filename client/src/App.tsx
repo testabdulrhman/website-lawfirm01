@@ -107,12 +107,12 @@ export async function loadInitialPage(pathname: string): Promise<InitialPage | u
   else if (localizedPath === "/about") Component = (await import("@/pages/About")).default;
   else if (localizedPath === "/team") Component = (await import("@/pages/Team")).default;
   else if (localizedPath === "/services") Component = (await import("@/pages/Services")).default;
+  else if (localizedPath === "/services/bankruptcy/companies" && localePrefix === "") Component = (await import("@/pages/BankruptcyCompanies")).default;
   else if (localizedPath.startsWith("/services/")) {
     Component = (await import("@/pages/ServiceDetail")).default;
     routePath = `${localePrefix}/services/:slug`;
   }
   else if (localizedPath === "/bankruptcy") Component = (await import("@/pages/Bankruptcy")).default;
-  else if (localizedPath === "/bankruptcy/companies" && localePrefix === "") Component = (await import("@/pages/BankruptcyCompanies")).default;
   else if (localizedPath === "/bankruptcy/procedures") Component = (await import("@/pages/BankruptcyProcedures")).default;
   else if (localizedPath.startsWith("/bankruptcy/procedures/")) {
     Component = (await import("@/pages/BankruptcyProcedure")).default;
@@ -205,9 +205,9 @@ function Router({ initialPage }: { initialPage?: InitialPage }) {
               <Route path={"/about"} component={About} />
               <Route path={"/team"} component={Team} />
               <Route path={"/services"} component={Services} />
+              <Route path={"/services/bankruptcy/companies"} component={BankruptcyCompanies} />
               <Route path={"/services/:slug"} component={ServiceDetail} />
               <Route path={"/bankruptcy"} component={Bankruptcy} />
-              <Route path={"/bankruptcy/companies"} component={BankruptcyCompanies} />
               <Route path={"/bankruptcy/procedures"} component={BankruptcyProcedures} />
               <Route path={"/bankruptcy/procedures/:slug"} component={BankruptcyProcedure} />
               <Route path={"/bankruptcy/claims"} component={Claims} />

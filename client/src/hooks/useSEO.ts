@@ -168,7 +168,7 @@ function setHreflang(canonical?: string, noindex = false) {
     arPath === "/cases-guide" ||
     arPath === "/legal-dictionary" ||
     arPath.startsWith("/appointments") ||
-    arPath === "/bankruptcy/companies" ||
+    arPath === "/services/bankruptcy/companies" ||
     arPath === "/bankruptcy/claims" ||
     arPath.startsWith("/bankruptcy/reports") ||
     arPath.startsWith("/blog/") ||

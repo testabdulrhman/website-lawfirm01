@@ -43,6 +43,18 @@
 # ── بوابة الدائن: كل خدمات الدائن من /bankruptcy/creditor ──
 # الأداتان القديمتان (تتبّع المطالبة وتذكرة الاستفسار) اندمجتا في البوابة الموحّدة.
 [[redirects]]
+  from = "/bankruptcy/companies"
+  to = "/services/bankruptcy/companies"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/bankruptcy/companies/"
+  to = "/services/bankruptcy/companies"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/creditor"
   to = "/bankruptcy/creditor"
   status = 301

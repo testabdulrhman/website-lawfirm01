@@ -640,7 +640,7 @@ export default function ServiceDetail() {
                           : 'A dedicated Arabic resource explains early review signals, possible paths and the documents needed to begin a corporate assessment.'}
                       </p>
                     </div>
-                    <Link href="/bankruptcy/companies" className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm flex-shrink-0 hover:bg-[var(--color-gold-light)] transition-colors">
+                    <Link href="/services/bankruptcy/companies" className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm flex-shrink-0 hover:bg-[var(--color-gold-light)] transition-colors">
                       <span>{lang === 'ar' ? 'إفلاس الشركات في السعودية' : 'Corporate bankruptcy in Saudi Arabia'}</span>
                       <BackArrow size={14} />
                     </Link>
