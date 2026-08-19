@@ -327,8 +327,6 @@ export default function Claims() {
     setSubmitProgress(0);
     setSubmitLabel('حفظ بيانات المطالبة...');
 
-    const addressParts = [buildingNumber, streetName, district, city, postalCode, additionalNumber].filter(Boolean);
-
     const claimData = {
       case_id: selectedCase.id,
       creditor_type: creditorType,
@@ -338,7 +336,6 @@ export default function Claims() {
       representative_name: representativeName || null,
       phone,
       email,
-      address: addressParts.join(' - '),
       building_number: buildingNumber || null,
       street_name: streetName || null,
       district: district || null,

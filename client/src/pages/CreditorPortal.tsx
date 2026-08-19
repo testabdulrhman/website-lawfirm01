@@ -85,7 +85,6 @@ interface CreditorInfo {
   email?: string | null;
   email_alt?: string | null;
   city?: string | null;
-  address?: string | null;
   street_name?: string | null;
   representative_name?: string | null;
 }
@@ -1773,7 +1772,7 @@ export default function CreditorPortal() {
                     <Field label={t.fPhoneAlt} value={creditor.phone_alt} ltr />
                     <Field label={t.fEmail} value={creditor.email} ltr />
                     <Field label={t.fCity} value={creditor.city} />
-                    <Field label={t.fAddress} value={creditor.address ?? creditor.street_name} />
+                    <Field label={t.fAddress} value={creditor.street_name} />
                     <Field label={t.fRep} value={creditor.representative_name} />
                   </div>
                   <div className="mt-6 pt-4 border-t border-[var(--color-border)]">
