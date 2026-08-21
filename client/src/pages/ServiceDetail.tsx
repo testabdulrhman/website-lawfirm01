@@ -222,7 +222,7 @@ const servicesData: Record<string, {
     icon: Scale,
     ar: {
       title: "محامي إفلاس للشركات والدائنين في السعودية",
-      description: "نقدم بصفة محامي إفلاس دراسة أوضاع الشركات المتعثرة وإعادة هيكلة ديونها، ثم الاستشارة والتمثيل القانوني في التسوية الوقائية وإعادة التنظيم المالي والتصفية. كما نمثل الدائنين في المطالبات والاعتراضات والتصويت. مقرنا الرئيسي في بريدة ونخدم الشركات في جميع مناطق المملكة حضورياً وعن بُعد.",
+      description: "محامي الإفلاس يدرس المركز القانوني والمالي للشركة المتعثرة، ويقارن بين إعادة الهيكلة التعاقدية وإجراءات الإفلاس المتاحة، ثم يقدم المشورة والتمثيل للشركات أو الدائنين. وتشمل خدماتنا التسوية الوقائية وإعادة التنظيم المالي والتصفية والمطالبات والاعتراضات والتصويت في مختلف مناطق المملكة.",
       details: [
         "دراسة وضع الشركة وقابلية استمرار النشاط وهيكل الديون",
         "إعادة هيكلة الديون والتفاوض مع الدائنين قبل الإجراء عند ملاءمة ذلك",
@@ -242,7 +242,7 @@ const servicesData: Record<string, {
     },
     en: {
       title: "Bankruptcy Lawyer for Companies and Creditors in Saudi Arabia",
-      description: "Acting as bankruptcy counsel, we assess distressed companies and debt restructuring options, then advise and represent companies in preventive settlement, financial reorganization and liquidation. We also represent creditors in claims, objections and voting across Saudi Arabia.",
+      description: "A bankruptcy lawyer assesses a distressed company's legal and financial position, compares contractual restructuring with available bankruptcy proceedings, and advises or represents companies and creditors. Our services cover preventive settlement, financial reorganization, liquidation, claims, objections and voting across Saudi Arabia.",
       details: [
         "Assessing business viability and the company's debt structure",
         "Debt restructuring and creditor negotiations before proceedings where appropriate",

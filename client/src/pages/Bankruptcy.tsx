@@ -61,8 +61,8 @@ export default function Bankruptcy() {
           </h1>
           <p className="font-body text-base md:text-lg text-white/60 max-w-2xl">
             {lang === "ar"
-              ? "قسم أمين الإفلاس للحالات الجارية وإجراءات النظام ومطالبات الدائنين"
-              : "Trustee section for active cases, statutory procedures and creditor claims"}
+              ? "تجمع هذه الصفحة إجراءات الإفلاس التي يديرها المكتب بصفته أمين إفلاس بعد التعيين من المحكمة، وتشمل القضايا الجارية ومعلوماتها وتقديم مطالبات الدائنين. أما الاستشارات والتمثيل القانوني للشركات والدائنين فتُقدَّم في مسار مستقل بصفة محامي إفلاس."
+              : "This page covers bankruptcy proceedings administered by the firm as court-appointed trustee, including active cases, proceeding information and creditor claims. Legal advice and representation for companies and creditors are provided separately in the firm's capacity as bankruptcy counsel."}
           </p>
           <Link
             href={lp("/licenses/bankruptcy-trustee")}

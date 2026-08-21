@@ -215,8 +215,8 @@ export default function BankruptcyTrusteeLicense() {
               </h1>
               <p className="font-body text-base md:text-lg text-white/70 leading-relaxed max-w-3xl">
                 {isArabic
-                  ? "يحمل المكتب ترخيص ممارسة أعمال أمناء الإفلاس الصادر من لجنة الإفلاس، لإدارة إجراءات الإفلاس بعد التعيين من المحكمة المختصة، مع خدمة الإجراءات في مختلف مناطق المملكة."
-                  : "The firm holds a Bankruptcy Commission trustee license to administer bankruptcy proceedings following appointment by the competent court, with nationwide capability across Saudi Arabia."}
+                  ? "أمين الإفلاس ممارس مرخّص من لجنة الإفلاس تعيّنه المحكمة المختصة لإدارة الإجراء باستقلال وفق نظام الإفلاس. يحمل المكتب ترخيص أمين الإفلاس رقم 142147، ويباشر مهام الإدارة بعد التعيين القضائي في مختلف مناطق المملكة، ولا يمثل أحد أطراف الإجراء بصفته محامياً عند وجود تعارض."
+                  : "A bankruptcy trustee is a professional licensed by the Saudi Bankruptcy Commission and appointed by the competent court to administer a proceeding independently under the Bankruptcy Law. The firm holds trustee license No. 142147 and does not represent a party as counsel where a conflict exists."}
               </p>
             </div>
 
