@@ -30,10 +30,14 @@ export function localePath(path: string, lang: Language): string {
     // which is not prerendered and therefore returns a real 404 on Netlify.
     "/appointments",
     "/appointments/success",
+    // Monthly bankruptcy reports are currently published in Arabic only.
+    // Keep translated navigation on the real Arabic archive instead of
+    // producing the non-existent /en/bankruptcy/reports route.
+    "/bankruptcy/reports",
   ]);
   const isArabicOnlyDetail =
     path.startsWith("/blog/") ||
-    path.startsWith("/bankruptcy/procedures/");
+    path.startsWith("/bankruptcy/reports/");
 
   if (arabicOnlyExactRoutes.has(path) || isArabicOnlyDetail) return path;
 

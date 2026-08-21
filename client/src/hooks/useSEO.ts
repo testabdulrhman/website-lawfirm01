@@ -171,8 +171,7 @@ function setHreflang(canonical?: string, noindex = false) {
     arPath === "/services/bankruptcy/companies" ||
     arPath === "/bankruptcy/claims" ||
     arPath.startsWith("/bankruptcy/reports") ||
-    arPath.startsWith("/blog/") ||
-    arPath.startsWith("/bankruptcy/procedures/");
+    arPath.startsWith("/blog/");
 
   const pairs: [string, string][] = [["ar", `${BASE}${arPath}`]];
   if (!arabicOnly) pairs.push(["en", `${BASE}${enPath}`]);

@@ -46,7 +46,7 @@ export default function Footer() {
       : {
           company: "Firm",
           knowledge: "Bankruptcy & Knowledge",
-          reports: "Monthly Bankruptcy Reports",
+          reports: "Monthly Bankruptcy Reports (Arabic)",
           procedures: "Bankruptcy Procedures",
           dictionary: "Legal Dictionary",
           bookEyebrow: "Need legal advice?",
