@@ -184,10 +184,18 @@
   force = true
 
 [[redirects]]
-  from = "/?cat=*"
+  from = "/"
   to = "/404.html"
   status = 410
   force = true
+  query = { author = ":author" }
+
+[[redirects]]
+  from = "/"
+  to = "/404.html"
+  status = 410
+  force = true
+  query = { cat = ":cat" }
 
 [[redirects]]
   from = "/wp-admin"
@@ -220,10 +228,11 @@
   force = true
 
 [[redirects]]
-  from = "/?p=*"
+  from = "/"
   to = "/404.html"
   status = 410
   force = true
+  query = { p = ":post" }
 
 [[redirects]]
   from = "/feed"
