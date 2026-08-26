@@ -8,3 +8,6 @@ export const FIRM_NAME_AR =
 export const FIRM_NAME_EN =
   "Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management";
 
+/** Exact English legal name used for third-party business verification. */
+export const FIRM_LEGAL_NAME_EN =
+  "ABDULRAHMAN REDWAN ALMOSHIQEH Company For Legal";

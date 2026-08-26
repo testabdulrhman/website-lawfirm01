@@ -12,7 +12,7 @@ import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackWhatsAppClick, trackPhoneClick, trackEmailClick } from "@/lib/analytics";
 import { localePath } from "@/lib/localePath";
-import { FIRM_NAME_AR, FIRM_NAME_EN } from "@/lib/firmIdentity";
+import { FIRM_LEGAL_NAME_EN, FIRM_NAME_AR } from "@/lib/firmIdentity";
 
 export default function Footer() {
   const { t, lang, isRTL } = useTranslation();
@@ -204,7 +204,7 @@ export default function Footer() {
           <div className="grid items-center gap-3 pt-5 text-center lg:grid-cols-3 lg:gap-6">
             <p className="font-body text-xs leading-6 text-white/50 lg:text-start">© {new Date().getFullYear()} {t.footer.copyright}</p>
             <p lang="en" dir="ltr" className="font-body text-[10px] leading-4 tracking-[0.01em] text-white/35">
-              {FIRM_NAME_EN}
+              {FIRM_LEGAL_NAME_EN}
             </p>
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 lg:justify-end">
               <Link href={lp("/privacy")} className="font-body text-xs text-white/50 transition-colors hover:text-[var(--color-gold)]">{t.footer.privacy}</Link>
