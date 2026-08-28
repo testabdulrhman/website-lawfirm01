@@ -20,7 +20,7 @@ export default function Privacy() {
       {
         title: "مقدمة",
         content: `تلتزم شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس ("الشركة") بحماية خصوصية مستخدمي موقعها الإلكتروني وعملائها. توضح هذه السياسة كيفية جمع واستخدام وحماية المعلومات الشخصية التي تقدمها لنا.`,
-        extra: "باستخدامك لموقعنا الإلكتروني أو خدماتنا، فإنك توافق على الممارسات الموضحة في هذه السياسة. نحتفظ بالحق في تحديث هذه السياسة من وقت لآخر.",
+        extra: "توضح هذه السياسة ممارسات معالجة البيانات، ولا يُعد مجرد تصفح الموقع موافقة على قياس إعلانات ميتا؛ إذ يُطلب له اختيار منفصل. نحتفظ بالحق في تحديث هذه السياسة من وقت لآخر.",
       },
       {
         title: "المعلومات التي نجمعها",
@@ -80,12 +80,24 @@ export default function Privacy() {
         extra: "تُعالج هذه البيانات بواسطة Google وفقاً لسياسة الخصوصية الخاصة بها. يمكنك منع جمع هذه البيانات عبر تثبيت إضافة Google Analytics Opt-out Browser Add-on.",
       },
       {
+        title: "قياس إعلانات ميتا — بموافقة اختيارية",
+        content: "لا نحمّل Meta Pixel قبل موافقتك المنفصلة. بعد الموافقة، نقيس زيارات صفحات عامة محددة ونجاح إرسال نموذج التواصل أو حجز موعد. لا نستخدمه في بوابات الدائنين أو صفحات القضايا أو التقارير أو صفحة تأكيد الحجز.",
+        list: [
+          "قد تستقبل ميتا عنوان IP ومعلومات الجهاز والمتصفح ومعرّفات ملفات الارتباط وعناوين الصفحات العامة ومصدر الزيارة. هذه البيانات ليست مجهولة الهوية بالضرورة، وقد تعالجها ميتا خارج المملكة وفق سياستها.",
+          "لا نرسل إلى ميتا أسماء العملاء أو هواتفهم أو بريدهم الإلكتروني أو نص الاستفسار أو نوع الخدمة أو أرقام القضايا أو مبالغ المطالبات. المطابقة التلقائية لبيانات العملاء معطّلة.",
+          "إرسال نموذج ناجح يُقاس كطلب تواصل، والحجز المؤكد يُقاس كحجز موعد؛ ولا يعني أي منهما أن صاحبه أصبح عميلاً متعاقداً. الضغط على واتساب أو الهاتف ليس تحويلاً مؤكداً في هذا القياس.",
+          "الموافقة اختيارية، ويمكن رفضها دون التأثير على إرسال الطلب أو الحجز. يُحفظ اختيارك محلياً لمدة تصل إلى 180 يوماً.",
+        ],
+        extra: "يمكن تعديل الاختيار أو سحب الموافقة من «تفضيلات قياس إعلانات ميتا» أسفل الصفحة. يؤدي السحب إلى إيقاف الإرسال اللاحق وحذف ملفات الارتباط الإعلانية التي أنشأها هذا التكامل؛ ولا يحذف بأثر رجعي ما استقبلته ميتا سابقاً. لا يغيّر هذا الخيار إعدادات قياس Google الموضحة أعلاه.",
+      },
+      {
         title: "ملفات تعريف الارتباط (Cookies)",
         content: "يستخدم موقعنا ملفات تعريف الارتباط للأغراض التالية:",
         list: [
           "ملفات ضرورية: لضمان عمل الموقع بشكل صحيح.",
           "ملفات تحليلية (Google Analytics): لفهم كيفية استخدام الزوار للموقع.",
           "ملفات إعلانية (Google Ads): لقياس أداء الإعلانات وتحسين استهدافها.",
+          "ملفات ميتا الإعلانية: لا تُستخدم بواسطة هذا التكامل إلا بعد الموافقة الاختيارية المنفصلة.",
         ],
         extra: "يمكنك التحكم في ملفات تعريف الارتباط أو تعطيلها من إعدادات المتصفح الخاص بك. قد يؤثر تعطيل بعض الملفات على تجربة استخدامك للموقع.",
       },
@@ -132,7 +144,7 @@ export default function Privacy() {
       {
         title: "Introduction",
         content: `Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management ("the Firm") is committed to protecting the privacy of its website users and clients. This policy explains how we collect, use, and protect the personal information you provide to us.`,
-        extra: "By using our website or services, you agree to the practices described in this policy. We reserve the right to update this policy from time to time.",
+        extra: "This policy explains our data-processing practices. Browsing the website does not constitute consent to Meta ad measurement, which requires a separate choice. We reserve the right to update this policy from time to time.",
       },
       {
         title: "Information We Collect",
@@ -192,12 +204,24 @@ export default function Privacy() {
         extra: "This data is processed by Google in accordance with its privacy policy. You can prevent this data collection by installing the Google Analytics Opt-out Browser Add-on.",
       },
       {
+        title: "Meta Advertising Measurement — Optional Consent",
+        content: "We do not load Meta Pixel before your separate consent. After consent, we measure visits to selected public pages, successful contact-form submissions and confirmed bookings. We do not use it in creditor portals, case pages, reports or the booking confirmation page.",
+        list: [
+          "Meta may receive your IP address, device/browser information, cookie identifiers, public page URLs and referrer. These data are not necessarily anonymous and may be processed outside Saudi Arabia under Meta's policy.",
+          "We do not send client names, phone numbers, emails, inquiry text, service selections, case numbers or claim amounts to Meta. Automatic advanced matching is disabled.",
+          "A successful inquiry is measured as a Lead, and a confirmed appointment as Schedule. Neither proves a retained client. WhatsApp and phone clicks are not confirmed conversions in this measurement.",
+          "Consent is optional. Declining does not affect inquiries or bookings. Your choice is stored locally for up to 180 days.",
+        ],
+        extra: "You can change or withdraw consent using 'Meta ad measurement preferences' near the bottom of the page. Withdrawal stops subsequent sending and removes this integration's advertising cookies, but does not retrospectively delete data already received by Meta. This choice does not change the Google measurement settings described above.",
+      },
+      {
         title: "Cookies",
         content: "Our website uses cookies for the following purposes:",
         list: [
           "Essential cookies: To ensure the website functions properly.",
           "Analytics cookies (Google Analytics): To understand how visitors use the site.",
           "Advertising cookies (Google Ads): To measure ad performance and improve targeting.",
+          "Meta advertising cookies: Used by this integration only after separate optional consent.",
         ],
         extra: "You can control or disable cookies through your browser settings. Disabling some cookies may affect your experience using the website.",
       },

@@ -8,6 +8,10 @@ import { useTranslation } from "@/hooks/useTranslation";
 import { useSEO, schemas } from "@/hooks/useSEO";
 import { trackContactFormSubmit, trackPhoneClick, trackWhatsAppClick, trackEmailClick } from "@/lib/analytics";
 import { localePath } from "@/lib/localePath";
+import { trackMetaConfirmedSubmission } from "@/lib/metaAnalytics";
+
+// Local deduplication only; never transmitted to Meta or used as a credential.
+let contactSubmissionSequence = 0;
 
 export default function Contact() {
   const { t, lang, isRTL } = useTranslation();
@@ -47,9 +51,13 @@ export default function Contact() {
   const { ref: formRef, isVisible: formVisible } = useScrollAnimation();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const submittingRef = useRef(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submittingRef.current) return;
+    submittingRef.current = true;
+    const receipt = String(++contactSubmissionSequence);
     setIsSubmitting(true);
     try {
       const response = await fetch("https://formspree.io/f/mqeozjdk", {
@@ -65,6 +73,7 @@ export default function Contact() {
       });
       if (response.ok) {
         trackContactFormSubmit(formData.service);
+        trackMetaConfirmedSubmission("contact", receipt);
         toast.success(lang === "ar" ? "تم إرسال رسالتك بنجاح! سنتواصل معك قريباً." : "Message sent successfully! We will contact you soon.");
         setFormData({ name: "", phone: "", email: "", service: "", message: "" });
       } else {
@@ -73,6 +82,7 @@ export default function Contact() {
     } catch {
       toast.error(lang === "ar" ? "حدث خطأ في الاتصال. تأكد من اتصالك بالإنترنت." : "Connection error. Please check your internet.");
     } finally {
+      submittingRef.current = false;
       setIsSubmitting(false);
     }
   };

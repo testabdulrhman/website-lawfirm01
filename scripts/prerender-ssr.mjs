@@ -307,6 +307,8 @@ async function run() {
   // Build the SSR bundle
   await build({
     root: join(PROJECT_ROOT, 'client'),
+    // Match the client build so rollout flags produce the same initial markup.
+    envDir: PROJECT_ROOT,
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import ScrollProgress from "./ScrollProgress";
 import ScrollToTop from "./ScrollToTop";
 import PageTransition from "./PageTransition";
+import MetaConsent from "./MetaConsent";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface LayoutProps {
@@ -33,6 +34,7 @@ export default function Layout({ children }: LayoutProps) {
           <PageTransition>{children}</PageTransition>
         </Suspense>
       </main>
+      <MetaConsent />
       <Footer />
       <ScrollToTop />
     </div>

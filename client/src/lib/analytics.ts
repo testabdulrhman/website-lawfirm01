@@ -3,6 +3,8 @@
  * يتتبع أحداث التحويل المهمة في الموقع
  */
 
+import { trackMetaConfirmedSubmission } from "./metaAnalytics";
+
 // Declare gtag on window
 declare global {
   interface Window {
@@ -201,12 +203,13 @@ export function trackBookingSubmit(serviceKey: string, method: string) {
 }
 
 /** نجاح الحجز — التحويل الرئيسي */
-export function trackBookingSuccess(serviceKey: string, method: string) {
+export function trackBookingSuccess(serviceKey: string, method: string, receipt?: string) {
   trackEvent("booking_success", {
     event_category: "conversion",
     service_type: serviceKey,
     meeting_method: method,
   });
+  if (receipt) trackMetaConfirmedSubmission("booking", receipt);
 }
 
 /** فشل الحجز — السبب مصنّف بلا أي بيانات شخصية */

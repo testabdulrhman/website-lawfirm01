@@ -349,7 +349,7 @@ export default function Appointments() {
         return;
       }
 
-      trackBookingSuccess(service!.key, method!);
+      trackBookingSuccess(service!.key, method!, idemKey.current);
       // ⚠️ لا بيانات شخصية في الرابط — نمرّر الملخص عبر sessionStorage فقط
       sessionStorage.setItem(
         'redwan_booking_result',
