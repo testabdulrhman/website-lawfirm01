@@ -362,6 +362,9 @@ export default function Appointments() {
           duration: data.duration_minutes ?? service!.duration,
         })
       );
+      // Give the consented analytics request a brief chance to leave the page
+      // before navigation. The booking is already confirmed at this point.
+      await new Promise((resolve) => window.setTimeout(resolve, 500));
       window.location.assign(lp('/appointments/success'));
     } catch {
       trackBookingError('network');

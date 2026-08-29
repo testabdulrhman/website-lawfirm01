@@ -229,5 +229,12 @@ describe("event integrity", () => {
     expect(analytics).toContain(
       'if (receipt) trackMetaConfirmedSubmission("booking", receipt);'
     );
+    const appointments = readFileSync("client/src/pages/Appointments.tsx", "utf8");
+    expect(appointments).toContain(
+      "await new Promise((resolve) => window.setTimeout(resolve, 500));"
+    );
+    expect(appointments.indexOf("trackBookingSuccess(")).toBeLessThan(
+      appointments.indexOf("window.location.assign(lp('/appointments/success'))")
+    );
   });
 });
