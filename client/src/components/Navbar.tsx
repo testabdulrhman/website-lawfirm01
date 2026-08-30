@@ -143,11 +143,15 @@ export default function Navbar() {
         style={{ height: showTransparent ? "80px" : "72px", transition: "height 0.3s ease" }}
       >
         {/* Logo */}
+        {/* قائمة الجوال تحمل شعارها الخاص فوق هذا الشريط؛ إبقاء الشعارين مرئيين
+            معاً يُظهرهما متراكبين طوال حركة الفتح والإغلاق. */}
         <Link href={lp("/")} className="flex items-center shrink-0">
           <img
             src={showTransparent ? LOGO_LIGHT : LOGO_DARK}
             alt={FIRM_NAME_AR}
-            className="w-auto object-contain transition-all duration-300"
+            className={`w-auto object-contain transition-all duration-300 ${
+              isMobileOpen ? "opacity-0 lg:opacity-100" : ""
+            }`}
             style={{ height: showTransparent ? "52px" : "46px", maxWidth: "220px" }}
             width={512}
             height={156}
@@ -284,7 +288,11 @@ export default function Navbar() {
         </div>
 
         {/* Mobile: Language Toggle + Hamburger */}
-        <div className="flex lg:hidden items-center gap-2">
+        <div
+          className={`flex lg:hidden items-center gap-2 transition-opacity duration-300 ${
+            isMobileOpen ? "opacity-0" : ""
+          }`}
+        >
           <button
             onClick={() => { toggleLang(); trackLanguageSwitch?.(lang === "ar" ? "en" : "ar"); }}
             className={`w-11 h-11 flex items-center justify-center text-xs font-heading font-medium transition-colors ${showTransparent ? "text-white/80" : "text-[var(--color-navy)]/70"}`}
