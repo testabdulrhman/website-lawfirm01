@@ -130,6 +130,7 @@ export default function Navbar() {
   const servicesActive = location.startsWith("/services") || location.startsWith("/en/services");
 
   return (
+    <>
     <nav
       aria-label={lang === "ar" ? "التنقل الرئيسي" : "Main navigation"}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -432,6 +433,8 @@ export default function Navbar() {
         </div>
       </div>
 
+    </nav>
+
       {/* ===== Mobile Menu - Full Screen Overlay ===== */}
       <div
         id="mobile-navigation-menu"
@@ -615,6 +618,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </nav>
+    </>
   );
 }
