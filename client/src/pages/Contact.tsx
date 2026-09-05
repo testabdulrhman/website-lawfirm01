@@ -10,6 +10,11 @@ import { trackContactFormSubmit, trackPhoneClick, trackWhatsAppClick, trackEmail
 import { localePath } from "@/lib/localePath";
 import { trackMetaConfirmedSubmission } from "@/lib/metaAnalytics";
 
+// نموذج التواصل يسجّل الطلب مباشرة في نظام المكتب (بديل Formspree).
+// نفس نمط Careers.tsx: نداء مباشر لدالة الحافة. لا مفتاح مطلوب — الدالة عامة.
+const SUBMIT_ENDPOINT =
+  "https://zwaahunavepleczuamuy.supabase.co/functions/v1/web-contact";
+
 // Local deduplication only; never transmitted to Meta or used as a credential.
 let contactSubmissionSequence = 0;
 
@@ -60,7 +65,7 @@ export default function Contact() {
     const receipt = String(++contactSubmissionSequence);
     setIsSubmitting(true);
     try {
-      const response = await fetch("https://formspree.io/f/mqeozjdk", {
+      const response = await fetch(SUBMIT_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -77,7 +82,14 @@ export default function Contact() {
         toast.success(lang === "ar" ? "تم إرسال رسالتك بنجاح! سنتواصل معك قريباً." : "Message sent successfully! We will contact you soon.");
         setFormData({ name: "", phone: "", email: "", service: "", message: "" });
       } else {
-        toast.error(lang === "ar" ? "حدث خطأ في الإرسال. حاول مرة أخرى." : "Failed to send. Please try again.");
+        const reason = await response
+          .json()
+          .then((d: { message?: string }) => d?.message)
+          .catch(() => undefined);
+        toast.error(
+          reason ??
+            (lang === "ar" ? "حدث خطأ في الإرسال. حاول مرة أخرى." : "Failed to send. Please try again."),
+        );
       }
     } catch {
       toast.error(lang === "ar" ? "حدث خطأ في الاتصال. تأكد من اتصالك بالإنترنت." : "Connection error. Please check your internet.");
