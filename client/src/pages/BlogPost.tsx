@@ -483,7 +483,7 @@ export default function BlogPost() {
                 <h3 className="font-heading text-sm font-semibold text-white mb-2">{t.cta.title}</h3>
                 <p className="font-body text-xs text-white/60 mb-4">{lang === "ar" ? "فريقنا المتخصص جاهز لمساعدتك" : "Our specialized team is ready to help you"}</p>
                 <a
-                  href="https://wa.me/966505149800"
+                  href="https://wa.me/966920032760"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackWhatsAppClick('blog_sidebar')}

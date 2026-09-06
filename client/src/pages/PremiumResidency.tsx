@@ -416,7 +416,7 @@ export default function PremiumResidency() {
     // Build WhatsApp message with form data
     const trackLabel = formData.track;
     const msg = `*طلب استشارة - الإقامة المميزة*%0A%0Aالاسم: ${formData.name}%0Aالجوال: ${formData.phone}%0Aالجنسية: ${formData.nationality}%0Aالمسار: ${trackLabel}${formData.message ? `%0Aملاحظات: ${formData.message}` : ""}`;
-    window.open(`https://wa.me/966500004054?text=${msg}`, "_blank");
+    window.open(`https://wa.me/966920032760?text=${msg}`, "_blank");
     setTimeout(() => {
       setFormLoading(false);
       setFormSubmitted(true);

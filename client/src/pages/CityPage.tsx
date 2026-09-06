@@ -292,7 +292,7 @@ export default function CityPage() {
                 {lang === "ar" ? "احجز استشارة" : "Book Consultation"}
               </Link>
               <a
-                href="https://wa.me/966505149800"
+                href="https://wa.me/966920032760"
                 onClick={() => trackWhatsAppClick(`city_${city.slug}`)}
                 target="_blank"
                 rel="noopener noreferrer"

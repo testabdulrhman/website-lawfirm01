@@ -39,7 +39,7 @@ const PHONE_TEL = "+966505149800";
 const WHATSAPP_MSG = encodeURIComponent(
   "السلام عليكم، أرغب في استشارة بخصوص تعثّري المالي وحماية نفسي عبر نظام الإفلاس."
 );
-const WHATSAPP_URL = `https://wa.me/966505149800?text=${WHATSAPP_MSG}`;
+const WHATSAPP_URL = `https://wa.me/966920032760?text=${WHATSAPP_MSG}`;
 const HERO_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310419663031020868/YnXXVn35ryxUKUfHFrqdpE/lp-bankruptcy-hero-dqU6g5zLT9BYqByVzYJGDK.webp";
 const TRUST_IMG =
@@ -176,7 +176,7 @@ function CallbackForm() {
       `طلب معاودة اتصال:\nالاسم: ${trimmedName}\nرقم الجوال: ${normalized}\nأرغب في استشارة بخصوص تعثّري المالي وحماية نفسي عبر نظام الإفلاس.`
     );
     setSent(true);
-    window.open(`https://wa.me/966505149800?text=${msg}`, "_blank", "noopener,noreferrer");
+    window.open(`https://wa.me/966920032760?text=${msg}`, "_blank", "noopener,noreferrer");
   };
 
   if (sent) {

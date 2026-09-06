@@ -246,7 +246,7 @@ export default function Contact() {
 
               {/* WhatsApp Button */}
               <a
-                href="https://wa.me/966505149800"
+                href="https://wa.me/966920032760"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick('contact_page')}
