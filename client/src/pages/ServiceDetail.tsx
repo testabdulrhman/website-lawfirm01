@@ -113,7 +113,7 @@ const servicesData: Record<string, {
         { q: "ما الفرق بين الحق العام والحق الخاص؟", a: "الحق العام هو حق الدولة في معاقبة المجرم، والحق الخاص هو حق المجني عليه في التعويض." },
         { q: "ما هي المدة المتوقعة للقضية الجنائية؟", a: "تختلف المدة حسب نوع القضية وتعقيدها والمحكمة المختصة. القضايا البسيطة قد تستغرق 2-4 أشهر، بينما القضايا المعقدة قد تمتد لسنة أو أكثر." },
         { q: "هل تترافعون أمام جميع المحاكم الجزائية؟", a: "نعم، نحمل ترخيص محاماة رقم 26/129 من وزارة العدل يخوّلنا الترافع أمام جميع المحاكم والدوائر القضائية بمختلف درجاتها." },
-        { q: "كيف أحجز استشارة في قضية جنائية؟", a: "يمكنك حجز استشارة قانونية من خلال التواصل معنا عبر الهاتف (0505149800) أو عبر نموذج التواصل في الموقع، أو من خلال واتساب." },
+        { q: "كيف أحجز استشارة في قضية جنائية؟", a: "يمكنك حجز استشارة قانونية من خلال التواصل معنا عبر الهاتف (920032760) أو عبر نموذج التواصل في الموقع، أو من خلال واتساب." },
       ],
     },
     en: {
@@ -132,7 +132,7 @@ const servicesData: Record<string, {
         { q: "What is the difference between public and private right?", a: "Public right is the state's right to punish the offender, while private right is the victim's right to compensation." },
         { q: "What is the expected duration of a criminal case?", a: "Duration varies depending on the type and complexity of the case and the competent court. Simple cases may take 2-4 months, while complex cases may extend to a year or more." },
         { q: "Do you litigate before all criminal courts?", a: "Yes, we hold legal practice license No. 26/129 from the Ministry of Justice, authorizing us to litigate before all courts and judicial circuits at all levels." },
-        { q: "How can I book a consultation for a criminal case?", a: "You can book a legal consultation by contacting us via phone (0505149800), through the contact form on our website, or via WhatsApp." },
+        { q: "How can I book a consultation for a criminal case?", a: "You can book a legal consultation by contacting us via phone (920032760), through the contact form on our website, or via WhatsApp." },
       ],
     },
   },
@@ -195,7 +195,7 @@ const servicesData: Record<string, {
         { q: "هل يمكن إلغاء عقد بيع عقاري؟", a: "يمكن ذلك في حالات محددة كالغش أو التدليس أو عدم الوفاء بالشروط." },
         { q: "ما هي خدمات التوثيق العقاري المتاحة؟", a: "نقدم خدمات التوثيق الرسمي بترخيص رقم 45/57029 من وزارة العدل، وتشمل: توثيق عقود البيع والشراء، الإيجار، وجميع المستندات العقارية." },
         { q: "هل تتعاملون مع نزاعات عقارية خارج منطقة القصيم؟", a: "نعم، نحمل ترخيص محاماة رقم 26/129 يخوّلنا الترافع أمام جميع المحاكم في المملكة." },
-        { q: "كيف أحجز استشارة عقارية؟", a: "يمكنك حجز استشارة من خلال التواصل معنا عبر الهاتف (0505149800) أو عبر نموذج التواصل في الموقع، أو من خلال واتساب." },
+        { q: "كيف أحجز استشارة عقارية؟", a: "يمكنك حجز استشارة من خلال التواصل معنا عبر الهاتف (920032760) أو عبر نموذج التواصل في الموقع، أو من خلال واتساب." },
       ],
     },
     en: {
@@ -214,7 +214,7 @@ const servicesData: Record<string, {
         { q: "Can a real estate sale contract be cancelled?", a: "This is possible in specific cases such as fraud, misrepresentation, or breach of conditions." },
         { q: "What real estate notarization services are available?", a: "We provide official notarization services under license No. 45/57029 from the Ministry of Justice, including: sale and purchase contracts, leases, and all real estate documents." },
         { q: "Do you handle real estate disputes outside the Qassim region?", a: "Yes, we hold legal practice license No. 26/129 authorizing us to litigate before all courts in the Kingdom." },
-        { q: "How can I book a real estate consultation?", a: "You can book a consultation by contacting us via phone (0505149800), through the contact form on our website, or via WhatsApp." },
+        { q: "How can I book a real estate consultation?", a: "You can book a consultation by contacting us via phone (920032760), through the contact form on our website, or via WhatsApp." },
       ],
     },
   },
@@ -351,7 +351,7 @@ const servicesData: Record<string, {
         "دراسة الجدوى القانونية للمشاريع",
       ],
       faqs: [
-        { q: "كيف أحجز استشارة قانونية؟", a: "يمكنك حجز استشارة قانونية من خلال التواصل معنا عبر الهاتف (0505149800) أو عبر نموذج التواصل في الموقع، أو من خلال واتساب. سيتم تحديد موعد مناسب لك خلال 24 ساعة عمل." },
+        { q: "كيف أحجز استشارة قانونية؟", a: "يمكنك حجز استشارة قانونية من خلال التواصل معنا عبر الهاتف (920032760) أو عبر نموذج التواصل في الموقع، أو من خلال واتساب. سيتم تحديد موعد مناسب لك خلال 24 ساعة عمل." },
         { q: "ما هي تكلفة الاستشارة القانونية؟", a: "تختلف تكلفة الاستشارة حسب نوع القضية وتعقيدها. نقدم استشارة أولية لتقييم الحالة، ويتم الاتفاق على الأتعاب بشكل شفاف قبل البدء في أي إجراء قانوني." },
         { q: "هل يمكن الحصول على استشارة عن بُعد؟", a: "نعم، نقدم خدمات الاستشارات عن بُعد عبر الاتصال المرئي أو الهاتفي. كما يمكن إتمام إجراءات التوكيل إلكترونياً عبر منصة ناجز." },
         { q: "كم تستغرق الاستشارة؟", a: "عادة تتراوح بين 30 إلى 60 دقيقة حسب تعقيد الموضوع." },
@@ -370,7 +370,7 @@ const servicesData: Record<string, {
         "Legal feasibility studies for projects",
       ],
       faqs: [
-        { q: "How can I book a legal consultation?", a: "You can book a legal consultation by contacting us via phone (0505149800), through the contact form on our website, or via WhatsApp. An appointment will be scheduled within 24 business hours." },
+        { q: "How can I book a legal consultation?", a: "You can book a legal consultation by contacting us via phone (920032760), through the contact form on our website, or via WhatsApp. An appointment will be scheduled within 24 business hours." },
         { q: "What is the cost of a legal consultation?", a: "Consultation costs vary depending on the type and complexity of the case. We offer an initial consultation to assess your situation, and fees are agreed upon transparently before any legal action begins." },
         { q: "Can I get a remote consultation?", a: "Yes, we offer remote consultation services via video call or phone. Engagement procedures can also be completed electronically through the Najiz platform." },
         { q: "How long does a consultation take?", a: "Typically between 30 to 60 minutes depending on the complexity of the matter." },
@@ -395,7 +395,7 @@ const servicesData: Record<string, {
         { q: "ما هي خدمات التوثيق المتاحة؟", a: "نقدم خدمات التوثيق الرسمي بترخيص رقم 45/57029 من وزارة العدل، وتشمل: توثيق العقود، الإقرارات، التفويضات، عقود الشراكة، وجميع المستندات القانونية التي تتطلب توثيقاً رسمياً." },
         { q: "ما الفرق بين التوثيق والتصديق؟", a: "التوثيق هو إنشاء المستند رسمياً، والتصديق هو التأكد من صحة مستند موجود." },
         { q: "هل التوثيق إلزامي لجميع العقود؟", a: "ليس إلزامياً لجميع العقود، لكنه يوفر حماية قانونية أقوى ويسهل الإثبات." },
-        { q: "كيف يمكنني توثيق عقد؟", a: "تواصل معنا عبر الهاتف (0505149800) أو زيارة مكتبنا في طريق الملك عبدالله، حي الأفق، بريدة. سنرشدك للمستندات المطلوبة." },
+        { q: "كيف يمكنني توثيق عقد؟", a: "تواصل معنا عبر الهاتف (920032760) أو زيارة مكتبنا في طريق الملك عبدالله، حي الأفق، بريدة. سنرشدك للمستندات المطلوبة." },
         { q: "ما هو التسجيل العيني للعقار؟", a: "التسجيل العيني هو نظام لتسجيل الملكية العقارية يوفر حماية قانونية أقوى لملاك العقارات. نقدم هذه الخدمة بترخيص رقم 2223002594 من الهيئة العامة للعقار." },
       ],
     },
@@ -414,7 +414,7 @@ const servicesData: Record<string, {
         { q: "What notarization services are available?", a: "We provide official notarization services under license No. 45/57029 from the Ministry of Justice, including: contract notarization, declarations, authorizations, partnership agreements, and all legal documents requiring official notarization." },
         { q: "What is the difference between notarization and authentication?", a: "Notarization is officially creating a document, while authentication is verifying an existing document's validity." },
         { q: "Is notarization mandatory for all contracts?", a: "Not mandatory for all contracts, but it provides stronger legal protection and facilitates proof." },
-        { q: "How can I get a document notarized?", a: "Contact us via phone (0505149800) or visit our office on King Abdullah Road, Al-Ufuq District, Buraydah. We will guide you on the required documents." },
+        { q: "How can I get a document notarized?", a: "Contact us via phone (920032760) or visit our office on King Abdullah Road, Al-Ufuq District, Buraydah. We will guide you on the required documents." },
         { q: "What is real estate registration?", a: "Real estate registration is a system for registering property ownership that provides stronger legal protection for property owners. We offer this service under license No. 2223002594 from the General Authority for Real Estate." },
       ],
     },
@@ -742,9 +742,9 @@ export default function ServiceDetail() {
                     <BackArrow size={14} />
                   </Link>
                   <div className="mt-4 pt-4 border-t border-white/10">
-                    <a href="tel:+966505149800" onClick={() => trackPhoneClick('service_detail')} className="flex items-center justify-center gap-2 text-white/70 hover:text-[var(--color-gold)] transition-colors">
+                    <a href="tel:+966920032760" onClick={() => trackPhoneClick('service_detail')} className="flex items-center justify-center gap-2 text-white/70 hover:text-[var(--color-gold)] transition-colors">
                       <Phone size={14} />
-                      <span className="font-body text-sm" dir="ltr">0505149800</span>
+                      <span className="font-body text-sm" dir="ltr">920032760</span>
                     </a>
                   </div>
                 </div>

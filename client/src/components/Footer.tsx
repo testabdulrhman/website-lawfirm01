@@ -47,7 +47,7 @@ export default function Footer() {
               {t.footer.address}<br />{t.footer.city}
             </p>
             <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-body text-sm text-[#181b20]">
-              <a href="tel:+966505149800" onClick={() => trackPhoneClick("homepage_footer")} dir="ltr" className="hover:underline">0505149800</a>
+              <a href="tel:+966920032760" onClick={() => trackPhoneClick("homepage_footer")} dir="ltr" className="hover:underline">920032760</a>
               <a href="mailto:info@redwan.sa" onClick={() => trackEmailClick("homepage_footer")} className="hover:underline">info@redwan.sa</a>
             </div>
           </div>
@@ -205,8 +205,6 @@ export default function Footer() {
                 <div className="flex items-start gap-3">
                   <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-gold)]" />
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-1" dir="ltr">
-                    <a href="tel:+966505149800" onClick={() => trackPhoneClick("footer")} className={linkClass}>0505149800</a>
-                    <span className="text-white/20">|</span>
                     <a href="tel:+966920032760" onClick={() => trackPhoneClick("footer")} className={linkClass}>920032760</a>
                   </div>
                 </div>
