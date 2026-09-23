@@ -133,17 +133,6 @@ export default function Home() {
         <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10 pt-28 md:pt-32 pb-16 md:pb-20">
           <div className={`max-w-3xl mx-auto md:mx-0 ${isRTL ? 'md:mr-0 md:ml-auto lg:mr-12' : 'md:ml-0 md:mr-auto lg:ml-12'}`}>
             <div ref={heroRef}>
-              {/* Location tag */}
-              <div
-                className="flex items-center gap-3 mb-6 md:mb-8 justify-center md:justify-start"
-                style={getFadeStyle(heroVisible, isRTL ? "right" : "left", 0)}
-              >
-                <span className="font-heading text-xs md:text-sm tracking-[0.15em] text-[var(--color-gold)]">
-                  {t.hero.location}
-                </span>
-                <div className="w-8 md:w-12 h-[1px] bg-[var(--color-gold)]" />
-              </div>
-
               {/* Main heading with stagger */}
               <h1
                 className={`font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.3] md:leading-[1.2] mb-5 md:mb-6 text-center ${isRTL ? 'md:text-right' : 'md:text-left'}`}
