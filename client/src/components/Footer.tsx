@@ -30,8 +30,8 @@ export default function Footer() {
     ];
 
     return (
-      <footer className="bg-[#e6dfea] text-[#181b20]">
-        <div className="container mx-auto grid gap-12 border-b border-[#c8bdd0] px-6 py-16 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:px-10 md:py-20 lg:px-16">
+      <footer className="bg-[#eeebe5] text-[#181b20]">
+        <div className="container mx-auto grid gap-12 border-b border-[#cbc5bc] px-6 py-16 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:px-10 md:py-20 lg:px-16">
           <div>
             <Link href={lp("/")} className="inline-block">
               <img

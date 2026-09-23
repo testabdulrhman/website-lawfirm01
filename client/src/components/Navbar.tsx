@@ -135,7 +135,7 @@ export default function Navbar() {
       aria-label={lang === "ar" ? "التنقل الرئيسي" : "Main navigation"}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         showTransparent
-          ? "border-b border-[#c8bdd0] bg-[#e6dfea]"
+          ? "border-b border-[#d8d2c9] bg-[#f3f0eb]"
           : "bg-[oklch(0.98_0.005_90/0.97)] backdrop-blur-md shadow-sm"
       }`}
     >
@@ -178,7 +178,7 @@ export default function Navbar() {
                   className={`flex items-center gap-1 text-sm font-heading font-medium transition-colors duration-200 relative after:content-[''] after:absolute after:bottom-[-4px] ${isRTL ? "after:right-0" : "after:left-0"} after:h-[2px] after:bg-[var(--color-gold)] after:transition-all after:duration-300 ${
                     servicesActive || isMegaOpen ? "after:w-full" : "after:w-0 hover:after:w-full"
                   } ${
-                    showTransparent ? "text-[#181b20] hover:text-[#675873]" : "text-[var(--color-navy)] hover:text-[var(--color-gold)]"
+                    showTransparent ? "text-[#181b20] hover:text-[#73634e]" : "text-[var(--color-navy)] hover:text-[var(--color-gold)]"
                   } ${servicesActive ? "text-[var(--color-gold)]" : ""}`}
                 >
                   <span>{link.label}</span>
@@ -205,7 +205,7 @@ export default function Navbar() {
                   className={`flex items-center gap-1 text-sm font-heading font-medium transition-colors duration-200 relative after:content-[''] after:absolute after:bottom-[-4px] ${isRTL ? "after:right-0" : "after:left-0"} after:h-[2px] after:bg-[var(--color-gold)] after:transition-all after:duration-300 ${
                     aboutActive || isAboutOpen ? "after:w-full" : "after:w-0 hover:after:w-full"
                   } ${
-                    showTransparent ? "text-[#181b20] hover:text-[#675873]" : "text-[var(--color-navy)] hover:text-[var(--color-gold)]"
+                    showTransparent ? "text-[#181b20] hover:text-[#73634e]" : "text-[var(--color-navy)] hover:text-[var(--color-gold)]"
                   } ${aboutActive ? "text-[var(--color-gold)]" : ""}`}
                 >
                   <span>{link.label}</span>
@@ -254,7 +254,7 @@ export default function Navbar() {
                 className={`text-sm font-heading font-medium transition-colors duration-200 relative after:content-[''] after:absolute after:bottom-[-4px] ${isRTL ? "after:right-0" : "after:left-0"} after:h-[2px] after:bg-[var(--color-gold)] after:transition-all after:duration-300 ${
                   location === link.href ? "after:w-full" : "after:w-0 hover:after:w-full"
                 } ${
-                  showTransparent ? "text-[#181b20] hover:text-[#675873]" : "text-[var(--color-navy)] hover:text-[var(--color-gold)]"
+                  showTransparent ? "text-[#181b20] hover:text-[#73634e]" : "text-[var(--color-navy)] hover:text-[var(--color-gold)]"
                 } ${location === link.href ? "text-[var(--color-gold)]" : ""}`}
               >
                 {link.label}
