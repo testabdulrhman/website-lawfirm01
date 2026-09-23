@@ -16,7 +16,6 @@ export const translations = {
     },
     // Hero
     hero: {
-      location: "المقر الرئيسي: بريدة | نخدم جميع مناطق المملكة",
       title1: "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
       title2: "",
       title3: "",
@@ -164,7 +163,6 @@ export const translations = {
     },
     // Hero
     hero: {
-      location: "Head Office: Buraydah | Serving Clients Across Saudi Arabia",
       title1: "Abdulrahman bin Redwan Al-Moshiqeh",
       title2: "Law Firm",
       title3: "and Bankruptcy Procedures Management",

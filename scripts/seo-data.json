@@ -206,10 +206,10 @@
   },
   "/": {
     "title": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "description": "شركة محاماة سعودية مقرها بريدة وتخدم جميع مناطق المملكة في القضايا التجارية والإفلاس والتوثيق والتسجيل العيني بخمسة تراخيص نظامية.",
+    "description": "شركة سعودية للمحاماة وإدارة إجراءات الإفلاس، تمارس التمثيل القانوني وأعمال أمناء الإفلاس والتوثيق والتسجيل العيني بموجب تراخيص مهنية مستقلة.",
     "keywords": "شركة محاماة سعودية, مكتب محاماة بريدة, خدمات قانونية للشركات, إدارة إجراءات الإفلاس, التوثيق, التسجيل العيني",
     "ogTitle": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    "ogDesc": "شركة محاماة سعودية بخمسة تراخيص نظامية، مقرها الرئيسي في بريدة وتخدم الشركات والعملاء في جميع مناطق المملكة.",
+    "ogDesc": "شركة سعودية للمحاماة وإدارة إجراءات الإفلاس، تجمع التمثيل القانوني وأعمال أمناء الإفلاس والتوثيق والتسجيل العيني ضمن تراخيص مهنية مستقلة.",
     "ogUrl": "https://redwan.sa/",
     "ogType": "website",
     "ogImage": null,
@@ -1444,7 +1444,7 @@
   },
   "/en": {
     "title": "Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management",
-    "description": "A Saudi law firm serving clients nationwide in commercial disputes, bankruptcy, notarization and real estate registration under five professional licenses.",
+    "description": "A Saudi law firm practicing commercial law, bankruptcy administration, notarization and real estate registration under separate professional licenses.",
     "keywords": "Saudi law firm, Buraydah law firm, corporate legal services, bankruptcy management, notarization, real estate registration",
     "ogImage": "https://redwan.sa/images/hero-law-firm.webp",
     "ogUrl": "https://redwan.sa/en",

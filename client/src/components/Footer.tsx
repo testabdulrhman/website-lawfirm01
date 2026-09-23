@@ -8,7 +8,7 @@ import {
   Mail,
   Clock,
 } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackWhatsAppClick, trackPhoneClick, trackEmailClick } from "@/lib/analytics";
 import { localePath } from "@/lib/localePath";
@@ -16,8 +16,70 @@ import { FIRM_LEGAL_NAME_EN, FIRM_NAME_AR } from "@/lib/firmIdentity";
 
 export default function Footer() {
   const { t, lang, isRTL } = useTranslation();
+  const [location] = useLocation();
   const lp = (path: string) => localePath(path, lang);
   const serviceLinks = t.services.items.slice(0, 5);
+
+  if (location === "/" || location === "/en") {
+    const homeLinks = [
+      { path: "/about", label: t.nav.about },
+      { path: "/services", label: t.nav.services },
+      { path: "/bankruptcy", label: lang === "ar" ? "إجراءات الإفلاس" : "Bankruptcy" },
+      { path: "/blog", label: t.nav.blog },
+      { path: "/contact", label: t.nav.contact },
+    ];
+
+    return (
+      <footer className="bg-[#e6dfea] text-[#181b20]">
+        <div className="container mx-auto grid gap-12 border-b border-[#c8bdd0] px-6 py-16 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:px-10 md:py-20 lg:px-16">
+          <div>
+            <Link href={lp("/")} className="inline-block">
+              <img
+                src="/images/logo-dark-512.webp"
+                alt={FIRM_NAME_AR}
+                className="h-auto w-[230px] object-contain"
+                width={512}
+                height={156}
+                loading="lazy"
+              />
+            </Link>
+            <p className="mt-8 max-w-sm font-body text-sm leading-8 text-[#4c4d4c]">
+              {t.footer.address}<br />{t.footer.city}
+            </p>
+            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-body text-sm text-[#181b20]">
+              <a href="tel:+966505149800" onClick={() => trackPhoneClick("homepage_footer")} dir="ltr" className="hover:underline">0505149800</a>
+              <a href="mailto:info@redwan.sa" onClick={() => trackEmailClick("homepage_footer")} className="hover:underline">info@redwan.sa</a>
+            </div>
+          </div>
+          <nav aria-label={lang === "ar" ? "روابط الموقع" : "Site links"} className="grid content-start grid-cols-2 gap-x-8 gap-y-5 font-body text-sm text-[#4c4d4c] sm:grid-cols-3">
+            {homeLinks.map((link) => (
+              <Link key={link.path} href={lp(link.path)} className="hover:text-[#181b20] hover:underline hover:underline-offset-8">
+                {link.label}
+              </Link>
+            ))}
+            <a
+              href="https://wa.me/966920032760"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick("homepage_footer")}
+              className="hover:text-[#181b20] hover:underline hover:underline-offset-8"
+            >
+              {lang === "ar" ? "واتساب" : "WhatsApp"}
+            </a>
+          </nav>
+        </div>
+        <div className="container mx-auto flex flex-wrap items-center justify-between gap-4 px-6 py-6 font-body text-xs text-[#63605b] md:px-10 lg:px-16">
+          <span>© {new Date().getFullYear()} {t.footer.copyright}</span>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            <Link href={lp("/privacy")} className="hover:text-[#181b20]">{t.footer.privacy}</Link>
+            <Link href={lp("/terms")} className="hover:text-[#181b20]">{t.footer.terms}</Link>
+            <Link href={lp("/sitemap")} className="hover:text-[#181b20]">{lang === "ar" ? "خريطة الموقع" : "Sitemap"}</Link>
+          </div>
+          <span lang="en" dir="ltr" className="w-full text-[10px] text-[#77716a]">{FIRM_LEGAL_NAME_EN}</span>
+        </div>
+      </footer>
+    );
+  }
 
   const labels = lang === "ar"
     ? {
@@ -26,9 +88,6 @@ export default function Footer() {
         reports: "التقارير الشهرية لإعلانات الإفلاس",
         procedures: "أنواع إجراءات الإفلاس",
         dictionary: "المعجم القانوني",
-        bookEyebrow: "تحتاج إلى استشارة قانونية؟",
-        bookTitle: "ابدأ بخطوة واضحة",
-        bookCta: "احجز استشارة",
         sitemap: "خريطة الموقع",
       }
     : lang === "ur"
@@ -38,9 +97,6 @@ export default function Footer() {
           reports: "ماہانہ دیوالیہ رپورٹس",
           procedures: "دیوالیہ کے طریقہ کار",
           dictionary: "قانونی لغت",
-          bookEyebrow: "قانونی مشورہ درکار ہے؟",
-          bookTitle: "واضح اگلا قدم اٹھائیں",
-          bookCta: "مشاورت بک کریں",
           sitemap: "سائٹ میپ",
         }
       : {
@@ -49,9 +105,6 @@ export default function Footer() {
           reports: "Monthly Bankruptcy Reports (Arabic)",
           procedures: "Bankruptcy Procedures",
           dictionary: "Legal Dictionary",
-          bookEyebrow: "Need legal advice?",
-          bookTitle: "Take a clear next step",
-          bookCta: "Book a consultation",
           sitemap: "Sitemap",
         };
 
@@ -97,18 +150,6 @@ export default function Footer() {
               <p className="mt-4 max-w-sm font-body text-sm leading-7 text-white/55">
                 {t.footer.description}
               </p>
-              <div className="mt-5 flex items-center justify-between gap-4 border-s-2 border-[var(--color-gold)] ps-4">
-                <div>
-                  <p className="font-body text-xs text-white/50">{labels.bookEyebrow}</p>
-                  <p className="mt-1 font-heading text-sm font-semibold text-white">{labels.bookTitle}</p>
-                </div>
-                <Link
-                  href={lp("/appointments")}
-                  className="inline-flex min-h-10 shrink-0 items-center justify-center bg-[var(--color-gold)] px-4 font-heading text-xs font-semibold text-[var(--color-navy)] transition-colors hover:bg-white"
-                >
-                  {labels.bookCta}
-                </Link>
-              </div>
             </section>
 
             <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3">

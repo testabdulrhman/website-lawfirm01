@@ -6,6 +6,7 @@ import ScrollToTop from "./ScrollToTop";
 import PageTransition from "./PageTransition";
 import MetaConsent from "./MetaConsent";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useLocation } from "wouter";
 
 interface LayoutProps {
   children: ReactNode;
@@ -13,6 +14,8 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const { isRTL, lang } = useLanguage();
+  const [location] = useLocation();
+  const isHome = location === "/" || location === "/en";
   return (
     <div className="min-h-screen flex flex-col" dir={isRTL ? "rtl" : "ltr"}>
       <a
@@ -21,7 +24,7 @@ export default function Layout({ children }: LayoutProps) {
       >
         {lang === "ar" ? "تخطَّ إلى المحتوى الرئيسي" : "Skip to main content"}
       </a>
-      <ScrollProgress />
+      {!isHome && <ScrollProgress />}
       <Navbar />
       <main id="main-content" tabIndex={-1} className="flex-1">
         <Suspense
@@ -36,7 +39,7 @@ export default function Layout({ children }: LayoutProps) {
       </main>
       <MetaConsent />
       <Footer />
-      <ScrollToTop />
+      {!isHome && <ScrollToTop />}
     </div>
   );
 }
