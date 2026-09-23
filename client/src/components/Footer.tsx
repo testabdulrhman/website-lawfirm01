@@ -164,8 +164,6 @@ export default function Footer() {
                 <div className="flex items-start gap-3">
                   <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-gold)]" />
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-1" dir="ltr">
-                    <a href="tel:+966505149800" onClick={() => trackPhoneClick("footer")} className={linkClass}>0505149800</a>
-                    <span className="text-white/20">|</span>
                     <a href="tel:+966920032760" onClick={() => trackPhoneClick("footer")} className={linkClass}>920032760</a>
                   </div>
                 </div>

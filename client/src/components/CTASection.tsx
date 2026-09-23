@@ -44,12 +44,12 @@ export default function CTASection() {
             <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform duration-200" />
           </button>
           <a
-            href="tel:+966505149800"
+            href="tel:+966920032760"
             onClick={() => trackPhoneClick('cta_section')}
             className="flex items-center gap-3 px-8 py-4 border-2 border-white/30 text-white font-heading font-medium text-base hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] hover:bg-[var(--color-gold)]/5 transition-all duration-200"
           >
             <Phone size={16} />
-            <span dir="ltr">0505149800</span>
+            <span dir="ltr">920032760</span>
           </a>
         </div>
       </div>

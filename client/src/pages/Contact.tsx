@@ -36,8 +36,8 @@ export default function Contact() {
   useSEO({
     title: lang === 'ar' ? 'تواصل معنا - احجز استشارة' : 'Contact Us - Book a Consultation',
     description: lang === 'ar'
-      ? 'تواصل مع شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس. احجز استشارة قانونية الآن. هاتف: 0505149800 | بريدة، القصيم.'
-      : 'Contact Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management. Book a legal consultation now. Phone: 0505149800 | Buraydah, Qassim.',
+      ? 'تواصل مع شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس. احجز استشارة قانونية الآن. هاتف: 920032760 | بريدة، القصيم.'
+      : 'Contact Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management. Book a legal consultation now. Phone: 920032760 | Buraydah, Qassim.',
     keywords: lang === 'ar'
       ? 'تواصل معنا، استشارة قانونية، محامي بريدة، حجز موعد، رقم محامي'
       : 'contact us, legal consultation, lawyer Buraydah, book appointment, lawyer phone number',
@@ -207,10 +207,7 @@ export default function Contact() {
                     <h4 className="font-heading text-xs md:text-sm font-semibold text-[var(--color-navy)] mb-1">
                       {lang === "ar" ? "الهاتف" : "Phone"}
                     </h4>
-                    <a href="tel:+966505149800" onClick={() => trackPhoneClick('contact_page')} className="block font-body text-xs md:text-sm text-[var(--color-navy)]/60 hover:text-[var(--color-gold)] transition-colors" dir="ltr">
-                      0505149800
-                    </a>
-                    <a href="tel:+966920032760" onClick={() => trackPhoneClick('contact_page_920')} className="block font-body text-xs md:text-sm text-[var(--color-navy)]/60 hover:text-[var(--color-gold)] transition-colors" dir="ltr">
+                    <a href="tel:+966920032760" onClick={() => trackPhoneClick('contact_page')} className="block font-body text-xs md:text-sm text-[var(--color-navy)]/60 hover:text-[var(--color-gold)] transition-colors" dir="ltr">
                       920032760
                     </a>
                   </div>

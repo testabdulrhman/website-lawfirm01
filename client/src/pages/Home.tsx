@@ -599,11 +599,11 @@ export default function Home() {
               <ArrowIcon size={18} className={`${arrowHoverClass} transition-transform duration-200`} />
             </Link>
             <a
-              href="tel:+966505149800"
+              href="tel:+966920032760"
               onClick={() => trackPhoneClick('hero_section')}
               className="flex items-center gap-3 px-6 md:px-8 py-3.5 md:py-4 border-2 border-white/30 text-white font-heading font-medium text-sm md:text-base hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] transition-all duration-200 w-full sm:w-auto justify-center"
             >
-              <span dir="ltr">0505149800</span>
+              <span dir="ltr">920032760</span>
             </a>
           </div>
         </div>

@@ -582,13 +582,13 @@ export default function Navbar() {
             {/* Mobile Contact Info */}
             <div className="mt-8 pt-6 border-t border-[var(--color-border)]">
               <a
-                href="tel:+966505149800"
+                href="tel:+966920032760"
                 onClick={() => trackPhoneClick("navbar_mobile")}
                 className="flex min-h-11 items-center justify-center gap-3 text-[var(--color-navy)]/70 font-body text-base mb-4"
                 dir="ltr"
               >
                 <Phone size={18} className="text-[var(--color-gold)]" />
-                <span>0505149800</span>
+                <span>920032760</span>
               </a>
             </div>
 
