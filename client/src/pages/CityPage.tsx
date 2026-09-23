@@ -114,12 +114,12 @@ export default function CityPage() {
           {/* Quick Contact */}
           <div className="flex flex-wrap gap-4 mt-8">
             <a
-              href="tel:+966920032760"
+              href="tel:+966505149800"
               onClick={() => trackPhoneClick(`city_${city.slug}`)}
               className="inline-flex items-center gap-2 bg-[var(--color-gold)] text-[var(--color-navy)] px-5 py-3 font-heading text-sm font-semibold hover:bg-[var(--color-gold)]/90 transition-colors"
             >
               <Phone className="w-4 h-4" />
-              920032760
+              0505149800
             </a>
             <a
               href="mailto:info@redwan.sa"

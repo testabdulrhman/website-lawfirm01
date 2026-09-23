@@ -214,7 +214,7 @@ export const schemas = {
       "latitude": 26.3260,
       "longitude": 43.9750
     },
-    "telephone": "+966920032760",
+    "telephone": "+966505149800",
     "email": "info@redwan.sa",
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -264,7 +264,7 @@ export const schemas = {
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+966920032760",
+      "telephone": "+966505149800",
       "contactType": "customer service",
       "availableLanguage": ["Arabic", "English"]
     }
@@ -316,7 +316,7 @@ export const schemas = {
       "latitude": 26.3260,
       "longitude": 43.9750
     },
-    "telephone": "+966920032760",
+    "telephone": "+966505149800",
     "email": "info@redwan.sa",
     "founder": {
       "@type": "Person",

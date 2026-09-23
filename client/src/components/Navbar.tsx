@@ -140,8 +140,8 @@ export default function Navbar() {
       }`}
     >
       <div
-        className={`container mx-auto flex items-center justify-between px-4 lg:px-8 ${showTransparent ? "border-b border-white/15" : ""}`}
-        style={{ height: showTransparent ? "96px" : "72px", transition: "height 0.3s ease" }}
+        className="container mx-auto flex items-center justify-between px-4 lg:px-8"
+        style={{ height: showTransparent ? "80px" : "72px", transition: "height 0.3s ease" }}
       >
         {/* Logo */}
         {/* قائمة الجوال تحمل شعارها الخاص فوق هذا الشريط؛ إبقاء الشعارين مرئيين
@@ -153,7 +153,7 @@ export default function Navbar() {
             className={`w-auto object-contain transition-all duration-300 ${
               isMobileOpen ? "opacity-0 lg:opacity-100" : ""
             }`}
-            style={{ height: showTransparent ? "65px" : "46px", maxWidth: showTransparent ? "260px" : "220px" }}
+            style={{ height: showTransparent ? "52px" : "46px", maxWidth: "220px" }}
             width={512}
             height={156}
           />
@@ -161,7 +161,7 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-8">
-          {navLinks.filter((link) => !isHome || link.href !== lp("/")).map((link) =>
+          {navLinks.map((link) =>
             link.mega ? (
               <div
                 key={link.href}
@@ -276,18 +276,16 @@ export default function Navbar() {
             <span>{lang === "ar" ? "EN" : "عربي"}</span>
           </button>
 
-          {!isHome && (
-            <Link
-              href={lp("/appointments")}
-              onClick={() => trackBookConsultation("navbar_desktop")}
-              className={`flex items-center gap-2 px-5 py-2.5 font-heading text-sm font-medium transition-all duration-200 active:scale-[0.97] ${
-                showTransparent ? "bg-[var(--color-gold)] text-[var(--color-navy)] hover:bg-[var(--color-gold-light)]" : "bg-[var(--color-navy)] text-[var(--color-cream)] hover:bg-[var(--color-navy-light)]"
-              }`}
-            >
-              <Phone size={14} />
-              <span>{t.nav.bookConsultation}</span>
-            </Link>
-          )}
+          <Link
+            href={lp("/appointments")}
+            onClick={() => trackBookConsultation("navbar_desktop")}
+            className={`flex items-center gap-2 px-5 py-2.5 font-heading text-sm font-medium transition-all duration-200 active:scale-[0.97] ${
+              showTransparent ? "bg-[var(--color-gold)] text-[var(--color-navy)] hover:bg-[var(--color-gold-light)]" : "bg-[var(--color-navy)] text-[var(--color-cream)] hover:bg-[var(--color-navy-light)]"
+            }`}
+          >
+            <Phone size={14} />
+            <span>{t.nav.bookConsultation}</span>
+          </Link>
         </div>
 
         {/* Mobile: Language Toggle + Hamburger */}
@@ -584,13 +582,13 @@ export default function Navbar() {
             {/* Mobile Contact Info */}
             <div className="mt-8 pt-6 border-t border-[var(--color-border)]">
               <a
-                href="tel:+966920032760"
+                href="tel:+966505149800"
                 onClick={() => trackPhoneClick("navbar_mobile")}
                 className="flex min-h-11 items-center justify-center gap-3 text-[var(--color-navy)]/70 font-body text-base mb-4"
                 dir="ltr"
               >
                 <Phone size={18} className="text-[var(--color-gold)]" />
-                <span>920032760</span>
+                <span>0505149800</span>
               </a>
             </div>
 

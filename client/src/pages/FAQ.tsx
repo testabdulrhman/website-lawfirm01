@@ -19,7 +19,7 @@ const faqData = {
         questions: [
           {
             q: "كيف أحجز استشارة قانونية؟",
-            a: "يمكنك حجز استشارة قانونية من خلال التواصل معنا عبر الهاتف (920032760) أو عبر نموذج التواصل في الموقع، أو من خلال واتساب. سيتم تحديد موعد مناسب لك خلال 24 ساعة عمل.",
+            a: "يمكنك حجز استشارة قانونية من خلال التواصل معنا عبر الهاتف (0505149800) أو عبر نموذج التواصل في الموقع، أو من خلال واتساب. سيتم تحديد موعد مناسب لك خلال 24 ساعة عمل.",
           },
           {
             q: "ما هي تكلفة الاستشارة القانونية؟",
@@ -102,7 +102,7 @@ const faqData = {
         questions: [
           {
             q: "How can I book a legal consultation?",
-            a: "You can book a legal consultation by contacting us via phone (920032760), through the contact form on our website, or via WhatsApp. An appointment will be scheduled within 24 business hours.",
+            a: "You can book a legal consultation by contacting us via phone (0505149800), through the contact form on our website, or via WhatsApp. An appointment will be scheduled within 24 business hours.",
           },
           {
             q: "What is the cost of a legal consultation?",
@@ -481,7 +481,7 @@ export default function FAQ() {
               {data.ctaButton}
             </Link>
             <a
-              href="tel:+966920032760"
+              href="tel:+966505149800"
               className="inline-flex items-center gap-2 border border-white/30 hover:border-[var(--color-gold)] text-white hover:text-[var(--color-gold)] font-semibold px-8 py-3.5 transition-all duration-200"
             >
               <Phone className="w-4 h-4" />

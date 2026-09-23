@@ -308,7 +308,7 @@ export default function Privacy() {
                     <div className="mt-4 p-4 bg-[var(--color-cream)] border border-[var(--color-border)]">
                       <p className="font-heading text-sm font-semibold text-[var(--color-navy)] mb-2">{content.companyName}</p>
                       <p>{content.email} <a href="mailto:info@redwan.sa" className="text-[var(--color-gold)] hover:underline">info@redwan.sa</a></p>
-                      <p>{content.phone} <a href="tel:+966920032760" className="text-[var(--color-gold)] hover:underline" dir="ltr">920032760</a></p>
+                      <p>{content.phone} <a href="tel:+966505149800" className="text-[var(--color-gold)] hover:underline" dir="ltr">0505149800</a></p>
                       <p>{content.address}</p>
                     </div>
                   )}

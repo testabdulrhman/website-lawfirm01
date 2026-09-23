@@ -90,6 +90,7 @@ export default function ContactSection() {
                   title: "الهاتف",
                   content: (
                     <span dir="ltr" className="flex flex-col gap-1">
+                      <a href="tel:+966505149800" className="hover:text-[var(--color-gold)] transition-colors">0505149800</a>
                       <a href="tel:+966920032760" className="hover:text-[var(--color-gold)] transition-colors">920032760</a>
                     </span>
                   ),

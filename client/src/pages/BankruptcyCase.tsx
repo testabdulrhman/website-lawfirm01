@@ -467,9 +467,9 @@ export default function BankruptcyCase() {
                     <BackArrow size={14} />
                   </Link>
                   <div className="mt-4 pt-4 border-t border-white/10">
-                    <a href="tel:+966920032760" onClick={() => trackPhoneClick('bankruptcy_case')} className="flex items-center justify-center gap-2 text-white/70 hover:text-[var(--color-gold)] transition-colors">
+                    <a href="tel:+966505149800" onClick={() => trackPhoneClick('bankruptcy_case')} className="flex items-center justify-center gap-2 text-white/70 hover:text-[var(--color-gold)] transition-colors">
                       <Phone size={14} />
-                      <span className="font-body text-sm" dir="ltr">920032760</span>
+                      <span className="font-body text-sm" dir="ltr">0505149800</span>
                     </a>
                   </div>
                 </div>
