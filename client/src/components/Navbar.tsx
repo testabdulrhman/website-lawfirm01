@@ -135,12 +135,12 @@ export default function Navbar() {
       aria-label={lang === "ar" ? "التنقل الرئيسي" : "Main navigation"}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         showTransparent
-          ? "border-b border-[#d8d2c9] bg-[#f3f0eb]"
+          ? "bg-gradient-to-b from-[oklch(0.1_0.04_250/0.6)] to-transparent"
           : "bg-[oklch(0.98_0.005_90/0.97)] backdrop-blur-md shadow-sm"
       }`}
     >
       <div
-        className="container mx-auto flex items-center justify-between px-4 lg:px-8"
+        className={`container mx-auto flex items-center justify-between px-4 lg:px-8 ${showTransparent ? "border-b border-white/15" : ""}`}
         style={{ height: showTransparent ? "96px" : "72px", transition: "height 0.3s ease" }}
       >
         {/* Logo */}
@@ -148,7 +148,7 @@ export default function Navbar() {
             معاً يُظهرهما متراكبين طوال حركة الفتح والإغلاق. */}
         <Link href={lp("/")} className="flex items-center shrink-0">
           <img
-            src={LOGO_DARK}
+            src={showTransparent ? LOGO_LIGHT : LOGO_DARK}
             alt={FIRM_NAME_AR}
             className={`w-auto object-contain transition-all duration-300 ${
               isMobileOpen ? "opacity-0 lg:opacity-100" : ""
@@ -178,7 +178,7 @@ export default function Navbar() {
                   className={`flex items-center gap-1 text-sm font-heading font-medium transition-colors duration-200 relative after:content-[''] after:absolute after:bottom-[-4px] ${isRTL ? "after:right-0" : "after:left-0"} after:h-[2px] after:bg-[var(--color-gold)] after:transition-all after:duration-300 ${
                     servicesActive || isMegaOpen ? "after:w-full" : "after:w-0 hover:after:w-full"
                   } ${
-                    showTransparent ? "text-[#181b20] hover:text-[#73634e]" : "text-[var(--color-navy)] hover:text-[var(--color-gold)]"
+                    showTransparent ? "text-white/90 hover:text-[var(--color-gold)]" : "text-[var(--color-navy)] hover:text-[var(--color-gold)]"
                   } ${servicesActive ? "text-[var(--color-gold)]" : ""}`}
                 >
                   <span>{link.label}</span>
@@ -205,7 +205,7 @@ export default function Navbar() {
                   className={`flex items-center gap-1 text-sm font-heading font-medium transition-colors duration-200 relative after:content-[''] after:absolute after:bottom-[-4px] ${isRTL ? "after:right-0" : "after:left-0"} after:h-[2px] after:bg-[var(--color-gold)] after:transition-all after:duration-300 ${
                     aboutActive || isAboutOpen ? "after:w-full" : "after:w-0 hover:after:w-full"
                   } ${
-                    showTransparent ? "text-[#181b20] hover:text-[#73634e]" : "text-[var(--color-navy)] hover:text-[var(--color-gold)]"
+                    showTransparent ? "text-white/90 hover:text-[var(--color-gold)]" : "text-[var(--color-navy)] hover:text-[var(--color-gold)]"
                   } ${aboutActive ? "text-[var(--color-gold)]" : ""}`}
                 >
                   <span>{link.label}</span>
@@ -254,7 +254,7 @@ export default function Navbar() {
                 className={`text-sm font-heading font-medium transition-colors duration-200 relative after:content-[''] after:absolute after:bottom-[-4px] ${isRTL ? "after:right-0" : "after:left-0"} after:h-[2px] after:bg-[var(--color-gold)] after:transition-all after:duration-300 ${
                   location === link.href ? "after:w-full" : "after:w-0 hover:after:w-full"
                 } ${
-                  showTransparent ? "text-[#181b20] hover:text-[#73634e]" : "text-[var(--color-navy)] hover:text-[var(--color-gold)]"
+                  showTransparent ? "text-white/90 hover:text-[var(--color-gold)]" : "text-[var(--color-navy)] hover:text-[var(--color-gold)]"
                 } ${location === link.href ? "text-[var(--color-gold)]" : ""}`}
               >
                 {link.label}
@@ -268,7 +268,7 @@ export default function Navbar() {
           <button
             onClick={() => { toggleLang(); trackLanguageSwitch?.(lang === "ar" ? "en" : "ar"); }}
             className={`flex items-center gap-1.5 px-3 py-2 text-xs font-heading font-medium rounded transition-all duration-200 ${
-              showTransparent ? "text-[#181b20]/75 hover:text-[#181b20]" : "text-[var(--color-navy)]/70 hover:text-[var(--color-navy)] hover:bg-[var(--color-navy)]/5"
+              showTransparent ? "text-white/80 hover:text-white hover:bg-white/10" : "text-[var(--color-navy)]/70 hover:text-[var(--color-navy)] hover:bg-[var(--color-navy)]/5"
             }`}
             aria-label={lang === "ar" ? "EN – Switch language" : "عربي – تغيير اللغة"}
           >
@@ -298,7 +298,7 @@ export default function Navbar() {
         >
           <button
             onClick={() => { toggleLang(); trackLanguageSwitch?.(lang === "ar" ? "en" : "ar"); }}
-            className={`w-11 h-11 flex items-center justify-center text-xs font-heading font-medium transition-colors ${showTransparent ? "text-[#181b20]" : "text-[var(--color-navy)]/70"}`}
+            className={`w-11 h-11 flex items-center justify-center text-xs font-heading font-medium transition-colors ${showTransparent ? "text-white/80" : "text-[var(--color-navy)]/70"}`}
             aria-label={lang === "ar" ? "Switch language to English" : "تغيير اللغة إلى العربية"}
           >
             <Globe size={20} />
@@ -306,7 +306,7 @@ export default function Navbar() {
           <button
             ref={mobileMenuButtonRef}
             onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className={`w-11 h-11 flex items-center justify-center transition-colors ${showTransparent ? "text-[#181b20]" : "text-[var(--color-navy)]"}`}
+            className={`w-11 h-11 flex items-center justify-center transition-colors ${showTransparent ? "text-white" : "text-[var(--color-navy)]"}`}
             aria-label={isMobileOpen ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={isMobileOpen}
             aria-controls="mobile-navigation-menu"

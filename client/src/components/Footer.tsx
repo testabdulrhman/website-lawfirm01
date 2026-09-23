@@ -30,12 +30,12 @@ export default function Footer() {
     ];
 
     return (
-      <footer className="bg-[#eeebe5] text-[#181b20]">
-        <div className="container mx-auto grid gap-12 border-b border-[#cbc5bc] px-6 py-16 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:px-10 md:py-20 lg:px-16">
+      <footer className="bg-[#131e3f] text-white">
+        <div className="container mx-auto grid gap-12 border-b border-white/15 px-6 py-16 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:px-10 md:py-20 lg:px-16">
           <div>
             <Link href={lp("/")} className="inline-block">
               <img
-                src="/images/logo-dark-512.webp"
+                src="/images/logo-light-512.webp"
                 alt={FIRM_NAME_AR}
                 className="h-auto w-[230px] object-contain"
                 width={512}
@@ -43,17 +43,17 @@ export default function Footer() {
                 loading="lazy"
               />
             </Link>
-            <p className="mt-8 max-w-sm font-body text-sm leading-8 text-[#4c4d4c]">
+            <p className="mt-8 max-w-sm font-body text-sm leading-8 text-white/65">
               {t.footer.address}<br />{t.footer.city}
             </p>
-            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-body text-sm text-[#181b20]">
-              <a href="tel:+966920032760" onClick={() => trackPhoneClick("homepage_footer")} dir="ltr" className="hover:underline">920032760</a>
-              <a href="mailto:info@redwan.sa" onClick={() => trackEmailClick("homepage_footer")} className="hover:underline">info@redwan.sa</a>
+            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-body text-sm text-white/80">
+              <a href="tel:+966920032760" onClick={() => trackPhoneClick("homepage_footer")} dir="ltr" className="hover:text-white">920032760</a>
+              <a href="mailto:info@redwan.sa" onClick={() => trackEmailClick("homepage_footer")} className="hover:text-white">info@redwan.sa</a>
             </div>
           </div>
-          <nav aria-label={lang === "ar" ? "روابط الموقع" : "Site links"} className="grid content-start grid-cols-2 gap-x-8 gap-y-5 font-body text-sm text-[#4c4d4c] sm:grid-cols-3">
+          <nav aria-label={lang === "ar" ? "روابط الموقع" : "Site links"} className="grid content-start grid-cols-2 gap-x-8 gap-y-5 font-body text-sm text-white/80 sm:grid-cols-3">
             {homeLinks.map((link) => (
-              <Link key={link.path} href={lp(link.path)} className="hover:text-[#181b20] hover:underline hover:underline-offset-8">
+              <Link key={link.path} href={lp(link.path)} className="hover:text-white hover:underline hover:underline-offset-8">
                 {link.label}
               </Link>
             ))}
@@ -62,20 +62,20 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick("homepage_footer")}
-              className="hover:text-[#181b20] hover:underline hover:underline-offset-8"
+              className="hover:text-white hover:underline hover:underline-offset-8"
             >
               {lang === "ar" ? "واتساب" : "WhatsApp"}
             </a>
           </nav>
         </div>
-        <div className="container mx-auto flex flex-wrap items-center justify-between gap-4 px-6 py-6 font-body text-xs text-[#63605b] md:px-10 lg:px-16">
+        <div className="container mx-auto flex flex-wrap items-center justify-between gap-4 px-6 py-6 font-body text-xs text-white/55 md:px-10 lg:px-16">
           <span>© {new Date().getFullYear()} {t.footer.copyright}</span>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
-            <Link href={lp("/privacy")} className="hover:text-[#181b20]">{t.footer.privacy}</Link>
-            <Link href={lp("/terms")} className="hover:text-[#181b20]">{t.footer.terms}</Link>
-            <Link href={lp("/sitemap")} className="hover:text-[#181b20]">{lang === "ar" ? "خريطة الموقع" : "Sitemap"}</Link>
+            <Link href={lp("/privacy")} className="hover:text-white">{t.footer.privacy}</Link>
+            <Link href={lp("/terms")} className="hover:text-white">{t.footer.terms}</Link>
+            <Link href={lp("/sitemap")} className="hover:text-white">{lang === "ar" ? "خريطة الموقع" : "Sitemap"}</Link>
           </div>
-          <span lang="en" dir="ltr" className="w-full text-[10px] text-[#77716a]">{FIRM_LEGAL_NAME_EN}</span>
+          <span lang="en" dir="ltr" className="w-full text-[10px] text-white/40">{FIRM_LEGAL_NAME_EN}</span>
         </div>
       </footer>
     );
