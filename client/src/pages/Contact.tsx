@@ -15,6 +15,10 @@ import { trackMetaConfirmedSubmission } from "@/lib/metaAnalytics";
 const SUBMIT_ENDPOINT =
   "https://zwaahunavepleczuamuy.supabase.co/functions/v1/web-contact";
 
+const GOOGLE_MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=" +
+  encodeURIComponent("شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس بريدة");
+
 // Local deduplication only; never transmitted to Meta or used as a credential.
 let contactSubmissionSequence = 0;
 
@@ -398,9 +402,19 @@ export default function Contact() {
               title={lang === "ar" ? "موقع شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس على الخريطة" : "Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management Location"}
             />
           </div>
-          <p className="font-body text-xs text-[var(--color-navy)]/50 mt-3">
-            {lang === "ar" ? "طريق الملك عبدالله، حي الأفق، بريدة 52387، الدور الثاني، مكتب رقم 1" : "King Abdullah Road, Al-Ufuq District, Buraydah 52387, 2nd Floor, Office 1"}
-          </p>
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+            <p className="font-body text-xs text-[var(--color-navy)]/60">
+              {lang === "ar" ? "طريق الملك عبدالله، حي الأفق، بريدة 52387، الدور الثاني، مكتب رقم 1" : "King Abdullah Road, Al-Ufuq District, Buraydah 52387, 2nd Floor, Office 1"}
+            </p>
+            <a
+              href={GOOGLE_MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-fit shrink-0 border-b border-[var(--color-navy)]/30 pb-0.5 font-body text-xs text-[var(--color-navy)]/70 transition-colors hover:border-[var(--color-navy)] hover:text-[var(--color-navy)]"
+            >
+              {lang === "ar" ? "تقييمات الشركة على خرائط Google" : "Firm reviews on Google Maps"}
+            </a>
+          </div>
         </div>
       </section>
     </>

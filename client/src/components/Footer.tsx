@@ -26,9 +26,6 @@ export default function Footer() {
         reports: "التقارير الشهرية لإعلانات الإفلاس",
         procedures: "أنواع إجراءات الإفلاس",
         dictionary: "المعجم القانوني",
-        bookEyebrow: "تحتاج إلى استشارة قانونية؟",
-        bookTitle: "ابدأ بخطوة واضحة",
-        bookCta: "احجز استشارة",
         sitemap: "خريطة الموقع",
       }
     : lang === "ur"
@@ -38,9 +35,6 @@ export default function Footer() {
           reports: "ماہانہ دیوالیہ رپورٹس",
           procedures: "دیوالیہ کے طریقہ کار",
           dictionary: "قانونی لغت",
-          bookEyebrow: "قانونی مشورہ درکار ہے؟",
-          bookTitle: "واضح اگلا قدم اٹھائیں",
-          bookCta: "مشاورت بک کریں",
           sitemap: "سائٹ میپ",
         }
       : {
@@ -49,9 +43,6 @@ export default function Footer() {
           reports: "Monthly Bankruptcy Reports (Arabic)",
           procedures: "Bankruptcy Procedures",
           dictionary: "Legal Dictionary",
-          bookEyebrow: "Need legal advice?",
-          bookTitle: "Take a clear next step",
-          bookCta: "Book a consultation",
           sitemap: "Sitemap",
         };
 
@@ -97,18 +88,6 @@ export default function Footer() {
               <p className="mt-4 max-w-sm font-body text-sm leading-7 text-white/55">
                 {t.footer.description}
               </p>
-              <div className="mt-5 flex items-center justify-between gap-4 border-s-2 border-[var(--color-gold)] ps-4">
-                <div>
-                  <p className="font-body text-xs text-white/50">{labels.bookEyebrow}</p>
-                  <p className="mt-1 font-heading text-sm font-semibold text-white">{labels.bookTitle}</p>
-                </div>
-                <Link
-                  href={lp("/appointments")}
-                  className="inline-flex min-h-10 shrink-0 items-center justify-center bg-[var(--color-gold)] px-4 font-heading text-xs font-semibold text-[var(--color-navy)] transition-colors hover:bg-white"
-                >
-                  {labels.bookCta}
-                </Link>
-              </div>
             </section>
 
             <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3">

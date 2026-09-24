@@ -8,7 +8,6 @@ import { useTranslation } from "@/hooks/useTranslation";
 import { useSEO } from "@/hooks/useSEO";
 import { trackBookConsultation, trackPhoneClick } from "@/lib/analytics";
 import { localePath } from "@/lib/localePath";
-import GoogleReviews from "@/components/GoogleReviews";
 import ClientsSection from "@/components/ClientsSection";
 
 function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
@@ -474,9 +473,6 @@ export default function Home() {
       </section>
 
       <ClientsSection />
-
-      {/* Google Reviews — trust proof */}
-      <GoogleReviews />
 
       {/* Blog Section */}
       <section className="py-16 md:py-24 bg-[var(--color-cream)]">
