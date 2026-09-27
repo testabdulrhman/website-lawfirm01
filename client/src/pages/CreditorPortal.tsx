@@ -322,6 +322,9 @@ export default function CreditorPortal() {
   const [error, setError] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
   const [resendIn, setResendIn] = useState(0);
+  // وصل الرمز واتساباً: بعد ثلاثين ثانية يُعرض زرّ يعيده برسالة نصية
+  const [smsFallback, setSmsFallback] = useState(false);
+  const [smsIn, setSmsIn] = useState(0);
   const [data, setData] = useState<PortalData | null>(null);
 
   const [sessionToken, setSessionToken] = useState<string | null>(() => {
@@ -363,6 +366,12 @@ export default function CreditorPortal() {
     const timer = setInterval(() => setResendIn((s) => s - 1), 1000);
     return () => clearInterval(timer);
   }, [resendIn]);
+
+  useEffect(() => {
+    if (smsIn <= 0) return;
+    const timer = setInterval(() => setSmsIn((s) => s - 1), 1000);
+    return () => clearInterval(timer);
+  }, [smsIn]);
 
   function endSession(msg?: string) {
     try { sessionStorage.removeItem(SESSION_KEY); } catch { /* ignore */ }
@@ -406,16 +415,45 @@ export default function CreditorPortal() {
             : json.message ?? json.error ?? t.errSendCode,
         );
       } else {
-        setInfo(json.message ?? t.otpSent);
         // مواضع الإرسال مقنَّعة: يعرف صاحبها أين يبحث
         const d = json.destinations ?? {};
+        const viaWa = d.via === "whatsapp" && d.sms_fallback_available === true;
+        setInfo(viaWa ? t.otpSentWhatsApp : json.message ?? t.otpSent);
         setSentTo([...(d.phones ?? []), ...(d.emails ?? [])]);
         setResendIn(60);
+        setSmsFallback(viaWa);
+        setSmsIn(viaWa ? 30 : 0);
         if (!isResend) {
           setStage("otp");
           setTimeout(() => otpRef.current?.focus(), 50);
         }
       }
+    } catch {
+      setError(t.errConn);
+    }
+    setLoading(false);
+  }
+
+  // ── 1أ) الرمز نفسه برسالة نصية ──
+  // لمن جاءه واتساباً فلم يره. مرةً واحدة، وإلى وسائله المسجّلة نفسها.
+  async function resendSms() {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(`${FN}/request-otp`, {
+        method: "POST",
+        headers: HEADERS,
+        body: JSON.stringify({ ...authBody(), resend_sms: true }),
+      });
+      const json = await res.json();
+      if (!res.ok) {
+        setError(json.message ?? t.errSendCode);
+      } else {
+        setInfo(t.smsResent);
+        setSentTo(json.destinations?.phones ?? []);
+      }
+      // مرةً واحدة نجح أم لا: فإن تعذّر فالبديل طلب رمزٍ جديد
+      setSmsFallback(false);
     } catch {
       setError(t.errConn);
     }
@@ -1307,6 +1345,17 @@ export default function CreditorPortal() {
                     {resendIn > 0 ? t.resendIn(resendIn) : t.resend}
                   </button>
                 </div>
+
+                {smsFallback && (
+                  <button
+                    type="button"
+                    onClick={() => smsIn === 0 && void resendSms()}
+                    disabled={smsIn > 0 || loading}
+                    className="mt-3 w-full font-body text-xs text-[var(--color-gold)] hover:underline disabled:text-[var(--color-navy)]/30 disabled:no-underline"
+                  >
+                    {smsIn > 0 ? t.smsFallbackIn(smsIn) : t.smsFallback}
+                  </button>
+                )}
 
                 {/* الرمز يصل لكل رقم، فتأخّره سببه التسليم لا التسجيل.
                     وطلب الربط لا يُعرض هنا — يجده بعد الدخول إن لم تكن له مطالبة */}

@@ -199,6 +199,11 @@ export interface Strings {
   editData: string;
   resend: string;
   resendIn: (s: number) => string;
+  /** وصل الرمز واتساباً — ولمن لم يره زرّ يعيده برسالة نصية */
+  otpSentWhatsApp: string;
+  smsFallback: string;
+  smsFallbackIn: (s: number) => string;
+  smsResent: string;
   /** إرشاد من لم يصله الرمز — الردّ واحد للمسجَّل وغيره، فلا يعرف السبب */
   otpNotArrived: string;
   // طلب ربط جوال بمطالبة — لمن ليس جواله مسجَّلاً فيها
@@ -386,6 +391,10 @@ const AR: Strings = {
   otpNotArrived:
     'لم يصلك الرمز؟ الرمز يُرسل إلى كل رقم صحيح، فتأخّره سببه التسليم لا التسجيل. تحقّق من الرقم، أو جرّب البريد الإلكتروني، أو راسلنا على bankruptcy@redwan.sa',
   resendIn: (s) => `إعادة الإرسال بعد ${s} ث`,
+  otpSentWhatsApp: 'أرسلنا رمز التحقق عبر الواتساب.',
+  smsFallback: 'لم يصلك على الواتساب؟ أرسله برسالة نصية',
+  smsFallbackIn: (s) => `إرساله برسالة نصية متاح بعد ${s} ث`,
+  smsResent: 'أعدنا إرسال الرمز نفسه برسالة نصية.',
   accessLink: 'جوالي غير مسجَّل في المطالبة — أطلب ربطه',
   accessTitle: 'طلب ربط بمطالبة',
   docsTitle: 'إرفاق مستندات الصفة',
@@ -574,6 +583,10 @@ const EN: Strings = {
     "Code didn't arrive? A code is sent to every valid number, so a delay is a delivery issue, not a registration one. "
     + 'Check the number, try email instead, or contact us at bankruptcy@redwan.sa',
   resendIn: (s) => `Resend in ${s}s`,
+  otpSentWhatsApp: 'We sent the verification code via WhatsApp.',
+  smsFallback: 'Not on WhatsApp? Send it by text message',
+  smsFallbackIn: (s) => `Text-message option in ${s}s`,
+  smsResent: 'We sent the same code again by text message.',
   accessLink: 'My number is not on the claim — request access',
   accessTitle: 'Request access to a claim',
   docsTitle: 'Submit capacity documents',
@@ -761,6 +774,10 @@ const UR: Strings = {
   otpNotArrived:
     'کوڈ نہیں ملا؟ ہر درست نمبر پر کوڈ بھیجا جاتا ہے، اس لیے تاخیر کی وجہ ترسیل ہے، اندراج نہیں۔ نمبر جانچیں، ای میل آزمائیں، یا ہم سے رابطہ کریں: bankruptcy@redwan.sa',
   resendIn: (s) => `${s} سیکنڈ بعد دوبارہ بھیجیں`,
+  otpSentWhatsApp: 'ہم نے تصدیقی کوڈ واٹس ایپ پر بھیج دیا ہے۔',
+  smsFallback: 'واٹس ایپ پر نہیں ملا؟ ٹیکسٹ میسج سے بھیجیں',
+  smsFallbackIn: (s) => `${s} سیکنڈ بعد ٹیکسٹ میسج کا اختیار`,
+  smsResent: 'ہم نے وہی کوڈ ٹیکسٹ میسج سے دوبارہ بھیج دیا ہے۔',
   accessLink: 'میرا نمبر دعوے میں درج نہیں — رسائی کی درخواست دیں',
   accessTitle: 'دعوے تک رسائی کی درخواست',
   docsTitle: 'اہلیت کی دستاویزات جمع کرائیں',
