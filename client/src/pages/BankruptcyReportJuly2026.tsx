@@ -1,6 +1,7 @@
 import { useMemo, useState, type ReactNode } from "react";
 import { Link } from "wouter";
 import {
+  ArrowLeft,
   BriefcaseBusiness,
   Building2,
   Download,
@@ -670,6 +671,9 @@ export default function BankruptcyReportJuly2026() {
               طلب استشارة قانونية
             </Link>
           </div>
+          <Link href="/bankruptcy/reports/2026-08" className="mt-8 inline-flex items-center gap-2 text-sm text-white/70 hover:text-[var(--color-gold)]">
+            متابعة تقرير أغسطس 2026 <ArrowLeft className="h-4 w-4" />
+          </Link>
         </div>
       </section>
     </main>

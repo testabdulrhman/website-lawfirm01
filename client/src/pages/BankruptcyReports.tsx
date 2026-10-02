@@ -1,9 +1,11 @@
 import { Link } from "wouter";
-import { ArrowLeft, Download, FileText } from "lucide-react";
+import { ArrowLeft, FileText } from "lucide-react";
 import { useSEO, schemas } from "@/hooks/useSEO";
 
 export default function BankruptcyReports() {
   const archiveReports = [
+    { month: "أغسطس 2026", slug: "2026-08", total: 71, openings: 50 },
+    { month: "يوليو 2026", slug: "2026-07", total: 70, openings: 51 },
     { month: "يونيو 2026", slug: "2026-06", total: 66, openings: 46 },
     { month: "مايو 2026", slug: "2026-05", total: 74, openings: 62 },
     { month: "أبريل 2026", slug: "2026-04", total: 73, openings: 56 },
@@ -14,7 +16,7 @@ export default function BankruptcyReports() {
 
   useSEO({
     title: "التقارير الشهرية لإعلانات الإفلاس السعودية",
-    description: "تقارير تحليلية شهرية لإعلانات الإفلاس في المملكة العربية السعودية، مع بيانات موثقة وتعليق مهني من أمين إفلاس مرخص.",
+    description: "تقارير شهرية لإعلانات الإفلاس في السعودية حتى سبتمبر 2026، مع فصل الافتتاحات المستقلة والانتقالات والإعلانات الأخرى وروابط المصادر الرسمية.",
     canonical: "/bankruptcy/reports",
     schema: [
       {
@@ -55,23 +57,23 @@ export default function BankruptcyReports() {
             <div className="flex min-h-64 flex-col justify-between bg-[var(--color-navy)] p-8 text-white md:p-10">
               <FileText className="h-10 w-10 text-[var(--color-gold)]" />
               <div>
-                <div className="font-heading text-5xl font-bold text-[var(--color-gold)]">70</div>
-                <div className="mt-2 text-white/60">إعلاناً رسمياً موثقاً · 51 افتتاحاً جديداً</div>
+                <div className="font-heading text-5xl font-bold text-[var(--color-gold)]">53</div>
+                <div className="mt-2 text-white/60">إعلاناً خلال سبتمبر · 41 افتتاحاً مستقلاً</div>
               </div>
             </div>
             <div className="p-8 md:p-12">
-              <div className="text-sm font-semibold text-[var(--color-gold)]">الإصدار المطوّر · يوليو 2026</div>
+              <div className="text-sm font-semibold text-[var(--color-gold)]">الإصدار الأحدث · سبتمبر 2026</div>
               <h2 className="mt-3 font-heading text-3xl font-bold">تقرير إعلانات الإفلاس في السعودية</h2>
               <p className="mt-5 max-w-2xl leading-8 text-[var(--color-navy)]/65">
-                تحليل الافتتاحات الجديدة والإعلانات اللاحقة، وتوزيع الإجراءات والمحاكم، وأعمار الشركات وقطاعاتها، وروابط لجنة الإفلاس مع تعليق مهني من أمين إفلاس مرخص.
+                تحليل الافتتاحات المستقلة والإعلانات الأخرى، وتوزيع الإجراءات والمحاكم وأعمار المنشآت المتاحة، مع روابط مباشرة لإعلانات لجنة الإفلاس. فُصل إعلان مكرر لافتتاح القضية نفسها.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link href="/bankruptcy/reports/2026-07" className="inline-flex min-h-12 items-center justify-center gap-2 bg-[var(--color-gold)] px-6 py-3 font-heading font-semibold text-[var(--color-navy)]">
+                <Link href="/bankruptcy/reports/2026-09" className="inline-flex min-h-12 items-center justify-center gap-2 bg-[var(--color-gold)] px-6 py-3 font-heading font-semibold text-[var(--color-navy)]">
                   قراءة التقرير <ArrowLeft className="h-4 w-4" />
                 </Link>
-                <a href="/downloads/redwan-bankruptcy-report-july-2026.pdf" download className="inline-flex min-h-12 items-center justify-center gap-2 border border-black/20 px-6 py-3 font-heading font-semibold">
-                  <Download className="h-4 w-4" /> تنزيل PDF
-                </a>
+                <Link href="/bankruptcy/reports/2026-08" className="inline-flex min-h-12 items-center justify-center gap-2 border border-black/20 px-6 py-3 font-heading font-semibold">
+                  تقرير أغسطس <ArrowLeft className="h-4 w-4" />
+                </Link>
               </div>
             </div>
           </article>
@@ -86,7 +88,7 @@ export default function BankruptcyReports() {
                   <p className="mt-6 text-sm font-semibold text-[var(--color-gold)]">{report.month}</p>
                   <h3 className="mt-2 font-heading text-2xl font-bold">تقرير إعلانات الإفلاس</h3>
                   <p className="mt-4 flex-1 leading-7 text-[var(--color-navy)]/60">
-                    {report.total} إعلاناً رسمياً، منها {report.openings} افتتاحاً جديداً، مع أسماء المدينين وروابط إيسار.
+                    {report.total} إعلاناً، منها {report.openings} افتتاحاً مستقلاً، مع أسماء المدينين وروابط إيسار.
                   </p>
                   <Link href={`/bankruptcy/reports/${report.slug}`} className="mt-7 inline-flex items-center gap-2 font-heading font-semibold text-[var(--color-gold)]">
                     قراءة التقرير <ArrowLeft className="h-4 w-4" />

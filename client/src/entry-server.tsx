@@ -37,6 +37,8 @@ import BankruptcyLP from "@/pages/BankruptcyLP";
 import HassanMisferAlZahrani from "@/pages/HassanMisferAlZahrani";
 import BankruptcyReports from "@/pages/BankruptcyReports";
 import BankruptcyReportJuly2026 from "@/pages/BankruptcyReportJuly2026";
+import BankruptcyReportAugust2026 from "@/pages/BankruptcyReportAugust2026";
+import BankruptcyReportSeptember2026 from "@/pages/BankruptcyReportSeptember2026";
 import BankruptcyMonthlyArchiveReport from "@/pages/BankruptcyMonthlyArchiveReport";
 import CasesGuide from "@/pages/CasesGuide";
 import LegalDictionary from "@/pages/LegalDictionary";
@@ -82,6 +84,8 @@ function getInitialPage(url: string): InitialPage {
   else if (localizedPath === "/bankruptcy/complete") Component = BankruptcyComplete;
   else if (localizedPath === "/bankruptcy/creditor") Component = CreditorPortal;
   else if (localizedPath === "/bankruptcy/reports/2026-07") Component = BankruptcyReportJuly2026;
+  else if (localizedPath === "/bankruptcy/reports/2026-08") Component = BankruptcyReportAugust2026;
+  else if (localizedPath === "/bankruptcy/reports/2026-09") Component = BankruptcyReportSeptember2026;
   else if (/^\/bankruptcy\/reports\/2026-(?:01|02|03|04|05|06)$/.test(localizedPath)) {
     Component = BankruptcyMonthlyArchiveReport;
     routePath = `${localePrefix}/bankruptcy/reports/:month`;
