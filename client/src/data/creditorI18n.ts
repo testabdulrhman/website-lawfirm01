@@ -85,12 +85,21 @@ export function fmtNumber(value: number | null | undefined): string {
 type EnumMap = Record<string, { en: string; ur: string }>;
 
 const CLAIM_STATUS: EnumMap = {
+  // تُحسب في النظام من قرارات المطالبة (2026-10-04): التوصية «موصى بـ…»، والمحكمة «معتمدة…»
   'جديدة': { en: 'New', ur: 'نئی' },
+  'بانتظار التكملة': { en: 'Awaiting your completion', ur: 'آپ کی تکمیل کا انتظار' },
+  'قيد المراجعة بعد التكملة': { en: 'Under review after completion', ur: 'تکمیل کے بعد زیرِ جائزہ' },
+  'صدرت التوصية المبدئية': { en: 'Preliminary recommendation issued', ur: 'ابتدائی سفارش جاری' },
+  'موصى بقبولها': { en: 'Recommended for acceptance', ur: 'قبولیت کی سفارش' },
+  'موصى بقبولها جزئياً': { en: 'Recommended for partial acceptance', ur: 'جزوی قبولیت کی سفارش' },
+  'موصى برفضها': { en: 'Recommended for rejection', ur: 'مسترد کرنے کی سفارش' },
+  'معروضة على خبير': { en: 'Referred to an expert', ur: 'ماہر کے حوالے' },
+  'معتمدة': { en: 'Approved by the court', ur: 'عدالت سے منظور شدہ' },
+  'معتمدة جزئياً': { en: 'Partially approved by the court', ur: 'عدالت سے جزوی منظور' },
+  'مرفوضة': { en: 'Rejected by the court', ur: 'عدالت سے مسترد' },
+  // قيمٌ قديمة قد تبقى في صفوف لم تُحفظ منذ التغيير
   'قيد المراجعة': { en: 'Under review', ur: 'زیرِ جائزہ' },
   'مكتملة البيانات': { en: 'Data completed', ur: 'ڈیٹا مکمل' },
-  'معتمدة': { en: 'Approved', ur: 'منظور شدہ' },
-  'معتمدة جزئياً': { en: 'Partially approved', ur: 'جزوی منظور' },
-  'مرفوضة': { en: 'Rejected', ur: 'مسترد' },
 };
 
 const CLAIM_TYPE: EnumMap = {
