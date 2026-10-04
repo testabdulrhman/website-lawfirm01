@@ -403,7 +403,7 @@ const AR: Strings = {
   voteMyWeight: 'المبلغ الذي تصوّت به',
   voteMyClass: 'فئتك في التصويت',
   voteWeightNote:
-    'وزن صوتك هو مجموع مبالغ مطالباتك المعتمدة، والنصاب يُحسب لكل فئة على حدة.',
+    'وزن صوتك هو المبلغ المقيّد لك في قائمة المصوّتين التي أعدّها الأمين لهذا التصويت، وتُحسب النتيجة لكل فئة على حدة.',
   voteNotEligible: 'مشاركتك في التصويت غير معتمدة. راجع أمين الإجراء لاستكمال مستندات الصفة.',
   voteViewProposal: 'الاطّلاع على المقترح',
   voteConfidential: 'المقترح سرّي: يقتصر الاطّلاع عليه على المخوّلين، ويحظر تداوله أو نسخه أو نشره.',
@@ -608,7 +608,7 @@ const EN: Strings = {
   voteMyWeight: 'The amount your vote carries',
   voteMyClass: 'Your voting class',
   voteWeightNote:
-    'Your voting weight is the total of your approved claim amounts; the quorum is computed for each class separately.',
+    'Your voting weight is the amount recorded for you in the voters list prepared by the trustee for this vote; the result is computed for each class separately.',
   voteNotEligible: 'Your participation is not approved. Contact the trustee to complete your authorisation documents.',
   voteViewProposal: 'View the proposal',
   voteConfidential: 'The proposal is confidential: access is limited to authorised persons; copying or sharing is prohibited.',
@@ -814,7 +814,7 @@ const UR: Strings = {
   voteMyWeight: 'آپ کے ووٹ کی مالیت',
   voteMyClass: 'ووٹنگ میں آپ کی فہرست',
   voteWeightNote:
-    'آپ کے ووٹ کا وزن آپ کے منظور شدہ دعووں کی کل رقم ہے؛ کورم ہر فہرست کے لیے الگ شمار ہوتا ہے۔',
+    'آپ کے ووٹ کا وزن وہ رقم ہے جو اس ووٹنگ کے لیے ٹرسٹی کی تیار کردہ ووٹرز فہرست میں آپ کے نام درج ہے؛ نتیجہ ہر زمرے کے لیے الگ شمار ہوتا ہے۔',
   voteNotEligible: 'آپ کی شرکت منظور نہیں ہے۔ دستاویزات مکمل کرنے کے لیے ٹرسٹی سے رابطہ کریں۔',
   voteViewProposal: 'تجویز دیکھیں',
   voteConfidential: 'تجویز خفیہ ہے: صرف مجاز افراد دیکھ سکتے ہیں، نقل یا اشاعت ممنوع ہے۔',
