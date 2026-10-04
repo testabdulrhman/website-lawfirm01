@@ -5,6 +5,7 @@ import { toast } from 'sonner';
 import SEOHead from '@/components/SEOHead';
 import { FileText, Upload, Calendar, Building2, AlertTriangle, CheckCircle2, Phone, Mail, ArrowRight } from 'lucide-react';
 import { localePath } from "@/lib/localePath";
+import { parseAmount, formatAmountPreview } from "@/lib/amount";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   trackClaimStart,
@@ -37,6 +38,19 @@ interface CaseProcedure {
 }
 
 // Helpers
+/** المبلغ كما سيُحفظ — يراه الدائن تحت الخانة قبل أن يرسل */
+function AmountPreview({ raw }: { raw: string }) {
+  if (!raw.trim()) return null;
+  const n = parseAmount(raw);
+  return n === null ? (
+    <p className="mt-1.5 text-xs text-red-600">لم يُفهم المبلغ — اكتبه بالأرقام، مثل 43000</p>
+  ) : (
+    <p className="mt-1.5 text-xs text-[var(--color-navy)]/60">
+      سيُسجَّل: <bdi dir="ltr" className="font-semibold text-[var(--color-navy)]">{formatAmountPreview(n)}</bdi>
+    </p>
+  );
+}
+
 function daysUntilDeadline(deadline?: string): number | null {
   if (!deadline) return null;
   try {
@@ -205,7 +219,11 @@ export default function Claims() {
       if (!email.trim()) { toast.error('يرجى إدخال البريد الإلكتروني'); return false; }
     }
     if (step === 2) {
-      if (!claimAmount || parseFloat(claimAmount) <= 0) { toast.error('يرجى إدخال مبلغ المطالبة'); return false; }
+      const amount = parseAmount(claimAmount);
+      if (amount === null || amount <= 0) { toast.error('يرجى إدخال مبلغ المطالبة بالأرقام، مثل 43000'); return false; }
+      if (isSecured === 'yes' && securityValue.trim() && parseAmount(securityValue) === null) {
+        toast.error('قيمة الضمان غير مفهومة — اكتبها بالأرقام، مثل 50000'); return false;
+      }
       if (!claimReason.trim()) { toast.error('يرجى إدخال سبب المطالبة'); return false; }
     }
     if (step === 3) {
@@ -343,10 +361,10 @@ export default function Claims() {
       postal_code: postalCode || null,
       additional_number: additionalNumber || null,
       claim_type: claimType,
-      claim_amount: parseFloat(claimAmount),
+      claim_amount: parseAmount(claimAmount),
       is_secured: isSecured === 'yes',
       security_type: isSecured === 'yes' ? securityType : null,
-      security_value: isSecured === 'yes' ? parseFloat(securityValue) || null : null,
+      security_value: isSecured === 'yes' ? parseAmount(securityValue) : null,
       debt_origin_date: debtOriginDate || null,
       due_date: dueDate || null,
       due_document: dueDocument || null,
@@ -770,7 +788,8 @@ export default function Claims() {
                   </div>
                   <div>
                     <label className={labelClass}>مبلغ المطالبة (ريال) *</label>
-                    <input type="number" value={claimAmount} onChange={e => setClaimAmount(e.target.value)} placeholder="0.00" className={inputClass} dir="ltr" required />
+                    <input type="text" inputMode="decimal" value={claimAmount} onChange={e => setClaimAmount(e.target.value)} placeholder="مثال: 43000" className={inputClass} dir="ltr" required />
+                    <AmountPreview raw={claimAmount} />
                   </div>
                 </div>
 
@@ -803,7 +822,8 @@ export default function Claims() {
                     </div>
                     <div>
                       <label className={labelClass}>قيمة الضمان (ريال)</label>
-                      <input type="number" value={securityValue} onChange={e => setSecurityValue(e.target.value)} className={inputClass} dir="ltr" />
+                      <input type="text" inputMode="decimal" value={securityValue} onChange={e => setSecurityValue(e.target.value)} className={inputClass} dir="ltr" />
+                      <AmountPreview raw={securityValue} />
                     </div>
                   </div>
                 )}
