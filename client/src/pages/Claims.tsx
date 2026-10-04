@@ -38,6 +38,13 @@ interface CaseProcedure {
 }
 
 // Helpers
+// مسودة النموذج في جهاز الدائن: إن انقطع الاتصال أو أُغلقت الصفحة قبل
+// الإرسال وجد بياناته حين يعود. وتُمحى حين تُحفظ المطالبة في صندوق الاستلام.
+const DRAFT_KEY = (caseId: number | string) => `claim_draft_v1:${caseId}`;
+function clearDraft(caseId: number | string) {
+  try { localStorage.removeItem(DRAFT_KEY(caseId)); } catch { /* ignore */ }
+}
+
 /** المبلغ كما سيُحفظ — يراه الدائن تحت الخانة قبل أن يرسل */
 function AmountPreview({ raw }: { raw: string }) {
   if (!raw.trim()) return null;
@@ -86,6 +93,9 @@ export default function Claims() {
   const [savedId, setSavedId] = useState<number | null>(null);
   const [failedDocs, setFailedDocs] = useState<string[]>([]);
   const [retrying, setRetrying] = useState(false);
+  // رقم الاستلام: تُحفظ المطالبة خاماً قبل تسجيلها، فإن تعذّر التسجيل لم تضع
+  const [intakeId, setIntakeId] = useState<string | null>(null);
+  const [pendingIntake, setPendingIntake] = useState(false);
   const [claimRef, setClaimRef] = useState('');
   const [caseSeq, setCaseSeq] = useState<number | null>(null);
 
@@ -127,6 +137,43 @@ export default function Claims() {
   useEffect(() => {
     loadCases();
   }, []);
+
+  // المسودة: الحقول النصية وحدها (المرفقات والتوقيع لا تُحفظ في المتصفح)
+  const draft = {
+    creditorType, creditorName, idType, idNumber, representativeName, phone, email,
+    buildingNumber, streetName, district, city, postalCode, additionalNumber,
+    claimType, claimAmount, isSecured, securityType, securityValue,
+    debtOriginDate, dueDate, dueDocument, claimReason,
+  };
+  const draftJson = JSON.stringify(draft);
+  useEffect(() => {
+    if (!selectedCase || success || submitting) return;
+    const t = setTimeout(() => {
+      try {
+        const empty = !creditorName.trim() && !idNumber.trim() && !claimAmount.trim() && !claimReason.trim();
+        if (empty) localStorage.removeItem(DRAFT_KEY(selectedCase.id));
+        else localStorage.setItem(DRAFT_KEY(selectedCase.id), draftJson);
+      } catch { /* ignore */ }
+    }, 500);
+    return () => clearTimeout(t);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [draftJson, selectedCase, success, submitting]);
+
+  function restoreDraft(caseId: number | string) {
+    let d: Partial<typeof draft> | null = null;
+    try { d = JSON.parse(localStorage.getItem(DRAFT_KEY(caseId)) || 'null'); } catch { d = null; }
+    if (!d) return;
+    const set = <T,>(v: T | undefined, f: (x: T) => void) => { if (v !== undefined && v !== null) f(v); };
+    set(d.creditorType, setCreditorType); set(d.creditorName, setCreditorName); set(d.idType, setIdType);
+    set(d.idNumber, setIdNumber); set(d.representativeName, setRepresentativeName); set(d.phone, setPhone);
+    set(d.email, setEmail); set(d.buildingNumber, setBuildingNumber); set(d.streetName, setStreetName);
+    set(d.district, setDistrict); set(d.city, setCity); set(d.postalCode, setPostalCode);
+    set(d.additionalNumber, setAdditionalNumber); set(d.claimType, setClaimType); set(d.claimAmount, setClaimAmount);
+    set(d.isSecured, setIsSecured); set(d.securityType, setSecurityType); set(d.securityValue, setSecurityValue);
+    set(d.debtOriginDate, setDebtOriginDate); set(d.dueDate, setDueDate); set(d.dueDocument, setDueDocument);
+    set(d.claimReason, setClaimReason);
+    toast.info('استُعيدت بيانات كتبتها سابقاً. أعد إرفاق المستندات والتوقيع.', { duration: 7000 });
+  }
 
   async function loadCases() {
     setLoading(true);
@@ -173,6 +220,7 @@ export default function Claims() {
   // البوابة تستقبل المطالبات حتى بعد انقضاء المدة النظامية؛ التصنيف (داخل/خارج المدة) يتم في النظام الإداري
   function handleSelectCase(c: CaseData) {
     setSelectedCase(c);
+    restoreDraft(c.id);
     trackClaimStart(c.id);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -183,6 +231,8 @@ export default function Claims() {
     setSuccess(false);
     setSavedId(null);
     setFailedDocs([]);
+    setIntakeId(null);
+    setPendingIntake(false);
     resetForm();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -380,43 +430,70 @@ export default function Claims() {
       submitted_at: new Date().toISOString()
     };
 
+    // ① رقم الاستلام ومسارات المرفقات تُعرف قبل أي رفع
+    const newIntakeId = crypto.randomUUID();
+    const categories = Object.keys(files);
+    const intakeFiles = categories.map((category) => {
+      const ext = files[category].file.name.split('.').pop();
+      return { path: `intake/${newIntakeId}/${category}.${ext}`, category, file_name: `${category}.${ext}` };
+    });
+
     try {
-      // Step 1: Save claim via Edge Function
-      setSubmitProgress(10);
-      const response = await fetch(`${SUPABASE_URL}/functions/v1/submit-claim`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': SUPABASE_ANON_KEY,
-          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
-        },
-        body: JSON.stringify(claimData)
-      });
-      const result = await response.json();
-      if (!response.ok || result.error) {
-        throw new Error(result.error || 'فشل في إرسال المطالبة');
+      // ② النسخة الخام أولاً — مباشرةً في القاعدة لا عبر الدالة، فلا يضيعها عطلٌ فيها
+      setSubmitProgress(5);
+      const { error: intakeError } = await supabase
+        .from('claim_intake')
+        .insert({ id: newIntakeId, case_id: selectedCase.id, payload: claimData, files: intakeFiles });
+      if (intakeError) {
+        console.error('claim_intake insert failed:', intakeError);
+        throw new Error('تعذّر إرسال المطالبة — تحقّق من الاتصال وأعد المحاولة. بياناتك باقية في هذه الصفحة.');
       }
+      setIntakeId(newIntakeId);
+      clearDraft(selectedCase.id);
 
-      const savedClaimId = result.id || result.claim_id || null;
-      const savedClaimRef = result.claim_ref || '';
-      setClaimRef(savedClaimRef);
-      setCaseSeq(result.case_seq ?? null);
-      setSubmitProgress(25);
-      setSubmitLabel('تم حفظ البيانات...');
-
-      // Step 2: المرفقات — وما لم يصل منها يُسمّى للدائن ويُعاد رفعه
-      const categories = Object.keys(files);
+      // ③ المرفقات إلى مجلد الاستلام — والخادم يربطها بالمطالبة عند تسجيلها
       let failed: string[] = [];
-      if (categories.length > 0 && !savedClaimId) {
-        console.error('submit-claim لم يُرجع id صالحاً — تم تخطّي رفع المستندات لتفادي مسار ناقص.');
-        failed = categories;
-      } else if (categories.length > 0 && savedClaimId) {
-        failed = await uploadDocs(savedClaimId, categories, (done) => {
-          setSubmitProgress(25 + (done / categories.length) * 40);
+      if (categories.length > 0) {
+        failed = await uploadToIntake(newIntakeId, categories, (done) => {
+          setSubmitProgress(10 + (done / categories.length) * 50);
         });
       }
-      setSavedId(savedClaimId);
       setFailedDocs(failed);
+
+      // ④ التسجيل برقم الاستلام. وإن تعذّر فالمطالبة محفوظة، ويُعيد النظام
+      //    تسجيلها تلقائياً — فلا يُقال للدائن «حدث خطأ»
+      setSubmitProgress(65);
+      setSubmitLabel('تسجيل المطالبة...');
+      let result: any = null;
+      try {
+        const ctl = new AbortController();
+        const timer = setTimeout(() => ctl.abort(), 60_000);
+        const response = await fetch(`${SUPABASE_URL}/functions/v1/submit-claim`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+          },
+          body: JSON.stringify({ intake_id: newIntakeId }),
+          signal: ctl.signal,
+        });
+        clearTimeout(timer);
+        result = await response.json().catch(() => null);
+        if (!response.ok || !result?.success) {
+          console.error('submit-claim (intake) failed:', response.status, result);
+          result = null;
+        }
+      } catch (e) {
+        console.error('submit-claim (intake) error:', e);
+        result = null;
+      }
+
+      const savedClaimId = result?.id ?? null;
+      setClaimRef(result?.claim_ref || '');
+      setCaseSeq(result?.case_seq ?? null);
+      setSavedId(savedClaimId);
+      setPendingIntake(!savedClaimId);
       const docsAttachOk = failed.length === 0;
 
       // إشعار الاستلام (SMS + بريد) يُرسله الخادم داخل submit-claim،
@@ -439,6 +516,32 @@ export default function Claims() {
     }
   }
 
+
+  /** رفع المرفقات إلى مجلد الاستلام (intake/<id>/)، كل ملفٍ مرتين؛ ويُعاد ما لم يُرفع */
+  async function uploadToIntake(id: string, categories: string[], onProgress?: (done: number) => void): Promise<string[]> {
+    const failed: string[] = [];
+    let done = 0;
+    for (const category of categories) {
+      const entry = files[category];
+      if (!entry) { failed.push(category); continue; }
+      setSubmitLabel(`رفع المرفق ${done + 1} من ${categories.length}: ${entry.label}`);
+      const ext = entry.file.name.split('.').pop();
+      const filePath = `intake/${id}/${category}.${ext}`;
+      let ok = false;
+      for (let attempt = 0; attempt < 2 && !ok; attempt++) {
+        try {
+          const { error } = await supabase.storage.from('claim-documents').upload(filePath, entry.file, { upsert: true });
+          if (error) console.error('Upload error:', error); else ok = true;
+        } catch (e) {
+          console.error('Upload error:', e);
+        }
+      }
+      if (!ok) failed.push(category);
+      done++;
+      onProgress?.(done);
+    }
+    return failed;
+  }
 
   /**
    * رفع المرفقات ثم تسجيلها في المطالبة. كل ملفٍ يُحاوَل مرتين، وما لم
@@ -491,9 +594,10 @@ export default function Claims() {
   }
 
   async function retryFailedDocs() {
-    if (!savedId || !failedDocs.length) return;
+    if (!failedDocs.length || (!savedId && !intakeId)) return;
     setRetrying(true);
-    const still = await uploadDocs(savedId, failedDocs);
+    // سُجّلت المطالبة: تُرفع وتُربط بها. ولم تُسجَّل بعد: تُرفع لمجلد استلامها فتُربط عند تسجيلها
+    const still = savedId ? await uploadDocs(savedId, failedDocs) : await uploadToIntake(intakeId!, failedDocs);
     setFailedDocs(still);
     setRetrying(false);
     if (still.length === 0) toast.success('اكتمل رفع المستندات');
@@ -563,9 +667,19 @@ export default function Claims() {
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <CheckCircle2 className="w-10 h-10 text-green-600" />
             </div>
-            <h2 className="text-2xl font-bold font-display text-[var(--color-navy)] mb-3">تم استلام مطالبتك — رقم مطالبتك: <span className="text-[var(--color-gold)]">{caseSeq ?? '—'}</span></h2>
-            {claimRef && <p className="text-gray-400 text-sm mb-2">رقم المرجع: <span className="font-medium text-gray-500">{claimRef}</span></p>}
-            <p className="text-gray-500 text-sm mb-8">سيتم دراسة المطالبة من قبل أمين الإفلاس وإبلاغكم بالنتيجة</p>
+            {pendingIntake ? (
+              <>
+                <h2 className="text-2xl font-bold font-display text-[var(--color-navy)] mb-3">تم استلام مطالبتك</h2>
+                <p className="text-gray-400 text-sm mb-2">رقم الاستلام: <bdi dir="ltr" className="font-medium text-gray-500">{intakeId?.slice(0, 8).toUpperCase()}</bdi></p>
+                <p className="text-gray-500 text-sm mb-8">حُفظت بيانات مطالبتك، وسيكتمل تسجيلها خلال دقائق ويصلك رقمها برسالة. لا حاجة لتقديمها مرة أخرى.</p>
+              </>
+            ) : (
+              <>
+                <h2 className="text-2xl font-bold font-display text-[var(--color-navy)] mb-3">تم استلام مطالبتك — رقم مطالبتك: <span className="text-[var(--color-gold)]">{caseSeq ?? '—'}</span></h2>
+                {claimRef && <p className="text-gray-400 text-sm mb-2">رقم المرجع: <span className="font-medium text-gray-500">{claimRef}</span></p>}
+                <p className="text-gray-500 text-sm mb-8">سيتم دراسة المطالبة من قبل أمين الإفلاس وإبلاغكم بالنتيجة</p>
+              </>
+            )}
             {failedDocs.length > 0 && (
               <div className="text-right bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
                 <p className="text-sm font-semibold text-amber-800 mb-2">
@@ -575,7 +689,7 @@ export default function Claims() {
                 <ul className="text-sm text-amber-900 list-disc pr-5 mb-3">
                   {failedDocs.map((c) => <li key={c}>{files[c]?.label ?? c}</li>)}
                 </ul>
-                {savedId && failedDocs.every((c) => files[c]) ? (
+                {(savedId || intakeId) && failedDocs.every((c) => files[c]) ? (
                   <button
                     onClick={retryFailedDocs}
                     disabled={retrying}
