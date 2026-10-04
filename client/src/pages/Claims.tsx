@@ -82,6 +82,10 @@ export default function Claims() {
   const [submitProgress, setSubmitProgress] = useState(0);
   const [submitLabel, setSubmitLabel] = useState('');
   const [success, setSuccess] = useState(false);
+  // المطالبة المحفوظة، وما لم يصل من مرفقاتها (بأسماء تصنيفاتها)
+  const [savedId, setSavedId] = useState<number | null>(null);
+  const [failedDocs, setFailedDocs] = useState<string[]>([]);
+  const [retrying, setRetrying] = useState(false);
   const [claimRef, setClaimRef] = useState('');
   const [caseSeq, setCaseSeq] = useState<number | null>(null);
 
@@ -177,6 +181,8 @@ export default function Claims() {
     setSelectedCase(null);
     setCurrentStep(1);
     setSuccess(false);
+    setSavedId(null);
+    setFailedDocs([]);
     resetForm();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -398,73 +404,20 @@ export default function Claims() {
       setSubmitProgress(25);
       setSubmitLabel('تم حفظ البيانات...');
 
-      // تتبّع نجاح إرفاق المستندات (للتنبيه اللطيف عند الفشل)
-      let docsAttachOk = true;
-
-      // Step 2: Upload files — كل المسارات تعتمد على id الفريد
+      // Step 2: المرفقات — وما لم يصل منها يُسمّى للدائن ويُعاد رفعه
       const categories = Object.keys(files);
-      const totalFiles = categories.length;
-
-      // إيقاف الرفع تماماً إن لم يُرجع submit-claim قيمة id صالحة
-      if (totalFiles > 0 && !savedClaimId) {
+      let failed: string[] = [];
+      if (categories.length > 0 && !savedClaimId) {
         console.error('submit-claim لم يُرجع id صالحاً — تم تخطّي رفع المستندات لتفادي مسار ناقص.');
-        docsAttachOk = false;
-      } else if (totalFiles > 0 && savedClaimId) {
-        const uploadedFiles: Array<{ path: string; category: string; file_name: string }> = [];
-        let filesDone = 0;
-
-        for (const category of categories) {
-          const { file, label } = files[category];
-          setSubmitLabel(`رفع المرفق ${filesDone + 1} من ${totalFiles}: ${label}`);
-
-          const ext = file.name.split('.').pop();
-          const fileName = `${category}.${ext}`;
-          const filePath = `claims/${savedClaimId}/${fileName}`;
-
-          try {
-            const { error: uploadError } = await supabase.storage
-              .from('claim-documents').upload(filePath, file, { upsert: true });
-
-            if (!uploadError) {
-              uploadedFiles.push({ path: filePath, category, file_name: fileName });
-            } else {
-              console.error('Upload error:', uploadError);
-            }
-          } catch (uploadEx) {
-            console.error('Upload error:', uploadEx);
-          }
-
-          filesDone++;
-          setSubmitProgress(25 + (filesDone / totalFiles) * 40);
-        }
-
-        // استدعاء attach-claim-documents لتسجيل الروابط في حقل documents
-        if (uploadedFiles.length > 0) {
-          setSubmitLabel('إرفاق المستندات بالمطالبة...');
-          try {
-            const attachRes = await fetch(`${SUPABASE_URL}/functions/v1/attach-claim-documents`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'apikey': SUPABASE_ANON_KEY,
-                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
-              },
-              body: JSON.stringify({ claim_id: savedClaimId, files: uploadedFiles })
-            });
-            const attachData = await attachRes.json();
-            if (!attachRes.ok || !attachData.success || !attachData.attached) {
-              console.error('attach-claim-documents failed:', attachData);
-              docsAttachOk = false;
-            }
-          } catch (attachEx) {
-            console.error('attach-claim-documents error:', attachEx);
-            docsAttachOk = false;
-          }
-        } else {
-          // رُفعت ملفات لكن لم ينجح أي رفع فعلي
-          docsAttachOk = false;
-        }
+        failed = categories;
+      } else if (categories.length > 0 && savedClaimId) {
+        failed = await uploadDocs(savedClaimId, categories, (done) => {
+          setSubmitProgress(25 + (done / categories.length) * 40);
+        });
       }
+      setSavedId(savedClaimId);
+      setFailedDocs(failed);
+      const docsAttachOk = failed.length === 0;
 
       // إشعار الاستلام (SMS + بريد) يُرسله الخادم داخل submit-claim،
       // فلا يعتمد على بقاء المتصفح مفتوحاً، ولا يحتاج نقاط إرسال مفتوحة للعموم.
@@ -473,10 +426,6 @@ export default function Claims() {
       setSubmitLabel(docsAttachOk ? 'اكتمل الإرسال بنجاح!' : 'تم تسجيل المطالبة');
       trackClaimSuccess(selectedCase.id, docsAttachOk);
       await new Promise(r => setTimeout(r, 800));
-      // تنبيه لطيف: المطالبة سُجّلت لكن تعذّر إرفاق المستندات (لا تُلغى المطالبة)
-      if (!docsAttachOk) {
-        toast.warning(`سُجّلت مطالبتك برقم ${savedClaimRef}، لكن تعذّر إرفاق بعض المستندات. سنتواصل معك لاستكمالها.`, { duration: 9000 });
-      }
       // إغلاق طبقة التحميل فوراً قبل إظهار شاشة النجاح حتى لا تحجب التفاعل
       setSubmitting(false);
       setSuccess(true);
@@ -490,6 +439,66 @@ export default function Claims() {
     }
   }
 
+
+  /**
+   * رفع المرفقات ثم تسجيلها في المطالبة. كل ملفٍ يُحاوَل مرتين، وما لم
+   * يصل — رفعاً أو تسجيلاً — يُعاد اسمه ليُعرض للدائن ويُعاد رفعه، ويُقيَّد
+   * عند الخادم في سلامة الاستقبال. (كان يُقال «اكتمل الإرسال» وبعضها لم يصل.)
+   */
+  async function uploadDocs(claimId: number, categories: string[], onProgress?: (done: number) => void): Promise<string[]> {
+    const uploaded: Array<{ path: string; category: string; file_name: string }> = [];
+    const failed: string[] = [];
+    let done = 0;
+    for (const category of categories) {
+      const entry = files[category];
+      if (!entry) { failed.push(category); continue; }
+      setSubmitLabel(`رفع المرفق ${done + 1} من ${categories.length}: ${entry.label}`);
+      const ext = entry.file.name.split('.').pop();
+      const fileName = `${category}.${ext}`;
+      const filePath = `claims/${claimId}/${fileName}`;
+      let ok = false;
+      for (let attempt = 0; attempt < 2 && !ok; attempt++) {
+        try {
+          const { error } = await supabase.storage.from('claim-documents').upload(filePath, entry.file, { upsert: true });
+          if (error) console.error('Upload error:', error); else ok = true;
+        } catch (e) {
+          console.error('Upload error:', e);
+        }
+      }
+      if (ok) uploaded.push({ path: filePath, category, file_name: fileName });
+      else failed.push(category);
+      done++;
+      onProgress?.(done);
+    }
+
+    setSubmitLabel('إرفاق المستندات بالمطالبة...');
+    try {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/attach-claim-documents`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
+        body: JSON.stringify({ claim_id: claimId, files: uploaded, failed: failed.map((c) => files[c]?.label ?? c) }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (uploaded.length > 0) {
+        if (res.ok && data.success) failed.push(...((data.missing as string[] | undefined) ?? []));
+        else failed.push(...uploaded.map((u) => u.category));
+      }
+    } catch (e) {
+      console.error('attach-claim-documents error:', e);
+      failed.push(...uploaded.map((u) => u.category));
+    }
+    return Array.from(new Set(failed));
+  }
+
+  async function retryFailedDocs() {
+    if (!savedId || !failedDocs.length) return;
+    setRetrying(true);
+    const still = await uploadDocs(savedId, failedDocs);
+    setFailedDocs(still);
+    setRetrying(false);
+    if (still.length === 0) toast.success('اكتمل رفع المستندات');
+    else toast.error('تعذّر رفع بعض المستندات مرة أخرى');
+  }
 
   // ==================== RENDER ====================
   const activeCases = cases;
@@ -557,6 +566,29 @@ export default function Claims() {
             <h2 className="text-2xl font-bold font-display text-[var(--color-navy)] mb-3">تم استلام مطالبتك — رقم مطالبتك: <span className="text-[var(--color-gold)]">{caseSeq ?? '—'}</span></h2>
             {claimRef && <p className="text-gray-400 text-sm mb-2">رقم المرجع: <span className="font-medium text-gray-500">{claimRef}</span></p>}
             <p className="text-gray-500 text-sm mb-8">سيتم دراسة المطالبة من قبل أمين الإفلاس وإبلاغكم بالنتيجة</p>
+            {failedDocs.length > 0 && (
+              <div className="text-right bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
+                <p className="text-sm font-semibold text-amber-800 mb-2">
+                  <AlertTriangle className="w-4 h-4 inline ml-1" />
+                  سُجّلت مطالبتك، لكن هذه المستندات لم تصل:
+                </p>
+                <ul className="text-sm text-amber-900 list-disc pr-5 mb-3">
+                  {failedDocs.map((c) => <li key={c}>{files[c]?.label ?? c}</li>)}
+                </ul>
+                {savedId && failedDocs.every((c) => files[c]) ? (
+                  <button
+                    onClick={retryFailedDocs}
+                    disabled={retrying}
+                    className="px-4 py-2 bg-[var(--color-navy)] text-white text-sm rounded-lg hover:bg-[var(--color-navy-light)] disabled:opacity-60"
+                  >
+                    {retrying ? 'جارٍ الرفع…' : 'إعادة رفع المستندات'}
+                  </button>
+                ) : null}
+                <p className="text-xs text-amber-700 mt-3">
+                  وإن تعذّر رفعها فلا تُقدّم المطالبة مرة أخرى؛ سيصلك من المكتب رابطٌ لاستكمالها.
+                </p>
+              </div>
+            )}
             <div className="bg-[var(--color-navy)]/5 rounded-xl p-4 mb-6">
               <p className="text-sm text-[var(--color-navy)]">
                 <Phone className="w-4 h-4 inline ml-1" /> 920032760 &nbsp;&nbsp;
