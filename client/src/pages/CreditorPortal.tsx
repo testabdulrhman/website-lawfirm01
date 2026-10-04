@@ -18,6 +18,7 @@ import {
   trProcedure,
   trChannel,
   trDocCategory,
+  trRecommendation,
   type Lang,
   type Strings,
 } from "@/data/creditorI18n";
@@ -121,6 +122,10 @@ interface Claim {
   security_value?: number | null;
   documents?: ClaimDocument[];
   case: ClaimCase | null;
+  preliminary_recommendation?: string | null;
+  preliminary_date?: string | null;
+  objection?: { text: string; date: string | null } | null;
+  can_object?: boolean;
 }
 
 interface Ticket {
@@ -1547,7 +1552,17 @@ export default function CreditorPortal() {
               {claims.length === 0 ? (
                 <EmptyState icon={FileText} msg={t.noClaims} />
               ) : (
-                claims.map((c) => <ClaimCard key={c.id} claim={c} t={t} lang={l} isRTL={isRTL} />)
+                claims.map((c) => (
+                  <ClaimCard
+                    key={c.id}
+                    claim={c}
+                    t={t}
+                    lang={l}
+                    isRTL={isRTL}
+                    sessionToken={sessionToken}
+                    onChanged={() => sessionToken && void loadPortal(sessionToken)}
+                  />
+                ))
               )}
             </div>
           )}
@@ -1894,11 +1909,15 @@ function ClaimCard({
   t,
   lang,
   isRTL,
+  sessionToken,
+  onChanged,
 }: {
   claim: Claim;
   t: Strings;
   lang: Lang;
   isRTL: boolean;
+  sessionToken: string | null;
+  onChanged: () => void;
 }) {
   const docs = claim.documents ?? [];
   return (
@@ -1949,7 +1968,19 @@ function ClaimCard({
         )}
         {claim.due_date && <Field label={t.deadline} value={fmtDate(claim.due_date, lang)} />}
         {claim.claim_reason && <Field label={t.colClaimType} value={claim.claim_reason} />}
+        {claim.preliminary_recommendation && (
+          <Field
+            label={t.prelimRec}
+            value={`${trRecommendation(claim.preliminary_recommendation, lang)}${
+              claim.preliminary_date ? ` · ${fmtDate(claim.preliminary_date, lang)}` : ""
+            }`}
+          />
+        )}
       </div>
+
+      {(claim.objection || (claim.can_object && sessionToken)) && (
+        <ObjectionSection claim={claim} t={t} lang={lang} sessionToken={sessionToken} onDone={onChanged} />
+      )}
 
       {docs.length > 0 && (
         <div className="mt-5 pt-4 border-t border-[var(--color-border)]">
@@ -1973,6 +2004,189 @@ function ClaimCard({
                 </a>
               );
             })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ============================================================
+// الاعتراض على التوصية المبدئية — submit-objection
+// تُرفع المستندات واحداً واحداً عند اختيارها، ثم يُرسل النص معها مرة
+// واحدة؛ فإما أن يُحفظ الاعتراض كاملاً أو تظهر رسالة الخطأ ولا يُحفظ شيء.
+// ============================================================
+
+const OBJ_TYPES = ["application/pdf", "image/jpeg", "image/png"];
+
+function ObjectionSection({
+  claim,
+  t,
+  lang,
+  sessionToken,
+  onDone,
+}: {
+  claim: Claim;
+  t: Strings;
+  lang: Lang;
+  sessionToken: string | null;
+  onDone: () => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const [text, setText] = useState("");
+  const [files, setFiles] = useState<{ path: string; file_name: string }[]>([]);
+  const [uploading, setUploading] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  if (claim.objection) {
+    return (
+      <div className="mt-5 pt-4 border-t border-[var(--color-border)]">
+        <p className="font-heading text-xs font-semibold text-[var(--color-navy)] mb-2">{t.objTitle}</p>
+        <div className="p-3 bg-green-50 border border-green-200 flex items-start gap-2">
+          <CheckCircle2 className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
+          <p className="font-body text-sm text-green-800">
+            {t.objSubmitted(fmtDate(claim.objection.date, lang))}
+          </p>
+        </div>
+        <p className="font-body text-xs text-[var(--color-navy)]/60 mt-2 whitespace-pre-wrap">{claim.objection.text}</p>
+      </div>
+    );
+  }
+
+  async function pick(list: FileList | null) {
+    const file = list?.[0];
+    if (inputRef.current) inputRef.current.value = "";
+    if (!file || !sessionToken) return;
+    if (!OBJ_TYPES.includes(file.type)) return setError(t.errObjFile);
+    if (file.size > 10 * 1024 * 1024) return setError(t.errObjFile);
+    setError(null);
+    setUploading(true);
+    try {
+      const fd = new FormData();
+      fd.append("session_token", sessionToken);
+      fd.append("claim_id", String(claim.id));
+      fd.append("file", file);
+      const res = await fetch(`${FN}/submit-objection`, {
+        method: "POST",
+        headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` },
+        body: fd,
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json.success) setError(json.message ?? t.errConn);
+      else setFiles((f) => [...f, { path: json.path, file_name: json.file_name ?? file.name }]);
+    } catch {
+      setError(t.errConn);
+    }
+    setUploading(false);
+  }
+
+  async function send() {
+    if (!sessionToken) return;
+    if (text.trim().length < 10) return setError(t.errObjText);
+    setError(null);
+    setSending(true);
+    try {
+      const res = await fetch(`${FN}/submit-objection`, {
+        method: "POST",
+        headers: HEADERS,
+        body: JSON.stringify({ session_token: sessionToken, claim_id: claim.id, text: text.trim(), files }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json.success) {
+        setError(json.message ?? t.errConn);
+        setSending(false);
+        return;
+      }
+      onDone();
+    } catch {
+      setError(t.errConn);
+    }
+    setSending(false);
+  }
+
+  return (
+    <div className="mt-5 pt-4 border-t border-[var(--color-border)]">
+      {!open ? (
+        <Button
+          onClick={() => { setOpen(true); setError(null); }}
+          className="w-full bg-[var(--color-navy)] hover:bg-[var(--color-navy-light)] text-[var(--color-cream)] font-heading"
+        >
+          <AlertTriangle className="w-4 h-4" />
+          <span className="ms-2">{t.objStart}</span>
+        </Button>
+      ) : (
+        <div className="space-y-3">
+          <p className="font-heading text-sm font-semibold text-[var(--color-navy)]">{t.objTitle}</p>
+          <p className="font-body text-xs text-[var(--color-navy)]/60">{t.objHint}</p>
+          {error && <ErrorNote msg={error} />}
+          <div>
+            <Label htmlFor={`obj-${claim.id}`} className="font-body text-sm text-[var(--color-navy)]/70">
+              {t.objText}
+            </Label>
+            <Textarea
+              id={`obj-${claim.id}`}
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              rows={5}
+              maxLength={5000}
+              className="mt-1.5 resize-none"
+            />
+          </div>
+          {files.length > 0 && (
+            <div className="space-y-1.5">
+              {files.map((f, i) => (
+                <div key={f.path} className="flex items-center gap-2 p-2 bg-[var(--color-cream)]">
+                  <Paperclip className="w-4 h-4 text-[var(--color-navy)]/50 shrink-0" />
+                  <span className="font-body text-xs text-[var(--color-navy)]/70 truncate flex-1 min-w-0">{f.file_name}</span>
+                  <button
+                    type="button"
+                    onClick={() => setFiles((all) => all.filter((_, j) => j !== i))}
+                    className="font-body text-xs text-red-600 hover:underline shrink-0"
+                    aria-label={t.objRemove}
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+          <input
+            ref={inputRef}
+            type="file"
+            accept=".pdf,.jpg,.jpeg,.png"
+            className="hidden"
+            onChange={(e) => void pick(e.target.files)}
+          />
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => inputRef.current?.click()}
+            disabled={uploading || sending || files.length >= 10}
+            className="w-full font-heading"
+          >
+            {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+            <span className="ms-2">{uploading ? t.objUploading : t.objAttach}</span>
+          </Button>
+          <p className="font-body text-xs text-[var(--color-navy)]/50">{t.objOnce}</p>
+          <div className="flex gap-2">
+            <Button
+              onClick={() => void send()}
+              disabled={sending || uploading || text.trim().length < 10}
+              className="flex-1 bg-[var(--color-navy)] hover:bg-[var(--color-navy-light)] text-[var(--color-cream)] font-heading"
+            >
+              {sending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+              <span className="ms-2">{t.objSubmit}</span>
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => { setOpen(false); setError(null); }}
+              disabled={sending}
+              className="font-heading"
+            >
+              {t.objCancel}
+            </Button>
           </div>
         </div>
       )}

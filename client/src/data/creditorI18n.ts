@@ -139,6 +139,7 @@ const DOC_CATEGORY: Record<string, { ar: string; en: string; ur: string }> = {
   capacity_document: { ar: 'سند الصفة', en: 'Capacity document', ur: 'اہلیت کی دستاویز' },
   power_of_attorney: { ar: 'الوكالة / عقد التأسيس', en: 'Power of attorney / incorporation', ur: 'وکالت نامہ / معاہدہ تاسیس' },
   claim_form: { ar: 'نموذج إدراج المطالبة', en: 'Claim submission form', ur: 'دعویٰ فارم' },
+  objection: { ar: 'مستند الاعتراض', en: 'Objection document', ur: 'اعتراض کی دستاویز' },
 };
 
 function pick(map: EnumMap, value: string | null | undefined, lang: Lang): string {
@@ -152,6 +153,14 @@ export function trStatus(v: string | null | undefined, lang: Lang) { return pick
 export function trClaimType(v: string | null | undefined, lang: Lang) { return pick(CLAIM_TYPE, v, lang); }
 export function trProcedure(v: string | null | undefined, lang: Lang) { return pick(PROCEDURE_TYPE, v, lang); }
 export function trChannel(v: string | null | undefined, lang: Lang) { return pick(CHANNEL, v, lang); }
+
+const RECOMMENDATION: EnumMap = {
+  'قبول': { en: 'Acceptance', ur: 'قبولیت' },
+  'رفض': { en: 'Rejection', ur: 'مسترد' },
+  'قبول جزئي': { en: 'Partial acceptance', ur: 'جزوی قبولیت' },
+  'عرض على خبير': { en: 'Referral to an expert', ur: 'ماہر کے حوالے' },
+};
+export function trRecommendation(v: string | null | undefined, lang: Lang) { return pick(RECOMMENDATION, v, lang); }
 
 export function trDocCategory(code: string | null | undefined, lang: Lang): string | null {
   if (!code) return null;
@@ -349,6 +358,21 @@ export interface Strings {
   extraNotes: string;
   sendUpdate: string;
   errNoChange: string;
+  // objection
+  prelimRec: string;
+  objTitle: string;
+  objHint: string;
+  objStart: string;
+  objText: string;
+  objAttach: string;
+  objUploading: string;
+  objRemove: string;
+  objOnce: string;
+  objSubmit: string;
+  objCancel: string;
+  objSubmitted: (date: string) => string;
+  errObjText: string;
+  errObjFile: string;
   // ticket subjects (system-generated)
 }
 
@@ -541,6 +565,20 @@ const AR: Strings = {
   extraNotes: 'ملاحظات إضافية (اختياري)',
   sendUpdate: 'إرسال طلب التحديث',
   errNoChange: 'لم تُدخل أي تغيير على بياناتك.',
+  prelimRec: 'التوصية المبدئية',
+  objTitle: 'الاعتراض على التوصية المبدئية',
+  objHint: 'اكتب أسباب اعتراضك، وأرفق ما يؤيده من مستندات بصيغة PDF أو JPG أو PNG، وحجم الملف حتى 10 ميجابايت.',
+  objStart: 'تقديم اعتراض',
+  objText: 'أسباب الاعتراض',
+  objAttach: 'إرفاق مستند',
+  objUploading: 'جارٍ رفع الملف…',
+  objRemove: 'إزالة',
+  objOnce: 'يُقدَّم الاعتراض مرة واحدة، ولا يُعدَّل بعد إرساله.',
+  objSubmit: 'إرسال الاعتراض',
+  objCancel: 'إلغاء',
+  objSubmitted: (date) => `قُدّم اعتراضك بتاريخ ${date}، وسيُنظر فيه قبل إصدار التوصية النهائية.`,
+  errObjText: 'اكتب أسباب اعتراضك (عشرة أحرف على الأقل).',
+  errObjFile: 'الملف غير مقبول: PDF أو JPG أو PNG، وحجمه حتى 10 ميجابايت.',
 };
 
 const EN: Strings = {
@@ -733,6 +771,20 @@ const EN: Strings = {
   extraNotes: 'Additional notes (optional)',
   sendUpdate: 'Send update request',
   errNoChange: 'You have not made any changes to your details.',
+  prelimRec: 'Preliminary recommendation',
+  objTitle: 'Objection to the preliminary recommendation',
+  objHint: 'State the grounds of your objection and attach supporting documents (PDF, JPG or PNG, up to 10 MB each).',
+  objStart: 'Submit an objection',
+  objText: 'Grounds of objection',
+  objAttach: 'Attach a document',
+  objUploading: 'Uploading…',
+  objRemove: 'Remove',
+  objOnce: 'An objection can be submitted once and cannot be edited afterwards.',
+  objSubmit: 'Send objection',
+  objCancel: 'Cancel',
+  objSubmitted: (date) => `Your objection was submitted on ${date} and will be considered before the final recommendation is issued.`,
+  errObjText: 'Please state the grounds of your objection (at least ten characters).',
+  errObjFile: 'File not accepted: PDF, JPG or PNG, up to 10 MB.',
 };
 
 const UR: Strings = {
@@ -924,6 +976,20 @@ const UR: Strings = {
   extraNotes: 'اضافی نوٹس (اختیاری)',
   sendUpdate: 'تازہ کاری کی درخواست بھیجیں',
   errNoChange: 'آپ نے اپنی تفصیلات میں کوئی تبدیلی نہیں کی۔',
+  prelimRec: 'ابتدائی سفارش',
+  objTitle: 'ابتدائی سفارش پر اعتراض',
+  objHint: 'اپنے اعتراض کی وجوہات لکھیں اور معاون دستاویزات منسلک کریں: PDF، JPG یا PNG، ہر فائل 10 MB تک۔',
+  objStart: 'اعتراض جمع کریں',
+  objText: 'اعتراض کی وجوہات',
+  objAttach: 'دستاویز منسلک کریں',
+  objUploading: 'فائل اپ لوڈ ہو رہی ہے…',
+  objRemove: 'ہٹائیں',
+  objOnce: 'اعتراض ایک ہی بار جمع ہوتا ہے اور بھیجنے کے بعد اس میں ترمیم نہیں ہو سکتی۔',
+  objSubmit: 'اعتراض بھیجیں',
+  objCancel: 'منسوخ',
+  objSubmitted: (date) => `آپ کا اعتراض ${date} کو جمع ہوا، حتمی سفارش سے پہلے اس پر غور کیا جائے گا۔`,
+  errObjText: 'اپنے اعتراض کی وجوہات لکھیں (کم از کم دس حروف)۔',
+  errObjFile: 'فائل قبول نہیں: PDF، JPG یا PNG، زیادہ سے زیادہ 10 MB۔',
 };
 
 export const STRINGS: Record<Lang, Strings> = { ar: AR, en: EN, ur: UR };
