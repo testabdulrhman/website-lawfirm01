@@ -371,6 +371,7 @@ export interface Strings {
   objSubmit: string;
   objCancel: string;
   objSubmitted: (date: string) => string;
+  objDeadline: (date: string) => string;
   errObjText: string;
   errObjFile: string;
   // ticket subjects (system-generated)
@@ -577,6 +578,7 @@ const AR: Strings = {
   objSubmit: 'إرسال الاعتراض',
   objCancel: 'إلغاء',
   objSubmitted: (date) => `قُدّم اعتراضك بتاريخ ${date}، وسيُنظر فيه قبل إصدار التوصية النهائية.`,
+  objDeadline: (date) => `مهلة الاعتراض ثلاثة أيام من إبلاغكم بالتوصية، وآخرها ${date}.`,
   errObjText: 'اكتب أسباب اعتراضك (عشرة أحرف على الأقل).',
   errObjFile: 'الملف غير مقبول: PDF أو JPG أو PNG، وحجمه حتى 10 ميجابايت.',
 };
@@ -783,6 +785,7 @@ const EN: Strings = {
   objSubmit: 'Send objection',
   objCancel: 'Cancel',
   objSubmitted: (date) => `Your objection was submitted on ${date} and will be considered before the final recommendation is issued.`,
+  objDeadline: (date) => `The objection period is three days from your notification of the recommendation, ending on ${date}.`,
   errObjText: 'Please state the grounds of your objection (at least ten characters).',
   errObjFile: 'File not accepted: PDF, JPG or PNG, up to 10 MB.',
 };
@@ -988,6 +991,7 @@ const UR: Strings = {
   objSubmit: 'اعتراض بھیجیں',
   objCancel: 'منسوخ',
   objSubmitted: (date) => `آپ کا اعتراض ${date} کو جمع ہوا، حتمی سفارش سے پہلے اس پر غور کیا جائے گا۔`,
+  objDeadline: (date) => `اعتراض کی مدت سفارش کی اطلاع سے تین دن ہے، جو ${date} کو ختم ہوتی ہے۔`,
   errObjText: 'اپنے اعتراض کی وجوہات لکھیں (کم از کم دس حروف)۔',
   errObjFile: 'فائل قبول نہیں: PDF، JPG یا PNG، زیادہ سے زیادہ 10 MB۔',
 };

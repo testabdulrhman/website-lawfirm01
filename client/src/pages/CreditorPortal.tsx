@@ -126,6 +126,7 @@ interface Claim {
   preliminary_date?: string | null;
   objection?: { text: string; date: string | null } | null;
   can_object?: boolean;
+  objection_deadline?: string | null;
 }
 
 interface Ticket {
@@ -2119,6 +2120,9 @@ function ObjectionSection({
       ) : (
         <div className="space-y-3">
           <p className="font-heading text-sm font-semibold text-[var(--color-navy)]">{t.objTitle}</p>
+          {claim.objection_deadline && (
+            <p className="font-body text-xs font-semibold text-[var(--color-navy)]">{t.objDeadline(fmtDate(claim.objection_deadline, lang))}</p>
+          )}
           <p className="font-body text-xs text-[var(--color-navy)]/60">{t.objHint}</p>
           {error && <ErrorNote msg={error} />}
           <div>
