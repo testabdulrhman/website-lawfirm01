@@ -16,11 +16,18 @@ const DIGITS: Record<string, string> = {
   '۰': '0', '۱': '1', '۲': '2', '۳': '3', '۴': '4', '۵': '5', '۶': '6', '۷': '7', '۸': '8', '۹': '9',
 };
 
-/** فاصلٌ واحد: آلافٌ إن تكرّر أو تلته ثلاث خانات، وإلا فكسر */
+/**
+ * فاصلٌ واحد يتكرّر أو لا: ما تلته ثلاث خانات فآلاف، وما تلته خانة أو
+ * خانتان في آخره فهللات — فـ«٢٢،٢٢٥،٣١» = 22,225.31 لا 2,222,531.
+ * وما سوى ذلك (1,2,3 أو 12.3456) لا يُفهم، فيُرفض.
+ */
 function oneSeparator(s: string, sep: string): string {
   const parts = s.split(sep);
-  if (parts.length > 2 || parts[1].length === 3) return parts.join('');
-  return parts.join('.');
+  const last = parts[parts.length - 1];
+  const decimal = last.length >= 1 && last.length <= 2;
+  const groups = decimal ? parts.slice(1, -1) : parts.slice(1);
+  if (groups.some((g) => g.length !== 3)) return 'x';
+  return decimal ? parts.slice(0, -1).join('') + '.' + last : parts.join('');
 }
 
 /** المبلغ رقماً بهللتين على الأكثر، أو null إن لم يُفهم */
