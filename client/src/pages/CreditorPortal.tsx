@@ -127,6 +127,18 @@ interface Claim {
   objection?: { text: string; date: string | null } | null;
   can_object?: boolean;
   objection_deadline?: string | null;
+  decisions?: ClaimDecision[];
+  recommendation_doc?: string | null;
+}
+
+interface ClaimDecision {
+  stage: "preliminary" | "final" | "first_instance" | "appeal";
+  kind: string;
+  amount: number | null;
+  rejected: number | null;
+  reason: string | null;
+  date: string | null;
+  ref: string | null;
 }
 
 interface Ticket {
@@ -148,6 +160,7 @@ interface CompletionRequest {
   token: string;
   custom_message?: string | null;
   expires_at?: string | null;
+  requested_fields?: string[] | null;
 }
 
 interface Hearing {
@@ -332,6 +345,24 @@ export default function CreditorPortal() {
   const [smsFallback, setSmsFallback] = useState(false);
   const [smsIn, setSmsIn] = useState(0);
   const [data, setData] = useState<PortalData | null>(null);
+  // صفحة المطالبة: تُفتح من القائمة، وزرّ الرجوع في الجوال يعيد إلى القائمة
+  const [openClaimId, setOpenClaimId] = useState<number | null>(null);
+  const [objectOnOpen, setObjectOnOpen] = useState(false);
+  useEffect(() => {
+    const onPop = () => setOpenClaimId(null);
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+  function openClaim(id: number, object = false) {
+    setObjectOnOpen(object);
+    setOpenClaimId(id);
+    try { window.history.pushState({ creditorClaim: id }, ""); } catch { /* ignore */ }
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }
+  function closeClaim() {
+    if (window.history.state?.creditorClaim) window.history.back();
+    else setOpenClaimId(null);
+  }
 
   const [sessionToken, setSessionToken] = useState<string | null>(() => {
     if (typeof window === "undefined") return null;
@@ -779,7 +810,7 @@ export default function CreditorPortal() {
                 <p className="font-body text-sm text-[var(--color-navy)]/60 mt-2">{t.loginIntro}</p>
               </div>
 
-              <div className="bg-white border border-[var(--color-border)] p-6 md:p-8">
+              <div className="bg-white rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.15)] p-6 md:p-8">
                 {error && <ErrorNote msg={error} />}
 
                 <div className="space-y-4">
@@ -900,7 +931,7 @@ export default function CreditorPortal() {
                 {t.noClaimsTitle}
               </h1>
 
-              <div className="mt-6 bg-white border border-[var(--color-border)] p-5 md:p-6 text-start">
+              <div className="mt-6 bg-white rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.15)] p-5 md:p-6 text-start">
                 <p className="font-heading text-sm font-bold text-[var(--color-navy)]" dir="ltr">
                   {method === "email" ? email : phone}
                 </p>
@@ -1012,7 +1043,7 @@ export default function CreditorPortal() {
                 </p>
               </div>
 
-              <div className="bg-white border border-[var(--color-border)] p-4 md:p-6">
+              <div className="bg-white rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.15)] p-4 md:p-6">
                 {error && <ErrorNote msg={error} />}
 
                 <div className="space-y-4">
@@ -1187,7 +1218,7 @@ export default function CreditorPortal() {
                 {t.accessSentTitle}
               </h1>
 
-              <div className="mt-6 bg-white border border-[var(--color-border)] p-5 md:p-6 text-start">
+              <div className="mt-6 bg-white rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.15)] p-5 md:p-6 text-start">
                 {accessRef && (
                   <>
                     <p
@@ -1244,7 +1275,7 @@ export default function CreditorPortal() {
                 <p className="font-body text-sm text-[var(--color-navy)]/60 mt-2">{t.selectIntro}</p>
               </div>
 
-              <div className="bg-white border border-[var(--color-border)] p-4 md:p-6">
+              <div className="bg-white rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.15)] p-4 md:p-6">
                 {error && <ErrorNote msg={error} />}
                 <div className="space-y-2">
                   {creditorOptions.map((c) => (
@@ -1287,7 +1318,7 @@ export default function CreditorPortal() {
                 <p className="font-body text-sm text-[var(--color-navy)]/60 mt-2" dir="ltr">{phone}</p>
               </div>
 
-              <div className="bg-white border border-[var(--color-border)] p-6 md:p-8">
+              <div className="bg-white rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.15)] p-6 md:p-8">
                 {error && <ErrorNote msg={error} />}
                 {info && (
                   <div className="mb-4 p-3 bg-[var(--color-cream)] border border-[var(--color-border)]">
@@ -1393,91 +1424,47 @@ export default function CreditorPortal() {
     <>
       {seo}
       <section className="pt-28 md:pt-32 pb-16 md:pb-20 min-h-screen bg-[var(--color-cream)]">
-        <div className="container mx-auto px-5 md:px-4 lg:px-8">
-          {/* بطاقة الدائن */}
-          <div className="bg-[var(--color-navy)] p-5 md:p-6 mb-5">
-            <div className="flex items-start justify-between gap-4 flex-wrap">
-              <div className="min-w-0">
-                <p className="font-body text-xs text-white/50">{t.portalName}</p>
-                <h1 className="font-display text-lg md:text-xl font-bold text-white truncate">
-                  {creditor?.name ?? "—"}
-                </h1>
-                {creditor?.id_number && (
-                  <p className="font-body text-xs text-white/40 mt-1" dir="ltr">{creditor.id_number}</p>
-                )}
-              </div>
+        <div className="container mx-auto px-5 md:px-4 lg:px-8 max-w-2xl">
+          {/* الرأس: اسم الدائن وسطرٌ واحد بالعدد والإجمالي — بلا صناديق */}
+          <div className="mb-6">
+            <div className="flex items-center justify-between gap-3">
+              <p className="font-body text-xs text-[var(--color-navy)]/50">{t.portalName}</p>
               <button
                 type="button"
                 onClick={() => endSession()}
-                className="shrink-0 inline-flex items-center gap-2 px-3 py-2 border border-white/20 text-white/70 hover:text-white hover:border-white/40 font-body text-xs transition-colors"
+                className="inline-flex items-center gap-1.5 font-body text-xs text-[var(--color-navy)]/50 hover:text-[var(--color-navy)] transition-colors"
               >
                 <LogOut className="w-3.5 h-3.5" />
                 {t.logout}
               </button>
             </div>
-
-            <div className="grid grid-cols-2 gap-3 mt-5">
-              <div className="bg-white/5 p-3">
-                <p className="font-body text-[11px] text-white/50">{t.claimUnit}</p>
-                <p className="font-display text-xl font-bold text-[var(--color-gold)]">
-                  {fmtNumber(claims.length)}
-                </p>
-              </div>
-              <div className="bg-white/5 p-3 min-w-0">
-                <p className="font-body text-[11px] text-white/50">{t.totalRiyal}</p>
-                {/* بلا truncate: المبلغ يجب أن يُقرأ كاملاً — يصغُر الخط عند الضيق ولا يُقصّ */}
-                <p className="font-display text-base sm:text-xl font-bold text-[var(--color-gold)] break-words">
-                  {fmtCurrency(totalAmount, l)}
-                </p>
-              </div>
-            </div>
+            <h1 className="font-body text-2xl md:text-3xl font-bold text-[var(--color-navy)] mt-1 leading-snug break-words">
+              {creditor?.name ?? "—"}
+            </h1>
+            <p className="font-body text-sm text-[var(--color-navy)]/60 mt-1.5">
+              {t.claimsCount(claims.length)} · {fmtCurrency(totalAmount, l)}
+            </p>
           </div>
-
-          {/* تنبيه طلبات الاستكمال — يربط بصفحة الاستكمال بالرمز نفسه */}
-          {completions.map((c) => (
-            <a
-              key={c.id}
-              href={`/bankruptcy/complete?token=${encodeURIComponent(c.token)}`}
-              className="block mb-3 p-4 bg-amber-50 border border-amber-300 hover:border-amber-500 transition-colors"
-            >
-              <div className="flex items-start gap-3">
-                <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-                <div className="min-w-0">
-                  <p className="font-heading text-sm font-semibold text-amber-900">
-                    {t.completionTitle(c.claim_ref ?? "")}
-                  </p>
-                  <p className="font-body text-xs text-amber-800/80 mt-1">
-                    {c.custom_message || t.completionDefault}
-                  </p>
-                  <span className="inline-block mt-2 font-body text-xs font-semibold text-amber-900 underline">
-                    {t.completeNow}
-                  </span>
-                </div>
-              </div>
-            </a>
-          ))}
 
           {/* شريط التبويبات: على الجوال يأخذ كلُّ تبويب عرضه الطبيعي
               ويُمرَّر الشريط أفقياً — وقَسْمُه على الأربعة بالتساوي كان
               يترك للكلمة أربعين بكسلاً فتُقتطع. وعلى الشاشات الواسعة
               يتقاسمون العرض كما كانوا. */}
-          <div className="bg-white border border-[var(--color-border)] mb-5">
-            <div className="flex overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className={`${CARD} mb-2 p-1`}>
+            <div className="flex gap-1 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {NAV.map((n) => {
                 const active = tab === n.key;
                 return (
                   <button
                     key={n.key}
                     type="button"
-                    onClick={() => setTab(n.key)}
-                    className={`shrink-0 md:min-w-0 md:flex-1 flex items-center justify-center gap-1.5 px-4 md:px-3 py-3.5 md:py-3 font-heading text-sm border-b-2 transition-colors whitespace-nowrap ${
-                      n.key === "vote" && voteNeedsAction && !active
-                        ? "border-[var(--color-gold)] bg-[var(--color-gold)] text-[var(--color-navy)] font-bold"
-                        : n.key === "vote" && !active
-                          ? "border-[var(--color-gold)]/40 bg-[var(--color-gold)]/10 text-[var(--color-navy)]"
-                          : active
-                            ? "border-[var(--color-gold)] text-[var(--color-navy)] bg-[var(--color-cream)]"
-                            : "border-transparent text-[var(--color-navy)]/50 hover:text-[var(--color-navy)]"
+                    onClick={() => { setTab(n.key); if (n.key !== "claims") setOpenClaimId(null); }}
+                    className={`shrink-0 md:min-w-0 md:flex-1 flex items-center justify-center gap-1.5 px-4 md:px-3 py-2.5 rounded-xl font-body text-sm transition-colors whitespace-nowrap ${
+                      active
+                        ? "bg-[var(--color-navy)] text-white font-semibold"
+                        : n.key === "vote" && voteNeedsAction
+                          ? "bg-[var(--color-gold)] text-[var(--color-navy)] font-bold"
+                          : "text-[var(--color-navy)]/55 hover:text-[var(--color-navy)]"
                     }`}
                   >
                     {n.key === "vote" && voteNeedsAction && (
@@ -1489,10 +1476,8 @@ export default function CreditorPortal() {
                     <n.icon className="w-4 h-4 shrink-0" />
                     <span className="md:truncate">{n.label}</span>
                     {n.count !== undefined && n.count > 0 && (
-                      <span className={`shrink-0 px-1.5 py-0.5 text-[10px] font-mono rounded ${
-                        n.key === "vote" && voteNeedsAction && !active
-                          ? "bg-[var(--color-navy)] text-[var(--color-cream)]"
-                          : "bg-[var(--color-navy)]/10"
+                      <span className={`shrink-0 px-1.5 py-0.5 text-[10px] font-mono rounded-md ${
+                        active ? "bg-white/20" : "bg-[var(--color-navy)]/10"
                       }`}>
                         {fmtNumber(n.count)}
                       </span>
@@ -1512,66 +1497,38 @@ export default function CreditorPortal() {
           )}
 
           {/* ─── تبويب المطالبات ─── */}
-          {tab === "claims" && !loading && (
-            <div className="space-y-4">
-              {hearings.length > 0 && (
-                <div className="bg-white border border-[var(--color-border)] p-5">
-                  <h2 className="font-heading text-sm font-semibold text-[var(--color-navy)] mb-3 flex items-center gap-2">
-                    <CalendarClock className="w-4 h-4 text-[var(--color-gold)]" />
-                    {t.upcomingHearings}
-                  </h2>
-                  <div className="space-y-2">
-                    {hearings.map((h) => (
-                      <div
-                        key={h.id}
-                        className="flex items-start justify-between gap-3 flex-wrap py-2 border-b border-[var(--color-border)] last:border-0"
-                      >
-                        <div className="min-w-0">
-                          <p className="font-body text-sm text-[var(--color-navy)] truncate">
-                            {h.debtor_name ?? "—"}
-                          </p>
-                          <p className="font-body text-xs text-[var(--color-navy)]/50">
-                            {h.court_name ?? "—"}
-                            {h.hearing_type ? ` · ${h.hearing_type}` : ""}
-                          </p>
-                        </div>
-                        <div className="text-end shrink-0">
-                          <p className="font-body text-sm text-[var(--color-navy)]">
-                            {fmtDate(h.hearing_date, l)}
-                          </p>
-                          <p className="font-body text-xs text-[var(--color-navy)]/50 flex items-center gap-1 justify-end">
-                            {h.is_remote && <Video className="w-3 h-3" />}
-                            {h.hearing_time ?? ""}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {claims.length === 0 ? (
-                <EmptyState icon={FileText} msg={t.noClaims} />
-              ) : (
-                claims.map((c) => (
-                  <ClaimCard
-                    key={c.id}
-                    claim={c}
-                    t={t}
-                    lang={l}
-                    isRTL={isRTL}
-                    sessionToken={sessionToken}
-                    onChanged={() => sessionToken && void loadPortal(sessionToken)}
-                  />
-                ))
-              )}
-            </div>
-          )}
+          {tab === "claims" && !loading && (() => {
+            const opened = openClaimId != null ? claims.find((c) => c.id === openClaimId) : null;
+            return opened ? (
+              <ClaimDetailView
+                claim={opened}
+                completions={completions.filter((x) => x.claim_id === opened.id)}
+                t={t}
+                lang={l}
+                sessionToken={sessionToken}
+                objectOnOpen={objectOnOpen}
+                onBack={closeClaim}
+                onChanged={() => sessionToken && void loadPortal(sessionToken)}
+                onAsk={() => {
+                  setTicketSubject(t.askSubject(opened.claim_ref ?? "", opened.case?.debtor_name ?? ""));
+                  setTicketBody("");
+                  setTicketError(null);
+                  setTicketRef(null);
+                  setTicketOpen(true);
+                  setOpenClaimId(null);
+                  setTab("tickets");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              />
+            ) : (
+              <ClaimsHome claims={claims} completions={completions} hearings={hearings} t={t} lang={l} onOpen={openClaim} />
+            );
+          })()}
 
           {/* ─── تبويب التذاكر ─── */}
           {tab === "tickets" && !loading && (
             <div className="space-y-4">
-              <div className="bg-white border border-[var(--color-border)] p-5">
+              <div className="bg-white rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.15)] p-5">
                 {ticketRef ? (
                   <div className="text-center py-4">
                     <CheckCircle2 className="w-10 h-10 text-green-600 mx-auto mb-3" />
@@ -1653,7 +1610,7 @@ export default function CreditorPortal() {
                 <EmptyState icon={MessageSquarePlus} msg={t.noTickets} />
               ) : (
                 tickets.map((tk) => (
-                  <div key={tk.id} className="bg-white border border-[var(--color-border)] p-5">
+                  <div key={tk.id} className="bg-white rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.15)] p-5">
                     <div className="flex items-start justify-between gap-3 flex-wrap">
                       <h3 className="font-heading text-sm font-semibold text-[var(--color-navy)] min-w-0">
                         {tk.subject ?? "—"}
@@ -1703,7 +1660,7 @@ export default function CreditorPortal() {
           {tab === "vote" && !loading && (
             <div className="space-y-4">
               {votes.map((v) => (
-                <div key={v.id} className="bg-white border border-[var(--color-border)] p-5 md:p-6">
+                <div key={v.id} className="bg-white rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.15)] p-5 md:p-6">
                   <h2 className="font-heading text-base font-bold text-[var(--color-navy)]">{v.title}</h2>
                   {v.debtor_name && (
                     <p className="font-body text-xs text-[var(--color-navy)]/50 mt-0.5">{v.debtor_name}</p>
@@ -1821,7 +1778,7 @@ export default function CreditorPortal() {
 
           {/* ─── تبويب البيانات ─── */}
           {tab === "profile" && !loading && (
-            <div className="bg-white border border-[var(--color-border)] p-5 md:p-6">
+            <div className="bg-white rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.15)] p-5 md:p-6">
               <h2 className="font-heading text-sm font-semibold text-[var(--color-navy)] mb-4 flex items-center gap-2">
                 <ClipboardList className="w-4 h-4 text-[var(--color-gold)]" />
                 {t.contactData}
@@ -1885,7 +1842,7 @@ function ErrorNote({ msg }: { msg: string }) {
 
 function EmptyState({ icon: Icon, msg }: { icon: typeof FileText; msg: string }) {
   return (
-    <div className="bg-white border border-[var(--color-border)] p-10 text-center">
+    <div className="bg-white rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.15)] p-10 text-center">
       <Icon className="w-10 h-10 text-[var(--color-navy)]/20 mx-auto mb-3" />
       <p className="font-body text-sm text-[var(--color-navy)]/50">{msg}</p>
     </div>
@@ -1905,109 +1862,442 @@ function Field({ label, value, ltr }: { label: string; value?: string | null; lt
   );
 }
 
-function ClaimCard({
-  claim,
+// ============================================================
+// المطالبات: الصفحة الأولى، ثم صفحة المطالبة
+// ------------------------------------------------------------
+// الدائن يسأل سؤالين: ماذا عليّ أن أفعل؟ وأين وصلت مطالبتي؟ فيُجاب
+// عنهما أولاً — «يحتاج انتباهك» بجملٍ يفهمها، ثم «مطالباتك» قائمةً هادئة —
+// وما سواهما في صفحة المطالبة: مسارٌ عمودي بتواريخه وما صدر فيه.
+// (التصميم المعتمد 2026-10-04)
+// ============================================================
+
+const CARD = "bg-white rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.15)]";
+const SECTION = "font-body text-[13px] font-semibold text-[var(--color-navy)]/45 mt-8 mb-3 px-1";
+const BTN_PRIMARY =
+  "inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-[var(--color-navy)] px-4 py-3 font-body text-sm font-semibold text-white hover:opacity-90 transition-opacity";
+const BTN_SOFT =
+  "inline-flex flex-1 items-center justify-center rounded-xl bg-[var(--color-cream)] px-4 py-3 font-body text-sm font-semibold text-[var(--color-navy)] hover:bg-[var(--color-border)]/40 transition-colors";
+
+const isSignOnly = (c: CompletionRequest) =>
+  Array.isArray(c.requested_fields) && c.requested_fields.length === 1 && c.requested_fields[0] === "signature";
+
+/** مفتاح الحالة بلغة الدائن: آخر ما صدر، ثم ما ينتظره، ثم موضع الدراسة */
+function statusKey(c: Claim, waiting: boolean): string {
+  const d = c.decisions ?? [];
+  const has = (st: ClaimDecision["stage"]) => d.some((x) => x.stage === st);
+  if (has("appeal")) return "appeal";
+  if (has("first_instance")) return "court";
+  if (has("final")) return "final";
+  if (has("preliminary")) return "prelim";
+  if (waiting) return "waiting";
+  return (c.claim_stage ?? 1) >= 2 ? "study" : "received";
+}
+
+/** مبلغٌ مختصر للقائمة (3.34 مليون) — والكامل في صفحة المطالبة */
+function fmtCompact(v: number | null | undefined, lang: Lang): string {
+  if (v == null || isNaN(v)) return "—";
+  try {
+    return new Intl.NumberFormat(lang === "en" ? "en" : lang === "ur" ? "ur" : "ar", {
+      notation: "compact",
+      maximumFractionDigits: 2,
+      numberingSystem: "latn",
+    }).format(v);
+  } catch {
+    return fmtNumber(v);
+  }
+}
+
+function ClaimsHome({
+  claims,
+  completions,
+  hearings,
   t,
   lang,
-  isRTL,
-  sessionToken,
-  onChanged,
+  onOpen,
 }: {
-  claim: Claim;
+  claims: Claim[];
+  completions: CompletionRequest[];
+  hearings: Hearing[];
   t: Strings;
   lang: Lang;
-  isRTL: boolean;
-  sessionToken: string | null;
-  onChanged: () => void;
+  onOpen: (id: number, object?: boolean) => void;
 }) {
-  const docs = claim.documents ?? [];
+  const [allSigns, setAllSigns] = useState(false);
+  const byId = new Map(claims.map((c) => [c.id, c]));
+  const objectable = claims.filter((c) => c.can_object);
+  const completes = completions.filter((c) => !isSignOnly(c));
+  const signs = completions.filter(isSignOnly);
+  const shownSigns = allSigns ? signs : signs.slice(0, 2);
+  const hasAttention = objectable.length + completes.length + signs.length > 0;
+
+  if (claims.length === 0) return <EmptyState icon={FileText} msg={t.noClaims} />;
+
   return (
-    <div className="bg-white border border-[var(--color-border)] p-5 md:p-6">
-      <div className="flex items-start justify-between gap-3 flex-wrap mb-4">
-        <div className="min-w-0">
-          <div className="flex items-center gap-2 flex-wrap">
-            {claim.claim_ref && (
-              <span className="px-2 py-1 bg-[var(--color-navy)] text-[var(--color-gold)] font-mono text-[11px]" dir="ltr">
-                {claim.claim_ref}
-              </span>
-            )}
-            {claim.claim_type && (
-              <span className="px-2 py-1 bg-[var(--color-cream)] border border-[var(--color-border)] font-body text-[11px] text-[var(--color-navy)]/70">
-                {trClaimType(claim.claim_type, lang)}
-              </span>
-            )}
-            {claim.status && (
-              <span className="px-2 py-1 bg-[var(--color-cream)] border border-[var(--color-border)] font-body text-[11px] text-[var(--color-navy)]/70">
-                {trStatus(claim.status, lang)}
-              </span>
-            )}
-          </div>
-          <h3 className="font-heading text-base font-semibold text-[var(--color-navy)] mt-2 truncate">
-            {claim.case?.debtor_name ?? "—"}
-          </h3>
-          {claim.case && (
-            <p className="font-body text-xs text-[var(--color-navy)]/50 mt-0.5">
-              {claim.case.case_number ?? "—"}
-              {claim.case.court_name ? ` · ${claim.case.court_name}` : ""}
-            </p>
-          )}
-        </div>
-        <div className={isRTL ? "text-start shrink-0" : "text-end shrink-0"}>
-          <p className="font-body text-[11px] text-[var(--color-navy)]/50">{t.amount}</p>
-          <p className="font-display text-lg font-bold text-[var(--color-navy)]">
-            {fmtCurrency(claim.claim_amount, lang)}
-          </p>
-        </div>
-      </div>
-
-      <ClaimStepper stage={claim.claim_stage ?? 1} lang={lang} />
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mt-5 pt-4 border-t border-[var(--color-border)]">
-        <Field label={t.colSubmitted} value={fmtDate(claim.submitted_at, lang)} />
-        {claim.case?.procedure_type && (
-          <Field label={t.colProcedure} value={trProcedure(claim.case.procedure_type, lang)} />
-        )}
-        {claim.due_date && <Field label={t.deadline} value={fmtDate(claim.due_date, lang)} />}
-        {claim.claim_reason && <Field label={t.colClaimType} value={claim.claim_reason} />}
-        {claim.preliminary_recommendation && (
-          <Field
-            label={t.prelimRec}
-            value={`${trRecommendation(claim.preliminary_recommendation, lang)}${
-              claim.preliminary_date ? ` · ${fmtDate(claim.preliminary_date, lang)}` : ""
-            }`}
-          />
-        )}
-      </div>
-
-      {(claim.objection || (claim.can_object && sessionToken)) && (
-        <ObjectionSection claim={claim} t={t} lang={lang} sessionToken={sessionToken} onDone={onChanged} />
-      )}
-
-      {docs.length > 0 && (
-        <div className="mt-5 pt-4 border-t border-[var(--color-border)]">
-          <p className="font-heading text-xs font-semibold text-[var(--color-navy)] mb-2">{t.myDocs}</p>
-          <div className="space-y-1.5">
-            {docs.map((d, i) => {
-              const Icon = docIconFor(d);
+    <div>
+      {hasAttention && (
+        <>
+          <p className={SECTION}>{t.needsAttention}</p>
+          <div className="space-y-3">
+            {objectable.map((c) => {
+              const pre = (c.decisions ?? []).find((d) => d.stage === "preliminary");
               return (
-                <a
-                  key={i}
-                  href={d.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 p-2 bg-[var(--color-cream)] hover:bg-[var(--color-border)]/30 transition-colors"
-                >
-                  <Icon className="w-4 h-4 text-[var(--color-navy)]/50 shrink-0" />
-                  <span className="font-body text-xs text-[var(--color-navy)]/70 truncate flex-1 min-w-0">
-                    {docLabel(d, i, t, lang)}
-                  </span>
-                  <Eye className="w-3.5 h-3.5 text-[var(--color-gold)] shrink-0" />
-                </a>
+                <div key={`o${c.id}`} className={`${CARD} p-5 border-s-4 border-[var(--color-gold)]`}>
+                  <p className="font-body text-[13px] text-[var(--color-navy)]/50">{c.case?.debtor_name ?? "—"}</p>
+                  <p className="font-body text-[17px] font-semibold leading-relaxed text-[var(--color-navy)] mt-1">
+                    {t.prelimSay(pre?.kind ?? "", fmtCurrency(pre?.amount ?? null, lang), fmtCurrency(c.claim_amount, lang))}
+                  </p>
+                  <p className="font-body text-[13px] text-[var(--color-navy)]/65 mt-1">
+                    {t.objectUntil(c.objection_deadline ? fmtDate(c.objection_deadline, lang) : null)}
+                  </p>
+                  <div className="flex gap-2 mt-4">
+                    <button type="button" className={BTN_PRIMARY} onClick={() => onOpen(c.id, true)}>{t.btnObject}</button>
+                    <button type="button" className={BTN_SOFT} onClick={() => onOpen(c.id)}>{t.btnDetails}</button>
+                  </div>
+                </div>
               );
             })}
+
+            {completes.map((r) => {
+              const c = byId.get(r.claim_id);
+              return (
+                <div key={`c${r.id}`} className={`${CARD} p-5 border-s-4 border-[var(--color-gold)]`}>
+                  <p className="font-body text-[13px] text-[var(--color-navy)]/50">{c?.case?.debtor_name ?? "—"}</p>
+                  <p className="font-body text-[17px] font-semibold text-[var(--color-navy)] mt-1">{t.completeSay}</p>
+                  {r.custom_message && <p className="font-body text-[13px] text-[var(--color-navy)]/65 mt-1">{r.custom_message}</p>}
+                  <div className="flex gap-2 mt-4">
+                    <a className={BTN_PRIMARY} href={`/bankruptcy/complete?token=${encodeURIComponent(r.token)}`}>{t.completeBtn}</a>
+                    {c && <button type="button" className={BTN_SOFT} onClick={() => onOpen(c.id)}>{t.btnDetails}</button>}
+                  </div>
+                </div>
+              );
+            })}
+
+            {signs.length > 0 && (
+              <div className={`${CARD} p-5 border-s-4 border-[var(--color-gold)]`}>
+                <p className="font-body text-[17px] font-semibold text-[var(--color-navy)]">{t.signCount(signs.length)}</p>
+                <p className="font-body text-[13px] text-[var(--color-navy)]/65 mt-1 mb-2">{t.signHint}</p>
+                {shownSigns.map((r) => (
+                  <div key={r.id} className="flex items-center justify-between gap-3 py-3 border-t border-[var(--color-border)] first:border-t-0">
+                    <span className="font-body text-[15px] text-[var(--color-navy)] min-w-0">
+                      {byId.get(r.claim_id)?.case?.debtor_name ?? "—"}
+                    </span>
+                    <a
+                      href={`/bankruptcy/complete?token=${encodeURIComponent(r.token)}`}
+                      className="shrink-0 rounded-full bg-[var(--color-gold)]/15 px-4 py-1.5 font-body text-[13px] font-semibold text-[var(--color-navy)] hover:bg-[var(--color-gold)]/30 transition-colors"
+                    >
+                      {t.signBtn}
+                    </a>
+                  </div>
+                ))}
+                {signs.length > shownSigns.length && (
+                  <button
+                    type="button"
+                    onClick={() => setAllSigns(true)}
+                    className="w-full flex items-center justify-between py-3 border-t border-[var(--color-border)] font-body text-[15px] text-[var(--color-navy)]/50"
+                  >
+                    {t.andMore(signs.length - shownSigns.length)}
+                    <span aria-hidden>‹</span>
+                  </button>
+                )}
+              </div>
+            )}
           </div>
+        </>
+      )}
+
+      {hearings.length > 0 && (
+        <>
+          <p className={SECTION}>{t.upcomingHearings}</p>
+          <div className={`${CARD} px-5`}>
+            {hearings.map((h) => (
+              <div key={h.id} className="flex items-start justify-between gap-3 py-4 border-t border-[var(--color-border)] first:border-t-0">
+                <div className="min-w-0">
+                  <p className="font-body text-[15px] font-semibold text-[var(--color-navy)]">{h.debtor_name ?? "—"}</p>
+                  <p className="font-body text-xs text-[var(--color-navy)]/55 mt-0.5">
+                    {h.court_name ?? "—"}
+                    {h.hearing_type ? ` · ${h.hearing_type}` : ""}
+                  </p>
+                </div>
+                <div className="text-end shrink-0">
+                  <p className="font-body text-sm text-[var(--color-navy)]">{fmtDate(h.hearing_date, lang)}</p>
+                  <p className="font-body text-xs text-[var(--color-navy)]/55 flex items-center gap-1 justify-end">
+                    {h.is_remote && <Video className="w-3 h-3" />}
+                    {h.hearing_time ?? ""}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      <p className={SECTION}>{t.yourClaims}</p>
+      <div className={`${CARD} px-5`}>
+        {claims.map((c) => {
+          const waiting = completes.some((r) => r.claim_id === c.id);
+          const stage = c.claim_stage ?? 1;
+          return (
+            <button
+              key={c.id}
+              type="button"
+              onClick={() => onOpen(c.id)}
+              className="block w-full text-start py-4 border-t border-[var(--color-border)] first:border-t-0"
+            >
+              <div className="flex items-baseline justify-between gap-3">
+                <span className="font-body text-[15px] font-semibold text-[var(--color-navy)] min-w-0 break-words">
+                  {c.case?.debtor_name ?? "—"}
+                </span>
+                <span className="font-body text-sm text-[var(--color-navy)]/60 whitespace-nowrap">{fmtCompact(c.claim_amount, lang)}</span>
+              </div>
+              <div className="h-1 rounded-full bg-[var(--color-border)] mt-2.5 overflow-hidden">
+                <div className="h-full rounded-full bg-[var(--color-navy)]" style={{ width: `${Math.max(8, (stage / 6) * 100)}%` }} />
+              </div>
+              <div className="flex items-center justify-between mt-1.5 font-body text-[12.5px] text-[var(--color-navy)]/60">
+                <span>{t.st(statusKey(c, waiting))}</span>
+                <span aria-hidden>‹</span>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/** سبب القرار: أسطرٌ ثلاثة، والكامل بضغطة — التسبيب قد يبلغ صفحة */
+function ReasonText({ text, t }: { text: string; t: Strings }) {
+  const [full, setFull] = useState(false);
+  const long = text.length > 220;
+  return (
+    <div className="mt-1.5">
+      <p className={`font-body text-[12.5px] leading-6 text-[var(--color-navy)]/70 whitespace-pre-wrap ${long && !full ? "line-clamp-3" : ""}`}>
+        {t.reasonLbl}: {text}
+      </p>
+      {long && (
+        <button type="button" onClick={() => setFull((v) => !v)} className="mt-1 font-body text-[12.5px] font-semibold text-[var(--color-navy)] underline">
+          {full ? t.readLess : t.readMore}
+        </button>
+      )}
+    </div>
+  );
+}
+
+function ClaimDetailView({
+  claim,
+  completions,
+  t,
+  lang,
+  sessionToken,
+  objectOnOpen,
+  onBack,
+  onChanged,
+  onAsk,
+}: {
+  claim: Claim;
+  completions: CompletionRequest[];
+  t: Strings;
+  lang: Lang;
+  sessionToken: string | null;
+  objectOnOpen: boolean;
+  onBack: () => void;
+  onChanged: () => void;
+  onAsk: () => void;
+}) {
+  const [objOpen, setObjOpen] = useState(objectOnOpen && !!claim.can_object);
+  const [docsOpen, setDocsOpen] = useState(false);
+  const docs = claim.documents ?? [];
+  const decisions = claim.decisions ?? [];
+  const dec = (st: ClaimDecision["stage"]) => decisions.find((d) => d.stage === st) ?? null;
+  const stage = claim.claim_stage ?? 1;
+  const waiting = completions.some((c) => !isSignOnly(c));
+
+  // المسار: ما صدر بتاريخه وتفصيله، وما بقي باهتاً ومعه متى يأتي
+  const steps: { key: string; done: boolean; date?: string | null; d?: ClaimDecision | null; hint?: string }[] = [
+    { key: "submitted", done: true, date: claim.submitted_at },
+    { key: stage >= 2 ? "debtor_done" : "debtor", done: stage >= 2 },
+    { key: "preliminary", done: !!dec("preliminary"), d: dec("preliminary") },
+    { key: "final", done: !!dec("final"), d: dec("final"), hint: dec("preliminary") ? t.tl("final_hint") : undefined },
+    { key: "first_instance", done: !!dec("first_instance"), d: dec("first_instance"), hint: dec("final") ? t.tl("court_hint") : undefined },
+    ...(dec("appeal") ? [{ key: "appeal", done: true, d: dec("appeal") }] : []),
+  ];
+  const lastDone = steps.reduce((i, s, idx) => (s.done ? idx : i), 0);
+
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={onBack}
+        className="inline-flex items-center gap-1 font-body text-sm text-[var(--color-navy)]/60 hover:text-[var(--color-navy)]"
+      >
+        <span aria-hidden>›</span> {t.backToClaims}
+      </button>
+
+      <p className="font-body text-[13px] text-[var(--color-navy)]/50 mt-6">
+        {claim.case?.debtor_name ?? "—"}
+        {claim.claim_ref ? <> · <bdi>{claim.claim_ref}</bdi></> : null}
+      </p>
+      <p className="font-body text-[32px] md:text-4xl font-bold text-[var(--color-navy)] mt-1 tracking-tight break-words">
+        {fmtCurrency(claim.claim_amount, lang)}
+      </p>
+      <p className="font-body text-sm text-[var(--color-navy)]/70 mt-1">
+        {t.st(statusKey(claim, waiting))}
+        {claim.can_object ? <span className="block text-[13px] text-[var(--color-navy)]/60 mt-0.5">{t.objectUntil(claim.objection_deadline ? fmtDate(claim.objection_deadline, lang) : null)}</span> : null}
+      </p>
+
+      {(completions.length > 0 || (claim.can_object && !objOpen)) && (
+        <div className="flex flex-col gap-2 mt-5">
+          {completions.map((r) => (
+            <a key={r.id} className={BTN_PRIMARY} href={`/bankruptcy/complete?token=${encodeURIComponent(r.token)}`}>
+              {isSignOnly(r) ? t.todoSign : t.completeBtn}
+            </a>
+          ))}
+          {claim.can_object && !objOpen && (
+            <button type="button" className={BTN_PRIMARY} onClick={() => setObjOpen(true)}>{t.objStart}</button>
+          )}
         </div>
       )}
+
+      {(claim.objection || (claim.can_object && sessionToken && objOpen)) && (
+        <div className={`${CARD} p-5 mt-5`}>
+          <ObjectionSection
+            claim={claim}
+            t={t}
+            lang={lang}
+            sessionToken={sessionToken}
+            onDone={onChanged}
+            startOpen
+            onCancel={() => setObjOpen(false)}
+          />
+        </div>
+      )}
+
+      <p className={SECTION}>{t.trackTitle}</p>
+      <ol className={`${CARD} p-5`}>
+        {steps.map((s, idx) => {
+          const now = idx === lastDone && idx < steps.length - 1 && s.key !== "submitted";
+          const last = idx === steps.length - 1;
+          return (
+            <li key={s.key} className="relative flex gap-3.5 pb-6 last:pb-0">
+              {!last && <span className="absolute top-6 bottom-0 start-[9px] w-0.5 bg-[var(--color-border)]" aria-hidden />}
+              <span
+                className={`relative mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] text-white ${
+                  now
+                    ? "bg-[var(--color-gold)] ring-[5px] ring-[var(--color-gold)]/20"
+                    : s.done
+                      ? "bg-green-600"
+                      : "bg-white border-2 border-[var(--color-border)]"
+                }`}
+              >
+                {s.done && !now ? "✓" : ""}
+              </span>
+              <div className="min-w-0 flex-1">
+                <p className={`font-body text-[15px] ${s.done ? "font-semibold text-[var(--color-navy)]" : "text-[var(--color-navy)]/40"}`}>
+                  {t.tl(s.key)}
+                  {s.d ? ` · ${trRecommendation(s.d.kind, lang)}` : ""}
+                </p>
+                {(s.d?.date || s.date) && (
+                  <p className="font-body text-[13px] text-[var(--color-navy)]/55 mt-0.5">
+                    {fmtDate((s.d?.date ?? s.date) as string, lang)}
+                    {s.d?.ref ? ` · ${t.decRef(s.d.ref)}` : ""}
+                  </p>
+                )}
+                {!s.done && s.hint && <p className="font-body text-[13px] text-[var(--color-navy)]/45 mt-0.5">{s.hint}</p>}
+                {s.d && (s.d.amount != null || s.d.rejected != null || s.d.reason) && (
+                  <div className="mt-2.5 rounded-xl bg-[var(--color-cream)] px-3.5 py-3">
+                    {s.d.amount != null && (
+                      <div className="flex justify-between font-body text-sm py-0.5">
+                        <span className="text-[var(--color-navy)]/70">{t.accepted}</span>
+                        <span className="font-semibold text-[var(--color-navy)]">{fmtCurrency(s.d.amount, lang)}</span>
+                      </div>
+                    )}
+                    {s.d.rejected != null && Number(s.d.rejected) > 0 && (
+                      <div className="flex justify-between font-body text-sm py-0.5">
+                        <span className="text-[var(--color-navy)]/70">{t.rejected}</span>
+                        <span className="font-semibold text-[var(--color-navy)]">{fmtCurrency(s.d.rejected, lang)}</span>
+                      </div>
+                    )}
+                    {s.d.reason && <ReasonText text={s.d.reason} t={t} />}
+                  </div>
+                )}
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+
+      <div className={`${CARD} px-5 mt-4`}>
+        {claim.recommendation_doc && (
+          <a
+            href={claim.recommendation_doc}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between py-4 font-body text-[15px] text-[var(--color-navy)]"
+          >
+            <span>{t.recDoc}</span>
+            <span aria-hidden className="text-[var(--color-navy)]/40">‹</span>
+          </a>
+        )}
+        {docs.length > 0 && (
+          <div className="border-t border-[var(--color-border)] first:border-t-0">
+            <button
+              type="button"
+              onClick={() => setDocsOpen((v) => !v)}
+              aria-expanded={docsOpen}
+              className="w-full flex items-center justify-between py-4 font-body text-[15px] text-[var(--color-navy)]"
+            >
+              <span>
+                {t.docsLink} <span className="text-[var(--color-navy)]/45">({fmtNumber(docs.length)})</span>
+              </span>
+              <span aria-hidden className={`text-[var(--color-navy)]/40 transition-transform ${docsOpen ? "-rotate-90" : ""}`}>‹</span>
+            </button>
+            {docsOpen && (
+              <div className="pb-3 space-y-1.5">
+                {docs.map((d, i) => {
+                  const Icon = docIconFor(d);
+                  return (
+                    <a
+                      key={i}
+                      href={d.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2.5 rounded-xl bg-[var(--color-cream)] px-3 py-2.5 hover:bg-[var(--color-border)]/40 transition-colors"
+                    >
+                      <Icon className="w-4 h-4 text-[var(--color-navy)]/50 shrink-0" />
+                      <span className="font-body text-[13px] text-[var(--color-navy)]/80 truncate flex-1 min-w-0">{docLabel(d, i, t, lang)}</span>
+                      <Eye className="w-3.5 h-3.5 text-[var(--color-gold)] shrink-0" />
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
+        <button
+          type="button"
+          onClick={onAsk}
+          className="w-full flex items-center justify-between py-4 border-t border-[var(--color-border)] first:border-t-0 font-body text-[15px] text-[var(--color-navy)]"
+        >
+          <span>{t.askAbout}</span>
+          <span aria-hidden className="text-[var(--color-navy)]/40">‹</span>
+        </button>
+      </div>
+
+      <p className={SECTION}>{t.claimData}</p>
+      <div className={`${CARD} px-5 py-1`}>
+        {[
+          [t.colSubmitted, fmtDate(claim.submitted_at, lang)],
+          [t.colProcedure, claim.case?.procedure_type ? trProcedure(claim.case.procedure_type, lang) : null],
+          [t.dueDate, claim.due_date ? fmtDate(claim.due_date, lang) : null],
+          [t.claimBasis, claim.claim_reason ?? null],
+        ]
+          .filter(([, v]) => v)
+          .map(([k, v]) => (
+            <div key={k as string} className="py-3 border-t border-[var(--color-border)] first:border-t-0">
+              <p className="font-body text-xs text-[var(--color-navy)]/50">{k}</p>
+              <p className="font-body text-sm text-[var(--color-navy)] mt-0.5 break-words">{v}</p>
+            </div>
+          ))}
+      </div>
     </div>
   );
 }
@@ -2026,14 +2316,18 @@ function ObjectionSection({
   lang,
   sessionToken,
   onDone,
+  startOpen = false,
+  onCancel,
 }: {
   claim: Claim;
   t: Strings;
   lang: Lang;
   sessionToken: string | null;
   onDone: () => void;
+  startOpen?: boolean;
+  onCancel?: () => void;
 }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(startOpen);
   const [text, setText] = useState("");
   const [files, setFiles] = useState<{ path: string; file_name: string }[]>([]);
   const [uploading, setUploading] = useState(false);
@@ -2185,7 +2479,7 @@ function ObjectionSection({
             </Button>
             <Button
               variant="outline"
-              onClick={() => { setOpen(false); setError(null); }}
+              onClick={() => { setOpen(false); setError(null); onCancel?.(); }}
               disabled={sending}
               className="font-heading"
             >
@@ -2194,54 +2488,6 @@ function ObjectionSection({
           </div>
         </div>
       )}
-    </div>
-  );
-}
-
-function ClaimStepper({ stage, lang }: { stage: number; lang: Lang }) {
-  return (
-    <div className="overflow-x-auto pb-2 -mx-1 px-1">
-      <div className="flex items-start min-w-[340px]">
-        {CLAIM_STAGES.map((s, idx) => {
-          const done = s.id < stage;
-          const current = s.id === stage;
-          const isLast = idx === CLAIM_STAGES.length - 1;
-
-          const circle = done
-            ? "bg-green-500 text-white border-green-500"
-            : current
-              ? "bg-[var(--color-gold)] text-white border-[var(--color-gold)] ring-4 ring-[var(--color-gold)]/20"
-              : "bg-white text-[var(--color-navy)]/30 border-[var(--color-border)]";
-          const line = done ? "bg-green-500" : "bg-[var(--color-border)]";
-          const text = done
-            ? "text-green-700"
-            : current
-              ? "text-[var(--color-gold)] font-bold"
-              : "text-[var(--color-navy)]/40";
-
-          return (
-            <div key={s.id} className={`relative ${isLast ? "flex-none" : "flex-1"}`}>
-              <div className="flex items-start">
-                <div className="flex flex-col items-center w-[52px] shrink-0 relative z-10">
-                  <div className={`w-8 h-8 rounded-full border-2 ${circle} flex items-center justify-center`}>
-                    {done ? (
-                      <CheckCircle2 className="w-4 h-4" />
-                    ) : current ? (
-                      <span className="text-sm">{s.icon}</span>
-                    ) : (
-                      <span className="text-xs opacity-50">{s.id}</span>
-                    )}
-                  </div>
-                  <p className={`text-[9px] font-heading text-center leading-tight mt-1.5 ${text}`}>
-                    {stageName(s.id, lang)}
-                  </p>
-                </div>
-                {!isLast && <div className={`flex-1 h-0.5 ${line} mt-4`} />}
-              </div>
-            </div>
-          );
-        })}
-      </div>
     </div>
   );
 }

@@ -372,6 +372,49 @@ export interface Strings {
   objCancel: string;
   objSubmitted: (date: string) => string;
   objDeadline: (date: string) => string;
+  // claim card (2026-10)
+  dueDate: string;
+  claimBasis: string;
+  todoTitle: (n: number) => string;
+  todoSign: string;
+  todoComplete: string;
+  todoObject: (date: string | null) => string;
+  todoOpen: string;
+  actionNeeded: string;
+  showDetails: string;
+  hideDetails: string;
+  decisionsTitle: string;
+  decStage: (stage: string) => string;
+  accepted: string;
+  rejected: string;
+  reasonLbl: string;
+  recDoc: string;
+  decRef: (ref: string) => string;
+  nextStep: (stage: number) => string;
+  // portal v2 (2026-10)
+  claimsCount: (n: number) => string;
+  needsAttention: string;
+  yourClaims: string;
+  prelimSay: (kind: string, accepted: string, total: string) => string;
+  objectUntil: (date: string | null) => string;
+  btnObject: string;
+  btnDetails: string;
+  signCount: (n: number) => string;
+  signHint: string;
+  signBtn: string;
+  andMore: (n: number) => string;
+  completeSay: string;
+  completeBtn: string;
+  st: (key: string) => string;
+  backToClaims: string;
+  trackTitle: string;
+  tl: (key: string) => string;
+  docsLink: string;
+  askAbout: string;
+  askSubject: (ref: string, debtor: string) => string;
+  claimData: string;
+  readMore: string;
+  readLess: string;
   errObjText: string;
   errObjFile: string;
   // ticket subjects (system-generated)
@@ -579,6 +622,62 @@ const AR: Strings = {
   objCancel: 'إلغاء',
   objSubmitted: (date) => `قُدّم اعتراضك بتاريخ ${date}، وسيُنظر فيه قبل إصدار التوصية النهائية.`,
   objDeadline: (date) => `مهلة الاعتراض ثلاثة أيام من إبلاغكم بالتوصية، وآخرها ${date}.`,
+  dueDate: 'تاريخ استحقاق الدين',
+  claimBasis: 'سبب المطالبة',
+  todoTitle: (n) => (n === 1 ? 'لديك أمرٌ ينتظرك' : `لديك ${n} أمور تنتظرك`),
+  todoSign: 'وقّع مطالبتك',
+  todoComplete: 'استكمل بيانات مطالبتك',
+  todoObject: (d) => (d ? `يمكنك الاعتراض على التوصية المبدئية حتى ${d}` : 'يمكنك الاعتراض على التوصية المبدئية'),
+  todoOpen: 'افتح',
+  actionNeeded: 'المطلوب منك',
+  showDetails: 'التفاصيل والمستندات',
+  hideDetails: 'إخفاء التفاصيل',
+  decisionsTitle: 'ما صدر في مطالبتك',
+  decStage: (st) =>
+    ({ preliminary: 'التوصية المبدئية', final: 'التوصية النهائية', first_instance: 'اعتماد الدائرة الابتدائية', appeal: 'اعتماد دائرة الاستئناف' } as Record<string, string>)[st] ?? st,
+  accepted: 'المقبول',
+  rejected: 'المرفوض',
+  reasonLbl: 'السبب',
+  recDoc: 'مستند التوصية المبدئية',
+  decRef: (r) => `القرار رقم ${r}`,
+  nextStep: (st) =>
+    [
+      '',
+      'يفحص الأمين مطالبتك ويطلب رأي المدين فيها، ثم تصدر التوصية المبدئية وتصلك برسالة.',
+      'يدرس الأمين مطالبتك ورأي المدين فيها، وستصلك التوصية المبدئية برسالة.',
+      'صدرت التوصية المبدئية. ولك الاعتراض عليها خلال مهلته، ثم تصدر التوصية النهائية.',
+      'صدرت التوصية النهائية، وتُرفع قائمة المطالبات إلى المحكمة لاعتمادها.',
+      'اعتمدت المحكمة مطالبتك في قائمة المطالبات.',
+      'صدر قرار دائرة الاستئناف في قائمة المطالبات.',
+    ][st] ?? '',
+  claimsCount: (n) => (n === 1 ? 'مطالبة واحدة' : n === 2 ? 'مطالبتان' : n <= 10 ? `${n} مطالبات` : `${n} مطالبة`),
+  needsAttention: 'يحتاج انتباهك',
+  yourClaims: 'مطالباتك',
+  prelimSay: (k, a, tot) =>
+    k === 'رفض' ? 'صدرت التوصية المبدئية برفض المطالبة'
+    : k === 'عرض على خبير' ? 'أوصى الأمين بعرض مطالبتك على خبير'
+    : `صدرت التوصية المبدئية: قُبل ${a} من ${tot}`,
+  objectUntil: (d) => (d ? `لك الاعتراض على التوصية حتى ${d}` : 'لك الاعتراض على التوصية'),
+  btnObject: 'اعتراض',
+  btnDetails: 'التفاصيل',
+  signCount: (n) => (n === 1 ? 'مطالبة تنتظر توقيعك' : n === 2 ? 'مطالبتان تنتظران توقيعك' : `${n} مطالبات تنتظر توقيعك`),
+  signHint: 'توقيعٌ واحد بإصبعك لكل مطالبة، ويُرفق بنموذجها.',
+  signBtn: 'وقّع',
+  andMore: (n) => (n === 1 ? 'ومطالبة أخرى' : `و${n} مطالبات أخرى`),
+  completeSay: 'مطلوب استكمال بيانات مطالبتك',
+  completeBtn: 'استكمال',
+  st: (k) =>
+    ({ received: 'استُلمت', study: 'يدرسها الأمين', waiting: 'تنتظر استكمالك', prelim: 'صدرت التوصية المبدئية', final: 'صدرت التوصية النهائية', court: 'اعتمدتها المحكمة', appeal: 'صدر فيها قرار الاستئناف' } as Record<string, string>)[k] ?? k,
+  backToClaims: 'مطالباتك',
+  trackTitle: 'مسار المطالبة',
+  tl: (k) =>
+    ({ submitted: 'قُدّمت المطالبة', debtor_done: 'أبدى المدين رأيه', debtor: 'رأي المدين', preliminary: 'التوصية المبدئية', final: 'التوصية النهائية', first_instance: 'اعتماد المحكمة', appeal: 'الاستئناف', final_hint: 'بعد انقضاء مهلة الاعتراض', court_hint: 'بعد رفع قائمة المطالبات إلى المحكمة' } as Record<string, string>)[k] ?? k,
+  docsLink: 'مستنداتك المرفقة',
+  askAbout: 'استفسر عن هذه المطالبة',
+  askSubject: (r, d) => `استفسار عن المطالبة ${r} — ${d}`,
+  claimData: 'بيانات المطالبة',
+  readMore: 'اقرأ السبب كاملاً',
+  readLess: 'إخفاء',
   errObjText: 'اكتب أسباب اعتراضك (عشرة أحرف على الأقل).',
   errObjFile: 'الملف غير مقبول: PDF أو JPG أو PNG، وحجمه حتى 10 ميجابايت.',
 };
@@ -786,6 +885,62 @@ const EN: Strings = {
   objCancel: 'Cancel',
   objSubmitted: (date) => `Your objection was submitted on ${date} and will be considered before the final recommendation is issued.`,
   objDeadline: (date) => `The objection period is three days from your notification of the recommendation, ending on ${date}.`,
+  dueDate: 'Debt due date',
+  claimBasis: 'Basis of claim',
+  todoTitle: (n) => (n === 1 ? 'One item needs your action' : `${n} items need your action`),
+  todoSign: 'Sign your claim',
+  todoComplete: 'Complete your claim data',
+  todoObject: (d) => (d ? `You may object to the preliminary recommendation until ${d}` : 'You may object to the preliminary recommendation'),
+  todoOpen: 'Open',
+  actionNeeded: 'Action needed',
+  showDetails: 'Details and documents',
+  hideDetails: 'Hide details',
+  decisionsTitle: 'Decisions on your claim',
+  decStage: (st) =>
+    ({ preliminary: 'Preliminary recommendation', final: 'Final recommendation', first_instance: 'Approval by the court of first instance', appeal: 'Approval by the court of appeal' } as Record<string, string>)[st] ?? st,
+  accepted: 'Accepted',
+  rejected: 'Rejected',
+  reasonLbl: 'Reason',
+  recDoc: 'Preliminary recommendation document',
+  decRef: (r) => `Decision No. ${r}`,
+  nextStep: (st) =>
+    [
+      '',
+      'The trustee is reviewing your claim and seeking the debtor’s opinion; the preliminary recommendation will be sent to you by message.',
+      'The trustee is studying your claim and the debtor’s opinion; the preliminary recommendation will be sent to you by message.',
+      'The preliminary recommendation has been issued. You may object within its period, after which the final recommendation is issued.',
+      'The final recommendation has been issued, and the claims list will be submitted to the court for approval.',
+      'The court has approved your claim in the claims list.',
+      'The court of appeal has ruled on the claims list.',
+    ][st] ?? '',
+  claimsCount: (n) => (n === 1 ? '1 claim' : `${n} claims`),
+  needsAttention: 'Needs your attention',
+  yourClaims: 'Your claims',
+  prelimSay: (k, a, tot) =>
+    k === 'رفض' ? 'The preliminary recommendation rejects the claim'
+    : k === 'عرض على خبير' ? 'The trustee recommended referring your claim to an expert'
+    : `Preliminary recommendation: ${a} accepted of ${tot}`,
+  objectUntil: (d) => (d ? `You may object until ${d}` : 'You may object to the recommendation'),
+  btnObject: 'Object',
+  btnDetails: 'Details',
+  signCount: (n) => (n === 1 ? 'A claim awaits your signature' : `${n} claims await your signature`),
+  signHint: 'One finger signature per claim, attached to its form.',
+  signBtn: 'Sign',
+  andMore: (n) => `and ${n} more`,
+  completeSay: 'Your claim needs more information',
+  completeBtn: 'Complete',
+  st: (k) =>
+    ({ received: 'Received', study: 'Under review', waiting: 'Awaiting your input', prelim: 'Preliminary recommendation issued', final: 'Final recommendation issued', court: 'Approved by the court', appeal: 'Appeal decision issued' } as Record<string, string>)[k] ?? k,
+  backToClaims: 'Your claims',
+  trackTitle: 'Claim progress',
+  tl: (k) =>
+    ({ submitted: 'Claim submitted', debtor_done: 'Debtor gave its opinion', debtor: 'Debtor opinion', preliminary: 'Preliminary recommendation', final: 'Final recommendation', first_instance: 'Court approval', appeal: 'Appeal', final_hint: 'After the objection period ends', court_hint: 'After the claims list is filed with the court' } as Record<string, string>)[k] ?? k,
+  docsLink: 'Your attached documents',
+  askAbout: 'Ask about this claim',
+  askSubject: (r, d) => `Inquiry about claim ${r} — ${d}`,
+  claimData: 'Claim details',
+  readMore: 'Read the full reason',
+  readLess: 'Show less',
   errObjText: 'Please state the grounds of your objection (at least ten characters).',
   errObjFile: 'File not accepted: PDF, JPG or PNG, up to 10 MB.',
 };
@@ -992,6 +1147,62 @@ const UR: Strings = {
   objCancel: 'منسوخ',
   objSubmitted: (date) => `آپ کا اعتراض ${date} کو جمع ہوا، حتمی سفارش سے پہلے اس پر غور کیا جائے گا۔`,
   objDeadline: (date) => `اعتراض کی مدت سفارش کی اطلاع سے تین دن ہے، جو ${date} کو ختم ہوتی ہے۔`,
+  dueDate: 'قرض کی واجب الادا تاریخ',
+  claimBasis: 'دعوے کی بنیاد',
+  todoTitle: (n) => (n === 1 ? 'ایک کام آپ کا منتظر ہے' : `${n} کام آپ کے منتظر ہیں`),
+  todoSign: 'اپنے دعوے پر دستخط کریں',
+  todoComplete: 'اپنے دعوے کی معلومات مکمل کریں',
+  todoObject: (d) => (d ? `آپ ${d} تک ابتدائی سفارش پر اعتراض کر سکتے ہیں` : 'آپ ابتدائی سفارش پر اعتراض کر سکتے ہیں'),
+  todoOpen: 'کھولیں',
+  actionNeeded: 'آپ سے مطلوب',
+  showDetails: 'تفصیلات اور دستاویزات',
+  hideDetails: 'تفصیلات چھپائیں',
+  decisionsTitle: 'آپ کے دعوے پر فیصلے',
+  decStage: (st) =>
+    ({ preliminary: 'ابتدائی سفارش', final: 'حتمی سفارش', first_instance: 'ابتدائی عدالت کی منظوری', appeal: 'اپیل عدالت کی منظوری' } as Record<string, string>)[st] ?? st,
+  accepted: 'منظور شدہ',
+  rejected: 'مسترد شدہ',
+  reasonLbl: 'وجہ',
+  recDoc: 'ابتدائی سفارش کی دستاویز',
+  decRef: (r) => `فیصلہ نمبر ${r}`,
+  nextStep: (st) =>
+    [
+      '',
+      'ٹرسٹی آپ کے دعوے کا جائزہ لے رہا ہے اور مقروض کی رائے لے رہا ہے؛ ابتدائی سفارش آپ کو پیغام کے ذریعے بھیجی جائے گی۔',
+      'ٹرسٹی آپ کے دعوے اور مقروض کی رائے کا مطالعہ کر رہا ہے؛ ابتدائی سفارش آپ کو پیغام کے ذریعے بھیجی جائے گی۔',
+      'ابتدائی سفارش جاری ہو چکی ہے۔ آپ مقررہ مدت میں اعتراض کر سکتے ہیں، اس کے بعد حتمی سفارش جاری ہوگی۔',
+      'حتمی سفارش جاری ہو چکی ہے، اور دعووں کی فہرست منظوری کے لیے عدالت میں پیش کی جائے گی۔',
+      'عدالت نے دعووں کی فہرست میں آپ کا دعویٰ منظور کر لیا ہے۔',
+      'اپیل عدالت نے دعووں کی فہرست پر فیصلہ دے دیا ہے۔',
+    ][st] ?? '',
+  claimsCount: (n) => `${n} دعوے`,
+  needsAttention: 'آپ کی توجہ درکار',
+  yourClaims: 'آپ کے دعوے',
+  prelimSay: (k, a, tot) =>
+    k === 'رفض' ? 'ابتدائی سفارش میں دعویٰ مسترد کیا گیا'
+    : k === 'عرض على خبير' ? 'ٹرسٹی نے آپ کا دعویٰ ماہر کے حوالے کرنے کی سفارش کی'
+    : `ابتدائی سفارش: ${tot} میں سے ${a} منظور`,
+  objectUntil: (d) => (d ? `آپ ${d} تک اعتراض کر سکتے ہیں` : 'آپ سفارش پر اعتراض کر سکتے ہیں'),
+  btnObject: 'اعتراض',
+  btnDetails: 'تفصیلات',
+  signCount: (n) => (n === 1 ? 'ایک دعویٰ آپ کے دستخط کا منتظر ہے' : `${n} دعوے آپ کے دستخط کے منتظر ہیں`),
+  signHint: 'ہر دعوے پر انگلی سے ایک دستخط، جو اس کے فارم کے ساتھ منسلک ہوگا۔',
+  signBtn: 'دستخط',
+  andMore: (n) => `اور ${n} مزید`,
+  completeSay: 'آپ کے دعوے کی معلومات مکمل کرنا ضروری ہے',
+  completeBtn: 'مکمل کریں',
+  st: (k) =>
+    ({ received: 'موصول', study: 'زیرِ جائزہ', waiting: 'آپ کی تکمیل کا منتظر', prelim: 'ابتدائی سفارش جاری', final: 'حتمی سفارش جاری', court: 'عدالت سے منظور', appeal: 'اپیل کا فیصلہ جاری' } as Record<string, string>)[k] ?? k,
+  backToClaims: 'آپ کے دعوے',
+  trackTitle: 'دعوے کی پیش رفت',
+  tl: (k) =>
+    ({ submitted: 'دعویٰ جمع ہوا', debtor_done: 'مقروض نے رائے دی', debtor: 'مقروض کی رائے', preliminary: 'ابتدائی سفارش', final: 'حتمی سفارش', first_instance: 'عدالتی منظوری', appeal: 'اپیل', final_hint: 'اعتراض کی مدت ختم ہونے کے بعد', court_hint: 'دعووں کی فہرست عدالت میں پیش ہونے کے بعد' } as Record<string, string>)[k] ?? k,
+  docsLink: 'آپ کی منسلک دستاویزات',
+  askAbout: 'اس دعوے کے بارے میں پوچھیں',
+  askSubject: (r, d) => `دعویٰ ${r} کے بارے میں استفسار — ${d}`,
+  claimData: 'دعوے کی تفصیلات',
+  readMore: 'پوری وجہ پڑھیں',
+  readLess: 'کم دکھائیں',
   errObjText: 'اپنے اعتراض کی وجوہات لکھیں (کم از کم دس حروف)۔',
   errObjFile: 'فائل قبول نہیں: PDF، JPG یا PNG، زیادہ سے زیادہ 10 MB۔',
 };
