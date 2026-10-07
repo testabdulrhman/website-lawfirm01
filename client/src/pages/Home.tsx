@@ -286,9 +286,20 @@ export default function Home() {
 
       {/* Bankruptcy Track Record */}
       <section className="relative py-16 md:py-24 lg:py-32 bg-[var(--color-navy)] overflow-hidden">
-        {/* Subtle background pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+        {/* خلفية القسم: صورة خافتة تحت طبقة كحلية داكنة */}
+        <div className="absolute inset-0" aria-hidden="true">
+          <img
+            src="/images/bankruptcy-record-2000.webp"
+            srcSet="/images/bankruptcy-record-800.webp 800w, /images/bankruptcy-record-2000.webp 2000w"
+            sizes="100vw"
+            alt=""
+            className="w-full h-full object-cover object-[96%_50%]"
+            loading="lazy"
+            decoding="async"
+            width={2000}
+            height={727}
+          />
+          <div className="absolute inset-0 bg-[oklch(0.2_0.04_250/0.91)]" />
         </div>
         <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
           <div ref={bankruptcyRef}>
