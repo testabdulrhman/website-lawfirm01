@@ -8,7 +8,7 @@ import {
   Mail,
   Clock,
 } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackWhatsAppClick, trackPhoneClick, trackEmailClick } from "@/lib/analytics";
 import { localePath } from "@/lib/localePath";
@@ -17,6 +17,8 @@ import { FIRM_LEGAL_NAME_EN, FIRM_NAME_AR } from "@/lib/firmIdentity";
 export default function Footer() {
   const { t, lang, isRTL } = useTranslation();
   const lp = (path: string) => localePath(path, lang);
+  const [location] = useLocation();
+  const isHome = location === "/" || location === "/en";
   const serviceLinks = t.services.items.slice(0, 5);
 
   const labels = lang === "ar"
@@ -192,19 +194,22 @@ export default function Footer() {
         </div>
       </footer>
 
-      <a
-        href="https://wa.me/966920032760?text=%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D9%82%D8%A7%D9%86%D9%88%D9%86%D9%8A%D8%A9"
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={() => trackWhatsAppClick("floating_button")}
-        className={`group fixed bottom-5 ${isRTL ? "left-5" : "right-5"} z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95`}
-        aria-label={t.footer.whatsapp}
-      >
-        <MessageCircle size={28} className="text-white" />
-        <span className={`pointer-events-none absolute hidden whitespace-nowrap bg-white px-3 py-2 font-heading text-xs text-[var(--color-navy)] opacity-0 shadow-md transition-opacity duration-200 group-hover:opacity-100 md:block ${isRTL ? "left-16" : "right-16"}`}>
-          {t.footer.whatsapp}
-        </span>
-      </a>
+      {/* الرئيسية واجهة رسمية بلا أزرار تواصل عائمة */}
+      {!isHome && (
+        <a
+          href="https://wa.me/966920032760?text=%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D9%82%D8%A7%D9%86%D9%88%D9%86%D9%8A%D8%A9"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => trackWhatsAppClick("floating_button")}
+          className={`group fixed bottom-5 ${isRTL ? "left-5" : "right-5"} z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95`}
+          aria-label={t.footer.whatsapp}
+        >
+          <MessageCircle size={28} className="text-white" />
+          <span className={`pointer-events-none absolute hidden whitespace-nowrap bg-white px-3 py-2 font-heading text-xs text-[var(--color-navy)] opacity-0 shadow-md transition-opacity duration-200 group-hover:opacity-100 md:block ${isRTL ? "left-16" : "right-16"}`}>
+            {t.footer.whatsapp}
+          </span>
+        </a>
+      )}
     </>
   );
 }

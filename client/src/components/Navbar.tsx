@@ -276,16 +276,18 @@ export default function Navbar() {
             <span>{lang === "ar" ? "EN" : "عربي"}</span>
           </button>
 
-          <Link
-            href={lp("/appointments")}
-            onClick={() => trackBookConsultation("navbar_desktop")}
-            className={`flex items-center gap-2 px-5 py-2.5 font-heading text-sm font-medium transition-all duration-200 active:scale-[0.97] ${
-              showTransparent ? "bg-[var(--color-gold)] text-[var(--color-navy)] hover:bg-[var(--color-gold-light)]" : "bg-[var(--color-navy)] text-[var(--color-cream)] hover:bg-[var(--color-navy-light)]"
-            }`}
-          >
-            <Phone size={14} />
-            <span>{t.nav.bookConsultation}</span>
-          </Link>
+          {!isHome && (
+            <Link
+              href={lp("/appointments")}
+              onClick={() => trackBookConsultation("navbar_desktop")}
+              className={`flex items-center gap-2 px-5 py-2.5 font-heading text-sm font-medium transition-all duration-200 active:scale-[0.97] ${
+                showTransparent ? "bg-[var(--color-gold)] text-[var(--color-navy)] hover:bg-[var(--color-gold-light)]" : "bg-[var(--color-navy)] text-[var(--color-cream)] hover:bg-[var(--color-navy-light)]"
+              }`}
+            >
+              <Phone size={14} />
+              <span>{t.nav.bookConsultation}</span>
+            </Link>
+          )}
         </div>
 
         {/* Mobile: Language Toggle + Hamburger */}
@@ -580,17 +582,19 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Contact Info */}
-            <div className="mt-8 pt-6 border-t border-[var(--color-border)]">
-              <a
-                href="tel:+966920032760"
-                onClick={() => trackPhoneClick("navbar_mobile")}
-                className="flex min-h-11 items-center justify-center gap-3 text-[var(--color-navy)]/70 font-body text-base mb-4"
-                dir="ltr"
-              >
-                <Phone size={18} className="text-[var(--color-gold)]" />
-                <span>920032760</span>
-              </a>
-            </div>
+            {!isHome && (
+              <div className="mt-8 pt-6 border-t border-[var(--color-border)]">
+                <a
+                  href="tel:+966920032760"
+                  onClick={() => trackPhoneClick("navbar_mobile")}
+                  className="flex min-h-11 items-center justify-center gap-3 text-[var(--color-navy)]/70 font-body text-base mb-4"
+                  dir="ltr"
+                >
+                  <Phone size={18} className="text-[var(--color-gold)]" />
+                  <span>920032760</span>
+                </a>
+              </div>
+            )}
 
             {/* Mobile Language Toggle */}
             <div className="mt-4 flex justify-center">
@@ -606,16 +610,18 @@ export default function Navbar() {
           </div>
 
           {/* Mobile CTA - Fixed at bottom */}
-          <div className="px-6 pb-8 pt-4 border-t border-[var(--color-border)]/50">
-            <Link
-              href={lp("/appointments")}
-              onClick={() => trackBookConsultation("navbar_mobile")}
-              className="flex items-center justify-center gap-3 w-full px-6 py-4 bg-[var(--color-navy)] text-[var(--color-cream)] font-heading text-base font-semibold active:scale-[0.97] transition-transform"
-            >
-              <Phone size={16} />
-              <span>{t.nav.bookConsultation}</span>
-            </Link>
-          </div>
+          {!isHome && (
+            <div className="px-6 pb-8 pt-4 border-t border-[var(--color-border)]/50">
+              <Link
+                href={lp("/appointments")}
+                onClick={() => trackBookConsultation("navbar_mobile")}
+                className="flex items-center justify-center gap-3 w-full px-6 py-4 bg-[var(--color-navy)] text-[var(--color-cream)] font-heading text-base font-semibold active:scale-[0.97] transition-transform"
+              >
+                <Phone size={16} />
+                <span>{t.nav.bookConsultation}</span>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </>

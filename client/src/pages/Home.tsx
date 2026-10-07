@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Scale, FileCheck, Building, Landmark, Briefcase, Shield, Users, Gavel, BookOpen, Award, Calendar, Clock } from "lucide-react";
+import { ArrowLeft, ArrowRight, Scale, FileCheck, Building, Landmark, Briefcase, Shield, Gavel, BookOpen, Award, Calendar, Clock } from "lucide-react";
 import { blogHighlights } from "@/data/blogHighlights";
 import { Link } from "wouter";
 import { useScrollAnimation, getStaggerStyle, getFadeStyle } from "@/hooks/useScrollAnimation";
@@ -6,7 +6,6 @@ import { useEffect, useState, useRef } from "react";
 import { preload } from "react-dom";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useSEO } from "@/hooks/useSEO";
-import { trackBookConsultation, trackPhoneClick } from "@/lib/analytics";
 import { localePath } from "@/lib/localePath";
 import ClientsSection from "@/components/ClientsSection";
 
@@ -95,17 +94,8 @@ export default function Home() {
     initialVisible: true,
   });
   const { ref: aboutRef, isVisible: aboutVisible } = useScrollAnimation({ threshold: 0.15 });
-  const { ref: servicesRef, isVisible: servicesVisible } = useScrollAnimation({ threshold: 0.1 });
   const { ref: licensesRef, isVisible: licensesVisible } = useScrollAnimation({ threshold: 0.2 });
   const { ref: bankruptcyRef, isVisible: bankruptcyVisible } = useScrollAnimation({ threshold: 0.15 });
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation({ threshold: 0.15 });
-
-  const featuredServices = [
-    { icon: Scale, title: t.services.items[4].title, slug: t.services.items[4].slug },
-    { icon: Briefcase, title: t.services.items[0].title, slug: t.services.items[0].slug },
-    { icon: Users, title: t.services.items[1].title, slug: t.services.items[1].slug },
-    { icon: Building, title: t.services.items[3].title, slug: t.services.items[3].slug },
-  ];
 
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
   const arrowHoverClass = isRTL ? "group-hover:-translate-x-1" : "group-hover:translate-x-1";
@@ -160,7 +150,7 @@ export default function Home() {
                 {t.hero.subtitle}
               </p>
 
-              {/* CTA Buttons */}
+              {/* Hero link */}
               <div
                 className="flex flex-col sm:flex-row gap-3 sm:gap-4"
                 style={getFadeStyle(heroVisible, "up", 450)}
@@ -170,14 +160,6 @@ export default function Home() {
                   className="flex items-center justify-center gap-3 px-6 md:px-8 py-3.5 md:py-4 bg-transparent border-2 border-white/20 text-white font-heading font-medium text-sm md:text-base hover:border-white/50 active:bg-white/10 transition-all duration-200"
                 >
                   <span>{t.hero.exploreServices}</span>
-                </Link>
-                <Link
-                  href={lp("/appointments")}
-                  onClick={() => trackBookConsultation("homepage_hero")}
-                  className="group flex items-center justify-center gap-3 px-6 md:px-8 py-3.5 md:py-4 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm md:text-base hover:bg-[var(--color-gold-light)] transition-all duration-200 active:scale-[0.97]"
-                >
-                  <span>{t.hero.getConsultation}</span>
-                  <ArrowIcon size={18} className={`${arrowHoverClass} transition-transform duration-200`} />
                 </Link>
               </div>
             </div>
@@ -298,62 +280,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Services */}
-      <section className="py-16 md:py-24 lg:py-32 bg-[var(--color-cream)]">
-        <div className="container mx-auto px-5 md:px-4 lg:px-8">
-          <div ref={servicesRef}>
-            <div style={getFadeStyle(servicesVisible, isRTL ? "right" : "left", 0)}>
-              <div className="flex items-center gap-4 mb-6">
-                <div
-                  className="h-[2px] bg-[var(--color-gold)] transition-all duration-700"
-                  style={{ width: servicesVisible ? "48px" : "0px", transitionDelay: "200ms" }}
-                />
-                <span className="font-heading text-sm tracking-[0.2em] text-[var(--color-gold)] uppercase">
-                  {t.services.label}
-                </span>
-              </div>
-              <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-6 mb-10 md:mb-16">
-                <h2 className="font-display text-2xl sm:text-3xl lg:text-5xl font-bold text-[var(--color-navy)] leading-tight">
-                  {lang === "ar" ? (
-                    <>خدمات قانونية <span className="text-[var(--color-gold)]">متخصصة</span></>
-                  ) : (
-                    <><span className="text-[var(--color-gold)]">Specialized</span> Legal Services</>
-                  )}
-                </h2>
-                <Link
-                  href={lp("/services")}
-                  className="group inline-flex min-h-11 items-center gap-2 font-heading text-sm font-semibold text-[var(--color-navy)] hover:text-[var(--color-gold)] transition-colors"
-                >
-                  <span>{t.services.viewAll}</span>
-                  <ArrowIcon size={16} className={`${arrowHoverClass} transition-transform`} />
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {featuredServices.map((service, idx) => (
-              <Link
-                key={service.slug}
-                href={lp(`/services/${service.slug}`)}
-                className="group relative p-6 md:p-8 bg-white border border-[var(--color-border)] hover:border-[var(--color-gold)] hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] active:scale-[0.97] transition-all duration-300 overflow-hidden before:absolute before:inset-x-0 before:bottom-0 before:h-1 before:bg-[var(--color-gold)] before:scale-x-0 before:origin-right hover:before:scale-x-100 hover:before:origin-left before:transition-transform before:duration-500"
-                style={getStaggerStyle(servicesVisible, idx, 100)}
-              >
-                <div className="w-12 h-12 md:w-14 md:h-14 bg-[var(--color-navy)] flex items-center justify-center mb-4 md:mb-6 group-hover:bg-[var(--color-gold)] transition-colors duration-300">
-                  <service.icon size={22} className="text-[var(--color-gold)] group-hover:text-[var(--color-navy)] transition-colors duration-300" />
-                </div>
-                <h3 className="font-heading text-base font-semibold text-[var(--color-navy)] mb-2 md:mb-3">
-                  {service.title}
-                </h3>
-                <span className="font-body text-xs text-[var(--color-gold)] group-hover:underline">
-                  {t.services.readMore} {isRTL ? "←" : "→"}
-                </span>
-              </Link>
-            ))}
           </div>
         </div>
       </section>
@@ -537,62 +463,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative py-16 md:py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="/images/services-law-1280.webp"
-            alt={lang === "ar" ? "استشارات قانونية متخصصة" : "Specialized legal consultation"}
-            className="w-full h-full object-cover scale-110"
-            loading="lazy"
-            width={1280}
-            height={960}
-          />
-          <div className="absolute inset-0 bg-[oklch(0.12_0.04_250/0.9)]" />
-        </div>
-
-        <div
-          ref={ctaRef}
-          className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10 text-center"
-        >
-          <h2
-            className="font-display text-2xl sm:text-3xl lg:text-5xl font-bold text-white leading-tight mb-4 md:mb-6"
-            style={getFadeStyle(ctaVisible, "up", 0)}
-          >
-            {lang === "ar" ? (
-              <>هل تحتاج <span className="text-[var(--color-gold)]">استشارة قانونية</span>؟</>
-            ) : (
-              <>Need a <span className="text-[var(--color-gold)]">Legal Consultation</span>?</>
-            )}
-          </h2>
-          <p
-            className="font-body text-base md:text-lg text-white/70 max-w-2xl mx-auto mb-8 md:mb-10"
-            style={getFadeStyle(ctaVisible, "up", 150)}
-          >
-            {t.cta.subtitle}
-          </p>
-          <div
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
-            style={getFadeStyle(ctaVisible, "up", 300)}
-          >
-            <Link
-              href={lp("/appointments")}
-              onClick={() => trackBookConsultation('homepage_final_cta')}
-              className="group flex items-center gap-3 px-6 md:px-8 py-3.5 md:py-4 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading font-semibold text-sm md:text-base hover:bg-[var(--color-gold-light)] hover:shadow-[0_8px_30px_oklch(0.65_0.1_70/0.3)] transition-all duration-200 active:scale-[0.97] w-full sm:w-auto justify-center"
-            >
-              <span>{t.cta.contactUs}</span>
-              <ArrowIcon size={18} className={`${arrowHoverClass} transition-transform duration-200`} />
-            </Link>
-            <a
-              href="tel:+966920032760"
-              onClick={() => trackPhoneClick('hero_section')}
-              className="flex items-center gap-3 px-6 md:px-8 py-3.5 md:py-4 border-2 border-white/30 text-white font-heading font-medium text-sm md:text-base hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] transition-all duration-200 w-full sm:w-auto justify-center"
-            >
-              <span dir="ltr">920032760</span>
-            </a>
-          </div>
-        </div>
-      </section>
     </>
   );
 }
