@@ -661,7 +661,7 @@ export default function ServiceDetail() {
                     <div className="grid grid-cols-2 gap-4 md:gap-6 mb-5">
                       <div className="border-t border-white/10 pt-4">
                         <div className="flex items-baseline gap-1.5">
-                          <span className="font-display text-2xl md:text-3xl font-bold text-[var(--color-gold)]">+630</span>
+                          <span className="font-display text-2xl md:text-3xl font-bold text-[var(--color-gold)]">+739</span>
                           <span className="font-heading text-xs text-white/60">{lang === 'ar' ? 'مليون ر.س' : 'M SAR'}</span>
                         </div>
                         <p className="font-body text-[10px] md:text-xs text-white/40 mt-1">
@@ -670,7 +670,7 @@ export default function ServiceDetail() {
                       </div>
                       <div className="border-t border-white/10 pt-4">
                         <div className="flex items-baseline gap-1.5">
-                          <span className="font-display text-2xl md:text-3xl font-bold text-[var(--color-gold)]">600</span>
+                          <span className="font-display text-2xl md:text-3xl font-bold text-[var(--color-gold)]">701</span>
                           <span className="font-heading text-xs text-white/60">{lang === 'ar' ? 'مطالبة' : 'Claims'}</span>
                         </div>
                         <p className="font-body text-[10px] md:text-xs text-white/40 mt-1">
