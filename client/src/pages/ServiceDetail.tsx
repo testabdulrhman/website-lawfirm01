@@ -670,7 +670,7 @@ export default function ServiceDetail() {
                       </div>
                       <div className="border-t border-white/10 pt-4">
                         <div className="flex items-baseline gap-1.5">
-                          <span className="font-display text-2xl md:text-3xl font-bold text-[var(--color-gold)]">701</span>
+                          <span className="font-display text-2xl md:text-3xl font-bold text-[var(--color-gold)]">+700</span>
                           <span className="font-heading text-xs text-white/60">{lang === 'ar' ? 'مطالبة' : 'Claims'}</span>
                         </div>
                         <p className="font-body text-[10px] md:text-xs text-white/40 mt-1">
