@@ -66,6 +66,9 @@ function clearDraft(caseId: number | string) {
   try { localStorage.removeItem(DRAFT_KEY(caseId)); } catch { /* ignore */ }
 }
 
+/** خانة المبلغ لا تقبل إلا الأرقام (لاتينية وعربية) والفواصل — فلا يُكتب فيها حرف أصلاً */
+const amountChars = (v: string) => v.replace(/[^0-9٠-٩۰-۹.,٫٬،\s]/g, '');
+
 /** المبلغ كما سيُحفظ — يراه الدائن تحت الخانة قبل أن يرسل */
 function AmountPreview({ raw, t }: { raw: string; t: ClaimsStrings }) {
   if (!raw.trim()) return null;
@@ -1095,7 +1098,7 @@ export default function Claims() {
                   </div>
                   <div>
                     <label className={labelClass}>{t.amountLabel}</label>
-                    <input type="text" inputMode="decimal" value={claimAmount} onChange={e => setClaimAmount(e.target.value)} placeholder={t.amountPlaceholder} className={inputClass} dir="ltr" required />
+                    <input type="text" inputMode="decimal" value={claimAmount} onChange={e => setClaimAmount(amountChars(e.target.value))} placeholder={t.amountPlaceholder} className={inputClass} dir="ltr" required />
                     <AmountPreview raw={claimAmount} t={t} />
                   </div>
                 </div>
@@ -1125,7 +1128,7 @@ export default function Claims() {
                     </div>
                     <div>
                       <label className={labelClass}>{t.securityValueLabel}</label>
-                      <input type="text" inputMode="decimal" value={securityValue} onChange={e => setSecurityValue(e.target.value)} className={inputClass} dir="ltr" />
+                      <input type="text" inputMode="decimal" value={securityValue} onChange={e => setSecurityValue(amountChars(e.target.value))} className={inputClass} dir="ltr" />
                       <AmountPreview raw={securityValue} t={t} />
                     </div>
                   </div>
