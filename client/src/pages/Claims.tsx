@@ -43,6 +43,19 @@ interface CaseProcedure {
 // أنواع الدائن كما في النظام الداخلي — قائمةٌ واحدة في الموقع والنظام
 const CREDITOR_TYPES = ['فرد', 'شركة', 'مؤسسة', 'جهة حكومية', 'بنك'];
 
+// صفة من يقدّم المطالبة عن صاحب الحق. والمنشأة لا تقدّم بنفسها، فلها دائماً مقدّم
+const PERSON_CAPACITIES = ['وكيل', 'محامٍ'];
+const ORG_CAPACITIES = ['ممثل نظامي', 'موظف مفوَّض', 'وكيل', 'محامٍ'];
+const CAPACITY_LABEL: Record<string, string> = { 'ممثل نظامي': 'ممثل نظامي (مدير أو شريك)' };
+const CAPACITY_DOC: Record<string, { label: string; required: boolean }> = {
+  'وكيل': { label: 'رقم الوكالة', required: true },
+  'محامٍ': { label: 'رقم الوكالة', required: true },
+  'موظف مفوَّض': { label: 'رقم خطاب التفويض أو تاريخه', required: false },
+};
+/** الأرقام وحدها، بالأرقام اللاتينية — لمقارنة رقم الدائن برقم مقدّم الطلب */
+const digitsOf = (v: string) =>
+  v.replace(/[٠-٩]/g, (d) => String('٠١٢٣٤٥٦٧٨٩'.indexOf(d))).replace(/\D/g, '');
+
 const DRAFT_KEY = (caseId: number | string) => `claim_draft_v1:${caseId}`;
 function clearDraft(caseId: number | string) {
   try { localStorage.removeItem(DRAFT_KEY(caseId)); } catch { /* ignore */ }
@@ -103,11 +116,16 @@ export default function Claims() {
   const [caseSeq, setCaseSeq] = useState<number | null>(null);
 
   // Form state
-  const [creditorType, setCreditorType] = useState('فرد');
+  const [creditorType, setCreditorType] = useState('');
   const [creditorName, setCreditorName] = useState('');
   const [idType, setIdType] = useState('هوية وطنية');
   const [idNumber, setIdNumber] = useState('');
+  // مقدّم الطلب إن لم يكن صاحب الحق: اسمه في representativeName كما كان
   const [representativeName, setRepresentativeName] = useState('');
+  const [onBehalf, setOnBehalf] = useState<'self' | 'other'>('self');
+  const [applicantCapacity, setApplicantCapacity] = useState('');
+  const [applicantIdNumber, setApplicantIdNumber] = useState('');
+  const [capacityDocument, setCapacityDocument] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [buildingNumber, setBuildingNumber] = useState('');
@@ -136,6 +154,12 @@ export default function Claims() {
   const [lastPos, setLastPos] = useState({ x: 0, y: 0 });
   const [signatureEmpty, setSignatureEmpty] = useState(true);
 
+  const isPerson = creditorType === 'فرد';
+  const hasApplicant = !isPerson || onBehalf === 'other';
+  const capacities = isPerson ? PERSON_CAPACITIES : ORG_CAPACITIES;
+  // نوع الهوية للمنشأة يُستنتج من نوعها، فلا تُسجَّل جهةٌ «هوية وطنية»
+  const idTypeOut = isPerson ? idType : creditorType === 'جهة حكومية' ? 'رقم منشأة' : 'سجل تجاري';
+
   // Load cases
   useEffect(() => {
     loadCases();
@@ -144,6 +168,7 @@ export default function Claims() {
   // المسودة: الحقول النصية وحدها (المرفقات والتوقيع لا تُحفظ في المتصفح)
   const draft = {
     creditorType, creditorName, idType, idNumber, representativeName, phone, email,
+    onBehalf, applicantCapacity, applicantIdNumber, capacityDocument,
     buildingNumber, streetName, district, city, postalCode, additionalNumber,
     claimType, claimAmount, isSecured, securityType, securityValue,
     debtOriginDate, dueDate, dueDocument, claimReason,
@@ -176,6 +201,8 @@ export default function Claims() {
     set(d.isSecured, setIsSecured); set(d.securityType, setSecurityType); set(d.securityValue, setSecurityValue);
     set(d.debtOriginDate, setDebtOriginDate); set(d.dueDate, setDueDate); set(d.dueDocument, setDueDocument);
     set(d.claimReason, setClaimReason);
+    set(d.onBehalf, setOnBehalf); set(d.applicantCapacity, setApplicantCapacity);
+    set(d.applicantIdNumber, setApplicantIdNumber); set(d.capacityDocument, setCapacityDocument);
     toast.info('استُعيدت بيانات كتبتها سابقاً. أعد إرفاق المستندات والتوقيع.', { duration: 7000 });
   }
 
@@ -242,11 +269,15 @@ export default function Claims() {
   }
 
   function resetForm() {
-    setCreditorType('فرد');
+    setCreditorType('');
     setCreditorName('');
     setIdType('هوية وطنية');
     setIdNumber('');
     setRepresentativeName('');
+    setOnBehalf('self');
+    setApplicantCapacity('');
+    setApplicantIdNumber('');
+    setCapacityDocument('');
     setPhone('');
     setEmail('');
     setBuildingNumber('');
@@ -274,8 +305,23 @@ export default function Claims() {
   function validateStep(step: number): boolean {
     if (step === 1) {
       if (!CREDITOR_TYPES.includes(creditorType)) { toast.error('يرجى اختيار نوع الدائن'); return false; }
-      if (!creditorName.trim()) { toast.error('يرجى إدخال اسم الدائن'); return false; }
-      if (!idNumber.trim()) { toast.error('يرجى إدخال رقم الهوية'); return false; }
+      if (!creditorName.trim()) { toast.error(isPerson ? 'يرجى إدخال اسم الدائن' : 'يرجى إدخال اسم المنشأة كما في السجل'); return false; }
+      if (!idNumber.trim()) { toast.error(isPerson ? 'يرجى إدخال رقم هوية الدائن' : 'يرجى إدخال رقم السجل أو الرقم الموحد للمنشأة'); return false; }
+      if (hasApplicant) {
+        if (!applicantCapacity) { toast.error('يرجى اختيار صفتك في تقديم المطالبة'); return false; }
+        if (!representativeName.trim()) { toast.error('يرجى إدخال اسمك'); return false; }
+        if (!applicantIdNumber.trim()) { toast.error('يرجى إدخال رقم هويتك'); return false; }
+        // الوكيل يكتب رقمه في خانة الدائن فتُسجَّل المطالبة باسم غير صاحبها
+        if (digitsOf(applicantIdNumber) === digitsOf(idNumber)) {
+          toast.error(isPerson
+            ? 'رقم الدائن هو رقم هويتك. اكتب في خانة الدائن رقم هوية صاحب الحق.'
+            : 'رقم المنشأة هو رقم هويتك. اكتب في خانة الدائن رقم سجل المنشأة أو رقمها الموحد.');
+          return false;
+        }
+        if (CAPACITY_DOC[applicantCapacity]?.required && !capacityDocument.trim()) {
+          toast.error(`يرجى إدخال ${CAPACITY_DOC[applicantCapacity].label}`); return false;
+        }
+      }
       if (!phone.trim()) { toast.error('يرجى إدخال رقم الجوال'); return false; }
       if (!email.trim()) { toast.error('يرجى إدخال البريد الإلكتروني'); return false; }
     }
@@ -410,9 +456,12 @@ export default function Claims() {
       case_id: selectedCase.id,
       creditor_type: creditorType,
       creditor_name: creditorName,
-      id_type: idType,
-      id_number: idNumber,
-      representative_name: representativeName || null,
+      id_type: idTypeOut,
+      id_number: idNumber.trim(),
+      representative_name: hasApplicant ? representativeName.trim() || null : null,
+      applicant_capacity: hasApplicant ? applicantCapacity || null : 'أصيل',
+      applicant_id_number: hasApplicant ? applicantIdNumber.trim() || null : null,
+      capacity_document: hasApplicant ? capacityDocument.trim() || null : null,
       phone,
       email,
       building_number: buildingNumber || null,
@@ -859,66 +908,144 @@ export default function Claims() {
 
             {/* Step 1 */}
             {currentStep === 1 && (
-              <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-                <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-6">بيانات الدائن</h2>
+              <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 space-y-8">
+                {/* ① صاحب الحق */}
+                <section>
+                  <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-1">صاحب الحق (الدائن)</h2>
+                  <p className="text-sm text-gray-500 mb-5">من له الدين على المدين، فرداً كان أو منشأة.</p>
 
-                <div className="mb-5">
-                  <label className={labelClass}>نوع الدائن</label>
-                  <div className="flex gap-4 flex-wrap">
-                    {CREDITOR_TYPES.map(type => (
-                      <label key={type} className="flex items-center gap-2 cursor-pointer">
-                        <input type="radio" name="creditorType" value={type} checked={creditorType === type} onChange={(e) => setCreditorType(e.target.value)} className="accent-[var(--color-gold)]" />
-                        <span className="text-sm text-[var(--color-navy)]">{type}</span>
-                      </label>
-                    ))}
+                  <div className="mb-5">
+                    <label className={labelClass}>نوع الدائن *</label>
+                    <div className="flex gap-2 flex-wrap">
+                      {CREDITOR_TYPES.map(type => (
+                        <button
+                          key={type}
+                          type="button"
+                          onClick={() => { setCreditorType(type); if (type === 'فرد') { setOnBehalf('self'); setApplicantCapacity(''); } }}
+                          className={`px-4 py-2 rounded-lg border text-sm transition-colors ${creditorType === type ? 'border-[var(--color-gold)] bg-[var(--color-cream)] text-[var(--color-navy)] font-medium' : 'border-[var(--color-border)] text-gray-600 hover:border-[var(--color-gold)]'}`}
+                          aria-pressed={creditorType === type}
+                        >
+                          {type}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <label className={labelClass}>اسم الدائن *</label>
-                    <input type="text" value={creditorName} onChange={e => setCreditorName(e.target.value)} placeholder="الاسم الكامل / اسم الشركة" className={inputClass} required />
-                  </div>
-                  {creditorType !== 'فرد' && (
+                  {!creditorType && <p className="text-sm text-gray-500">اختر نوع الدائن لتظهر بقية الخانات.</p>}
+                  {creditorType && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className={isPerson ? '' : 'md:col-span-2'}>
+                      <label className={labelClass}>{isPerson ? 'الاسم الرباعي كما في الهوية *' : creditorType === 'جهة حكومية' ? 'اسم الجهة *' : creditorType === 'بنك' ? 'اسم البنك *' : `اسم ${creditorType === 'مؤسسة' ? 'المؤسسة' : 'الشركة'} كما في السجل التجاري *`}</label>
+                      <input type="text" value={creditorName} onChange={e => setCreditorName(e.target.value)} className={inputClass} required />
+                    </div>
+                    {isPerson && (
+                      <div>
+                        <label className={labelClass}>نوع الهوية *</label>
+                        <select value={idType} onChange={e => setIdType(e.target.value)} className={inputClass}>
+                          <option value="هوية وطنية">هوية وطنية</option>
+                          <option value="إقامة">إقامة</option>
+                          <option value="جواز سفر">جواز سفر</option>
+                        </select>
+                      </div>
+                    )}
                     <div>
-                      <label className={labelClass}>اسم الممثل النظامي</label>
-                      <input type="text" value={representativeName} onChange={e => setRepresentativeName(e.target.value)} className={inputClass} />
+                      <label className={labelClass}>{isPerson ? 'رقم الهوية *' : creditorType === 'جهة حكومية' ? 'الرقم الموحد للجهة (700) *' : 'رقم السجل التجاري أو الرقم الموحد *'}</label>
+                      <input type="text" inputMode="numeric" value={idNumber} onChange={e => setIdNumber(e.target.value)} className={inputClass} dir="ltr" required />
+                      <p className="text-xs text-gray-500 mt-1">رقم صاحب الحق نفسه، لا رقم من يقدّم عنه.</p>
+                    </div>
+                  </div>
+                  )}
+                </section>
+
+                {creditorType && (<>
+                {/* ② من يقدّم المطالبة */}
+                <section className="border-t border-gray-100 pt-6">
+                  <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-4">من يقدّم المطالبة؟</h2>
+                  {isPerson && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
+                      {([
+                        ['self', 'أنا صاحب الحق', 'أقدّمها عن نفسي'],
+                        ['other', 'أقدّمها عن غيري', 'وكيل أو محامٍ'],
+                      ] as const).map(([v, t, sub]) => (
+                        <button
+                          key={v}
+                          type="button"
+                          onClick={() => setOnBehalf(v)}
+                          aria-pressed={onBehalf === v}
+                          className={`text-start rounded-xl border p-4 transition-colors ${onBehalf === v ? 'border-2 border-[var(--color-gold)] bg-[var(--color-cream)]' : 'border-[var(--color-border)] hover:border-[var(--color-gold)]'}`}
+                        >
+                          <span className="block font-medium text-[var(--color-navy)]">{t}</span>
+                          <span className="block text-xs text-gray-500 mt-0.5">{sub}</span>
+                        </button>
+                      ))}
                     </div>
                   )}
-                  <div>
-                    <label className={labelClass}>نوع الهوية *</label>
-                    <select value={idType} onChange={e => setIdType(e.target.value)} className={inputClass}>
-                      <option value="هوية وطنية">هوية وطنية</option>
-                      <option value="إقامة">إقامة</option>
-                      <option value="سجل تجاري">سجل تجاري</option>
-                      <option value="جواز سفر">جواز سفر</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className={labelClass}>رقم الهوية / السجل *</label>
-                    <input type="text" value={idNumber} onChange={e => setIdNumber(e.target.value)} className={inputClass} required />
-                  </div>
-                  <div>
-                    <label className={labelClass}>رقم الجوال *</label>
-                    <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="05xxxxxxxx" className={inputClass} dir="ltr" required />
-                  </div>
-                  <div>
-                    <label className={labelClass}>البريد الإلكتروني *</label>
-                    <input type="email" value={email} onChange={e => setEmail(e.target.value)} className={inputClass} dir="ltr" required />
-                  </div>
-                </div>
+                  {!isPerson && (
+                    <p className="text-sm text-gray-500 mb-4">المنشأة يقدّم عنها شخص: ممثلها النظامي، أو موظف مفوَّض، أو وكيل.</p>
+                  )}
 
-                <div className="mt-6">
-                  <label className={labelClass}>العنوان الوطني</label>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    <input type="text" value={buildingNumber} onChange={e => setBuildingNumber(e.target.value)} placeholder="رقم المبنى" className={inputClass} />
-                    <input type="text" value={streetName} onChange={e => setStreetName(e.target.value)} placeholder="اسم الشارع" className={inputClass} />
-                    <input type="text" value={district} onChange={e => setDistrict(e.target.value)} placeholder="الحي" className={inputClass} />
-                    <input type="text" value={city} onChange={e => setCity(e.target.value)} placeholder="المدينة" className={inputClass} />
-                    <input type="text" value={postalCode} onChange={e => setPostalCode(e.target.value)} placeholder="الرمز البريدي" className={inputClass} dir="ltr" />
-                    <input type="text" value={additionalNumber} onChange={e => setAdditionalNumber(e.target.value)} placeholder="الرقم الإضافي" className={inputClass} dir="ltr" />
+                  {hasApplicant && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className={labelClass}>صفتك *</label>
+                        <select value={applicantCapacity} onChange={e => setApplicantCapacity(e.target.value)} className={inputClass}>
+                          <option value="">اختر...</option>
+                          {capacities.map(c => <option key={c} value={c}>{CAPACITY_LABEL[c] ?? c}</option>)}
+                        </select>
+                      </div>
+                      <div>
+                        <label className={labelClass}>اسمك الرباعي *</label>
+                        <input type="text" value={representativeName} onChange={e => setRepresentativeName(e.target.value)} className={inputClass} />
+                      </div>
+                      <div>
+                        <label className={labelClass}>رقم هويتك *</label>
+                        <input type="text" inputMode="numeric" value={applicantIdNumber} onChange={e => setApplicantIdNumber(e.target.value)} className={inputClass} dir="ltr" />
+                        {applicantIdNumber.trim() && digitsOf(applicantIdNumber) === digitsOf(idNumber) && (
+                          <p className="text-xs text-red-600 mt-1">هذا رقم الدائن نفسه. اكتب في خانة الدائن رقم صاحب الحق{isPerson ? '' : ': سجل المنشأة أو رقمها الموحد'}.</p>
+                        )}
+                      </div>
+                      {CAPACITY_DOC[applicantCapacity] && (
+                        <div>
+                          <label className={labelClass}>{CAPACITY_DOC[applicantCapacity].label}{CAPACITY_DOC[applicantCapacity].required ? ' *' : ''}</label>
+                          <input type="text" value={capacityDocument} onChange={e => setCapacityDocument(e.target.value)} className={inputClass} dir="ltr" />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </section>
+
+                {/* ③ التواصل */}
+                <section className="border-t border-gray-100 pt-6">
+                  <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-1">التواصل</h2>
+                  <p className="text-sm text-gray-500 mb-5">
+                    {hasApplicant
+                      ? 'جوالك وبريدك أنت. عليهما يصلك رمز الدخول إلى بوابة الدائنين برقم الدائن، وكل إشعارات المطالبة.'
+                      : 'عليهما يصلكم رمز الدخول إلى بوابة الدائنين، وكل إشعارات المطالبة.'}
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                      <label className={labelClass}>رقم الجوال *</label>
+                      <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="05xxxxxxxx" className={inputClass} dir="ltr" required />
+                    </div>
+                    <div>
+                      <label className={labelClass}>البريد الإلكتروني *</label>
+                      <input type="email" value={email} onChange={e => setEmail(e.target.value)} className={inputClass} dir="ltr" required />
+                    </div>
                   </div>
-                </div>
+
+                  <div className="mt-6">
+                    <label className={labelClass}>العنوان الوطني {isPerson ? 'للدائن' : 'للمنشأة'}</label>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      <input type="text" value={buildingNumber} onChange={e => setBuildingNumber(e.target.value)} placeholder="رقم المبنى" className={inputClass} />
+                      <input type="text" value={streetName} onChange={e => setStreetName(e.target.value)} placeholder="اسم الشارع" className={inputClass} />
+                      <input type="text" value={district} onChange={e => setDistrict(e.target.value)} placeholder="الحي" className={inputClass} />
+                      <input type="text" value={city} onChange={e => setCity(e.target.value)} placeholder="المدينة" className={inputClass} />
+                      <input type="text" value={postalCode} onChange={e => setPostalCode(e.target.value)} placeholder="الرمز البريدي" className={inputClass} dir="ltr" />
+                      <input type="text" value={additionalNumber} onChange={e => setAdditionalNumber(e.target.value)} placeholder="الرقم الإضافي" className={inputClass} dir="ltr" />
+                    </div>
+                  </div>
+                </section>
+                </>)}
               </div>
             )}
 
@@ -1006,15 +1133,16 @@ export default function Claims() {
                 <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-6">المستندات والتوقيع</h2>
 
                 <div className="space-y-4 mb-8">
+                  {/* ما يلزم بحسب إجابات الخطوة الأولى، لا السبعة لكل أحد */}
                   {[
-                    { key: 'creditor_id', label: 'نسخة من هوية الدائن أو السجل التجاري' },
-                    { key: 'applicant_id', label: 'نسخة من هوية مقدم الطلب' },
-                    { key: 'capacity_document', label: 'نسخة من سند الصفة بتقديم المطالبة' },
-                    { key: 'power_of_attorney', label: 'نسخة من الوكالة أو عقد التأسيس (إن وجدت)' },
+                    { key: 'creditor_id', label: isPerson ? 'نسخة من هوية الدائن' : creditorType === 'جهة حكومية' ? 'ما يثبت الرقم الموحد للجهة' : 'نسخة من السجل التجاري' },
+                    hasApplicant && { key: 'applicant_id', label: 'نسخة من هويتك (مقدّم الطلب)' },
+                    hasApplicant && { key: 'capacity_document', label: applicantCapacity === 'موظف مفوَّض' ? 'خطاب التفويض' : applicantCapacity === 'ممثل نظامي' ? 'ما يثبت صفتك (السجل أو عقد التأسيس)' : 'الوكالة' },
+                    !isPerson && creditorType !== 'جهة حكومية' && { key: 'power_of_attorney', label: 'عقد التأسيس (إن وجد)' },
                     { key: 'opening_document', label: 'نسخة من سند الافتتاح' },
                     { key: 'due_document', label: 'نسخة من سند الاستحقاق' },
-                    { key: 'security_document', label: 'نسخة من سند الضمان (إن وجدت)' },
-                  ].map(doc => (
+                    isSecured === 'yes' && { key: 'security_document', label: 'نسخة من سند الضمان' },
+                  ].filter((d): d is { key: string; label: string } => Boolean(d)).map(doc => (
                     <div key={doc.key} className="flex items-center gap-3 p-3 bg-[var(--color-cream)] rounded-lg border border-[var(--color-border)]">
                       <Upload className="w-5 h-5 text-[var(--color-gold)] flex-shrink-0" />
                       <div className="flex-1 min-w-0">
