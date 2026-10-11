@@ -156,6 +156,10 @@ export default function Claims() {
   const isPerson = creditorType === 'فرد';
   const hasApplicant = !isPerson || onBehalf === 'other';
   const capacities = isPerson ? PERSON_CAPACITIES : ORG_CAPACITIES;
+  // شكل الرقم داخل الخانة، والتنبيه «رقم صاحب الحق نفسه» يبقى ظاهراً تحتها
+  const idPlaceholder = isPerson
+    ? idType === 'هوية وطنية' ? '1xxxxxxxxx' : idType === 'إقامة' ? '2xxxxxxxxx' : ''
+    : '7xxxxxxxxx';
   // نوع الهوية للمنشأة يُستنتج من نوعها، فلا تُسجَّل جهةٌ «هوية وطنية»
   const idTypeOut = isPerson ? idType : creditorType === 'جهة حكومية' ? 'رقم منشأة' : 'سجل تجاري';
 
@@ -980,7 +984,7 @@ export default function Claims() {
                     )}
                     <div>
                       <label className={labelClass}>{t.idNumberLabel(creditorType)}</label>
-                      <input type="text" inputMode="numeric" value={idNumber} onChange={e => setIdNumber(e.target.value)} className={inputClass} dir="ltr" required />
+                      <input type="text" inputMode="numeric" value={idNumber} onChange={e => setIdNumber(e.target.value)} placeholder={idPlaceholder} className={inputClass} dir="ltr" required />
                       <p className="text-xs text-gray-500 mt-1">{t.idNumberHint}</p>
                     </div>
                   </div>
@@ -1029,7 +1033,7 @@ export default function Claims() {
                       </div>
                       <div>
                         <label className={labelClass}>{t.applicantIdLabel}</label>
-                        <input type="text" inputMode="numeric" value={applicantIdNumber} onChange={e => setApplicantIdNumber(e.target.value)} className={inputClass} dir="ltr" />
+                        <input type="text" inputMode="numeric" value={applicantIdNumber} onChange={e => setApplicantIdNumber(e.target.value)} placeholder="1xxxxxxxxx" className={inputClass} dir="ltr" />
                         {applicantIdNumber.trim() && digitsOf(applicantIdNumber) === digitsOf(idNumber) && (
                           <p className="text-xs text-red-600 mt-1">{t.sameIdInline(isPerson)}</p>
                         )}
