@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { supabase, SUPABASE_URL, SUPABASE_ANON_KEY } from '@/lib/supabase';
 import { Link } from 'wouter';
 import { toast } from 'sonner';
@@ -806,9 +807,10 @@ export default function Claims() {
           </div>
         )}
 
-        {/* Progress Overlay */}
-        {submitting && !success && (
-          <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+        {/* نافذة التقدم على الشاشة نفسها: غلاف انتقال الصفحات يحمل transform فيصير
+            fixed داخله منسوباً إليه — فكانت تظهر أعلى الصفحة والدائن عند التوقيع أسفلها */}
+        {submitting && !success && typeof document !== 'undefined' && createPortal(
+          <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4" role="status" aria-live="polite">
             <div className="bg-white rounded-2xl p-8 max-w-md w-full text-center">
               <div className="w-16 h-16 border-4 border-[var(--color-gold)] border-t-transparent rounded-full animate-spin mx-auto mb-6" />
               <h3 className="text-lg font-bold text-[var(--color-navy)] mb-2">{submitLabel}</h3>
@@ -817,7 +819,8 @@ export default function Claims() {
               </div>
               <p className="text-sm text-gray-500">{Math.round(submitProgress)}%</p>
             </div>
-          </div>
+          </div>,
+          document.body,
         )}
 
         {/* Case Selection */}
