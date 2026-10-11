@@ -228,6 +228,7 @@ function Router({ initialPage }: { initialPage?: InitialPage }) {
               <Route path={"/bankruptcy/creditor"} component={CreditorPortal} />
               <Route path={"/en/bankruptcy/creditor"} component={CreditorPortal} />
               <Route path={"/ur/bankruptcy/creditor"} component={CreditorPortal} />
+              <Route path={"/ur/bankruptcy/claims"} component={Claims} />
               <Route path={"/bankruptcy/:slug"} component={BankruptcyCase} />
               <Route path={"/blog"} component={Blog} />
               <Route path={"/blog/:slug"} component={BlogPost} />

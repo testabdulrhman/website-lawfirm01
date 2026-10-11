@@ -15,7 +15,7 @@ export function localePath(path: string, lang: Language): string {
   if (lang === "ur") {
     // Urdu currently has two complete, indexable experiences only. Linking the
     // remaining navigation to Arabic prevents hundreds of internal 404s.
-    const urduRoutes = ["/premium-residency", "/bankruptcy/creditor"];
+    const urduRoutes = ["/premium-residency", "/bankruptcy/creditor", "/bankruptcy/claims"];
     return urduRoutes.includes(path) ? `/ur${path}` : path;
   }
 

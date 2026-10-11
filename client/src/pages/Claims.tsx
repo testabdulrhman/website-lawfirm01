@@ -3,10 +3,12 @@ import { supabase, SUPABASE_URL, SUPABASE_ANON_KEY } from '@/lib/supabase';
 import { Link } from 'wouter';
 import { toast } from 'sonner';
 import SEOHead from '@/components/SEOHead';
-import { FileText, Upload, Calendar, Building2, AlertTriangle, CheckCircle2, Phone, Mail, ArrowRight } from 'lucide-react';
+import { FileText, Upload, Calendar, Building2, AlertTriangle, CheckCircle2, Phone, Mail, ArrowRight, ArrowLeft } from 'lucide-react';
 import { localePath } from "@/lib/localePath";
 import { parseAmount, formatAmountPreview } from "@/lib/amount";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { LANGS, LANG_ORDER, fmtDate, trClaimType, trDocCategory, trProcedure } from "@/data/creditorI18n";
+import { CLAIMS_T, DECLARATION_AR, trCapacity, trCreditorType, trIdType, trSecurityType, type ClaimsStrings } from "@/data/claimsI18n";
 import {
   trackClaimStart,
   trackClaimSubmit,
@@ -46,30 +48,33 @@ const CREDITOR_TYPES = ['فرد', 'شركة', 'مؤسسة', 'جهة حكومية
 // صفة من يقدّم المطالبة عن صاحب الحق. والمنشأة لا تقدّم بنفسها، فلها دائماً مقدّم
 const PERSON_CAPACITIES = ['وكيل', 'محامٍ'];
 const ORG_CAPACITIES = ['ممثل نظامي', 'موظف مفوَّض', 'وكيل', 'محامٍ'];
-const CAPACITY_LABEL: Record<string, string> = { 'ممثل نظامي': 'ممثل نظامي (مدير أو شريك)' };
-const CAPACITY_DOC: Record<string, { label: string; required: boolean }> = {
-  'وكيل': { label: 'رقم الوكالة', required: true },
-  'محامٍ': { label: 'رقم الوكالة', required: true },
-  'موظف مفوَّض': { label: 'رقم خطاب التفويض أو تاريخه', required: false },
+// سند الصفة الذي يُطلب رقمه، وهل هو إلزامي (العنوان بلغة الدائن في claimsI18n)
+const CAPACITY_DOC: Record<string, { required: boolean }> = {
+  'وكيل': { required: true },
+  'محامٍ': { required: true },
+  'موظف مفوَّض': { required: false },
 };
 /** الأرقام وحدها، بالأرقام اللاتينية — لمقارنة رقم الدائن برقم مقدّم الطلب */
 const digitsOf = (v: string) =>
   v.replace(/[٠-٩]/g, (d) => String('٠١٢٣٤٥٦٧٨٩'.indexOf(d))).replace(/\D/g, '');
 
 const DRAFT_KEY = (caseId: number | string) => `claim_draft_v1:${caseId}`;
+// القضية المفتوحة وخطوتها: تغيير اللغة يغيّر الرابط فتُبنى الصفحة من جديد،
+// فيعود الدائن إلى حيث كان لا إلى قائمة القضايا
+const OPEN_KEY = 'claim_open_v1';
 function clearDraft(caseId: number | string) {
   try { localStorage.removeItem(DRAFT_KEY(caseId)); } catch { /* ignore */ }
 }
 
 /** المبلغ كما سيُحفظ — يراه الدائن تحت الخانة قبل أن يرسل */
-function AmountPreview({ raw }: { raw: string }) {
+function AmountPreview({ raw, t }: { raw: string; t: ClaimsStrings }) {
   if (!raw.trim()) return null;
   const n = parseAmount(raw);
   return n === null ? (
-    <p className="mt-1.5 text-xs text-red-600">لم يُفهم المبلغ — اكتبه بالأرقام، مثل 43000</p>
+    <p className="mt-1.5 text-xs text-red-600">{t.amountUnclear}</p>
   ) : (
     <p className="mt-1.5 text-xs text-[var(--color-navy)]/60">
-      سيُسجَّل: <bdi dir="ltr" className="font-semibold text-[var(--color-navy)]">{formatAmountPreview(n)}</bdi>
+      {t.willRecord} <bdi dir="ltr" className="font-semibold text-[var(--color-navy)]">{formatAmountPreview(n)}</bdi>
     </p>
   );
 }
@@ -84,19 +89,13 @@ function daysUntilDeadline(deadline?: string): number | null {
   } catch { return null; }
 }
 
-function formatDate(dateStr?: string): string {
-  if (!dateStr) return '';
-  try {
-    const d = new Date(dateStr);
-    if (isNaN(d.getTime())) return dateStr;
-    return d.toLocaleDateString('ar-SA', { year: 'numeric', month: 'long', day: 'numeric' });
-  } catch { return dateStr; }
-}
 
 
 export default function Claims() {
-  const { lang } = useLanguage();
+  const { lang, setLang, isRTL } = useLanguage();
   const lp = (p: string) => localePath(p, lang);
+  // ما يظهر بلغة الدائن، وما يُحفظ يبقى بقيمه العربية
+  const t = CLAIMS_T[lang];
   const [cases, setCases] = useState<CaseData[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCase, setSelectedCase] = useState<CaseData | null>(null);
@@ -160,6 +159,14 @@ export default function Claims() {
   // نوع الهوية للمنشأة يُستنتج من نوعها، فلا تُسجَّل جهةٌ «هوية وطنية»
   const idTypeOut = isPerson ? idType : creditorType === 'جهة حكومية' ? 'رقم منشأة' : 'سجل تجاري';
 
+  useEffect(() => {
+    if (loading) return; // لا يُمحى قبل أن تُقرأ بعد تحميل القضايا
+    try {
+      if (selectedCase && !success) sessionStorage.setItem(OPEN_KEY, JSON.stringify({ caseId: selectedCase.id, step: currentStep }));
+      else sessionStorage.removeItem(OPEN_KEY);
+    } catch { /* ignore */ }
+  }, [loading, selectedCase, currentStep, success]);
+
   // Load cases
   useEffect(() => {
     loadCases();
@@ -187,7 +194,7 @@ export default function Claims() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [draftJson, selectedCase, success, submitting]);
 
-  function restoreDraft(caseId: number | string) {
+  function restoreDraft(caseId: number | string, quiet = false) {
     let d: Partial<typeof draft> | null = null;
     try { d = JSON.parse(localStorage.getItem(DRAFT_KEY(caseId)) || 'null'); } catch { d = null; }
     if (!d) return;
@@ -203,7 +210,7 @@ export default function Claims() {
     set(d.claimReason, setClaimReason);
     set(d.onBehalf, setOnBehalf); set(d.applicantCapacity, setApplicantCapacity);
     set(d.applicantIdNumber, setApplicantIdNumber); set(d.capacityDocument, setCapacityDocument);
-    toast.info('استُعيدت بيانات كتبتها سابقاً. أعد إرفاق المستندات والتوقيع.', { duration: 7000 });
+    if (!quiet) toast.info(t.draftRestored, { duration: 7000 });
   }
 
   async function loadCases() {
@@ -240,9 +247,19 @@ export default function Claims() {
       });
 
       setCases(data);
+      // عاد بعد تغيير اللغة: القضية والخطوة كما كانتا، والحقول من المسودة
+      try {
+        const open = JSON.parse(sessionStorage.getItem(OPEN_KEY) || 'null') as { caseId: number; step: number } | null;
+        const c = open && data.find((x: CaseData) => x.id === open.caseId);
+        if (c) {
+          setSelectedCase(c);
+          restoreDraft(c.id, true);
+          setCurrentStep(Math.min(Math.max(open!.step, 1), 3));
+        }
+      } catch { /* ignore */ }
     } catch (e) {
       console.error('Load cases error:', e);
-      toast.error('تعذّر تحميل القضايا');
+      toast.error(t.errLoadCases);
     } finally {
       setLoading(false);
     }
@@ -304,38 +321,36 @@ export default function Claims() {
   // Validation
   function validateStep(step: number): boolean {
     if (step === 1) {
-      if (!CREDITOR_TYPES.includes(creditorType)) { toast.error('يرجى اختيار نوع الدائن'); return false; }
-      if (!creditorName.trim()) { toast.error(isPerson ? 'يرجى إدخال اسم الدائن' : 'يرجى إدخال اسم المنشأة كما في السجل'); return false; }
-      if (!idNumber.trim()) { toast.error(isPerson ? 'يرجى إدخال رقم هوية الدائن' : 'يرجى إدخال رقم السجل أو الرقم الموحد للمنشأة'); return false; }
+      if (!CREDITOR_TYPES.includes(creditorType)) { toast.error(t.errChooseType); return false; }
+      if (!creditorName.trim()) { toast.error(t.errName(isPerson)); return false; }
+      if (!idNumber.trim()) { toast.error(t.errId(isPerson)); return false; }
       if (hasApplicant) {
-        if (!applicantCapacity) { toast.error('يرجى اختيار صفتك في تقديم المطالبة'); return false; }
-        if (!representativeName.trim()) { toast.error('يرجى إدخال اسمك'); return false; }
-        if (!applicantIdNumber.trim()) { toast.error('يرجى إدخال رقم هويتك'); return false; }
+        if (!applicantCapacity) { toast.error(t.errCapacity); return false; }
+        if (!representativeName.trim()) { toast.error(t.errYourName); return false; }
+        if (!applicantIdNumber.trim()) { toast.error(t.errYourId); return false; }
         // الوكيل يكتب رقمه في خانة الدائن فتُسجَّل المطالبة باسم غير صاحبها
         if (digitsOf(applicantIdNumber) === digitsOf(idNumber)) {
-          toast.error(isPerson
-            ? 'رقم الدائن هو رقم هويتك. اكتب في خانة الدائن رقم هوية صاحب الحق.'
-            : 'رقم المنشأة هو رقم هويتك. اكتب في خانة الدائن رقم سجل المنشأة أو رقمها الموحد.');
+          toast.error(t.errSameId(isPerson));
           return false;
         }
         if (CAPACITY_DOC[applicantCapacity]?.required && !capacityDocument.trim()) {
-          toast.error(`يرجى إدخال ${CAPACITY_DOC[applicantCapacity].label}`); return false;
+          toast.error(t.errCapDoc(t.capacityDocLabel(applicantCapacity))); return false;
         }
       }
-      if (!phone.trim()) { toast.error('يرجى إدخال رقم الجوال'); return false; }
-      if (!email.trim()) { toast.error('يرجى إدخال البريد الإلكتروني'); return false; }
+      if (!phone.trim()) { toast.error(t.errPhone); return false; }
+      if (!email.trim()) { toast.error(t.errEmail); return false; }
     }
     if (step === 2) {
       const amount = parseAmount(claimAmount);
-      if (amount === null || amount <= 0) { toast.error('يرجى إدخال مبلغ المطالبة بالأرقام، مثل 43000'); return false; }
+      if (amount === null || amount <= 0) { toast.error(t.errAmount); return false; }
       if (isSecured === 'yes' && securityValue.trim() && parseAmount(securityValue) === null) {
-        toast.error('قيمة الضمان غير مفهومة — اكتبها بالأرقام، مثل 50000'); return false;
+        toast.error(t.errSecurity); return false;
       }
-      if (!claimReason.trim()) { toast.error('يرجى إدخال سبب المطالبة'); return false; }
+      if (!claimReason.trim()) { toast.error(t.errReason); return false; }
     }
     if (step === 3) {
-      if (signatureEmpty) { toast.error('يرجى إضافة توقيعك'); return false; }
-      if (!declaration) { toast.error('يرجى الموافقة على الإقرار'); return false; }
+      if (signatureEmpty) { toast.error(t.errSignature); return false; }
+      if (!declaration) { toast.error(t.errDeclaration); return false; }
     }
     return true;
   }
@@ -435,7 +450,7 @@ export default function Claims() {
       return;
     }
     if (file.size > 10 * 1024 * 1024) {
-      toast.error('الملف أكبر من 10 ميجا');
+      toast.error(t.errFileSize);
       e.target.value = '';
       return;
     }
@@ -450,7 +465,7 @@ export default function Claims() {
     trackClaimSubmit(selectedCase.id);
     setSubmitting(true);
     setSubmitProgress(0);
-    setSubmitLabel('حفظ بيانات المطالبة...');
+    setSubmitLabel(t.progSaving);
 
     const claimData = {
       case_id: selectedCase.id,
@@ -500,7 +515,7 @@ export default function Claims() {
         .insert({ id: newIntakeId, case_id: selectedCase.id, payload: claimData, files: intakeFiles });
       if (intakeError) {
         console.error('claim_intake insert failed:', intakeError);
-        throw new Error('تعذّر إرسال المطالبة — تحقّق من الاتصال وأعد المحاولة. بياناتك باقية في هذه الصفحة.');
+        throw new Error(t.errSendFailed);
       }
       setIntakeId(newIntakeId);
       clearDraft(selectedCase.id);
@@ -517,7 +532,7 @@ export default function Claims() {
       // ④ التسجيل برقم الاستلام. وإن تعذّر فالمطالبة محفوظة، ويُعيد النظام
       //    تسجيلها تلقائياً — فلا يُقال للدائن «حدث خطأ»
       setSubmitProgress(65);
-      setSubmitLabel('تسجيل المطالبة...');
+      setSubmitLabel(t.progRegistering);
       let result: any = null;
       try {
         const ctl = new AbortController();
@@ -554,7 +569,7 @@ export default function Claims() {
       // فلا يعتمد على بقاء المتصفح مفتوحاً، ولا يحتاج نقاط إرسال مفتوحة للعموم.
 
       setSubmitProgress(100);
-      setSubmitLabel(docsAttachOk ? 'اكتمل الإرسال بنجاح!' : 'تم تسجيل المطالبة');
+      setSubmitLabel(docsAttachOk ? t.progDone : t.progRegistered);
       trackClaimSuccess(selectedCase.id, docsAttachOk);
       await new Promise(r => setTimeout(r, 800));
       // إغلاق طبقة التحميل فوراً قبل إظهار شاشة النجاح حتى لا تحجب التفاعل
@@ -564,7 +579,7 @@ export default function Claims() {
 
     } catch (error: any) {
       console.error('Submit error:', error);
-      toast.error(error?.message || 'حدث خطأ، يرجى المحاولة مرة أخرى');
+      toast.error(error?.message || t.errGeneric);
     } finally {
       setSubmitting(false);
     }
@@ -578,7 +593,7 @@ export default function Claims() {
     for (const category of categories) {
       const entry = files[category];
       if (!entry) { failed.push(category); continue; }
-      setSubmitLabel(`رفع المرفق ${done + 1} من ${categories.length}: ${entry.label}`);
+      setSubmitLabel(t.progUploading(done + 1, categories.length, entry.label));
       const ext = entry.file.name.split('.').pop();
       const filePath = `intake/${id}/${category}.${ext}`;
       let ok = false;
@@ -609,7 +624,7 @@ export default function Claims() {
     for (const category of categories) {
       const entry = files[category];
       if (!entry) { failed.push(category); continue; }
-      setSubmitLabel(`رفع المرفق ${done + 1} من ${categories.length}: ${entry.label}`);
+      setSubmitLabel(t.progUploading(done + 1, categories.length, entry.label));
       const ext = entry.file.name.split('.').pop();
       const fileName = `${category}.${ext}`;
       const filePath = `claims/${claimId}/${fileName}`;
@@ -628,12 +643,12 @@ export default function Claims() {
       onProgress?.(done);
     }
 
-    setSubmitLabel('إرفاق المستندات بالمطالبة...');
+    setSubmitLabel(t.progAttaching);
     try {
       const res = await fetch(`${SUPABASE_URL}/functions/v1/attach-claim-documents`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
-        body: JSON.stringify({ claim_id: claimId, files: uploaded, failed: failed.map((c) => files[c]?.label ?? c) }),
+        body: JSON.stringify({ claim_id: claimId, files: uploaded, failed: failed.map((c) => trDocCategory(c, 'ar') ?? c) }),
       });
       const data = await res.json().catch(() => ({}));
       if (uploaded.length > 0) {
@@ -654,8 +669,8 @@ export default function Claims() {
     const still = savedId ? await uploadDocs(savedId, failedDocs) : await uploadToIntake(intakeId!, failedDocs);
     setFailedDocs(still);
     setRetrying(false);
-    if (still.length === 0) toast.success('اكتمل رفع المستندات');
-    else toast.error('تعذّر رفع بعض المستندات مرة أخرى');
+    if (still.length === 0) toast.success(t.docsDone);
+    else toast.error(t.docsRetryFail);
   }
 
   // ==================== RENDER ====================
@@ -667,18 +682,18 @@ export default function Claims() {
   return (
     <>
     <SEOHead
-      title="تقديم مطالبة دائن إلكترونياً"
-      description="قدّم مطالبتك كدائن في قضايا الإفلاس والتصفية إلكترونياً عبر شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس. اختر القضية، أدخل بيانات الدين، وأرفق المستندات قبل انتهاء المهلة النظامية."
+      title={t.seoTitle}
+      description={t.seoDesc}
       canonicalUrl="/bankruptcy/claims"
       keywords={['تقديم مطالبة دائن', 'مطالبة دائن إلكترونية', 'مطالبات الإفلاس', 'تقديم مطالبة إفلاس', 'دائنين', 'أمين الإفلاس', 'تصفية', 'القصيم', 'بريدة']}
       ogType="website"
       structuredData={{
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "تقديم مطالبة دائن إلكترونياً",
-        "description": "صفحة تقديم مطالبات الدائنين إلكترونياً في قضايا الإفلاس والتصفية التي تديرها شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس.",
-        "url": "https://redwan.sa/bankruptcy/claims",
-        "inLanguage": "ar",
+        "name": t.seoTitle,
+        "description": t.seoDesc,
+        "url": `https://redwan.sa${lp("/bankruptcy/claims")}`,
+        "inLanguage": lang,
         "isPartOf": {
           "@type": "WebSite",
           "name": "شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
@@ -699,18 +714,33 @@ export default function Claims() {
       <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 bg-[var(--color-navy)]">
         <div className="container mx-auto px-5 md:px-4 lg:px-8 relative z-10">
           <div className="flex items-center gap-3 mb-4">
-            <Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">الرئيسية</Link>
+            <Link href={lp("/")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{t.crumbHome}</Link>
             <span className="text-white/30">/</span>
-            <Link href={lp("/bankruptcy")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">إجراءات الإفلاس</Link>
+            <Link href={lp("/bankruptcy")} className="font-body text-sm text-white/50 hover:text-white/80 transition-colors">{t.crumbBankruptcy}</Link>
             <span className="text-white/30">/</span>
-            <span className="font-body text-sm text-[var(--color-gold)]">تقديم مطالبة</span>
+            <span className="font-body text-sm text-[var(--color-gold)]">{t.crumbClaims}</span>
           </div>
           <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-            تقديم مطالبة دائن
+            {t.heroTitle}
           </h1>
           <p className="font-body text-base md:text-lg text-white/60 max-w-2xl">
-            تتيح هذه الصفحة للدائن تقديم مطالبته إلكترونياً في إجراءات الإفلاس التي يديرها المكتب بصفته أمين إفلاس. يبدأ التقديم باختيار القضية، ثم إدخال بيانات المطالبة وإرفاق المستندات المؤيدة، ويجب الرجوع إلى الإعلان الرسمي لكل إجراء لمعرفة المواعيد والمتطلبات الخاصة به.
+            {t.heroIntro}
           </p>
+          {/* اللغة في الصفحة نفسها: مبدّل رأس الموقع قد لا يلاحظه الدائن */}
+          <div className="mt-6 inline-flex rounded-lg border border-white/20 p-1 gap-1" role="group" aria-label="Language">
+            {LANG_ORDER.map((l) => (
+              <button
+                key={l}
+                type="button"
+                lang={l}
+                onClick={() => setLang(l)}
+                aria-pressed={lang === l}
+                className={`px-3 py-1.5 rounded-md text-sm transition-colors ${lang === l ? 'bg-[var(--color-gold)] text-white' : 'text-white/70 hover:text-white'}`}
+              >
+                {LANGS[l].native}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -723,24 +753,24 @@ export default function Claims() {
             </div>
             {pendingIntake ? (
               <>
-                <h2 className="text-2xl font-bold font-display text-[var(--color-navy)] mb-3">تم استلام مطالبتك</h2>
-                <p className="text-gray-400 text-sm mb-2">رقم الاستلام: <bdi dir="ltr" className="font-medium text-gray-500">{intakeId?.slice(0, 8).toUpperCase()}</bdi></p>
-                <p className="text-gray-500 text-sm mb-8">حُفظت بيانات مطالبتك، وسيكتمل تسجيلها خلال دقائق ويصلك رقمها برسالة. لا حاجة لتقديمها مرة أخرى.</p>
+                <h2 className="text-2xl font-bold font-display text-[var(--color-navy)] mb-3">{t.receivedTitle}</h2>
+                <p className="text-gray-400 text-sm mb-2">{t.intakeNo} <bdi dir="ltr" className="font-medium text-gray-500">{intakeId?.slice(0, 8).toUpperCase()}</bdi></p>
+                <p className="text-gray-500 text-sm mb-8">{t.pendingNote}</p>
               </>
             ) : (
               <>
-                <h2 className="text-2xl font-bold font-display text-[var(--color-navy)] mb-3">تم استلام مطالبتك — رقم مطالبتك: <span className="text-[var(--color-gold)]">{caseSeq ?? '—'}</span></h2>
-                {claimRef && <p className="text-gray-400 text-sm mb-2">رقم المرجع: <span className="font-medium text-gray-500">{claimRef}</span></p>}
-                <p className="text-gray-500 text-sm mb-8">سيتم دراسة المطالبة من قبل أمين الإفلاس وإبلاغكم بالنتيجة</p>
+                <h2 className="text-2xl font-bold font-display text-[var(--color-navy)] mb-3">{t.receivedWithNo} <span className="text-[var(--color-gold)]">{caseSeq ?? '—'}</span></h2>
+                {claimRef && <p className="text-gray-400 text-sm mb-2">{t.refNo} <span className="font-medium text-gray-500">{claimRef}</span></p>}
+                <p className="text-gray-500 text-sm mb-8">{t.studyNote}</p>
               </>
             )}
             {failedDocs.length > 0 && (
-              <div className="text-right bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
+              <div className="text-start bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
                 <p className="text-sm font-semibold text-amber-800 mb-2">
-                  <AlertTriangle className="w-4 h-4 inline ml-1" />
-                  سُجّلت مطالبتك، لكن هذه المستندات لم تصل:
+                  <AlertTriangle className="w-4 h-4 inline me-1" />
+                  {t.docsMissingTitle}
                 </p>
-                <ul className="text-sm text-amber-900 list-disc pr-5 mb-3">
+                <ul className="text-sm text-amber-900 list-disc ps-5 mb-3">
                   {failedDocs.map((c) => <li key={c}>{files[c]?.label ?? c}</li>)}
                 </ul>
                 {(savedId || intakeId) && failedDocs.every((c) => files[c]) ? (
@@ -749,22 +779,22 @@ export default function Claims() {
                     disabled={retrying}
                     className="px-4 py-2 bg-[var(--color-navy)] text-white text-sm rounded-lg hover:bg-[var(--color-navy-light)] disabled:opacity-60"
                   >
-                    {retrying ? 'جارٍ الرفع…' : 'إعادة رفع المستندات'}
+                    {retrying ? t.uploadingShort : t.reupload}
                   </button>
                 ) : null}
                 <p className="text-xs text-amber-700 mt-3">
-                  وإن تعذّر رفعها فلا تُقدّم المطالبة مرة أخرى؛ سيصلك من المكتب رابطٌ لاستكمالها.
+                  {t.docsMissingNote}
                 </p>
               </div>
             )}
             <div className="bg-[var(--color-navy)]/5 rounded-xl p-4 mb-6">
               <p className="text-sm text-[var(--color-navy)]">
-                <Phone className="w-4 h-4 inline ml-1" /> 920032760 &nbsp;&nbsp;
-                <Mail className="w-4 h-4 inline ml-1" /> bankruptcy@redwan.sa
+                <Phone className="w-4 h-4 inline me-1" /> <bdi dir="ltr">920032760</bdi> &nbsp;&nbsp;
+                <Mail className="w-4 h-4 inline me-1" /> <bdi dir="ltr">bankruptcy@redwan.sa</bdi>
               </p>
             </div>
             <button onClick={backToSelection} className="px-6 py-3 bg-[var(--color-navy)] text-white rounded-lg hover:bg-[var(--color-navy-light)] transition-colors">
-              العودة لقائمة القضايا
+              {t.backToCases}
             </button>
           </div>
         )}
@@ -786,12 +816,12 @@ export default function Claims() {
         {/* Case Selection */}
         {!selectedCase && !success && (
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-6">اختر القضية التي ترغب بتقديم مطالبة فيها</h2>
+            <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-6">{t.chooseCase}</h2>
 
             {loading ? (
               <div className="text-center py-12">
                 <div className="w-12 h-12 border-4 border-[var(--color-gold)] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-                <p className="text-gray-500">جاري تحميل القضايا...</p>
+                <p className="text-gray-500">{t.loadingCases}</p>
               </div>
             ) : (
               <>
@@ -800,7 +830,7 @@ export default function Claims() {
                   <div className="mb-8">
                     <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
                       <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse" />
-                      <h3 className="font-bold text-[var(--color-navy)]">القضايا المفتوحة</h3>
+                      <h3 className="font-bold text-[var(--color-navy)]">{t.openCases}</h3>
                       <span className="px-2 py-0.5 bg-green-50 text-green-700 rounded text-xs font-medium">{activeCases.length}</span>
                     </div>
                     <div className="space-y-4">
@@ -828,25 +858,27 @@ export default function Claims() {
                                     {c.debtor_name_en && <p className="text-xs text-gray-500 italic" dir="ltr">{c.debtor_name_en}</p>}
                                   </div>
                                   <span className={`px-2.5 py-1 rounded text-xs font-medium whitespace-nowrap border ${urgent ? 'bg-red-50 text-red-700 border-red-200' : warning ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-green-50 text-green-700 border-green-200'}`}>
-                                    {remaining !== null ? (urgent ? `⚠ ${remaining} يوم متبقي` : `${remaining} يوم متبقي`) : 'متاح'}
+                                    {remaining !== null ? (urgent ? `⚠ ${t.daysLeft(remaining)}` : t.daysLeft(remaining)) : t.available}
                                   </span>
                                 </div>
-                                <span className="inline-block mt-1 px-2 py-0.5 bg-[var(--color-navy)]/10 text-[var(--color-navy)] rounded text-xs">{c.procedure_type}</span>
+                                <span className="inline-block mt-1 px-2 py-0.5 bg-[var(--color-navy)]/10 text-[var(--color-navy)] rounded text-xs">{trProcedure(c.procedure_type, lang)}</span>
                                 <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-500 mt-2">
-                                  {c.commercial_reg && <span>السجل: {c.commercial_reg}</span>}
-                                  {c.case_number && <span>قضية: {c.case_number}</span>}
-                                  {c.court_name && <span>المحكمة: {c.court_name}</span>}
+                                  {c.commercial_reg && <span>{t.regLabel}: <bdi>{c.commercial_reg}</bdi></span>}
+                                  {c.case_number && <span>{t.caseLabel}: <bdi>{c.case_number}</bdi></span>}
+                                  {c.court_name && <span>{t.courtLabel}: {c.court_name}</span>}
                                 </div>
                               </div>
                             </div>
                             <div className="flex items-center justify-between pt-3 mt-3 border-t border-gray-100">
                               {c.claims_deadline && (
                                 <span className="text-xs text-gray-500 flex items-center gap-1">
-                                  <Calendar className="w-3.5 h-3.5" /> آخر موعد: {formatDate(c.claims_deadline)}
+                                  <Calendar className="w-3.5 h-3.5" /> {t.deadlineLabel}: {fmtDate(c.claims_deadline, lang)}
                                 </span>
                               )}
                               <span className="flex items-center gap-1 text-[var(--color-gold)] font-medium text-sm">
-                                تقديم مطالبة <ArrowRight className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                                {t.submitClaim} {isRTL
+                                  ? <ArrowRight className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                                  : <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
                               </span>
                             </div>
                           </div>
@@ -859,7 +891,7 @@ export default function Claims() {
                 {activeCases.length === 0 && (
                   <div className="bg-blue-50 border border-blue-200 rounded-xl p-8 text-center mb-6">
                     <AlertTriangle className="w-12 h-12 text-blue-400 mx-auto mb-3" />
-                    <p className="text-sm font-medium text-blue-900">لا توجد قضايا مفتوحة حالياً لاستقبال المطالبات</p>
+                    <p className="text-sm font-medium text-blue-900">{t.noOpenCases}</p>
                   </div>
                 )}
 
@@ -867,7 +899,7 @@ export default function Claims() {
                   <div className="mt-4 bg-blue-50 border border-blue-100 rounded-lg p-3">
                     <p className="text-xs text-blue-800 flex items-center gap-2">
                       <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" />
-                      للاستفسار: <a href="tel:920032760" className="font-bold underline">920032760</a> · <a href="mailto:bankruptcy@redwan.sa" className="font-bold underline" dir="ltr">bankruptcy@redwan.sa</a>
+                      {t.inquiries}: <a href="tel:920032760" dir="ltr" className="font-bold underline">920032760</a> · <a href="mailto:bankruptcy@redwan.sa" className="font-bold underline" dir="ltr">bankruptcy@redwan.sa</a>
                     </p>
                   </div>
                 )}
@@ -886,9 +918,9 @@ export default function Claims() {
               </div>
               <div className="flex-1">
                 <h3 className="font-bold text-[var(--color-navy)]">{selectedCase.debtor_name}</h3>
-                <p className="text-xs text-gray-500">{selectedCase.procedure_type} · قضية: {selectedCase.case_number || '-'}</p>
+                <p className="text-xs text-gray-500">{trProcedure(selectedCase.procedure_type, lang)} · {t.caseLabel}: <bdi>{selectedCase.case_number || '-'}</bdi></p>
               </div>
-              <button onClick={backToSelection} className="text-sm text-[var(--color-gold)] hover:underline">تغيير</button>
+              <button onClick={backToSelection} className="text-sm text-[var(--color-gold)] hover:underline">{t.change}</button>
             </div>
 
             {/* Progress Steps */}
@@ -899,7 +931,7 @@ export default function Claims() {
                     {step < currentStep ? '✓' : step}
                   </div>
                   <span className={`text-xs sm:text-sm hidden md:inline ${step === currentStep ? 'text-[var(--color-navy)] font-medium' : 'text-gray-400'}`}>
-                    {step === 1 ? 'بيانات الدائن' : step === 2 ? 'تفاصيل المطالبة' : 'المستندات والتوقيع'}
+                    {t.steps[step - 1]}
                   </span>
                   {step < 3 && <div className={`w-4 sm:w-8 h-0.5 ${step < currentStep ? 'bg-green-500' : 'bg-gray-200'}`} />}
                 </div>
@@ -911,11 +943,11 @@ export default function Claims() {
               <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 space-y-8">
                 {/* ① صاحب الحق */}
                 <section>
-                  <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-1">صاحب الحق (الدائن)</h2>
-                  <p className="text-sm text-gray-500 mb-5">من له الدين على المدين، فرداً كان أو منشأة.</p>
+                  <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-1">{t.creditorTitle}</h2>
+                  <p className="text-sm text-gray-500 mb-5">{t.creditorSub}</p>
 
                   <div className="mb-5">
-                    <label className={labelClass}>نوع الدائن *</label>
+                    <label className={labelClass}>{t.creditorTypeLabel}</label>
                     <div className="flex gap-2 flex-wrap">
                       {CREDITOR_TYPES.map(type => (
                         <button
@@ -925,33 +957,31 @@ export default function Claims() {
                           className={`px-4 py-2 rounded-lg border text-sm transition-colors ${creditorType === type ? 'border-[var(--color-gold)] bg-[var(--color-cream)] text-[var(--color-navy)] font-medium' : 'border-[var(--color-border)] text-gray-600 hover:border-[var(--color-gold)]'}`}
                           aria-pressed={creditorType === type}
                         >
-                          {type}
+                          {trCreditorType(type, lang)}
                         </button>
                       ))}
                     </div>
                   </div>
 
-                  {!creditorType && <p className="text-sm text-gray-500">اختر نوع الدائن لتظهر بقية الخانات.</p>}
+                  {!creditorType && <p className="text-sm text-gray-500">{t.chooseTypeHint}</p>}
                   {creditorType && (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div className={isPerson ? '' : 'md:col-span-2'}>
-                      <label className={labelClass}>{isPerson ? 'الاسم الرباعي كما في الهوية *' : creditorType === 'جهة حكومية' ? 'اسم الجهة *' : creditorType === 'بنك' ? 'اسم البنك *' : `اسم ${creditorType === 'مؤسسة' ? 'المؤسسة' : 'الشركة'} كما في السجل التجاري *`}</label>
+                      <label className={labelClass}>{t.nameLabel(creditorType)}</label>
                       <input type="text" value={creditorName} onChange={e => setCreditorName(e.target.value)} className={inputClass} required />
                     </div>
                     {isPerson && (
                       <div>
-                        <label className={labelClass}>نوع الهوية *</label>
+                        <label className={labelClass}>{t.idTypeLabel}</label>
                         <select value={idType} onChange={e => setIdType(e.target.value)} className={inputClass}>
-                          <option value="هوية وطنية">هوية وطنية</option>
-                          <option value="إقامة">إقامة</option>
-                          <option value="جواز سفر">جواز سفر</option>
+                          {['هوية وطنية', 'إقامة', 'جواز سفر'].map(v => <option key={v} value={v}>{trIdType(v, lang)}</option>)}
                         </select>
                       </div>
                     )}
                     <div>
-                      <label className={labelClass}>{isPerson ? 'رقم الهوية *' : creditorType === 'جهة حكومية' ? 'الرقم الموحد للجهة (700) *' : 'رقم السجل التجاري أو الرقم الموحد *'}</label>
+                      <label className={labelClass}>{t.idNumberLabel(creditorType)}</label>
                       <input type="text" inputMode="numeric" value={idNumber} onChange={e => setIdNumber(e.target.value)} className={inputClass} dir="ltr" required />
-                      <p className="text-xs text-gray-500 mt-1">رقم صاحب الحق نفسه، لا رقم من يقدّم عنه.</p>
+                      <p className="text-xs text-gray-500 mt-1">{t.idNumberHint}</p>
                     </div>
                   </div>
                   )}
@@ -960,12 +990,12 @@ export default function Claims() {
                 {creditorType && (<>
                 {/* ② من يقدّم المطالبة */}
                 <section className="border-t border-gray-100 pt-6">
-                  <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-4">من يقدّم المطالبة؟</h2>
+                  <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-4">{t.whoTitle}</h2>
                   {isPerson && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
                       {([
-                        ['self', 'أنا صاحب الحق', 'أقدّمها عن نفسي'],
-                        ['other', 'أقدّمها عن غيري', 'وكيل أو محامٍ'],
+                        ['self', t.selfTitle, t.selfSub],
+                        ['other', t.otherTitle, t.otherSub],
                       ] as const).map(([v, t, sub]) => (
                         <button
                           key={v}
@@ -981,32 +1011,32 @@ export default function Claims() {
                     </div>
                   )}
                   {!isPerson && (
-                    <p className="text-sm text-gray-500 mb-4">المنشأة يقدّم عنها شخص: ممثلها النظامي، أو موظف مفوَّض، أو وكيل.</p>
+                    <p className="text-sm text-gray-500 mb-4">{t.orgApplicantNote}</p>
                   )}
 
                   {hasApplicant && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div>
-                        <label className={labelClass}>صفتك *</label>
+                        <label className={labelClass}>{t.capacityLabel}</label>
                         <select value={applicantCapacity} onChange={e => setApplicantCapacity(e.target.value)} className={inputClass}>
-                          <option value="">اختر...</option>
-                          {capacities.map(c => <option key={c} value={c}>{CAPACITY_LABEL[c] ?? c}</option>)}
+                          <option value="">{t.choose}</option>
+                          {capacities.map(c => <option key={c} value={c}>{trCapacity(c, lang)}</option>)}
                         </select>
                       </div>
                       <div>
-                        <label className={labelClass}>اسمك الرباعي *</label>
+                        <label className={labelClass}>{t.applicantNameLabel}</label>
                         <input type="text" value={representativeName} onChange={e => setRepresentativeName(e.target.value)} className={inputClass} />
                       </div>
                       <div>
-                        <label className={labelClass}>رقم هويتك *</label>
+                        <label className={labelClass}>{t.applicantIdLabel}</label>
                         <input type="text" inputMode="numeric" value={applicantIdNumber} onChange={e => setApplicantIdNumber(e.target.value)} className={inputClass} dir="ltr" />
                         {applicantIdNumber.trim() && digitsOf(applicantIdNumber) === digitsOf(idNumber) && (
-                          <p className="text-xs text-red-600 mt-1">هذا رقم الدائن نفسه. اكتب في خانة الدائن رقم صاحب الحق{isPerson ? '' : ': سجل المنشأة أو رقمها الموحد'}.</p>
+                          <p className="text-xs text-red-600 mt-1">{t.sameIdInline(isPerson)}</p>
                         )}
                       </div>
                       {CAPACITY_DOC[applicantCapacity] && (
                         <div>
-                          <label className={labelClass}>{CAPACITY_DOC[applicantCapacity].label}{CAPACITY_DOC[applicantCapacity].required ? ' *' : ''}</label>
+                          <label className={labelClass}>{t.capacityDocLabel(applicantCapacity)}{CAPACITY_DOC[applicantCapacity].required ? ' *' : ''}</label>
                           <input type="text" value={capacityDocument} onChange={e => setCapacityDocument(e.target.value)} className={inputClass} dir="ltr" />
                         </div>
                       )}
@@ -1016,32 +1046,30 @@ export default function Claims() {
 
                 {/* ③ التواصل */}
                 <section className="border-t border-gray-100 pt-6">
-                  <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-1">التواصل</h2>
+                  <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-1">{t.contactTitle}</h2>
                   <p className="text-sm text-gray-500 mb-5">
-                    {hasApplicant
-                      ? 'جوالك وبريدك أنت. عليهما يصلك رمز الدخول إلى بوابة الدائنين برقم الدائن، وكل إشعارات المطالبة.'
-                      : 'عليهما يصلكم رمز الدخول إلى بوابة الدائنين، وكل إشعارات المطالبة.'}
+                    {hasApplicant ? t.contactApplicant : t.contactSelf}
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                      <label className={labelClass}>رقم الجوال *</label>
+                      <label className={labelClass}>{t.phoneLabel}</label>
                       <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="05xxxxxxxx" className={inputClass} dir="ltr" required />
                     </div>
                     <div>
-                      <label className={labelClass}>البريد الإلكتروني *</label>
+                      <label className={labelClass}>{t.emailLabel}</label>
                       <input type="email" value={email} onChange={e => setEmail(e.target.value)} className={inputClass} dir="ltr" required />
                     </div>
                   </div>
 
                   <div className="mt-6">
-                    <label className={labelClass}>العنوان الوطني {isPerson ? 'للدائن' : 'للمنشأة'}</label>
+                    <label className={labelClass}>{t.addressLabel(isPerson)}</label>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      <input type="text" value={buildingNumber} onChange={e => setBuildingNumber(e.target.value)} placeholder="رقم المبنى" className={inputClass} />
-                      <input type="text" value={streetName} onChange={e => setStreetName(e.target.value)} placeholder="اسم الشارع" className={inputClass} />
-                      <input type="text" value={district} onChange={e => setDistrict(e.target.value)} placeholder="الحي" className={inputClass} />
-                      <input type="text" value={city} onChange={e => setCity(e.target.value)} placeholder="المدينة" className={inputClass} />
-                      <input type="text" value={postalCode} onChange={e => setPostalCode(e.target.value)} placeholder="الرمز البريدي" className={inputClass} dir="ltr" />
-                      <input type="text" value={additionalNumber} onChange={e => setAdditionalNumber(e.target.value)} placeholder="الرقم الإضافي" className={inputClass} dir="ltr" />
+                      <input type="text" value={buildingNumber} onChange={e => setBuildingNumber(e.target.value)} placeholder={t.addr.building} className={inputClass} />
+                      <input type="text" value={streetName} onChange={e => setStreetName(e.target.value)} placeholder={t.addr.street} className={inputClass} />
+                      <input type="text" value={district} onChange={e => setDistrict(e.target.value)} placeholder={t.addr.district} className={inputClass} />
+                      <input type="text" value={city} onChange={e => setCity(e.target.value)} placeholder={t.addr.city} className={inputClass} />
+                      <input type="text" value={postalCode} onChange={e => setPostalCode(e.target.value)} placeholder={t.addr.postal} className={inputClass} dir="ltr" />
+                      <input type="text" value={additionalNumber} onChange={e => setAdditionalNumber(e.target.value)} placeholder={t.addr.additional} className={inputClass} dir="ltr" />
                     </div>
                   </div>
                 </section>
@@ -1052,35 +1080,32 @@ export default function Claims() {
             {/* Step 2 */}
             {currentStep === 2 && (
               <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-                <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-6">تفاصيل المطالبة</h2>
+                <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-6">{t.detailsTitle}</h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
-                    <label className={labelClass}>نوع المطالبة *</label>
+                    <label className={labelClass}>{t.claimTypeLabel}</label>
                     <select value={claimType} onChange={e => setClaimType(e.target.value)} className={inputClass}>
-                      <option value="عمالي">عمالي</option>
-                      <option value="تجاري">تجاري</option>
-                      <option value="بنوك">بنوك</option>
-                      <option value="حكومي">حكومي</option>
+                      {['عمالي', 'تجاري', 'بنوك', 'حكومي'].map(v => <option key={v} value={v}>{trClaimType(v, lang)}</option>)}
                     </select>
                   </div>
                   <div>
-                    <label className={labelClass}>مبلغ المطالبة (ريال) *</label>
-                    <input type="text" inputMode="decimal" value={claimAmount} onChange={e => setClaimAmount(e.target.value)} placeholder="مثال: 43000" className={inputClass} dir="ltr" required />
-                    <AmountPreview raw={claimAmount} />
+                    <label className={labelClass}>{t.amountLabel}</label>
+                    <input type="text" inputMode="decimal" value={claimAmount} onChange={e => setClaimAmount(e.target.value)} placeholder={t.amountPlaceholder} className={inputClass} dir="ltr" required />
+                    <AmountPreview raw={claimAmount} t={t} />
                   </div>
                 </div>
 
                 <div className="mt-5">
-                  <label className={labelClass}>هل المطالبة مضمونة؟</label>
+                  <label className={labelClass}>{t.securedQ}</label>
                   <div className="flex gap-6">
                     <label className="flex items-center gap-2 cursor-pointer">
                       <input type="radio" value="yes" checked={isSecured === 'yes'} onChange={() => setIsSecured('yes')} className="accent-[var(--color-gold)]" />
-                      <span className="text-sm">نعم</span>
+                      <span className="text-sm">{t.yes}</span>
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer">
                       <input type="radio" value="no" checked={isSecured === 'no'} onChange={() => setIsSecured('no')} className="accent-[var(--color-gold)]" />
-                      <span className="text-sm">لا</span>
+                      <span className="text-sm">{t.no}</span>
                     </label>
                   </div>
                 </div>
@@ -1088,40 +1113,36 @@ export default function Claims() {
                 {isSecured === 'yes' && (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5 p-4 bg-[var(--color-cream)] rounded-lg border border-[var(--color-border)]">
                     <div>
-                      <label className={labelClass}>نوع الضمان</label>
+                      <label className={labelClass}>{t.securityTypeLabel}</label>
                       <select value={securityType} onChange={e => setSecurityType(e.target.value)} className={inputClass}>
-                        <option value="">اختر...</option>
-                        <option value="رهن عقاري">رهن عقاري</option>
-                        <option value="رهن منقول">رهن منقول (معدات، مركبات)</option>
-                        <option value="كفالة بنكية">كفالة بنكية</option>
-                        <option value="كفالة شخصية">كفالة شخصية</option>
-                        <option value="أخرى">أخرى</option>
+                        <option value="">{t.choose}</option>
+                        {['رهن عقاري', 'رهن منقول', 'كفالة بنكية', 'كفالة شخصية', 'أخرى'].map(v => <option key={v} value={v}>{trSecurityType(v, lang)}</option>)}
                       </select>
                     </div>
                     <div>
-                      <label className={labelClass}>قيمة الضمان (ريال)</label>
+                      <label className={labelClass}>{t.securityValueLabel}</label>
                       <input type="text" inputMode="decimal" value={securityValue} onChange={e => setSecurityValue(e.target.value)} className={inputClass} dir="ltr" />
-                      <AmountPreview raw={securityValue} />
+                      <AmountPreview raw={securityValue} t={t} />
                     </div>
                   </div>
                 )}
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
                   <div>
-                    <label className={labelClass}>تاريخ نشوء الدين</label>
+                    <label className={labelClass}>{t.originDate}</label>
                     <input type="date" value={debtOriginDate} onChange={e => setDebtOriginDate(e.target.value)} className={inputClass} dir="ltr" />
                   </div>
                   <div>
-                    <label className={labelClass}>تاريخ الاستحقاق</label>
+                    <label className={labelClass}>{t.dueDate}</label>
                     <input type="date" value={dueDate} onChange={e => setDueDate(e.target.value)} className={inputClass} dir="ltr" />
                   </div>
                   <div className="md:col-span-2">
-                    <label className={labelClass}>مستند الاستحقاق</label>
-                    <input type="text" value={dueDocument} onChange={e => setDueDocument(e.target.value)} placeholder="مثال: فاتورة رقم 2024-478، شيك رقم 123456" className={inputClass} />
+                    <label className={labelClass}>{t.dueDocLabel}</label>
+                    <input type="text" value={dueDocument} onChange={e => setDueDocument(e.target.value)} placeholder={t.dueDocPlaceholder} className={inputClass} />
                   </div>
                   <div className="md:col-span-2">
-                    <label className={labelClass}>سبب المطالبة *</label>
-                    <textarea value={claimReason} onChange={e => setClaimReason(e.target.value)} rows={4} placeholder="اشرح سبب المطالبة بالتفصيل" className={inputClass} required />
+                    <label className={labelClass}>{t.reasonLabel}</label>
+                    <textarea value={claimReason} onChange={e => setClaimReason(e.target.value)} rows={4} placeholder={t.reasonPlaceholder} className={inputClass} required />
                   </div>
                 </div>
               </div>
@@ -1130,18 +1151,18 @@ export default function Claims() {
             {/* Step 3 - Documents & Signature */}
             {currentStep === 3 && (
               <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-                <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-6">المستندات والتوقيع</h2>
+                <h2 className="text-xl font-bold font-heading text-[var(--color-navy)] mb-6">{t.docsTitle}</h2>
 
                 <div className="space-y-4 mb-8">
                   {/* ما يلزم بحسب إجابات الخطوة الأولى، لا السبعة لكل أحد */}
                   {[
-                    { key: 'creditor_id', label: isPerson ? 'نسخة من هوية الدائن' : creditorType === 'جهة حكومية' ? 'ما يثبت الرقم الموحد للجهة' : 'نسخة من السجل التجاري' },
-                    hasApplicant && { key: 'applicant_id', label: 'نسخة من هويتك (مقدّم الطلب)' },
-                    hasApplicant && { key: 'capacity_document', label: applicantCapacity === 'موظف مفوَّض' ? 'خطاب التفويض' : applicantCapacity === 'ممثل نظامي' ? 'ما يثبت صفتك (السجل أو عقد التأسيس)' : 'الوكالة' },
-                    !isPerson && creditorType !== 'جهة حكومية' && { key: 'power_of_attorney', label: 'عقد التأسيس (إن وجد)' },
-                    { key: 'opening_document', label: 'نسخة من سند الافتتاح' },
-                    { key: 'due_document', label: 'نسخة من سند الاستحقاق' },
-                    isSecured === 'yes' && { key: 'security_document', label: 'نسخة من سند الضمان' },
+                    { key: 'creditor_id', label: isPerson ? t.doc.creditorIdPerson : creditorType === 'جهة حكومية' ? t.doc.creditorIdGov : t.doc.creditorIdOrg },
+                    hasApplicant && { key: 'applicant_id', label: t.doc.applicantId },
+                    hasApplicant && { key: 'capacity_document', label: applicantCapacity === 'موظف مفوَّض' ? t.doc.capAuth : applicantCapacity === 'ممثل نظامي' ? t.doc.capRep : t.doc.capAgency },
+                    !isPerson && creditorType !== 'جهة حكومية' && { key: 'power_of_attorney', label: t.doc.articles },
+                    { key: 'opening_document', label: t.doc.opening },
+                    { key: 'due_document', label: t.doc.due },
+                    isSecured === 'yes' && { key: 'security_document', label: t.doc.security },
                   ].filter((d): d is { key: string; label: string } => Boolean(d)).map(doc => (
                     <div key={doc.key} className="flex items-center gap-3 p-3 bg-[var(--color-cream)] rounded-lg border border-[var(--color-border)]">
                       <Upload className="w-5 h-5 text-[var(--color-gold)] flex-shrink-0" />
@@ -1154,7 +1175,7 @@ export default function Claims() {
                         )}
                       </div>
                       <label className="px-3 py-1.5 bg-white border border-[var(--color-gold)] text-[var(--color-gold)] rounded text-xs font-medium cursor-pointer hover:bg-[var(--color-gold)] hover:text-white transition-colors">
-                        اختيار ملف
+                        {t.chooseFile}
                         <input type="file" className="hidden" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onChange={(e) => handleFileChange(doc.key, doc.label, e)} />
                       </label>
                     </div>
@@ -1163,7 +1184,7 @@ export default function Claims() {
 
                 {/* Signature */}
                 <div className="mb-6">
-                  <label className={labelClass}>التوقيع *</label>
+                  <label className={labelClass}>{t.signature}</label>
                   <div className="border-2 border-dashed border-[var(--color-border)] rounded-lg p-1 bg-white">
                     <canvas
                       ref={canvasRef}
@@ -1177,14 +1198,20 @@ export default function Claims() {
                       onTouchEnd={endDraw}
                     />
                   </div>
-                  <button type="button" onClick={clearSignature} className="mt-2 text-xs text-red-500 hover:underline">مسح التوقيع</button>
+                  <button type="button" onClick={clearSignature} className="mt-2 text-xs text-red-500 hover:underline">{t.clearSignature}</button>
                 </div>
 
                 {/* Declaration */}
                 <label className="flex items-start gap-3 p-4 bg-[var(--color-navy)]/5 rounded-lg cursor-pointer">
                   <input type="checkbox" checked={declaration} onChange={e => setDeclaration(e.target.checked)} className="mt-1 accent-[var(--color-gold)] w-4 h-4" />
                   <span className="text-sm text-[var(--color-navy)]">
-                    أقر بأن جميع البيانات المدخلة صحيحة ودقيقة، وأتحمل المسؤولية الكاملة عن صحتها وفقاً لأحكام نظام الإفلاس ولائحته التنفيذية.
+                    {t.declaration}
+                    {lang !== 'ar' && (
+                      <span className="block mt-2 pt-2 border-t border-[var(--color-navy)]/10 text-xs text-[var(--color-navy)]/70">
+                        {t.declarationArNote}
+                        <span dir="rtl" lang="ar" className="block mt-1">{DECLARATION_AR}</span>
+                      </span>
+                    )}
                   </span>
                 </label>
               </div>
@@ -1194,19 +1221,19 @@ export default function Claims() {
             <div className="flex items-center justify-between mt-5 md:mt-6 gap-3">
               {currentStep > 1 ? (
                 <button onClick={prevStep} className="px-4 md:px-6 py-2.5 md:py-3 text-sm border border-[var(--color-navy)] text-[var(--color-navy)] rounded-lg hover:bg-[var(--color-navy)] hover:text-white active:scale-[0.97] transition-all">
-                  السابق
+                  {t.prev}
                 </button>
               ) : (
                 <div />
               )}
               {currentStep < 3 ? (
                 <button onClick={nextStep} className="px-6 md:px-8 py-2.5 md:py-3 text-sm bg-[var(--color-gold)] text-white rounded-lg hover:bg-[#b08d1f] active:scale-[0.97] transition-all font-medium">
-                  التالي
+                  {t.next}
                 </button>
               ) : (
                 <button onClick={nextStep} disabled={submitting} className="px-6 md:px-8 py-2.5 md:py-3 text-sm bg-[var(--color-gold)] text-white rounded-lg hover:bg-[#b08d1f] active:scale-[0.97] transition-all font-medium disabled:opacity-50">
-                  <FileText className="w-4 h-4 inline ml-2" />
-                  {submitting ? 'جاري إرسال المطالبة...' : 'تأكيد وإرسال المطالبة'}
+                  <FileText className="w-4 h-4 inline me-2" />
+                  {submitting ? t.sending : t.confirmSend}
                 </button>
               )}
             </div>
