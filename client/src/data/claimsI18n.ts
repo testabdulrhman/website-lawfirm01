@@ -88,7 +88,7 @@ const ar = {
   creditorTypeLabel: 'نوع الدائن *',
   chooseTypeHint: 'اختر نوع الدائن لتظهر بقية الخانات.',
   nameLabel: (type: string): string =>
-    type === 'فرد' ? 'الاسم الرباعي كما في الهوية *'
+    type === 'فرد' ? 'الاسم الرباعي للدائن كما في الهوية *'
       : type === 'جهة حكومية' ? 'اسم الجهة *'
         : type === 'بنك' ? 'اسم البنك *'
           : `اسم ${type === 'مؤسسة' ? 'المؤسسة' : 'الشركة'} كما في السجل التجاري *`,
@@ -245,7 +245,7 @@ const en: ClaimsStrings = {
   creditorTypeLabel: 'Creditor type *',
   chooseTypeHint: 'Choose the creditor type to show the remaining fields.',
   nameLabel: (type: string): string =>
-    type === 'فرد' ? 'Full name as on the ID *'
+    type === 'فرد' ? "Creditor's full name as on the ID *"
       : type === 'جهة حكومية' ? 'Entity name *'
         : type === 'بنك' ? 'Bank name *'
           : `${type === 'مؤسسة' ? 'Establishment' : 'Company'} name as in the commercial register *`,
@@ -395,7 +395,7 @@ const ur: ClaimsStrings = {
   creditorTypeLabel: 'قرض خواہ کی قسم *',
   chooseTypeHint: 'باقی خانے دیکھنے کے لیے قرض خواہ کی قسم منتخب کریں۔',
   nameLabel: (type: string): string =>
-    type === 'فرد' ? 'شناختی کارڈ کے مطابق پورا نام *'
+    type === 'فرد' ? 'شناختی کارڈ کے مطابق قرض خواہ کا پورا نام *'
       : type === 'جهة حكومية' ? 'ادارے کا نام *'
         : type === 'بنك' ? 'بینک کا نام *'
           : `تجارتی رجسٹر کے مطابق ${type === 'مؤسسة' ? 'ادارے' : 'کمپنی'} کا نام *`,
