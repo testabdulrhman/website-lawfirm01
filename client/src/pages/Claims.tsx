@@ -40,6 +40,9 @@ interface CaseProcedure {
 // Helpers
 // مسودة النموذج في جهاز الدائن: إن انقطع الاتصال أو أُغلقت الصفحة قبل
 // الإرسال وجد بياناته حين يعود. وتُمحى حين تُحفظ المطالبة في صندوق الاستلام.
+// أنواع الدائن كما في النظام الداخلي — قائمةٌ واحدة في الموقع والنظام
+const CREDITOR_TYPES = ['فرد', 'شركة', 'مؤسسة', 'جهة حكومية', 'بنك'];
+
 const DRAFT_KEY = (caseId: number | string) => `claim_draft_v1:${caseId}`;
 function clearDraft(caseId: number | string) {
   try { localStorage.removeItem(DRAFT_KEY(caseId)); } catch { /* ignore */ }
@@ -164,7 +167,8 @@ export default function Claims() {
     try { d = JSON.parse(localStorage.getItem(DRAFT_KEY(caseId)) || 'null'); } catch { d = null; }
     if (!d) return;
     const set = <T,>(v: T | undefined, f: (x: T) => void) => { if (v !== undefined && v !== null) f(v); };
-    set(d.creditorType, setCreditorType); set(d.creditorName, setCreditorName); set(d.idType, setIdType);
+    // مسوّدةٌ قديمة فيها «شركة-مؤسسة» لم يعد خياراً: يختار الدائن من جديد
+    set(d.creditorType, (v) => setCreditorType(CREDITOR_TYPES.includes(v) ? v : '')); set(d.creditorName, setCreditorName); set(d.idType, setIdType);
     set(d.idNumber, setIdNumber); set(d.representativeName, setRepresentativeName); set(d.phone, setPhone);
     set(d.email, setEmail); set(d.buildingNumber, setBuildingNumber); set(d.streetName, setStreetName);
     set(d.district, setDistrict); set(d.city, setCity); set(d.postalCode, setPostalCode);
@@ -269,6 +273,7 @@ export default function Claims() {
   // Validation
   function validateStep(step: number): boolean {
     if (step === 1) {
+      if (!CREDITOR_TYPES.includes(creditorType)) { toast.error('يرجى اختيار نوع الدائن'); return false; }
       if (!creditorName.trim()) { toast.error('يرجى إدخال اسم الدائن'); return false; }
       if (!idNumber.trim()) { toast.error('يرجى إدخال رقم الهوية'); return false; }
       if (!phone.trim()) { toast.error('يرجى إدخال رقم الجوال'); return false; }
@@ -860,7 +865,7 @@ export default function Claims() {
                 <div className="mb-5">
                   <label className={labelClass}>نوع الدائن</label>
                   <div className="flex gap-4 flex-wrap">
-                    {['فرد', 'شركة-مؤسسة', 'جهة حكومية'].map(type => (
+                    {CREDITOR_TYPES.map(type => (
                       <label key={type} className="flex items-center gap-2 cursor-pointer">
                         <input type="radio" name="creditorType" value={type} checked={creditorType === type} onChange={(e) => setCreditorType(e.target.value)} className="accent-[var(--color-gold)]" />
                         <span className="text-sm text-[var(--color-navy)]">{type}</span>
