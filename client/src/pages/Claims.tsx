@@ -347,6 +347,12 @@ export default function Claims() {
       }
       if (!phone.trim()) { toast.error(t.errPhone); return false; }
       if (!email.trim()) { toast.error(t.errEmail); return false; }
+      // العنوان الوطني يُكتب في نموذج الإدراج (م13 من اللائحة) — والرقم الإضافي وحده اختياري
+      const addrMissing = ([
+        [buildingNumber, t.addr.building], [streetName, t.addr.street], [district, t.addr.district],
+        [city, t.addr.city], [postalCode, t.addr.postal],
+      ] as const).filter(([v]) => !v.trim()).map(([, label]) => label);
+      if (addrMissing.length) { toast.error(t.errAddress(addrMissing.join('، '))); return false; }
     }
     if (step === 2) {
       const amount = parseAmount(claimAmount);
@@ -354,6 +360,8 @@ export default function Claims() {
       if (isSecured === 'yes' && securityValue.trim() && parseAmount(securityValue) === null) {
         toast.error(t.errSecurity); return false;
       }
+      if (!dueDate) { toast.error(t.errDueDate); return false; }
+      if (!dueDocument.trim()) { toast.error(t.errDueDoc); return false; }
       if (!claimReason.trim()) { toast.error(t.errReason); return false; }
     }
     if (step === 3) {
@@ -1074,11 +1082,11 @@ export default function Claims() {
                   <div className="mt-6">
                     <label className={labelClass}>{t.addressLabel(isPerson)}</label>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      <input type="text" value={buildingNumber} onChange={e => setBuildingNumber(e.target.value)} placeholder={t.addr.building} className={inputClass} />
-                      <input type="text" value={streetName} onChange={e => setStreetName(e.target.value)} placeholder={t.addr.street} className={inputClass} />
-                      <input type="text" value={district} onChange={e => setDistrict(e.target.value)} placeholder={t.addr.district} className={inputClass} />
-                      <input type="text" value={city} onChange={e => setCity(e.target.value)} placeholder={t.addr.city} className={inputClass} />
-                      <input type="text" value={postalCode} onChange={e => setPostalCode(e.target.value)} placeholder={t.addr.postal} className={inputClass} dir="ltr" />
+                      <input type="text" value={buildingNumber} onChange={e => setBuildingNumber(e.target.value)} placeholder={t.addr.building} className={inputClass} required />
+                      <input type="text" value={streetName} onChange={e => setStreetName(e.target.value)} placeholder={t.addr.street} className={inputClass} required />
+                      <input type="text" value={district} onChange={e => setDistrict(e.target.value)} placeholder={t.addr.district} className={inputClass} required />
+                      <input type="text" value={city} onChange={e => setCity(e.target.value)} placeholder={t.addr.city} className={inputClass} required />
+                      <input type="text" value={postalCode} onChange={e => setPostalCode(e.target.value)} placeholder={t.addr.postal} className={inputClass} dir="ltr" required />
                       <input type="text" value={additionalNumber} onChange={e => setAdditionalNumber(e.target.value)} placeholder={t.addr.additional} className={inputClass} dir="ltr" />
                     </div>
                   </div>
@@ -1144,11 +1152,11 @@ export default function Claims() {
                   </div>
                   <div>
                     <label className={labelClass}>{t.dueDate}</label>
-                    <input type="date" value={dueDate} onChange={e => setDueDate(e.target.value)} className={inputClass} dir="ltr" />
+                    <input type="date" value={dueDate} onChange={e => setDueDate(e.target.value)} className={inputClass} dir="ltr" required />
                   </div>
                   <div className="md:col-span-2">
                     <label className={labelClass}>{t.dueDocLabel}</label>
-                    <input type="text" value={dueDocument} onChange={e => setDueDocument(e.target.value)} placeholder={t.dueDocPlaceholder} className={inputClass} />
+                    <input type="text" value={dueDocument} onChange={e => setDueDocument(e.target.value)} placeholder={t.dueDocPlaceholder} className={inputClass} required />
                   </div>
                   <div className="md:col-span-2">
                     <label className={labelClass}>{t.reasonLabel}</label>
