@@ -361,6 +361,11 @@ export default function Claims() {
         toast.error(t.errSecurity); return false;
       }
       if (!dueDate) { toast.error(t.errDueDate); return false; }
+      // خانة التاريخ تقبل أي سنة، فيكتب بعضهم الهجري (1446) فيُرفض التسجيل
+      for (const [v, label] of [[debtOriginDate, t.originDate], [dueDate, t.dueDate]] as const) {
+        const y = Number(v.slice(0, 4));
+        if (v && (y < 1980 || y > 2100)) { toast.error(t.errGregorian(label.replace(/\s*\*$/, ''))); return false; }
+      }
       if (!dueDocument.trim()) { toast.error(t.errDueDoc); return false; }
       if (!claimReason.trim()) { toast.error(t.errReason); return false; }
     }
@@ -1148,11 +1153,11 @@ export default function Claims() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
                   <div>
                     <label className={labelClass}>{t.originDate}</label>
-                    <input type="date" value={debtOriginDate} onChange={e => setDebtOriginDate(e.target.value)} className={inputClass} dir="ltr" />
+                    <input type="date" min="1980-01-01" max="2100-01-01" value={debtOriginDate} onChange={e => setDebtOriginDate(e.target.value)} className={inputClass} dir="ltr" />
                   </div>
                   <div>
                     <label className={labelClass}>{t.dueDate}</label>
-                    <input type="date" value={dueDate} onChange={e => setDueDate(e.target.value)} className={inputClass} dir="ltr" required />
+                    <input type="date" min="1980-01-01" max="2100-01-01" value={dueDate} onChange={e => setDueDate(e.target.value)} className={inputClass} dir="ltr" required />
                   </div>
                   <div className="md:col-span-2">
                     <label className={labelClass}>{t.dueDocLabel}</label>
