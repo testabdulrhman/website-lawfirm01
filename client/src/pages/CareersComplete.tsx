@@ -103,10 +103,16 @@ export default function CareersComplete() {
   // جلب حالة الطلب من الرابط
   useEffect(() => {
     if (!id || id.length < 20) {
+      // أول عرض بعد التهيئة المسبقة (hydration) يقرأ بحث الخادم الفارغ — فإن كان في الرابط رقم فعلاً
+      // ننتظر العرض التالي الذي يحمله، ولا نعلن «غير صالح» (كانت الرسالة تعلق ولو صحّ الرقم — 2026-10-18)
+      const real = new URLSearchParams(window.location.search).get("id");
+      if (real && real.length >= 20) return;
       setLoadError("الرابط غير صالح. تأكّد من نسخه كاملاً من الرسالة.");
       setLoading(false);
       return;
     }
+    setLoadError(null);
+    setLoading(true);
     (async () => {
       try {
         const res = await fetch(ENDPOINT, {
