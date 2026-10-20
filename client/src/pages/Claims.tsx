@@ -4,7 +4,6 @@ import SEOHead from '@/components/SEOHead';
 import { Phone, Mail } from 'lucide-react';
 import { localePath } from "@/lib/localePath";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { LANGS, LANG_ORDER } from "@/data/creditorI18n";
 import { CLAIMS_T } from "@/data/claimsI18n";
 
 // نموذج تسجيل الدائن من منصة «غُرَماء»: يعرض الملفات التي تستقبل المطالبات،
@@ -49,7 +48,7 @@ const FORM_IN_ARABIC = {
 } as const;
 
 export default function Claims() {
-  const { lang, setLang } = useLanguage();
+  const { lang } = useLanguage();
   const lp = (p: string) => localePath(p, lang);
   const t = CLAIMS_T[lang];
 
@@ -100,21 +99,6 @@ export default function Claims() {
           <p className="font-body text-base md:text-lg text-white/60 max-w-2xl">
             {INTRO[lang]}
           </p>
-          {/* اللغة في الصفحة نفسها: مبدّل رأس الموقع قد لا يلاحظه الدائن */}
-          <div className="mt-6 inline-flex rounded-lg border border-white/20 p-1 gap-1" role="group" aria-label="Language">
-            {LANG_ORDER.map((l) => (
-              <button
-                key={l}
-                type="button"
-                lang={l}
-                onClick={() => setLang(l)}
-                aria-pressed={lang === l}
-                className={`px-3 py-1.5 rounded-md text-sm transition-colors ${lang === l ? 'bg-[var(--color-gold)] text-white' : 'text-white/70 hover:text-white'}`}
-              >
-                {LANGS[l].native}
-              </button>
-            ))}
-          </div>
         </div>
       </section>
 
