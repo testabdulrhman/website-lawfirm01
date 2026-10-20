@@ -8,13 +8,14 @@ import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import { useLocation } from "wouter";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { hidesContactPrompts } from "@/lib/contactPrompts";
 
 export default function ScrollToTop() {
   const [visible, setVisible] = useState(false);
   const { isRTL } = useLanguage();
   const [location] = useLocation();
-  // لا زر واتساب في الرئيسية، فينزل الزر إلى الزاوية
-  const isHome = location === "/" || location === "/en";
+  // لا زر واتساب في الرئيسية وصفحات التوظيف، فينزل الزر إلى الزاوية
+  const noWhatsApp = hidesContactPrompts(location);
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 400);
@@ -32,7 +33,7 @@ export default function ScrollToTop() {
     <button
       onClick={handleClick}
       aria-label={isRTL ? "العودة إلى الأعلى" : "Back to top"}
-      className={`fixed ${isRTL ? "left-5" : "right-5"} ${isHome ? "bottom-5" : "bottom-[88px]"} z-50 w-12 h-12 rounded-full bg-[var(--color-navy)] text-[var(--color-gold)] ring-1 ring-[var(--color-gold)]/40 flex items-center justify-center shadow-lg hover:bg-[var(--color-navy-light)] hover:ring-[var(--color-gold)] active:scale-[0.92]`}
+      className={`fixed ${isRTL ? "left-5" : "right-5"} ${noWhatsApp ? "bottom-5" : "bottom-[88px]"} z-50 w-12 h-12 rounded-full bg-[var(--color-navy)] text-[var(--color-gold)] ring-1 ring-[var(--color-gold)]/40 flex items-center justify-center shadow-lg hover:bg-[var(--color-navy-light)] hover:ring-[var(--color-gold)] active:scale-[0.92]`}
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "scale(1) translateY(0)" : "scale(0.9) translateY(8px)",

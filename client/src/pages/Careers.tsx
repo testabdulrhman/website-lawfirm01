@@ -1,7 +1,8 @@
 // ============================================================
-// صفحة «انضم إلينا» (/careers) — شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس
+// صفحة «انضم إلينا» (/careers و /en/careers) — شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس
+// النصوص كلها في COPY بالعربية والإنجليزية؛ اتجاه الصفحة يتبع اللغة.
 // الألوان والأشكال من نظام تصميم الشركة (Design System) محصورةً في متغيرات --ds-* داخل الصفحة؛
-// الخطوط خطوط الموقع نفسها. RTL كامل، متجاوب جوال أولاً.
+// الخطوط خطوط الموقع نفسها. متجاوب جوال أولاً.
 // الواجهة: خريطة المملكة المنقّطة (النقطة على مقر الشركة) وبجانبها العنوان؛ ثم المزايا بجانب النموذج.
 // نموذج التقديم مرتبط بـ Edge Function: submit-application (نظام المكتب)
 // ملاحظة: لا مفاتيح سرية في الصفحة — anon key علني بطبيعته (بوابة Supabase تتطلبه)
@@ -14,7 +15,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { localePath } from "@/lib/localePath";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { ArrowLeft, CheckCircle2, AlertCircle, Loader2, Upload, Send } from "lucide-react";
+import { FIRM_NAME_AR, FIRM_NAME_EN } from "@/lib/firmIdentity";
+import { ArrowLeft, ArrowRight, CheckCircle2, AlertCircle, Loader2, Upload, Send } from "lucide-react";
 
 const SUBMIT_ENDPOINT =
   "https://zwaahunavepleczuamuy.supabase.co/functions/v1/submit-application";
@@ -31,38 +33,130 @@ function readFileAsDataURL(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => resolve(reader.result as string);
-    reader.onerror = () => reject(new Error("تعذّر قراءة الملف"));
+    reader.onerror = () => reject(new Error("file-read-failed"));
     reader.readAsDataURL(file);
   });
 }
 
-const BENEFITS = [
-  {
-    title: "بيئة عمل احترافية",
-    desc: "مكتب منظّم يلتزم بأعلى المعايير المهنية والأخلاقية في ممارسة المحاماة.",
+const COPY = {
+  ar: {
+    seoTitle: "انضم إلينا | شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
+    seoDescription:
+      "بوابة الانضمام إلى شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس. قدّم بياناتك المهنية وسيرتك الذاتية للنظر فيها عند توفر فرصة مناسبة.",
+    seoKeywords: "وظائف محاماة, توظيف محامين, انضم إلينا, وظائف بريدة, وظائف القصيم",
+    eyebrow: "الفرص المهنية",
+    headline: "مُستقبلك القانوني يبدأ من هُنا",
+    joinTeam: `انضم إلى فريق ${FIRM_NAME_AR}`,
+    intro:
+      "نبحث دائماً عن الكفاءات القانونية الطموحة التي تشاركنا الالتزام بالتميّز والمهنية. إن كنت ترى في نفسك الإضافة، شاركنا بياناتك وسيرتك الذاتية وسنتواصل معك عند توفّر فرصة مناسبة.",
+    whyTitle: "لماذا الانضمام إلينا؟",
+    benefits: [
+      { title: "بيئة عمل احترافية", desc: "مكتب منظّم يلتزم بأعلى المعايير المهنية والأخلاقية في ممارسة المحاماة." },
+      { title: "تطوّر مهني مستمر", desc: "فرص حقيقية للنمو وصقل المهارات القانونية والترافع أمام مختلف الجهات." },
+      { title: "فريق متخصّص", desc: "العمل ضمن فريق من المحامين والمستشارين في القضايا التجارية والإفلاس." },
+      { title: "قضايا نوعية", desc: "التعامل مع قضايا متنوّعة وملفّات نوعية تثري الخبرة وتوسّع الأفق المهني." },
+    ],
+    learnMore: "تعرّف أكثر على الشركة",
+    formTitle: "نموذج التقديم",
+    requiredNoteBefore: "الحقول المعلَّمة بـ",
+    requiredNoteAfter: "مطلوبة.",
+    optional: "(اختياري)",
+    fullName: "الاسم الكامل",
+    fullNamePlaceholder: "اكتب اسمك الكامل",
+    phone: "رقم الجوال",
+    email: "البريد الإلكتروني",
+    qualifications: "المؤهل العلمي",
+    qualificationsPlaceholder: "مثال: بكالوريوس قانون / أنظمة",
+    cv: "السيرة الذاتية",
+    cvChoose: "اضغط لاختيار ملف السيرة الذاتية",
+    cvHint: "PDF أو Word، بحد أقصى 8 ميجابايت",
+    cvChooseAnother: "اضغط لاختيار ملف آخر",
+    submit: "إرسال الطلب",
+    submitting: "جارٍ إرسال طلبك... قد يستغرق دقيقة",
+    consent: "بإرسالك الطلب فإنك توافق على معالجة بياناتك لغرض التوظيف فقط.",
+    successTitle: "تم استلام طلبك بنجاح",
+    successText: "شكراً لاهتمامك بالانضمام إلى فريقنا. سنراجع طلبك ونتواصل معك قريباً عند توفّر فرصة مناسبة.",
+    partialTitle: "تم استلام طلبك",
+    partialText: "تم استلام طلبك بنجاح، لكن تعذّر إرفاق السيرة الذاتية. سنتواصل معك لاستلامها.",
+    anotherApplication: "تقديم طلب آخر",
+    backHome: "العودة للرئيسية",
+    errors: {
+      fileType: "صيغة الملف غير مدعومة. يُقبل PDF أو Word فقط.",
+      fileSize: "حجم السيرة الذاتية كبير (الحد الأقصى 8 ميجابايت). يرجى ضغط الملف وإعادة المحاولة.",
+      nameRequired: "يرجى إدخال الاسم الكامل.",
+      phoneRequired: "يرجى إدخال رقم الجوال.",
+      phoneInvalid: "رقم الجوال غير صحيح. يجب أن يكون بصيغة 05xxxxxxxx.",
+      submitFailed: "تعذّر إرسال الطلب حالياً، يرجى المحاولة لاحقاً.",
+      timeout:
+        "استغرق الإرسال وقتاً طويلاً. قد يكون الاتصال بطيئاً أو ملف السيرة كبيراً — جرّب ضغط الملف أو إعادة المحاولة على اتصال أفضل.",
+      network: "فشل الاتصال. تأكد من اتصالك بالإنترنت وحاول مرة أخرى.",
+    },
   },
-  {
-    title: "تطوّر مهني مستمر",
-    desc: "فرص حقيقية للنمو وصقل المهارات القانونية والترافع أمام مختلف الجهات.",
+  en: {
+    seoTitle: "Careers | Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management",
+    seoDescription:
+      "Join Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management. Submit your professional details and CV to be considered when a suitable opportunity arises.",
+    seoKeywords: "law firm careers Saudi Arabia, lawyer jobs, trainee lawyer, legal careers, join our team",
+    eyebrow: "Careers",
+    headline: "Your legal future starts here",
+    joinTeam: `Join the team at ${FIRM_NAME_EN}`,
+    intro:
+      "We are always looking for ambitious legal talent who share our commitment to excellence and professionalism. If you believe you can add value, share your details and CV and we will contact you when a suitable opportunity arises.",
+    whyTitle: "Why join us?",
+    benefits: [
+      { title: "A professional environment", desc: "An organized firm that holds itself to the highest professional and ethical standards of legal practice." },
+      { title: "Continuous growth", desc: "Real opportunities to grow, sharpen your legal skills and appear before a wide range of courts and authorities." },
+      { title: "A specialized team", desc: "Work alongside lawyers and advisers who focus on commercial and bankruptcy matters." },
+      { title: "Substantive cases", desc: "A varied caseload of significant matters that deepens your experience and broadens your perspective." },
+    ],
+    learnMore: "Learn more about the firm",
+    formTitle: "Application form",
+    requiredNoteBefore: "Fields marked",
+    requiredNoteAfter: "are required.",
+    optional: "(optional)",
+    fullName: "Full name",
+    fullNamePlaceholder: "Enter your full name",
+    phone: "Mobile number",
+    email: "Email",
+    qualifications: "Qualification",
+    qualificationsPlaceholder: "e.g. Bachelor of Law",
+    cv: "CV",
+    cvChoose: "Click to choose your CV file",
+    cvHint: "PDF or Word, up to 8 MB",
+    cvChooseAnother: "Click to choose another file",
+    submit: "Submit application",
+    submitting: "Sending your application… this may take a minute",
+    consent: "By submitting, you agree to the processing of your data for recruitment purposes only.",
+    successTitle: "Application received",
+    successText: "Thank you for your interest in joining our team. We will review your application and contact you when a suitable opportunity arises.",
+    partialTitle: "Application received",
+    partialText: "Your application was received, but your CV could not be attached. We will contact you to collect it.",
+    anotherApplication: "Submit another application",
+    backHome: "Back to home",
+    errors: {
+      fileType: "Unsupported file type. Only PDF or Word files are accepted.",
+      fileSize: "Your CV is too large (maximum 8 MB). Please compress the file and try again.",
+      nameRequired: "Please enter your full name.",
+      phoneRequired: "Please enter your mobile number.",
+      phoneInvalid: "Invalid mobile number. It must be a Saudi mobile number in the format 05xxxxxxxx.",
+      submitFailed: "Your application could not be sent right now. Please try again later.",
+      timeout:
+        "Sending took too long. Your connection may be slow or your CV file large — try compressing the file or retrying on a better connection.",
+      network: "Connection failed. Check your internet connection and try again.",
+    },
   },
-  {
-    title: "فريق متخصّص",
-    desc: "العمل ضمن فريق من المحامين والمستشارين في القضايا التجارية والإفلاس.",
-  },
-  {
-    title: "قضايا نوعية",
-    desc: "التعامل مع قضايا متنوّعة وملفّات نوعية تثري الخبرة وتوسّع الأفق المهني.",
-  },
-];
+} as const;
 
 export default function Careers() {
   const { lang } = useLanguage();
+  const isEnglish = lang === "en";
+  const c = isEnglish ? COPY.en : COPY.ar;
+  const dir = isEnglish ? "ltr" : "rtl";
   const lp = (p: string) => localePath(p, lang);
   useSEO({
-    title: "انضم إلينا | شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
-    description:
-      "بوابة الانضمام إلى شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس. قدّم بياناتك المهنية وسيرتك الذاتية للنظر فيها عند توفر فرصة مناسبة.",
-    keywords: "وظائف محاماة, توظيف محامين, انضم إلينا, وظائف بريدة, وظائف القصيم",
+    title: c.seoTitle,
+    description: c.seoDescription,
+    keywords: c.seoKeywords,
     canonical: "/careers",
   });
 
@@ -90,15 +184,13 @@ export default function Careers() {
     const lower = file.name.toLowerCase();
     const okExt = ALLOWED_CV_EXT.some((ext) => lower.endsWith(ext));
     if (!okExt) {
-      setError("صيغة الملف غير مدعومة. يُقبل PDF أو Word فقط.");
+      setError(c.errors.fileType);
       if (fileInputRef.current) fileInputRef.current.value = "";
       setCvFile(null);
       return;
     }
     if (file.size > MAX_CV_SIZE) {
-      setError(
-        "حجم السيرة الذاتية كبير (الحد الأقصى 8 ميجابايت). يرجى ضغط الملف وإعادة المحاولة."
-      );
+      setError(c.errors.fileSize);
       if (fileInputRef.current) fileInputRef.current.value = "";
       setCvFile(null);
       return;
@@ -125,21 +217,19 @@ export default function Careers() {
     const cleanPhone = phone.trim();
 
     if (!cleanName) {
-      setError("يرجى إدخال الاسم الكامل.");
+      setError(c.errors.nameRequired);
       return;
     }
     if (!cleanPhone) {
-      setError("يرجى إدخال رقم الجوال.");
+      setError(c.errors.phoneRequired);
       return;
     }
     if (!/^05\d{8}$/.test(cleanPhone)) {
-      setError("رقم الجوال غير صحيح. يجب أن يكون بصيغة 05xxxxxxxx.");
+      setError(c.errors.phoneInvalid);
       return;
     }
     if (cvFile && cvFile.size > MAX_CV_SIZE) {
-      setError(
-        "حجم السيرة الذاتية كبير (الحد الأقصى 8 ميجابايت). يرجى ضغط الملف وإعادة المحاولة."
-      );
+      setError(c.errors.fileSize);
       return;
     }
 
@@ -189,19 +279,15 @@ export default function Careers() {
         resetForm();
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
-        setError(
-          (data && data.error) ||
-            "تعذّر إرسال الطلب حالياً، يرجى المحاولة لاحقاً."
-        );
+        // رسائل الخادم بالعربية؛ في الصفحة الإنجليزية تظهر رسالة عامة بالإنجليزية
+        setError((!isEnglish && data && data.error) || c.errors.submitFailed);
       }
     } catch (err) {
       console.error(err);
       if (err instanceof DOMException && err.name === "AbortError") {
-        setError(
-          "استغرق الإرسال وقتاً طويلاً. قد يكون الاتصال بطيئاً أو ملف السيرة كبيراً — جرّب ضغط الملف أو إعادة المحاولة على اتصال أفضل."
-        );
+setError(c.errors.timeout);
       } else {
-        setError("فشل الاتصال. تأكد من اتصالك بالإنترنت وحاول مرة أخرى.");
+        setError(c.errors.network);
       }
     } finally {
       setLoading(false);
@@ -227,13 +313,13 @@ export default function Careers() {
     "h-12 rounded-lg border-[1.5px] border-[var(--ds-line-strong)] bg-white text-base text-[var(--ds-ink)] shadow-none placeholder:text-[var(--ds-muted)]/70 focus-visible:border-[var(--ds-gold)] focus-visible:ring-[3px] focus-visible:ring-[var(--ds-gold)]/35";
   const labelClass = "font-heading text-sm font-semibold text-[var(--ds-ink)]";
   const required = <span className="text-[var(--ds-gold-text)]">*</span>;
-  const optional = <span className="font-body text-xs font-normal text-[var(--ds-muted)]">(اختياري)</span>;
+  const optional = <span className="font-body text-xs font-normal text-[var(--ds-muted)]">{c.optional}</span>;
   const diamond = "inline-block h-2 w-2 shrink-0 rotate-45 bg-[var(--ds-gold)]";
 
   return (
-    <div style={ds} className="bg-[var(--ds-cream)] text-[var(--ds-body)]">
+    <div style={ds} dir={dir} lang={isEnglish ? "en" : "ar"} className="bg-[var(--ds-cream)] text-[var(--ds-body)]">
       {/* ===================== Hero ===================== */}
-      <section className="relative isolate overflow-hidden border-b border-[var(--ds-line)] pb-16 pt-28 md:pb-24 md:pt-36" dir="rtl">
+      <section className="relative isolate overflow-hidden border-b border-[var(--ds-line)] pb-16 pt-28 md:pb-24 md:pt-36">
         <div className="container mx-auto px-5 md:px-4 lg:px-8">
           {/* الخريطة المنقّطة — النقطة المميزة على مقر الشركة. على الجوال فوق النص،
               وعلى الشاشات العريضة في الجهة المقابلة للعنوان */}
@@ -246,15 +332,15 @@ export default function Careers() {
             height={881}
             loading="eager"
             decoding="async"
-            className="pointer-events-none mx-auto -mt-4 mb-6 block w-[82%] max-w-[380px] lg:absolute lg:left-[3%] lg:top-1/2 lg:m-0 lg:w-[44vw] lg:max-w-[660px] lg:-translate-y-1/2"
+            className="pointer-events-none mx-auto -mt-4 mb-6 block w-[82%] max-w-[380px] lg:absolute lg:end-[3%] lg:top-1/2 lg:m-0 lg:w-[44vw] lg:max-w-[660px] lg:-translate-y-1/2"
           />
           <div className="max-w-xl lg:max-w-[46%]">
             <p className="flex items-center gap-3 font-body text-sm font-semibold text-[var(--ds-gold-text)]">
               <span aria-hidden="true" className={diamond} />
-              الفرص المهنية
+              {c.eyebrow}
             </p>
             <h1 className="mt-6 font-heading text-[2.4rem] font-bold leading-[1.3] text-[var(--ds-ink)] md:text-6xl md:leading-[1.25]">
-              مُستقبلك القانوني يبدأ من هُنا
+              {c.headline}
             </h1>
             <div aria-hidden="true" className="mt-7 flex max-w-xs items-center gap-3">
               <span className="h-px flex-1 bg-[var(--ds-gold)]/70" />
@@ -262,25 +348,23 @@ export default function Careers() {
               <span className="h-px flex-1 bg-[var(--ds-gold)]/70" />
             </div>
             <p className="mt-7 font-heading text-lg font-semibold leading-relaxed text-[var(--ds-ink)] md:text-xl">
-              انضم إلى فريق شركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس
+              {c.joinTeam}
             </p>
             <p className="mt-4 font-body text-base leading-[1.85] text-[var(--ds-muted)] md:text-lg">
-              نبحث دائماً عن الكفاءات القانونية الطموحة التي تشاركنا الالتزام
-              بالتميّز والمهنية. إن كنت ترى في نفسك الإضافة، شاركنا بياناتك وسيرتك
-              الذاتية وسنتواصل معك عند توفّر فرصة مناسبة.
+              {c.intro}
             </p>
           </div>
         </div>
       </section>
 
       {/* ===================== المزايا + نموذج التقديم ===================== */}
-      <section className="bg-[var(--ds-sand)] py-16 md:py-24" dir="rtl">
+      <section className="bg-[var(--ds-sand)] py-16 md:py-24">
         <div className="container mx-auto grid gap-12 px-5 md:px-4 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16 lg:px-8">
           {/* لماذا الانضمام إلينا */}
           <div className="lg:pt-2">
-            <h2 className="font-heading text-2xl font-bold text-[var(--ds-ink)] md:text-3xl">لماذا الانضمام إلينا؟</h2>
+            <h2 className="font-heading text-2xl font-bold text-[var(--ds-ink)] md:text-3xl">{c.whyTitle}</h2>
             <ul className="mt-8 border-t border-[var(--ds-line-strong)]">
-              {BENEFITS.map((b) => (
+              {c.benefits.map((b) => (
                 <li key={b.title} className="flex gap-4 border-b border-[var(--ds-line-strong)] py-6">
                   <span aria-hidden="true" className={`${diamond} mt-2.5`} />
                   <div>
@@ -294,8 +378,8 @@ export default function Careers() {
               href={lp("/about")}
               className="mt-6 inline-flex min-h-11 items-center gap-2 font-body text-sm font-semibold text-[var(--ds-gold-text)] transition-colors hover:text-[var(--ds-ink)]"
             >
-              تعرّف أكثر على الشركة
-              <ArrowLeft className="h-4 w-4" />
+              {c.learnMore}
+              {isEnglish ? <ArrowRight className="h-4 w-4" /> : <ArrowLeft className="h-4 w-4" />}
             </Link>
           </div>
 
@@ -314,33 +398,31 @@ export default function Careers() {
                     )}
                   </div>
                   <h2 className="font-heading text-2xl font-bold text-[var(--ds-ink)]">
-                    {cvWarning ? "تم استلام طلبك" : "تم استلام طلبك بنجاح"}
+                    {cvWarning ? c.partialTitle : c.successTitle}
                   </h2>
                   <p className="mx-auto mt-3 max-w-md font-body leading-[1.85] text-[var(--ds-muted)]">
-                    {cvWarning
-                      ? "تم استلام طلبك بنجاح، لكن تعذّر إرفاق السيرة الذاتية. سنتواصل معك لاستلامها."
-                      : "شكراً لاهتمامك بالانضمام إلى فريقنا. سنراجع طلبك ونتواصل معك قريباً عند توفّر فرصة مناسبة."}
+                    {cvWarning ? c.partialText : c.successText}
                   </p>
                   <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                     <Button
                       onClick={() => setSuccess(false)}
                       className="h-12 rounded-lg bg-[var(--ds-ink)] px-6 font-heading text-white hover:bg-[var(--ds-ink-900)]"
                     >
-                      تقديم طلب آخر
+                      {c.anotherApplication}
                     </Button>
                     <Button
                       asChild
                       variant="outline"
                       className="h-12 rounded-lg border-[1.5px] border-[var(--ds-line-strong)] px-6 font-heading text-[var(--ds-ink)] hover:bg-[var(--ds-sand)]"
                     >
-                      <Link href={lp("/")}>العودة للرئيسية</Link>
+                      <Link href={lp("/")}>{c.backHome}</Link>
                     </Button>
                   </div>
                 </div>
               ) : (
                 <>
-                  <h2 className="font-heading text-2xl font-bold text-[var(--ds-ink)]">نموذج التقديم</h2>
-                  <p className="mt-2 font-body text-sm text-[var(--ds-muted)]">الحقول المعلَّمة بـ {required} مطلوبة.</p>
+                  <h2 className="font-heading text-2xl font-bold text-[var(--ds-ink)]">{c.formTitle}</h2>
+                  <p className="mt-2 font-body text-sm text-[var(--ds-muted)]">{c.requiredNoteBefore} {required} {c.requiredNoteAfter}</p>
 
                   <form onSubmit={handleSubmit} className="mt-8 space-y-6">
                     {error && (
@@ -353,14 +435,14 @@ export default function Careers() {
                     {/* الاسم الكامل */}
                     <div className="space-y-2">
                       <Label htmlFor="full_name" className={labelClass}>
-                        الاسم الكامل {required}
+                        {c.fullName} {required}
                       </Label>
                       <Input
                         id="full_name"
                         name="full_name"
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
-                        placeholder="اكتب اسمك الكامل"
+                        placeholder={c.fullNamePlaceholder}
                         className={fieldClass}
                         autoComplete="name"
                         required
@@ -371,7 +453,7 @@ export default function Careers() {
                     <div className="grid gap-6 sm:grid-cols-2">
                       <div className="space-y-2">
                         <Label htmlFor="phone" className={labelClass}>
-                          رقم الجوال {required}
+                          {c.phone} {required}
                         </Label>
                         <Input
                           id="phone"
@@ -389,7 +471,7 @@ export default function Careers() {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email" className={labelClass}>
-                          البريد الإلكتروني {optional}
+                          {c.email} {optional}
                         </Label>
                         <Input
                           id="email"
@@ -408,14 +490,14 @@ export default function Careers() {
                     {/* المؤهل العلمي */}
                     <div className="space-y-2">
                       <Label htmlFor="qualifications" className={labelClass}>
-                        المؤهل العلمي {optional}
+                        {c.qualifications} {optional}
                       </Label>
                       <Input
                         id="qualifications"
                         name="qualifications"
                         value={qualifications}
                         onChange={(e) => setQualifications(e.target.value)}
-                        placeholder="مثال: بكالوريوس قانون / أنظمة"
+                        placeholder={c.qualificationsPlaceholder}
                         className={fieldClass}
                       />
                     </div>
@@ -423,7 +505,7 @@ export default function Careers() {
                     {/* السيرة الذاتية */}
                     <div className="space-y-2">
                       <Label htmlFor="cv" className={labelClass}>
-                        السيرة الذاتية {optional}
+                        {c.cv} {optional}
                       </Label>
                       <label
                         htmlFor="cv"
@@ -442,10 +524,10 @@ export default function Careers() {
                         </span>
                         <span className="min-w-0">
                           <span className="block truncate font-heading text-sm font-semibold text-[var(--ds-ink)]">
-                            {cvFile ? cvFile.name : "اضغط لاختيار ملف السيرة الذاتية"}
+                            {cvFile ? cvFile.name : c.cvChoose}
                           </span>
                           <span className="mt-0.5 block font-body text-xs text-[var(--ds-muted)]">
-                            {cvFile ? "اضغط لاختيار ملف آخر" : "PDF أو Word، بحد أقصى 8 ميجابايت"}
+                            {cvFile ? c.cvChooseAnother : c.cvHint}
                           </span>
                         </span>
                       </label>
@@ -482,18 +564,18 @@ export default function Careers() {
                       >
                         {loading ? (
                           <>
-                            <Loader2 className="ml-2 h-5 w-5 animate-spin" />
-                            جارٍ إرسال طلبك... قد يستغرق دقيقة
+                            <Loader2 className="me-2 h-5 w-5 animate-spin" />
+                            {c.submitting}
                           </>
                         ) : (
                           <>
-                            إرسال الطلب
-                            <Send className="mr-2 h-4 w-4 text-[var(--ds-gold)]" />
+                            {c.submit}
+                            <Send className="ms-2 h-4 w-4 text-[var(--ds-gold)]" />
                           </>
                         )}
                       </Button>
                       <p className="mt-4 text-center font-body text-xs leading-relaxed text-[var(--ds-muted)]">
-                        بإرسالك الطلب فإنك توافق على معالجة بياناتك لغرض التوظيف فقط.
+                        {c.consent}
                       </p>
                     </div>
                   </form>

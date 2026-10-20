@@ -22,7 +22,9 @@ export function localePath(path: string, lang: Language): string {
   // These pages do not yet have distinct English content. Keep their links on
   // the complete Arabic versions instead of generating thin/duplicate pages.
   const arabicOnlyExactRoutes = new Set([
-    "/careers",
+    // /careers has an English version; the document-completion page reached
+    // from the office's SMS link stays Arabic-only.
+    "/careers/complete",
     "/cases-guide",
     "/legal-dictionary",
     // The booking flow is currently Arabic-only. Keeping English CTAs on the

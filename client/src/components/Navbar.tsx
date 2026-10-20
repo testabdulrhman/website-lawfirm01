@@ -16,6 +16,7 @@ import {
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackBookConsultation, trackLanguageSwitch, trackPhoneClick } from "@/lib/analytics";
 import { localePath } from "@/lib/localePath";
+import { hidesContactPrompts } from "@/lib/contactPrompts";
 import { FIRM_NAME_AR } from "@/lib/firmIdentity";
 
 const LOGO_LIGHT = "/images/logo-light-512.webp";
@@ -116,6 +117,8 @@ export default function Navbar() {
   }, [isMobileOpen]);
 
   const isHome = location === "/" || location === "/en";
+  // Homepage and careers pages: no "book a consultation" button (see lib/contactPrompts)
+  const hidePrompts = hidesContactPrompts(location);
   const showTransparent = isHome && !isScrolled && !isMegaOpen;
 
   const openMega = () => {
@@ -276,7 +279,7 @@ export default function Navbar() {
             <span>{lang === "ar" ? "EN" : "عربي"}</span>
           </button>
 
-          {!isHome && (
+          {!hidePrompts && (
             <Link
               href={lp("/appointments")}
               onClick={() => trackBookConsultation("navbar_desktop")}
@@ -610,7 +613,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile CTA - Fixed at bottom */}
-          {!isHome && (
+          {!hidePrompts && (
             <div className="px-6 pb-8 pt-4 border-t border-[var(--color-border)]/50">
               <Link
                 href={lp("/appointments")}

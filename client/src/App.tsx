@@ -266,6 +266,7 @@ function Router({ initialPage }: { initialPage?: InitialPage }) {
               <Route path={"/en/privacy"} component={Privacy} />
               <Route path={"/en/terms"} component={Terms} />
               <Route path={"/en/faq"} component={FAQ} />
+              <Route path={"/en/careers"} component={Careers} />
 
               <Route path={"/en/premium-residency"} component={PremiumResidency} />
               <Route path={"/en/locations/:slug"} component={CityPage} />

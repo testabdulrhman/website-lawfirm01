@@ -164,7 +164,7 @@ function setHreflang(canonical?: string, noindex = false) {
   const enPath = arPath === "/" ? "/en" : `/en${arPath}`;
 
   const arabicOnly =
-    arPath === "/careers" ||
+    arPath === "/careers/complete" ||
     arPath === "/cases-guide" ||
     arPath === "/legal-dictionary" ||
     arPath.startsWith("/appointments") ||

@@ -250,6 +250,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/careers" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/careers" />
   </url>
   <url>
     <loc>https://redwan.sa/cases-guide</loc>
@@ -732,6 +733,13 @@
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/sitemap" />
     <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/sitemap" />
+  </url>
+  <url>
+    <loc>https://redwan.sa/en/careers</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://redwan.sa/careers" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/careers" />
   </url>
   <url>
     <loc>https://redwan.sa/en/team</loc>
