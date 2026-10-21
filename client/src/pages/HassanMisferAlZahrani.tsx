@@ -14,7 +14,7 @@ import {
 const MEETING_START = new Date('2026-08-16T09:30:00Z'); // 12:30 PM Saudi
 const VOTING_START = new Date('2026-08-16T10:00:00Z'); // 1:00 PM Saudi
 const VOTING_END = new Date('2026-08-16T12:00:00Z'); // 3:00 PM Saudi
-const VOTING_LINK = 'https://redwan.sa/bankruptcy/creditor';
+const VOTING_LINK = 'https://claims.redwan.sa/';
 const MEETING_LINK = 'https://teams.live.com/meet/9340091875810?p=vX7vW4yTYFSqeuCwxx';
 
 export default function HassanMisferAlZahrani() {

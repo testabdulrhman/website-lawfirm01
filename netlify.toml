@@ -45,8 +45,6 @@
   [headers.values]
     Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
 
-# ── بوابة الدائن: كل خدمات الدائن من /bankruptcy/creditor ──
-# الأداتان القديمتان (تتبّع المطالبة وتذكرة الاستفسار) اندمجتا في البوابة الموحّدة.
 [[redirects]]
   from = "/bankruptcy/companies"
   to = "/services/bankruptcy/companies"
@@ -59,45 +57,83 @@
   status = 301
   force = true
 
+# ── بوابة الدائن انتقلت إلى claims.redwan.sa (منصة غُرَماء) ──
+# المسار القديم وأدواته السابقة (تتبّع المطالبة وتذكرة الاستفسار) تُحوَّل إليها.
+[[redirects]]
+  from = "/bankruptcy/creditor"
+  to = "https://claims.redwan.sa/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/bankruptcy/creditor/"
+  to = "https://claims.redwan.sa/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/bankruptcy/creditor"
+  to = "https://claims.redwan.sa/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/bankruptcy/creditor/"
+  to = "https://claims.redwan.sa/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ur/bankruptcy/creditor"
+  to = "https://claims.redwan.sa/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ur/bankruptcy/creditor/"
+  to = "https://claims.redwan.sa/"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/creditor"
-  to = "/bankruptcy/creditor"
+  to = "https://claims.redwan.sa/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/creditor/"
-  to = "/bankruptcy/creditor"
+  to = "https://claims.redwan.sa/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/ur/creditor"
-  to = "/ur/bankruptcy/creditor"
+  to = "https://claims.redwan.sa/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/bankruptcy/track"
-  to = "/bankruptcy/creditor"
+  to = "https://claims.redwan.sa/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/en/bankruptcy/track"
-  to = "/en/bankruptcy/creditor"
+  to = "https://claims.redwan.sa/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/bankruptcy/ticket"
-  to = "/bankruptcy/creditor"
+  to = "https://claims.redwan.sa/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/en/bankruptcy/ticket"
-  to = "/en/bankruptcy/creditor"
+  to = "https://claims.redwan.sa/"
   status = 301
   force = true
 
@@ -300,22 +336,6 @@
 
 [[headers]]
   for = "/en/bankruptcy/complete"
-  [headers.values]
-    X-Robots-Tag = "noindex"
-
-# بوابة الدائن: خلف تحقق OTP — تُخدَم بـ200 وتبقى خارج الفهرسة
-[[headers]]
-  for = "/bankruptcy/creditor"
-  [headers.values]
-    X-Robots-Tag = "noindex"
-
-[[headers]]
-  for = "/en/bankruptcy/creditor"
-  [headers.values]
-    X-Robots-Tag = "noindex"
-
-[[headers]]
-  for = "/ur/bankruptcy/creditor"
   [headers.values]
     X-Robots-Tag = "noindex"
 

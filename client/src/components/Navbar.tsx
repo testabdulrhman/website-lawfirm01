@@ -16,6 +16,7 @@ import {
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackBookConsultation, trackLanguageSwitch, trackPhoneClick } from "@/lib/analytics";
 import { localePath } from "@/lib/localePath";
+import { CREDITOR_PORTAL_URL } from "@/lib/externalLinks";
 import { hidesContactPrompts } from "@/lib/contactPrompts";
 import { FIRM_NAME_AR } from "@/lib/firmIdentity";
 
@@ -34,6 +35,14 @@ const SERVICE_ICONS: Record<string, typeof Briefcase> = {
   "documentation": FileText,
   "administrative": ClipboardList,
 };
+
+// رابط إلى نطاق آخر (بوابة الدائن على claims.redwan.sa) لا يمر بموجّه الصفحات،
+// لأن Link ينقل داخل التطبيق ولا يصل إلى الخادم.
+function NavLink({ href, className, children }: { href: string; className?: string; children: React.ReactNode }) {
+  return href.startsWith("http")
+    ? <a href={href} className={className}>{children}</a>
+    : <Link href={href} className={className}>{children}</Link>;
+}
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -61,7 +70,7 @@ export default function Navbar() {
     { label: t.nav.home, href: lp("/") },
     { label: t.nav.about, href: lp("/about"), dropdown: true },
     { label: t.nav.services, href: lp("/services"), mega: true },
-    { label: t.nav.trackClaim, href: lp("/bankruptcy/creditor") },
+    { label: t.nav.trackClaim, href: CREDITOR_PORTAL_URL },
     { label: t.nav.blog, href: lp("/blog") },
     { label: t.nav.contact, href: lp("/contact") },
   ];
@@ -251,7 +260,7 @@ export default function Navbar() {
                 </div>
               </div>
             ) : (
-              <Link
+              <NavLink
                 key={link.href}
                 href={link.href}
                 className={`text-sm font-heading font-medium transition-colors duration-200 relative after:content-[''] after:absolute after:bottom-[-4px] ${isRTL ? "after:right-0" : "after:left-0"} after:h-[2px] after:bg-[var(--color-gold)] after:transition-all after:duration-300 ${
@@ -261,7 +270,7 @@ export default function Navbar() {
                 } ${location === link.href ? "text-[var(--color-gold)]" : ""}`}
               >
                 {link.label}
-              </Link>
+              </NavLink>
             )
           )}
         </div>
@@ -418,13 +427,13 @@ export default function Navbar() {
                         : "Your claims, tickets and details in one place — secure OTP login."}
                     </p>
                   </div>
-                  <Link
-                    href={lp("/bankruptcy/creditor")}
+                  <a
+                    href={CREDITOR_PORTAL_URL}
                     className="group inline-flex items-center justify-center gap-2 w-full px-4 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-heading text-sm font-semibold transition-all duration-200 hover:bg-[var(--color-gold-light)] active:scale-[0.97]"
                   >
                     <span>{lang === "ar" ? "الدخول للبوابة" : "Enter the Portal"}</span>
                     <ArrowUpRight size={15} className={isRTL ? "scale-x-[-1]" : ""} />
-                  </Link>
+                  </a>
                   <Link
                     href={lp("/services")}
                     className="mt-3 inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 border border-white/15 text-white/80 font-heading text-xs font-medium transition-colors duration-200 hover:border-[var(--color-gold)]/50 hover:text-[var(--color-gold)]"
@@ -571,7 +580,7 @@ export default function Navbar() {
                     </div>
                   </div>
                 ) : (
-                  <Link
+                  <NavLink
                     key={link.href}
                     href={link.href}
                     className={`${isRTL ? "text-right" : "text-left"} text-lg font-heading font-medium transition-colors py-4 border-b border-[var(--color-border)]/50 ${
@@ -579,7 +588,7 @@ export default function Navbar() {
                     }`}
                   >
                     {link.label}
-                  </Link>
+                  </NavLink>
                 )
               )}
             </div>
