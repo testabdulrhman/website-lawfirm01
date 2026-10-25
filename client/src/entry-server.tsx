@@ -35,6 +35,9 @@ import BankruptcyProcedures from "@/pages/BankruptcyProcedures";
 import BankruptcyProcedure from "@/pages/BankruptcyProcedure";
 import BankruptcyLP from "@/pages/BankruptcyLP";
 import HassanMisferAlZahrani from "@/pages/HassanMisferAlZahrani";
+import ProceedingsIndex from "@/pages/ProceedingsIndex";
+import Proceeding from "@/pages/Proceeding";
+import ProceedingNotice from "@/pages/ProceedingNotice";
 import BankruptcyReports from "@/pages/BankruptcyReports";
 import BankruptcyReportJuly2026 from "@/pages/BankruptcyReportJuly2026";
 import BankruptcyReportAugust2026 from "@/pages/BankruptcyReportAugust2026";
@@ -80,7 +83,8 @@ function getInitialPage(url: string): InitialPage {
     Component = BankruptcyProcedure;
     routePath = `${localePrefix}/bankruptcy/procedures/:slug`;
   } else if (localizedPath === "/bankruptcy/claims") Component = Claims;
-  else if (localizedPath === "/bankruptcy/Hassan-Misfer-Al-Zahrani") Component = HassanMisferAlZahrani;
+  // The Arabic page is the proceeding's page; the English one stays the notice.
+  else if (localizedPath === "/bankruptcy/Hassan-Misfer-Al-Zahrani" && localePrefix !== "") Component = HassanMisferAlZahrani;
   else if (localizedPath === "/bankruptcy/complete") Component = BankruptcyComplete;
   else if (localizedPath === "/bankruptcy/creditor") Component = CreditorPortal;
   else if (localizedPath === "/bankruptcy/reports/2026-07") Component = BankruptcyReportJuly2026;
@@ -91,7 +95,15 @@ function getInitialPage(url: string): InitialPage {
     routePath = `${localePrefix}/bankruptcy/reports/:month`;
   }
   else if (localizedPath === "/bankruptcy/reports") Component = BankruptcyReports;
-  else if (localizedPath.startsWith("/bankruptcy/")) {
+  // Proceedings: the index, a page per proceeding and its notices (Arabic).
+  else if (localePrefix === "" && localizedPath === "/bankruptcy/proceedings") Component = ProceedingsIndex;
+  else if (localePrefix === "" && /^\/bankruptcy\/[^/]+\/[^/]+$/.test(localizedPath)) {
+    Component = ProceedingNotice;
+    routePath = "/bankruptcy/:slug/:notice";
+  } else if (localePrefix === "" && /^\/bankruptcy\/[^/]+$/.test(localizedPath)) {
+    Component = Proceeding;
+    routePath = "/bankruptcy/:slug";
+  } else if (localizedPath.startsWith("/bankruptcy/")) {
     Component = BankruptcyCase;
     routePath = `${localePrefix}/bankruptcy/:slug`;
   } else if (localizedPath === "/blog") Component = Blog;

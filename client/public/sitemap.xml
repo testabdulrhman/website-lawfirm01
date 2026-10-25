@@ -135,6 +135,36 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://redwan.sa/en/bankruptcy/Planting-for-Contracting" />
   </url>
   <url>
+    <loc>https://redwan.sa/bankruptcy/proceedings</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redwan.sa/bankruptcy/Rahima-Al-Ahli-Dispensary</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redwan.sa/bankruptcy/Riyadh-Paints</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redwan.sa/bankruptcy/Five-in-Five-Trading</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redwan.sa/bankruptcy/Al-Daghm-General-Contracting</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani/vote</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://redwan.sa/bankruptcy/claims</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

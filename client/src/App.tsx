@@ -46,6 +46,9 @@ const Brand = lazy(() => import("@/pages/Brand"));
 const Licenses = lazy(() => import("@/pages/Licenses"));
 const BankruptcyTrusteeLicense = lazy(() => import("@/pages/BankruptcyTrusteeLicense"));
 const HassanMisferAlZahrani = lazy(() => import("@/pages/HassanMisferAlZahrani"));
+const ProceedingsIndex = lazy(() => import("@/pages/ProceedingsIndex"));
+const Proceeding = lazy(() => import("@/pages/Proceeding"));
+const ProceedingNotice = lazy(() => import("@/pages/ProceedingNotice"));
 const BankruptcyReports = lazy(() => import("@/pages/BankruptcyReports"));
 const BankruptcyReportJuly2026 = lazy(() => import("@/pages/BankruptcyReportJuly2026"));
 const BankruptcyReportAugust2026 = lazy(() => import("@/pages/BankruptcyReportAugust2026"));
@@ -121,7 +124,8 @@ export async function loadInitialPage(pathname: string): Promise<InitialPage | u
     routePath = `${localePrefix}/bankruptcy/procedures/:slug`;
   }
   else if (localizedPath === "/bankruptcy/claims") Component = (await import("@/pages/Claims")).default;
-  else if (localizedPath === "/bankruptcy/Hassan-Misfer-Al-Zahrani") Component = (await import("@/pages/HassanMisferAlZahrani")).default;
+  // The Arabic page is the proceeding's page; the English one stays the notice.
+  else if (localizedPath === "/bankruptcy/Hassan-Misfer-Al-Zahrani" && localePrefix !== "") Component = (await import("@/pages/HassanMisferAlZahrani")).default;
   else if (localizedPath === "/bankruptcy/complete") Component = (await import("@/pages/BankruptcyComplete")).default;
   else if (localizedPath === "/bankruptcy/creditor") Component = (await import("@/pages/CreditorPortal")).default;
   else if (localizedPath === "/bankruptcy/reports/2026-07") Component = (await import("@/pages/BankruptcyReportJuly2026")).default;
@@ -132,6 +136,16 @@ export async function loadInitialPage(pathname: string): Promise<InitialPage | u
     routePath = `${localePrefix}/bankruptcy/reports/:month`;
   }
   else if (localizedPath === "/bankruptcy/reports") Component = (await import("@/pages/BankruptcyReports")).default;
+  // Proceedings: the index, a page per proceeding and its notices (Arabic).
+  else if (localePrefix === "" && localizedPath === "/bankruptcy/proceedings") Component = (await import("@/pages/ProceedingsIndex")).default;
+  else if (localePrefix === "" && /^\/bankruptcy\/[^/]+\/[^/]+$/.test(localizedPath)) {
+    Component = (await import("@/pages/ProceedingNotice")).default;
+    routePath = "/bankruptcy/:slug/:notice";
+  }
+  else if (localePrefix === "" && /^\/bankruptcy\/[^/]+$/.test(localizedPath)) {
+    Component = (await import("@/pages/Proceeding")).default;
+    routePath = "/bankruptcy/:slug";
+  }
   else if (localizedPath.startsWith("/bankruptcy/")) {
     Component = (await import("@/pages/BankruptcyCase")).default;
     routePath = `${localePrefix}/bankruptcy/:slug`;
@@ -220,7 +234,7 @@ function Router({ initialPage }: { initialPage?: InitialPage }) {
               <Route path={"/bankruptcy/reports/2026-09"} component={BankruptcyReportSeptember2026} />
               <Route path={"/bankruptcy/reports/:month"} component={BankruptcyMonthlyArchiveReport} />
               <Route path={"/bankruptcy/reports"} component={BankruptcyReports} />
-              <Route path={"/bankruptcy/Hassan-Misfer-Al-Zahrani"} component={HassanMisferAlZahrani} />
+              <Route path={"/bankruptcy/proceedings"} component={ProceedingsIndex} />
               <Route path={"/bankruptcy/complete"} component={BankruptcyComplete} />
               {/* بوابة الدائن الموحّدة — ثلاث لغات.
                   يجب أن تسبق /bankruptcy/:slug و /en/bankruptcy/:slug،
@@ -229,7 +243,8 @@ function Router({ initialPage }: { initialPage?: InitialPage }) {
               <Route path={"/en/bankruptcy/creditor"} component={CreditorPortal} />
               <Route path={"/ur/bankruptcy/creditor"} component={CreditorPortal} />
               <Route path={"/ur/bankruptcy/claims"} component={Claims} />
-              <Route path={"/bankruptcy/:slug"} component={BankruptcyCase} />
+              <Route path={"/bankruptcy/:slug/:notice"} component={ProceedingNotice} />
+              <Route path={"/bankruptcy/:slug"} component={Proceeding} />
               <Route path={"/blog"} component={Blog} />
               <Route path={"/blog/:slug"} component={BlogPost} />
               <Route path={"/appointments/success"} component={AppointmentSuccess} />

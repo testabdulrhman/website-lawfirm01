@@ -617,43 +617,133 @@
   },
   "/bankruptcy/ASHYAD-STEEL": {
     "title": "تصفية شركة أشياد ستيل | أمين الإفلاس",
-    "description": "بيانات إجراء تصفية شركة أشياد ستيل المتخصصة في تجارة الحديد بالرياض، ومعلومات الإجراء وأمين الإفلاس وخدمات الدائنين ذات الصلة.",
-    "keywords": "إجراء إفلاس, أمين إفلاس, مطالبات دائنين, شركة أشياد ستيل, ASHYAD STEEL, تصفية, إفلاس, تصفية, bankruptcy, liquidation",
-    "ogTitle": "شركة أشياد ستيل - تصفية",
-    "ogDesc": "شركة متخصصة في تجارة الحديد التجاري والصناعي، تأسست عام 1434هـ في الرياض. بدأت كمؤسسة فردية ثم تحولت إلى شركة ذات مسؤولية محدودة عام 1438هـ. تعمل في استيراد وتوزيع منتجات الحديد المتنوعة مع قاعدة عملاء واسعة وفريق من 20 موظفاً.",
+    "description": "بيانات إجراء تصفية شركة أشياد ستيل المتخصصة في تجارة الحديد بالرياض، ومراحله، وطريق الدائنين إلى بوابة الدائن.",
+    "keywords": "إجراء إفلاس, أمين إفلاس, بوابة الدائن, التصفية, شركة اشياد ستيل, ASHYAD STEEL Company",
+    "ogTitle": "تصفية شركة أشياد ستيل",
+    "ogDesc": "بيانات إجراء تصفية شركة أشياد ستيل المتخصصة في تجارة الحديد بالرياض، ومراحله، وطريق الدائنين إلى بوابة الدائن.",
     "ogUrl": "https://redwan.sa/bankruptcy/ASHYAD-STEEL",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/bankruptcy/ASHYAD-STEEL"
+    "canonical": "https://redwan.sa/bankruptcy/ASHYAD-STEEL",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://redwan.sa/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "إجراءات الإفلاس",
+          "item": "https://redwan.sa/bankruptcy"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "الإجراءات القائمة",
+          "item": "https://redwan.sa/bankruptcy/proceedings"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "اشياد ستيل",
+          "item": "https://redwan.sa/bankruptcy/ASHYAD-STEEL"
+        }
+      ]
+    }
   },
   "/bankruptcy/tajalriayaa": {
     "title": "تصفية شركة تاج الرعاية الطبي | أمين الإفلاس",
-    "description": "بيانات إجراء تصفية شركة تاج الرعاية الطبي المتخصصة في الخدمات الصحية، ومعلومات القضية وأمين الإفلاس والخدمات المتاحة للدائنين.",
-    "keywords": "إجراء إفلاس, أمين إفلاس, مطالبات دائنين, شركة تاج الرعاية الطبي, tajalriayaa, تصفية, إفلاس, تصفية, bankruptcy, liquidation",
-    "ogTitle": "شركة تاج الرعاية الطبي - تصفية",
-    "ogDesc": "شركة متخصصة في مجال الرعاية الطبية والخدمات الصحية.",
+    "description": "بيانات إجراء تصفية شركة تاج الرعاية الطبي أمام المحكمة التجارية بالدمام، ومراحله وإعلاناته، وطريق الدائنين إلى بوابة الدائن.",
+    "keywords": "إجراء إفلاس, أمين إفلاس, بوابة الدائن, التصفية, شركة تاج الرعاية الطبي, Taj Al-Riaya Medical Company",
+    "ogTitle": "تصفية شركة تاج الرعاية الطبي",
+    "ogDesc": "بيانات إجراء تصفية شركة تاج الرعاية الطبي أمام المحكمة التجارية بالدمام، ومراحله وإعلاناته، وطريق الدائنين إلى بوابة الدائن.",
     "ogUrl": "https://redwan.sa/bankruptcy/tajalriayaa",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/bankruptcy/tajalriayaa"
+    "canonical": "https://redwan.sa/bankruptcy/tajalriayaa",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://redwan.sa/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "إجراءات الإفلاس",
+          "item": "https://redwan.sa/bankruptcy"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "الإجراءات القائمة",
+          "item": "https://redwan.sa/bankruptcy/proceedings"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "تاج الرعاية الطبي",
+          "item": "https://redwan.sa/bankruptcy/tajalriayaa"
+        }
+      ]
+    }
   },
   "/bankruptcy/Planting-for-Contracting": {
-    "title": "تصفية شركة المزروعات للمقاولات | أمين الإفلاس",
-    "description": "بيانات إجراء تصفية شركة المزروعات للمقاولات، ومعلومات القضية والمحكمة وأمين الإفلاس والخدمات المرتبطة بمطالبات الدائنين.",
-    "keywords": "إجراء إفلاس, أمين إفلاس, مطالبات دائنين, شركة المزروعات للمقاولات, Planting for Contracting, تصفية, إفلاس, تصفية, bankruptcy, liquidation",
-    "ogTitle": "شركة المزروعات للمقاولات - تصفية",
-    "ogDesc": "شركة متخصصة في أعمال المقاولات والبناء.",
+    "title": "إعادة التنظيم المالي لشركة المزروعات للمقاولات | أمين الإفلاس",
+    "description": "بيانات إجراء إعادة التنظيم المالي لشركة المزروعات للمقاولات أمام المحكمة التجارية بالرياض، ومراحله وإعلاناته، وطريق الدائنين إلى بوابة الدائن.",
+    "keywords": "إجراء إفلاس, أمين إفلاس, بوابة الدائن, إعادة التنظيم المالي, شركة المزروعات للمقاولات شركة شخص واحد, Planting for Contracting Company",
+    "ogTitle": "إعادة التنظيم المالي لشركة المزروعات للمقاولات",
+    "ogDesc": "بيانات إجراء إعادة التنظيم المالي لشركة المزروعات للمقاولات أمام المحكمة التجارية بالرياض، ومراحله وإعلاناته، وطريق الدائنين إلى بوابة الدائن.",
     "ogUrl": "https://redwan.sa/bankruptcy/Planting-for-Contracting",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/bankruptcy/Planting-for-Contracting"
+    "canonical": "https://redwan.sa/bankruptcy/Planting-for-Contracting",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://redwan.sa/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "إجراءات الإفلاس",
+          "item": "https://redwan.sa/bankruptcy"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "الإجراءات القائمة",
+          "item": "https://redwan.sa/bankruptcy/proceedings"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "المزروعات للمقاولات",
+          "item": "https://redwan.sa/bankruptcy/Planting-for-Contracting"
+        }
+      ]
+    }
   },
   "/bankruptcy/Hassan-Misfer-Al-Zahrani": {
-    "title": "تصويت إعادة التنظيم المالي | حسن مسفر الزهراني",
-    "description": "دعوة دائني شركة حسن مسفر الزهراني وشركاه للتصويت إلكترونياً على مقترح إعادة التنظيم المالي يوم 16 أغسطس 2026 من الساعة 1 إلى 3 مساءً.",
-    "keywords": "تصويت إعادة تنظيم مالي, شركة حسن مسفر الزهراني وشركاه, مقترح إعادة التنظيم, دائنين, اجتماع دائنين, أمين إفلاس, Hassan Misfer Al-Zahrani, financial reorganization voting",
-    "ogTitle": "التصويت على مقترح إعادة التنظيم المالي | شركة حسن مسفر الزهراني وشركاه",
-    "ogDesc": "دعوة الدائنين للتصويت إلكترونياً على مقترح إعادة التنظيم المالي لشركة حسن مسفر الزهراني وشركاه يوم 16/08/2026م.",
+    "title": "إعادة التنظيم المالي لشركة حسن مسفر الزهراني وشركاه | أمين الإفلاس",
+    "description": "بيانات إجراء إعادة التنظيم المالي لشركة حسن مسفر الزهراني وشركاه أمام المحكمة التجارية بالدمام، ومراحله وإعلاناته، وإعلان التصويت على المقترح.",
+    "keywords": "إجراء إفلاس, أمين إفلاس, بوابة الدائن, إعادة التنظيم المالي, شركة حسن مسفر الزهراني وشركاه مساهمة مقفلة, Hassan Misfer Al-Zahrani & Partners Company",
+    "ogTitle": "إعادة التنظيم المالي لشركة حسن مسفر الزهراني وشركاه",
+    "ogDesc": "بيانات إجراء إعادة التنظيم المالي لشركة حسن مسفر الزهراني وشركاه أمام المحكمة التجارية بالدمام، ومراحله وإعلاناته، وإعلان التصويت على المقترح.",
     "ogUrl": "https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani",
     "ogType": "website",
     "ogImage": null,
@@ -662,33 +752,371 @@
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://redwan.sa/" },
-        { "@type": "ListItem", "position": 2, "name": "إجراءات الإفلاس", "item": "https://redwan.sa/bankruptcy" },
-        { "@type": "ListItem", "position": 3, "name": "شركة حسن مسفر الزهراني وشركاه", "item": "https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://redwan.sa/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "إجراءات الإفلاس",
+          "item": "https://redwan.sa/bankruptcy"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "الإجراءات القائمة",
+          "item": "https://redwan.sa/bankruptcy/proceedings"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "حسن مسفر الزهراني وشركاه",
+          "item": "https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani"
+        }
       ]
     }
   },
   "/bankruptcy/Al-Anjaz-Hotel-Village": {
     "title": "تصفية شركة قرية الأنجاز الفندقية | أمين الإفلاس",
-    "description": "بيانات إجراء تصفية شركة قرية الأنجاز الفندقية العاملة في قطاع الضيافة، ومعلومات القضية والمحكمة وأمين الإفلاس وخدمات الدائنين.",
-    "keywords": "إجراء إفلاس, أمين إفلاس, مطالبات دائنين, شركة قرية الأنجاز الفندقية, Al-Anjaz Hotel Village, تصفية, إفلاس, تصفية, bankruptcy, liquidation",
-    "ogTitle": "شركة قرية الأنجاز الفندقية - تصفية",
-    "ogDesc": "شركة متخصصة في قطاع الضيافة والخدمات الفندقية.",
+    "description": "بيانات إجراء تصفية شركة قرية الأنجاز الفندقية أمام المحكمة التجارية بالرياض، ومراحله وإعلاناته، وطريق الدائنين إلى بوابة الدائن.",
+    "keywords": "إجراء إفلاس, أمين إفلاس, بوابة الدائن, التصفية, شركة قرية الأنجاز الفندقية, Al-Anjaz Hotel Village Company",
+    "ogTitle": "تصفية شركة قرية الأنجاز الفندقية",
+    "ogDesc": "بيانات إجراء تصفية شركة قرية الأنجاز الفندقية أمام المحكمة التجارية بالرياض، ومراحله وإعلاناته، وطريق الدائنين إلى بوابة الدائن.",
     "ogUrl": "https://redwan.sa/bankruptcy/Al-Anjaz-Hotel-Village",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/bankruptcy/Al-Anjaz-Hotel-Village"
+    "canonical": "https://redwan.sa/bankruptcy/Al-Anjaz-Hotel-Village",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://redwan.sa/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "إجراءات الإفلاس",
+          "item": "https://redwan.sa/bankruptcy"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "الإجراءات القائمة",
+          "item": "https://redwan.sa/bankruptcy/proceedings"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "قرية الأنجاز الفندقية",
+          "item": "https://redwan.sa/bankruptcy/Al-Anjaz-Hotel-Village"
+        }
+      ]
+    }
   },
   "/bankruptcy/Arcon-Gulf-Contracting": {
     "title": "تصفية شركة أركن الخليج للمقاولات | أمين الإفلاس",
-    "description": "بيانات إجراء تصفية شركة أركن الخليج للمقاولات، ومعلومات القضية والمحكمة وأمين الإفلاس والخدمات المرتبطة بمطالبات الدائنين.",
-    "keywords": "إجراء إفلاس, أمين إفلاس, مطالبات دائنين, شركة أركن الخليج للمقاولات, Arcon Gulf Contracting Co, تصفية, إفلاس, تصفية, bankruptcy, liquidation",
-    "ogTitle": "شركة أركن الخليج للمقاولات - تصفية",
-    "ogDesc": "شركة متخصصة في أعمال المقاولات والإنشاءات.",
+    "description": "بيانات إجراء تصفية شركة أركن الخليج للمقاولات أمام المحكمة التجارية بالدمام، ومراحله وإعلاناته، وطريق الدائنين إلى بوابة الدائن.",
+    "keywords": "إجراء إفلاس, أمين إفلاس, بوابة الدائن, التصفية, شركة أركن الخليج للمقاولات, Arcon Gulf Contracting Co",
+    "ogTitle": "تصفية شركة أركن الخليج للمقاولات",
+    "ogDesc": "بيانات إجراء تصفية شركة أركن الخليج للمقاولات أمام المحكمة التجارية بالدمام، ومراحله وإعلاناته، وطريق الدائنين إلى بوابة الدائن.",
     "ogUrl": "https://redwan.sa/bankruptcy/Arcon-Gulf-Contracting",
     "ogType": "website",
     "ogImage": null,
-    "canonical": "https://redwan.sa/bankruptcy/Arcon-Gulf-Contracting"
+    "canonical": "https://redwan.sa/bankruptcy/Arcon-Gulf-Contracting",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://redwan.sa/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "إجراءات الإفلاس",
+          "item": "https://redwan.sa/bankruptcy"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "الإجراءات القائمة",
+          "item": "https://redwan.sa/bankruptcy/proceedings"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "أركن الخليج للمقاولات",
+          "item": "https://redwan.sa/bankruptcy/Arcon-Gulf-Contracting"
+        }
+      ]
+    }
+  },
+  "/bankruptcy/proceedings": {
+    "title": "الإجراءات القائمة | أمين الإفلاس",
+    "description": "إجراءات الإفلاس التي تتولاها شركة عبدالرحمن بن رضوان المشيقح بصفتها أمين إفلاس: لكل إجراء صفحة فيها بياناته ومراحله وإعلاناته، وطريق الدائن إلى بوابة الدائن.",
+    "keywords": "الإجراءات القائمة, أمين إفلاس, إجراءات الإفلاس, تصفية, إعادة التنظيم المالي, بوابة الدائن",
+    "ogTitle": "الإجراءات القائمة | أمين الإفلاس",
+    "ogUrl": "https://redwan.sa/bankruptcy/proceedings",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/bankruptcy/proceedings",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://redwan.sa/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "إجراءات الإفلاس",
+          "item": "https://redwan.sa/bankruptcy"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "الإجراءات القائمة",
+          "item": "https://redwan.sa/bankruptcy/proceedings"
+        }
+      ]
+    }
+  },
+  "/bankruptcy/small-debtor-011": {
+    "title": "إجراء التصفية لصغار المدينين | أمين الإفلاس",
+    "description": "بيانات إجراء التصفية لصغار المدينين ومراحله وإعلاناته، وطريق الدائنين إلى بوابة الدائن.",
+    "keywords": "إجراء إفلاس, أمين إفلاس, بوابة الدائن, التصفية لصغار المدينين",
+    "ogTitle": "إجراء التصفية لصغار المدينين",
+    "ogDesc": "بيانات إجراء التصفية لصغار المدينين ومراحله وإعلاناته، وطريق الدائنين إلى بوابة الدائن.",
+    "ogUrl": "https://redwan.sa/bankruptcy/small-debtor-011",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/bankruptcy/small-debtor-011",
+    "noindex": true
+  },
+  "/bankruptcy/Rahima-Al-Ahli-Dispensary": {
+    "title": "تصفية شركة مستوصف رحيمة الأهلى المحدودة | أمين الإفلاس",
+    "description": "بيانات إجراء تصفية شركة مستوصف رحيمة الأهلى المحدودة أمام المحكمة التجارية بالدمام، ومراحله وإعلاناته، وتقديم المطالبات عبر بوابة الدائن.",
+    "keywords": "إجراء إفلاس, أمين إفلاس, بوابة الدائن, التصفية, شركة مستوصف رحيمة الأهلى المحدودة",
+    "ogTitle": "تصفية شركة مستوصف رحيمة الأهلى المحدودة",
+    "ogDesc": "بيانات إجراء تصفية شركة مستوصف رحيمة الأهلى المحدودة أمام المحكمة التجارية بالدمام، ومراحله وإعلاناته، وتقديم المطالبات عبر بوابة الدائن.",
+    "ogUrl": "https://redwan.sa/bankruptcy/Rahima-Al-Ahli-Dispensary",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/bankruptcy/Rahima-Al-Ahli-Dispensary",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://redwan.sa/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "إجراءات الإفلاس",
+          "item": "https://redwan.sa/bankruptcy"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "الإجراءات القائمة",
+          "item": "https://redwan.sa/bankruptcy/proceedings"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "مستوصف رحيمة الأهلى",
+          "item": "https://redwan.sa/bankruptcy/Rahima-Al-Ahli-Dispensary"
+        }
+      ]
+    }
+  },
+  "/bankruptcy/Riyadh-Paints": {
+    "title": "تصفية شركة الرياض للدهانات | أمين الإفلاس",
+    "description": "بيانات إجراء تصفية شركة الرياض للدهانات أمام المحكمة التجارية بالرياض، ومراحله وإعلاناته، وطريق الدائنين إلى بوابة الدائن.",
+    "keywords": "إجراء إفلاس, أمين إفلاس, بوابة الدائن, التصفية, شركة الرياض للدهانات",
+    "ogTitle": "تصفية شركة الرياض للدهانات",
+    "ogDesc": "بيانات إجراء تصفية شركة الرياض للدهانات أمام المحكمة التجارية بالرياض، ومراحله وإعلاناته، وطريق الدائنين إلى بوابة الدائن.",
+    "ogUrl": "https://redwan.sa/bankruptcy/Riyadh-Paints",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/bankruptcy/Riyadh-Paints",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://redwan.sa/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "إجراءات الإفلاس",
+          "item": "https://redwan.sa/bankruptcy"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "الإجراءات القائمة",
+          "item": "https://redwan.sa/bankruptcy/proceedings"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "الرياض للدهانات",
+          "item": "https://redwan.sa/bankruptcy/Riyadh-Paints"
+        }
+      ]
+    }
+  },
+  "/bankruptcy/Five-in-Five-Trading": {
+    "title": "تصفية شركة خمسة في خمسة للتجارة | أمين الإفلاس",
+    "description": "بيانات إجراء تصفية شركة خمسة في خمسة للتجارة أمام المحكمة التجارية بالدمام، ومراحله وإعلاناته، وطريق الدائنين إلى بوابة الدائن.",
+    "keywords": "إجراء إفلاس, أمين إفلاس, بوابة الدائن, التصفية, شركة خمسة في خمسة للتجارة",
+    "ogTitle": "تصفية شركة خمسة في خمسة للتجارة",
+    "ogDesc": "بيانات إجراء تصفية شركة خمسة في خمسة للتجارة أمام المحكمة التجارية بالدمام، ومراحله وإعلاناته، وطريق الدائنين إلى بوابة الدائن.",
+    "ogUrl": "https://redwan.sa/bankruptcy/Five-in-Five-Trading",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/bankruptcy/Five-in-Five-Trading",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://redwan.sa/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "إجراءات الإفلاس",
+          "item": "https://redwan.sa/bankruptcy"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "الإجراءات القائمة",
+          "item": "https://redwan.sa/bankruptcy/proceedings"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "خمسة في خمسة للتجارة",
+          "item": "https://redwan.sa/bankruptcy/Five-in-Five-Trading"
+        }
+      ]
+    }
+  },
+  "/bankruptcy/Al-Daghm-General-Contracting": {
+    "title": "تصفية شركة الدغم للمقاولات العامة | أمين الإفلاس",
+    "description": "بيانات إجراء تصفية شركة الدغم للمقاولات العامة أمام المحكمة التجارية بالرياض، ومراحله وإعلاناته، وطريق الدائنين إلى بوابة الدائن.",
+    "keywords": "إجراء إفلاس, أمين إفلاس, بوابة الدائن, التصفية, شركة الدغم للمقاولات العامة",
+    "ogTitle": "تصفية شركة الدغم للمقاولات العامة",
+    "ogDesc": "بيانات إجراء تصفية شركة الدغم للمقاولات العامة أمام المحكمة التجارية بالرياض، ومراحله وإعلاناته، وطريق الدائنين إلى بوابة الدائن.",
+    "ogUrl": "https://redwan.sa/bankruptcy/Al-Daghm-General-Contracting",
+    "ogType": "website",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/bankruptcy/Al-Daghm-General-Contracting",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://redwan.sa/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "إجراءات الإفلاس",
+          "item": "https://redwan.sa/bankruptcy"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "الإجراءات القائمة",
+          "item": "https://redwan.sa/bankruptcy/proceedings"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "الدغم للمقاولات العامة",
+          "item": "https://redwan.sa/bankruptcy/Al-Daghm-General-Contracting"
+        }
+      ]
+    }
+  },
+  "/bankruptcy/Hassan-Misfer-Al-Zahrani/vote": {
+    "title": "إعلان التصويت على مقترح إعادة التنظيم المالي | حسن مسفر الزهراني وشركاه",
+    "description": "إعلان أمين إعادة التنظيم المالي لدائني شركة حسن مسفر الزهراني وشركاه بالتصويت إلكترونياً على مقترح إعادة التنظيم المالي يوم الأحد 16 أغسطس 2026، من الساعة 1:00 إلى 3:00 مساءً، بنصه العربي والإنجليزي.",
+    "keywords": "إعلان التصويت على مقترح إعادة التنظيم المالي, شركة حسن مسفر الزهراني وشركاه مساهمة مقفلة, Hassan Misfer Al-Zahrani & Partners Company, أمين إفلاس, بوابة الدائن",
+    "ogTitle": "إعلان التصويت على مقترح إعادة التنظيم المالي | حسن مسفر الزهراني وشركاه",
+    "ogDesc": "إعلان أمين إعادة التنظيم المالي لدائني شركة حسن مسفر الزهراني وشركاه بالتصويت إلكترونياً على مقترح إعادة التنظيم المالي يوم الأحد 16 أغسطس 2026، من الساعة 1:00 إلى 3:00 مساءً، بنصه العربي والإنجليزي.",
+    "ogUrl": "https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani/vote",
+    "ogType": "article",
+    "ogImage": null,
+    "canonical": "https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani/vote",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://redwan.sa/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "إجراءات الإفلاس",
+          "item": "https://redwan.sa/bankruptcy"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "الإجراءات القائمة",
+          "item": "https://redwan.sa/bankruptcy/proceedings"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "حسن مسفر الزهراني وشركاه",
+          "item": "https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "إعلان تصويت",
+          "item": "https://redwan.sa/bankruptcy/Hassan-Misfer-Al-Zahrani/vote"
+        }
+      ]
+    }
   },
   "/blog": {
     "title": "المدونة القانونية السعودية",
@@ -1741,11 +2169,11 @@
     "canonical": "https://redwan.sa/en/bankruptcy/tajalriayaa"
   },
   "/en/bankruptcy/Planting-for-Contracting": {
-    "title": "Planting for Contracting – Liquidation | Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management",
-    "description": "Liquidation proceeding for Planting for Contracting Company, a Riyadh company specialized in contracting, construction and building services.",
-    "keywords": "Planting for Contracting liquidation, Saudi bankruptcy, bankruptcy trustee, creditor claims",
-    "ogTitle": "Planting for Contracting – Liquidation",
-    "ogDesc": "Liquidation proceeding for Planting for Contracting Company.",
+    "title": "Planting for Contracting – Financial Reorganization | Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management",
+    "description": "Financial reorganization proceeding for Planting for Contracting Company, a Riyadh company specialized in contracting, construction and building services.",
+    "keywords": "Planting for Contracting financial reorganization, Saudi bankruptcy, bankruptcy trustee, creditor claims",
+    "ogTitle": "Planting for Contracting – Financial Reorganization",
+    "ogDesc": "Financial reorganization proceeding for Planting for Contracting Company.",
     "ogUrl": "https://redwan.sa/en/bankruptcy/Planting-for-Contracting",
     "ogType": "website",
     "ogImage": null,

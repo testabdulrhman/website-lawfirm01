@@ -3,6 +3,6 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   test: {
     environment: "node",
-    include: ["client/src/lib/metaAnalytics.test.ts"],
+    include: ["client/src/lib/metaAnalytics.test.ts", "client/src/data/proceedings.test.ts"],
   },
 });

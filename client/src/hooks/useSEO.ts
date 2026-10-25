@@ -12,6 +12,8 @@ interface SEOProps {
   noindex?: boolean;
   schema?: object | object[];
   fullTitle?: boolean;
+  /** the page has no English version: no "en" alternate is announced */
+  arabicOnly?: boolean;
 }
 
 const SITE_NAME_AR = FIRM_NAME_AR;
@@ -31,6 +33,7 @@ export function useSEO({
   noindex = false,
   schema,
   fullTitle = false,
+  arabicOnly = false,
 }: SEOProps) {
   const [location] = useLocation();
   // Auto-detect language from current path for canonical
@@ -104,7 +107,7 @@ export function useSEO({
     setMeta("twitter:image:alt", siteName, "name");
 
     // Hreflang alternate links
-    setHreflang(effectiveCanonical, noindex);
+    setHreflang(effectiveCanonical, noindex, arabicOnly);
 
     // Schema markup — preserve site-wide @graph (data-site-schema), replace page-specific only
     if (schema) {
@@ -125,7 +128,7 @@ export function useSEO({
       // Cleanup page schema scripts on unmount (keep site-wide)
       document.querySelectorAll('script[data-page-schema]').forEach(el => el.remove());
     };
-  }, [title, description, keywords, effectiveOgImage, ogType, effectiveCanonical, noindex, schema, formattedTitle, siteName, location]);
+  }, [title, description, keywords, effectiveOgImage, ogType, effectiveCanonical, noindex, arabicOnly, schema, formattedTitle, siteName, location]);
 }
 
 function setMeta(name: string, content: string, attr: "name" | "property" = "name") {
@@ -152,7 +155,7 @@ function setCanonical(href: string) {
  * Injects hreflang <link> tags for Arabic/English alternate pages.
  * Arabic path: /about → English: /en/about
  */
-function setHreflang(canonical?: string, noindex = false) {
+function setHreflang(canonical?: string, noindex = false, pageArabicOnly = false) {
   // Remove ALL existing hreflang links (both prerender-injected and client-injected)
   document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el => el.remove());
   if (!canonical || noindex) return;
@@ -164,6 +167,7 @@ function setHreflang(canonical?: string, noindex = false) {
   const enPath = arPath === "/" ? "/en" : `/en${arPath}`;
 
   const arabicOnly =
+    pageArabicOnly ||
     arPath === "/careers/complete" ||
     arPath === "/cases-guide" ||
     arPath === "/legal-dictionary" ||
