@@ -365,7 +365,7 @@ export default function HassanMisferAlZahrani() {
             <div className="grid grid-cols-2 gap-6">
               <div className="text-right" dir="rtl">
                 <a
-                  href="/proposal.pdf"
+                  href={VOTING_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleProposalClick}
@@ -374,11 +374,11 @@ export default function HassanMisferAlZahrani() {
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                   الاطلاع على المقترح
                 </a>
-                <p className="text-xs text-gray-500 mt-2 text-center">مقترح إعادة التنظيم المالي (PDF)</p>
+                <p className="text-xs text-gray-500 mt-2 text-center">مقترح إعادة التنظيم المالي، في بوابة الدائن</p>
               </div>
               <div className="text-left" dir="ltr">
                 <a
-                  href="/proposal.pdf"
+                  href={VOTING_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleProposalClick}
@@ -387,7 +387,7 @@ export default function HassanMisferAlZahrani() {
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                   View Proposal
                 </a>
-                <p className="text-xs text-gray-400 mt-2 text-center">Financial Reorganization Proposal (PDF)</p>
+                <p className="text-xs text-gray-400 mt-2 text-center">Financial Reorganization Proposal, in the Creditor Portal</p>
               </div>
             </div>
           </div>
