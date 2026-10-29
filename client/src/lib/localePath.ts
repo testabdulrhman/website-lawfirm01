@@ -36,6 +36,8 @@ export function localePath(path: string, lang: Language): string {
     // Keep translated navigation on the real Arabic archive instead of
     // producing the non-existent /en/bankruptcy/reports route.
     "/bankruptcy/reports",
+    // The proceedings the firm administers are published in Arabic only.
+    "/bankruptcy/proceedings",
   ]);
   const isArabicOnlyDetail =
     path.startsWith("/blog/") ||

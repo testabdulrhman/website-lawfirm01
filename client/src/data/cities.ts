@@ -230,7 +230,7 @@ export const citiesData: CityData[] = [
       ],
       faqs: [
         { q: "أين يقع مقر الشركة في بريدة؟", a: "مقرنا الرئيسي في طريق الملك عبدالله، حي الأفق، الدور الثاني، مكتب رقم 1، بريدة 52387. يسهل الوصول إلينا من جميع أحياء بريدة." },
-        { q: "ما ساعات العمل في مكتب بريدة؟", a: "نستقبل العملاء من الأحد إلى الخميس، من الساعة 8 صباحاً حتى 4 مساءً. يمكن حجز مواعيد مسائية للحالات الطارئة." },
+        { q: "ما ساعات العمل في مكتب بريدة؟", a: "نستقبل العملاء من الأحد إلى الخميس، من الساعة 8:30 صباحاً حتى 4 مساءً. يمكن حجز مواعيد مسائية للحالات الطارئة." },
         { q: "هل أنتم أفضل مكتب محاماة في بريدة؟", a: "نحمل 5 تراخيص مهنية ونقدم 12 خدمة قانونية متخصصة من مقر واحد في بريدة، مع خبرة عائلية تتجاوز 20 عاماً. نترك لعملائنا الحكم على جودة خدماتنا." },
         { q: "هل تخدمون مدن القصيم الأخرى غير بريدة؟", a: "نعم، نخدم جميع مدن منطقة القصيم: عنيزة، الرس، البكيرية، المذنب، البدائع، الأسياح، رياض الخبراء، وغيرها. نترافع أمام جميع محاكم المنطقة." },
         { q: "كم تكلفة الاستشارة القانونية في بريدة؟", a: "تختلف التكلفة حسب نوع القضية وتعقيدها. تواصل معنا على 920032760 لتحديد موعد ومعرفة التفاصيل." },
@@ -271,7 +271,7 @@ export const citiesData: CityData[] = [
       ],
       faqs: [
         { q: "Where is your office in Buraydah?", a: "Our office is on King Abdullah Road, Al-Ufuq District, 2nd Floor, Office No. 1, Buraydah 52387." },
-        { q: "What are your working hours?", a: "We receive clients Sunday to Thursday, from 8 AM to 4 PM." },
+        { q: "What are your working hours?", a: "We receive clients Sunday to Thursday, from 8:30 AM to 4 PM." },
         { q: "Can I visit without an appointment?", a: "We prefer booking an appointment via phone 920032760 to ensure sufficient time is dedicated to serving you." },
         { q: "Do you serve other Qassim cities?", a: "Yes, we serve all cities in Qassim region including Unaizah, Ar Rass, Al Bukayriyah, Al Mithnab, and others." },
       ],

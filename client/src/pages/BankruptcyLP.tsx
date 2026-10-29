@@ -808,7 +808,7 @@ export default function BankruptcyLP() {
               </span>
               <span className="flex items-center gap-1.5">
                 <Clock size={13} className="text-[var(--color-gold)]" />
-                الأحد - الخميس ٨ص - ٤م
+                الأحد - الخميس 8:30ص - 4م
               </span>
               <a
                 href={`tel:${PHONE_TEL}`}

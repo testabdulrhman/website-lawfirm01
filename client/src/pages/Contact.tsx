@@ -239,7 +239,7 @@ export default function Contact() {
                     </h4>
                     <p className="font-body text-xs md:text-sm text-[var(--color-navy)]/60">
                       {lang === "ar" ? "الأحد - الخميس" : "Sunday - Thursday"}
-                      <br />{lang === "ar" ? "8:00 ص - 4:00 م" : "8:00 AM - 4:00 PM"}
+                      <br />{lang === "ar" ? "8:30 ص - 4:00 م" : "8:30 AM - 4:00 PM"}
                     </p>
                   </div>
                 </div>

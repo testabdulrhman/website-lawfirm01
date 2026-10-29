@@ -21,13 +21,19 @@ export default function Footer() {
   const [location] = useLocation();
   // Homepage and careers pages: no floating WhatsApp button (see lib/contactPrompts)
   const hidePrompts = hidesContactPrompts(location);
-  const serviceLinks = t.services.items.slice(0, 5);
+  // Bankruptcy first: it is half of the firm's name and most of its public work.
+  const serviceLinks = [
+    ...t.services.items.filter((s) => s.slug === "bankruptcy"),
+    ...t.services.items.filter((s) => s.slug !== "bankruptcy"),
+  ].slice(0, 5);
 
   const labels = lang === "ar"
     ? {
         company: "الشركة",
         knowledge: "الإفلاس والمعرفة",
         reports: "التقارير الشهرية لإعلانات الإفلاس",
+        proceedings: "الإجراءات القائمة",
+        allServices: "جميع الخدمات",
         procedures: "أنواع إجراءات الإفلاس",
         dictionary: "المعجم القانوني",
         sitemap: "خريطة الموقع",
@@ -37,6 +43,8 @@ export default function Footer() {
           company: "ادارہ",
           knowledge: "دیوالیہ اور قانونی علم",
           reports: "ماہانہ دیوالیہ رپورٹس",
+          proceedings: "جاری کارروائیاں (عربی)",
+          allServices: "تمام خدمات",
           procedures: "دیوالیہ کے طریقہ کار",
           dictionary: "قانونی لغت",
           sitemap: "سائٹ میپ",
@@ -45,6 +53,8 @@ export default function Footer() {
           company: "Firm",
           knowledge: "Bankruptcy & Knowledge",
           reports: "Monthly Bankruptcy Reports (Arabic)",
+          proceedings: "Active Proceedings (Arabic)",
+          allServices: "All services",
           procedures: "Bankruptcy Procedures",
           dictionary: "Legal Dictionary",
           sitemap: "Sitemap",
@@ -61,6 +71,7 @@ export default function Footer() {
 
   const knowledgeLinks = [
     { href: "/bankruptcy", label: lang === "ar" ? "إجراءات الإفلاس" : lang === "ur" ? "دیوالیہ کی کارروائیاں" : "Bankruptcy Proceedings" },
+    { href: "/bankruptcy/proceedings", label: labels.proceedings },
     { href: "/bankruptcy/procedures", label: labels.procedures },
     { href: "/bankruptcy/reports", label: labels.reports },
     { href: "/blog", label: t.nav.blog },
@@ -118,6 +129,9 @@ export default function Footer() {
                     <Link href={lp(`/services/${link.slug}`)} className={linkClass}>{link.title}</Link>
                   </li>
                 ))}
+                <li>
+                  <Link href={lp("/services")} className={`${linkClass} border-b border-white/20 pb-0.5`}>{labels.allServices}</Link>
+                </li>
               </ul>
             </nav>
 
@@ -184,7 +198,7 @@ export default function Footer() {
 
           <div className="grid items-center gap-3 pt-5 text-center lg:grid-cols-3 lg:gap-6">
             <p className="font-body text-xs leading-6 text-white/50 lg:text-start">© {new Date().getFullYear()} {t.footer.copyright}</p>
-            <p lang="en" dir="ltr" className="font-body text-[10px] leading-4 tracking-[0.01em] text-white/35">
+            <p lang="en" dir="ltr" className="font-body text-[11px] leading-4 tracking-[0.01em] text-white/45">
               {FIRM_LEGAL_NAME_EN}
             </p>
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 lg:justify-end">

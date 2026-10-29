@@ -85,13 +85,13 @@ export const translations = {
     },
     // Footer
     footer: {
-      description: "منشأة قانونية تقدم خدمات التمثيل القانوني والاستشارات بتراخيص نظامية معتمدة.",
+      description: "شركة محاماة وإدارة إجراءات إفلاس: تقاضٍ واستشارات قانونية، وأمانة إفلاس مرخّصة.",
       quickLinks: "روابط سريعة",
       ourServices: "خدماتنا",
       contactUs: "تواصل معنا",
       address: "طريق الملك عبدالله، حي الأفق",
       city: "بريدة 52387، الدور الثاني، مكتب رقم 1",
-      workHours: "الأحد - الخميس: 8:00 ص - 4:00 م",
+      workHours: "الأحد - الخميس: 8:30 ص - 4:00 م",
       copyright: "جميع الحقوق محفوظة لشركة عبدالرحمن بن رضوان المشيقح للمحاماة وإدارة إجراءات الإفلاس",
       privacy: "سياسة الخصوصية",
       terms: "الشروط والأحكام",
@@ -232,13 +232,13 @@ export const translations = {
     },
     // Footer
     footer: {
-      description: "A legal firm providing legal representation and consultation services with officially licensed credentials.",
+      description: "A law firm and licensed bankruptcy trustee: litigation, legal counsel and the administration of bankruptcy proceedings.",
       quickLinks: "Quick Links",
       ourServices: "Our Services",
       contactUs: "Contact Us",
       address: "King Abdullah Road, Al-Ufuq District",
       city: "Buraydah 52387, 2nd Floor, Office No. 1",
-      workHours: "Sunday - Thursday: 8:00 AM - 4:00 PM",
+      workHours: "Sunday - Thursday: 8:30 AM - 4:00 PM",
       copyright: "All rights reserved to Abdulrahman bin Redwan Al-Moshiqeh Law Firm and Bankruptcy Procedures Management",
       privacy: "Privacy Policy",
       terms: "Terms & Conditions",

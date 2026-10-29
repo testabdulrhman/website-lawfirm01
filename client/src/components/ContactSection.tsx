@@ -102,7 +102,7 @@ export default function ContactSection() {
                 {
                   icon: Clock,
                   title: "ساعات العمل",
-                  content: "الأحد - الخميس: 8:00 ص - 4:00 م",
+                  content: "الأحد - الخميس: 8:30 ص - 4:00 م",
                 },
               ].map((item, idx) => (
                 <div

@@ -223,7 +223,7 @@ export const schemas = {
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
-      "opens": "08:00",
+      "opens": "08:30",
       "closes": "16:00"
     },
     "priceRange": "$$",
@@ -330,7 +330,7 @@ export const schemas = {
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
-      "opens": "08:00",
+      "opens": "08:30",
       "closes": "16:00"
     },
     "priceRange": "$$",
