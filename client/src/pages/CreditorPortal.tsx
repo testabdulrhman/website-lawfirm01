@@ -323,7 +323,53 @@ function docIconFor(d: ClaimDocument) {
 // المكوّن الرئيسي
 // ============================================================
 
+// ════════════════ أُحيلت البوابة إلى منصة غرماء ════════════════
+// بأمر الأمين (2026-10-31): لا دخول ولا رمز تحقق — والخادم يرفضهما أيضاً
+// (request-otp وverify-otp يردّان portal_moved). والبوابة السابقة باقيةٌ في
+// CreditorPortalLegacy لا يصل إليها أحد.
+const MOVED = {
+  ar: { title: "بوابة الدائنين", body: "تمت إحالة البوابة إلى منصة غرماء على الرابط التالي:", cta: "الانتقال إلى منصة غرماء" },
+  en: { title: "Creditor Portal", body: "The portal has been transferred to the Ghuramaa platform at the following link:", cta: "Go to Ghuramaa" },
+  ur: { title: "قرض خواہان پورٹل", body: "پورٹل کو غرماء پلیٹ فارم پر منتقل کر دیا گیا ہے، درج ذیل لنک پر:", cta: "غرماء پر جائیں" },
+} as const;
+
 export default function CreditorPortal() {
+  const { lang } = useTranslation();
+  const m = lang === "en" ? MOVED.en : lang === "ur" ? MOVED.ur : MOVED.ar;
+  return (
+    <>
+      <SEOHead title={m.title} description={`${m.body} ghuramaa.com`} canonicalUrl="/bankruptcy/creditor" />
+      <section className="pt-28 md:pt-32 pb-16 md:pb-20 min-h-screen bg-[var(--color-cream)]">
+        <div className="container mx-auto px-5 md:px-4 lg:px-8">
+          <div className="mx-auto max-w-md text-center">
+            <div className="w-14 h-14 mx-auto mb-4 bg-[var(--color-navy)] flex items-center justify-center">
+              <ShieldCheck className="w-7 h-7 text-[var(--color-gold)]" />
+            </div>
+            <h1 className="font-display text-2xl md:text-3xl font-bold text-[var(--color-navy)]">{m.title}</h1>
+            <div className="mt-8 bg-white rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.15)] p-6 md:p-8">
+              <p className="font-body text-base leading-8 text-[var(--color-navy)]">{m.body}</p>
+              <a
+                href="https://ghuramaa.com"
+                dir="ltr"
+                className="mt-2 inline-block font-body text-lg font-bold text-[var(--color-navy)] underline underline-offset-4"
+              >
+                ghuramaa.com
+              </a>
+              <a
+                href="https://ghuramaa.com"
+                className="mt-6 block w-full bg-[var(--color-navy)] py-3 font-body text-sm font-semibold text-[var(--color-cream)] hover:opacity-90"
+              >
+                {m.cta}
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+export function CreditorPortalLegacy() {
   const { lang, isRTL } = useTranslation();
   const l = lang as Lang;
   const t = STRINGS[l];
