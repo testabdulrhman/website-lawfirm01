@@ -94,7 +94,9 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="border-t border-[var(--color-gold)]/25 bg-[var(--color-navy)] text-white">
+      <footer className="relative isolate overflow-hidden border-t border-[var(--color-gold)]/25 bg-[var(--color-navy)] text-white">
+        {/* a field of small diamonds fading from the corner, as on the homepage map */}
+        <div className="footer-diamonds" aria-hidden="true" />
         <div className="container mx-auto px-4 pb-24 pt-14 sm:pb-10 lg:px-8 lg:pt-16">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] lg:gap-20">
             <section aria-label={L.identity}>

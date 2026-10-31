@@ -233,6 +233,30 @@
   }
 }
 
+/* Footer: small gold diamonds fading from the top corner (bottom corner on phones). Never above the text. */
+.footer-diamonds {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22'%3E%3Cpath d='M11 8.6L13.4 11 11 13.4 8.6 11z' fill='%23c9a982'/%3E%3C/svg%3E");
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 60% 95% at 0% 0%, #000 0, rgba(0, 0, 0, 0.4) 45%, transparent 75%);
+  mask-image: radial-gradient(ellipse 60% 95% at 0% 0%, #000 0, rgba(0, 0, 0, 0.4) 45%, transparent 75%);
+}
+[dir="ltr"] .footer-diamonds {
+  -webkit-mask-image: radial-gradient(ellipse 60% 95% at 100% 0%, #000 0, rgba(0, 0, 0, 0.4) 45%, transparent 75%);
+  mask-image: radial-gradient(ellipse 60% 95% at 100% 0%, #000 0, rgba(0, 0, 0, 0.4) 45%, transparent 75%);
+}
+@media (max-width: 767px) {
+  .footer-diamonds,
+  [dir="ltr"] .footer-diamonds {
+    -webkit-mask-image: radial-gradient(ellipse 120% 40% at 0% 100%, #000 0, transparent 80%);
+    mask-image: radial-gradient(ellipse 120% 40% at 0% 100%, #000 0, transparent 80%);
+  }
+}
+
 /* Smooth scrolling & mobile optimizations */
 html {
   scroll-behavior: smooth;
