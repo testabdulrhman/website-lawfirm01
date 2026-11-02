@@ -430,34 +430,11 @@ setError(c.errors.timeout);
         </div>
       </section>
 
-      {/* ===================== المزايا + نموذج التقديم ===================== */}
+      {/* ===================== نموذج التقديم ===================== */}
       <section className="bg-[var(--ds-sand)] py-16 md:py-24">
-        <div className="container mx-auto grid gap-12 px-5 md:px-4 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16 lg:px-8">
-          {/* لماذا الانضمام إلينا */}
-          <div className="lg:pt-2">
-            <h2 className="font-heading text-2xl font-bold text-[var(--ds-ink)] md:text-3xl">{c.whyTitle}</h2>
-            <ul className="mt-8 border-t border-[var(--ds-line-strong)]">
-              {c.benefits.map((b) => (
-                <li key={b.title} className="flex gap-4 border-b border-[var(--ds-line-strong)] py-6">
-                  <span aria-hidden="true" className={`${diamond} mt-2.5`} />
-                  <div>
-                    <h3 className="font-heading text-base font-bold text-[var(--ds-ink)] md:text-lg">{b.title}</h3>
-                    <p className="mt-1.5 font-body text-sm leading-[1.85] text-[var(--ds-muted)]">{b.desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <Link
-              href={lp("/about")}
-              className="mt-6 inline-flex min-h-11 items-center gap-2 font-body text-sm font-semibold text-[var(--ds-gold-text)] transition-colors hover:text-[var(--ds-ink)]"
-            >
-              {c.learnMore}
-              {isEnglish ? <ArrowRight className="h-4 w-4" /> : <ArrowLeft className="h-4 w-4" />}
-            </Link>
-          </div>
-
+        <div className="container mx-auto max-w-3xl px-5 md:px-4 lg:px-8">
           {/* نموذج التقديم */}
-          <div className="lg:sticky lg:top-28 lg:self-start">
+          <div>
             <div className="rounded-xl border border-[var(--ds-line)] bg-white p-6 shadow-[0_6px_18px_-6px_rgba(24,20,12,0.14),0_2px_6px_-2px_rgba(24,20,12,0.08)] md:p-10">
               {success ? (
                 <div className="py-8 text-center" role="status">
@@ -582,7 +559,8 @@ setError(c.errors.timeout);
                           autoComplete="bday"
                         />
                         {!dob && (
-                          <span className="pointer-events-none absolute inset-y-0 start-4 flex items-center font-body text-base text-[var(--ds-muted)]/70">
+                          // في العربية تقع أيقونة التقويم في الجهة نفسها، فيبدأ النص بعدها
+                          <span className="pointer-events-none absolute inset-y-0 start-4 flex items-center font-body text-base text-[var(--ds-muted)]/70 rtl:start-11">
                             {c.dobPlaceholder}
                           </span>
                         )}
@@ -778,6 +756,7 @@ setError(c.errors.timeout);
               )}
             </div>
           </div>
+
         </div>
       </section>
     </div>
