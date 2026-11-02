@@ -13,10 +13,11 @@ import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { localePath } from "@/lib/localePath";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { FIRM_NAME_AR, FIRM_NAME_EN } from "@/lib/firmIdentity";
-import { ArrowLeft, ArrowRight, CheckCircle2, AlertCircle, Loader2, Upload, Send } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown, AlertCircle, Loader2, Upload, Send } from "lucide-react";
 
 const SUBMIT_ENDPOINT =
   "https://zwaahunavepleczuamuy.supabase.co/functions/v1/submit-application";
@@ -27,6 +28,8 @@ const SUPABASE_ANON_KEY =
 const MAX_CV_SIZE = 8 * 1024 * 1024; // 8 ميجابايت
 const UPLOAD_TIMEOUT_MS = 90 * 1000; // 90 ثانية (رفع سيرة كبيرة على جوال بطيء + معالجة الخادم)
 const ALLOWED_CV_EXT = [".pdf", ".doc", ".docx"];
+// الأرقام العربية-الهندية (٤٫٢٥) تُقبل في المعدل وسنة التخرج
+const toLatinDigits = (v: string) => v.trim().replace(/[٠-٩]/g, (d) => String("٠١٢٣٤٥٦٧٨٩".indexOf(d)));
 
 // قراءة الملف كـ Base64 (data URL)
 function readFileAsDataURL(file: File): Promise<string> {
@@ -66,7 +69,23 @@ const COPY = {
     phone: "رقم الجوال",
     email: "البريد الإلكتروني",
     qualifications: "المؤهل العلمي",
-    qualificationsPlaceholder: "مثال: بكالوريوس قانون / أنظمة",
+    qualificationsPlaceholder: "اختر",
+    degrees: ["بكالوريوس", "ماجستير", "دكتوراه", "دبلوم", "طالب — لم أتخرج بعد"],
+    dob: "تاريخ الميلاد",
+    dobPlaceholder: "اختر التاريخ",
+    gradYear: "سنة التخرج",
+    gradYearPlaceholder: "مثال: 2025",
+    university: "الجامعة",
+    universityPlaceholder: "اسم الجامعة",
+    major: "التخصص",
+    majorPlaceholder: "تخصصك",
+    gpa: "المعدل",
+    gpaOutOf: "من 5",
+    gpaPlaceholder: "مثال: 4.25",
+    aboutLead: "والآن، نودّ أن نتعرّف عليك بطريقتك.",
+    aboutQuestion: "تخيّل أن سيرتك الذاتية لم تصلنا، وأن ما ستكتبه هنا هو فرصتك الوحيدة لنتعرّف عليك. ماذا تودّ أن تقول لنا؟",
+    aboutPlaceholder: "هذه مساحتك. اكتب كما تحب، وبالقدر الذي تراه مناسباً…",
+    aboutCount: (n: string) => `${n} حرفاً · دون حد أقصى`,
     cv: "السيرة الذاتية",
     cvChoose: "اضغط لاختيار ملف السيرة الذاتية",
     cvHint: "PDF أو Word، بحد أقصى 8 ميجابايت",
@@ -86,6 +105,9 @@ const COPY = {
       nameRequired: "يرجى إدخال الاسم الكامل.",
       phoneRequired: "يرجى إدخال رقم الجوال.",
       phoneInvalid: "رقم الجوال غير صحيح. يجب أن يكون بصيغة 05xxxxxxxx.",
+      universityRequired: "يرجى كتابة اسم الجامعة.",
+      gpaInvalid: "يرجى كتابة المعدل من 5 (مثال: 4.25).",
+      gradYearInvalid: "سنة التخرج غير صحيحة (مثال: 2025).",
       submitFailed: "تعذّر إرسال الطلب حالياً، يرجى المحاولة لاحقاً.",
       timeout:
         "استغرق الإرسال وقتاً طويلاً. قد يكون الاتصال بطيئاً أو ملف السيرة كبيراً — جرّب ضغط الملف أو إعادة المحاولة على اتصال أفضل.",
@@ -118,8 +140,24 @@ const COPY = {
     fullNamePlaceholder: "Enter your full name",
     phone: "Mobile number",
     email: "Email",
-    qualifications: "Qualification",
-    qualificationsPlaceholder: "e.g. Bachelor of Law",
+    qualifications: "Degree",
+    qualificationsPlaceholder: "Select",
+    degrees: ["Bachelor's", "Master's", "PhD", "Diploma", "Student — not graduated yet"],
+    dob: "Date of birth",
+    dobPlaceholder: "Select date",
+    gradYear: "Graduation year",
+    gradYearPlaceholder: "e.g. 2025",
+    university: "University",
+    universityPlaceholder: "University name",
+    major: "Major",
+    majorPlaceholder: "Your major",
+    gpa: "GPA",
+    gpaOutOf: "out of 5",
+    gpaPlaceholder: "e.g. 4.25",
+    aboutLead: "Now, we'd like to get to know you — your way.",
+    aboutQuestion: "Imagine your CV never reached us, and what you write here is your only chance to introduce yourself. What would you like to tell us?",
+    aboutPlaceholder: "This is your space. Write as you like, as much as you see fit…",
+    aboutCount: (n: string) => `${n} characters · no limit`,
     cv: "CV",
     cvChoose: "Click to choose your CV file",
     cvHint: "PDF or Word, up to 8 MB",
@@ -139,6 +177,9 @@ const COPY = {
       nameRequired: "Please enter your full name.",
       phoneRequired: "Please enter your mobile number.",
       phoneInvalid: "Invalid mobile number. It must be a Saudi mobile number in the format 05xxxxxxxx.",
+      universityRequired: "Please enter your university.",
+      gpaInvalid: "Please enter your GPA out of 5 (e.g. 4.25).",
+      gradYearInvalid: "Invalid graduation year (e.g. 2025).",
       submitFailed: "Your application could not be sent right now. Please try again later.",
       timeout:
         "Sending took too long. Your connection may be slow or your CV file large — try compressing the file or retrying on a better connection.",
@@ -164,6 +205,12 @@ export default function Careers() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [qualifications, setQualifications] = useState("");
+  const [dob, setDob] = useState("");
+  const [gradYear, setGradYear] = useState("");
+  const [university, setUniversity] = useState("");
+  const [major, setMajor] = useState("");
+  const [gpa, setGpa] = useState("");
+  const [aboutMe, setAboutMe] = useState("");
   const [website, setWebsite] = useState(""); // honeypot
   const [cvFile, setCvFile] = useState<File | null>(null);
 
@@ -203,6 +250,12 @@ export default function Careers() {
     setPhone("");
     setEmail("");
     setQualifications("");
+    setDob("");
+    setGradYear("");
+    setUniversity("");
+    setMajor("");
+    setGpa("");
+    setAboutMe("");
     setWebsite("");
     setCvFile(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
@@ -228,6 +281,20 @@ export default function Careers() {
       setError(c.errors.phoneInvalid);
       return;
     }
+    if (!university.trim()) {
+      setError(c.errors.universityRequired);
+      return;
+    }
+    const gpaNum = Number(toLatinDigits(gpa).replace(/[٫,]/g, "."));
+    if (!gpa.trim() || !Number.isFinite(gpaNum) || gpaNum < 0 || gpaNum > 5) {
+      setError(c.errors.gpaInvalid);
+      return;
+    }
+    const gradNum = Number(toLatinDigits(gradYear));
+    if (gradYear.trim() && (!Number.isInteger(gradNum) || gradNum < 1960 || gradNum > 2040)) {
+      setError(c.errors.gradYearInvalid);
+      return;
+    }
     if (cvFile && cvFile.size > MAX_CV_SIZE) {
       setError(c.errors.fileSize);
       return;
@@ -241,6 +308,12 @@ export default function Careers() {
         phone: cleanPhone,
         email: email.trim(),
         qualifications: qualifications.trim(),
+        university: university.trim(),
+        major: major.trim(),
+        gpa: String(gpaNum),
+        graduation_year: gradYear.trim() ? String(gradNum) : "",
+        date_of_birth: dob,
+        about_me: aboutMe.trim(),
         website: website, // honeypot — يبقى فارغاً للمستخدم الحقيقي
       };
 
@@ -487,19 +560,141 @@ setError(c.errors.timeout);
                       </div>
                     </div>
 
-                    {/* المؤهل العلمي */}
-                    <div className="space-y-2">
-                      <Label htmlFor="qualifications" className={labelClass}>
-                        {c.qualifications} {optional}
+                    {/* تاريخ الميلاد + سنة التخرج */}
+                    <div className="grid grid-cols-2 gap-4 sm:gap-6">
+                      <div className="space-y-2">
+                        <Label htmlFor="dob" className={labelClass}>
+                          {c.dob}
+                        </Label>
+                        <div className="relative">
+                        <Input
+                          id="dob"
+                          name="dob"
+                          type="date"
+                          value={dob}
+                          onChange={(e) => setDob(e.target.value)}
+                          min="1950-01-01"
+                          max={new Date().toISOString().slice(0, 10)}
+                          dir="ltr"
+                          // كروم يرسم قالب «يوم/شهر/سنة» العربي مقلوب الحروف، وسفاري الآيفون يتركه فارغاً —
+                          // فيُخفى القالب ما دام الحقل فارغاً ويظهر بدله نص «اختر التاريخ»
+                          className={`${fieldClass} text-left ${dob ? "" : "text-transparent [&::-webkit-datetime-edit]:text-transparent"}`}
+                          autoComplete="bday"
+                        />
+                        {!dob && (
+                          <span className="pointer-events-none absolute inset-y-0 start-4 flex items-center font-body text-base text-[var(--ds-muted)]/70">
+                            {c.dobPlaceholder}
+                          </span>
+                        )}
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="grad_year" className={labelClass}>
+                          {c.gradYear}
+                        </Label>
+                        <Input
+                          id="grad_year"
+                          name="grad_year"
+                          inputMode="numeric"
+                          value={gradYear}
+                          onChange={(e) => setGradYear(e.target.value.replace(/[^\d٠-٩]/g, "").slice(0, 4))}
+                          placeholder={c.gradYearPlaceholder}
+                          className={fieldClass}
+                        />
+                      </div>
+                    </div>
+
+                    {/* الجامعة + التخصص */}
+                    <div className="grid grid-cols-2 gap-4 sm:gap-6">
+                      <div className="space-y-2">
+                        <Label htmlFor="university" className={labelClass}>
+                          {c.university} {required}
+                        </Label>
+                        <Input
+                          id="university"
+                          name="university"
+                          value={university}
+                          onChange={(e) => setUniversity(e.target.value)}
+                          placeholder={c.universityPlaceholder}
+                          className={fieldClass}
+                          maxLength={200}
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="major" className={labelClass}>
+                          {c.major}
+                        </Label>
+                        <Input
+                          id="major"
+                          name="major"
+                          value={major}
+                          onChange={(e) => setMajor(e.target.value)}
+                          placeholder={c.majorPlaceholder}
+                          className={fieldClass}
+                          maxLength={200}
+                        />
+                      </div>
+                    </div>
+
+                    {/* المعدل من ٥ + المؤهل */}
+                    <div className="grid grid-cols-2 gap-4 sm:gap-6">
+                      <div className="space-y-2">
+                        <Label htmlFor="gpa" className={labelClass}>
+                          {c.gpa} <span className="font-body text-xs font-normal text-[var(--ds-muted)]">({c.gpaOutOf})</span> {required}
+                        </Label>
+                        <Input
+                          id="gpa"
+                          name="gpa"
+                          inputMode="decimal"
+                          value={gpa}
+                          onChange={(e) => setGpa(e.target.value.replace(/[^\d٠-٩.,٫]/g, "").slice(0, 4))}
+                          placeholder={c.gpaPlaceholder}
+                          className={fieldClass}
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="qualifications" className={labelClass}>
+                          {c.qualifications}
+                        </Label>
+                        <div className="relative">
+                        <select
+                          id="qualifications"
+                          name="qualifications"
+                          value={qualifications}
+                          onChange={(e) => setQualifications(e.target.value)}
+                          className={`${fieldClass} w-full appearance-none border-solid pe-9 ps-3 outline-none ${qualifications ? "" : "text-[var(--ds-muted)]"}`}
+                        >
+                          <option value="">{c.qualificationsPlaceholder}</option>
+                          {c.degrees.map((d) => (
+                            <option key={d} value={d} className="text-[var(--ds-ink)]">
+                              {d}
+                            </option>
+                          ))}
+                        </select>
+                        <ChevronDown className="pointer-events-none absolute end-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--ds-muted)]" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* بطريقتك — نص حر بلا حد */}
+                    <div className="space-y-3 border-t border-[var(--ds-line)] pt-8">
+                      <p className="font-heading text-base font-bold text-[var(--ds-ink)]">{c.aboutLead}</p>
+                      <Label htmlFor="about_me" className="block font-heading text-lg font-bold leading-relaxed text-[var(--ds-ink)]">
+                        {c.aboutQuestion}
                       </Label>
-                      <Input
-                        id="qualifications"
-                        name="qualifications"
-                        value={qualifications}
-                        onChange={(e) => setQualifications(e.target.value)}
-                        placeholder={c.qualificationsPlaceholder}
-                        className={fieldClass}
+                      <Textarea
+                        id="about_me"
+                        name="about_me"
+                        value={aboutMe}
+                        onChange={(e) => setAboutMe(e.target.value)}
+                        placeholder={c.aboutPlaceholder}
+                        className={`${fieldClass} h-auto min-h-48 resize-y py-3 leading-relaxed`}
                       />
+                      <p className="font-body text-xs text-[var(--ds-muted)]">
+                        {c.aboutCount(aboutMe.trim().length.toLocaleString(isEnglish ? "en-US" : "ar-SA-u-nu-latn"))}
+                      </p>
                     </div>
 
                     {/* السيرة الذاتية */}
