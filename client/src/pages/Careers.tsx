@@ -31,6 +31,19 @@ const ALLOWED_CV_EXT = [".pdf", ".doc", ".docx"];
 // الأرقام العربية-الهندية (٤٫٢٥) تُقبل في المعدل وسنة التخرج
 const toLatinDigits = (v: string) => v.trim().replace(/[٠-٩]/g, (d) => String("٠١٢٣٤٥٦٧٨٩".indexOf(d)));
 
+/** أمثلة الأرقام (05**** و+966****) تُعرض يسار-يمين داخل النص العربي وإلا انقلبت النجوم */
+function withLtrNumbers(text: string) {
+  return text.split(/(\+?\d+\*+)/).map((part, i) =>
+    /^\+?\d+\*+$/.test(part) ? (
+      <span key={i} dir="ltr" className="inline-block">
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+}
+
 /** الجوال: سعودي بصيغة 05xxxxxxxx، أو دولي برمز الدولة (+ أو 00) — يُرجع الصيغة المحفوظة أو null */
 function normalizePhone(raw: string): string | null {
   let p = toLatinDigits(raw).replace(/[\s\-()]/g, "");
@@ -114,8 +127,8 @@ const COPY = {
       fileSize: "حجم السيرة الذاتية كبير (الحد الأقصى 8 ميجابايت). يرجى ضغط الملف وإعادة المحاولة.",
       nameRequired: "يرجى إدخال الاسم الكامل.",
       phoneRequired: "يرجى إدخال رقم الجوال.",
-      phoneInvalid: "رقم الجوال غير صحيح. اكتبه بصيغة 05xxxxxxxx، أو برمز الدولة إن لم يكن سعودياً (مثال: ‎+962791234567‎).",
-      phoneHint: "من خارج السعودية؟ اكتب رقمك برمز الدولة، مثل: ‎+962791234567‎",
+      phoneInvalid: "رقم الجوال غير صحيح. أدخله مباشرة مثل: 05******** أو برمز الدولة مثل: +966*********",
+      phoneHint: "يمكن إدخال الرقم مباشرة مثل: 05******** أو إدخاله برمز الدولة مثل: +966*********",
       universityRequired: "يرجى كتابة اسم الجامعة.",
       gpaInvalid: "يرجى كتابة المعدل من 5 (مثال: 4.25).",
       gradYearInvalid: "سنة التخرج غير صحيحة (مثال: 2025).",
@@ -187,8 +200,8 @@ const COPY = {
       fileSize: "Your CV is too large (maximum 8 MB). Please compress the file and try again.",
       nameRequired: "Please enter your full name.",
       phoneRequired: "Please enter your mobile number.",
-      phoneInvalid: "Invalid mobile number. Use 05xxxxxxxx for Saudi numbers, or include the country code (e.g. +962791234567).",
-      phoneHint: "Outside Saudi Arabia? Enter your number with the country code, e.g. +962791234567",
+      phoneInvalid: "Invalid mobile number. Enter it directly, e.g. 05********, or with the country code, e.g. +966*********",
+      phoneHint: "Enter your number directly, e.g. 05********, or with the country code, e.g. +966*********",
       universityRequired: "Please enter your university.",
       gpaInvalid: "Please enter your GPA out of 5 (e.g. 4.25).",
       gradYearInvalid: "Invalid graduation year (e.g. 2025).",
@@ -486,7 +499,7 @@ setError(c.errors.timeout);
                     {error && (
                       <div role="alert" className="flex items-start gap-2 rounded-lg border border-[#9B3B36]/25 bg-[#F4E2E0] p-3">
                         <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#9B3B36]" />
-                        <p className="font-body text-sm text-[#7d2f2b]">{error}</p>
+                        <p className="font-body text-sm text-[#7d2f2b]">{withLtrNumbers(error)}</p>
                       </div>
                     )}
 
@@ -529,7 +542,7 @@ setError(c.errors.timeout);
                           autoComplete="tel"
                           required
                         />
-                        <p className="font-body text-xs text-[var(--ds-muted)]">{c.errors.phoneHint}</p>
+                        <p className="font-body text-xs text-[var(--ds-muted)]">{withLtrNumbers(c.errors.phoneHint)}</p>
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email" className={labelClass}>
