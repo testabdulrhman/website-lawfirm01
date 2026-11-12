@@ -31,6 +31,16 @@ const ALLOWED_CV_EXT = [".pdf", ".doc", ".docx"];
 // الأرقام العربية-الهندية (٤٫٢٥) تُقبل في المعدل وسنة التخرج
 const toLatinDigits = (v: string) => v.trim().replace(/[٠-٩]/g, (d) => String("٠١٢٣٤٥٦٧٨٩".indexOf(d)));
 
+/** الجوال: سعودي بصيغة 05xxxxxxxx، أو دولي برمز الدولة (+ أو 00) — يُرجع الصيغة المحفوظة أو null */
+function normalizePhone(raw: string): string | null {
+  let p = toLatinDigits(raw).replace(/[\s\-()]/g, "");
+  if (p.startsWith("00")) p = "+" + p.slice(2);
+  if (/^(\+?966)5\d{8}$/.test(p)) p = "0" + p.slice(p.length - 9);
+  if (/^05\d{8}$/.test(p)) return p;
+  if (/^\+[1-9]\d{7,14}$/.test(p)) return p;
+  return null;
+}
+
 // قراءة الملف كـ Base64 (data URL)
 function readFileAsDataURL(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -104,7 +114,8 @@ const COPY = {
       fileSize: "حجم السيرة الذاتية كبير (الحد الأقصى 8 ميجابايت). يرجى ضغط الملف وإعادة المحاولة.",
       nameRequired: "يرجى إدخال الاسم الكامل.",
       phoneRequired: "يرجى إدخال رقم الجوال.",
-      phoneInvalid: "رقم الجوال غير صحيح. يجب أن يكون بصيغة 05xxxxxxxx.",
+      phoneInvalid: "رقم الجوال غير صحيح. اكتبه بصيغة 05xxxxxxxx، أو برمز الدولة إن لم يكن سعودياً (مثال: ‎+962791234567‎).",
+      phoneHint: "من خارج السعودية؟ اكتب رقمك برمز الدولة، مثل: ‎+962791234567‎",
       universityRequired: "يرجى كتابة اسم الجامعة.",
       gpaInvalid: "يرجى كتابة المعدل من 5 (مثال: 4.25).",
       gradYearInvalid: "سنة التخرج غير صحيحة (مثال: 2025).",
@@ -176,7 +187,8 @@ const COPY = {
       fileSize: "Your CV is too large (maximum 8 MB). Please compress the file and try again.",
       nameRequired: "Please enter your full name.",
       phoneRequired: "Please enter your mobile number.",
-      phoneInvalid: "Invalid mobile number. It must be a Saudi mobile number in the format 05xxxxxxxx.",
+      phoneInvalid: "Invalid mobile number. Use 05xxxxxxxx for Saudi numbers, or include the country code (e.g. +962791234567).",
+      phoneHint: "Outside Saudi Arabia? Enter your number with the country code, e.g. +962791234567",
       universityRequired: "Please enter your university.",
       gpaInvalid: "Please enter your GPA out of 5 (e.g. 4.25).",
       gradYearInvalid: "Invalid graduation year (e.g. 2025).",
@@ -267,18 +279,14 @@ export default function Careers() {
     setCvWarning(false);
 
     const cleanName = fullName.trim();
-    const cleanPhone = phone.trim();
+    const cleanPhone = normalizePhone(phone);
 
     if (!cleanName) {
       setError(c.errors.nameRequired);
       return;
     }
     if (!cleanPhone) {
-      setError(c.errors.phoneRequired);
-      return;
-    }
-    if (!/^05\d{8}$/.test(cleanPhone)) {
-      setError(c.errors.phoneInvalid);
+      setError(phone.trim() ? c.errors.phoneInvalid : c.errors.phoneRequired);
       return;
     }
     if (!university.trim()) {
@@ -509,15 +517,19 @@ setError(c.errors.timeout);
                           id="phone"
                           name="phone"
                           type="tel"
-                          inputMode="numeric"
+                          inputMode="tel"
                           value={phone}
-                          onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
+                          onChange={(e) => {
+                            const v = toLatinDigits(e.target.value).replace(/[^\d+]/g, "");
+                            setPhone((v.startsWith("+") ? "+" : "") + v.replace(/\+/g, "").slice(0, 15));
+                          }}
                           placeholder="05xxxxxxxx"
                           dir="ltr"
                           className={`${fieldClass} text-left`}
                           autoComplete="tel"
                           required
                         />
+                        <p className="font-body text-xs text-[var(--ds-muted)]">{c.errors.phoneHint}</p>
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email" className={labelClass}>
